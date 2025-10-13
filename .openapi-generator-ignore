@@ -1,0 +1,10 @@
+# Preserve custom files
+README.md
+.gitignore
+go.mod
+go.sum
+Makefile
+.github/
+tests/
+scripts/
+.git/

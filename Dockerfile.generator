@@ -1,0 +1,18 @@
+FROM openapitools/openapi-generator-cli:v7.14.0
+
+# Install bash and other utilities
+USER root
+RUN apt-get update && apt-get install -y bash sed curl && rm -rf /var/lib/apt/lists/*
+
+# Copy scripts into the container
+COPY scripts/ /scripts/
+RUN chmod +x /scripts/*.sh
+
+# Set working directory
+WORKDIR /workspace
+
+# Set the post-process file environment variable
+ENV GO_POST_PROCESS_FILE=/scripts/postprocess_client.sh
+
+# Default command - run the full pipeline
+CMD ["/scripts/generate_full_pipeline.sh"]

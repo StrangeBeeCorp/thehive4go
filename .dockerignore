@@ -1,0 +1,10 @@
+# Exclude everything by default
+*
+
+# Include only what we need
+!scripts/
+!.openapi-generator-ignore
+
+# Exclude tmp and generated files from scripts
+scripts/tmp/
+thehive/
