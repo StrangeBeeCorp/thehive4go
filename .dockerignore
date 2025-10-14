@@ -4,7 +4,10 @@
 # Include only what we need
 !scripts/
 !.openapi-generator-ignore
+!go.mod
+!go.sum
+!integration/
+!thehive/
 
 # Exclude tmp and generated files from scripts
 scripts/tmp/
-thehive/

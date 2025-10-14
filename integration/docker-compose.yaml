@@ -1,0 +1,159 @@
+services:
+  thehive:
+    container_name: thehive
+    image: strangebee/thehive:5.5.2
+    ports:
+      - "9000:9000"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -f thehive:9000/api/status || exit 1"]
+      start_period: 60s
+      interval: 10s
+      timeout: 1s
+      retries: 50
+    depends_on:
+      - cassandra
+      - elasticsearch
+      - minio
+    networks:
+      - thehive-net
+    command:
+      - --secret
+      - "mySecretForTheHiveIsLongEnoughMyMan001294094859!!!!!!"
+      - "--cql-hostnames"
+      - "cassandra"
+      - "--index-backend"
+      - "elasticsearch"
+      - "--es-hostnames"
+      - "elasticsearch"
+      - "--s3-endpoint"
+      - "http://minio:9000"
+      - "--s3-access-key"
+      - "minioadmin"
+      - "--s3-secret-key"
+      - "minioadmin"
+      - "--s3-use-path-access-style"
+
+  # Integration tests container
+  integration-tests:
+    build:
+      context: ..
+      dockerfile: integration/Dockerfile
+    depends_on:
+      thehive:
+        condition: service_healthy
+    networks:
+      - thehive-net
+    environment:
+      - THEHIVE_URL=http://thehive:9000
+      - THEHIVE_USERNAME=admin
+      - THEHIVE_PASSWORD=secret
+    profiles:
+      - test
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - cluster.name=hive
+      - node.name=hive
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - script.allowed_types=inline,stored
+      - thread_pool.search.queue_size=100000
+      - thread_pool.write.queue_size=10000
+
+    ulimits:
+      memlock:
+        soft: 0
+        hard: 0
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -f http://localhost:9200/_cluster/health || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - thehive-net
+
+  cassandra:
+    image: cassandra:4
+    container_name: cassandra
+    restart: unless-stopped
+    cap_add:
+      - IPC_LOCK
+      - SYS_RESOURCE
+    ulimits:
+      memlock:
+        soft: 0
+        hard: 0
+    environment:
+      - CASSANDRA_CLUSTER_NAME=thp
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - MAX_HEAP_SIZE=1024M
+      - HEAP_NEWSIZE=200M
+      - CASSANDRA_NUM_TOKENS=256
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    expose:
+      - "9042"
+    ports:
+      - "9042:9042"
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    networks:
+      - thehive-net
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    command: ["minio", "server", "/data", "--console-address", ":9002"]
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
+    expose:
+      - "9000"
+      - "9002"
+    ports:
+      - "9002:9002"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - thehive-net
+
+volumes:
+  thehive_data:
+  thehive_index:
+  elasticsearch_data:
+  cassandra_data:
+  minio_data:
+
+networks:
+  thehive-net:
+    driver: bridge
