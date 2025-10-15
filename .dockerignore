@@ -3,11 +3,8 @@
 
 # Include only what we need
 !scripts/
-!.openapi-generator-ignore
+!oapi-codegen.yaml
 !go.mod
 !go.sum
 !integration/
 !thehive/
-
-# Exclude tmp and generated files from scripts
-scripts/tmp/

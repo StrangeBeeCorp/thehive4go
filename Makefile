@@ -1,6 +1,5 @@
 GO := go
 GO_IMAGE := golang:1.23.2-alpine
-OPENAPI_GENERATOR_IMAGE := openapitools/openapi-generator-cli:v7.14.0
 BGreen="\033[1;32m"       # Green
 Color_Off="\033[0m"       # Text Reset
 
@@ -32,6 +31,14 @@ test: ## Run tests with coverage
 	@echo $(BGreen)-----------------------$(Color_Off)
 	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./...
 
+.PHONY: integration-test
+integration-test: ## Run full integration tests with TheHive stack
+	@echo $(BGreen)---------------------------$(Color_Off)
+	@echo $(BGreen)-- Running Integration  --$(Color_Off)
+	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
+	@echo $(BGreen)---------------------------$(Color_Off)
+	cd integration && ./run-tests.sh
+
 .PHONY: vulncheck
 vulncheck: ## Check for vulnerabilities
 	@echo $(BGreen)------------------------------$(Color_Off)
@@ -54,7 +61,7 @@ updatedep: ## Update dependencies
 	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) sh -c 'go get -u ./... && go mod tidy'
 
 .PHONY: generate
-generate: ## Generate the client code from OpenAPI spec
+generate: ## Generate the client code from OpenAPI spec using oapi-codegen
 	@echo $(BGreen)-----------------------$(Color_Off)
 	@echo $(BGreen)-- Generating Client  --$(Color_Off)
 	@echo $(BGreen)-----------------------$(Color_Off)

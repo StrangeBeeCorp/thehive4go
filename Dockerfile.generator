@@ -1,18 +1,21 @@
-FROM openapitools/openapi-generator-cli:v7.14.0
+FROM golang:1.23.2-alpine
 
-# Install bash and other utilities
-USER root
-RUN apt-get update && apt-get install -y bash sed curl && rm -rf /var/lib/apt/lists/*
+# Install Node.js, npm, bash, and other utilities
+RUN apk add --no-cache nodejs npm bash sed curl git
 
-# Copy scripts into the container
+# Install openapi-down-convert globally
+RUN npm install -g @apiture/openapi-down-convert
+
+# Install oapi-codegen
+RUN go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+
+# Copy scripts and config into the container
 COPY scripts/ /scripts/
+COPY ./oapi-codegen.yaml /workspace/oapi-codegen.yaml
 RUN chmod +x /scripts/*.sh
 
 # Set working directory
 WORKDIR /workspace
-
-# Set the post-process file environment variable
-ENV GO_POST_PROCESS_FILE=/scripts/postprocess_client.sh
 
 # Default command - run the full pipeline
 CMD ["/scripts/generate_full_pipeline.sh"]

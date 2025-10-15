@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/HEAD/configuration-schema.json
+
+# Package name for generated code
+package: thehive
+
+# Output file path
+output: thehive/client.go
+
+# What to generate
+generate:
+  client: true
+  models: true
+  embedded-spec: true
+
+# Fix naming conflicts and enum issues
+compatibility:
+  always-prefix-enum-values: true
+  old-enum-conflicts: false
+  old-aliasing: false
+
+# Output options
+output-options:
+  skip-fmt: false
+  skip-prune: false

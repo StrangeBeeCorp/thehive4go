@@ -1,12 +1,15 @@
-# Simple integration test runner
-FROM golang:1.18-alpine
+# Integration test runner with Go test
+FROM golang:1.23.2-alpine
 
 RUN apk add --no-cache git ca-certificates curl
 
 WORKDIR /app
 
-# Copy everything from the build context (parent directory)
+# Copy everything from the parent directory
 COPY . .
 
-# Run the test directly
-CMD ["go", "run", "integration/cmd/test/main.go"]
+# Download dependencies for the main module
+RUN go mod tidy
+
+# Run integration tests
+CMD ["go", "test", "-v", "-timeout=10m", "./integration"]

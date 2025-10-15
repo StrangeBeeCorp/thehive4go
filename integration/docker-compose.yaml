@@ -46,7 +46,7 @@ services:
       - thehive-net
     environment:
       - THEHIVE_URL=http://thehive:9000
-      - THEHIVE_USERNAME=admin
+      - THEHIVE_USERNAME=admin@thehive.local
       - THEHIVE_PASSWORD=secret
     profiles:
       - test

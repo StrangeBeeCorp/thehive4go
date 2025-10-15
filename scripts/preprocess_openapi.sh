@@ -36,4 +36,17 @@ sed -i '/  securitySchemes:/,/^[^ ]/ {
 }' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ Header securityScheme fixed successfully${NC}"
 
+# Convert allOf to direct references for specific schemas
+sed -i "/InputEmailIntakeMailboxConfig:/,/^    [A-Z]/ { /discriminator:/,/imap:/d; }" "$FIXED_OPENAPI_PATH"
+echo -e "${GREEN}✅ allOf to direct references conversion applied successfully${NC}"
+
+# Remove all lines containing exclusiveMinimum:
+sed -i '/exclusiveMinimum:/d' "$FIXED_OPENAPI_PATH"
+echo -e "${GREEN}✅ exclusiveMinimum lines removed successfully${NC}"
+
+# Downgrade OpenAPI version for oapi-codegen compatibility
+echo -e "${BLUE}🔄 Downgrading OpenAPI version for oapi-codegen compatibility...${NC}"
+openapi-down-convert -i "$FIXED_OPENAPI_PATH" -o "$FIXED_OPENAPI_PATH"
+echo -e "${GREEN}✅ OpenAPI version downgraded successfully${NC}"
+
 echo -e "${BLUE}🎉 OpenAPI specification parsing and modification completed successfully!${NC}"
