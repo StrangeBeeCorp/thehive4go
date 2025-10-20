@@ -75,5 +75,5 @@ integration-test: ## Run full integration tests with TheHive stack
 	@echo $(BGreen)-- Running Integration  --$(Color_Off)
 	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
 	@echo $(BGreen)---------------------------$(Color_Off)
-	cd integration && docker-compose up --abort-on-container-exit integration-tests
-	cd integration && docker-compose down
+	cd integration && docker compose up --abort-on-container-exit integration-tests
+	cd integration && docker compose down
