@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -18,10 +18,10 @@ import (
 
 // InputCreateObservableAttachment - Attachment must be set if the observable `dataType` has `isAttachment=true`
 type InputCreateObservableAttachment struct {
-	InputAttachment *InputAttachment
+	InputAttachment        *InputAttachment
 	ArrayOfInputAttachment *[]InputAttachment
-	ArrayOfString *[]string
-	String *string
+	ArrayOfString          *[]string
+	String                 *string
 }
 
 // InputAttachmentAsInputCreateObservableAttachment is a convenience function that returns InputAttachment wrapped in InputCreateObservableAttachment
@@ -51,7 +51,6 @@ func StringAsInputCreateObservableAttachment(v *string) InputCreateObservableAtt
 		String: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *InputCreateObservableAttachment) UnmarshalJSON(data []byte) error {
@@ -162,7 +161,7 @@ func (src InputCreateObservableAttachment) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *InputCreateObservableAttachment) GetActualInstance() (interface{}) {
+func (obj *InputCreateObservableAttachment) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +186,7 @@ func (obj *InputCreateObservableAttachment) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj InputCreateObservableAttachment) GetActualInstanceValue() (interface{}) {
+func (obj InputCreateObservableAttachment) GetActualInstanceValue() interface{} {
 	if obj.InputAttachment != nil {
 		return *obj.InputAttachment
 	}
@@ -243,5 +242,3 @@ func (v *NullableInputCreateObservableAttachment) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

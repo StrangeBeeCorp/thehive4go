@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,23 +19,23 @@ var _ MappedNullable = &InputUpdateCase{}
 
 // InputUpdateCase struct for InputUpdateCase
 type InputUpdateCase struct {
-	Title *string `json:"title,omitempty"`
+	Title       *string `json:"title,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Severity *int32 `json:"severity,omitempty"`
-	StartDate *int32 `json:"startDate,omitempty"`
-	EndDate *int32 `json:"endDate,omitempty"`
+	Severity    *int32  `json:"severity,omitempty"`
+	StartDate   *int64  `json:"startDate,omitempty"`
+	EndDate     *int32  `json:"endDate,omitempty"`
 	// Set the case tags to this array
-	Tags []string `json:"tags,omitempty"`
-	Flag *bool `json:"flag,omitempty"`
-	Tlp *int32 `json:"tlp,omitempty"`
-	Pap *int32 `json:"pap,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	ImpactStatus *string `json:"impactStatus,omitempty"`
-	CustomFields *InputUpdateCaseCustomFields `json:"customFields,omitempty"`
-	TaskRule *string `json:"taskRule,omitempty"`
-	ObservableRule *string `json:"observableRule,omitempty"`
+	Tags           []string                     `json:"tags,omitempty"`
+	Flag           *bool                        `json:"flag,omitempty"`
+	Tlp            *int32                       `json:"tlp,omitempty"`
+	Pap            *int32                       `json:"pap,omitempty"`
+	Status         *string                      `json:"status,omitempty"`
+	Summary        *string                      `json:"summary,omitempty"`
+	Assignee       *string                      `json:"assignee,omitempty"`
+	ImpactStatus   *string                      `json:"impactStatus,omitempty"`
+	CustomFields   *InputUpdateCaseCustomFields `json:"customFields,omitempty"`
+	TaskRule       *string                      `json:"taskRule,omitempty"`
+	ObservableRule *string                      `json:"observableRule,omitempty"`
 	// Those tags will be added to the current case
 	AddTags []string `json:"addTags,omitempty"`
 	// Those tags will be removed from the current case
@@ -156,9 +156,9 @@ func (o *InputUpdateCase) SetSeverity(v int32) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *InputUpdateCase) GetStartDate() int32 {
+func (o *InputUpdateCase) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -166,7 +166,7 @@ func (o *InputUpdateCase) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputUpdateCase) GetStartDateOk() (*int32, bool) {
+func (o *InputUpdateCase) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -182,8 +182,8 @@ func (o *InputUpdateCase) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *InputUpdateCase) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *InputUpdateCase) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
@@ -636,7 +636,7 @@ func (o *InputUpdateCase) SetRemoveTags(v []string) {
 }
 
 func (o InputUpdateCase) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -737,5 +737,3 @@ func (v *NullableInputUpdateCase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

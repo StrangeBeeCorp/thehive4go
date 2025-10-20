@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,12 +19,11 @@ import (
 	"strings"
 )
 
-
 // AdminAPIService AdminAPI service
 type AdminAPIService service
 
 type ApiCancelCurrentIntegrityCheckRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 }
 
@@ -35,22 +34,22 @@ func (r ApiCancelCurrentIntegrityCheckRequest) Execute() (*http.Response, error)
 /*
 CancelCurrentIntegrityCheck Method for CancelCurrentIntegrityCheck
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCancelCurrentIntegrityCheckRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCancelCurrentIntegrityCheckRequest
 */
 func (a *AdminAPIService) CancelCurrentIntegrityCheck(ctx context.Context) ApiCancelCurrentIntegrityCheckRequest {
 	return ApiCancelCurrentIntegrityCheckRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentIntegrityCheckRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.CancelCurrentIntegrityCheck")
@@ -110,8 +109,8 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -121,8 +120,8 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -132,8 +131,8 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -143,8 +142,8 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -154,8 +153,8 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -164,7 +163,7 @@ func (a *AdminAPIService) CancelCurrentIntegrityCheckExecute(r ApiCancelCurrentI
 }
 
 type ApiGetCheckAndIndexStatsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 }
 
@@ -175,24 +174,25 @@ func (r ApiGetCheckAndIndexStatsRequest) Execute() (map[string]interface{}, *htt
 /*
 GetCheckAndIndexStats Method for GetCheckAndIndexStats
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetCheckAndIndexStatsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCheckAndIndexStatsRequest
 */
 func (a *AdminAPIService) GetCheckAndIndexStats(ctx context.Context) ApiGetCheckAndIndexStatsRequest {
 	return ApiGetCheckAndIndexStatsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStatsRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.GetCheckAndIndexStats")
@@ -252,8 +252,8 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -263,8 +263,8 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -274,8 +274,8 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -285,8 +285,8 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -296,8 +296,8 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -315,7 +315,7 @@ func (a *AdminAPIService) GetCheckAndIndexStatsExecute(r ApiGetCheckAndIndexStat
 }
 
 type ApiGetCheckStatsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 }
 
@@ -326,24 +326,25 @@ func (r ApiGetCheckStatsRequest) Execute() (map[string]interface{}, *http.Respon
 /*
 GetCheckStats Method for GetCheckStats
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetCheckStatsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCheckStatsRequest
 */
 func (a *AdminAPIService) GetCheckStats(ctx context.Context) ApiGetCheckStatsRequest {
 	return ApiGetCheckStatsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.GetCheckStats")
@@ -403,8 +404,8 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -414,8 +415,8 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -425,8 +426,8 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -436,8 +437,8 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -447,8 +448,8 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -466,7 +467,7 @@ func (a *AdminAPIService) GetCheckStatsExecute(r ApiGetCheckStatsRequest) (map[s
 }
 
 type ApiGetIndexStatusRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 }
 
@@ -477,24 +478,25 @@ func (r ApiGetIndexStatusRequest) Execute() (map[string]interface{}, *http.Respo
 /*
 GetIndexStatus Method for GetIndexStatus
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetIndexStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetIndexStatusRequest
 */
 func (a *AdminAPIService) GetIndexStatus(ctx context.Context) ApiGetIndexStatusRequest {
 	return ApiGetIndexStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.GetIndexStatus")
@@ -554,8 +556,8 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -565,8 +567,8 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -576,8 +578,8 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -587,8 +589,8 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -598,8 +600,8 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -617,9 +619,9 @@ func (a *AdminAPIService) GetIndexStatusExecute(r ApiGetIndexStatusRequest) (map
 }
 
 type ApiRebuildIndexRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
-	name string
+	name       string
 }
 
 func (r ApiRebuildIndexRequest) Execute() (*http.Response, error) {
@@ -631,24 +633,24 @@ RebuildIndex Method for RebuildIndex
 
 This will recreate the index mapping and reindex all the data
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name use 'all' for all indexes
- @return ApiRebuildIndexRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name use 'all' for all indexes
+	@return ApiRebuildIndexRequest
 */
 func (a *AdminAPIService) RebuildIndex(ctx context.Context, name string) ApiRebuildIndexRequest {
 	return ApiRebuildIndexRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.RebuildIndex")
@@ -709,8 +711,8 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -720,8 +722,8 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -731,8 +733,8 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -742,8 +744,8 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -753,8 +755,8 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -763,9 +765,9 @@ func (a *AdminAPIService) RebuildIndexExecute(r ApiRebuildIndexRequest) (*http.R
 }
 
 type ApiReindexDataRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
-	name string
+	name       string
 }
 
 func (r ApiReindexDataRequest) Execute() (*http.Response, error) {
@@ -777,24 +779,24 @@ ReindexData Method for ReindexData
 
 This does not rebuild the index mapping
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return ApiReindexDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return ApiReindexDataRequest
 */
 func (a *AdminAPIService) ReindexData(ctx context.Context, name string) ApiReindexDataRequest {
 	return ApiReindexDataRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.ReindexData")
@@ -855,8 +857,8 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -866,8 +868,8 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -877,8 +879,8 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -888,8 +890,8 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -899,8 +901,8 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -909,11 +911,11 @@ func (a *AdminAPIService) ReindexDataExecute(r ApiReindexDataRequest) (*http.Res
 }
 
 type ApiRepairSchemaRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 	schemaName string
-	select_ *string
-	filter *string
+	select_    *string
+	filter     *string
 }
 
 func (r ApiRepairSchemaRequest) Select_(select_ string) ApiRepairSchemaRequest {
@@ -933,26 +935,27 @@ func (r ApiRepairSchemaRequest) Execute() (map[string]interface{}, *http.Respons
 /*
 RepairSchema Method for RepairSchema
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param schemaName
- @return ApiRepairSchemaRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param schemaName
+	@return ApiRepairSchemaRequest
 */
 func (a *AdminAPIService) RepairSchema(ctx context.Context, schemaName string) ApiRepairSchemaRequest {
 	return ApiRepairSchemaRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		schemaName: schemaName,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.RepairSchema")
@@ -1019,8 +1022,8 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1030,8 +1033,8 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1041,8 +1044,8 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1052,8 +1055,8 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1063,8 +1066,8 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1082,11 +1085,11 @@ func (a *AdminAPIService) RepairSchemaExecute(r ApiRepairSchemaRequest) (map[str
 }
 
 type ApiSchemaInfoRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 	schemaName string
-	select_ *string
-	filter *string
+	select_    *string
+	filter     *string
 }
 
 func (r ApiSchemaInfoRequest) Select_(select_ string) ApiSchemaInfoRequest {
@@ -1106,26 +1109,27 @@ func (r ApiSchemaInfoRequest) Execute() (map[string]interface{}, *http.Response,
 /*
 SchemaInfo Method for SchemaInfo
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param schemaName
- @return ApiSchemaInfoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param schemaName
+	@return ApiSchemaInfoRequest
 */
 func (a *AdminAPIService) SchemaInfo(ctx context.Context, schemaName string) ApiSchemaInfoRequest {
 	return ApiSchemaInfoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		schemaName: schemaName,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.SchemaInfo")
@@ -1192,8 +1196,8 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1203,8 +1207,8 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1214,8 +1218,8 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1225,8 +1229,8 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1236,8 +1240,8 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1255,7 +1259,7 @@ func (a *AdminAPIService) SchemaInfoExecute(r ApiSchemaInfoRequest) (map[string]
 }
 
 type ApiTriggerAllChecksRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
 }
 
@@ -1266,22 +1270,22 @@ func (r ApiTriggerAllChecksRequest) Execute() (*http.Response, error) {
 /*
 TriggerAllChecks Method for TriggerAllChecks
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTriggerAllChecksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTriggerAllChecksRequest
 */
 func (a *AdminAPIService) TriggerAllChecks(ctx context.Context) ApiTriggerAllChecksRequest {
 	return ApiTriggerAllChecksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.TriggerAllChecks")
@@ -1341,8 +1345,8 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1352,8 +1356,8 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1363,8 +1367,8 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1374,8 +1378,8 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1385,8 +1389,8 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1395,9 +1399,9 @@ func (a *AdminAPIService) TriggerAllChecksExecute(r ApiTriggerAllChecksRequest) 
 }
 
 type ApiTriggerDedupIntegrityCheckRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
-	name string
+	name       string
 }
 
 func (r ApiTriggerDedupIntegrityCheckRequest) Execute() (*http.Response, error) {
@@ -1407,24 +1411,24 @@ func (r ApiTriggerDedupIntegrityCheckRequest) Execute() (*http.Response, error) 
 /*
 TriggerDedupIntegrityCheck Method for TriggerDedupIntegrityCheck
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return ApiTriggerDedupIntegrityCheckRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return ApiTriggerDedupIntegrityCheckRequest
 */
 func (a *AdminAPIService) TriggerDedupIntegrityCheck(ctx context.Context, name string) ApiTriggerDedupIntegrityCheckRequest {
 	return ApiTriggerDedupIntegrityCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupIntegrityCheckRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.TriggerDedupIntegrityCheck")
@@ -1485,8 +1489,8 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1496,8 +1500,8 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1507,8 +1511,8 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1518,8 +1522,8 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1529,8 +1533,8 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1539,9 +1543,9 @@ func (a *AdminAPIService) TriggerDedupIntegrityCheckExecute(r ApiTriggerDedupInt
 }
 
 type ApiTriggerGlobalIntegrityCheckRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
-	name string
+	name       string
 }
 
 func (r ApiTriggerGlobalIntegrityCheckRequest) Execute() (*http.Response, error) {
@@ -1551,24 +1555,24 @@ func (r ApiTriggerGlobalIntegrityCheckRequest) Execute() (*http.Response, error)
 /*
 TriggerGlobalIntegrityCheck Method for TriggerGlobalIntegrityCheck
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return ApiTriggerGlobalIntegrityCheckRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return ApiTriggerGlobalIntegrityCheckRequest
 */
 func (a *AdminAPIService) TriggerGlobalIntegrityCheck(ctx context.Context, name string) ApiTriggerGlobalIntegrityCheckRequest {
 	return ApiTriggerGlobalIntegrityCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalIntegrityCheckRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.TriggerGlobalIntegrityCheck")
@@ -1629,8 +1633,8 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1640,8 +1644,8 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1651,8 +1655,8 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1662,8 +1666,8 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1673,8 +1677,8 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1683,9 +1687,9 @@ func (a *AdminAPIService) TriggerGlobalIntegrityCheckExecute(r ApiTriggerGlobalI
 }
 
 type ApiTriggerIntegrityCheckRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AdminAPIService
-	name string
+	name       string
 }
 
 func (r ApiTriggerIntegrityCheckRequest) Execute() (*http.Response, error) {
@@ -1695,24 +1699,24 @@ func (r ApiTriggerIntegrityCheckRequest) Execute() (*http.Response, error) {
 /*
 TriggerIntegrityCheck Method for TriggerIntegrityCheck
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return ApiTriggerIntegrityCheckRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return ApiTriggerIntegrityCheckRequest
 */
 func (a *AdminAPIService) TriggerIntegrityCheck(ctx context.Context, name string) ApiTriggerIntegrityCheckRequest {
 	return ApiTriggerIntegrityCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityCheckRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.TriggerIntegrityCheck")
@@ -1773,8 +1777,8 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1784,8 +1788,8 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1795,8 +1799,8 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1806,8 +1810,8 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1817,8 +1821,8 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1827,10 +1831,10 @@ func (a *AdminAPIService) TriggerIntegrityCheckExecute(r ApiTriggerIntegrityChec
 }
 
 type ApiUpdateLogLevelRequest struct {
-	ctx context.Context
-	ApiService *AdminAPIService
+	ctx         context.Context
+	ApiService  *AdminAPIService
 	packageName string
-	level InputLogLevel
+	level       InputLogLevel
 }
 
 func (r ApiUpdateLogLevelRequest) Execute() (*http.Response, error) {
@@ -1840,26 +1844,26 @@ func (r ApiUpdateLogLevelRequest) Execute() (*http.Response, error) {
 /*
 UpdateLogLevel Method for UpdateLogLevel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param packageName
- @param level
- @return ApiUpdateLogLevelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param packageName
+	@param level
+	@return ApiUpdateLogLevelRequest
 */
 func (a *AdminAPIService) UpdateLogLevel(ctx context.Context, packageName string, level InputLogLevel) ApiUpdateLogLevelRequest {
 	return ApiUpdateLogLevelRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		packageName: packageName,
-		level: level,
+		level:       level,
 	}
 }
 
 // Execute executes the request
 func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.UpdateLogLevel")
@@ -1921,8 +1925,8 @@ func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1932,8 +1936,8 @@ func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1943,8 +1947,8 @@ func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1954,8 +1958,8 @@ func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1965,8 +1969,8 @@ func (a *AdminAPIService) UpdateLogLevelExecute(r ApiUpdateLogLevelRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,21 +21,21 @@ var _ MappedNullable = &InputCreateObservable{}
 
 // InputCreateObservable struct for InputCreateObservable
 type InputCreateObservable struct {
-	DataType string `json:"dataType"`
-	Data *InputObservableData `json:"data,omitempty"`
-	Message *string `json:"message,omitempty"`
+	DataType string               `json:"dataType"`
+	Data     *InputObservableData `json:"data,omitempty"`
+	Message  *string              `json:"message,omitempty"`
 	// The `startDate` field for `InputCreateObservable` object is mapped on `_createdDate` field. This field should not be used.
-	StartDate *int32 `json:"startDate,omitempty"`
-	Attachment *InputCreateObservableAttachment `json:"attachment,omitempty"`
-	Tlp *int32 `json:"tlp,omitempty"`
-	Pap *int32 `json:"pap,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Ioc *bool `json:"ioc,omitempty"`
-	Sighted *bool `json:"sighted,omitempty"`
-	SightedAt *int32 `json:"sightedAt,omitempty"`
-	IgnoreSimilarity *bool `json:"ignoreSimilarity,omitempty"`
+	StartDate        *int64                           `json:"startDate,omitempty"`
+	Attachment       *InputCreateObservableAttachment `json:"attachment,omitempty"`
+	Tlp              *int32                           `json:"tlp,omitempty"`
+	Pap              *int32                           `json:"pap,omitempty"`
+	Tags             []string                         `json:"tags,omitempty"`
+	Ioc              *bool                            `json:"ioc,omitempty"`
+	Sighted          *bool                            `json:"sighted,omitempty"`
+	SightedAt        *int64                           `json:"sightedAt,omitempty"`
+	IgnoreSimilarity *bool                            `json:"ignoreSimilarity,omitempty"`
 	// If set to true, the file is unzipped using the `zipPassword` and each file in the zip is treated as an observable
-	IsZip *bool `json:"isZip,omitempty"`
+	IsZip       *bool   `json:"isZip,omitempty"`
 	ZipPassword *string `json:"zipPassword,omitempty"`
 }
 
@@ -168,9 +168,9 @@ func (o *InputCreateObservable) SetMessage(v string) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *InputCreateObservable) GetStartDate() int32 {
+func (o *InputCreateObservable) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -178,7 +178,7 @@ func (o *InputCreateObservable) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateObservable) GetStartDateOk() (*int32, bool) {
+func (o *InputCreateObservable) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -194,8 +194,8 @@ func (o *InputCreateObservable) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *InputCreateObservable) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *InputCreateObservable) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
@@ -392,9 +392,9 @@ func (o *InputCreateObservable) SetSighted(v bool) {
 }
 
 // GetSightedAt returns the SightedAt field value if set, zero value otherwise.
-func (o *InputCreateObservable) GetSightedAt() int32 {
+func (o *InputCreateObservable) GetSightedAt() int64 {
 	if o == nil || IsNil(o.SightedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SightedAt
@@ -402,7 +402,7 @@ func (o *InputCreateObservable) GetSightedAt() int32 {
 
 // GetSightedAtOk returns a tuple with the SightedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateObservable) GetSightedAtOk() (*int32, bool) {
+func (o *InputCreateObservable) GetSightedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.SightedAt) {
 		return nil, false
 	}
@@ -418,8 +418,8 @@ func (o *InputCreateObservable) HasSightedAt() bool {
 	return false
 }
 
-// SetSightedAt gets a reference to the given int32 and assigns it to the SightedAt field.
-func (o *InputCreateObservable) SetSightedAt(v int32) {
+// SetSightedAt gets a reference to the given int64 and assigns it to the SightedAt field.
+func (o *InputCreateObservable) SetSightedAt(v int64) {
 	o.SightedAt = &v
 }
 
@@ -520,7 +520,7 @@ func (o *InputCreateObservable) SetZipPassword(v string) {
 }
 
 func (o InputCreateObservable) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -585,10 +585,10 @@ func (o *InputCreateObservable) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -644,5 +644,3 @@ func (v *NullableInputCreateObservable) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

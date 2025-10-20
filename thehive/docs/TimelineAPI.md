@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomEvent**](TimelineAPI.md#CreateCustomEvent) | **Post** /api/v1/case/{caseId}/customEvent | 
-[**DeleteACustomEvent**](TimelineAPI.md#DeleteACustomEvent) | **Delete** /api/v1/customEvent/{eventId} | 
-[**UpdateACustomEvent**](TimelineAPI.md#UpdateACustomEvent) | **Patch** /api/v1/customEvent/{eventId} | 
+[**CreateCustomEvent**](TimelineAPI.md#CreateCustomEvent) | **Post** /api/v1/case/{caseId}/customEvent |
+[**DeleteACustomEvent**](TimelineAPI.md#DeleteACustomEvent) | **Delete** /api/v1/customEvent/{eventId} |
+[**UpdateACustomEvent**](TimelineAPI.md#UpdateACustomEvent) | **Patch** /api/v1/customEvent/{eventId} |
 
 
 
@@ -29,8 +29,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputCustomEvent := *openapiclient.NewInputCustomEvent(int32(1640000000000), "Title_example") // InputCustomEvent | 
+	caseId := "~354" // string |
+	inputCustomEvent := *openapiclient.NewInputCustomEvent(int64(1640000000000), "Title_example") // InputCustomEvent |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiCreateCustomEventRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCustomEvent** | [**InputCustomEvent**](InputCustomEvent.md) |  | 
+ **inputCustomEvent** | [**InputCustomEvent**](InputCustomEvent.md) |  |
 
 ### Return type
 
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	eventId := "~354" // string | 
+	eventId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** |  |
 
 ### Other Parameters
 
@@ -165,8 +165,8 @@ import (
 )
 
 func main() {
-	eventId := "~354" // string | 
-	inputUpdateCustomEvent := *openapiclient.NewInputUpdateCustomEvent() // InputUpdateCustomEvent | 
+	eventId := "~354" // string |
+	inputUpdateCustomEvent := *openapiclient.NewInputUpdateCustomEvent() // InputUpdateCustomEvent |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** |  |
 
 ### Other Parameters
 
@@ -194,7 +194,7 @@ Other parameters are passed through a pointer to a apiUpdateACustomEventRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCustomEvent** | [**InputUpdateCustomEvent**](InputUpdateCustomEvent.md) |  | 
+ **inputUpdateCustomEvent** | [**InputUpdateCustomEvent**](InputUpdateCustomEvent.md) |  |
 
 ### Return type
 
@@ -212,4 +212,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

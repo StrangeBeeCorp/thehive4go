@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,19 +21,19 @@ var _ MappedNullable = &OutputLicense{}
 
 // OutputLicense struct for OutputLicense
 type OutputLicense struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
-	UnderscoreType string `json:"_type"`
-	Id string `json:"id"`
-	Customer string `json:"customer"`
-	Plan string `json:"plan"`
-	Kind string `json:"kind"`
-	ValidFrom int32 `json:"validFrom"`
-	ExpiresAt int32 `json:"expiresAt"`
-	Current bool `json:"current"`
-	Capabilities []string `json:"capabilities,omitempty"`
-	Quotas map[string]int32 `json:"quotas"`
+	UnderscoreId        string           `json:"_id"`
+	UnderscoreCreatedAt int64            `json:"_createdAt"`
+	UnderscoreCreatedBy string           `json:"_createdBy"`
+	UnderscoreType      string           `json:"_type"`
+	Id                  string           `json:"id"`
+	Customer            string           `json:"customer"`
+	Plan                string           `json:"plan"`
+	Kind                string           `json:"kind"`
+	ValidFrom           int64            `json:"validFrom"`
+	ExpiresAt           int64            `json:"expiresAt"`
+	Current             bool             `json:"current"`
+	Capabilities        []string         `json:"capabilities,omitempty"`
+	Quotas              map[string]int32 `json:"quotas"`
 }
 
 type _OutputLicense OutputLicense
@@ -42,7 +42,7 @@ type _OutputLicense OutputLicense
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputLicense(underscoreId string, underscoreCreatedAt int32, underscoreCreatedBy string, underscoreType string, id string, customer string, plan string, kind string, validFrom int32, expiresAt int32, current bool, quotas map[string]int32) *OutputLicense {
+func NewOutputLicense(underscoreId string, underscoreCreatedAt int64, underscoreCreatedBy string, underscoreType string, id string, customer string, plan string, kind string, validFrom int64, expiresAt int64, current bool, quotas map[string]int32) *OutputLicense {
 	this := OutputLicense{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreCreatedAt = underscoreCreatedAt
@@ -92,9 +92,9 @@ func (o *OutputLicense) SetUnderscoreId(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputLicense) GetUnderscoreCreatedAt() int32 {
+func (o *OutputLicense) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -103,7 +103,7 @@ func (o *OutputLicense) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputLicense) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputLicense) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,7 +111,7 @@ func (o *OutputLicense) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputLicense) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputLicense) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
@@ -260,9 +260,9 @@ func (o *OutputLicense) SetKind(v string) {
 }
 
 // GetValidFrom returns the ValidFrom field value
-func (o *OutputLicense) GetValidFrom() int32 {
+func (o *OutputLicense) GetValidFrom() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -271,7 +271,7 @@ func (o *OutputLicense) GetValidFrom() int32 {
 
 // GetValidFromOk returns a tuple with the ValidFrom field value
 // and a boolean to check if the value has been set.
-func (o *OutputLicense) GetValidFromOk() (*int32, bool) {
+func (o *OutputLicense) GetValidFromOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -279,14 +279,14 @@ func (o *OutputLicense) GetValidFromOk() (*int32, bool) {
 }
 
 // SetValidFrom sets field value
-func (o *OutputLicense) SetValidFrom(v int32) {
+func (o *OutputLicense) SetValidFrom(v int64) {
 	o.ValidFrom = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value
-func (o *OutputLicense) GetExpiresAt() int32 {
+func (o *OutputLicense) GetExpiresAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -295,7 +295,7 @@ func (o *OutputLicense) GetExpiresAt() int32 {
 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputLicense) GetExpiresAtOk() (*int32, bool) {
+func (o *OutputLicense) GetExpiresAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -303,7 +303,7 @@ func (o *OutputLicense) GetExpiresAtOk() (*int32, bool) {
 }
 
 // SetExpiresAt sets field value
-func (o *OutputLicense) SetExpiresAt(v int32) {
+func (o *OutputLicense) SetExpiresAt(v int64) {
 	o.ExpiresAt = v
 }
 
@@ -388,7 +388,7 @@ func (o *OutputLicense) SetQuotas(v map[string]int32) {
 }
 
 func (o OutputLicense) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -439,10 +439,10 @@ func (o *OutputLicense) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -498,5 +498,3 @@ func (v *NullableOutputLicense) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

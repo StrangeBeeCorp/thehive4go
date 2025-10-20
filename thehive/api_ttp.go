@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // TTPAPIService TTPAPI service
 type TTPAPIService service
 
 type ApiCreateProcedureForAlertRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
-	alertId string
+	ctx            context.Context
+	ApiService     *TTPAPIService
+	alertId        string
 	inputProcedure *InputProcedure
 }
 
@@ -42,26 +41,27 @@ func (r ApiCreateProcedureForAlertRequest) Execute() (*OutputProcedure, *http.Re
 /*
 CreateProcedureForAlert Method for CreateProcedureForAlert
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertId
- @return ApiCreateProcedureForAlertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertId
+	@return ApiCreateProcedureForAlertRequest
 */
 func (a *TTPAPIService) CreateProcedureForAlert(ctx context.Context, alertId string) ApiCreateProcedureForAlertRequest {
 	return ApiCreateProcedureForAlertRequest{
 		ApiService: a,
-		ctx: ctx,
-		alertId: alertId,
+		ctx:        ctx,
+		alertId:    alertId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputProcedure
+//
+//	@return OutputProcedure
 func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAlertRequest) (*OutputProcedure, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputProcedure
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputProcedure
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.CreateProcedureForAlert")
@@ -127,8 +127,8 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -138,8 +138,8 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -149,8 +149,8 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -160,8 +160,8 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -171,8 +171,8 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -190,9 +190,9 @@ func (a *TTPAPIService) CreateProcedureForAlertExecute(r ApiCreateProcedureForAl
 }
 
 type ApiCreateProcedureForCaseRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
-	caseId string
+	ctx            context.Context
+	ApiService     *TTPAPIService
+	caseId         string
 	inputProcedure *InputProcedure
 }
 
@@ -208,26 +208,27 @@ func (r ApiCreateProcedureForCaseRequest) Execute() (*OutputProcedure, *http.Res
 /*
 CreateProcedureForCase Method for CreateProcedureForCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiCreateProcedureForCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiCreateProcedureForCaseRequest
 */
 func (a *TTPAPIService) CreateProcedureForCase(ctx context.Context, caseId string) ApiCreateProcedureForCaseRequest {
 	return ApiCreateProcedureForCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputProcedure
+//
+//	@return OutputProcedure
 func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCaseRequest) (*OutputProcedure, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputProcedure
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputProcedure
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.CreateProcedureForCase")
@@ -293,8 +294,8 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -304,8 +305,8 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -315,8 +316,8 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -326,8 +327,8 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -337,8 +338,8 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -356,9 +357,9 @@ func (a *TTPAPIService) CreateProcedureForCaseExecute(r ApiCreateProcedureForCas
 }
 
 type ApiCreateSeveralProceduresForAlertRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
-	alertId string
+	ctx                context.Context
+	ApiService         *TTPAPIService
+	alertId            string
 	inputBulkProcedure *InputBulkProcedure
 }
 
@@ -374,26 +375,27 @@ func (r ApiCreateSeveralProceduresForAlertRequest) Execute() ([]OutputProcedure,
 /*
 CreateSeveralProceduresForAlert Method for CreateSeveralProceduresForAlert
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertId
- @return ApiCreateSeveralProceduresForAlertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertId
+	@return ApiCreateSeveralProceduresForAlertRequest
 */
 func (a *TTPAPIService) CreateSeveralProceduresForAlert(ctx context.Context, alertId string) ApiCreateSeveralProceduresForAlertRequest {
 	return ApiCreateSeveralProceduresForAlertRequest{
 		ApiService: a,
-		ctx: ctx,
-		alertId: alertId,
+		ctx:        ctx,
+		alertId:    alertId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputProcedure
+//
+//	@return []OutputProcedure
 func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSeveralProceduresForAlertRequest) ([]OutputProcedure, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputProcedure
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputProcedure
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.CreateSeveralProceduresForAlert")
@@ -459,8 +461,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -470,8 +472,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -481,8 +483,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -492,8 +494,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -503,8 +505,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -522,9 +524,9 @@ func (a *TTPAPIService) CreateSeveralProceduresForAlertExecute(r ApiCreateSevera
 }
 
 type ApiCreateSeveralProceduresForCaseRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
-	caseId string
+	ctx                context.Context
+	ApiService         *TTPAPIService
+	caseId             string
 	inputBulkProcedure *InputBulkProcedure
 }
 
@@ -540,26 +542,27 @@ func (r ApiCreateSeveralProceduresForCaseRequest) Execute() ([]OutputProcedure, 
 /*
 CreateSeveralProceduresForCase Method for CreateSeveralProceduresForCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiCreateSeveralProceduresForCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiCreateSeveralProceduresForCaseRequest
 */
 func (a *TTPAPIService) CreateSeveralProceduresForCase(ctx context.Context, caseId string) ApiCreateSeveralProceduresForCaseRequest {
 	return ApiCreateSeveralProceduresForCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputProcedure
+//
+//	@return []OutputProcedure
 func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveralProceduresForCaseRequest) ([]OutputProcedure, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputProcedure
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputProcedure
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.CreateSeveralProceduresForCase")
@@ -625,8 +628,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -636,8 +639,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -647,8 +650,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -658,8 +661,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -669,8 +672,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -688,8 +691,8 @@ func (a *TTPAPIService) CreateSeveralProceduresForCaseExecute(r ApiCreateSeveral
 }
 
 type ApiDeleteProcedureRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
+	ctx         context.Context
+	ApiService  *TTPAPIService
 	procedureId string
 }
 
@@ -700,14 +703,14 @@ func (r ApiDeleteProcedureRequest) Execute() (*http.Response, error) {
 /*
 DeleteProcedure Method for DeleteProcedure
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param procedureId
- @return ApiDeleteProcedureRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param procedureId
+	@return ApiDeleteProcedureRequest
 */
 func (a *TTPAPIService) DeleteProcedure(ctx context.Context, procedureId string) ApiDeleteProcedureRequest {
 	return ApiDeleteProcedureRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		procedureId: procedureId,
 	}
 }
@@ -715,9 +718,9 @@ func (a *TTPAPIService) DeleteProcedure(ctx context.Context, procedureId string)
 // Execute executes the request
 func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.DeleteProcedure")
@@ -778,8 +781,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -789,8 +792,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -800,8 +803,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -811,8 +814,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -822,8 +825,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -832,8 +835,8 @@ func (a *TTPAPIService) DeleteProcedureExecute(r ApiDeleteProcedureRequest) (*ht
 }
 
 type ApiDeleteProceduresInBulkRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
+	ctx                      context.Context
+	ApiService               *TTPAPIService
 	deleteAlertInBulkRequest *DeleteAlertInBulkRequest
 }
 
@@ -849,22 +852,22 @@ func (r ApiDeleteProceduresInBulkRequest) Execute() (*http.Response, error) {
 /*
 DeleteProceduresInBulk Method for DeleteProceduresInBulk
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteProceduresInBulkRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteProceduresInBulkRequest
 */
 func (a *TTPAPIService) DeleteProceduresInBulk(ctx context.Context) ApiDeleteProceduresInBulkRequest {
 	return ApiDeleteProceduresInBulkRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBulkRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.DeleteProceduresInBulk")
@@ -929,8 +932,8 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -940,8 +943,8 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -951,8 +954,8 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -962,8 +965,8 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -973,8 +976,8 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -983,9 +986,9 @@ func (a *TTPAPIService) DeleteProceduresInBulkExecute(r ApiDeleteProceduresInBul
 }
 
 type ApiUpdateProcedureRequest struct {
-	ctx context.Context
-	ApiService *TTPAPIService
-	procedureId string
+	ctx                  context.Context
+	ApiService           *TTPAPIService
+	procedureId          string
 	inputUpdateProcedure *InputUpdateProcedure
 }
 
@@ -1001,14 +1004,14 @@ func (r ApiUpdateProcedureRequest) Execute() (*http.Response, error) {
 /*
 UpdateProcedure Method for UpdateProcedure
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param procedureId
- @return ApiUpdateProcedureRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param procedureId
+	@return ApiUpdateProcedureRequest
 */
 func (a *TTPAPIService) UpdateProcedure(ctx context.Context, procedureId string) ApiUpdateProcedureRequest {
 	return ApiUpdateProcedureRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		procedureId: procedureId,
 	}
 }
@@ -1016,9 +1019,9 @@ func (a *TTPAPIService) UpdateProcedure(ctx context.Context, procedureId string)
 // Execute executes the request
 func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TTPAPIService.UpdateProcedure")
@@ -1084,8 +1087,8 @@ func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1095,8 +1098,8 @@ func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1106,8 +1109,8 @@ func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1117,8 +1120,8 @@ func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1128,8 +1131,8 @@ func (a *TTPAPIService) UpdateProcedureExecute(r ApiUpdateProcedureRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -18,10 +18,10 @@ import (
 
 // InputQueryNamedOperation - struct for InputQueryNamedOperation
 type InputQueryNamedOperation struct {
-	InputQueryFilterOperation *InputQueryFilterOperation
+	InputQueryFilterOperation  *InputQueryFilterOperation
 	InputQueryGenericOperation *InputQueryGenericOperation
-	InputQueryPagingOperation *InputQueryPagingOperation
-	InputQuerySortOperation *InputQuerySortOperation
+	InputQueryPagingOperation  *InputQueryPagingOperation
+	InputQuerySortOperation    *InputQuerySortOperation
 }
 
 // InputQueryFilterOperationAsInputQueryNamedOperation is a convenience function that returns InputQueryFilterOperation wrapped in InputQueryNamedOperation
@@ -51,7 +51,6 @@ func InputQuerySortOperationAsInputQueryNamedOperation(v *InputQuerySortOperatio
 		InputQuerySortOperation: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *InputQueryNamedOperation) UnmarshalJSON(data []byte) error {
@@ -162,7 +161,7 @@ func (src InputQueryNamedOperation) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *InputQueryNamedOperation) GetActualInstance() (interface{}) {
+func (obj *InputQueryNamedOperation) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +186,7 @@ func (obj *InputQueryNamedOperation) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj InputQueryNamedOperation) GetActualInstanceValue() (interface{}) {
+func (obj InputQueryNamedOperation) GetActualInstanceValue() interface{} {
 	if obj.InputQueryFilterOperation != nil {
 		return *obj.InputQueryFilterOperation
 	}
@@ -243,5 +242,3 @@ func (v *NullableInputQueryNamedOperation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

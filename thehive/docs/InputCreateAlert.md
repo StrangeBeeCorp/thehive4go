@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Source** | **string** |  | 
-**SourceRef** | **string** |  | 
-**ExternalLink** | Pointer to **string** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | **string** |  | 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Date** | Pointer to **int32** |  | [optional] [default to now()]
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** | User to assign the alert to | [optional] 
-**CaseTemplate** | Pointer to **string** |  | [optional] 
-**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) |  | [optional] 
-**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | List of procedures (TTPs) to link the alert to | [optional] 
+**Type** | **string** |  |
+**Source** | **string** |  |
+**SourceRef** | **string** |  |
+**ExternalLink** | Pointer to **string** |  | [optional]
+**Title** | **string** |  |
+**Description** | **string** |  |
+**Severity** | Pointer to **int32** |  | [optional]
+**Date** | Pointer to **int64** |  | [optional] [default to now()]
+**Tags** | Pointer to **[]string** |  | [optional]
+**Flag** | Pointer to **bool** |  | [optional]
+**Tlp** | Pointer to **int32** |  | [optional]
+**Pap** | Pointer to **int32** |  | [optional]
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
+**Summary** | Pointer to **string** |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
+**Assignee** | Pointer to **string** | User to assign the alert to | [optional]
+**CaseTemplate** | Pointer to **string** |  | [optional]
+**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) |  | [optional]
+**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | List of procedures (TTPs) to link the alert to | [optional]
 
 ## Methods
 
@@ -195,20 +195,20 @@ HasSeverity returns a boolean if a field has been set.
 
 ### GetDate
 
-`func (o *InputCreateAlert) GetDate() int32`
+`func (o *InputCreateAlert) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *InputCreateAlert) GetDateOk() (*int32, bool)`
+`func (o *InputCreateAlert) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *InputCreateAlert) SetDate(v int32)`
+`func (o *InputCreateAlert) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
@@ -495,5 +495,3 @@ HasProcedures returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

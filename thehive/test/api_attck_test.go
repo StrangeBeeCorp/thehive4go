@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_AttckAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService CreateCatalogOfTTP", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AttckAPI.CreateCatalogOfTTP(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService DeleteACatalogOfTTP", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var catalogId string
 
@@ -49,7 +49,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService DeletePattern", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var patternId string
 
@@ -62,7 +62,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService GetCasePatterns", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -76,7 +76,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService GetPattern", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var patternId string
 
@@ -90,7 +90,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService ImportMITREAttckFile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AttckAPI.ImportMITREAttckFile(context.Background()).Execute()
 
@@ -102,7 +102,7 @@ func Test_thehive_AttckAPIService(t *testing.T) {
 
 	t.Run("Test AttckAPIService UpdateCatalogOfTTP", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var catalogId string
 

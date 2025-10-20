@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // ShareAPIService ShareAPI service
 type ShareAPIService service
 
 type ApiDeleteSharesByShareIdRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
+	ctx                      context.Context
+	ApiService               *ShareAPIService
 	deleteAlertInBulkRequest *DeleteAlertInBulkRequest
 }
 
@@ -41,22 +40,22 @@ func (r ApiDeleteSharesByShareIdRequest) Execute() (*http.Response, error) {
 /*
 DeleteSharesByShareId Method for DeleteSharesByShareId
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteSharesByShareIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteSharesByShareIdRequest
 */
 func (a *ShareAPIService) DeleteSharesByShareId(ctx context.Context) ApiDeleteSharesByShareIdRequest {
 	return ApiDeleteSharesByShareIdRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareIdRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.DeleteSharesByShareId")
@@ -121,8 +120,8 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -132,8 +131,8 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -143,8 +142,8 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -154,8 +153,8 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -165,8 +164,8 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -175,9 +174,9 @@ func (a *ShareAPIService) DeleteSharesByShareIdExecute(r ApiDeleteSharesByShareI
 }
 
 type ApiListSharesOfCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ShareAPIService
-	caseId string
+	caseId     string
 }
 
 func (r ApiListSharesOfCaseRequest) Execute() ([]OutputShare, *http.Response, error) {
@@ -187,26 +186,27 @@ func (r ApiListSharesOfCaseRequest) Execute() ([]OutputShare, *http.Response, er
 /*
 ListSharesOfCase Method for ListSharesOfCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiListSharesOfCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiListSharesOfCaseRequest
 */
 func (a *ShareAPIService) ListSharesOfCase(ctx context.Context, caseId string) ApiListSharesOfCaseRequest {
 	return ApiListSharesOfCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputShare
+//
+//	@return []OutputShare
 func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) ([]OutputShare, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputShare
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ListSharesOfCase")
@@ -267,8 +267,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -278,8 +278,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -289,8 +289,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -300,8 +300,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -311,8 +311,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -330,8 +330,8 @@ func (a *ShareAPIService) ListSharesOfCaseExecute(r ApiListSharesOfCaseRequest) 
 }
 
 type ApiListSharesOfObservableRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
+	ctx          context.Context
+	ApiService   *ShareAPIService
 	observableId string
 }
 
@@ -342,26 +342,27 @@ func (r ApiListSharesOfObservableRequest) Execute() ([]OutputShare, *http.Respon
 /*
 ListSharesOfObservable Method for ListSharesOfObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiListSharesOfObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiListSharesOfObservableRequest
 */
 func (a *ShareAPIService) ListSharesOfObservable(ctx context.Context, observableId string) ApiListSharesOfObservableRequest {
 	return ApiListSharesOfObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputShare
+//
+//	@return []OutputShare
 func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObservableRequest) ([]OutputShare, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputShare
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ListSharesOfObservable")
@@ -422,8 +423,8 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -433,8 +434,8 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -444,8 +445,8 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -455,8 +456,8 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -466,8 +467,8 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -485,9 +486,9 @@ func (a *ShareAPIService) ListSharesOfObservableExecute(r ApiListSharesOfObserva
 }
 
 type ApiListSharesOfTaskRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ShareAPIService
-	taskId string
+	taskId     string
 }
 
 func (r ApiListSharesOfTaskRequest) Execute() ([]OutputShare, *http.Response, error) {
@@ -497,26 +498,27 @@ func (r ApiListSharesOfTaskRequest) Execute() ([]OutputShare, *http.Response, er
 /*
 ListSharesOfTask Method for ListSharesOfTask
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taskId
- @return ApiListSharesOfTaskRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taskId
+	@return ApiListSharesOfTaskRequest
 */
 func (a *ShareAPIService) ListSharesOfTask(ctx context.Context, taskId string) ApiListSharesOfTaskRequest {
 	return ApiListSharesOfTaskRequest{
 		ApiService: a,
-		ctx: ctx,
-		taskId: taskId,
+		ctx:        ctx,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputShare
+//
+//	@return []OutputShare
 func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) ([]OutputShare, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputShare
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ListSharesOfTask")
@@ -577,8 +579,8 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -588,8 +590,8 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -599,8 +601,8 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -610,8 +612,8 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -621,8 +623,8 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -640,9 +642,9 @@ func (a *ShareAPIService) ListSharesOfTaskExecute(r ApiListSharesOfTaskRequest) 
 }
 
 type ApiRemoveAShareFromCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ShareAPIService
-	shareId string
+	shareId    string
 }
 
 func (r ApiRemoveAShareFromCaseRequest) Execute() (*http.Response, error) {
@@ -652,24 +654,24 @@ func (r ApiRemoveAShareFromCaseRequest) Execute() (*http.Response, error) {
 /*
 RemoveAShareFromCase Method for RemoveAShareFromCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shareId
- @return ApiRemoveAShareFromCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shareId
+	@return ApiRemoveAShareFromCaseRequest
 */
 func (a *ShareAPIService) RemoveAShareFromCase(ctx context.Context, shareId string) ApiRemoveAShareFromCaseRequest {
 	return ApiRemoveAShareFromCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		shareId: shareId,
+		ctx:        ctx,
+		shareId:    shareId,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.RemoveAShareFromCase")
@@ -730,8 +732,8 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -741,8 +743,8 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -752,8 +754,8 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -763,8 +765,8 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -774,8 +776,8 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -784,9 +786,9 @@ func (a *ShareAPIService) RemoveAShareFromCaseExecute(r ApiRemoveAShareFromCaseR
 }
 
 type ApiSetSharesForCaseRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	caseId string
+	ctx               context.Context
+	ApiService        *ShareAPIService
+	caseId            string
 	inputCreateShares *InputCreateShares
 }
 
@@ -802,31 +804,32 @@ func (r ApiSetSharesForCaseRequest) Execute() ([]OutputShare, *http.Response, er
 /*
 SetSharesForCase Method for SetSharesForCase
 
-Set the share for a case with other organisations. 
+Set the share for a case with other organisations.
 For each organisation, you can define a profile (level of access) that the org will receive
 
 Contrary to the POST, this request can delete and update already existing shares
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiSetSharesForCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiSetSharesForCaseRequest
 */
 func (a *ShareAPIService) SetSharesForCase(ctx context.Context, caseId string) ApiSetSharesForCaseRequest {
 	return ApiSetSharesForCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputShare
+//
+//	@return []OutputShare
 func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) ([]OutputShare, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputShare
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.SetSharesForCase")
@@ -892,8 +895,8 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -903,8 +906,8 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -914,8 +917,8 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -925,8 +928,8 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -936,8 +939,8 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -955,9 +958,9 @@ func (a *ShareAPIService) SetSharesForCaseExecute(r ApiSetSharesForCaseRequest) 
 }
 
 type ApiShareACaseRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	caseId string
+	ctx               context.Context
+	ApiService        *ShareAPIService
+	caseId            string
 	inputCreateShares *InputCreateShares
 }
 
@@ -973,31 +976,32 @@ func (r ApiShareACaseRequest) Execute() ([]OutputShare, *http.Response, error) {
 /*
 ShareACase Method for ShareACase
 
-Share the case with other organisations. 
+Share the case with other organisations.
 For each organisation, you can define a profile (level of access) that the org will receive
 
 This request will only create new shares and will not update or delete existing shares
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiShareACaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiShareACaseRequest
 */
 func (a *ShareAPIService) ShareACase(ctx context.Context, caseId string) ApiShareACaseRequest {
 	return ApiShareACaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputShare
+//
+//	@return []OutputShare
 func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputShare, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputShare
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputShare
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ShareACase")
@@ -1063,8 +1067,8 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1074,8 +1078,8 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1085,8 +1089,8 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1096,8 +1100,8 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1107,8 +1111,8 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1126,9 +1130,9 @@ func (a *ShareAPIService) ShareACaseExecute(r ApiShareACaseRequest) ([]OutputSha
 }
 
 type ApiShareATaskRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	taskId string
+	ctx              context.Context
+	ApiService       *ShareAPIService
+	taskId           string
 	inputCreateShare *InputCreateShare
 }
 
@@ -1147,25 +1151,24 @@ ShareATask Method for ShareATask
 Share a task with an organisation.
 The case must already be shared with the target organisations. See 'Share a Case'
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taskId
- @return ApiShareATaskRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taskId
+	@return ApiShareATaskRequest
 */
 func (a *ShareAPIService) ShareATask(ctx context.Context, taskId string) ApiShareATaskRequest {
 	return ApiShareATaskRequest{
 		ApiService: a,
-		ctx: ctx,
-		taskId: taskId,
+		ctx:        ctx,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ShareATask")
@@ -1231,8 +1234,8 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1242,8 +1245,8 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1253,8 +1256,8 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1264,8 +1267,8 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1275,8 +1278,8 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1285,9 +1288,9 @@ func (a *ShareAPIService) ShareATaskExecute(r ApiShareATaskRequest) (*http.Respo
 }
 
 type ApiShareAnObservableRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	observableId string
+	ctx              context.Context
+	ApiService       *ShareAPIService
+	observableId     string
 	inputCreateShare *InputCreateShare
 }
 
@@ -1306,15 +1309,14 @@ ShareAnObservable Method for ShareAnObservable
 Share an observable with an organisation.
 The case must already be shared with the target organisations. See 'Share a Case'
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiShareAnObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiShareAnObservableRequest
 */
 func (a *ShareAPIService) ShareAnObservable(ctx context.Context, observableId string) ApiShareAnObservableRequest {
 	return ApiShareAnObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
@@ -1322,9 +1324,9 @@ func (a *ShareAPIService) ShareAnObservable(ctx context.Context, observableId st
 // Execute executes the request
 func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.ShareAnObservable")
@@ -1390,8 +1392,8 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1401,8 +1403,8 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1412,8 +1414,8 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1423,8 +1425,8 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1434,8 +1436,8 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1444,9 +1446,9 @@ func (a *ShareAPIService) ShareAnObservableExecute(r ApiShareAnObservableRequest
 }
 
 type ApiUnshareACaseRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	caseId string
+	ctx               context.Context
+	ApiService        *ShareAPIService
+	caseId            string
 	inputRemoveShares *InputRemoveShares
 }
 
@@ -1462,24 +1464,24 @@ func (r ApiUnshareACaseRequest) Execute() (*http.Response, error) {
 /*
 UnshareACase Method for UnshareACase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiUnshareACaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiUnshareACaseRequest
 */
 func (a *ShareAPIService) UnshareACase(ctx context.Context, caseId string) ApiUnshareACaseRequest {
 	return ApiUnshareACaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.UnshareACase")
@@ -1545,8 +1547,8 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1556,8 +1558,8 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1567,8 +1569,8 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1578,8 +1580,8 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1589,8 +1591,8 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1599,9 +1601,9 @@ func (a *ShareAPIService) UnshareACaseExecute(r ApiUnshareACaseRequest) (*http.R
 }
 
 type ApiUnshareATaskRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	taskId string
+	ctx               context.Context
+	ApiService        *ShareAPIService
+	taskId            string
 	inputRemoveShares *InputRemoveShares
 }
 
@@ -1617,24 +1619,24 @@ func (r ApiUnshareATaskRequest) Execute() (*http.Response, error) {
 /*
 UnshareATask Method for UnshareATask
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taskId
- @return ApiUnshareATaskRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taskId
+	@return ApiUnshareATaskRequest
 */
 func (a *ShareAPIService) UnshareATask(ctx context.Context, taskId string) ApiUnshareATaskRequest {
 	return ApiUnshareATaskRequest{
 		ApiService: a,
-		ctx: ctx,
-		taskId: taskId,
+		ctx:        ctx,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.UnshareATask")
@@ -1700,8 +1702,8 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1711,8 +1713,8 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1722,8 +1724,8 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1733,8 +1735,8 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1744,8 +1746,8 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1754,9 +1756,9 @@ func (a *ShareAPIService) UnshareATaskExecute(r ApiUnshareATaskRequest) (*http.R
 }
 
 type ApiUnshareAnObservableRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	observableId string
+	ctx               context.Context
+	ApiService        *ShareAPIService
+	observableId      string
 	inputRemoveShares *InputRemoveShares
 }
 
@@ -1772,14 +1774,14 @@ func (r ApiUnshareAnObservableRequest) Execute() (*http.Response, error) {
 /*
 UnshareAnObservable Method for UnshareAnObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiUnshareAnObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiUnshareAnObservableRequest
 */
 func (a *ShareAPIService) UnshareAnObservable(ctx context.Context, observableId string) ApiUnshareAnObservableRequest {
 	return ApiUnshareAnObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
@@ -1787,9 +1789,9 @@ func (a *ShareAPIService) UnshareAnObservable(ctx context.Context, observableId 
 // Execute executes the request
 func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.UnshareAnObservable")
@@ -1855,8 +1857,8 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1866,8 +1868,8 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1877,8 +1879,8 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1888,8 +1890,8 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1899,8 +1901,8 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1909,9 +1911,9 @@ func (a *ShareAPIService) UnshareAnObservableExecute(r ApiUnshareAnObservableReq
 }
 
 type ApiUpdateAShareRequest struct {
-	ctx context.Context
-	ApiService *ShareAPIService
-	shareId string
+	ctx              context.Context
+	ApiService       *ShareAPIService
+	shareId          string
 	inputUpdateShare *InputUpdateShare
 }
 
@@ -1927,24 +1929,24 @@ func (r ApiUpdateAShareRequest) Execute() (*http.Response, error) {
 /*
 UpdateAShare Method for UpdateAShare
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shareId
- @return ApiUpdateAShareRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shareId
+	@return ApiUpdateAShareRequest
 */
 func (a *ShareAPIService) UpdateAShare(ctx context.Context, shareId string) ApiUpdateAShareRequest {
 	return ApiUpdateAShareRequest{
 		ApiService: a,
-		ctx: ctx,
-		shareId: shareId,
+		ctx:        ctx,
+		shareId:    shareId,
 	}
 }
 
 // Execute executes the request
 func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ShareAPIService.UpdateAShare")
@@ -2010,8 +2012,8 @@ func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2021,8 +2023,8 @@ func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2032,8 +2034,8 @@ func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2043,8 +2045,8 @@ func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2054,8 +2056,8 @@ func (a *ShareAPIService) UpdateAShareExecute(r ApiUpdateAShareRequest) (*http.R
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

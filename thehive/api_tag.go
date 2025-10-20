@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // TagAPIService TagAPI service
 type TagAPIService service
 
 type ApiDeleteTagRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagAPIService
-	tagId string
+	tagId      string
 }
 
 func (r ApiDeleteTagRequest) Execute() (*http.Response, error) {
@@ -36,24 +35,24 @@ func (r ApiDeleteTagRequest) Execute() (*http.Response, error) {
 /*
 DeleteTag Method for DeleteTag
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiDeleteTagRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiDeleteTagRequest
 */
 func (a *TagAPIService) DeleteTag(ctx context.Context, tagId string) ApiDeleteTagRequest {
 	return ApiDeleteTagRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
 func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagAPIService.DeleteTag")
@@ -114,8 +113,8 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -125,8 +124,8 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -136,8 +135,8 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -147,8 +146,8 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -158,8 +157,8 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -168,9 +167,9 @@ func (a *TagAPIService) DeleteTagExecute(r ApiDeleteTagRequest) (*http.Response,
 }
 
 type ApiGetTagRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagAPIService
-	tagId string
+	tagId      string
 }
 
 func (r ApiGetTagRequest) Execute() (*OutputTag, *http.Response, error) {
@@ -180,26 +179,27 @@ func (r ApiGetTagRequest) Execute() (*OutputTag, *http.Response, error) {
 /*
 GetTag Method for GetTag
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiGetTagRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiGetTagRequest
 */
 func (a *TagAPIService) GetTag(ctx context.Context, tagId string) ApiGetTagRequest {
 	return ApiGetTagRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputTag
+//
+//	@return OutputTag
 func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputTag
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputTag
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagAPIService.GetTag")
@@ -260,8 +260,8 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -271,8 +271,8 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -282,8 +282,8 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -293,8 +293,8 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -304,8 +304,8 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -323,9 +323,9 @@ func (a *TagAPIService) GetTagExecute(r ApiGetTagRequest) (*OutputTag, *http.Res
 }
 
 type ApiUpdateTagRequest struct {
-	ctx context.Context
-	ApiService *TagAPIService
-	tagId string
+	ctx            context.Context
+	ApiService     *TagAPIService
+	tagId          string
 	inputUpdateTag *InputUpdateTag
 }
 
@@ -341,24 +341,24 @@ func (r ApiUpdateTagRequest) Execute() (*http.Response, error) {
 /*
 UpdateTag Method for UpdateTag
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiUpdateTagRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiUpdateTagRequest
 */
 func (a *TagAPIService) UpdateTag(ctx context.Context, tagId string) ApiUpdateTagRequest {
 	return ApiUpdateTagRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
 func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagAPIService.UpdateTag")
@@ -424,8 +424,8 @@ func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -435,8 +435,8 @@ func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -446,8 +446,8 @@ func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -457,8 +457,8 @@ func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -468,8 +468,8 @@ func (a *TagAPIService) UpdateTagExecute(r ApiUpdateTagRequest) (*http.Response,
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

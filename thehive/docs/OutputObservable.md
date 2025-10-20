@@ -4,34 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**DataType** | **string** |  | 
-**Data** | Pointer to **string** |  | [optional] 
-**StartDate** | **int32** |  | 
-**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) |  | [optional] 
-**Tlp** | **int32** |  | 
-**TlpLabel** | **string** |  | 
-**Pap** | **int32** |  | 
-**PapLabel** | **string** |  | 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Ioc** | **bool** |  | 
-**Sighted** | **bool** |  | 
-**SightedAt** | Pointer to **int32** |  | [optional] 
-**Reports** | **map[string]interface{}** |  | 
-**Message** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
-**IgnoreSimilarity** | **bool** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**DataType** | **string** |  |
+**Data** | Pointer to **string** |  | [optional]
+**StartDate** | **int64** |  |
+**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) |  | [optional]
+**Tlp** | **int32** |  |
+**TlpLabel** | **string** |  |
+**Pap** | **int32** |  |
+**PapLabel** | **string** |  |
+**Tags** | Pointer to **[]string** |  | [optional]
+**Ioc** | **bool** |  |
+**Sighted** | **bool** |  |
+**SightedAt** | Pointer to **int64** |  | [optional]
+**Reports** | **map[string]interface{}** |  |
+**Message** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
+**IgnoreSimilarity** | **bool** |  |
 
 ## Methods
 
 ### NewOutputObservable
 
-`func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, dataType string, startDate int32, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool, ) *OutputObservable`
+`func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, dataType string, startDate int64, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool, ) *OutputObservable`
 
 NewOutputObservable instantiates a new OutputObservable object
 This constructor will assign default values to properties that have it defined,
@@ -133,40 +133,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputObservable) GetUnderscoreCreatedAt() int32`
+`func (o *OutputObservable) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputObservable) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputObservable) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputObservable) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputObservable) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputObservable) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputObservable) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputObservable) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputObservable) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputObservable) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputObservable) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -223,20 +223,20 @@ HasData returns a boolean if a field has been set.
 
 ### GetStartDate
 
-`func (o *OutputObservable) GetStartDate() int32`
+`func (o *OutputObservable) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputObservable) GetStartDateOk() (*int32, bool)`
+`func (o *OutputObservable) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputObservable) SetStartDate(v int32)`
+`func (o *OutputObservable) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -413,20 +413,20 @@ SetSighted sets Sighted field to given value.
 
 ### GetSightedAt
 
-`func (o *OutputObservable) GetSightedAt() int32`
+`func (o *OutputObservable) GetSightedAt() int64`
 
 GetSightedAt returns the SightedAt field if non-nil, zero value otherwise.
 
 ### GetSightedAtOk
 
-`func (o *OutputObservable) GetSightedAtOk() (*int32, bool)`
+`func (o *OutputObservable) GetSightedAtOk() (*int64, bool)`
 
 GetSightedAtOk returns a tuple with the SightedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSightedAt
 
-`func (o *OutputObservable) SetSightedAt(v int32)`
+`func (o *OutputObservable) SetSightedAt(v int64)`
 
 SetSightedAt sets SightedAt field to given value.
 
@@ -523,5 +523,3 @@ SetIgnoreSimilarity sets IgnoreSimilarity field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

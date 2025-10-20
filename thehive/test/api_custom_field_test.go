@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_CustomFieldAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CustomFieldAPIService(t *testing.T) {
 
 	t.Run("Test CustomFieldAPIService CreateCustomField", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CustomFieldAPI.CreateCustomField(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_CustomFieldAPIService(t *testing.T) {
 
 	t.Run("Test CustomFieldAPIService DeleteCustomField", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var customFieldId string
 
@@ -49,7 +49,7 @@ func Test_thehive_CustomFieldAPIService(t *testing.T) {
 
 	t.Run("Test CustomFieldAPIService ListCustomFields", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CustomFieldAPI.ListCustomFields(context.Background()).Execute()
 
@@ -61,7 +61,7 @@ func Test_thehive_CustomFieldAPIService(t *testing.T) {
 
 	t.Run("Test CustomFieldAPIService UpdateCustomField", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var customFieldId string
 

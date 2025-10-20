@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // LicenseAPIService LicenseAPI service
 type LicenseAPIService service
 
 type ApiActivateLicenseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LicenseAPIService
-	licenseId string
+	licenseId  string
 }
 
 func (r ApiActivateLicenseRequest) Execute() (*http.Response, error) {
@@ -36,24 +35,24 @@ func (r ApiActivateLicenseRequest) Execute() (*http.Response, error) {
 /*
 ActivateLicense Method for ActivateLicense
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param licenseId
- @return ApiActivateLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param licenseId
+	@return ApiActivateLicenseRequest
 */
 func (a *LicenseAPIService) ActivateLicense(ctx context.Context, licenseId string) ApiActivateLicenseRequest {
 	return ApiActivateLicenseRequest{
 		ApiService: a,
-		ctx: ctx,
-		licenseId: licenseId,
+		ctx:        ctx,
+		licenseId:  licenseId,
 	}
 }
 
 // Execute executes the request
 func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.ActivateLicense")
@@ -114,8 +113,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -125,8 +124,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -136,8 +135,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -147,8 +146,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -158,8 +157,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -168,8 +167,8 @@ func (a *LicenseAPIService) ActivateLicenseExecute(r ApiActivateLicenseRequest) 
 }
 
 type ApiAddLicenseAndActivateRequest struct {
-	ctx context.Context
-	ApiService *LicenseAPIService
+	ctx          context.Context
+	ApiService   *LicenseAPIService
 	inputLicense *InputLicense
 }
 
@@ -185,22 +184,22 @@ func (r ApiAddLicenseAndActivateRequest) Execute() (*http.Response, error) {
 /*
 AddLicenseAndActivate Method for AddLicenseAndActivate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAddLicenseAndActivateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddLicenseAndActivateRequest
 */
 func (a *LicenseAPIService) AddLicenseAndActivate(ctx context.Context) ApiAddLicenseAndActivateRequest {
 	return ApiAddLicenseAndActivateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActivateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.AddLicenseAndActivate")
@@ -265,8 +264,8 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -276,8 +275,8 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -287,8 +286,8 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -298,8 +297,8 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -309,8 +308,8 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -319,7 +318,7 @@ func (a *LicenseAPIService) AddLicenseAndActivateExecute(r ApiAddLicenseAndActiv
 }
 
 type ApiGetChallengeRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LicenseAPIService
 }
 
@@ -330,24 +329,25 @@ func (r ApiGetChallengeRequest) Execute() (string, *http.Response, error) {
 /*
 GetChallenge Method for GetChallenge
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetChallengeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetChallengeRequest
 */
 func (a *LicenseAPIService) GetChallenge(ctx context.Context) ApiGetChallengeRequest {
 	return ApiGetChallengeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return string
+//
+//	@return string
 func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  string
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.GetChallenge")
@@ -407,8 +407,8 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -418,8 +418,8 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -429,8 +429,8 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -440,8 +440,8 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -451,8 +451,8 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -470,7 +470,7 @@ func (a *LicenseAPIService) GetChallengeExecute(r ApiGetChallengeRequest) (strin
 }
 
 type ApiGetCurrentLicenseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LicenseAPIService
 }
 
@@ -481,24 +481,25 @@ func (r ApiGetCurrentLicenseRequest) Execute() (*OutputLicenseCurrent, *http.Res
 /*
 GetCurrentLicense Method for GetCurrentLicense
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetCurrentLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCurrentLicenseRequest
 */
 func (a *LicenseAPIService) GetCurrentLicense(ctx context.Context) ApiGetCurrentLicenseRequest {
 	return ApiGetCurrentLicenseRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputLicenseCurrent
+//
+//	@return OutputLicenseCurrent
 func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseRequest) (*OutputLicenseCurrent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputLicenseCurrent
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputLicenseCurrent
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.GetCurrentLicense")
@@ -558,8 +559,8 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -569,8 +570,8 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -580,8 +581,8 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -591,8 +592,8 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -602,8 +603,8 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -621,9 +622,9 @@ func (a *LicenseAPIService) GetCurrentLicenseExecute(r ApiGetCurrentLicenseReque
 }
 
 type ApiGetLicenseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LicenseAPIService
-	licenseId string
+	licenseId  string
 }
 
 func (r ApiGetLicenseRequest) Execute() (*OutputLicense, *http.Response, error) {
@@ -633,26 +634,27 @@ func (r ApiGetLicenseRequest) Execute() (*OutputLicense, *http.Response, error) 
 /*
 GetLicense Method for GetLicense
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param licenseId
- @return ApiGetLicenseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param licenseId
+	@return ApiGetLicenseRequest
 */
 func (a *LicenseAPIService) GetLicense(ctx context.Context, licenseId string) ApiGetLicenseRequest {
 	return ApiGetLicenseRequest{
 		ApiService: a,
-		ctx: ctx,
-		licenseId: licenseId,
+		ctx:        ctx,
+		licenseId:  licenseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputLicense
+//
+//	@return OutputLicense
 func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLicense, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputLicense
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputLicense
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.GetLicense")
@@ -713,8 +715,8 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -724,8 +726,8 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -735,8 +737,8 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -746,8 +748,8 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -757,8 +759,8 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -776,7 +778,7 @@ func (a *LicenseAPIService) GetLicenseExecute(r ApiGetLicenseRequest) (*OutputLi
 }
 
 type ApiListAllLicensesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LicenseAPIService
 }
 
@@ -787,24 +789,25 @@ func (r ApiListAllLicensesRequest) Execute() (*ListOutputLicense, *http.Response
 /*
 ListAllLicenses Method for ListAllLicenses
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListAllLicensesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListAllLicensesRequest
 */
 func (a *LicenseAPIService) ListAllLicenses(ctx context.Context) ApiListAllLicensesRequest {
 	return ApiListAllLicensesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ListOutputLicense
+//
+//	@return ListOutputLicense
 func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) (*ListOutputLicense, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListOutputLicense
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListOutputLicense
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicenseAPIService.ListAllLicenses")
@@ -864,8 +867,8 @@ func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -875,8 +878,8 @@ func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -886,8 +889,8 @@ func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -897,8 +900,8 @@ func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -908,8 +911,8 @@ func (a *LicenseAPIService) ListAllLicensesExecute(r ApiListAllLicensesRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

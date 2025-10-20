@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,16 +16,15 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // TaxonomyAPIService TaxonomyAPI service
 type TaxonomyAPIService service
 
 type ApiActivateTaxonomyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaxonomyAPIService
 	taxonomyId string
 }
@@ -37,14 +36,14 @@ func (r ApiActivateTaxonomyRequest) Execute() (*http.Response, error) {
 /*
 ActivateTaxonomy Method for ActivateTaxonomy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taxonomyId
- @return ApiActivateTaxonomyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taxonomyId
+	@return ApiActivateTaxonomyRequest
 */
 func (a *TaxonomyAPIService) ActivateTaxonomy(ctx context.Context, taxonomyId string) ApiActivateTaxonomyRequest {
 	return ApiActivateTaxonomyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		taxonomyId: taxonomyId,
 	}
 }
@@ -52,9 +51,9 @@ func (a *TaxonomyAPIService) ActivateTaxonomy(ctx context.Context, taxonomyId st
 // Execute executes the request
 func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.ActivateTaxonomy")
@@ -115,8 +114,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -126,8 +125,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -137,8 +136,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -148,8 +147,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -159,8 +158,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -169,8 +168,8 @@ func (a *TaxonomyAPIService) ActivateTaxonomyExecute(r ApiActivateTaxonomyReques
 }
 
 type ApiCreateTaxonomyRequest struct {
-	ctx context.Context
-	ApiService *TaxonomyAPIService
+	ctx           context.Context
+	ApiService    *TaxonomyAPIService
 	inputTaxonomy *InputTaxonomy
 }
 
@@ -186,24 +185,25 @@ func (r ApiCreateTaxonomyRequest) Execute() (*OutputTaxonomy, *http.Response, er
 /*
 CreateTaxonomy Method for CreateTaxonomy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateTaxonomyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateTaxonomyRequest
 */
 func (a *TaxonomyAPIService) CreateTaxonomy(ctx context.Context) ApiCreateTaxonomyRequest {
 	return ApiCreateTaxonomyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputTaxonomy
+//
+//	@return OutputTaxonomy
 func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (*OutputTaxonomy, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputTaxonomy
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputTaxonomy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.CreateTaxonomy")
@@ -268,8 +268,8 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -279,8 +279,8 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -290,8 +290,8 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -301,8 +301,8 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -312,8 +312,8 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -331,7 +331,7 @@ func (a *TaxonomyAPIService) CreateTaxonomyExecute(r ApiCreateTaxonomyRequest) (
 }
 
 type ApiDeactivateTaxonomyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaxonomyAPIService
 	taxonomyId string
 }
@@ -343,14 +343,14 @@ func (r ApiDeactivateTaxonomyRequest) Execute() (*http.Response, error) {
 /*
 DeactivateTaxonomy Method for DeactivateTaxonomy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taxonomyId
- @return ApiDeactivateTaxonomyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taxonomyId
+	@return ApiDeactivateTaxonomyRequest
 */
 func (a *TaxonomyAPIService) DeactivateTaxonomy(ctx context.Context, taxonomyId string) ApiDeactivateTaxonomyRequest {
 	return ApiDeactivateTaxonomyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		taxonomyId: taxonomyId,
 	}
 }
@@ -358,9 +358,9 @@ func (a *TaxonomyAPIService) DeactivateTaxonomy(ctx context.Context, taxonomyId 
 // Execute executes the request
 func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.DeactivateTaxonomy")
@@ -421,8 +421,8 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -432,8 +432,8 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -443,8 +443,8 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -454,8 +454,8 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -465,8 +465,8 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -475,7 +475,7 @@ func (a *TaxonomyAPIService) DeactivateTaxonomyExecute(r ApiDeactivateTaxonomyRe
 }
 
 type ApiDeleteTaxonomyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaxonomyAPIService
 	taxonomyId string
 }
@@ -487,14 +487,14 @@ func (r ApiDeleteTaxonomyRequest) Execute() (*http.Response, error) {
 /*
 DeleteTaxonomy Method for DeleteTaxonomy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taxonomyId
- @return ApiDeleteTaxonomyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taxonomyId
+	@return ApiDeleteTaxonomyRequest
 */
 func (a *TaxonomyAPIService) DeleteTaxonomy(ctx context.Context, taxonomyId string) ApiDeleteTaxonomyRequest {
 	return ApiDeleteTaxonomyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		taxonomyId: taxonomyId,
 	}
 }
@@ -502,9 +502,9 @@ func (a *TaxonomyAPIService) DeleteTaxonomy(ctx context.Context, taxonomyId stri
 // Execute executes the request
 func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.DeleteTaxonomy")
@@ -565,8 +565,8 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -576,8 +576,8 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -587,8 +587,8 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -598,8 +598,8 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -609,8 +609,8 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -619,7 +619,7 @@ func (a *TaxonomyAPIService) DeleteTaxonomyExecute(r ApiDeleteTaxonomyRequest) (
 }
 
 type ApiGetTaxonomyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaxonomyAPIService
 	taxonomyId string
 }
@@ -631,26 +631,27 @@ func (r ApiGetTaxonomyRequest) Execute() (*OutputTaxonomy, *http.Response, error
 /*
 GetTaxonomy Method for GetTaxonomy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taxonomyId
- @return ApiGetTaxonomyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taxonomyId
+	@return ApiGetTaxonomyRequest
 */
 func (a *TaxonomyAPIService) GetTaxonomy(ctx context.Context, taxonomyId string) ApiGetTaxonomyRequest {
 	return ApiGetTaxonomyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		taxonomyId: taxonomyId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputTaxonomy
+//
+//	@return OutputTaxonomy
 func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*OutputTaxonomy, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputTaxonomy
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputTaxonomy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.GetTaxonomy")
@@ -711,8 +712,8 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -722,8 +723,8 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -733,8 +734,8 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -744,8 +745,8 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -755,8 +756,8 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -774,9 +775,9 @@ func (a *TaxonomyAPIService) GetTaxonomyExecute(r ApiGetTaxonomyRequest) (*Outpu
 }
 
 type ApiImportFromZipFileRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaxonomyAPIService
-	file *os.File
+	file       *os.File
 }
 
 func (r ApiImportFromZipFileRequest) File(file *os.File) ApiImportFromZipFileRequest {
@@ -791,24 +792,25 @@ func (r ApiImportFromZipFileRequest) Execute() (*Ok, *http.Response, error) {
 /*
 ImportFromZipFile Method for ImportFromZipFile
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiImportFromZipFileRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportFromZipFileRequest
 */
 func (a *TaxonomyAPIService) ImportFromZipFile(ctx context.Context) ApiImportFromZipFileRequest {
 	return ApiImportFromZipFileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Ok
+//
+//	@return Ok
 func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequest) (*Ok, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Ok
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Ok
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaxonomyAPIService.ImportFromZipFile")
@@ -843,8 +845,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var fileLocalVarFormFileName string
-	var fileLocalVarFileName     string
-	var fileLocalVarFileBytes    []byte
+	var fileLocalVarFileName string
+	var fileLocalVarFileBytes []byte
 
 	fileLocalVarFormFileName = "file"
 	fileLocalVarFile := r.file
@@ -886,8 +888,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -897,8 +899,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -908,8 +910,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -919,8 +921,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -930,8 +932,8 @@ func (a *TaxonomyAPIService) ImportFromZipFileExecute(r ApiImportFromZipFileRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_LicenseAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService ActivateLicense", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var licenseId string
 
@@ -37,7 +37,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService AddLicenseAndActivate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.LicenseAPI.AddLicenseAndActivate(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService GetChallenge", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LicenseAPI.GetChallenge(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService GetCurrentLicense", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LicenseAPI.GetCurrentLicense(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService GetLicense", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var licenseId string
 
@@ -86,7 +86,7 @@ func Test_thehive_LicenseAPIService(t *testing.T) {
 
 	t.Run("Test LicenseAPIService ListAllLicenses", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LicenseAPI.ListAllLicenses(context.Background()).Execute()
 

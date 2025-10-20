@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_TagAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TagAPIService(t *testing.T) {
 
 	t.Run("Test TagAPIService DeleteTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var tagId string
 
@@ -37,7 +37,7 @@ func Test_thehive_TagAPIService(t *testing.T) {
 
 	t.Run("Test TagAPIService GetTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var tagId string
 
@@ -51,7 +51,7 @@ func Test_thehive_TagAPIService(t *testing.T) {
 
 	t.Run("Test TagAPIService UpdateTag", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var tagId string
 

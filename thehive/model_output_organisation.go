@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,21 +21,21 @@ var _ MappedNullable = &OutputOrganisation{}
 
 // OutputOrganisation struct for OutputOrganisation
 type OutputOrganisation struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreType string `json:"_type"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
+	UnderscoreId        string  `json:"_id"`
+	UnderscoreType      string  `json:"_type"`
+	UnderscoreCreatedBy string  `json:"_createdBy"`
 	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
+	UnderscoreCreatedAt int64   `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64  `json:"_updatedAt,omitempty"`
 	// This field can be used to reference an organisation instead of its _id
-	Name string `json:"name"`
-	Description string `json:"description"`
-	TaskRule string `json:"taskRule"`
-	ObservableRule string `json:"observableRule"`
-	Links []OrganisationLink `json:"links,omitempty"`
-	Avatar *string `json:"avatar,omitempty"`
-	Locked bool `json:"locked"`
-	ExtraData map[string]interface{} `json:"extraData"`
+	Name           string                 `json:"name"`
+	Description    string                 `json:"description"`
+	TaskRule       string                 `json:"taskRule"`
+	ObservableRule string                 `json:"observableRule"`
+	Links          []OrganisationLink     `json:"links,omitempty"`
+	Avatar         *string                `json:"avatar,omitempty"`
+	Locked         bool                   `json:"locked"`
+	ExtraData      map[string]interface{} `json:"extraData"`
 }
 
 type _OutputOrganisation OutputOrganisation
@@ -44,7 +44,7 @@ type _OutputOrganisation OutputOrganisation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputOrganisation(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, name string, description string, taskRule string, observableRule string, locked bool, extraData map[string]interface{}) *OutputOrganisation {
+func NewOutputOrganisation(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, description string, taskRule string, observableRule string, locked bool, extraData map[string]interface{}) *OutputOrganisation {
 	this := OutputOrganisation{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -172,9 +172,9 @@ func (o *OutputOrganisation) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputOrganisation) GetUnderscoreCreatedAt() int32 {
+func (o *OutputOrganisation) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -183,7 +183,7 @@ func (o *OutputOrganisation) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputOrganisation) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputOrganisation) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -191,14 +191,14 @@ func (o *OutputOrganisation) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputOrganisation) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputOrganisation) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputOrganisation) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputOrganisation) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -206,7 +206,7 @@ func (o *OutputOrganisation) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputOrganisation) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputOrganisation) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -222,8 +222,8 @@ func (o *OutputOrganisation) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputOrganisation) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputOrganisation) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -436,7 +436,7 @@ func (o *OutputOrganisation) SetExtraData(v map[string]interface{}) {
 }
 
 func (o OutputOrganisation) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -492,10 +492,10 @@ func (o *OutputOrganisation) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -551,5 +551,3 @@ func (v *NullableOutputOrganisation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

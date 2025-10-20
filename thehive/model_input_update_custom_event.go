@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,9 +19,9 @@ var _ MappedNullable = &InputUpdateCustomEvent{}
 
 // InputUpdateCustomEvent struct for InputUpdateCustomEvent
 type InputUpdateCustomEvent struct {
-	Date *int32 `json:"date,omitempty"`
-	EndDate *int32 `json:"endDate,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Date        *int64  `json:"date,omitempty"`
+	EndDate     *int32  `json:"endDate,omitempty"`
+	Title       *string `json:"title,omitempty"`
 	Description *string `json:"description,omitempty"`
 }
 
@@ -43,9 +43,9 @@ func NewInputUpdateCustomEventWithDefaults() *InputUpdateCustomEvent {
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
-func (o *InputUpdateCustomEvent) GetDate() int32 {
+func (o *InputUpdateCustomEvent) GetDate() int64 {
 	if o == nil || IsNil(o.Date) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Date
@@ -53,7 +53,7 @@ func (o *InputUpdateCustomEvent) GetDate() int32 {
 
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputUpdateCustomEvent) GetDateOk() (*int32, bool) {
+func (o *InputUpdateCustomEvent) GetDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.Date) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *InputUpdateCustomEvent) HasDate() bool {
 	return false
 }
 
-// SetDate gets a reference to the given int32 and assigns it to the Date field.
-func (o *InputUpdateCustomEvent) SetDate(v int32) {
+// SetDate gets a reference to the given int64 and assigns it to the Date field.
+func (o *InputUpdateCustomEvent) SetDate(v int64) {
 	o.Date = &v
 }
 
@@ -171,7 +171,7 @@ func (o *InputUpdateCustomEvent) SetDescription(v string) {
 }
 
 func (o InputUpdateCustomEvent) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,5 +230,3 @@ func (v *NullableInputUpdateCustomEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

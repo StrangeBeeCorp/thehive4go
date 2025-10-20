@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,20 +16,19 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // ObservableAPIService ObservableAPI service
 type ObservableAPIService service
 
 type ApiCreateObservableInAlertRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
-	alertId string
+	ctx                   context.Context
+	ApiService            *ObservableAPIService
+	alertId               string
 	inputCreateObservable *InputCreateObservable
-	dataType *string
+	dataType              *string
 }
 
 func (r ApiCreateObservableInAlertRequest) InputCreateObservable(inputCreateObservable InputCreateObservable) ApiCreateObservableInAlertRequest {
@@ -57,7 +56,9 @@ Add an observable to an existing alert.
 To add an observable with data of type string, send a simple json request with your data:
 ```bash
 curl http://<thehive_endpoint>/api/v1/alert/<alertId>/observable -H 'Authorization: Bearer <api_key>' -X POST -H 'Content-Type: application/json' --data '
-  { "dataType": "url", "data": "http://example.org" }
+
+	{ "dataType": "url", "data": "http://example.org" }
+
 '
 ```
 
@@ -87,33 +88,36 @@ import requests
 
 observable = {'dataType': 'url', 'data': 'example.org'}
 response = requests.post(
-    f'{thehive_url}/api/v1/alert/{alert_id}/observable',
-    json=observable,
-    headers={ 'Authorization': f'Bearer {thehive_api_key}' }
+
+	f'{thehive_url}/api/v1/alert/{alert_id}/observable',
+	json=observable,
+	headers={ 'Authorization': f'Bearer {thehive_api_key}' }
+
 )
 
 # check response code
 response.raise_for_status()
 ```
 
-
 Sending two files with a custom message and tlp:
 ```python
 import json
-import requests 
+import requests
 
 observable = {'dataType': 'file', 'message': 'Files from infected server', 'tlp': 3}
 
 # Send the request
 response = requests.post(
-    f'{thehive_url}/api/v1/alert/{alert_id}/observable',
-    # send the files and the observable with the special part '_json'
-    files=[
-        ('_json', json.dumps(observable)),
-        ('attachment', open(path_to_fileA, 'rb')),
-        ('attachment', open(path_to_fileB, 'rb'))
-    ],
-    headers={ 'Authorization': f'Bearer {thehive_api_key}' }
+
+	f'{thehive_url}/api/v1/alert/{alert_id}/observable',
+	# send the files and the observable with the special part '_json'
+	files=[
+	    ('_json', json.dumps(observable)),
+	    ('attachment', open(path_to_fileA, 'rb')),
+	    ('attachment', open(path_to_fileB, 'rb'))
+	],
+	headers={ 'Authorization': f'Bearer {thehive_api_key}' }
+
 )
 
 # check response code
@@ -121,27 +125,27 @@ response.raise_for_status()
 
 ```
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertId
- @return ApiCreateObservableInAlertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertId
+	@return ApiCreateObservableInAlertRequest
 */
 func (a *ObservableAPIService) CreateObservableInAlert(ctx context.Context, alertId string) ApiCreateObservableInAlertRequest {
 	return ApiCreateObservableInAlertRequest{
 		ApiService: a,
-		ctx: ctx,
-		alertId: alertId,
+		ctx:        ctx,
+		alertId:    alertId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputObservable
+//
+//	@return []OutputObservable
 func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObservableInAlertRequest) ([]OutputObservable, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputObservable
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputObservable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.CreateObservableInAlert")
@@ -210,8 +214,8 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -221,8 +225,8 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -232,8 +236,8 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -243,8 +247,8 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -254,8 +258,8 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -273,11 +277,11 @@ func (a *ObservableAPIService) CreateObservableInAlertExecute(r ApiCreateObserva
 }
 
 type ApiCreateObservableInCaseRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
-	caseId string
+	ctx                   context.Context
+	ApiService            *ObservableAPIService
+	caseId                string
 	inputCreateObservable *InputCreateObservable
-	dataType *string
+	dataType              *string
 }
 
 func (r ApiCreateObservableInCaseRequest) InputCreateObservable(inputCreateObservable InputCreateObservable) ApiCreateObservableInCaseRequest {
@@ -302,27 +306,27 @@ Add an observable to an existing case.
 
 For examples, see 'Create Observable in Alert'
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiCreateObservableInCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiCreateObservableInCaseRequest
 */
 func (a *ObservableAPIService) CreateObservableInCase(ctx context.Context, caseId string) ApiCreateObservableInCaseRequest {
 	return ApiCreateObservableInCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputObservable
+//
+//	@return []OutputObservable
 func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservableInCaseRequest) ([]OutputObservable, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputObservable
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputObservable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.CreateObservableInCase")
@@ -391,8 +395,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -402,8 +406,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -413,8 +417,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -424,8 +428,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -435,8 +439,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -454,8 +458,8 @@ func (a *ObservableAPIService) CreateObservableInCaseExecute(r ApiCreateObservab
 }
 
 type ApiDeleteObservableRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
+	ctx          context.Context
+	ApiService   *ObservableAPIService
 	observableId string
 }
 
@@ -466,14 +470,14 @@ func (r ApiDeleteObservableRequest) Execute() (*http.Response, error) {
 /*
 DeleteObservable Method for DeleteObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiDeleteObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiDeleteObservableRequest
 */
 func (a *ObservableAPIService) DeleteObservable(ctx context.Context, observableId string) ApiDeleteObservableRequest {
 	return ApiDeleteObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
@@ -481,9 +485,9 @@ func (a *ObservableAPIService) DeleteObservable(ctx context.Context, observableI
 // Execute executes the request
 func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.DeleteObservable")
@@ -544,8 +548,8 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -555,8 +559,8 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -566,8 +570,8 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -577,8 +581,8 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -588,8 +592,8 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -598,11 +602,11 @@ func (a *ObservableAPIService) DeleteObservableExecute(r ApiDeleteObservableRequ
 }
 
 type ApiDownloadAttachmentFromObservableRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
+	ctx          context.Context
+	ApiService   *ObservableAPIService
 	observableId string
 	attachmentId string
-	asZip *bool
+	asZip        *bool
 }
 
 func (r ApiDownloadAttachmentFromObservableRequest) AsZip(asZip bool) ApiDownloadAttachmentFromObservableRequest {
@@ -619,28 +623,29 @@ DownloadAttachmentFromObservable Method for DownloadAttachmentFromObservable
 
 If query parameter `?asZip` is set, the attachment will be sent as a zip file with a password. Default password is 'malware'
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @param attachmentId
- @return ApiDownloadAttachmentFromObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@param attachmentId
+	@return ApiDownloadAttachmentFromObservableRequest
 */
 func (a *ObservableAPIService) DownloadAttachmentFromObservable(ctx context.Context, observableId string, attachmentId string) ApiDownloadAttachmentFromObservableRequest {
 	return ApiDownloadAttachmentFromObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDownloadAttachmentFromObservableRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.DownloadAttachmentFromObservable")
@@ -708,8 +713,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -719,8 +724,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -730,8 +735,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -741,8 +746,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -752,8 +757,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -771,8 +776,8 @@ func (a *ObservableAPIService) DownloadAttachmentFromObservableExecute(r ApiDown
 }
 
 type ApiGetObservableRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
+	ctx          context.Context
+	ApiService   *ObservableAPIService
 	observableId string
 }
 
@@ -783,26 +788,27 @@ func (r ApiGetObservableRequest) Execute() (*OutputObservable, *http.Response, e
 /*
 GetObservable Method for GetObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiGetObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiGetObservableRequest
 */
 func (a *ObservableAPIService) GetObservable(ctx context.Context, observableId string) ApiGetObservableRequest {
 	return ApiGetObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputObservable
+//
+//	@return OutputObservable
 func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (*OutputObservable, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputObservable
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputObservable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.GetObservable")
@@ -863,8 +869,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -874,8 +880,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -885,8 +891,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -896,8 +902,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -907,8 +913,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -926,8 +932,8 @@ func (a *ObservableAPIService) GetObservableExecute(r ApiGetObservableRequest) (
 }
 
 type ApiUpdateBulkOfObservablesRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
+	ctx                          context.Context
+	ApiService                   *ObservableAPIService
 	inputUpdateObservableWithIds *InputUpdateObservableWithIds
 }
 
@@ -943,22 +949,22 @@ func (r ApiUpdateBulkOfObservablesRequest) Execute() (*http.Response, error) {
 /*
 UpdateBulkOfObservables Method for UpdateBulkOfObservables
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateBulkOfObservablesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateBulkOfObservablesRequest
 */
 func (a *ObservableAPIService) UpdateBulkOfObservables(ctx context.Context) ApiUpdateBulkOfObservablesRequest {
 	return ApiUpdateBulkOfObservablesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfObservablesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.UpdateBulkOfObservables")
@@ -1023,8 +1029,8 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1034,8 +1040,8 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1045,8 +1051,8 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1056,8 +1062,8 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1067,8 +1073,8 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1077,9 +1083,9 @@ func (a *ObservableAPIService) UpdateBulkOfObservablesExecute(r ApiUpdateBulkOfO
 }
 
 type ApiUpdateObservableRequest struct {
-	ctx context.Context
-	ApiService *ObservableAPIService
-	observableId string
+	ctx                   context.Context
+	ApiService            *ObservableAPIService
+	observableId          string
 	inputUpdateObservable *InputUpdateObservable
 }
 
@@ -1095,14 +1101,14 @@ func (r ApiUpdateObservableRequest) Execute() (*http.Response, error) {
 /*
 UpdateObservable Method for UpdateObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @return ApiUpdateObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@return ApiUpdateObservableRequest
 */
 func (a *ObservableAPIService) UpdateObservable(ctx context.Context, observableId string) ApiUpdateObservableRequest {
 	return ApiUpdateObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 	}
 }
@@ -1110,9 +1116,9 @@ func (a *ObservableAPIService) UpdateObservable(ctx context.Context, observableI
 // Execute executes the request
 func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ObservableAPIService.UpdateObservable")
@@ -1178,8 +1184,8 @@ func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1189,8 +1195,8 @@ func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1200,8 +1206,8 @@ func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1211,8 +1217,8 @@ func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1222,8 +1228,8 @@ func (a *ObservableAPIService) UpdateObservableExecute(r ApiUpdateObservableRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

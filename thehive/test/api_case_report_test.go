@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_CaseReportAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService DeleteCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var reportId string
 
@@ -37,7 +37,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService DownloadCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var reportId string
 
@@ -51,7 +51,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService GenerateCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -65,7 +65,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService ListSupportedFormats", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseReportAPI.ListSupportedFormats(context.Background()).Execute()
 
@@ -77,7 +77,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService RenderCaseReportTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseReportAPI.RenderCaseReportTemplate(context.Background()).Execute()
 
@@ -89,7 +89,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService RenderCaseReportTemplateGET", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseReportAPI.RenderCaseReportTemplateGET(context.Background()).Execute()
 
@@ -101,7 +101,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService UpdateCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var reportId string
 
@@ -114,7 +114,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService UploadCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -128,7 +128,7 @@ func Test_thehive_CaseReportAPIService(t *testing.T) {
 
 	t.Run("Test CaseReportAPIService ViewCaseReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var reportId string
 

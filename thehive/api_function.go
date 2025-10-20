@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // FunctionAPIService FunctionAPI service
 type FunctionAPIService service
 
 type ApiCreateFunctionRequest struct {
-	ctx context.Context
-	ApiService *FunctionAPIService
+	ctx           context.Context
+	ApiService    *FunctionAPIService
 	inputFunction *InputFunction
 }
 
@@ -41,7 +40,6 @@ func (r ApiCreateFunctionRequest) Execute() (*OutputFunction, *http.Response, er
 /*
 CreateFunction Method for CreateFunction
 
-
 Create a function that can then be invoked from an endpoint on TheHive.
 This function will be able to format and process your data in a custom manner and invoke TheHive APIs.
 All TheHive APIs will be called with the role and permissions of the user invoking the function.
@@ -52,31 +50,33 @@ Functions currently only support javascript.
 
 ### Function Example
 
-You can pass a script written in javascript. This script must contain one function named `handle` 
+You can pass a script written in javascript. This script must contain one function named `handle`
 
 ```javascript
 // Your script should have a function named 'handle'
 // input is the json value that is passed when calling the script http endpoint
 // context is an object used to interact with TheHiveAPI
-function handle(input, context) {
-  const myAlert = {
-    "type": "myScript",
-    "source": input.source,
-    "sourceRef": input.ref,
-    "title": input.title || "Default Title",
-    "description": "Alert from myScript " + input.ref,
-    "observables": input.data.map(a => { 
-       return {
-         "dataType": a.type,
-         "data": a.value
-       };
-    })
-  };
-  // call TheHive API to create an alert
-  const createdAlert = context.alert.create(myAlert);
-  console.log(`Alert created with id ${createdAlert && createdAlert._id}`);
-  return createdAlert;
-}
+
+	function handle(input, context) {
+	  const myAlert = {
+	    "type": "myScript",
+	    "source": input.source,
+	    "sourceRef": input.ref,
+	    "title": input.title || "Default Title",
+	    "description": "Alert from myScript " + input.ref,
+	    "observables": input.data.map(a => {
+	       return {
+	         "dataType": a.type,
+	         "data": a.value
+	       };
+	    })
+	  };
+	  // call TheHive API to create an alert
+	  const createdAlert = context.alert.create(myAlert);
+	  console.log(`Alert created with id ${createdAlert && createdAlert._id}`);
+	  return createdAlert;
+	}
+
 ```
 
 See: https://www.graalvm.org/22.1/reference-manual/js/JavaScriptCompatibility/ for javascript compatibility features
@@ -84,32 +84,33 @@ See: https://www.graalvm.org/22.1/reference-manual/js/JavaScriptCompatibility/ f
 #### Hello world example
 
 ```javascript
-function handle(input, context) {
-  console.log("Hello from TheHive");
-  return "Hello world";
-}
+
+	function handle(input, context) {
+	  console.log("Hello from TheHive");
+	  return "Hello world";
+	}
+
 ```
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateFunctionRequest
 */
 func (a *FunctionAPIService) CreateFunction(ctx context.Context) ApiCreateFunctionRequest {
 	return ApiCreateFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputFunction
+//
+//	@return OutputFunction
 func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (*OutputFunction, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputFunction
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputFunction
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.CreateFunction")
@@ -174,8 +175,8 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -185,8 +186,8 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -196,8 +197,8 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -207,8 +208,8 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -218,8 +219,8 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -237,7 +238,7 @@ func (a *FunctionAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) (
 }
 
 type ApiDeleteFunctionRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FunctionAPIService
 	functionId string
 }
@@ -249,14 +250,14 @@ func (r ApiDeleteFunctionRequest) Execute() (*http.Response, error) {
 /*
 DeleteFunction Method for DeleteFunction
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
- @return ApiDeleteFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param functionId
+	@return ApiDeleteFunctionRequest
 */
 func (a *FunctionAPIService) DeleteFunction(ctx context.Context, functionId string) ApiDeleteFunctionRequest {
 	return ApiDeleteFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		functionId: functionId,
 	}
 }
@@ -264,9 +265,9 @@ func (a *FunctionAPIService) DeleteFunction(ctx context.Context, functionId stri
 // Execute executes the request
 func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.DeleteFunction")
@@ -327,8 +328,8 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -338,8 +339,8 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -349,8 +350,8 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -360,8 +361,8 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -371,8 +372,8 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -381,7 +382,7 @@ func (a *FunctionAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (
 }
 
 type ApiGetDocumentationForTheContextObjectRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FunctionAPIService
 }
 
@@ -392,24 +393,25 @@ func (r ApiGetDocumentationForTheContextObjectRequest) Execute() (*OutputContext
 /*
 GetDocumentationForTheContextObject Method for GetDocumentationForTheContextObject
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDocumentationForTheContextObjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDocumentationForTheContextObjectRequest
 */
 func (a *FunctionAPIService) GetDocumentationForTheContextObject(ctx context.Context) ApiGetDocumentationForTheContextObjectRequest {
 	return ApiGetDocumentationForTheContextObjectRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputContextDocumentation
+//
+//	@return OutputContextDocumentation
 func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGetDocumentationForTheContextObjectRequest) (*OutputContextDocumentation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputContextDocumentation
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputContextDocumentation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.GetDocumentationForTheContextObject")
@@ -469,8 +471,8 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -480,8 +482,8 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -491,8 +493,8 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -502,8 +504,8 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -513,8 +515,8 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -532,7 +534,7 @@ func (a *FunctionAPIService) GetDocumentationForTheContextObjectExecute(r ApiGet
 }
 
 type ApiGetFunctionRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FunctionAPIService
 	functionId string
 }
@@ -544,26 +546,27 @@ func (r ApiGetFunctionRequest) Execute() (*OutputFunction, *http.Response, error
 /*
 GetFunction Method for GetFunction
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
- @return ApiGetFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param functionId
+	@return ApiGetFunctionRequest
 */
 func (a *FunctionAPIService) GetFunction(ctx context.Context, functionId string) ApiGetFunctionRequest {
 	return ApiGetFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		functionId: functionId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputFunction
+//
+//	@return OutputFunction
 func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*OutputFunction, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputFunction
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputFunction
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.GetFunction")
@@ -624,8 +627,8 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -635,8 +638,8 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -646,8 +649,8 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -657,8 +660,8 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -668,8 +671,8 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -687,11 +690,11 @@ func (a *FunctionAPIService) GetFunctionExecute(r ApiGetFunctionRequest) (*Outpu
 }
 
 type ApiInvokeFunctionRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FunctionAPIService
-	function string
-	dryRun *bool
-	body *interface{}
+	function   string
+	dryRun     *bool
+	body       *interface{}
 }
 
 func (r ApiInvokeFunctionRequest) DryRun(dryRun bool) ApiInvokeFunctionRequest {
@@ -711,26 +714,27 @@ func (r ApiInvokeFunctionRequest) Execute() (*OutputInvokeFunctionOk, *http.Resp
 /*
 InvokeFunction Method for InvokeFunction
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param function
- @return ApiInvokeFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param function
+	@return ApiInvokeFunctionRequest
 */
 func (a *FunctionAPIService) InvokeFunction(ctx context.Context, function string) ApiInvokeFunctionRequest {
 	return ApiInvokeFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
-		function: function,
+		ctx:        ctx,
+		function:   function,
 	}
 }
 
 // Execute executes the request
-//  @return OutputInvokeFunctionOk
+//
+//	@return OutputInvokeFunctionOk
 func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (*OutputInvokeFunctionOk, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputInvokeFunctionOk
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputInvokeFunctionOk
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.InvokeFunction")
@@ -799,8 +803,8 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -810,8 +814,8 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -821,8 +825,8 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -832,8 +836,8 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -843,8 +847,8 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -862,13 +866,13 @@ func (a *FunctionAPIService) InvokeFunctionExecute(r ApiInvokeFunctionRequest) (
 }
 
 type ApiInvokeFunctionOnAnObjectRequest struct {
-	ctx context.Context
-	ApiService *FunctionAPIService
-	function string
-	objectType string
+	ctx            context.Context
+	ApiService     *FunctionAPIService
+	function       string
+	objectType     string
 	objectIdOrName string
-	dryRun *bool
-	sync *bool
+	dryRun         *bool
+	sync           *bool
 }
 
 func (r ApiInvokeFunctionOnAnObjectRequest) DryRun(dryRun bool) ApiInvokeFunctionOnAnObjectRequest {
@@ -890,30 +894,31 @@ InvokeFunctionOnAnObject Method for InvokeFunctionOnAnObject
 
 Invoke function (asynchronous) on an object (Alert, Case, Task, Log, Observable)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param function
- @param objectType
- @param objectIdOrName
- @return ApiInvokeFunctionOnAnObjectRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param function
+	@param objectType
+	@param objectIdOrName
+	@return ApiInvokeFunctionOnAnObjectRequest
 */
 func (a *FunctionAPIService) InvokeFunctionOnAnObject(ctx context.Context, function string, objectType string, objectIdOrName string) ApiInvokeFunctionOnAnObjectRequest {
 	return ApiInvokeFunctionOnAnObjectRequest{
-		ApiService: a,
-		ctx: ctx,
-		function: function,
-		objectType: objectType,
+		ApiService:     a,
+		ctx:            ctx,
+		function:       function,
+		objectType:     objectType,
 		objectIdOrName: objectIdOrName,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunctionOnAnObjectRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.InvokeFunctionOnAnObject")
@@ -988,8 +993,8 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -999,8 +1004,8 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1010,8 +1015,8 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1021,8 +1026,8 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1032,8 +1037,8 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1051,10 +1056,10 @@ func (a *FunctionAPIService) InvokeFunctionOnAnObjectExecute(r ApiInvokeFunction
 }
 
 type ApiTestFunctionRequest struct {
-	ctx context.Context
-	ApiService *FunctionAPIService
+	ctx               context.Context
+	ApiService        *FunctionAPIService
 	inputTestFunction *InputTestFunction
-	dryRun *bool
+	dryRun            *bool
 }
 
 func (r ApiTestFunctionRequest) InputTestFunction(inputTestFunction InputTestFunction) ApiTestFunctionRequest {
@@ -1076,24 +1081,25 @@ TestFunction Method for TestFunction
 
 Allow to test the code of a function without saving it into the database
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTestFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTestFunctionRequest
 */
 func (a *FunctionAPIService) TestFunction(ctx context.Context) ApiTestFunctionRequest {
 	return ApiTestFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputInvokeFunctionOk
+//
+//	@return OutputInvokeFunctionOk
 func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*OutputInvokeFunctionOk, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputInvokeFunctionOk
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputInvokeFunctionOk
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.TestFunction")
@@ -1164,8 +1170,8 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -1175,8 +1181,8 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1186,8 +1192,8 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1197,8 +1203,8 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1208,8 +1214,8 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1227,9 +1233,9 @@ func (a *FunctionAPIService) TestFunctionExecute(r ApiTestFunctionRequest) (*Out
 }
 
 type ApiUpdateFunctionRequest struct {
-	ctx context.Context
-	ApiService *FunctionAPIService
-	functionId string
+	ctx                 context.Context
+	ApiService          *FunctionAPIService
+	functionId          string
 	inputUpdateFunction *InputUpdateFunction
 }
 
@@ -1245,14 +1251,14 @@ func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
 /*
 UpdateFunction Method for UpdateFunction
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
- @return ApiUpdateFunctionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param functionId
+	@return ApiUpdateFunctionRequest
 */
 func (a *FunctionAPIService) UpdateFunction(ctx context.Context, functionId string) ApiUpdateFunctionRequest {
 	return ApiUpdateFunctionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		functionId: functionId,
 	}
 }
@@ -1260,9 +1266,9 @@ func (a *FunctionAPIService) UpdateFunction(ctx context.Context, functionId stri
 // Execute executes the request
 func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionAPIService.UpdateFunction")
@@ -1328,8 +1334,8 @@ func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1339,8 +1345,8 @@ func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1350,8 +1356,8 @@ func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1361,8 +1367,8 @@ func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1372,8 +1378,8 @@ func (a *FunctionAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

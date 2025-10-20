@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_TaskLogAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService AddAttachmentsToTaskLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var logId string
 
@@ -37,7 +37,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService CreateTaskLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var taskId string
 
@@ -51,7 +51,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService DeleteAttachmentFromTaskLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var logId string
 		var attachmentId string
@@ -65,7 +65,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService DeleteTaskLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var logId string
 
@@ -78,7 +78,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService DownloadAttachmentFromLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var logId string
 		var attachmentId string
@@ -93,7 +93,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService GetAttachmentFromLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var attachmentId string
@@ -108,7 +108,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService GetAttachmentFromObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 		var attachmentId string
@@ -123,7 +123,7 @@ func Test_thehive_TaskLogAPIService(t *testing.T) {
 
 	t.Run("Test TaskLogAPIService UpdateTaskLog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var logId string
 

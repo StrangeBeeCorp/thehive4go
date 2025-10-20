@@ -20,6 +20,10 @@ echo -e "${GREEN}✅ BasicAuth fix applied successfully${NC}"
 sed -i 's/Api Key:/ApiKey:/g' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ Api Key fix applied successfully${NC}"
 
+# Fix timestamp fields: replace format: datetime_ms with format: int64
+sed -i 's/format: datetime_ms/format: int64/g' "$FIXED_OPENAPI_PATH"
+echo -e "${GREEN}✅ Timestamp format fix applied successfully (datetime_ms -> int64)${NC}"
+
 # Remove ProxyConfig default section
 sed -i '/    ProxyConfig:/,/^    [^ ]/ { /      default:/,/        state: disabled/d; }' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ ProxyConfig default section removed successfully${NC}"

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,24 +21,24 @@ var _ MappedNullable = &OutputTask{}
 
 // OutputTask struct for OutputTask
 type OutputTask struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreType string `json:"_type"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
-	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
-	Title string `json:"title"`
-	Group string `json:"group"`
-	Description *string `json:"description,omitempty"`
-	Status string `json:"status"`
-	Flag bool `json:"flag"`
-	StartDate *int32 `json:"startDate,omitempty"`
-	EndDate *int32 `json:"endDate,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	Order int32 `json:"order"`
-	DueDate *int32 `json:"dueDate,omitempty"`
-	Mandatory bool `json:"mandatory"`
-	ExtraData map[string]interface{} `json:"extraData"`
+	UnderscoreId        string                 `json:"_id"`
+	UnderscoreType      string                 `json:"_type"`
+	UnderscoreCreatedBy string                 `json:"_createdBy"`
+	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
+	UnderscoreCreatedAt int64                  `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64                 `json:"_updatedAt,omitempty"`
+	Title               string                 `json:"title"`
+	Group               string                 `json:"group"`
+	Description         *string                `json:"description,omitempty"`
+	Status              string                 `json:"status"`
+	Flag                bool                   `json:"flag"`
+	StartDate           *int64                 `json:"startDate,omitempty"`
+	EndDate             *int64                 `json:"endDate,omitempty"`
+	Assignee            *string                `json:"assignee,omitempty"`
+	Order               int32                  `json:"order"`
+	DueDate             *int64                 `json:"dueDate,omitempty"`
+	Mandatory           bool                   `json:"mandatory"`
+	ExtraData           map[string]interface{} `json:"extraData"`
 }
 
 type _OutputTask OutputTask
@@ -47,7 +47,7 @@ type _OutputTask OutputTask
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputTask(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, title string, group string, status string, flag bool, order int32, mandatory bool, extraData map[string]interface{}) *OutputTask {
+func NewOutputTask(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, title string, group string, status string, flag bool, order int32, mandatory bool, extraData map[string]interface{}) *OutputTask {
 	this := OutputTask{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -176,9 +176,9 @@ func (o *OutputTask) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputTask) GetUnderscoreCreatedAt() int32 {
+func (o *OutputTask) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -187,7 +187,7 @@ func (o *OutputTask) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputTask) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputTask) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -195,14 +195,14 @@ func (o *OutputTask) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputTask) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputTask) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputTask) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputTask) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -210,7 +210,7 @@ func (o *OutputTask) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputTask) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputTask) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -226,8 +226,8 @@ func (o *OutputTask) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputTask) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputTask) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -360,9 +360,9 @@ func (o *OutputTask) SetFlag(v bool) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *OutputTask) GetStartDate() int32 {
+func (o *OutputTask) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -370,7 +370,7 @@ func (o *OutputTask) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputTask) GetStartDateOk() (*int32, bool) {
+func (o *OutputTask) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -386,15 +386,15 @@ func (o *OutputTask) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *OutputTask) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *OutputTask) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *OutputTask) GetEndDate() int32 {
+func (o *OutputTask) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -402,7 +402,7 @@ func (o *OutputTask) GetEndDate() int32 {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputTask) GetEndDateOk() (*int32, bool) {
+func (o *OutputTask) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -418,8 +418,8 @@ func (o *OutputTask) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given int32 and assigns it to the EndDate field.
-func (o *OutputTask) SetEndDate(v int32) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *OutputTask) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 
@@ -480,9 +480,9 @@ func (o *OutputTask) SetOrder(v int32) {
 }
 
 // GetDueDate returns the DueDate field value if set, zero value otherwise.
-func (o *OutputTask) GetDueDate() int32 {
+func (o *OutputTask) GetDueDate() int64 {
 	if o == nil || IsNil(o.DueDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DueDate
@@ -490,7 +490,7 @@ func (o *OutputTask) GetDueDate() int32 {
 
 // GetDueDateOk returns a tuple with the DueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputTask) GetDueDateOk() (*int32, bool) {
+func (o *OutputTask) GetDueDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.DueDate) {
 		return nil, false
 	}
@@ -506,8 +506,8 @@ func (o *OutputTask) HasDueDate() bool {
 	return false
 }
 
-// SetDueDate gets a reference to the given int32 and assigns it to the DueDate field.
-func (o *OutputTask) SetDueDate(v int32) {
+// SetDueDate gets a reference to the given int64 and assigns it to the DueDate field.
+func (o *OutputTask) SetDueDate(v int64) {
 	o.DueDate = &v
 }
 
@@ -560,7 +560,7 @@ func (o *OutputTask) SetExtraData(v map[string]interface{}) {
 }
 
 func (o OutputTask) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -627,10 +627,10 @@ func (o *OutputTask) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -686,5 +686,3 @@ func (v *NullableOutputTask) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

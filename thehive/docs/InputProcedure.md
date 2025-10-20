@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PatternId** | **string** | Id of the technique in the catalog | 
-**OccurDate** | **int32** |  | 
-**Tactic** | Pointer to **string** | Name of the tactic, useful if the technique belongs to several tactics | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**PatternId** | **string** | Id of the technique in the catalog |
+**OccurDate** | **int64** |  |
+**Tactic** | Pointer to **string** | Name of the tactic, useful if the technique belongs to several tactics | [optional]
+**Description** | Pointer to **string** |  | [optional]
 
 ## Methods
 
 ### NewInputProcedure
 
-`func NewInputProcedure(patternId string, occurDate int32, ) *InputProcedure`
+`func NewInputProcedure(patternId string, occurDate int64, ) *InputProcedure`
 
 NewInputProcedure instantiates a new InputProcedure object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetPatternId sets PatternId field to given value.
 
 ### GetOccurDate
 
-`func (o *InputProcedure) GetOccurDate() int32`
+`func (o *InputProcedure) GetOccurDate() int64`
 
 GetOccurDate returns the OccurDate field if non-nil, zero value otherwise.
 
 ### GetOccurDateOk
 
-`func (o *InputProcedure) GetOccurDateOk() (*int32, bool)`
+`func (o *InputProcedure) GetOccurDateOk() (*int64, bool)`
 
 GetOccurDateOk returns a tuple with the OccurDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOccurDate
 
-`func (o *InputProcedure) SetOccurDate(v int32)`
+`func (o *InputProcedure) SetOccurDate(v int64)`
 
 SetOccurDate sets OccurDate field to given value.
 
@@ -120,5 +120,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

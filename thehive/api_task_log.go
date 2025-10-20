@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,18 +16,17 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // TaskLogAPIService TaskLogAPI service
 type TaskLogAPIService service
 
 type ApiAddAttachmentsToTaskLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	logId string
+	ctx         context.Context
+	ApiService  *TaskLogAPIService
+	logId       string
 	attachments []*os.File
 }
 
@@ -43,24 +42,24 @@ func (r ApiAddAttachmentsToTaskLogRequest) Execute() (*http.Response, error) {
 /*
 AddAttachmentsToTaskLog Method for AddAttachmentsToTaskLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logId
- @return ApiAddAttachmentsToTaskLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param logId
+	@return ApiAddAttachmentsToTaskLogRequest
 */
 func (a *TaskLogAPIService) AddAttachmentsToTaskLog(ctx context.Context, logId string) ApiAddAttachmentsToTaskLogRequest {
 	return ApiAddAttachmentsToTaskLogRequest{
 		ApiService: a,
-		ctx: ctx,
-		logId: logId,
+		ctx:        ctx,
+		logId:      logId,
 	}
 }
 
 // Execute executes the request
 func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsToTaskLogRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.AddAttachmentsToTaskLog")
@@ -93,8 +92,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var attachmentsLocalVarFormFileName string
-	var attachmentsLocalVarFileName     string
-	var attachmentsLocalVarFileBytes    []byte
+	var attachmentsLocalVarFileName string
+	var attachmentsLocalVarFileBytes []byte
 
 	attachmentsLocalVarFormFileName = "attachments"
 	attachmentsLocalVarFile := r.attachments
@@ -139,8 +138,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -150,8 +149,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -161,8 +160,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -172,8 +171,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -183,8 +182,8 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -193,9 +192,9 @@ func (a *TaskLogAPIService) AddAttachmentsToTaskLogExecute(r ApiAddAttachmentsTo
 }
 
 type ApiCreateTaskLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	taskId string
+	ctx            context.Context
+	ApiService     *TaskLogAPIService
+	taskId         string
 	inputCreateLog *InputCreateLog
 }
 
@@ -211,26 +210,27 @@ func (r ApiCreateTaskLogRequest) Execute() (*OutputLog, *http.Response, error) {
 /*
 CreateTaskLog Method for CreateTaskLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param taskId
- @return ApiCreateTaskLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param taskId
+	@return ApiCreateTaskLogRequest
 */
 func (a *TaskLogAPIService) CreateTaskLog(ctx context.Context, taskId string) ApiCreateTaskLogRequest {
 	return ApiCreateTaskLogRequest{
 		ApiService: a,
-		ctx: ctx,
-		taskId: taskId,
+		ctx:        ctx,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputLog
+//
+//	@return OutputLog
 func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*OutputLog, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputLog
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputLog
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.CreateTaskLog")
@@ -296,8 +296,8 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -307,8 +307,8 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -318,8 +318,8 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -329,8 +329,8 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -340,8 +340,8 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -359,9 +359,9 @@ func (a *TaskLogAPIService) CreateTaskLogExecute(r ApiCreateTaskLogRequest) (*Ou
 }
 
 type ApiDeleteAttachmentFromTaskLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	logId string
+	ctx          context.Context
+	ApiService   *TaskLogAPIService
+	logId        string
 	attachmentId string
 }
 
@@ -372,16 +372,16 @@ func (r ApiDeleteAttachmentFromTaskLogRequest) Execute() (*http.Response, error)
 /*
 DeleteAttachmentFromTaskLog Method for DeleteAttachmentFromTaskLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logId
- @param attachmentId
- @return ApiDeleteAttachmentFromTaskLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param logId
+	@param attachmentId
+	@return ApiDeleteAttachmentFromTaskLogRequest
 */
 func (a *TaskLogAPIService) DeleteAttachmentFromTaskLog(ctx context.Context, logId string, attachmentId string) ApiDeleteAttachmentFromTaskLogRequest {
 	return ApiDeleteAttachmentFromTaskLogRequest{
-		ApiService: a,
-		ctx: ctx,
-		logId: logId,
+		ApiService:   a,
+		ctx:          ctx,
+		logId:        logId,
 		attachmentId: attachmentId,
 	}
 }
@@ -389,9 +389,9 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLog(ctx context.Context, log
 // Execute executes the request
 func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttachmentFromTaskLogRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.DeleteAttachmentFromTaskLog")
@@ -453,8 +453,8 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -464,8 +464,8 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -475,8 +475,8 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -486,8 +486,8 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -497,8 +497,8 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -507,9 +507,9 @@ func (a *TaskLogAPIService) DeleteAttachmentFromTaskLogExecute(r ApiDeleteAttach
 }
 
 type ApiDeleteTaskLogRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TaskLogAPIService
-	logId string
+	logId      string
 }
 
 func (r ApiDeleteTaskLogRequest) Execute() (*http.Response, error) {
@@ -519,24 +519,24 @@ func (r ApiDeleteTaskLogRequest) Execute() (*http.Response, error) {
 /*
 DeleteTaskLog Method for DeleteTaskLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logId
- @return ApiDeleteTaskLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param logId
+	@return ApiDeleteTaskLogRequest
 */
 func (a *TaskLogAPIService) DeleteTaskLog(ctx context.Context, logId string) ApiDeleteTaskLogRequest {
 	return ApiDeleteTaskLogRequest{
 		ApiService: a,
-		ctx: ctx,
-		logId: logId,
+		ctx:        ctx,
+		logId:      logId,
 	}
 }
 
 // Execute executes the request
 func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.DeleteTaskLog")
@@ -597,8 +597,8 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -608,8 +608,8 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -619,8 +619,8 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -630,8 +630,8 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -641,8 +641,8 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -651,9 +651,9 @@ func (a *TaskLogAPIService) DeleteTaskLogExecute(r ApiDeleteTaskLogRequest) (*ht
 }
 
 type ApiDownloadAttachmentFromLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	logId string
+	ctx          context.Context
+	ApiService   *TaskLogAPIService
+	logId        string
 	attachmentId string
 }
 
@@ -664,31 +664,33 @@ func (r ApiDownloadAttachmentFromLogRequest) Execute() (*os.File, *http.Response
 /*
 DownloadAttachmentFromLog Method for DownloadAttachmentFromLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logId
- @param attachmentId
- @return ApiDownloadAttachmentFromLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param logId
+	@param attachmentId
+	@return ApiDownloadAttachmentFromLogRequest
 
 Deprecated
 */
 func (a *TaskLogAPIService) DownloadAttachmentFromLog(ctx context.Context, logId string, attachmentId string) ApiDownloadAttachmentFromLogRequest {
 	return ApiDownloadAttachmentFromLogRequest{
-		ApiService: a,
-		ctx: ctx,
-		logId: logId,
+		ApiService:   a,
+		ctx:          ctx,
+		logId:        logId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
+//
 // Deprecated
 func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttachmentFromLogRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.DownloadAttachmentFromLog")
@@ -750,8 +752,8 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -761,8 +763,8 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -772,8 +774,8 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -783,8 +785,8 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -794,8 +796,8 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -813,11 +815,11 @@ func (a *TaskLogAPIService) DownloadAttachmentFromLogExecute(r ApiDownloadAttach
 }
 
 type ApiGetAttachmentFromLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	caseId string
+	ctx          context.Context
+	ApiService   *TaskLogAPIService
+	caseId       string
 	attachmentId string
-	ifNoneMatch *string
+	ifNoneMatch  *string
 }
 
 func (r ApiGetAttachmentFromLogRequest) IfNoneMatch(ifNoneMatch string) ApiGetAttachmentFromLogRequest {
@@ -832,31 +834,33 @@ func (r ApiGetAttachmentFromLogRequest) Execute() (*os.File, *http.Response, err
 /*
 GetAttachmentFromLog Method for GetAttachmentFromLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param attachmentId
- @return ApiGetAttachmentFromLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param attachmentId
+	@return ApiGetAttachmentFromLogRequest
 
 Deprecated
 */
 func (a *TaskLogAPIService) GetAttachmentFromLog(ctx context.Context, caseId string, attachmentId string) ApiGetAttachmentFromLogRequest {
 	return ApiGetAttachmentFromLogRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:   a,
+		ctx:          ctx,
+		caseId:       caseId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
+//
 // Deprecated
 func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLogRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.GetAttachmentFromLog")
@@ -921,8 +925,8 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -932,8 +936,8 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -943,8 +947,8 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -954,8 +958,8 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -965,8 +969,8 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -984,11 +988,11 @@ func (a *TaskLogAPIService) GetAttachmentFromLogExecute(r ApiGetAttachmentFromLo
 }
 
 type ApiGetAttachmentFromObservableRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
+	ctx          context.Context
+	ApiService   *TaskLogAPIService
 	observableId string
 	attachmentId string
-	ifNoneMatch *string
+	ifNoneMatch  *string
 }
 
 func (r ApiGetAttachmentFromObservableRequest) IfNoneMatch(ifNoneMatch string) ApiGetAttachmentFromObservableRequest {
@@ -1003,28 +1007,29 @@ func (r ApiGetAttachmentFromObservableRequest) Execute() (*os.File, *http.Respon
 /*
 GetAttachmentFromObservable Method for GetAttachmentFromObservable
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param observableId
- @param attachmentId
- @return ApiGetAttachmentFromObservableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param observableId
+	@param attachmentId
+	@return ApiGetAttachmentFromObservableRequest
 */
 func (a *TaskLogAPIService) GetAttachmentFromObservable(ctx context.Context, observableId string, attachmentId string) ApiGetAttachmentFromObservableRequest {
 	return ApiGetAttachmentFromObservableRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		observableId: observableId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmentFromObservableRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.GetAttachmentFromObservable")
@@ -1089,8 +1094,8 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1100,8 +1105,8 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1111,8 +1116,8 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1122,8 +1127,8 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1133,8 +1138,8 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1152,9 +1157,9 @@ func (a *TaskLogAPIService) GetAttachmentFromObservableExecute(r ApiGetAttachmen
 }
 
 type ApiUpdateTaskLogRequest struct {
-	ctx context.Context
-	ApiService *TaskLogAPIService
-	logId string
+	ctx            context.Context
+	ApiService     *TaskLogAPIService
+	logId          string
 	inputUpdateLog *InputUpdateLog
 }
 
@@ -1170,24 +1175,24 @@ func (r ApiUpdateTaskLogRequest) Execute() (*http.Response, error) {
 /*
 UpdateTaskLog Method for UpdateTaskLog
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param logId
- @return ApiUpdateTaskLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param logId
+	@return ApiUpdateTaskLogRequest
 */
 func (a *TaskLogAPIService) UpdateTaskLog(ctx context.Context, logId string) ApiUpdateTaskLogRequest {
 	return ApiUpdateTaskLogRequest{
 		ApiService: a,
-		ctx: ctx,
-		logId: logId,
+		ctx:        ctx,
+		logId:      logId,
 	}
 }
 
 // Execute executes the request
 func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskLogAPIService.UpdateTaskLog")
@@ -1253,8 +1258,8 @@ func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1264,8 +1269,8 @@ func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1275,8 +1280,8 @@ func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1286,8 +1291,8 @@ func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1297,8 +1302,8 @@ func (a *TaskLogAPIService) UpdateTaskLogExecute(r ApiUpdateTaskLogRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

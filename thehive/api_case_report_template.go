@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,20 +16,19 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // CaseReportTemplateAPIService CaseReportTemplateAPI service
 type CaseReportTemplateAPIService service
 
 type ApiCreateAttachmentToCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
-	templateId string
+	ctx         context.Context
+	ApiService  *CaseReportTemplateAPIService
+	templateId  string
 	attachments []*os.File
-	canRename *bool
+	canRename   *bool
 }
 
 func (r ApiCreateAttachmentToCaseReportTemplateRequest) Attachments(attachments []*os.File) ApiCreateAttachmentToCaseReportTemplateRequest {
@@ -50,26 +49,27 @@ func (r ApiCreateAttachmentToCaseReportTemplateRequest) Execute() (*OutputAttach
 /*
 CreateAttachmentToCaseReportTemplate Method for CreateAttachmentToCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param templateId
- @return ApiCreateAttachmentToCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param templateId
+	@return ApiCreateAttachmentToCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplate(ctx context.Context, templateId string) ApiCreateAttachmentToCaseReportTemplateRequest {
 	return ApiCreateAttachmentToCaseReportTemplateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		templateId: templateId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputAttachments
+//
+//	@return OutputAttachments
 func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecute(r ApiCreateAttachmentToCaseReportTemplateRequest) (*OutputAttachments, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputAttachments
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputAttachments
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.CreateAttachmentToCaseReportTemplate")
@@ -105,8 +105,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var attachmentsLocalVarFormFileName string
-	var attachmentsLocalVarFileName     string
-	var attachmentsLocalVarFileBytes    []byte
+	var attachmentsLocalVarFileName string
+	var attachmentsLocalVarFileBytes []byte
 
 	attachmentsLocalVarFormFileName = "attachments"
 	attachmentsLocalVarFile := r.attachments
@@ -154,8 +154,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -165,8 +165,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -176,8 +176,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -187,8 +187,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -198,8 +198,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -217,8 +217,8 @@ func (a *CaseReportTemplateAPIService) CreateAttachmentToCaseReportTemplateExecu
 }
 
 type ApiCreateCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
+	ctx                           context.Context
+	ApiService                    *CaseReportTemplateAPIService
 	inputCreateCaseReportTemplate *InputCreateCaseReportTemplate
 }
 
@@ -236,24 +236,25 @@ CreateCaseReportTemplate Method for CreateCaseReportTemplate
 
 Create a new case report template
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) CreateCaseReportTemplate(ctx context.Context) ApiCreateCaseReportTemplateRequest {
 	return ApiCreateCaseReportTemplateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCaseReportTemplate
+//
+//	@return OutputCaseReportTemplate
 func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCreateCaseReportTemplateRequest) (*OutputCaseReportTemplate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCaseReportTemplate
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCaseReportTemplate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.CreateCaseReportTemplate")
@@ -318,8 +319,8 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -329,8 +330,8 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -340,8 +341,8 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -351,8 +352,8 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -362,8 +363,8 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -381,9 +382,9 @@ func (a *CaseReportTemplateAPIService) CreateCaseReportTemplateExecute(r ApiCrea
 }
 
 type ApiDeleteAttachmentForCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
-	templateId string
+	ctx          context.Context
+	ApiService   *CaseReportTemplateAPIService
+	templateId   string
 	attachmentId string
 }
 
@@ -394,16 +395,16 @@ func (r ApiDeleteAttachmentForCaseReportTemplateRequest) Execute() (*http.Respon
 /*
 DeleteAttachmentForCaseReportTemplate Method for DeleteAttachmentForCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param templateId
- @param attachmentId
- @return ApiDeleteAttachmentForCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param templateId
+	@param attachmentId
+	@return ApiDeleteAttachmentForCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplate(ctx context.Context, templateId string, attachmentId string) ApiDeleteAttachmentForCaseReportTemplateRequest {
 	return ApiDeleteAttachmentForCaseReportTemplateRequest{
-		ApiService: a,
-		ctx: ctx,
-		templateId: templateId,
+		ApiService:   a,
+		ctx:          ctx,
+		templateId:   templateId,
 		attachmentId: attachmentId,
 	}
 }
@@ -411,9 +412,9 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplate(ctx
 // Execute executes the request
 func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExecute(r ApiDeleteAttachmentForCaseReportTemplateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.DeleteAttachmentForCaseReportTemplate")
@@ -475,8 +476,8 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -486,8 +487,8 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -497,8 +498,8 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -508,8 +509,8 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -519,8 +520,8 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -529,9 +530,9 @@ func (a *CaseReportTemplateAPIService) DeleteAttachmentForCaseReportTemplateExec
 }
 
 type ApiDeleteCaseReportTemplateRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseReportTemplateAPIService
-	idOrName string
+	idOrName   string
 }
 
 func (r ApiDeleteCaseReportTemplateRequest) Execute() (*http.Response, error) {
@@ -541,24 +542,24 @@ func (r ApiDeleteCaseReportTemplateRequest) Execute() (*http.Response, error) {
 /*
 DeleteCaseReportTemplate Method for DeleteCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param idOrName
- @return ApiDeleteCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param idOrName
+	@return ApiDeleteCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplate(ctx context.Context, idOrName string) ApiDeleteCaseReportTemplateRequest {
 	return ApiDeleteCaseReportTemplateRequest{
 		ApiService: a,
-		ctx: ctx,
-		idOrName: idOrName,
+		ctx:        ctx,
+		idOrName:   idOrName,
 	}
 }
 
 // Execute executes the request
 func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDeleteCaseReportTemplateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.DeleteCaseReportTemplate")
@@ -619,8 +620,8 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -630,8 +631,8 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -641,8 +642,8 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -652,8 +653,8 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -663,8 +664,8 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -673,9 +674,9 @@ func (a *CaseReportTemplateAPIService) DeleteCaseReportTemplateExecute(r ApiDele
 }
 
 type ApiDownloadAttachmentForCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
-	templateId string
+	ctx          context.Context
+	ApiService   *CaseReportTemplateAPIService
+	templateId   string
 	attachmentId string
 }
 
@@ -686,28 +687,29 @@ func (r ApiDownloadAttachmentForCaseReportTemplateRequest) Execute() (*os.File, 
 /*
 DownloadAttachmentForCaseReportTemplate Method for DownloadAttachmentForCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param templateId
- @param attachmentId
- @return ApiDownloadAttachmentForCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param templateId
+	@param attachmentId
+	@return ApiDownloadAttachmentForCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplate(ctx context.Context, templateId string, attachmentId string) ApiDownloadAttachmentForCaseReportTemplateRequest {
 	return ApiDownloadAttachmentForCaseReportTemplateRequest{
-		ApiService: a,
-		ctx: ctx,
-		templateId: templateId,
+		ApiService:   a,
+		ctx:          ctx,
+		templateId:   templateId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateExecute(r ApiDownloadAttachmentForCaseReportTemplateRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.DownloadAttachmentForCaseReportTemplate")
@@ -769,8 +771,8 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -780,8 +782,8 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -791,8 +793,8 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -802,8 +804,8 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -813,8 +815,8 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -832,11 +834,11 @@ func (a *CaseReportTemplateAPIService) DownloadAttachmentForCaseReportTemplateEx
 }
 
 type ApiGetAttachmentForCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
-	templateId string
+	ctx          context.Context
+	ApiService   *CaseReportTemplateAPIService
+	templateId   string
 	attachmentId string
-	ifNoneMatch *string
+	ifNoneMatch  *string
 }
 
 func (r ApiGetAttachmentForCaseReportTemplateRequest) IfNoneMatch(ifNoneMatch string) ApiGetAttachmentForCaseReportTemplateRequest {
@@ -851,28 +853,29 @@ func (r ApiGetAttachmentForCaseReportTemplateRequest) Execute() (*os.File, *http
 /*
 GetAttachmentForCaseReportTemplate Method for GetAttachmentForCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param templateId
- @param attachmentId
- @return ApiGetAttachmentForCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param templateId
+	@param attachmentId
+	@return ApiGetAttachmentForCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplate(ctx context.Context, templateId string, attachmentId string) ApiGetAttachmentForCaseReportTemplateRequest {
 	return ApiGetAttachmentForCaseReportTemplateRequest{
-		ApiService: a,
-		ctx: ctx,
-		templateId: templateId,
+		ApiService:   a,
+		ctx:          ctx,
+		templateId:   templateId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute(r ApiGetAttachmentForCaseReportTemplateRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.GetAttachmentForCaseReportTemplate")
@@ -937,8 +940,8 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -948,8 +951,8 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -959,8 +962,8 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -970,8 +973,8 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -981,8 +984,8 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1000,7 +1003,7 @@ func (a *CaseReportTemplateAPIService) GetAttachmentForCaseReportTemplateExecute
 }
 
 type ApiGetCaseReportTemplateRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseReportTemplateAPIService
 	templateId string
 }
@@ -1012,26 +1015,27 @@ func (r ApiGetCaseReportTemplateRequest) Execute() (*OutputCaseReportTemplate, *
 /*
 GetCaseReportTemplate Method for GetCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param templateId
- @return ApiGetCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param templateId
+	@return ApiGetCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) GetCaseReportTemplate(ctx context.Context, templateId string) ApiGetCaseReportTemplateRequest {
 	return ApiGetCaseReportTemplateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		templateId: templateId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCaseReportTemplate
+//
+//	@return OutputCaseReportTemplate
 func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCaseReportTemplateRequest) (*OutputCaseReportTemplate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCaseReportTemplate
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCaseReportTemplate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.GetCaseReportTemplate")
@@ -1092,8 +1096,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1103,8 +1107,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1114,8 +1118,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1125,8 +1129,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1136,8 +1140,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1155,7 +1159,7 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateExecute(r ApiGetCase
 }
 
 type ApiGetCaseReportTemplateOptionsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseReportTemplateAPIService
 }
 
@@ -1166,24 +1170,25 @@ func (r ApiGetCaseReportTemplateOptionsRequest) Execute() (*OutputCaseReportTemp
 /*
 GetCaseReportTemplateOptions Method for GetCaseReportTemplateOptions
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetCaseReportTemplateOptionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCaseReportTemplateOptionsRequest
 */
 func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptions(ctx context.Context) ApiGetCaseReportTemplateOptionsRequest {
 	return ApiGetCaseReportTemplateOptionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCaseReportTemplateObjects
+//
+//	@return OutputCaseReportTemplateObjects
 func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r ApiGetCaseReportTemplateOptionsRequest) (*OutputCaseReportTemplateObjects, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCaseReportTemplateObjects
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCaseReportTemplateObjects
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.GetCaseReportTemplateOptions")
@@ -1243,8 +1248,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1254,8 +1259,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1265,8 +1270,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1276,8 +1281,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1287,8 +1292,8 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1306,9 +1311,9 @@ func (a *CaseReportTemplateAPIService) GetCaseReportTemplateOptionsExecute(r Api
 }
 
 type ApiUpdateCaseReportTemplateRequest struct {
-	ctx context.Context
-	ApiService *CaseReportTemplateAPIService
-	idOrName string
+	ctx                           context.Context
+	ApiService                    *CaseReportTemplateAPIService
+	idOrName                      string
 	inputUpdateCaseReportTemplate *InputUpdateCaseReportTemplate
 }
 
@@ -1324,24 +1329,24 @@ func (r ApiUpdateCaseReportTemplateRequest) Execute() (*http.Response, error) {
 /*
 UpdateCaseReportTemplate Method for UpdateCaseReportTemplate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param idOrName
- @return ApiUpdateCaseReportTemplateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param idOrName
+	@return ApiUpdateCaseReportTemplateRequest
 */
 func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplate(ctx context.Context, idOrName string) ApiUpdateCaseReportTemplateRequest {
 	return ApiUpdateCaseReportTemplateRequest{
 		ApiService: a,
-		ctx: ctx,
-		idOrName: idOrName,
+		ctx:        ctx,
+		idOrName:   idOrName,
 	}
 }
 
 // Execute executes the request
 func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpdateCaseReportTemplateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseReportTemplateAPIService.UpdateCaseReportTemplate")
@@ -1407,8 +1412,8 @@ func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1418,8 +1423,8 @@ func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1429,8 +1434,8 @@ func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1440,8 +1445,8 @@ func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1451,8 +1456,8 @@ func (a *CaseReportTemplateAPIService) UpdateCaseReportTemplateExecute(r ApiUpda
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

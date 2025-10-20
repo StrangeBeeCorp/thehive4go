@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // AlertFeederAPIService AlertFeederAPI service
 type AlertFeederAPIService service
 
 type ApiCreateAnAlertFeederRequest struct {
-	ctx context.Context
-	ApiService *AlertFeederAPIService
+	ctx              context.Context
+	ApiService       *AlertFeederAPIService
 	inputAlertFeeder *InputAlertFeeder
 }
 
@@ -43,24 +42,25 @@ CreateAnAlertFeeder Method for CreateAnAlertFeeder
 
 Create an alert feeder from a javascript function and required data.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAnAlertFeederRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateAnAlertFeederRequest
 */
 func (a *AlertFeederAPIService) CreateAnAlertFeeder(ctx context.Context) ApiCreateAnAlertFeederRequest {
 	return ApiCreateAnAlertFeederRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputAlertFeeder
+//
+//	@return OutputAlertFeeder
 func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFeederRequest) (*OutputAlertFeeder, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputAlertFeeder
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputAlertFeeder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.CreateAnAlertFeeder")
@@ -125,8 +125,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -136,8 +136,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -147,8 +147,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -158,8 +158,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -169,8 +169,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -188,8 +188,8 @@ func (a *AlertFeederAPIService) CreateAnAlertFeederExecute(r ApiCreateAnAlertFee
 }
 
 type ApiDeleteAnAlertFeederRequest struct {
-	ctx context.Context
-	ApiService *AlertFeederAPIService
+	ctx             context.Context
+	ApiService      *AlertFeederAPIService
 	alertFeederName string
 }
 
@@ -202,14 +202,14 @@ DeleteAnAlertFeeder Method for DeleteAnAlertFeeder
 
 Delete an existing alert feeder from its name.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertFeederName
- @return ApiDeleteAnAlertFeederRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertFeederName
+	@return ApiDeleteAnAlertFeederRequest
 */
 func (a *AlertFeederAPIService) DeleteAnAlertFeeder(ctx context.Context, alertFeederName string) ApiDeleteAnAlertFeederRequest {
 	return ApiDeleteAnAlertFeederRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		alertFeederName: alertFeederName,
 	}
 }
@@ -217,9 +217,9 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeeder(ctx context.Context, alertFe
 // Execute executes the request
 func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFeederRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.DeleteAnAlertFeeder")
@@ -280,8 +280,8 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -291,8 +291,8 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -302,8 +302,8 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -313,8 +313,8 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -324,8 +324,8 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -334,7 +334,7 @@ func (a *AlertFeederAPIService) DeleteAnAlertFeederExecute(r ApiDeleteAnAlertFee
 }
 
 type ApiGetAlertFeedersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AlertFeederAPIService
 }
 
@@ -347,24 +347,25 @@ GetAlertFeeders Method for GetAlertFeeders
 
 Get all the currently registered feeders.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAlertFeedersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAlertFeedersRequest
 */
 func (a *AlertFeederAPIService) GetAlertFeeders(ctx context.Context) ApiGetAlertFeedersRequest {
 	return ApiGetAlertFeedersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputAlertFeeder
+//
+//	@return []OutputAlertFeeder
 func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersRequest) ([]OutputAlertFeeder, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputAlertFeeder
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputAlertFeeder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.GetAlertFeeders")
@@ -424,8 +425,8 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -435,8 +436,8 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -446,8 +447,8 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -457,8 +458,8 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -468,8 +469,8 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -487,10 +488,10 @@ func (a *AlertFeederAPIService) GetAlertFeedersExecute(r ApiGetAlertFeedersReque
 }
 
 type ApiRunAnAlertFeederRequest struct {
-	ctx context.Context
-	ApiService *AlertFeederAPIService
+	ctx             context.Context
+	ApiService      *AlertFeederAPIService
 	alertFeederName string
-	dryRun *bool
+	dryRun          *bool
 }
 
 func (r ApiRunAnAlertFeederRequest) DryRun(dryRun bool) ApiRunAnAlertFeederRequest {
@@ -507,26 +508,27 @@ RunAnAlertFeeder Method for RunAnAlertFeeder
 
 Run an existing alert feeder from its name.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertFeederName
- @return ApiRunAnAlertFeederRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertFeederName
+	@return ApiRunAnAlertFeederRequest
 */
 func (a *AlertFeederAPIService) RunAnAlertFeeder(ctx context.Context, alertFeederName string) ApiRunAnAlertFeederRequest {
 	return ApiRunAnAlertFeederRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		alertFeederName: alertFeederName,
 	}
 }
 
 // Execute executes the request
-//  @return OutputInvokeFunction
+//
+//	@return OutputInvokeFunction
 func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederRequest) (*OutputInvokeFunction, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputInvokeFunction
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputInvokeFunction
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.RunAnAlertFeeder")
@@ -593,8 +595,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -604,8 +606,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -615,8 +617,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -626,8 +628,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -637,8 +639,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -656,8 +658,8 @@ func (a *AlertFeederAPIService) RunAnAlertFeederExecute(r ApiRunAnAlertFeederReq
 }
 
 type ApiTestAnAlertFeederRequest struct {
-	ctx context.Context
-	ApiService *AlertFeederAPIService
+	ctx                  context.Context
+	ApiService           *AlertFeederAPIService
 	inputTestAlertFeeder *InputTestAlertFeeder
 }
 
@@ -675,24 +677,25 @@ TestAnAlertFeeder Method for TestAnAlertFeeder
 
 Test an alert feeder http request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTestAnAlertFeederRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTestAnAlertFeederRequest
 */
 func (a *AlertFeederAPIService) TestAnAlertFeeder(ctx context.Context) ApiTestAnAlertFeederRequest {
 	return ApiTestAnAlertFeederRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
+//
+//	@return interface{}
 func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederRequest) (interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.TestAnAlertFeeder")
@@ -757,8 +760,8 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -768,8 +771,8 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -779,8 +782,8 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -790,8 +793,8 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -801,8 +804,8 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -820,9 +823,9 @@ func (a *AlertFeederAPIService) TestAnAlertFeederExecute(r ApiTestAnAlertFeederR
 }
 
 type ApiUpdateAnAlertFeederRequest struct {
-	ctx context.Context
-	ApiService *AlertFeederAPIService
-	alertFeederName string
+	ctx                    context.Context
+	ApiService             *AlertFeederAPIService
+	alertFeederName        string
 	inputUpdateAlertFeeder *InputUpdateAlertFeeder
 }
 
@@ -840,26 +843,27 @@ UpdateAnAlertFeeder Method for UpdateAnAlertFeeder
 
 Update an alert feeder from its name.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertFeederName
- @return ApiUpdateAnAlertFeederRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertFeederName
+	@return ApiUpdateAnAlertFeederRequest
 */
 func (a *AlertFeederAPIService) UpdateAnAlertFeeder(ctx context.Context, alertFeederName string) ApiUpdateAnAlertFeederRequest {
 	return ApiUpdateAnAlertFeederRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		alertFeederName: alertFeederName,
 	}
 }
 
 // Execute executes the request
-//  @return OutputAlertFeeder
+//
+//	@return OutputAlertFeeder
 func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFeederRequest) (*OutputAlertFeeder, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputAlertFeeder
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputAlertFeeder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertFeederAPIService.UpdateAnAlertFeeder")
@@ -925,8 +929,8 @@ func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -936,8 +940,8 @@ func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -947,8 +951,8 @@ func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -958,8 +962,8 @@ func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -969,8 +973,8 @@ func (a *AlertFeederAPIService) UpdateAnAlertFeederExecute(r ApiUpdateAnAlertFee
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

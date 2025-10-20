@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,12 +19,11 @@ import (
 	"strings"
 )
 
-
 // AuditAPIService AuditAPI service
 type AuditAPIService service
 
 type ApiCreateAStreamOfAuditsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuditAPIService
 }
 
@@ -35,24 +34,25 @@ func (r ApiCreateAStreamOfAuditsRequest) Execute() (string, *http.Response, erro
 /*
 CreateAStreamOfAudits Method for CreateAStreamOfAudits
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAStreamOfAuditsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateAStreamOfAuditsRequest
 */
 func (a *AuditAPIService) CreateAStreamOfAudits(ctx context.Context) ApiCreateAStreamOfAuditsRequest {
 	return ApiCreateAStreamOfAuditsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return string
+//
+//	@return string
 func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAuditsRequest) (string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  string
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditAPIService.CreateAStreamOfAudits")
@@ -112,8 +112,8 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -123,8 +123,8 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -134,8 +134,8 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -145,8 +145,8 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -156,8 +156,8 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -175,9 +175,9 @@ func (a *AuditAPIService) CreateAStreamOfAuditsExecute(r ApiCreateAStreamOfAudit
 }
 
 type ApiGetAStreamOfAuditsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuditAPIService
-	streamId string
+	streamId   string
 }
 
 func (r ApiGetAStreamOfAuditsRequest) Execute() ([]OutputStreamAudit, *http.Response, error) {
@@ -187,26 +187,27 @@ func (r ApiGetAStreamOfAuditsRequest) Execute() ([]OutputStreamAudit, *http.Resp
 /*
 GetAStreamOfAudits Method for GetAStreamOfAudits
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param streamId
- @return ApiGetAStreamOfAuditsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param streamId
+	@return ApiGetAStreamOfAuditsRequest
 */
 func (a *AuditAPIService) GetAStreamOfAudits(ctx context.Context, streamId string) ApiGetAStreamOfAuditsRequest {
 	return ApiGetAStreamOfAuditsRequest{
 		ApiService: a,
-		ctx: ctx,
-		streamId: streamId,
+		ctx:        ctx,
+		streamId:   streamId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputStreamAudit
+//
+//	@return []OutputStreamAudit
 func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsRequest) ([]OutputStreamAudit, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputStreamAudit
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputStreamAudit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditAPIService.GetAStreamOfAudits")
@@ -267,8 +268,8 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -278,8 +279,8 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -289,8 +290,8 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -300,8 +301,8 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -311,8 +312,8 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -330,10 +331,10 @@ func (a *AuditAPIService) GetAStreamOfAuditsExecute(r ApiGetAStreamOfAuditsReque
 }
 
 type ApiGetFlowOfAuditRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuditAPIService
-	rootId *string
-	count *int32
+	rootId     *string
+	count      *int32
 }
 
 func (r ApiGetFlowOfAuditRequest) RootId(rootId string) ApiGetFlowOfAuditRequest {
@@ -353,24 +354,25 @@ func (r ApiGetFlowOfAuditRequest) Execute() ([]OutputStreamAudit, *http.Response
 /*
 GetFlowOfAudit Method for GetFlowOfAudit
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetFlowOfAuditRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetFlowOfAuditRequest
 */
 func (a *AuditAPIService) GetFlowOfAudit(ctx context.Context) ApiGetFlowOfAuditRequest {
 	return ApiGetFlowOfAuditRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputStreamAudit
+//
+//	@return []OutputStreamAudit
 func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]OutputStreamAudit, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputStreamAudit
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputStreamAudit
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditAPIService.GetFlowOfAudit")
@@ -436,8 +438,8 @@ func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -447,8 +449,8 @@ func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -458,8 +460,8 @@ func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -469,8 +471,8 @@ func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -480,8 +482,8 @@ func (a *AuditAPIService) GetFlowOfAuditExecute(r ApiGetFlowOfAuditRequest) ([]O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_TTPAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService CreateProcedureForAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -38,7 +38,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService CreateProcedureForCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -52,7 +52,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService CreateSeveralProceduresForAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -66,7 +66,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService CreateSeveralProceduresForCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -80,7 +80,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService DeleteProcedure", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var procedureId string
 
@@ -93,7 +93,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService DeleteProceduresInBulk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.TTPAPI.DeleteProceduresInBulk(context.Background()).Execute()
 
@@ -104,7 +104,7 @@ func Test_thehive_TTPAPIService(t *testing.T) {
 
 	t.Run("Test TTPAPIService UpdateProcedure", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var procedureId string
 

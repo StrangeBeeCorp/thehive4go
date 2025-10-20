@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,7 +19,7 @@ import (
 // Access - struct for Access
 type Access struct {
 	OrganisationAccess *OrganisationAccess
-	UserAccess *UserAccess
+	UserAccess         *UserAccess
 }
 
 // OrganisationAccessAsAccess is a convenience function that returns OrganisationAccess wrapped in Access
@@ -35,7 +35,6 @@ func UserAccessAsAccess(v *UserAccess) Access {
 		UserAccess: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Access) UnmarshalJSON(data []byte) error {
@@ -102,7 +101,7 @@ func (src Access) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Access) GetActualInstance() (interface{}) {
+func (obj *Access) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +118,7 @@ func (obj *Access) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Access) GetActualInstanceValue() (interface{}) {
+func (obj Access) GetActualInstanceValue() interface{} {
 	if obj.OrganisationAccess != nil {
 		return *obj.OrganisationAccess
 	}
@@ -167,5 +166,3 @@ func (v *NullableAccess) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

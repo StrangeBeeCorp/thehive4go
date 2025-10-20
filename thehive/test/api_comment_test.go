@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_CommentAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CommentAPIService(t *testing.T) {
 
 	t.Run("Test CommentAPIService CreateCommentInAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -38,7 +38,7 @@ func Test_thehive_CommentAPIService(t *testing.T) {
 
 	t.Run("Test CommentAPIService CreateCommentInCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -52,7 +52,7 @@ func Test_thehive_CommentAPIService(t *testing.T) {
 
 	t.Run("Test CommentAPIService DeleteComment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var commentId string
 
@@ -65,7 +65,7 @@ func Test_thehive_CommentAPIService(t *testing.T) {
 
 	t.Run("Test CommentAPIService UpdateComment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var commentId string
 

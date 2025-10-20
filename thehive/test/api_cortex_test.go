@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_CortexAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService CreateAnAction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CortexAPI.CreateAnAction(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService CreateAnalyzerTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CortexAPI.CreateAnalyzerTemplate(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService CreateCortexJob", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CortexAPI.CreateCortexJob(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService DeleteAnalyzerTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var analyzerTemplateId string
 
@@ -73,7 +73,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService GetActionByEntity", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var entityType string
 		var entityId string
@@ -88,7 +88,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService GetAnalyzerById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var analyzerId string
 
@@ -102,7 +102,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService GetAnalyzerTemplateContent", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var analyzerId string
 
@@ -116,7 +116,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService GetCortexJob", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var jobId string
 
@@ -130,7 +130,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService ImportAnalyzerTemplates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CortexAPI.ImportAnalyzerTemplates(context.Background()).Execute()
 
@@ -142,7 +142,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService ListAnalyzers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CortexAPI.ListAnalyzers(context.Background()).Execute()
 
@@ -154,7 +154,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService ListAnalyzersByType", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var dataType string
 
@@ -168,7 +168,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService ListResponders", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var entityType string
 		var entityId string
@@ -183,7 +183,7 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	t.Run("Test CortexAPIService UpdateAnalyzerTemplate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var analyzerTemplateId string
 

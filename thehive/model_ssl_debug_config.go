@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,10 +19,10 @@ var _ MappedNullable = &SSLDebugConfig{}
 
 // SSLDebugConfig struct for SSLDebugConfig
 type SSLDebugConfig struct {
-	All *bool `json:"all,omitempty"`
-	Keymanager *bool `json:"keymanager,omitempty"`
-	Ssl *bool `json:"ssl,omitempty"`
-	Sslctx *bool `json:"sslctx,omitempty"`
+	All          *bool `json:"all,omitempty"`
+	Keymanager   *bool `json:"keymanager,omitempty"`
+	Ssl          *bool `json:"ssl,omitempty"`
+	Sslctx       *bool `json:"sslctx,omitempty"`
 	Trustmanager *bool `json:"trustmanager,omitempty"`
 }
 
@@ -224,7 +224,7 @@ func (o *SSLDebugConfig) SetTrustmanager(v bool) {
 }
 
 func (o SSLDebugConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -286,5 +286,3 @@ func (v *NullableSSLDebugConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,10 +11,10 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
-	"os"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"os"
 )
 
 // checks if the InputCreateLog type satisfies the MappedNullable interface at compile time
@@ -22,9 +22,9 @@ var _ MappedNullable = &InputCreateLog{}
 
 // InputCreateLog struct for InputCreateLog
 type InputCreateLog struct {
-	Message string `json:"message"`
-	StartDate *int32 `json:"startDate,omitempty"`
-	IncludeInTimeline *int32 `json:"includeInTimeline,omitempty"`
+	Message           string `json:"message"`
+	StartDate         *int64 `json:"startDate,omitempty"`
+	IncludeInTimeline *int64 `json:"includeInTimeline,omitempty"`
 	// ignored with json content, use a multipart if you want to pass attachments
 	Attachments []*os.File `json:"attachments,omitempty"`
 }
@@ -74,9 +74,9 @@ func (o *InputCreateLog) SetMessage(v string) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *InputCreateLog) GetStartDate() int32 {
+func (o *InputCreateLog) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -84,7 +84,7 @@ func (o *InputCreateLog) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateLog) GetStartDateOk() (*int32, bool) {
+func (o *InputCreateLog) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *InputCreateLog) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *InputCreateLog) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *InputCreateLog) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
 // GetIncludeInTimeline returns the IncludeInTimeline field value if set, zero value otherwise.
-func (o *InputCreateLog) GetIncludeInTimeline() int32 {
+func (o *InputCreateLog) GetIncludeInTimeline() int64 {
 	if o == nil || IsNil(o.IncludeInTimeline) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.IncludeInTimeline
@@ -116,7 +116,7 @@ func (o *InputCreateLog) GetIncludeInTimeline() int32 {
 
 // GetIncludeInTimelineOk returns a tuple with the IncludeInTimeline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateLog) GetIncludeInTimelineOk() (*int32, bool) {
+func (o *InputCreateLog) GetIncludeInTimelineOk() (*int64, bool) {
 	if o == nil || IsNil(o.IncludeInTimeline) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *InputCreateLog) HasIncludeInTimeline() bool {
 	return false
 }
 
-// SetIncludeInTimeline gets a reference to the given int32 and assigns it to the IncludeInTimeline field.
-func (o *InputCreateLog) SetIncludeInTimeline(v int32) {
+// SetIncludeInTimeline gets a reference to the given int64 and assigns it to the IncludeInTimeline field.
+func (o *InputCreateLog) SetIncludeInTimeline(v int64) {
 	o.IncludeInTimeline = &v
 }
 
@@ -170,7 +170,7 @@ func (o *InputCreateLog) SetAttachments(v []*os.File) {
 }
 
 func (o InputCreateLog) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -205,10 +205,10 @@ func (o *InputCreateLog) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -264,5 +264,3 @@ func (v *NullableInputCreateLog) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

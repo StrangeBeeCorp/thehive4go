@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // CommentAPIService CommentAPI service
 type CommentAPIService service
 
 type ApiCreateCommentInAlertRequest struct {
-	ctx context.Context
-	ApiService *CommentAPIService
-	alertId string
+	ctx          context.Context
+	ApiService   *CommentAPIService
+	alertId      string
 	inputComment *InputComment
 }
 
@@ -42,26 +41,27 @@ func (r ApiCreateCommentInAlertRequest) Execute() (*OutputComment, *http.Respons
 /*
 CreateCommentInAlert Method for CreateCommentInAlert
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alertId
- @return ApiCreateCommentInAlertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertId
+	@return ApiCreateCommentInAlertRequest
 */
 func (a *CommentAPIService) CreateCommentInAlert(ctx context.Context, alertId string) ApiCreateCommentInAlertRequest {
 	return ApiCreateCommentInAlertRequest{
 		ApiService: a,
-		ctx: ctx,
-		alertId: alertId,
+		ctx:        ctx,
+		alertId:    alertId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputComment
+//
+//	@return OutputComment
 func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAlertRequest) (*OutputComment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputComment
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputComment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CommentAPIService.CreateCommentInAlert")
@@ -127,8 +127,8 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -138,8 +138,8 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -149,8 +149,8 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -160,8 +160,8 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -171,8 +171,8 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -190,9 +190,9 @@ func (a *CommentAPIService) CreateCommentInAlertExecute(r ApiCreateCommentInAler
 }
 
 type ApiCreateCommentInCaseRequest struct {
-	ctx context.Context
-	ApiService *CommentAPIService
-	caseId string
+	ctx          context.Context
+	ApiService   *CommentAPIService
+	caseId       string
 	inputComment *InputComment
 }
 
@@ -208,26 +208,27 @@ func (r ApiCreateCommentInCaseRequest) Execute() (*OutputComment, *http.Response
 /*
 CreateCommentInCase Method for CreateCommentInCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiCreateCommentInCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiCreateCommentInCaseRequest
 */
 func (a *CommentAPIService) CreateCommentInCase(ctx context.Context, caseId string) ApiCreateCommentInCaseRequest {
 	return ApiCreateCommentInCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputComment
+//
+//	@return OutputComment
 func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseRequest) (*OutputComment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputComment
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputComment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CommentAPIService.CreateCommentInCase")
@@ -293,8 +294,8 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -304,8 +305,8 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -315,8 +316,8 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -326,8 +327,8 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -337,8 +338,8 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -356,9 +357,9 @@ func (a *CommentAPIService) CreateCommentInCaseExecute(r ApiCreateCommentInCaseR
 }
 
 type ApiDeleteCommentRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CommentAPIService
-	commentId string
+	commentId  string
 }
 
 func (r ApiDeleteCommentRequest) Execute() (*http.Response, error) {
@@ -368,24 +369,24 @@ func (r ApiDeleteCommentRequest) Execute() (*http.Response, error) {
 /*
 DeleteComment Method for DeleteComment
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param commentId
- @return ApiDeleteCommentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param commentId
+	@return ApiDeleteCommentRequest
 */
 func (a *CommentAPIService) DeleteComment(ctx context.Context, commentId string) ApiDeleteCommentRequest {
 	return ApiDeleteCommentRequest{
 		ApiService: a,
-		ctx: ctx,
-		commentId: commentId,
+		ctx:        ctx,
+		commentId:  commentId,
 	}
 }
 
 // Execute executes the request
 func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CommentAPIService.DeleteComment")
@@ -446,8 +447,8 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -457,8 +458,8 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -468,8 +469,8 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -479,8 +480,8 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -490,8 +491,8 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -500,9 +501,9 @@ func (a *CommentAPIService) DeleteCommentExecute(r ApiDeleteCommentRequest) (*ht
 }
 
 type ApiUpdateCommentRequest struct {
-	ctx context.Context
-	ApiService *CommentAPIService
-	commentId string
+	ctx          context.Context
+	ApiService   *CommentAPIService
+	commentId    string
 	inputComment *InputComment
 }
 
@@ -518,24 +519,24 @@ func (r ApiUpdateCommentRequest) Execute() (*http.Response, error) {
 /*
 UpdateComment Method for UpdateComment
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param commentId
- @return ApiUpdateCommentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param commentId
+	@return ApiUpdateCommentRequest
 */
 func (a *CommentAPIService) UpdateComment(ctx context.Context, commentId string) ApiUpdateCommentRequest {
 	return ApiUpdateCommentRequest{
 		ApiService: a,
-		ctx: ctx,
-		commentId: commentId,
+		ctx:        ctx,
+		commentId:  commentId,
 	}
 }
 
 // Execute executes the request
 func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CommentAPIService.UpdateComment")
@@ -601,8 +602,8 @@ func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -612,8 +613,8 @@ func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -623,8 +624,8 @@ func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -634,8 +635,8 @@ func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -645,8 +646,8 @@ func (a *CommentAPIService) UpdateCommentExecute(r ApiUpdateCommentRequest) (*ht
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

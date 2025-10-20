@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_AlertAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService AddAlertAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -38,7 +38,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService BulkUpdateAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AlertAPI.BulkUpdateAlert(context.Background()).Execute()
 
@@ -49,7 +49,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService CreateAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AlertAPI.CreateAlert(context.Background()).Execute()
 
@@ -61,7 +61,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService CreateCaseFromAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -75,7 +75,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService DeleteAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -88,7 +88,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService DeleteAlertAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var attachmentId string
@@ -102,7 +102,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService DeleteAlertInBulk", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AlertAPI.DeleteAlertInBulk(context.Background()).Execute()
 
@@ -113,7 +113,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService DownloadAlertAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var attachmentId string
@@ -128,7 +128,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService FollowAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -141,7 +141,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService GetAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -155,7 +155,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService GetAlertAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var attachmentId string
@@ -170,7 +170,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var alertOrCaseId string
@@ -185,7 +185,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService ImportAlertObservablesAndProceduresInCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var caseId string
@@ -200,7 +200,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService MergeAlertWithCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 		var caseId string
@@ -215,7 +215,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService MergeBulkAlertsWithCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AlertAPI.MergeBulkAlertsWithCase(context.Background()).Execute()
 
@@ -227,7 +227,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService UnfollowAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -240,7 +240,7 @@ func Test_thehive_AlertAPIService(t *testing.T) {
 
 	t.Run("Test AlertAPIService UpdateAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 

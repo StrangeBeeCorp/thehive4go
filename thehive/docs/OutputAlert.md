@@ -4,50 +4,50 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Type** | **string** |  | 
-**Source** | **string** |  | 
-**SourceRef** | **string** |  | 
-**ExternalLink** | Pointer to **string** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | **string** |  | 
-**Severity** | **int32** |  | 
-**SeverityLabel** | **string** |  | 
-**Date** | **int32** |  | 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Tlp** | **int32** |  | 
-**TlpLabel** | **string** |  | 
-**Pap** | **int32** |  | 
-**PapLabel** | **string** |  | 
-**Follow** | **bool** |  | 
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
-**CaseTemplate** | Pointer to **string** |  | [optional] 
-**ObservableCount** | **int64** |  | 
-**CaseId** | Pointer to **string** |  | [optional] 
-**Status** | **string** |  | 
-**Stage** | **string** |  | 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
-**NewDate** | **int32** |  | 
-**InProgressDate** | Pointer to **int32** |  | [optional] 
-**ClosedDate** | Pointer to **int32** |  | [optional] 
-**ImportedDate** | Pointer to **int32** |  | [optional] 
-**TimeToDetect** | **int64** |  | 
-**TimeToTriage** | Pointer to **int64** |  | [optional] 
-**TimeToQualify** | Pointer to **int64** |  | [optional] 
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional] 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Type** | **string** |  |
+**Source** | **string** |  |
+**SourceRef** | **string** |  |
+**ExternalLink** | Pointer to **string** |  | [optional]
+**Title** | **string** |  |
+**Description** | **string** |  |
+**Severity** | **int32** |  |
+**SeverityLabel** | **string** |  |
+**Date** | **int64** |  |
+**Tags** | Pointer to **[]string** |  | [optional]
+**Tlp** | **int32** |  |
+**TlpLabel** | **string** |  |
+**Pap** | **int32** |  |
+**PapLabel** | **string** |  |
+**Follow** | **bool** |  |
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
+**CaseTemplate** | Pointer to **string** |  | [optional]
+**ObservableCount** | **int64** |  |
+**CaseId** | Pointer to **string** |  | [optional]
+**Status** | **string** |  |
+**Stage** | **string** |  |
+**Assignee** | Pointer to **string** |  | [optional]
+**Summary** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
+**NewDate** | **int64** |  |
+**InProgressDate** | Pointer to **int64** |  | [optional]
+**ClosedDate** | Pointer to **int64** |  | [optional]
+**ImportedDate** | Pointer to **int64** |  | [optional]
+**TimeToDetect** | **int64** |  |
+**TimeToTriage** | Pointer to **int64** |  | [optional]
+**TimeToQualify** | Pointer to **int64** |  | [optional]
+**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
 
 ## Methods
 
 ### NewOutputAlert
 
-`func NewOutputAlert(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, type_ string, source string, sourceRef string, title string, description string, severity int32, severityLabel string, date int32, tlp int32, tlpLabel string, pap int32, papLabel string, follow bool, observableCount int64, status string, stage string, extraData map[string]interface{}, newDate int32, timeToDetect int64, ) *OutputAlert`
+`func NewOutputAlert(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, type_ string, source string, sourceRef string, title string, description string, severity int32, severityLabel string, date int64, tlp int32, tlpLabel string, pap int32, papLabel string, follow bool, observableCount int64, status string, stage string, extraData map[string]interface{}, newDate int64, timeToDetect int64, ) *OutputAlert`
 
 NewOutputAlert instantiates a new OutputAlert object
 This constructor will assign default values to properties that have it defined,
@@ -149,40 +149,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputAlert) GetUnderscoreCreatedAt() int32`
+`func (o *OutputAlert) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputAlert) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputAlert) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputAlert) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputAlert) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputAlert) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputAlert) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputAlert) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputAlert) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputAlert) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputAlert) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -359,20 +359,20 @@ SetSeverityLabel sets SeverityLabel field to given value.
 
 ### GetDate
 
-`func (o *OutputAlert) GetDate() int32`
+`func (o *OutputAlert) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *OutputAlert) GetDateOk() (*int32, bool)`
+`func (o *OutputAlert) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *OutputAlert) SetDate(v int32)`
+`func (o *OutputAlert) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
@@ -709,40 +709,40 @@ SetExtraData sets ExtraData field to given value.
 
 ### GetNewDate
 
-`func (o *OutputAlert) GetNewDate() int32`
+`func (o *OutputAlert) GetNewDate() int64`
 
 GetNewDate returns the NewDate field if non-nil, zero value otherwise.
 
 ### GetNewDateOk
 
-`func (o *OutputAlert) GetNewDateOk() (*int32, bool)`
+`func (o *OutputAlert) GetNewDateOk() (*int64, bool)`
 
 GetNewDateOk returns a tuple with the NewDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewDate
 
-`func (o *OutputAlert) SetNewDate(v int32)`
+`func (o *OutputAlert) SetNewDate(v int64)`
 
 SetNewDate sets NewDate field to given value.
 
 
 ### GetInProgressDate
 
-`func (o *OutputAlert) GetInProgressDate() int32`
+`func (o *OutputAlert) GetInProgressDate() int64`
 
 GetInProgressDate returns the InProgressDate field if non-nil, zero value otherwise.
 
 ### GetInProgressDateOk
 
-`func (o *OutputAlert) GetInProgressDateOk() (*int32, bool)`
+`func (o *OutputAlert) GetInProgressDateOk() (*int64, bool)`
 
 GetInProgressDateOk returns a tuple with the InProgressDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInProgressDate
 
-`func (o *OutputAlert) SetInProgressDate(v int32)`
+`func (o *OutputAlert) SetInProgressDate(v int64)`
 
 SetInProgressDate sets InProgressDate field to given value.
 
@@ -754,20 +754,20 @@ HasInProgressDate returns a boolean if a field has been set.
 
 ### GetClosedDate
 
-`func (o *OutputAlert) GetClosedDate() int32`
+`func (o *OutputAlert) GetClosedDate() int64`
 
 GetClosedDate returns the ClosedDate field if non-nil, zero value otherwise.
 
 ### GetClosedDateOk
 
-`func (o *OutputAlert) GetClosedDateOk() (*int32, bool)`
+`func (o *OutputAlert) GetClosedDateOk() (*int64, bool)`
 
 GetClosedDateOk returns a tuple with the ClosedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosedDate
 
-`func (o *OutputAlert) SetClosedDate(v int32)`
+`func (o *OutputAlert) SetClosedDate(v int64)`
 
 SetClosedDate sets ClosedDate field to given value.
 
@@ -779,20 +779,20 @@ HasClosedDate returns a boolean if a field has been set.
 
 ### GetImportedDate
 
-`func (o *OutputAlert) GetImportedDate() int32`
+`func (o *OutputAlert) GetImportedDate() int64`
 
 GetImportedDate returns the ImportedDate field if non-nil, zero value otherwise.
 
 ### GetImportedDateOk
 
-`func (o *OutputAlert) GetImportedDateOk() (*int32, bool)`
+`func (o *OutputAlert) GetImportedDateOk() (*int64, bool)`
 
 GetImportedDateOk returns a tuple with the ImportedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImportedDate
 
-`func (o *OutputAlert) SetImportedDate(v int32)`
+`func (o *OutputAlert) SetImportedDate(v int64)`
 
 SetImportedDate sets ImportedDate field to given value.
 
@@ -899,5 +899,3 @@ HasTimeToAcknowledge returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

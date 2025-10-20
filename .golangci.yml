@@ -1,0 +1,46 @@
+version: "2"
+
+run:
+  timeout: 5m
+
+linters:
+  enable-all: true
+  disable:
+    # Disable overly strict linters for this project
+    - cyclop
+    - depguard
+    - dupl
+    - exhaustive
+    - exhaustruct
+    - forbidigo
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - gocyclo
+    - godot
+    - err113
+    - mnd
+    - gomoddirectives
+    - ireturn
+    - lll
+    - maintidx
+    - nestif
+    - nlreturn
+    - nonamedreturns
+    - paralleltest
+    - prealloc
+    - testpackage
+    - tparallel
+    - varnamelen
+    - wrapcheck
+    - wsl
+
+  exclusions:
+    # Exclude the generated test directory completely
+    paths:
+      - "thehive/test/.*\\.go$"
+
+issues:
+  exclude:
+    - "SA1019:" # Ignore deprecation warnings in generated code

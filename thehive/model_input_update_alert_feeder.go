@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,16 +22,16 @@ var _ MappedNullable = &InputUpdateAlertFeeder{}
 // InputUpdateAlertFeeder struct for InputUpdateAlertFeeder
 type InputUpdateAlertFeeder struct {
 	Description string `json:"description"`
-	Method Method `json:"method"`
-	Url string `json:"url"`
+	Method      Method `json:"method"`
+	Url         string `json:"url"`
 	// 1 minute is the minimal interval allowed
 	Interval Interval `json:"interval"`
 	// The body that may be necessary to the alert provider
-	Body *string `json:"body,omitempty"`
+	Body    *string  `json:"body,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled *bool    `json:"enabled,omitempty"`
 	// Optional, the type of authentication: basic, bearer or key. Leaving it empty means no authentication
-	Auth *Auth `json:"auth,omitempty"`
+	Auth        *Auth                   `json:"auth,omitempty"`
 	ProxyConfig *ClientProxyWSConfigDto `json:"proxyConfig,omitempty"`
 	// The maximum amount of time the request is allowed to take
 	RequestTimeout *Interval `json:"requestTimeout,omitempty"`
@@ -391,7 +391,7 @@ func (o *InputUpdateAlertFeeder) SetResponseMaxSize(v int64) {
 }
 
 func (o InputUpdateAlertFeeder) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -444,10 +444,10 @@ func (o *InputUpdateAlertFeeder) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -503,5 +503,3 @@ func (v *NullableInputUpdateAlertFeeder) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Date** | **int32** |  | 
-**EndDate** | Pointer to **int32** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Date** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
+**Title** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
 
 ## Methods
 
 ### NewOutputCustomEvent
 
-`func NewOutputCustomEvent(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, date int32, title string, ) *OutputCustomEvent`
+`func NewOutputCustomEvent(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, date int64, title string, ) *OutputCustomEvent`
 
 NewOutputCustomEvent instantiates a new OutputCustomEvent object
 This constructor will assign default values to properties that have it defined,
@@ -121,40 +121,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputCustomEvent) GetUnderscoreCreatedAt() int32`
+`func (o *OutputCustomEvent) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputCustomEvent) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputCustomEvent) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputCustomEvent) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputCustomEvent) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputCustomEvent) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputCustomEvent) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputCustomEvent) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputCustomEvent) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputCustomEvent) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputCustomEvent) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -166,40 +166,40 @@ HasUnderscoreUpdatedAt returns a boolean if a field has been set.
 
 ### GetDate
 
-`func (o *OutputCustomEvent) GetDate() int32`
+`func (o *OutputCustomEvent) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *OutputCustomEvent) GetDateOk() (*int32, bool)`
+`func (o *OutputCustomEvent) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *OutputCustomEvent) SetDate(v int32)`
+`func (o *OutputCustomEvent) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
 
 ### GetEndDate
 
-`func (o *OutputCustomEvent) GetEndDate() int32`
+`func (o *OutputCustomEvent) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputCustomEvent) GetEndDateOk() (*int32, bool)`
+`func (o *OutputCustomEvent) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputCustomEvent) SetEndDate(v int32)`
+`func (o *OutputCustomEvent) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -256,5 +256,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

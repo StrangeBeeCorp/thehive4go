@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **int32** |  | 
-**EndDate** | Pointer to **int32** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
+**Date** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
+**Title** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
 
 ## Methods
 
 ### NewInputCustomEvent
 
-`func NewInputCustomEvent(date int32, title string, ) *InputCustomEvent`
+`func NewInputCustomEvent(date int64, title string, ) *InputCustomEvent`
 
 NewInputCustomEvent instantiates a new InputCustomEvent object
 This constructor will assign default values to properties that have it defined,
@@ -30,40 +30,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDate
 
-`func (o *InputCustomEvent) GetDate() int32`
+`func (o *InputCustomEvent) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *InputCustomEvent) GetDateOk() (*int32, bool)`
+`func (o *InputCustomEvent) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *InputCustomEvent) SetDate(v int32)`
+`func (o *InputCustomEvent) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
 
 ### GetEndDate
 
-`func (o *InputCustomEvent) GetEndDate() int32`
+`func (o *InputCustomEvent) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *InputCustomEvent) GetEndDateOk() (*int32, bool)`
+`func (o *InputCustomEvent) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *InputCustomEvent) SetEndDate(v int32)`
+`func (o *InputCustomEvent) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -120,5 +120,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

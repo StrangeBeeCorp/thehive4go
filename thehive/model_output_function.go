@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,22 +21,22 @@ var _ MappedNullable = &OutputFunction{}
 
 // OutputFunction struct for OutputFunction
 type OutputFunction struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreType string `json:"_type"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
-	Name string `json:"name"`
-	Mode string `json:"mode"`
-	Definition string `json:"definition"`
-	Description *string `json:"description,omitempty"`
-	Config map[string]interface{} `json:"config"`
-	LastSuccessDate *int32 `json:"lastSuccessDate,omitempty"`
-	LastSuccessDetails map[string]interface{} `json:"lastSuccessDetails,omitempty"`
-	LastErrorDate *int32 `json:"lastErrorDate,omitempty"`
-	LastErrorDetails map[string]interface{} `json:"lastErrorDetails,omitempty"`
-	Types []string `json:"types,omitempty"`
+	UnderscoreId        string                 `json:"_id"`
+	UnderscoreType      string                 `json:"_type"`
+	UnderscoreCreatedBy string                 `json:"_createdBy"`
+	UnderscoreCreatedAt int64                  `json:"_createdAt"`
+	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
+	UnderscoreUpdatedAt *int64                 `json:"_updatedAt,omitempty"`
+	Name                string                 `json:"name"`
+	Mode                string                 `json:"mode"`
+	Definition          string                 `json:"definition"`
+	Description         *string                `json:"description,omitempty"`
+	Config              map[string]interface{} `json:"config"`
+	LastSuccessDate     *int64                 `json:"lastSuccessDate,omitempty"`
+	LastSuccessDetails  map[string]interface{} `json:"lastSuccessDetails,omitempty"`
+	LastErrorDate       *int64                 `json:"lastErrorDate,omitempty"`
+	LastErrorDetails    map[string]interface{} `json:"lastErrorDetails,omitempty"`
+	Types               []string               `json:"types,omitempty"`
 }
 
 type _OutputFunction OutputFunction
@@ -45,7 +45,7 @@ type _OutputFunction OutputFunction
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputFunction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, name string, mode string, definition string, config map[string]interface{}) *OutputFunction {
+func NewOutputFunction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, mode string, definition string, config map[string]interface{}) *OutputFunction {
 	this := OutputFunction{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -139,9 +139,9 @@ func (o *OutputFunction) SetUnderscoreCreatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputFunction) GetUnderscoreCreatedAt() int32 {
+func (o *OutputFunction) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -150,7 +150,7 @@ func (o *OutputFunction) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputFunction) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputFunction) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -158,7 +158,7 @@ func (o *OutputFunction) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputFunction) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputFunction) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
@@ -195,9 +195,9 @@ func (o *OutputFunction) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputFunction) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputFunction) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -205,7 +205,7 @@ func (o *OutputFunction) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputFunction) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputFunction) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -221,8 +221,8 @@ func (o *OutputFunction) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputFunction) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputFunction) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -355,9 +355,9 @@ func (o *OutputFunction) SetConfig(v map[string]interface{}) {
 }
 
 // GetLastSuccessDate returns the LastSuccessDate field value if set, zero value otherwise.
-func (o *OutputFunction) GetLastSuccessDate() int32 {
+func (o *OutputFunction) GetLastSuccessDate() int64 {
 	if o == nil || IsNil(o.LastSuccessDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LastSuccessDate
@@ -365,7 +365,7 @@ func (o *OutputFunction) GetLastSuccessDate() int32 {
 
 // GetLastSuccessDateOk returns a tuple with the LastSuccessDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputFunction) GetLastSuccessDateOk() (*int32, bool) {
+func (o *OutputFunction) GetLastSuccessDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.LastSuccessDate) {
 		return nil, false
 	}
@@ -381,8 +381,8 @@ func (o *OutputFunction) HasLastSuccessDate() bool {
 	return false
 }
 
-// SetLastSuccessDate gets a reference to the given int32 and assigns it to the LastSuccessDate field.
-func (o *OutputFunction) SetLastSuccessDate(v int32) {
+// SetLastSuccessDate gets a reference to the given int64 and assigns it to the LastSuccessDate field.
+func (o *OutputFunction) SetLastSuccessDate(v int64) {
 	o.LastSuccessDate = &v
 }
 
@@ -419,9 +419,9 @@ func (o *OutputFunction) SetLastSuccessDetails(v map[string]interface{}) {
 }
 
 // GetLastErrorDate returns the LastErrorDate field value if set, zero value otherwise.
-func (o *OutputFunction) GetLastErrorDate() int32 {
+func (o *OutputFunction) GetLastErrorDate() int64 {
 	if o == nil || IsNil(o.LastErrorDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LastErrorDate
@@ -429,7 +429,7 @@ func (o *OutputFunction) GetLastErrorDate() int32 {
 
 // GetLastErrorDateOk returns a tuple with the LastErrorDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputFunction) GetLastErrorDateOk() (*int32, bool) {
+func (o *OutputFunction) GetLastErrorDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.LastErrorDate) {
 		return nil, false
 	}
@@ -445,8 +445,8 @@ func (o *OutputFunction) HasLastErrorDate() bool {
 	return false
 }
 
-// SetLastErrorDate gets a reference to the given int32 and assigns it to the LastErrorDate field.
-func (o *OutputFunction) SetLastErrorDate(v int32) {
+// SetLastErrorDate gets a reference to the given int64 and assigns it to the LastErrorDate field.
+func (o *OutputFunction) SetLastErrorDate(v int64) {
 	o.LastErrorDate = &v
 }
 
@@ -515,7 +515,7 @@ func (o *OutputFunction) SetTypes(v []string) {
 }
 
 func (o OutputFunction) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -579,10 +579,10 @@ func (o *OutputFunction) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -638,5 +638,3 @@ func (v *NullableOutputFunction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

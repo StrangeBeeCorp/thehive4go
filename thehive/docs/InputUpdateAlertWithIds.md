@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**Type** | Pointer to **string** |  | [optional] 
-**Source** | Pointer to **string** |  | [optional] 
-**SourceRef** | Pointer to **string** |  | [optional] 
-**ExternalLink** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Date** | Pointer to **int32** |  | [optional] 
-**LastSyncDate** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Follow** | Pointer to **bool** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**AddTags** | Pointer to **[]string** | Those tags will be added to the current alert | [optional] 
-**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current alert | [optional] 
+**Ids** | **[]string** |  |
+**Type** | Pointer to **string** |  | [optional]
+**Source** | Pointer to **string** |  | [optional]
+**SourceRef** | Pointer to **string** |  | [optional]
+**ExternalLink** | Pointer to **string** |  | [optional]
+**Title** | Pointer to **string** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**Severity** | Pointer to **int32** |  | [optional]
+**Date** | Pointer to **int64** |  | [optional]
+**LastSyncDate** | Pointer to **int64** |  | [optional]
+**Tags** | Pointer to **[]string** |  | [optional]
+**Tlp** | Pointer to **int32** |  | [optional]
+**Pap** | Pointer to **int32** |  | [optional]
+**Follow** | Pointer to **bool** |  | [optional]
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
+**Summary** | Pointer to **string** |  | [optional]
+**Assignee** | Pointer to **string** |  | [optional]
+**AddTags** | Pointer to **[]string** | Those tags will be added to the current alert | [optional]
+**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current alert | [optional]
 
 ## Methods
 
@@ -241,20 +241,20 @@ HasSeverity returns a boolean if a field has been set.
 
 ### GetDate
 
-`func (o *InputUpdateAlertWithIds) GetDate() int32`
+`func (o *InputUpdateAlertWithIds) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *InputUpdateAlertWithIds) GetDateOk() (*int32, bool)`
+`func (o *InputUpdateAlertWithIds) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *InputUpdateAlertWithIds) SetDate(v int32)`
+`func (o *InputUpdateAlertWithIds) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
@@ -266,20 +266,20 @@ HasDate returns a boolean if a field has been set.
 
 ### GetLastSyncDate
 
-`func (o *InputUpdateAlertWithIds) GetLastSyncDate() int32`
+`func (o *InputUpdateAlertWithIds) GetLastSyncDate() int64`
 
 GetLastSyncDate returns the LastSyncDate field if non-nil, zero value otherwise.
 
 ### GetLastSyncDateOk
 
-`func (o *InputUpdateAlertWithIds) GetLastSyncDateOk() (*int32, bool)`
+`func (o *InputUpdateAlertWithIds) GetLastSyncDateOk() (*int64, bool)`
 
 GetLastSyncDateOk returns a tuple with the LastSyncDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastSyncDate
 
-`func (o *InputUpdateAlertWithIds) SetLastSyncDate(v int32)`
+`func (o *InputUpdateAlertWithIds) SetLastSyncDate(v int64)`
 
 SetLastSyncDate sets LastSyncDate field to given value.
 
@@ -541,5 +541,3 @@ HasRemoveTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

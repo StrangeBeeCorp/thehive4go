@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Title** | **string** |  | 
-**Group** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
-**Status** | **string** |  | 
-**Flag** | **bool** |  | 
-**StartDate** | Pointer to **int32** |  | [optional] 
-**EndDate** | Pointer to **int32** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Order** | **int32** |  | 
-**DueDate** | Pointer to **int32** |  | [optional] 
-**Mandatory** | **bool** |  | 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Title** | **string** |  |
+**Group** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
+**Status** | **string** |  |
+**Flag** | **bool** |  |
+**StartDate** | Pointer to **int64** |  | [optional]
+**EndDate** | Pointer to **int64** |  | [optional]
+**Assignee** | Pointer to **string** |  | [optional]
+**Order** | **int32** |  |
+**DueDate** | Pointer to **int64** |  | [optional]
+**Mandatory** | **bool** |  |
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputTask
 
-`func NewOutputTask(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, title string, group string, status string, flag bool, order int32, mandatory bool, extraData map[string]interface{}, ) *OutputTask`
+`func NewOutputTask(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, title string, group string, status string, flag bool, order int32, mandatory bool, extraData map[string]interface{}, ) *OutputTask`
 
 NewOutputTask instantiates a new OutputTask object
 This constructor will assign default values to properties that have it defined,
@@ -129,40 +129,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputTask) GetUnderscoreCreatedAt() int32`
+`func (o *OutputTask) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputTask) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputTask) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputTask) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputTask) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputTask) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputTask) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputTask) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputTask) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputTask) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputTask) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -279,20 +279,20 @@ SetFlag sets Flag field to given value.
 
 ### GetStartDate
 
-`func (o *OutputTask) GetStartDate() int32`
+`func (o *OutputTask) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputTask) GetStartDateOk() (*int32, bool)`
+`func (o *OutputTask) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputTask) SetStartDate(v int32)`
+`func (o *OutputTask) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -304,20 +304,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *OutputTask) GetEndDate() int32`
+`func (o *OutputTask) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputTask) GetEndDateOk() (*int32, bool)`
+`func (o *OutputTask) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputTask) SetEndDate(v int32)`
+`func (o *OutputTask) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -374,20 +374,20 @@ SetOrder sets Order field to given value.
 
 ### GetDueDate
 
-`func (o *OutputTask) GetDueDate() int32`
+`func (o *OutputTask) GetDueDate() int64`
 
 GetDueDate returns the DueDate field if non-nil, zero value otherwise.
 
 ### GetDueDateOk
 
-`func (o *OutputTask) GetDueDateOk() (*int32, bool)`
+`func (o *OutputTask) GetDueDateOk() (*int64, bool)`
 
 GetDueDateOk returns a tuple with the DueDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDueDate
 
-`func (o *OutputTask) SetDueDate(v int32)`
+`func (o *OutputTask) SetDueDate(v int64)`
 
 SetDueDate sets DueDate field to given value.
 
@@ -439,5 +439,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

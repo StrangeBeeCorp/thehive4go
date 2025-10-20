@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // PageAPIService PageAPI service
 type PageAPIService service
 
 type ApiCreateAPageRequest struct {
-	ctx context.Context
-	ApiService *PageAPIService
+	ctx             context.Context
+	ApiService      *PageAPIService
 	inputCreatePage *InputCreatePage
 }
 
@@ -41,24 +40,25 @@ func (r ApiCreateAPageRequest) Execute() (*OutputPage, *http.Response, error) {
 /*
 CreateAPage Method for CreateAPage
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAPageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateAPageRequest
 */
 func (a *PageAPIService) CreateAPage(ctx context.Context) ApiCreateAPageRequest {
 	return ApiCreateAPageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputPage
+//
+//	@return OutputPage
 func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPage, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputPage
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputPage
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.CreateAPage")
@@ -123,8 +123,8 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -134,8 +134,8 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -145,8 +145,8 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -167,8 +167,8 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -186,9 +186,9 @@ func (a *PageAPIService) CreateAPageExecute(r ApiCreateAPageRequest) (*OutputPag
 }
 
 type ApiCreateAPageInACaseRequest struct {
-	ctx context.Context
-	ApiService *PageAPIService
-	caseId string
+	ctx             context.Context
+	ApiService      *PageAPIService
+	caseId          string
 	inputCreatePage *InputCreatePage
 }
 
@@ -204,26 +204,27 @@ func (r ApiCreateAPageInACaseRequest) Execute() (*OutputPage, *http.Response, er
 /*
 CreateAPageInACase Method for CreateAPageInACase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiCreateAPageInACaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiCreateAPageInACaseRequest
 */
 func (a *PageAPIService) CreateAPageInACase(ctx context.Context, caseId string) ApiCreateAPageInACaseRequest {
 	return ApiCreateAPageInACaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputPage
+//
+//	@return OutputPage
 func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseRequest) (*OutputPage, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputPage
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputPage
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.CreateAPageInACase")
@@ -289,8 +290,8 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -300,8 +301,8 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -311,8 +312,8 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -322,8 +323,8 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -333,8 +334,8 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -352,9 +353,9 @@ func (a *PageAPIService) CreateAPageInACaseExecute(r ApiCreateAPageInACaseReques
 }
 
 type ApiDeleteAPageRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *PageAPIService
-	pageId string
+	pageId     string
 }
 
 func (r ApiDeleteAPageRequest) Execute() (*http.Response, error) {
@@ -364,24 +365,24 @@ func (r ApiDeleteAPageRequest) Execute() (*http.Response, error) {
 /*
 DeleteAPage Method for DeleteAPage
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId
- @return ApiDeleteAPageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId
+	@return ApiDeleteAPageRequest
 */
 func (a *PageAPIService) DeleteAPage(ctx context.Context, pageId string) ApiDeleteAPageRequest {
 	return ApiDeleteAPageRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
 func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.DeleteAPage")
@@ -442,8 +443,8 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -453,8 +454,8 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -464,8 +465,8 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -475,8 +476,8 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -486,8 +487,8 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -496,10 +497,10 @@ func (a *PageAPIService) DeleteAPageExecute(r ApiDeleteAPageRequest) (*http.Resp
 }
 
 type ApiDeleteAPageInACaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *PageAPIService
-	caseId string
-	pageId string
+	caseId     string
+	pageId     string
 }
 
 func (r ApiDeleteAPageInACaseRequest) Execute() (*http.Response, error) {
@@ -509,26 +510,26 @@ func (r ApiDeleteAPageInACaseRequest) Execute() (*http.Response, error) {
 /*
 DeleteAPageInACase Method for DeleteAPageInACase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param pageId
- @return ApiDeleteAPageInACaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param pageId
+	@return ApiDeleteAPageInACaseRequest
 */
 func (a *PageAPIService) DeleteAPageInACase(ctx context.Context, caseId string, pageId string) ApiDeleteAPageInACaseRequest {
 	return ApiDeleteAPageInACaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
-		pageId: pageId,
+		ctx:        ctx,
+		caseId:     caseId,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
 func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.DeleteAPageInACase")
@@ -590,8 +591,8 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -601,8 +602,8 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -612,8 +613,8 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -623,8 +624,8 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -634,8 +635,8 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -644,9 +645,9 @@ func (a *PageAPIService) DeleteAPageInACaseExecute(r ApiDeleteAPageInACaseReques
 }
 
 type ApiUpdateAPageRequest struct {
-	ctx context.Context
-	ApiService *PageAPIService
-	pageId string
+	ctx             context.Context
+	ApiService      *PageAPIService
+	pageId          string
 	inputUpdatePage *InputUpdatePage
 }
 
@@ -662,24 +663,24 @@ func (r ApiUpdateAPageRequest) Execute() (*http.Response, error) {
 /*
 UpdateAPage Method for UpdateAPage
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId
- @return ApiUpdateAPageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId
+	@return ApiUpdateAPageRequest
 */
 func (a *PageAPIService) UpdateAPage(ctx context.Context, pageId string) ApiUpdateAPageRequest {
 	return ApiUpdateAPageRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
 func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.UpdateAPage")
@@ -745,8 +746,8 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -756,8 +757,8 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -767,8 +768,8 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -778,8 +779,8 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -789,8 +790,8 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -799,10 +800,10 @@ func (a *PageAPIService) UpdateAPageExecute(r ApiUpdateAPageRequest) (*http.Resp
 }
 
 type ApiUpdateAPageInACaseRequest struct {
-	ctx context.Context
-	ApiService *PageAPIService
-	caseId string
-	pageId string
+	ctx             context.Context
+	ApiService      *PageAPIService
+	caseId          string
+	pageId          string
 	inputUpdatePage *InputUpdatePage
 }
 
@@ -818,26 +819,26 @@ func (r ApiUpdateAPageInACaseRequest) Execute() (*http.Response, error) {
 /*
 UpdateAPageInACase Method for UpdateAPageInACase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param pageId
- @return ApiUpdateAPageInACaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param pageId
+	@return ApiUpdateAPageInACaseRequest
 */
 func (a *PageAPIService) UpdateAPageInACase(ctx context.Context, caseId string, pageId string) ApiUpdateAPageInACaseRequest {
 	return ApiUpdateAPageInACaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
-		pageId: pageId,
+		ctx:        ctx,
+		caseId:     caseId,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
 func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAPIService.UpdateAPageInACase")
@@ -904,8 +905,8 @@ func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -915,8 +916,8 @@ func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -926,8 +927,8 @@ func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -937,8 +938,8 @@ func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -948,8 +949,8 @@ func (a *PageAPIService) UpdateAPageInACaseExecute(r ApiUpdateAPageInACaseReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

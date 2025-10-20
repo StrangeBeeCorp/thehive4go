@@ -54,7 +54,7 @@ package main
 import (
     "context"
     "fmt"
-    
+
     "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
@@ -67,13 +67,13 @@ func main() {
             Description: "Local TheHive instance",
         },
     }
-    
+
     // Create client
     client := thehive.NewAPIClient(config)
-    
+
     // Set up API key authentication
     ctx := context.WithValue(context.Background(), thehive.ContextAccessToken, "your-api-key-here")
-    
+
     // Now you can use the client...
 }
 ```
@@ -194,7 +194,7 @@ fmt.Printf("Created case: %+v\n", createdCase)
 The generated client includes comprehensive support for all TheHive APIs:
 
 - **AlertAPI**: Alert management and operations
-- **CaseAPI**: Case lifecycle management  
+- **CaseAPI**: Case lifecycle management
 - **ObservableAPI**: Observable handling and analysis
 - **TaskAPI**: Task management within cases
 - **CommentAPI**: Comments on alerts and cases
@@ -221,7 +221,7 @@ This client is automatically generated from TheHive's OpenAPI specification usin
 The build process is completely containerized and consists of:
 
 1. **Download**: Fetches the latest OpenAPI spec from TheHive's documentation
-2. **Preprocessing**: Applies necessary fixes for Go code generation compatibility  
+2. **Preprocessing**: Applies necessary fixes for Go code generation compatibility
 3. **Generation**: Uses OpenAPI Generator in Docker to create Go client code
 4. **Postprocessing**: Applies Go-specific optimizations and fixes
 
@@ -255,22 +255,30 @@ The generation process uses these containerized scripts:
 
 ### Testing
 
-Run the test suite (containerized):
+Run unit tests (containerized):
 
 ```bash
 make test
 ```
+
+Run integration tests with full TheHive stack:
+
+```bash
+make integration-test
+```
+
+The integration tests use Docker Compose to spin up a complete TheHive environment (TheHive, Elasticsearch, Cassandra, MinIO) and run comprehensive API tests against it.
 
 ### Code Quality
 
 All quality checks run in Docker containers for consistency:
 
 ```bash
-make fmt           # Format code using Go in Docker
-make security      # Run security scans in Docker
-make vulncheck     # Check for vulnerabilities using Go in Docker
-make vetlint       # Run linter in Docker
-make check-generate # Verify generated code is up-to-date
+make fmt              # Format code using Go in Docker
+make security         # Run security scans in Docker
+make vulncheck        # Check for vulnerabilities using Go in Docker
+make vetlint          # Run linter in Docker
+make integration-test # Run integration tests with full TheHive stack
 ```
 
 ### Dependencies
@@ -291,22 +299,31 @@ Run `make help` to see all available targets with descriptions.
 ├── README.md                 # This file
 ├── Makefile                  # Build automation
 ├── go.mod                    # Go module definition
+├── go.sum                    # Go module checksums
+├── .dockerignore            # Docker build context exclusions
+├── .pre-commit-config.yaml  # Pre-commit hooks configuration
+├── Dockerfile.generator     # Docker image for code generation
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml           # Continuous integration
 │       └── release.yml      # Release automation
-├── scripts/                 # Code generation scripts
+├── integration/            # Integration tests with full stack
+│   ├── docker-compose.yaml # TheHive test environment
+│   └── tests/              # Integration test suite
+│       ├── testutils/      # Test utilities and helpers
+│       ├── alert_test.go   # Alert API integration tests
+│       ├── case_test.go    # Case API integration tests
+│       └── ...             # Other integration tests
+├── scripts/                # Code generation scripts
 │   ├── download_openapi.sh
 │   ├── preprocess_openapi.sh
 │   ├── generate_client.sh
-│   └── postprocess_client.sh
-├── thehive/                 # Generated client code
-│   ├── docs/               # API documentation
-│   ├── *.go               # Generated Go client files
-│   └── model_*.go         # Generated model definitions
-└── tmp/                    # Temporary files and examples
-    ├── examples.go         # Usage examples
-    └── *.yaml             # OpenAPI specifications
+│   ├── postprocess_client.sh
+│   └── generate_full_pipeline.sh
+└── thehive/                # Generated client code
+    ├── docs/               # API documentation
+    ├── *.go               # Generated Go client files
+    └── model_*.go         # Generated model definitions
 ```
 
 ## Versioning Policy

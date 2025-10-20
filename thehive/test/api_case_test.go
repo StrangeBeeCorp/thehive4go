@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_CaseAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService AddAttachmentToCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -38,7 +38,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService AddLinkWithAnExternalURL", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -51,7 +51,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService AddLinkWithAnotherCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -64,7 +64,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService ApplyCaseTemplateOnExistingCases", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.CaseAPI.ApplyCaseTemplateOnExistingCases(context.Background()).Execute()
 
@@ -75,7 +75,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService BulkUpdateCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.CaseAPI.BulkUpdateCase(context.Background()).Execute()
 
@@ -86,7 +86,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService ChangeCaseOwningOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -99,7 +99,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService CreateCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseAPI.CreateCase(context.Background()).Execute()
 
@@ -111,7 +111,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DeleteACustomField", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var cfId string
 
@@ -124,7 +124,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DeleteCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var idOrName string
 
@@ -137,7 +137,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DeleteCaseAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var attachmentId string
@@ -151,7 +151,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DeleteLinkWithAnAnotherCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -164,7 +164,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DeleteLinkWithAnExternalURL", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -177,7 +177,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService DownloadAttachmentFromCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var attachmentId string
@@ -192,7 +192,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService ExportCaseAsArchive", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -206,7 +206,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetAllLinkTypes", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseAPI.GetAllLinkTypes(context.Background()).Execute()
 
@@ -218,7 +218,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetAttachmentFromCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var attachmentId string
@@ -233,7 +233,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var idOrName string
 
@@ -247,7 +247,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetCaseTimeline", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -261,7 +261,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetSimilarCases", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -275,7 +275,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var alertOrCaseId string
@@ -290,7 +290,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService ImportCaseFromFile", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseAPI.ImportCaseFromFile(context.Background()).Execute()
 
@@ -302,7 +302,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService ManageCaseAccess", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -315,7 +315,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService MergeCases", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var ids string
 
@@ -329,7 +329,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService MergeSimilarObservablesOfThisCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -343,7 +343,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService UnlinkAlertFromCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var alertId string
@@ -357,7 +357,7 @@ func Test_thehive_CaseAPIService(t *testing.T) {
 
 	t.Run("Test CaseAPIService UpdateCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var idOrName string
 

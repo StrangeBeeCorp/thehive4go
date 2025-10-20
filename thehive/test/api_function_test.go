@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_FunctionAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService CreateFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FunctionAPI.CreateFunction(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService DeleteFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var functionId string
 
@@ -49,7 +49,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService GetDocumentationForTheContextObject", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FunctionAPI.GetDocumentationForTheContextObject(context.Background()).Execute()
 
@@ -61,7 +61,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService GetFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var functionId string
 
@@ -75,7 +75,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService InvokeFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var function string
 
@@ -89,7 +89,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService InvokeFunctionOnAnObject", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var function string
 		var objectType string
@@ -105,7 +105,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService TestFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FunctionAPI.TestFunction(context.Background()).Execute()
 
@@ -117,7 +117,7 @@ func Test_thehive_FunctionAPIService(t *testing.T) {
 
 	t.Run("Test FunctionAPIService UpdateFunction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var functionId string
 

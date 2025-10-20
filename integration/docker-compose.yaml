@@ -34,11 +34,11 @@ services:
       - "minioadmin"
       - "--s3-use-path-access-style"
 
-  # Integration tests container
   integration-tests:
-    build:
-      context: ..
-      dockerfile: integration/Dockerfile
+    image: golang:1.24.7-alpine
+    working_dir: /app
+    volumes:
+      - ..:/app
     depends_on:
       thehive:
         condition: service_healthy
@@ -48,8 +48,9 @@ services:
       - THEHIVE_URL=http://thehive:9000
       - THEHIVE_USERNAME=admin
       - THEHIVE_PASSWORD=secret
-    profiles:
-      - test
+      - THEHIVE_ORG=main-org
+      - CGO_ENABLED=0
+    command: sh -c "go mod download && go test -v -timeout=5m ./integration/tests/"
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27

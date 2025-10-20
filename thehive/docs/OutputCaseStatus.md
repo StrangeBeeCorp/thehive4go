@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**Value** | **string** |  | 
-**Stage** | **string** |  | 
-**Order** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
-**Hidden** | **bool** |  | 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**Value** | **string** |  |
+**Stage** | **string** |  |
+**Order** | Pointer to **int32** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**Colour** | Pointer to **string** |  | [optional]
+**Hidden** | **bool** |  |
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputCaseStatus
 
-`func NewOutputCaseStatus(underscoreId string, underscoreType string, underscoreCreatedAt int32, underscoreCreatedBy string, value string, stage string, hidden bool, extraData map[string]interface{}, ) *OutputCaseStatus`
+`func NewOutputCaseStatus(underscoreId string, underscoreType string, underscoreCreatedAt int64, underscoreCreatedBy string, value string, stage string, hidden bool, extraData map[string]interface{}, ) *OutputCaseStatus`
 
 NewOutputCaseStatus instantiates a new OutputCaseStatus object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ SetUnderscoreType sets UnderscoreType field to given value.
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputCaseStatus) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputCaseStatus) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputCaseStatus) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputCaseStatus) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputCaseStatus) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputCaseStatus) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -129,20 +129,20 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputCaseStatus) GetUnderscoreCreatedAt() int32`
+`func (o *OutputCaseStatus) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputCaseStatus) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputCaseStatus) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputCaseStatus) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputCaseStatus) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
@@ -324,5 +324,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

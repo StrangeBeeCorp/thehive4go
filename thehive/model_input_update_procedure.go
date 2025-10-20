@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -20,9 +20,9 @@ var _ MappedNullable = &InputUpdateProcedure{}
 // InputUpdateProcedure struct for InputUpdateProcedure
 type InputUpdateProcedure struct {
 	Description *string `json:"description,omitempty"`
-	OccurDate *int32 `json:"occurDate,omitempty"`
-	PatternId *string `json:"patternId,omitempty"`
-	Tactic *string `json:"tactic,omitempty"`
+	OccurDate   *int64  `json:"occurDate,omitempty"`
+	PatternId   *string `json:"patternId,omitempty"`
+	Tactic      *string `json:"tactic,omitempty"`
 }
 
 // NewInputUpdateProcedure instantiates a new InputUpdateProcedure object
@@ -75,9 +75,9 @@ func (o *InputUpdateProcedure) SetDescription(v string) {
 }
 
 // GetOccurDate returns the OccurDate field value if set, zero value otherwise.
-func (o *InputUpdateProcedure) GetOccurDate() int32 {
+func (o *InputUpdateProcedure) GetOccurDate() int64 {
 	if o == nil || IsNil(o.OccurDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OccurDate
@@ -85,7 +85,7 @@ func (o *InputUpdateProcedure) GetOccurDate() int32 {
 
 // GetOccurDateOk returns a tuple with the OccurDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputUpdateProcedure) GetOccurDateOk() (*int32, bool) {
+func (o *InputUpdateProcedure) GetOccurDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.OccurDate) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *InputUpdateProcedure) HasOccurDate() bool {
 	return false
 }
 
-// SetOccurDate gets a reference to the given int32 and assigns it to the OccurDate field.
-func (o *InputUpdateProcedure) SetOccurDate(v int32) {
+// SetOccurDate gets a reference to the given int64 and assigns it to the OccurDate field.
+func (o *InputUpdateProcedure) SetOccurDate(v int64) {
 	o.OccurDate = &v
 }
 
@@ -171,7 +171,7 @@ func (o *InputUpdateProcedure) SetTactic(v string) {
 }
 
 func (o InputUpdateProcedure) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,5 +230,3 @@ func (v *NullableInputUpdateProcedure) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

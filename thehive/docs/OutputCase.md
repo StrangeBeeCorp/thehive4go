@@ -4,53 +4,53 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Number** | **int32** | An incremental number to reference the case. This field can be used in the apis in place of the _id | 
-**Title** | **string** |  | 
-**Description** | **string** |  | 
-**Severity** | **int32** |  | 
-**SeverityLabel** | **string** |  | 
-**StartDate** | **int32** |  | 
-**EndDate** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | **bool** |  | 
-**Tlp** | **int32** |  | 
-**TlpLabel** | **string** |  | 
-**Pap** | **int32** |  | 
-**PapLabel** | **string** |  | 
-**Status** | **string** |  | 
-**Stage** | **string** | The value of the stage depends on the status of the case. Can be one of &#39;New&#39; &#39;InProgress&#39; or &#39;Closed&#39; | 
-**Summary** | Pointer to **string** |  | [optional] 
-**ImpactStatus** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Access** | [**Access**](Access.md) |  | 
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
-**UserPermissions** | Pointer to **[]string** | A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
-**NewDate** | **int32** |  | 
-**InProgressDate** | Pointer to **int32** |  | [optional] 
-**ClosedDate** | Pointer to **int32** |  | [optional] 
-**AlertDate** | Pointer to **int32** |  | [optional] 
-**AlertNewDate** | Pointer to **int32** |  | [optional] 
-**AlertInProgressDate** | Pointer to **int32** |  | [optional] 
-**AlertImportedDate** | Pointer to **int32** |  | [optional] 
-**TimeToDetect** | **int64** |  | 
-**TimeToTriage** | Pointer to **int64** |  | [optional] 
-**TimeToQualify** | Pointer to **int64** |  | [optional] 
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional] 
-**TimeToResolve** | Pointer to **int64** |  | [optional] 
-**HandlingDuration** | Pointer to **int64** |  | [optional] 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Number** | **int32** | An incremental number to reference the case. This field can be used in the apis in place of the _id |
+**Title** | **string** |  |
+**Description** | **string** |  |
+**Severity** | **int32** |  |
+**SeverityLabel** | **string** |  |
+**StartDate** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
+**Tags** | Pointer to **[]string** |  | [optional]
+**Flag** | **bool** |  |
+**Tlp** | **int32** |  |
+**TlpLabel** | **string** |  |
+**Pap** | **int32** |  |
+**PapLabel** | **string** |  |
+**Status** | **string** |  |
+**Stage** | **string** | The value of the stage depends on the status of the case. Can be one of &#39;New&#39; &#39;InProgress&#39; or &#39;Closed&#39; |
+**Summary** | Pointer to **string** |  | [optional]
+**ImpactStatus** | Pointer to **string** |  | [optional]
+**Assignee** | Pointer to **string** |  | [optional]
+**Access** | [**Access**](Access.md) |  |
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
+**UserPermissions** | Pointer to **[]string** | A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case | [optional]
+**ExtraData** | **map[string]interface{}** |  |
+**NewDate** | **int64** |  |
+**InProgressDate** | Pointer to **int64** |  | [optional]
+**ClosedDate** | Pointer to **int64** |  | [optional]
+**AlertDate** | Pointer to **int64** |  | [optional]
+**AlertNewDate** | Pointer to **int64** |  | [optional]
+**AlertInProgressDate** | Pointer to **int64** |  | [optional]
+**AlertImportedDate** | Pointer to **int64** |  | [optional]
+**TimeToDetect** | **int64** |  |
+**TimeToTriage** | Pointer to **int64** |  | [optional]
+**TimeToQualify** | Pointer to **int64** |  | [optional]
+**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
+**TimeToResolve** | Pointer to **int64** |  | [optional]
+**HandlingDuration** | Pointer to **int64** |  | [optional]
 
 ## Methods
 
 ### NewOutputCase
 
-`func NewOutputCase(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, number int32, title string, description string, severity int32, severityLabel string, startDate int32, flag bool, tlp int32, tlpLabel string, pap int32, papLabel string, status string, stage string, access Access, extraData map[string]interface{}, newDate int32, timeToDetect int64, ) *OutputCase`
+`func NewOutputCase(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, number int32, title string, description string, severity int32, severityLabel string, startDate int64, flag bool, tlp int32, tlpLabel string, pap int32, papLabel string, status string, stage string, access Access, extraData map[string]interface{}, newDate int64, timeToDetect int64, ) *OutputCase`
 
 NewOutputCase instantiates a new OutputCase object
 This constructor will assign default values to properties that have it defined,
@@ -152,40 +152,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputCase) GetUnderscoreCreatedAt() int32`
+`func (o *OutputCase) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputCase) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputCase) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputCase) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputCase) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputCase) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputCase) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputCase) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputCase) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputCase) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputCase) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -297,40 +297,40 @@ SetSeverityLabel sets SeverityLabel field to given value.
 
 ### GetStartDate
 
-`func (o *OutputCase) GetStartDate() int32`
+`func (o *OutputCase) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputCase) GetStartDateOk() (*int32, bool)`
+`func (o *OutputCase) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputCase) SetStartDate(v int32)`
+`func (o *OutputCase) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
 
 ### GetEndDate
 
-`func (o *OutputCase) GetEndDate() int32`
+`func (o *OutputCase) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputCase) GetEndDateOk() (*int32, bool)`
+`func (o *OutputCase) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputCase) SetEndDate(v int32)`
+`func (o *OutputCase) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -672,40 +672,40 @@ SetExtraData sets ExtraData field to given value.
 
 ### GetNewDate
 
-`func (o *OutputCase) GetNewDate() int32`
+`func (o *OutputCase) GetNewDate() int64`
 
 GetNewDate returns the NewDate field if non-nil, zero value otherwise.
 
 ### GetNewDateOk
 
-`func (o *OutputCase) GetNewDateOk() (*int32, bool)`
+`func (o *OutputCase) GetNewDateOk() (*int64, bool)`
 
 GetNewDateOk returns a tuple with the NewDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewDate
 
-`func (o *OutputCase) SetNewDate(v int32)`
+`func (o *OutputCase) SetNewDate(v int64)`
 
 SetNewDate sets NewDate field to given value.
 
 
 ### GetInProgressDate
 
-`func (o *OutputCase) GetInProgressDate() int32`
+`func (o *OutputCase) GetInProgressDate() int64`
 
 GetInProgressDate returns the InProgressDate field if non-nil, zero value otherwise.
 
 ### GetInProgressDateOk
 
-`func (o *OutputCase) GetInProgressDateOk() (*int32, bool)`
+`func (o *OutputCase) GetInProgressDateOk() (*int64, bool)`
 
 GetInProgressDateOk returns a tuple with the InProgressDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInProgressDate
 
-`func (o *OutputCase) SetInProgressDate(v int32)`
+`func (o *OutputCase) SetInProgressDate(v int64)`
 
 SetInProgressDate sets InProgressDate field to given value.
 
@@ -717,20 +717,20 @@ HasInProgressDate returns a boolean if a field has been set.
 
 ### GetClosedDate
 
-`func (o *OutputCase) GetClosedDate() int32`
+`func (o *OutputCase) GetClosedDate() int64`
 
 GetClosedDate returns the ClosedDate field if non-nil, zero value otherwise.
 
 ### GetClosedDateOk
 
-`func (o *OutputCase) GetClosedDateOk() (*int32, bool)`
+`func (o *OutputCase) GetClosedDateOk() (*int64, bool)`
 
 GetClosedDateOk returns a tuple with the ClosedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosedDate
 
-`func (o *OutputCase) SetClosedDate(v int32)`
+`func (o *OutputCase) SetClosedDate(v int64)`
 
 SetClosedDate sets ClosedDate field to given value.
 
@@ -742,20 +742,20 @@ HasClosedDate returns a boolean if a field has been set.
 
 ### GetAlertDate
 
-`func (o *OutputCase) GetAlertDate() int32`
+`func (o *OutputCase) GetAlertDate() int64`
 
 GetAlertDate returns the AlertDate field if non-nil, zero value otherwise.
 
 ### GetAlertDateOk
 
-`func (o *OutputCase) GetAlertDateOk() (*int32, bool)`
+`func (o *OutputCase) GetAlertDateOk() (*int64, bool)`
 
 GetAlertDateOk returns a tuple with the AlertDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlertDate
 
-`func (o *OutputCase) SetAlertDate(v int32)`
+`func (o *OutputCase) SetAlertDate(v int64)`
 
 SetAlertDate sets AlertDate field to given value.
 
@@ -767,20 +767,20 @@ HasAlertDate returns a boolean if a field has been set.
 
 ### GetAlertNewDate
 
-`func (o *OutputCase) GetAlertNewDate() int32`
+`func (o *OutputCase) GetAlertNewDate() int64`
 
 GetAlertNewDate returns the AlertNewDate field if non-nil, zero value otherwise.
 
 ### GetAlertNewDateOk
 
-`func (o *OutputCase) GetAlertNewDateOk() (*int32, bool)`
+`func (o *OutputCase) GetAlertNewDateOk() (*int64, bool)`
 
 GetAlertNewDateOk returns a tuple with the AlertNewDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlertNewDate
 
-`func (o *OutputCase) SetAlertNewDate(v int32)`
+`func (o *OutputCase) SetAlertNewDate(v int64)`
 
 SetAlertNewDate sets AlertNewDate field to given value.
 
@@ -792,20 +792,20 @@ HasAlertNewDate returns a boolean if a field has been set.
 
 ### GetAlertInProgressDate
 
-`func (o *OutputCase) GetAlertInProgressDate() int32`
+`func (o *OutputCase) GetAlertInProgressDate() int64`
 
 GetAlertInProgressDate returns the AlertInProgressDate field if non-nil, zero value otherwise.
 
 ### GetAlertInProgressDateOk
 
-`func (o *OutputCase) GetAlertInProgressDateOk() (*int32, bool)`
+`func (o *OutputCase) GetAlertInProgressDateOk() (*int64, bool)`
 
 GetAlertInProgressDateOk returns a tuple with the AlertInProgressDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlertInProgressDate
 
-`func (o *OutputCase) SetAlertInProgressDate(v int32)`
+`func (o *OutputCase) SetAlertInProgressDate(v int64)`
 
 SetAlertInProgressDate sets AlertInProgressDate field to given value.
 
@@ -817,20 +817,20 @@ HasAlertInProgressDate returns a boolean if a field has been set.
 
 ### GetAlertImportedDate
 
-`func (o *OutputCase) GetAlertImportedDate() int32`
+`func (o *OutputCase) GetAlertImportedDate() int64`
 
 GetAlertImportedDate returns the AlertImportedDate field if non-nil, zero value otherwise.
 
 ### GetAlertImportedDateOk
 
-`func (o *OutputCase) GetAlertImportedDateOk() (*int32, bool)`
+`func (o *OutputCase) GetAlertImportedDateOk() (*int64, bool)`
 
 GetAlertImportedDateOk returns a tuple with the AlertImportedDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlertImportedDate
 
-`func (o *OutputCase) SetAlertImportedDate(v int32)`
+`func (o *OutputCase) SetAlertImportedDate(v int64)`
 
 SetAlertImportedDate sets AlertImportedDate field to given value.
 
@@ -987,5 +987,3 @@ HasHandlingDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,8 +19,8 @@ import (
 // OutputCustomFieldOptions - struct for OutputCustomFieldOptions
 type OutputCustomFieldOptions struct {
 	ArrayOfFloat64 *[]float64
-	ArrayOfInt32 *[]int32
-	ArrayOfString *[]string
+	ArrayOfInt32   *[]int32
+	ArrayOfString  *[]string
 }
 
 // []float64AsOutputCustomFieldOptions is a convenience function that returns []float64 wrapped in OutputCustomFieldOptions
@@ -43,7 +43,6 @@ func ArrayOfStringAsOutputCustomFieldOptions(v *[]string) OutputCustomFieldOptio
 		ArrayOfString: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputCustomFieldOptions) UnmarshalJSON(data []byte) error {
@@ -132,7 +131,7 @@ func (src OutputCustomFieldOptions) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *OutputCustomFieldOptions) GetActualInstance() (interface{}) {
+func (obj *OutputCustomFieldOptions) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +152,7 @@ func (obj *OutputCustomFieldOptions) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj OutputCustomFieldOptions) GetActualInstanceValue() (interface{}) {
+func (obj OutputCustomFieldOptions) GetActualInstanceValue() interface{} {
 	if obj.ArrayOfFloat64 != nil {
 		return *obj.ArrayOfFloat64
 	}
@@ -205,5 +204,3 @@ func (v *NullableOutputCustomFieldOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,10 +11,10 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
-	"os"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"os"
 )
 
 // checks if the InputCreateUser type satisfies the MappedNullable interface at compile time
@@ -25,15 +25,15 @@ type InputCreateUser struct {
 	// Login the user will need to enter, this will be the main identifier for the user
 	Login string `json:"login" validate:"regexp=^(([^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9 -퟿豈-﷏ﷰ-￯]+\\\\.)+[a-zA-Z -퟿豈-﷏ﷰ-￯]{2,}))$"`
 	// Name of the user
-	Name string `json:"name"`
-	Email *string `json:"email,omitempty" validate:"regexp=^(([^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9 -퟿豈-﷏ﷰ-￯]+\\\\.)+[a-zA-Z -퟿豈-﷏ﷰ-￯]{2,}))$"`
+	Name     string  `json:"name"`
+	Email    *string `json:"email,omitempty" validate:"regexp=^(([^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9 -퟿豈-﷏ﷰ-￯]+\\\\.)+[a-zA-Z -퟿豈-﷏ﷰ-￯]{2,}))$"`
 	Password *string `json:"password,omitempty"`
 	// Profile to assign the user in the organisation
-	Profile string `json:"profile"`
+	Profile      string  `json:"profile"`
 	Organisation *string `json:"organisation,omitempty"`
 	// ignored in json body
-	Avatar **os.File `json:"avatar,omitempty"`
-	Type *InputUserType `json:"type,omitempty"`
+	Avatar **os.File      `json:"avatar,omitempty"`
+	Type   *InputUserType `json:"type,omitempty"`
 }
 
 type _InputCreateUser InputCreateUser
@@ -291,7 +291,7 @@ func (o *InputCreateUser) SetType(v InputUserType) {
 }
 
 func (o InputCreateUser) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -336,10 +336,10 @@ func (o *InputCreateUser) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -395,5 +395,3 @@ func (v *NullableInputCreateUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

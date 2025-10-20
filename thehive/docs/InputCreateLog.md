@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**StartDate** | Pointer to **int32** |  | [optional] 
-**IncludeInTimeline** | Pointer to **int32** |  | [optional] 
-**Attachments** | Pointer to **[]*os.File** | ignored with json content, use a multipart if you want to pass attachments | [optional] 
+**Message** | **string** |  |
+**StartDate** | Pointer to **int64** |  | [optional]
+**IncludeInTimeline** | Pointer to **int64** |  | [optional]
+**Attachments** | Pointer to **[]*os.File** | ignored with json content, use a multipart if you want to pass attachments | [optional]
 
 ## Methods
 
@@ -50,20 +50,20 @@ SetMessage sets Message field to given value.
 
 ### GetStartDate
 
-`func (o *InputCreateLog) GetStartDate() int32`
+`func (o *InputCreateLog) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *InputCreateLog) GetStartDateOk() (*int32, bool)`
+`func (o *InputCreateLog) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *InputCreateLog) SetStartDate(v int32)`
+`func (o *InputCreateLog) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -75,20 +75,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetIncludeInTimeline
 
-`func (o *InputCreateLog) GetIncludeInTimeline() int32`
+`func (o *InputCreateLog) GetIncludeInTimeline() int64`
 
 GetIncludeInTimeline returns the IncludeInTimeline field if non-nil, zero value otherwise.
 
 ### GetIncludeInTimelineOk
 
-`func (o *InputCreateLog) GetIncludeInTimelineOk() (*int32, bool)`
+`func (o *InputCreateLog) GetIncludeInTimelineOk() (*int64, bool)`
 
 GetIncludeInTimelineOk returns a tuple with the IncludeInTimeline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIncludeInTimeline
 
-`func (o *InputCreateLog) SetIncludeInTimeline(v int32)`
+`func (o *InputCreateLog) SetIncludeInTimeline(v int64)`
 
 SetIncludeInTimeline sets IncludeInTimeline field to given value.
 
@@ -125,5 +125,3 @@ HasAttachments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

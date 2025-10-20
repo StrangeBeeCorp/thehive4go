@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,12 +19,11 @@ import (
 	"strings"
 )
 
-
 // AuthenticationAPIService AuthenticationAPI service
 type AuthenticationAPIService service
 
 type ApiGetCurrentPasswordPolicyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 }
 
@@ -35,24 +34,25 @@ func (r ApiGetCurrentPasswordPolicyRequest) Execute() (map[string]interface{}, *
 /*
 GetCurrentPasswordPolicy Method for GetCurrentPasswordPolicy
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetCurrentPasswordPolicyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCurrentPasswordPolicyRequest
 */
 func (a *AuthenticationAPIService) GetCurrentPasswordPolicy(ctx context.Context) ApiGetCurrentPasswordPolicyRequest {
 	return ApiGetCurrentPasswordPolicyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *AuthenticationAPIService) GetCurrentPasswordPolicyExecute(r ApiGetCurrentPasswordPolicyRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetCurrentPasswordPolicy")
@@ -112,8 +112,8 @@ func (a *AuthenticationAPIService) GetCurrentPasswordPolicyExecute(r ApiGetCurre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -123,8 +123,8 @@ func (a *AuthenticationAPIService) GetCurrentPasswordPolicyExecute(r ApiGetCurre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -134,8 +134,8 @@ func (a *AuthenticationAPIService) GetCurrentPasswordPolicyExecute(r ApiGetCurre
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -153,7 +153,7 @@ func (a *AuthenticationAPIService) GetCurrentPasswordPolicyExecute(r ApiGetCurre
 }
 
 type ApiGetTOTPSecretRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 }
 
@@ -164,24 +164,25 @@ func (r ApiGetTOTPSecretRequest) Execute() (*OutputTOTPSecret, *http.Response, e
 /*
 GetTOTPSecret Method for GetTOTPSecret
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetTOTPSecretRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetTOTPSecretRequest
 */
 func (a *AuthenticationAPIService) GetTOTPSecret(ctx context.Context) ApiGetTOTPSecretRequest {
 	return ApiGetTOTPSecretRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputTOTPSecret
+//
+//	@return OutputTOTPSecret
 func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretRequest) (*OutputTOTPSecret, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputTOTPSecret
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputTOTPSecret
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.GetTOTPSecret")
@@ -241,8 +242,8 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -252,8 +253,8 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -263,8 +264,8 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -274,8 +275,8 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -285,8 +286,8 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -304,7 +305,7 @@ func (a *AuthenticationAPIService) GetTOTPSecretExecute(r ApiGetTOTPSecretReques
 }
 
 type ApiLoginRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 	loginInput *LoginInput
 }
@@ -321,24 +322,25 @@ func (r ApiLoginRequest) Execute() (*OutputUser, *http.Response, error) {
 /*
 Login Method for Login
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLoginRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLoginRequest
 */
 func (a *AuthenticationAPIService) Login(ctx context.Context) ApiLoginRequest {
 	return ApiLoginRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputUser
+//
+//	@return OutputUser
 func (a *AuthenticationAPIService) LoginExecute(r ApiLoginRequest) (*OutputUser, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputUser
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.Login")
@@ -403,8 +405,8 @@ func (a *AuthenticationAPIService) LoginExecute(r ApiLoginRequest) (*OutputUser,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -414,8 +416,8 @@ func (a *AuthenticationAPIService) LoginExecute(r ApiLoginRequest) (*OutputUser,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -425,8 +427,8 @@ func (a *AuthenticationAPIService) LoginExecute(r ApiLoginRequest) (*OutputUser,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -444,7 +446,7 @@ func (a *AuthenticationAPIService) LoginExecute(r ApiLoginRequest) (*OutputUser,
 }
 
 type ApiLogoutGETRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 }
 
@@ -455,22 +457,22 @@ func (r ApiLogoutGETRequest) Execute() (*http.Response, error) {
 /*
 LogoutGET Method for LogoutGET
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLogoutGETRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLogoutGETRequest
 */
 func (a *AuthenticationAPIService) LogoutGET(ctx context.Context) ApiLogoutGETRequest {
 	return ApiLogoutGETRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthenticationAPIService) LogoutGETExecute(r ApiLogoutGETRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.LogoutGET")
@@ -530,8 +532,8 @@ func (a *AuthenticationAPIService) LogoutGETExecute(r ApiLogoutGETRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -541,8 +543,8 @@ func (a *AuthenticationAPIService) LogoutGETExecute(r ApiLogoutGETRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -552,8 +554,8 @@ func (a *AuthenticationAPIService) LogoutGETExecute(r ApiLogoutGETRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -562,7 +564,7 @@ func (a *AuthenticationAPIService) LogoutGETExecute(r ApiLogoutGETRequest) (*htt
 }
 
 type ApiLogoutPOSTRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 }
 
@@ -573,22 +575,22 @@ func (r ApiLogoutPOSTRequest) Execute() (*http.Response, error) {
 /*
 LogoutPOST Method for LogoutPOST
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLogoutPOSTRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLogoutPOSTRequest
 */
 func (a *AuthenticationAPIService) LogoutPOST(ctx context.Context) ApiLogoutPOSTRequest {
 	return ApiLogoutPOSTRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthenticationAPIService) LogoutPOSTExecute(r ApiLogoutPOSTRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.LogoutPOST")
@@ -648,8 +650,8 @@ func (a *AuthenticationAPIService) LogoutPOSTExecute(r ApiLogoutPOSTRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -659,8 +661,8 @@ func (a *AuthenticationAPIService) LogoutPOSTExecute(r ApiLogoutPOSTRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -670,8 +672,8 @@ func (a *AuthenticationAPIService) LogoutPOSTExecute(r ApiLogoutPOSTRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -680,8 +682,8 @@ func (a *AuthenticationAPIService) LogoutPOSTExecute(r ApiLogoutPOSTRequest) (*h
 }
 
 type ApiSetTOTPSecretRequest struct {
-	ctx context.Context
-	ApiService *AuthenticationAPIService
+	ctx           context.Context
+	ApiService    *AuthenticationAPIService
 	inputTOTPCode *InputTOTPCode
 }
 
@@ -697,22 +699,22 @@ func (r ApiSetTOTPSecretRequest) Execute() (*http.Response, error) {
 /*
 SetTOTPSecret Method for SetTOTPSecret
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSetTOTPSecretRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSetTOTPSecretRequest
 */
 func (a *AuthenticationAPIService) SetTOTPSecret(ctx context.Context) ApiSetTOTPSecretRequest {
 	return ApiSetTOTPSecretRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.SetTOTPSecret")
@@ -777,8 +779,8 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -788,8 +790,8 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -799,8 +801,8 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -810,8 +812,8 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -821,8 +823,8 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -831,7 +833,7 @@ func (a *AuthenticationAPIService) SetTOTPSecretExecute(r ApiSetTOTPSecretReques
 }
 
 type ApiUnsetTOTPSecretRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
 }
 
@@ -842,22 +844,22 @@ func (r ApiUnsetTOTPSecretRequest) Execute() (*http.Response, error) {
 /*
 UnsetTOTPSecret Method for UnsetTOTPSecret
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUnsetTOTPSecretRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUnsetTOTPSecretRequest
 */
 func (a *AuthenticationAPIService) UnsetTOTPSecret(ctx context.Context) ApiUnsetTOTPSecretRequest {
 	return ApiUnsetTOTPSecretRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.UnsetTOTPSecret")
@@ -917,8 +919,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -928,8 +930,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -939,8 +941,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -950,8 +952,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -961,8 +963,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -971,9 +973,9 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretExecute(r ApiUnsetTOTPSecretRe
 }
 
 type ApiUnsetTOTPSecretForUserRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *AuthenticationAPIService
-	user string
+	user       string
 }
 
 func (r ApiUnsetTOTPSecretForUserRequest) Execute() (*http.Response, error) {
@@ -983,24 +985,24 @@ func (r ApiUnsetTOTPSecretForUserRequest) Execute() (*http.Response, error) {
 /*
 UnsetTOTPSecretForUser Method for UnsetTOTPSecretForUser
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param user
- @return ApiUnsetTOTPSecretForUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param user
+	@return ApiUnsetTOTPSecretForUserRequest
 */
 func (a *AuthenticationAPIService) UnsetTOTPSecretForUser(ctx context.Context, user string) ApiUnsetTOTPSecretForUserRequest {
 	return ApiUnsetTOTPSecretForUserRequest{
 		ApiService: a,
-		ctx: ctx,
-		user: user,
+		ctx:        ctx,
+		user:       user,
 	}
 }
 
 // Execute executes the request
 func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPSecretForUserRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationAPIService.UnsetTOTPSecretForUser")
@@ -1061,8 +1063,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPS
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1072,8 +1074,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPS
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1083,8 +1085,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPS
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1094,8 +1096,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPS
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1105,8 +1107,8 @@ func (a *AuthenticationAPIService) UnsetTOTPSecretForUserExecute(r ApiUnsetTOTPS
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

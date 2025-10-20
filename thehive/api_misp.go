@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,19 +16,18 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // MISPAPIService MISPAPI service
 type MISPAPIService service
 
 type ApiExportCaseToMISPRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MISPAPIService
-	caseId string
-	mispName string
+	caseId     string
+	mispName   string
 }
 
 func (r ApiExportCaseToMISPRequest) Execute() (*http.Response, error) {
@@ -38,26 +37,26 @@ func (r ApiExportCaseToMISPRequest) Execute() (*http.Response, error) {
 /*
 ExportCaseToMISP Method for ExportCaseToMISP
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param mispName
- @return ApiExportCaseToMISPRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param mispName
+	@return ApiExportCaseToMISPRequest
 */
 func (a *MISPAPIService) ExportCaseToMISP(ctx context.Context, caseId string, mispName string) ApiExportCaseToMISPRequest {
 	return ApiExportCaseToMISPRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
-		mispName: mispName,
+		ctx:        ctx,
+		caseId:     caseId,
+		mispName:   mispName,
 	}
 }
 
 // Execute executes the request
 func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MISPAPIService.ExportCaseToMISP")
@@ -119,8 +118,8 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -130,8 +129,8 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -141,8 +140,8 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -152,8 +151,8 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -163,8 +162,8 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -173,7 +172,7 @@ func (a *MISPAPIService) ExportCaseToMISPExecute(r ApiExportCaseToMISPRequest) (
 }
 
 type ApiGetMISPStatusRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MISPAPIService
 }
 
@@ -184,24 +183,25 @@ func (r ApiGetMISPStatusRequest) Execute() (map[string]interface{}, *http.Respon
 /*
 GetMISPStatus Method for GetMISPStatus
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetMISPStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetMISPStatusRequest
 */
 func (a *MISPAPIService) GetMISPStatus(ctx context.Context) ApiGetMISPStatusRequest {
 	return ApiGetMISPStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MISPAPIService.GetMISPStatus")
@@ -261,8 +261,8 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -272,8 +272,8 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -283,8 +283,8 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -294,8 +294,8 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -305,8 +305,8 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -324,10 +324,10 @@ func (a *MISPAPIService) GetMISPStatusExecute(r ApiGetMISPStatusRequest) (map[st
 }
 
 type ApiImportCaseFromMISPRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MISPAPIService
-	json *InputImportCase1
-	file *os.File
+	json       *InputImportCase1
+	file       *os.File
 }
 
 func (r ApiImportCaseFromMISPRequest) Json(json InputImportCase1) ApiImportCaseFromMISPRequest {
@@ -347,24 +347,25 @@ func (r ApiImportCaseFromMISPRequest) Execute() (*OutputCase, *http.Response, er
 /*
 ImportCaseFromMISP Method for ImportCaseFromMISP
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiImportCaseFromMISPRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportCaseFromMISPRequest
 */
 func (a *MISPAPIService) ImportCaseFromMISP(ctx context.Context) ApiImportCaseFromMISPRequest {
 	return ApiImportCaseFromMISPRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCase
+//
+//	@return OutputCase
 func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPRequest) (*OutputCase, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCase
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCase
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MISPAPIService.ImportCaseFromMISP")
@@ -403,8 +404,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 	}
 	parameterAddToHeaderOrQuery(localVarFormParams, "_json", r.json, "", "")
 	var fileLocalVarFormFileName string
-	var fileLocalVarFileName     string
-	var fileLocalVarFileBytes    []byte
+	var fileLocalVarFileName string
+	var fileLocalVarFileBytes []byte
 
 	fileLocalVarFormFileName = "file"
 	fileLocalVarFile := r.file
@@ -446,8 +447,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -457,8 +458,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -468,8 +469,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -479,8 +480,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -490,8 +491,8 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -509,7 +510,7 @@ func (a *MISPAPIService) ImportCaseFromMISPExecute(r ApiImportCaseFromMISPReques
 }
 
 type ApiSyncWithMISPServersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MISPAPIService
 }
 
@@ -520,22 +521,22 @@ func (r ApiSyncWithMISPServersRequest) Execute() (*http.Response, error) {
 /*
 SyncWithMISPServers Method for SyncWithMISPServers
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSyncWithMISPServersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSyncWithMISPServersRequest
 */
 func (a *MISPAPIService) SyncWithMISPServers(ctx context.Context) ApiSyncWithMISPServersRequest {
 	return ApiSyncWithMISPServersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MISPAPIService.SyncWithMISPServers")
@@ -595,8 +596,8 @@ func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -606,8 +607,8 @@ func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -617,8 +618,8 @@ func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -628,8 +629,8 @@ func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -639,8 +640,8 @@ func (a *MISPAPIService) SyncWithMISPServersExecute(r ApiSyncWithMISPServersRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

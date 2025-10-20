@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_MISPAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_MISPAPIService(t *testing.T) {
 
 	t.Run("Test MISPAPIService ExportCaseToMISP", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var mispName string
@@ -38,7 +38,7 @@ func Test_thehive_MISPAPIService(t *testing.T) {
 
 	t.Run("Test MISPAPIService GetMISPStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MISPAPI.GetMISPStatus(context.Background()).Execute()
 
@@ -50,7 +50,7 @@ func Test_thehive_MISPAPIService(t *testing.T) {
 
 	t.Run("Test MISPAPIService ImportCaseFromMISP", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MISPAPI.ImportCaseFromMISP(context.Background()).Execute()
 
@@ -62,7 +62,7 @@ func Test_thehive_MISPAPIService(t *testing.T) {
 
 	t.Run("Test MISPAPIService SyncWithMISPServers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.MISPAPI.SyncWithMISPServers(context.Background()).Execute()
 

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // DashboardAPIService DashboardAPI service
 type DashboardAPIService service
 
 type ApiChangeDashboardOwnershipRequest struct {
-	ctx context.Context
-	ApiService *DashboardAPIService
-	dashboardId string
+	ctx                           context.Context
+	ApiService                    *DashboardAPIService
+	dashboardId                   string
 	inputChangeDashboardOwnership *InputChangeDashboardOwnership
 }
 
@@ -42,14 +41,14 @@ func (r ApiChangeDashboardOwnershipRequest) Execute() (*http.Response, error) {
 /*
 ChangeDashboardOwnership Method for ChangeDashboardOwnership
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @return ApiChangeDashboardOwnershipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId
+	@return ApiChangeDashboardOwnershipRequest
 */
 func (a *DashboardAPIService) ChangeDashboardOwnership(ctx context.Context, dashboardId string) ApiChangeDashboardOwnershipRequest {
 	return ApiChangeDashboardOwnershipRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -57,9 +56,9 @@ func (a *DashboardAPIService) ChangeDashboardOwnership(ctx context.Context, dash
 // Execute executes the request
 func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboardOwnershipRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardAPIService.ChangeDashboardOwnership")
@@ -125,8 +124,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -136,8 +135,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -147,8 +146,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -158,8 +157,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -169,8 +168,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -179,8 +178,8 @@ func (a *DashboardAPIService) ChangeDashboardOwnershipExecute(r ApiChangeDashboa
 }
 
 type ApiCreateDashboardRequest struct {
-	ctx context.Context
-	ApiService *DashboardAPIService
+	ctx                  context.Context
+	ApiService           *DashboardAPIService
 	inputCreateDashboard *InputCreateDashboard
 }
 
@@ -196,24 +195,25 @@ func (r ApiCreateDashboardRequest) Execute() (*OutputDashboard, *http.Response, 
 /*
 CreateDashboard Method for CreateDashboard
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateDashboardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateDashboardRequest
 */
 func (a *DashboardAPIService) CreateDashboard(ctx context.Context) ApiCreateDashboardRequest {
 	return ApiCreateDashboardRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputDashboard
+//
+//	@return OutputDashboard
 func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest) (*OutputDashboard, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputDashboard
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardAPIService.CreateDashboard")
@@ -278,8 +278,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -289,8 +289,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -300,8 +300,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -311,8 +311,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -322,8 +322,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -341,8 +341,8 @@ func (a *DashboardAPIService) CreateDashboardExecute(r ApiCreateDashboardRequest
 }
 
 type ApiDeleteDashboardRequest struct {
-	ctx context.Context
-	ApiService *DashboardAPIService
+	ctx         context.Context
+	ApiService  *DashboardAPIService
 	dashboardId string
 }
 
@@ -353,14 +353,14 @@ func (r ApiDeleteDashboardRequest) Execute() (*http.Response, error) {
 /*
 DeleteDashboard Method for DeleteDashboard
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @return ApiDeleteDashboardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId
+	@return ApiDeleteDashboardRequest
 */
 func (a *DashboardAPIService) DeleteDashboard(ctx context.Context, dashboardId string) ApiDeleteDashboardRequest {
 	return ApiDeleteDashboardRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -368,9 +368,9 @@ func (a *DashboardAPIService) DeleteDashboard(ctx context.Context, dashboardId s
 // Execute executes the request
 func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardAPIService.DeleteDashboard")
@@ -431,8 +431,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -442,8 +442,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -453,8 +453,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -464,8 +464,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -475,8 +475,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -485,8 +485,8 @@ func (a *DashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest
 }
 
 type ApiGetDashboardRequest struct {
-	ctx context.Context
-	ApiService *DashboardAPIService
+	ctx         context.Context
+	ApiService  *DashboardAPIService
 	dashboardId string
 }
 
@@ -497,26 +497,27 @@ func (r ApiGetDashboardRequest) Execute() (*OutputDashboard, *http.Response, err
 /*
 GetDashboard Method for GetDashboard
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @return ApiGetDashboardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId
+	@return ApiGetDashboardRequest
 */
 func (a *DashboardAPIService) GetDashboard(ctx context.Context, dashboardId string) ApiGetDashboardRequest {
 	return ApiGetDashboardRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputDashboard
+//
+//	@return OutputDashboard
 func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*OutputDashboard, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputDashboard
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardAPIService.GetDashboard")
@@ -577,8 +578,8 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -588,8 +589,8 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -599,8 +600,8 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -610,8 +611,8 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -621,8 +622,8 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -640,9 +641,9 @@ func (a *DashboardAPIService) GetDashboardExecute(r ApiGetDashboardRequest) (*Ou
 }
 
 type ApiUpdateDashboardRequest struct {
-	ctx context.Context
-	ApiService *DashboardAPIService
-	dashboardId string
+	ctx                  context.Context
+	ApiService           *DashboardAPIService
+	dashboardId          string
 	inputUpdateDashboard *InputUpdateDashboard
 }
 
@@ -658,14 +659,14 @@ func (r ApiUpdateDashboardRequest) Execute() (*http.Response, error) {
 /*
 UpdateDashboard Method for UpdateDashboard
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @return ApiUpdateDashboardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId
+	@return ApiUpdateDashboardRequest
 */
 func (a *DashboardAPIService) UpdateDashboard(ctx context.Context, dashboardId string) ApiUpdateDashboardRequest {
 	return ApiUpdateDashboardRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
 }
@@ -673,9 +674,9 @@ func (a *DashboardAPIService) UpdateDashboard(ctx context.Context, dashboardId s
 // Execute executes the request
 func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardAPIService.UpdateDashboard")
@@ -741,8 +742,8 @@ func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -752,8 +753,8 @@ func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -763,8 +764,8 @@ func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -774,8 +775,8 @@ func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -785,8 +786,8 @@ func (a *DashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboardRequest
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

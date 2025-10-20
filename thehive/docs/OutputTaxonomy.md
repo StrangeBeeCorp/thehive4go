@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Namespace** | **string** |  | 
-**Description** | **string** |  | 
-**Version** | **int32** |  | 
-**Tags** | Pointer to [**[]OutputTag**](OutputTag.md) |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Namespace** | **string** |  |
+**Description** | **string** |  |
+**Version** | **int32** |  |
+**Tags** | Pointer to [**[]OutputTag**](OutputTag.md) |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputTaxonomy
 
-`func NewOutputTaxonomy(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, namespace string, description string, version int32, extraData map[string]interface{}, ) *OutputTaxonomy`
+`func NewOutputTaxonomy(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, namespace string, description string, version int32, extraData map[string]interface{}, ) *OutputTaxonomy`
 
 NewOutputTaxonomy instantiates a new OutputTaxonomy object
 This constructor will assign default values to properties that have it defined,
@@ -122,40 +122,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputTaxonomy) GetUnderscoreCreatedAt() int32`
+`func (o *OutputTaxonomy) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputTaxonomy) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputTaxonomy) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputTaxonomy) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputTaxonomy) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputTaxonomy) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputTaxonomy) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputTaxonomy) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputTaxonomy) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputTaxonomy) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputTaxonomy) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -272,5 +272,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

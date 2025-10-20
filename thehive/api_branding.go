@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -16,18 +16,17 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // BrandingAPIService BrandingAPI service
 type BrandingAPIService service
 
 type ApiDeleteBrandingAttachmentRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BrandingAPIService
-	kind string
+	kind       string
 }
 
 func (r ApiDeleteBrandingAttachmentRequest) Execute() (*http.Response, error) {
@@ -37,24 +36,24 @@ func (r ApiDeleteBrandingAttachmentRequest) Execute() (*http.Response, error) {
 /*
 DeleteBrandingAttachment Method for DeleteBrandingAttachment
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kind
- @return ApiDeleteBrandingAttachmentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param kind
+	@return ApiDeleteBrandingAttachmentRequest
 */
 func (a *BrandingAPIService) DeleteBrandingAttachment(ctx context.Context, kind string) ApiDeleteBrandingAttachmentRequest {
 	return ApiDeleteBrandingAttachmentRequest{
 		ApiService: a,
-		ctx: ctx,
-		kind: kind,
+		ctx:        ctx,
+		kind:       kind,
 	}
 }
 
 // Execute executes the request
 func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBrandingAttachmentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingAPIService.DeleteBrandingAttachment")
@@ -115,8 +114,8 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -126,8 +125,8 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -137,8 +136,8 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -148,8 +147,8 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -159,8 +158,8 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -169,7 +168,7 @@ func (a *BrandingAPIService) DeleteBrandingAttachmentExecute(r ApiDeleteBranding
 }
 
 type ApiGetBrandingRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BrandingAPIService
 }
 
@@ -180,24 +179,25 @@ func (r ApiGetBrandingRequest) Execute() (*OutputBranding, *http.Response, error
 /*
 GetBranding Method for GetBranding
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetBrandingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetBrandingRequest
 */
 func (a *BrandingAPIService) GetBranding(ctx context.Context) ApiGetBrandingRequest {
 	return ApiGetBrandingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputBranding
+//
+//	@return OutputBranding
 func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*OutputBranding, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputBranding
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputBranding
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingAPIService.GetBranding")
@@ -257,8 +257,8 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -268,8 +268,8 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -279,8 +279,8 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -290,8 +290,8 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -301,8 +301,8 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -320,9 +320,9 @@ func (a *BrandingAPIService) GetBrandingExecute(r ApiGetBrandingRequest) (*Outpu
 }
 
 type ApiGetBrandingAttachmentRequest struct {
-	ctx context.Context
-	ApiService *BrandingAPIService
-	kind string
+	ctx         context.Context
+	ApiService  *BrandingAPIService
+	kind        string
 	ifNoneMatch *string
 }
 
@@ -338,26 +338,27 @@ func (r ApiGetBrandingAttachmentRequest) Execute() (*os.File, *http.Response, er
 /*
 GetBrandingAttachment Method for GetBrandingAttachment
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kind
- @return ApiGetBrandingAttachmentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param kind
+	@return ApiGetBrandingAttachmentRequest
 */
 func (a *BrandingAPIService) GetBrandingAttachment(ctx context.Context, kind string) ApiGetBrandingAttachmentRequest {
 	return ApiGetBrandingAttachmentRequest{
 		ApiService: a,
-		ctx: ctx,
-		kind: kind,
+		ctx:        ctx,
+		kind:       kind,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttachmentRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingAPIService.GetBrandingAttachment")
@@ -421,8 +422,8 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -432,8 +433,8 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -443,8 +444,8 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -454,8 +455,8 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -465,8 +466,8 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -484,12 +485,12 @@ func (a *BrandingAPIService) GetBrandingAttachmentExecute(r ApiGetBrandingAttach
 }
 
 type ApiSetBrandingRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BrandingAPIService
-	title *string
-	loginLogo *os.File
-	menuLogo *os.File
-	favicon *os.File
+	title      *string
+	loginLogo  *os.File
+	menuLogo   *os.File
+	favicon    *os.File
 }
 
 func (r ApiSetBrandingRequest) Title(title string) ApiSetBrandingRequest {
@@ -519,24 +520,25 @@ func (r ApiSetBrandingRequest) Execute() (*OutputBranding, *http.Response, error
 /*
 SetBranding Method for SetBranding
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSetBrandingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSetBrandingRequest
 */
 func (a *BrandingAPIService) SetBranding(ctx context.Context) ApiSetBrandingRequest {
 	return ApiSetBrandingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputBranding
+//
+//	@return OutputBranding
 func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*OutputBranding, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputBranding
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputBranding
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingAPIService.SetBranding")
@@ -571,8 +573,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 		parameterAddToHeaderOrQuery(localVarFormParams, "title", r.title, "", "")
 	}
 	var loginLogoLocalVarFormFileName string
-	var loginLogoLocalVarFileName     string
-	var loginLogoLocalVarFileBytes    []byte
+	var loginLogoLocalVarFileName string
+	var loginLogoLocalVarFileBytes []byte
 
 	loginLogoLocalVarFormFileName = "loginLogo"
 	loginLogoLocalVarFile := r.loginLogo
@@ -586,8 +588,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 		formFiles = append(formFiles, formFile{fileBytes: loginLogoLocalVarFileBytes, fileName: loginLogoLocalVarFileName, formFileName: loginLogoLocalVarFormFileName})
 	}
 	var menuLogoLocalVarFormFileName string
-	var menuLogoLocalVarFileName     string
-	var menuLogoLocalVarFileBytes    []byte
+	var menuLogoLocalVarFileName string
+	var menuLogoLocalVarFileBytes []byte
 
 	menuLogoLocalVarFormFileName = "menuLogo"
 	menuLogoLocalVarFile := r.menuLogo
@@ -601,8 +603,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 		formFiles = append(formFiles, formFile{fileBytes: menuLogoLocalVarFileBytes, fileName: menuLogoLocalVarFileName, formFileName: menuLogoLocalVarFormFileName})
 	}
 	var faviconLocalVarFormFileName string
-	var faviconLocalVarFileName     string
-	var faviconLocalVarFileBytes    []byte
+	var faviconLocalVarFileName string
+	var faviconLocalVarFileBytes []byte
 
 	faviconLocalVarFormFileName = "favicon"
 	faviconLocalVarFile := r.favicon
@@ -644,8 +646,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -655,8 +657,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -666,8 +668,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -677,8 +679,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -688,8 +690,8 @@ func (a *BrandingAPIService) SetBrandingExecute(r ApiSetBrandingRequest) (*Outpu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

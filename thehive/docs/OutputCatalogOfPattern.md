@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**CreatedBy** | **string** |  | 
-**CreatedAt** | **int32** |  | 
-**UpdatedAt** | Pointer to **int32** |  | [optional] 
-**Name** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
-**Variant** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**CreatedBy** | **string** |  |
+**CreatedAt** | **int64** |  |
+**UpdatedAt** | Pointer to **int64** |  | [optional]
+**Name** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
+**Variant** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputCatalogOfPattern
 
-`func NewOutputCatalogOfPattern(underscoreId string, underscoreType string, createdBy string, createdAt int32, name string, extraData map[string]interface{}, ) *OutputCatalogOfPattern`
+`func NewOutputCatalogOfPattern(underscoreId string, underscoreType string, createdBy string, createdAt int64, name string, extraData map[string]interface{}, ) *OutputCatalogOfPattern`
 
 NewOutputCatalogOfPattern instantiates a new OutputCatalogOfPattern object
 This constructor will assign default values to properties that have it defined,
@@ -95,40 +95,40 @@ SetCreatedBy sets CreatedBy field to given value.
 
 ### GetCreatedAt
 
-`func (o *OutputCatalogOfPattern) GetCreatedAt() int32`
+`func (o *OutputCatalogOfPattern) GetCreatedAt() int64`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *OutputCatalogOfPattern) GetCreatedAtOk() (*int32, bool)`
+`func (o *OutputCatalogOfPattern) GetCreatedAtOk() (*int64, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *OutputCatalogOfPattern) SetCreatedAt(v int32)`
+`func (o *OutputCatalogOfPattern) SetCreatedAt(v int64)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *OutputCatalogOfPattern) GetUpdatedAt() int32`
+`func (o *OutputCatalogOfPattern) GetUpdatedAt() int64`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *OutputCatalogOfPattern) GetUpdatedAtOk() (*int32, bool)`
+`func (o *OutputCatalogOfPattern) GetUpdatedAtOk() (*int64, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *OutputCatalogOfPattern) SetUpdatedAt(v int32)`
+`func (o *OutputCatalogOfPattern) SetUpdatedAt(v int64)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
@@ -230,5 +230,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

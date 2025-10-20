@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**OccurDate** | Pointer to **int32** |  | [optional] 
-**PatternId** | Pointer to **string** |  | [optional] 
-**Tactic** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional]
+**OccurDate** | Pointer to **int64** |  | [optional]
+**PatternId** | Pointer to **string** |  | [optional]
+**Tactic** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -55,20 +55,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetOccurDate
 
-`func (o *InputUpdateProcedure) GetOccurDate() int32`
+`func (o *InputUpdateProcedure) GetOccurDate() int64`
 
 GetOccurDate returns the OccurDate field if non-nil, zero value otherwise.
 
 ### GetOccurDateOk
 
-`func (o *InputUpdateProcedure) GetOccurDateOk() (*int32, bool)`
+`func (o *InputUpdateProcedure) GetOccurDateOk() (*int64, bool)`
 
 GetOccurDateOk returns a tuple with the OccurDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOccurDate
 
-`func (o *InputUpdateProcedure) SetOccurDate(v int32)`
+`func (o *InputUpdateProcedure) SetOccurDate(v int64)`
 
 SetOccurDate sets OccurDate field to given value.
 
@@ -130,5 +130,3 @@ HasTactic returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

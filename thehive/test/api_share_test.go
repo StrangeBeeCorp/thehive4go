@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_ShareAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService DeleteSharesByShareId", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.ShareAPI.DeleteSharesByShareId(context.Background()).Execute()
 
@@ -35,7 +35,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ListSharesOfCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -49,7 +49,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ListSharesOfObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 
@@ -63,7 +63,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ListSharesOfTask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var taskId string
 
@@ -77,7 +77,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService RemoveAShareFromCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var shareId string
 
@@ -90,7 +90,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService SetSharesForCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -104,7 +104,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ShareACase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -118,7 +118,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ShareATask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var taskId string
 
@@ -131,7 +131,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService ShareAnObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 
@@ -144,7 +144,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService UnshareACase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -157,7 +157,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService UnshareATask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var taskId string
 
@@ -170,7 +170,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService UnshareAnObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 
@@ -183,7 +183,7 @@ func Test_thehive_ShareAPIService(t *testing.T) {
 
 	t.Run("Test ShareAPIService UpdateAShare", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var shareId string
 

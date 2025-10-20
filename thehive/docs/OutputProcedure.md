@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**OccurDate** | **int32** |  | 
-**PatternId** | Pointer to **string** |  | [optional] 
-**PatternName** | Pointer to **string** |  | [optional] 
-**Tactic** | Pointer to **string** |  | [optional] 
-**TacticLabel** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**OccurDate** | **int64** |  |
+**PatternId** | Pointer to **string** |  | [optional]
+**PatternName** | Pointer to **string** |  | [optional]
+**Tactic** | Pointer to **string** |  | [optional]
+**TacticLabel** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputProcedure
 
-`func NewOutputProcedure(underscoreId string, underscoreCreatedAt int32, underscoreCreatedBy string, occurDate int32, extraData map[string]interface{}, ) *OutputProcedure`
+`func NewOutputProcedure(underscoreId string, underscoreCreatedAt int64, underscoreCreatedBy string, occurDate int64, extraData map[string]interface{}, ) *OutputProcedure`
 
 NewOutputProcedure instantiates a new OutputProcedure object
 This constructor will assign default values to properties that have it defined,
@@ -58,20 +58,20 @@ SetUnderscoreId sets UnderscoreId field to given value.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputProcedure) GetUnderscoreCreatedAt() int32`
+`func (o *OutputProcedure) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputProcedure) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputProcedure) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputProcedure) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputProcedure) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
@@ -98,20 +98,20 @@ SetUnderscoreCreatedBy sets UnderscoreCreatedBy field to given value.
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputProcedure) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputProcedure) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputProcedure) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputProcedure) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputProcedure) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputProcedure) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -173,20 +173,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetOccurDate
 
-`func (o *OutputProcedure) GetOccurDate() int32`
+`func (o *OutputProcedure) GetOccurDate() int64`
 
 GetOccurDate returns the OccurDate field if non-nil, zero value otherwise.
 
 ### GetOccurDateOk
 
-`func (o *OutputProcedure) GetOccurDateOk() (*int32, bool)`
+`func (o *OutputProcedure) GetOccurDateOk() (*int64, bool)`
 
 GetOccurDateOk returns a tuple with the OccurDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOccurDate
 
-`func (o *OutputProcedure) SetOccurDate(v int32)`
+`func (o *OutputProcedure) SetOccurDate(v int64)`
 
 SetOccurDate sets OccurDate field to given value.
 
@@ -313,5 +313,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

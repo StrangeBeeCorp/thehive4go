@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,13 @@ var _ MappedNullable = &OutputCaseReportTemplateObjects{}
 
 // OutputCaseReportTemplateObjects struct for OutputCaseReportTemplateObjects
 type OutputCaseReportTemplateObjects struct {
-	Widgets []Kind `json:"widgets,omitempty"`
-	AlertFields []AlertField `json:"alertFields,omitempty"`
+	Widgets          []Kind            `json:"widgets,omitempty"`
+	AlertFields      []AlertField      `json:"alertFields,omitempty"`
 	ObservableFields []ObservableField `json:"observableFields,omitempty"`
-	TaskFields []TaskField `json:"taskFields,omitempty"`
-	TtpFields []TTPField `json:"ttpFields,omitempty"`
-	LogFields []LogField `json:"logFields,omitempty"`
-	TimelineEvents []TimelineEvents `json:"timelineEvents,omitempty"`
+	TaskFields       []TaskField       `json:"taskFields,omitempty"`
+	TtpFields        []TTPField        `json:"ttpFields,omitempty"`
+	LogFields        []LogField        `json:"logFields,omitempty"`
+	TimelineEvents   []TimelineEvents  `json:"timelineEvents,omitempty"`
 }
 
 // NewOutputCaseReportTemplateObjects instantiates a new OutputCaseReportTemplateObjects object
@@ -270,7 +270,7 @@ func (o *OutputCaseReportTemplateObjects) SetTimelineEvents(v []TimelineEvents) 
 }
 
 func (o OutputCaseReportTemplateObjects) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,5 +338,3 @@ func (v *NullableOutputCaseReportTemplateObjects) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

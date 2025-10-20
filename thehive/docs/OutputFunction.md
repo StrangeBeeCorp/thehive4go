@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Name** | **string** |  | 
-**Mode** | **string** |  | 
-**Definition** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
-**Config** | **map[string]interface{}** |  | 
-**LastSuccessDate** | Pointer to **int32** |  | [optional] 
-**LastSuccessDetails** | Pointer to **map[string]interface{}** |  | [optional] 
-**LastErrorDate** | Pointer to **int32** |  | [optional] 
-**LastErrorDetails** | Pointer to **map[string]interface{}** |  | [optional] 
-**Types** | Pointer to **[]string** |  | [optional] 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Name** | **string** |  |
+**Mode** | **string** |  |
+**Definition** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
+**Config** | **map[string]interface{}** |  |
+**LastSuccessDate** | Pointer to **int64** |  | [optional]
+**LastSuccessDetails** | Pointer to **map[string]interface{}** |  | [optional]
+**LastErrorDate** | Pointer to **int64** |  | [optional]
+**LastErrorDetails** | Pointer to **map[string]interface{}** |  | [optional]
+**Types** | Pointer to **[]string** |  | [optional]
 
 ## Methods
 
 ### NewOutputFunction
 
-`func NewOutputFunction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, name string, mode string, definition string, config map[string]interface{}, ) *OutputFunction`
+`func NewOutputFunction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, mode string, definition string, config map[string]interface{}, ) *OutputFunction`
 
 NewOutputFunction instantiates a new OutputFunction object
 This constructor will assign default values to properties that have it defined,
@@ -102,20 +102,20 @@ SetUnderscoreCreatedBy sets UnderscoreCreatedBy field to given value.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputFunction) GetUnderscoreCreatedAt() int32`
+`func (o *OutputFunction) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputFunction) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputFunction) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputFunction) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputFunction) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
@@ -147,20 +147,20 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputFunction) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputFunction) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputFunction) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputFunction) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputFunction) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputFunction) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -277,20 +277,20 @@ SetConfig sets Config field to given value.
 
 ### GetLastSuccessDate
 
-`func (o *OutputFunction) GetLastSuccessDate() int32`
+`func (o *OutputFunction) GetLastSuccessDate() int64`
 
 GetLastSuccessDate returns the LastSuccessDate field if non-nil, zero value otherwise.
 
 ### GetLastSuccessDateOk
 
-`func (o *OutputFunction) GetLastSuccessDateOk() (*int32, bool)`
+`func (o *OutputFunction) GetLastSuccessDateOk() (*int64, bool)`
 
 GetLastSuccessDateOk returns a tuple with the LastSuccessDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastSuccessDate
 
-`func (o *OutputFunction) SetLastSuccessDate(v int32)`
+`func (o *OutputFunction) SetLastSuccessDate(v int64)`
 
 SetLastSuccessDate sets LastSuccessDate field to given value.
 
@@ -327,20 +327,20 @@ HasLastSuccessDetails returns a boolean if a field has been set.
 
 ### GetLastErrorDate
 
-`func (o *OutputFunction) GetLastErrorDate() int32`
+`func (o *OutputFunction) GetLastErrorDate() int64`
 
 GetLastErrorDate returns the LastErrorDate field if non-nil, zero value otherwise.
 
 ### GetLastErrorDateOk
 
-`func (o *OutputFunction) GetLastErrorDateOk() (*int32, bool)`
+`func (o *OutputFunction) GetLastErrorDateOk() (*int64, bool)`
 
 GetLastErrorDateOk returns a tuple with the LastErrorDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastErrorDate
 
-`func (o *OutputFunction) SetLastErrorDate(v int32)`
+`func (o *OutputFunction) SetLastErrorDate(v int64)`
 
 SetLastErrorDate sets LastErrorDate field to given value.
 
@@ -402,5 +402,3 @@ HasTypes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

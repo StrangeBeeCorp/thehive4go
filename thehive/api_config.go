@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // ConfigAPIService ConfigAPI service
 type ConfigAPIService service
 
 type ApiGetUserConfigurationItemRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ConfigAPIService
-	path string
+	path       string
 }
 
 func (r ApiGetUserConfigurationItemRequest) Execute() (*OutputConfig, *http.Response, error) {
@@ -36,26 +35,27 @@ func (r ApiGetUserConfigurationItemRequest) Execute() (*OutputConfig, *http.Resp
 /*
 GetUserConfigurationItem Method for GetUserConfigurationItem
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param path
- @return ApiGetUserConfigurationItemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param path
+	@return ApiGetUserConfigurationItemRequest
 */
 func (a *ConfigAPIService) GetUserConfigurationItem(ctx context.Context, path string) ApiGetUserConfigurationItemRequest {
 	return ApiGetUserConfigurationItemRequest{
 		ApiService: a,
-		ctx: ctx,
-		path: path,
+		ctx:        ctx,
+		path:       path,
 	}
 }
 
 // Execute executes the request
-//  @return OutputConfig
+//
+//	@return OutputConfig
 func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigurationItemRequest) (*OutputConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputConfig
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetUserConfigurationItem")
@@ -116,8 +116,8 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -127,8 +127,8 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -138,8 +138,8 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -149,8 +149,8 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -160,8 +160,8 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -179,9 +179,9 @@ func (a *ConfigAPIService) GetUserConfigurationItemExecute(r ApiGetUserConfigura
 }
 
 type ApiListUserConfigurationItemsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ConfigAPIService
-	path *string
+	path       *string
 }
 
 func (r ApiListUserConfigurationItemsRequest) Path(path string) ApiListUserConfigurationItemsRequest {
@@ -196,24 +196,25 @@ func (r ApiListUserConfigurationItemsRequest) Execute() (interface{}, *http.Resp
 /*
 ListUserConfigurationItems Method for ListUserConfigurationItems
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListUserConfigurationItemsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListUserConfigurationItemsRequest
 */
 func (a *ConfigAPIService) ListUserConfigurationItems(ctx context.Context) ApiListUserConfigurationItemsRequest {
 	return ApiListUserConfigurationItemsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
+//
+//	@return interface{}
 func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfigurationItemsRequest) (interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.ListUserConfigurationItems")
@@ -276,8 +277,8 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -287,8 +288,8 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -298,8 +299,8 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -309,8 +310,8 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -320,8 +321,8 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -339,9 +340,9 @@ func (a *ConfigAPIService) ListUserConfigurationItemsExecute(r ApiListUserConfig
 }
 
 type ApiSetUserConfigurationItemRequest struct {
-	ctx context.Context
-	ApiService *ConfigAPIService
-	path string
+	ctx         context.Context
+	ApiService  *ConfigAPIService
+	path        string
 	inputConfig *InputConfig
 }
 
@@ -357,26 +358,27 @@ func (r ApiSetUserConfigurationItemRequest) Execute() (*OutputConfig, *http.Resp
 /*
 SetUserConfigurationItem Method for SetUserConfigurationItem
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param path
- @return ApiSetUserConfigurationItemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param path
+	@return ApiSetUserConfigurationItemRequest
 */
 func (a *ConfigAPIService) SetUserConfigurationItem(ctx context.Context, path string) ApiSetUserConfigurationItemRequest {
 	return ApiSetUserConfigurationItemRequest{
 		ApiService: a,
-		ctx: ctx,
-		path: path,
+		ctx:        ctx,
+		path:       path,
 	}
 }
 
 // Execute executes the request
-//  @return OutputConfig
+//
+//	@return OutputConfig
 func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigurationItemRequest) (*OutputConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputConfig
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.SetUserConfigurationItem")
@@ -442,8 +444,8 @@ func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -453,8 +455,8 @@ func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -464,8 +466,8 @@ func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -475,8 +477,8 @@ func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -486,8 +488,8 @@ func (a *ConfigAPIService) SetUserConfigurationItemExecute(r ApiSetUserConfigura
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

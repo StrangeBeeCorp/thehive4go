@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // EmailIntakeAPIService EmailIntakeAPI service
 type EmailIntakeAPIService service
 
 type ApiAddNewConfigRequest struct {
-	ctx context.Context
-	ApiService *EmailIntakeAPIService
+	ctx                    context.Context
+	ApiService             *EmailIntakeAPIService
 	inputEmailIntakeConfig *InputEmailIntakeConfig
 }
 
@@ -41,24 +40,25 @@ func (r ApiAddNewConfigRequest) Execute() (*OutputEmailIntakeConfig, *http.Respo
 /*
 AddNewConfig Method for AddNewConfig
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAddNewConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddNewConfigRequest
 */
 func (a *EmailIntakeAPIService) AddNewConfig(ctx context.Context) ApiAddNewConfigRequest {
 	return ApiAddNewConfigRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputEmailIntakeConfig
+//
+//	@return OutputEmailIntakeConfig
 func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*OutputEmailIntakeConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputEmailIntakeConfig
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputEmailIntakeConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.AddNewConfig")
@@ -123,8 +123,8 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -134,8 +134,8 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -145,8 +145,8 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -167,8 +167,8 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -186,7 +186,7 @@ func (a *EmailIntakeAPIService) AddNewConfigExecute(r ApiAddNewConfigRequest) (*
 }
 
 type ApiAvailableProvidersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
 }
 
@@ -199,24 +199,25 @@ AvailableProviders Method for AvailableProviders
 
 Get the available providers to add new configs.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAvailableProvidersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAvailableProvidersRequest
 */
 func (a *EmailIntakeAPIService) AvailableProviders(ctx context.Context) ApiAvailableProvidersRequest {
 	return ApiAvailableProvidersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputRichEmailIntakeProvider
+//
+//	@return []OutputRichEmailIntakeProvider
 func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvidersRequest) ([]OutputRichEmailIntakeProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputRichEmailIntakeProvider
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputRichEmailIntakeProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.AvailableProviders")
@@ -276,8 +277,8 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -287,8 +288,8 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -298,8 +299,8 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -309,8 +310,8 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -320,8 +321,8 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -339,9 +340,9 @@ func (a *EmailIntakeAPIService) AvailableProvidersExecute(r ApiAvailableProvider
 }
 
 type ApiDeleteConfigRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
-	configId string
+	configId   string
 }
 
 func (r ApiDeleteConfigRequest) Execute() (*http.Response, error) {
@@ -351,24 +352,24 @@ func (r ApiDeleteConfigRequest) Execute() (*http.Response, error) {
 /*
 DeleteConfig Method for DeleteConfig
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param configId
- @return ApiDeleteConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param configId
+	@return ApiDeleteConfigRequest
 */
 func (a *EmailIntakeAPIService) DeleteConfig(ctx context.Context, configId string) ApiDeleteConfigRequest {
 	return ApiDeleteConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		configId: configId,
+		ctx:        ctx,
+		configId:   configId,
 	}
 }
 
 // Execute executes the request
 func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.DeleteConfig")
@@ -429,8 +430,8 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -440,8 +441,8 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -451,8 +452,8 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -462,8 +463,8 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -473,8 +474,8 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -483,9 +484,9 @@ func (a *EmailIntakeAPIService) DeleteConfigExecute(r ApiDeleteConfigRequest) (*
 }
 
 type ApiGWSetAuthorizationCodeRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
-	body *interface{}
+	body       *interface{}
 }
 
 func (r ApiGWSetAuthorizationCodeRequest) Body(body interface{}) ApiGWSetAuthorizationCodeRequest {
@@ -504,25 +505,25 @@ Set the authorization code for a new 'Google Workspace' config before creating i
 
 Return the new config id in the payload.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGWSetAuthorizationCodeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGWSetAuthorizationCodeRequest
 */
 func (a *EmailIntakeAPIService) GWSetAuthorizationCode(ctx context.Context) ApiGWSetAuthorizationCodeRequest {
 	return ApiGWSetAuthorizationCodeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
+//
+//	@return interface{}
 func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthorizationCodeRequest) (interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.GWSetAuthorizationCode")
@@ -587,8 +588,8 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -598,8 +599,8 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -609,8 +610,8 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -620,8 +621,8 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -631,8 +632,8 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -650,9 +651,9 @@ func (a *EmailIntakeAPIService) GWSetAuthorizationCodeExecute(r ApiGWSetAuthoriz
 }
 
 type ApiGetConfigRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
-	configId string
+	configId   string
 }
 
 func (r ApiGetConfigRequest) Execute() (*OutputEmailIntakeConfig, *http.Response, error) {
@@ -662,26 +663,27 @@ func (r ApiGetConfigRequest) Execute() (*OutputEmailIntakeConfig, *http.Response
 /*
 GetConfig Method for GetConfig
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param configId
- @return ApiGetConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param configId
+	@return ApiGetConfigRequest
 */
 func (a *EmailIntakeAPIService) GetConfig(ctx context.Context, configId string) ApiGetConfigRequest {
 	return ApiGetConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		configId: configId,
+		ctx:        ctx,
+		configId:   configId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputEmailIntakeConfig
+//
+//	@return OutputEmailIntakeConfig
 func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*OutputEmailIntakeConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputEmailIntakeConfig
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputEmailIntakeConfig
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.GetConfig")
@@ -742,8 +744,8 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -753,8 +755,8 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -764,8 +766,8 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -775,8 +777,8 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -786,8 +788,8 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -805,7 +807,7 @@ func (a *EmailIntakeAPIService) GetConfigExecute(r ApiGetConfigRequest) (*Output
 }
 
 type ApiGetConfigsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
 }
 
@@ -818,24 +820,25 @@ GetConfigs Method for GetConfigs
 
 Get the whole configuration of the module.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetConfigsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetConfigsRequest
 */
 func (a *EmailIntakeAPIService) GetConfigs(ctx context.Context) ApiGetConfigsRequest {
 	return ApiGetConfigsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputRichEmailIntake
+//
+//	@return OutputRichEmailIntake
 func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*OutputRichEmailIntake, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputRichEmailIntake
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputRichEmailIntake
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.GetConfigs")
@@ -895,8 +898,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -906,8 +909,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -917,8 +920,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -928,8 +931,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -939,8 +942,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -958,8 +961,8 @@ func (a *EmailIntakeAPIService) GetConfigsExecute(r ApiGetConfigsRequest) (*Outp
 }
 
 type ApiGetMailboxFoldersRequest struct {
-	ctx context.Context
-	ApiService *EmailIntakeAPIService
+	ctx                    context.Context
+	ApiService             *EmailIntakeAPIService
 	inputEmailIntakeConfig *InputEmailIntakeConfig
 }
 
@@ -977,24 +980,25 @@ GetMailboxFolders Method for GetMailboxFolders
 
 Get all folders of the mailbox.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetMailboxFoldersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetMailboxFoldersRequest
 */
 func (a *EmailIntakeAPIService) GetMailboxFolders(ctx context.Context) ApiGetMailboxFoldersRequest {
 	return ApiGetMailboxFoldersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
+//
+//	@return []string
 func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersRequest) ([]string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []string
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.GetMailboxFolders")
@@ -1059,8 +1063,8 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1070,8 +1074,8 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1081,8 +1085,8 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1092,8 +1096,8 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1103,8 +1107,8 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1122,7 +1126,7 @@ func (a *EmailIntakeAPIService) GetMailboxFoldersExecute(r ApiGetMailboxFoldersR
 }
 
 type ApiSyncRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *EmailIntakeAPIService
 }
 
@@ -1133,28 +1137,26 @@ func (r ApiSyncRequest) Execute() (*http.Response, error) {
 /*
 Sync Method for Sync
 
-
 Run immediately a new sync of all mailboxes,
 
 it can be used only one-by-one by adding `~/sync?{configId}` in the query.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSyncRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSyncRequest
 */
 func (a *EmailIntakeAPIService) Sync(ctx context.Context) ApiSyncRequest {
 	return ApiSyncRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.Sync")
@@ -1214,8 +1216,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1225,8 +1227,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1236,8 +1238,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1247,8 +1249,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1258,8 +1260,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1268,8 +1270,8 @@ func (a *EmailIntakeAPIService) SyncExecute(r ApiSyncRequest) (*http.Response, e
 }
 
 type ApiTestConfigRequest struct {
-	ctx context.Context
-	ApiService *EmailIntakeAPIService
+	ctx                    context.Context
+	ApiService             *EmailIntakeAPIService
 	inputEmailIntakeConfig *InputEmailIntakeConfig
 }
 
@@ -1287,22 +1289,22 @@ TestConfig Method for TestConfig
 
 Test the connexion to the mailbox.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTestConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTestConfigRequest
 */
 func (a *EmailIntakeAPIService) TestConfig(ctx context.Context) ApiTestConfigRequest {
 	return ApiTestConfigRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.TestConfig")
@@ -1367,8 +1369,8 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1378,8 +1380,8 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1389,8 +1391,8 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1400,8 +1402,8 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1411,8 +1413,8 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1421,9 +1423,9 @@ func (a *EmailIntakeAPIService) TestConfigExecute(r ApiTestConfigRequest) (*http
 }
 
 type ApiUpdateConfigRequest struct {
-	ctx context.Context
-	ApiService *EmailIntakeAPIService
-	configId string
+	ctx                    context.Context
+	ApiService             *EmailIntakeAPIService
+	configId               string
 	inputEmailIntakeConfig *InputEmailIntakeConfig
 }
 
@@ -1439,24 +1441,24 @@ func (r ApiUpdateConfigRequest) Execute() (*http.Response, error) {
 /*
 UpdateConfig Method for UpdateConfig
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param configId
- @return ApiUpdateConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param configId
+	@return ApiUpdateConfigRequest
 */
 func (a *EmailIntakeAPIService) UpdateConfig(ctx context.Context, configId string) ApiUpdateConfigRequest {
 	return ApiUpdateConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		configId: configId,
+		ctx:        ctx,
+		configId:   configId,
 	}
 }
 
 // Execute executes the request
 func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.UpdateConfig")
@@ -1522,8 +1524,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1533,8 +1535,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1544,8 +1546,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1555,8 +1557,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1566,8 +1568,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1576,8 +1578,8 @@ func (a *EmailIntakeAPIService) UpdateConfigExecute(r ApiUpdateConfigRequest) (*
 }
 
 type ApiUpdateConfigsRequest struct {
-	ctx context.Context
-	ApiService *EmailIntakeAPIService
+	ctx              context.Context
+	ApiService       *EmailIntakeAPIService
 	inputEmailIntake *InputEmailIntake
 }
 
@@ -1595,22 +1597,22 @@ UpdateConfigs Method for UpdateConfigs
 
 Update the global configuration.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateConfigsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateConfigsRequest
 */
 func (a *EmailIntakeAPIService) UpdateConfigs(ctx context.Context) ApiUpdateConfigsRequest {
 	return ApiUpdateConfigsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailIntakeAPIService.UpdateConfigs")
@@ -1675,8 +1677,8 @@ func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1686,8 +1688,8 @@ func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1697,8 +1699,8 @@ func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1708,8 +1710,8 @@ func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1719,8 +1721,8 @@ func (a *EmailIntakeAPIService) UpdateConfigsExecute(r ApiUpdateConfigsRequest) 
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,24 +21,24 @@ var _ MappedNullable = &ClientProxyWSConfigDto{}
 
 // ClientProxyWSConfigDto struct for ClientProxyWSConfigDto
 type ClientProxyWSConfigDto struct {
-	Timeout *Timeout `json:"timeout,omitempty"`
-	FollowRedirects *bool `json:"followRedirects,omitempty"`
-	UseProxyProperties *bool `json:"useProxyProperties,omitempty"`
-	UserAgent *string `json:"userAgent,omitempty"`
-	CompressionEnabled *bool `json:"compressionEnabled,omitempty"`
-	Ssl SSLConfig `json:"ssl"`
-	MaxConnectionsPerHost *int32 `json:"maxConnectionsPerHost,omitempty"`
-	MaxConnectionsTotal *int32 `json:"maxConnectionsTotal,omitempty"`
-	MaxConnectionLifetime *string `json:"maxConnectionLifetime,omitempty"`
-	IdleConnectionInPoolTimeout *string `json:"idleConnectionInPoolTimeout,omitempty"`
-	ConnectionPoolCleanerPeriod *string `json:"connectionPoolCleanerPeriod,omitempty"`
-	MaxNumberOfRedirects *int32 `json:"maxNumberOfRedirects,omitempty"`
-	MaxRequestRetry *int32 `json:"maxRequestRetry,omitempty"`
-	DisableUrlEncoding *bool `json:"disableUrlEncoding,omitempty"`
-	KeepAlive *bool `json:"keepAlive,omitempty"`
-	UseLaxCookieEncoder *bool `json:"useLaxCookieEncoder,omitempty"`
-	UseCookieStore *bool `json:"useCookieStore,omitempty"`
-	Proxy *ProxyConfig `json:"proxy,omitempty"`
+	Timeout                     *Timeout     `json:"timeout,omitempty"`
+	FollowRedirects             *bool        `json:"followRedirects,omitempty"`
+	UseProxyProperties          *bool        `json:"useProxyProperties,omitempty"`
+	UserAgent                   *string      `json:"userAgent,omitempty"`
+	CompressionEnabled          *bool        `json:"compressionEnabled,omitempty"`
+	Ssl                         SSLConfig    `json:"ssl"`
+	MaxConnectionsPerHost       *int32       `json:"maxConnectionsPerHost,omitempty"`
+	MaxConnectionsTotal         *int32       `json:"maxConnectionsTotal,omitempty"`
+	MaxConnectionLifetime       *string      `json:"maxConnectionLifetime,omitempty"`
+	IdleConnectionInPoolTimeout *string      `json:"idleConnectionInPoolTimeout,omitempty"`
+	ConnectionPoolCleanerPeriod *string      `json:"connectionPoolCleanerPeriod,omitempty"`
+	MaxNumberOfRedirects        *int32       `json:"maxNumberOfRedirects,omitempty"`
+	MaxRequestRetry             *int32       `json:"maxRequestRetry,omitempty"`
+	DisableUrlEncoding          *bool        `json:"disableUrlEncoding,omitempty"`
+	KeepAlive                   *bool        `json:"keepAlive,omitempty"`
+	UseLaxCookieEncoder         *bool        `json:"useLaxCookieEncoder,omitempty"`
+	UseCookieStore              *bool        `json:"useCookieStore,omitempty"`
+	Proxy                       *ProxyConfig `json:"proxy,omitempty"`
 }
 
 type _ClientProxyWSConfigDto ClientProxyWSConfigDto
@@ -686,7 +686,7 @@ func (o *ClientProxyWSConfigDto) SetProxy(v ProxyConfig) {
 }
 
 func (o ClientProxyWSConfigDto) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -763,10 +763,10 @@ func (o *ClientProxyWSConfigDto) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -822,5 +822,3 @@ func (v *NullableClientProxyWSConfigDto) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

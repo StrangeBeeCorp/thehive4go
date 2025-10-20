@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_AuthenticationAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService GetCurrentPasswordPolicy", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AuthenticationAPI.GetCurrentPasswordPolicy(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService GetTOTPSecret", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AuthenticationAPI.GetTOTPSecret(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService Login", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AuthenticationAPI.Login(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService LogoutGET", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AuthenticationAPI.LogoutGET(context.Background()).Execute()
 
@@ -71,7 +71,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService LogoutPOST", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AuthenticationAPI.LogoutPOST(context.Background()).Execute()
 
@@ -82,7 +82,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService SetTOTPSecret", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AuthenticationAPI.SetTOTPSecret(context.Background()).Execute()
 
@@ -93,7 +93,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService UnsetTOTPSecret", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.AuthenticationAPI.UnsetTOTPSecret(context.Background()).Execute()
 
@@ -104,7 +104,7 @@ func Test_thehive_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService UnsetTOTPSecretForUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var user string
 

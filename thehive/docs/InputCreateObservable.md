@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DataType** | **string** |  | 
-**Data** | Pointer to [**InputObservableData**](InputObservableData.md) |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**StartDate** | Pointer to **int32** | The &#x60;startDate&#x60; field for &#x60;InputCreateObservable&#x60; object is mapped on &#x60;_createdDate&#x60; field. This field should not be used. | [optional] 
-**Attachment** | Pointer to [**InputCreateObservableAttachment**](InputCreateObservableAttachment.md) |  | [optional] 
+**DataType** | **string** |  |
+**Data** | Pointer to [**InputObservableData**](InputObservableData.md) |  | [optional]
+**Message** | Pointer to **string** |  | [optional]
+**StartDate** | Pointer to **int64** | The &#x60;startDate&#x60; field for &#x60;InputCreateObservable&#x60; object is mapped on &#x60;_createdDate&#x60; field. This field should not be used. | [optional]
+**Attachment** | Pointer to [**InputCreateObservableAttachment**](InputCreateObservableAttachment.md) |  | [optional]
 **Tlp** | Pointer to **int32** |  | [optional] [default to 2]
 **Pap** | Pointer to **int32** |  | [optional] [default to 2]
-**Tags** | Pointer to **[]string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional]
 **Ioc** | Pointer to **bool** |  | [optional] [default to false]
 **Sighted** | Pointer to **bool** |  | [optional] [default to false]
-**SightedAt** | Pointer to **int32** |  | [optional] 
+**SightedAt** | Pointer to **int64** |  | [optional]
 **IgnoreSimilarity** | Pointer to **bool** |  | [optional] [default to false]
-**IsZip** | Pointer to **bool** | If set to true, the file is unzipped using the &#x60;zipPassword&#x60; and each file in the zip is treated as an observable | [optional] 
-**ZipPassword** | Pointer to **string** |  | [optional] 
+**IsZip** | Pointer to **bool** | If set to true, the file is unzipped using the &#x60;zipPassword&#x60; and each file in the zip is treated as an observable | [optional]
+**ZipPassword** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -110,20 +110,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetStartDate
 
-`func (o *InputCreateObservable) GetStartDate() int32`
+`func (o *InputCreateObservable) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *InputCreateObservable) GetStartDateOk() (*int32, bool)`
+`func (o *InputCreateObservable) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *InputCreateObservable) SetStartDate(v int32)`
+`func (o *InputCreateObservable) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -285,20 +285,20 @@ HasSighted returns a boolean if a field has been set.
 
 ### GetSightedAt
 
-`func (o *InputCreateObservable) GetSightedAt() int32`
+`func (o *InputCreateObservable) GetSightedAt() int64`
 
 GetSightedAt returns the SightedAt field if non-nil, zero value otherwise.
 
 ### GetSightedAtOk
 
-`func (o *InputCreateObservable) GetSightedAtOk() (*int32, bool)`
+`func (o *InputCreateObservable) GetSightedAtOk() (*int64, bool)`
 
 GetSightedAtOk returns a tuple with the SightedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSightedAt
 
-`func (o *InputCreateObservable) SetSightedAt(v int32)`
+`func (o *InputCreateObservable) SetSightedAt(v int64)`
 
 SetSightedAt sets SightedAt field to given value.
 
@@ -385,5 +385,3 @@ HasZipPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

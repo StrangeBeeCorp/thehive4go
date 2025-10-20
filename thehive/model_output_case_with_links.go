@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,52 +21,52 @@ var _ MappedNullable = &OutputCaseWithLinks{}
 
 // OutputCaseWithLinks struct for OutputCaseWithLinks
 type OutputCaseWithLinks struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreType string `json:"_type"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
+	UnderscoreId        string  `json:"_id"`
+	UnderscoreType      string  `json:"_type"`
+	UnderscoreCreatedBy string  `json:"_createdBy"`
 	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
+	UnderscoreCreatedAt int64   `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64  `json:"_updatedAt,omitempty"`
 	// An incremental number to reference the case. This field can be used in the apis in place of the _id
-	Number int32 `json:"number"`
-	Title string `json:"title"`
-	Description string `json:"description"`
-	Severity int32 `json:"severity"`
-	SeverityLabel string `json:"severityLabel"`
-	StartDate int32 `json:"startDate"`
-	EndDate *int32 `json:"endDate,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Flag bool `json:"flag"`
-	Tlp int32 `json:"tlp"`
-	TlpLabel string `json:"tlpLabel"`
-	Pap int32 `json:"pap"`
-	PapLabel string `json:"papLabel"`
-	Status string `json:"status"`
+	Number        int32    `json:"number"`
+	Title         string   `json:"title"`
+	Description   string   `json:"description"`
+	Severity      int32    `json:"severity"`
+	SeverityLabel string   `json:"severityLabel"`
+	StartDate     int64    `json:"startDate"`
+	EndDate       *int64   `json:"endDate,omitempty"`
+	Tags          []string `json:"tags,omitempty"`
+	Flag          bool     `json:"flag"`
+	Tlp           int32    `json:"tlp"`
+	TlpLabel      string   `json:"tlpLabel"`
+	Pap           int32    `json:"pap"`
+	PapLabel      string   `json:"papLabel"`
+	Status        string   `json:"status"`
 	// The value of the stage depends on the status of the case. Can be one of 'New' 'InProgress' or 'Closed'
-	Stage string `json:"stage"`
-	Summary *string `json:"summary,omitempty"`
-	ImpactStatus *string `json:"impactStatus,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	Access Access `json:"access"`
+	Stage        string                   `json:"stage"`
+	Summary      *string                  `json:"summary,omitempty"`
+	ImpactStatus *string                  `json:"impactStatus,omitempty"`
+	Assignee     *string                  `json:"assignee,omitempty"`
+	Access       Access                   `json:"access"`
 	CustomFields []OutputCustomFieldValue `json:"customFields,omitempty"`
 	// A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case
-	UserPermissions []string `json:"userPermissions,omitempty"`
-	ExtraData map[string]interface{} `json:"extraData"`
-	NewDate int32 `json:"newDate"`
-	InProgressDate *int32 `json:"inProgressDate,omitempty"`
-	ClosedDate *int32 `json:"closedDate,omitempty"`
-	AlertDate *int32 `json:"alertDate,omitempty"`
-	AlertNewDate *int32 `json:"alertNewDate,omitempty"`
-	AlertInProgressDate *int32 `json:"alertInProgressDate,omitempty"`
-	AlertImportedDate *int32 `json:"alertImportedDate,omitempty"`
-	TimeToDetect int64 `json:"timeToDetect"`
-	TimeToTriage *int64 `json:"timeToTriage,omitempty"`
-	TimeToQualify *int64 `json:"timeToQualify,omitempty"`
-	TimeToAcknowledge *int64 `json:"timeToAcknowledge,omitempty"`
-	TimeToResolve *int64 `json:"timeToResolve,omitempty"`
-	HandlingDuration *int64 `json:"handlingDuration,omitempty"`
-	LinkedWith []OutputObservable `json:"linkedWith,omitempty"`
-	LinksCount int32 `json:"linksCount"`
+	UserPermissions     []string               `json:"userPermissions,omitempty"`
+	ExtraData           map[string]interface{} `json:"extraData"`
+	NewDate             int64                  `json:"newDate"`
+	InProgressDate      *int64                 `json:"inProgressDate,omitempty"`
+	ClosedDate          *int64                 `json:"closedDate,omitempty"`
+	AlertDate           *int64                 `json:"alertDate,omitempty"`
+	AlertNewDate        *int64                 `json:"alertNewDate,omitempty"`
+	AlertInProgressDate *int64                 `json:"alertInProgressDate,omitempty"`
+	AlertImportedDate   *int64                 `json:"alertImportedDate,omitempty"`
+	TimeToDetect        int64                  `json:"timeToDetect"`
+	TimeToTriage        *int64                 `json:"timeToTriage,omitempty"`
+	TimeToQualify       *int64                 `json:"timeToQualify,omitempty"`
+	TimeToAcknowledge   *int64                 `json:"timeToAcknowledge,omitempty"`
+	TimeToResolve       *int64                 `json:"timeToResolve,omitempty"`
+	HandlingDuration    *int64                 `json:"handlingDuration,omitempty"`
+	LinkedWith          []OutputObservable     `json:"linkedWith,omitempty"`
+	LinksCount          int32                  `json:"linksCount"`
 }
 
 type _OutputCaseWithLinks OutputCaseWithLinks
@@ -75,7 +75,7 @@ type _OutputCaseWithLinks OutputCaseWithLinks
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputCaseWithLinks(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, number int32, title string, description string, severity int32, severityLabel string, startDate int32, flag bool, tlp int32, tlpLabel string, pap int32, papLabel string, status string, stage string, access Access, extraData map[string]interface{}, newDate int32, timeToDetect int64, linksCount int32) *OutputCaseWithLinks {
+func NewOutputCaseWithLinks(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, number int32, title string, description string, severity int32, severityLabel string, startDate int64, flag bool, tlp int32, tlpLabel string, pap int32, papLabel string, status string, stage string, access Access, extraData map[string]interface{}, newDate int64, timeToDetect int64, linksCount int32) *OutputCaseWithLinks {
 	this := OutputCaseWithLinks{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -215,9 +215,9 @@ func (o *OutputCaseWithLinks) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputCaseWithLinks) GetUnderscoreCreatedAt() int32 {
+func (o *OutputCaseWithLinks) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -226,7 +226,7 @@ func (o *OutputCaseWithLinks) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -234,14 +234,14 @@ func (o *OutputCaseWithLinks) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputCaseWithLinks) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputCaseWithLinks) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputCaseWithLinks) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -249,7 +249,7 @@ func (o *OutputCaseWithLinks) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -265,8 +265,8 @@ func (o *OutputCaseWithLinks) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputCaseWithLinks) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputCaseWithLinks) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -391,9 +391,9 @@ func (o *OutputCaseWithLinks) SetSeverityLabel(v string) {
 }
 
 // GetStartDate returns the StartDate field value
-func (o *OutputCaseWithLinks) GetStartDate() int32 {
+func (o *OutputCaseWithLinks) GetStartDate() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -402,7 +402,7 @@ func (o *OutputCaseWithLinks) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetStartDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetStartDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -410,14 +410,14 @@ func (o *OutputCaseWithLinks) GetStartDateOk() (*int32, bool) {
 }
 
 // SetStartDate sets field value
-func (o *OutputCaseWithLinks) SetStartDate(v int32) {
+func (o *OutputCaseWithLinks) SetStartDate(v int64) {
 	o.StartDate = v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetEndDate() int32 {
+func (o *OutputCaseWithLinks) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -425,7 +425,7 @@ func (o *OutputCaseWithLinks) GetEndDate() int32 {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetEndDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -441,8 +441,8 @@ func (o *OutputCaseWithLinks) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given int32 and assigns it to the EndDate field.
-func (o *OutputCaseWithLinks) SetEndDate(v int32) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *OutputCaseWithLinks) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 
@@ -855,9 +855,9 @@ func (o *OutputCaseWithLinks) SetExtraData(v map[string]interface{}) {
 }
 
 // GetNewDate returns the NewDate field value
-func (o *OutputCaseWithLinks) GetNewDate() int32 {
+func (o *OutputCaseWithLinks) GetNewDate() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -866,7 +866,7 @@ func (o *OutputCaseWithLinks) GetNewDate() int32 {
 
 // GetNewDateOk returns a tuple with the NewDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetNewDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetNewDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -874,14 +874,14 @@ func (o *OutputCaseWithLinks) GetNewDateOk() (*int32, bool) {
 }
 
 // SetNewDate sets field value
-func (o *OutputCaseWithLinks) SetNewDate(v int32) {
+func (o *OutputCaseWithLinks) SetNewDate(v int64) {
 	o.NewDate = v
 }
 
 // GetInProgressDate returns the InProgressDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetInProgressDate() int32 {
+func (o *OutputCaseWithLinks) GetInProgressDate() int64 {
 	if o == nil || IsNil(o.InProgressDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.InProgressDate
@@ -889,7 +889,7 @@ func (o *OutputCaseWithLinks) GetInProgressDate() int32 {
 
 // GetInProgressDateOk returns a tuple with the InProgressDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetInProgressDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetInProgressDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.InProgressDate) {
 		return nil, false
 	}
@@ -905,15 +905,15 @@ func (o *OutputCaseWithLinks) HasInProgressDate() bool {
 	return false
 }
 
-// SetInProgressDate gets a reference to the given int32 and assigns it to the InProgressDate field.
-func (o *OutputCaseWithLinks) SetInProgressDate(v int32) {
+// SetInProgressDate gets a reference to the given int64 and assigns it to the InProgressDate field.
+func (o *OutputCaseWithLinks) SetInProgressDate(v int64) {
 	o.InProgressDate = &v
 }
 
 // GetClosedDate returns the ClosedDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetClosedDate() int32 {
+func (o *OutputCaseWithLinks) GetClosedDate() int64 {
 	if o == nil || IsNil(o.ClosedDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ClosedDate
@@ -921,7 +921,7 @@ func (o *OutputCaseWithLinks) GetClosedDate() int32 {
 
 // GetClosedDateOk returns a tuple with the ClosedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetClosedDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetClosedDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.ClosedDate) {
 		return nil, false
 	}
@@ -937,15 +937,15 @@ func (o *OutputCaseWithLinks) HasClosedDate() bool {
 	return false
 }
 
-// SetClosedDate gets a reference to the given int32 and assigns it to the ClosedDate field.
-func (o *OutputCaseWithLinks) SetClosedDate(v int32) {
+// SetClosedDate gets a reference to the given int64 and assigns it to the ClosedDate field.
+func (o *OutputCaseWithLinks) SetClosedDate(v int64) {
 	o.ClosedDate = &v
 }
 
 // GetAlertDate returns the AlertDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetAlertDate() int32 {
+func (o *OutputCaseWithLinks) GetAlertDate() int64 {
 	if o == nil || IsNil(o.AlertDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AlertDate
@@ -953,7 +953,7 @@ func (o *OutputCaseWithLinks) GetAlertDate() int32 {
 
 // GetAlertDateOk returns a tuple with the AlertDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetAlertDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetAlertDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.AlertDate) {
 		return nil, false
 	}
@@ -969,15 +969,15 @@ func (o *OutputCaseWithLinks) HasAlertDate() bool {
 	return false
 }
 
-// SetAlertDate gets a reference to the given int32 and assigns it to the AlertDate field.
-func (o *OutputCaseWithLinks) SetAlertDate(v int32) {
+// SetAlertDate gets a reference to the given int64 and assigns it to the AlertDate field.
+func (o *OutputCaseWithLinks) SetAlertDate(v int64) {
 	o.AlertDate = &v
 }
 
 // GetAlertNewDate returns the AlertNewDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetAlertNewDate() int32 {
+func (o *OutputCaseWithLinks) GetAlertNewDate() int64 {
 	if o == nil || IsNil(o.AlertNewDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AlertNewDate
@@ -985,7 +985,7 @@ func (o *OutputCaseWithLinks) GetAlertNewDate() int32 {
 
 // GetAlertNewDateOk returns a tuple with the AlertNewDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetAlertNewDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetAlertNewDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.AlertNewDate) {
 		return nil, false
 	}
@@ -1001,15 +1001,15 @@ func (o *OutputCaseWithLinks) HasAlertNewDate() bool {
 	return false
 }
 
-// SetAlertNewDate gets a reference to the given int32 and assigns it to the AlertNewDate field.
-func (o *OutputCaseWithLinks) SetAlertNewDate(v int32) {
+// SetAlertNewDate gets a reference to the given int64 and assigns it to the AlertNewDate field.
+func (o *OutputCaseWithLinks) SetAlertNewDate(v int64) {
 	o.AlertNewDate = &v
 }
 
 // GetAlertInProgressDate returns the AlertInProgressDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetAlertInProgressDate() int32 {
+func (o *OutputCaseWithLinks) GetAlertInProgressDate() int64 {
 	if o == nil || IsNil(o.AlertInProgressDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AlertInProgressDate
@@ -1017,7 +1017,7 @@ func (o *OutputCaseWithLinks) GetAlertInProgressDate() int32 {
 
 // GetAlertInProgressDateOk returns a tuple with the AlertInProgressDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetAlertInProgressDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetAlertInProgressDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.AlertInProgressDate) {
 		return nil, false
 	}
@@ -1033,15 +1033,15 @@ func (o *OutputCaseWithLinks) HasAlertInProgressDate() bool {
 	return false
 }
 
-// SetAlertInProgressDate gets a reference to the given int32 and assigns it to the AlertInProgressDate field.
-func (o *OutputCaseWithLinks) SetAlertInProgressDate(v int32) {
+// SetAlertInProgressDate gets a reference to the given int64 and assigns it to the AlertInProgressDate field.
+func (o *OutputCaseWithLinks) SetAlertInProgressDate(v int64) {
 	o.AlertInProgressDate = &v
 }
 
 // GetAlertImportedDate returns the AlertImportedDate field value if set, zero value otherwise.
-func (o *OutputCaseWithLinks) GetAlertImportedDate() int32 {
+func (o *OutputCaseWithLinks) GetAlertImportedDate() int64 {
 	if o == nil || IsNil(o.AlertImportedDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AlertImportedDate
@@ -1049,7 +1049,7 @@ func (o *OutputCaseWithLinks) GetAlertImportedDate() int32 {
 
 // GetAlertImportedDateOk returns a tuple with the AlertImportedDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputCaseWithLinks) GetAlertImportedDateOk() (*int32, bool) {
+func (o *OutputCaseWithLinks) GetAlertImportedDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.AlertImportedDate) {
 		return nil, false
 	}
@@ -1065,8 +1065,8 @@ func (o *OutputCaseWithLinks) HasAlertImportedDate() bool {
 	return false
 }
 
-// SetAlertImportedDate gets a reference to the given int32 and assigns it to the AlertImportedDate field.
-func (o *OutputCaseWithLinks) SetAlertImportedDate(v int32) {
+// SetAlertImportedDate gets a reference to the given int64 and assigns it to the AlertImportedDate field.
+func (o *OutputCaseWithLinks) SetAlertImportedDate(v int64) {
 	o.AlertImportedDate = &v
 }
 
@@ -1311,7 +1311,7 @@ func (o *OutputCaseWithLinks) SetLinksCount(v int32) {
 }
 
 func (o OutputCaseWithLinks) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1442,10 +1442,10 @@ func (o *OutputCaseWithLinks) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -1501,5 +1501,3 @@ func (v *NullableOutputCaseWithLinks) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

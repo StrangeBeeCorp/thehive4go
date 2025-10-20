@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_OrganisationAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService AddAttachmentToOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.OrganisationAPI.AddAttachmentToOrganisation(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService BulkLinkOrganisations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -49,7 +49,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService CreateOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.OrganisationAPI.CreateOrganisation(context.Background()).Execute()
 
@@ -61,7 +61,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService DeleteAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var attachmentId string
 
@@ -74,7 +74,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService DownloadAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var attachmentId string
 
@@ -88,7 +88,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService GetAttachment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var attachmentId string
 
@@ -102,7 +102,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService GetOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -116,7 +116,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService GetOrganisationAvatar", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var fileHash string
@@ -131,7 +131,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService LinkOrganisations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var otherOrgId string
@@ -145,7 +145,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService ListOrganisationLinks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 
@@ -159,7 +159,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService ListSharingProfiles", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.OrganisationAPI.ListSharingProfiles(context.Background()).Execute()
 
@@ -171,7 +171,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService UnlinkOrganisations", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 		var otherOrgId string
@@ -185,7 +185,7 @@ func Test_thehive_OrganisationAPIService(t *testing.T) {
 
 	t.Run("Test OrganisationAPIService UpdateOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var orgId string
 

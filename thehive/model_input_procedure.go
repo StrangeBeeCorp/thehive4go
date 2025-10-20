@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,9 +23,9 @@ var _ MappedNullable = &InputProcedure{}
 type InputProcedure struct {
 	// Id of the technique in the catalog
 	PatternId string `json:"patternId"`
-	OccurDate int32 `json:"occurDate"`
+	OccurDate int64  `json:"occurDate"`
 	// Name of the tactic, useful if the technique belongs to several tactics
-	Tactic *string `json:"tactic,omitempty"`
+	Tactic      *string `json:"tactic,omitempty"`
 	Description *string `json:"description,omitempty"`
 }
 
@@ -35,7 +35,7 @@ type _InputProcedure InputProcedure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInputProcedure(patternId string, occurDate int32) *InputProcedure {
+func NewInputProcedure(patternId string, occurDate int64) *InputProcedure {
 	this := InputProcedure{}
 	this.PatternId = patternId
 	this.OccurDate = occurDate
@@ -75,9 +75,9 @@ func (o *InputProcedure) SetPatternId(v string) {
 }
 
 // GetOccurDate returns the OccurDate field value
-func (o *InputProcedure) GetOccurDate() int32 {
+func (o *InputProcedure) GetOccurDate() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *InputProcedure) GetOccurDate() int32 {
 
 // GetOccurDateOk returns a tuple with the OccurDate field value
 // and a boolean to check if the value has been set.
-func (o *InputProcedure) GetOccurDateOk() (*int32, bool) {
+func (o *InputProcedure) GetOccurDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *InputProcedure) GetOccurDateOk() (*int32, bool) {
 }
 
 // SetOccurDate sets field value
-func (o *InputProcedure) SetOccurDate(v int32) {
+func (o *InputProcedure) SetOccurDate(v int64) {
 	o.OccurDate = v
 }
 
@@ -163,7 +163,7 @@ func (o *InputProcedure) SetDescription(v string) {
 }
 
 func (o InputProcedure) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -197,10 +197,10 @@ func (o *InputProcedure) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -256,5 +256,3 @@ func (v *NullableInputProcedure) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

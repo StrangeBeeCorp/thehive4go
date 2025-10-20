@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,28 +19,28 @@ var _ MappedNullable = &InputCreateCaseFromAlert{}
 
 // InputCreateCaseFromAlert struct for InputCreateCaseFromAlert
 type InputCreateCaseFromAlert struct {
-	Title *string `json:"title,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Severity *int32 `json:"severity,omitempty"`
-	StartDate *int32 `json:"startDate,omitempty"`
-	EndDate *int32 `json:"endDate,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Flag *bool `json:"flag,omitempty"`
-	Tlp *int32 `json:"tlp,omitempty"`
-	Pap *int32 `json:"pap,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Summary *string `json:"summary,omitempty"`
+	Title       *string  `json:"title,omitempty"`
+	Description *string  `json:"description,omitempty"`
+	Severity    *int32   `json:"severity,omitempty"`
+	StartDate   *int64   `json:"startDate,omitempty"`
+	EndDate     *int64   `json:"endDate,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Flag        *bool    `json:"flag,omitempty"`
+	Tlp         *int32   `json:"tlp,omitempty"`
+	Pap         *int32   `json:"pap,omitempty"`
+	Status      *string  `json:"status,omitempty"`
+	Summary     *string  `json:"summary,omitempty"`
 	// User to assign the case to
-	Assignee *string `json:"assignee,omitempty"`
+	Assignee     *string                       `json:"assignee,omitempty"`
 	CustomFields *InputCreateAlertCustomFields `json:"customFields,omitempty"`
 	// Name or id of the Case Template to use
 	CaseTemplate *string `json:"caseTemplate,omitempty"`
 	// Additional tasks to create
-	Tasks []InputCreateTask `json:"tasks,omitempty"`
-	Pages []InputCreatePage `json:"pages,omitempty"`
-	SharingParameters []InputShare `json:"sharingParameters,omitempty"`
-	TaskRule *string `json:"taskRule,omitempty"`
-	ObservableRule *string `json:"observableRule,omitempty"`
+	Tasks             []InputCreateTask `json:"tasks,omitempty"`
+	Pages             []InputCreatePage `json:"pages,omitempty"`
+	SharingParameters []InputShare      `json:"sharingParameters,omitempty"`
+	TaskRule          *string           `json:"taskRule,omitempty"`
+	ObservableRule    *string           `json:"observableRule,omitempty"`
 }
 
 // NewInputCreateCaseFromAlert instantiates a new InputCreateCaseFromAlert object
@@ -157,9 +157,9 @@ func (o *InputCreateCaseFromAlert) SetSeverity(v int32) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *InputCreateCaseFromAlert) GetStartDate() int32 {
+func (o *InputCreateCaseFromAlert) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -167,7 +167,7 @@ func (o *InputCreateCaseFromAlert) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateCaseFromAlert) GetStartDateOk() (*int32, bool) {
+func (o *InputCreateCaseFromAlert) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -183,15 +183,15 @@ func (o *InputCreateCaseFromAlert) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *InputCreateCaseFromAlert) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *InputCreateCaseFromAlert) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *InputCreateCaseFromAlert) GetEndDate() int32 {
+func (o *InputCreateCaseFromAlert) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -199,7 +199,7 @@ func (o *InputCreateCaseFromAlert) GetEndDate() int32 {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateCaseFromAlert) GetEndDateOk() (*int32, bool) {
+func (o *InputCreateCaseFromAlert) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -215,8 +215,8 @@ func (o *InputCreateCaseFromAlert) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given int32 and assigns it to the EndDate field.
-func (o *InputCreateCaseFromAlert) SetEndDate(v int32) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *InputCreateCaseFromAlert) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 
@@ -669,7 +669,7 @@ func (o *InputCreateCaseFromAlert) SetObservableRule(v string) {
 }
 
 func (o InputCreateCaseFromAlert) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -773,5 +773,3 @@ func (v *NullableInputCreateCaseFromAlert) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

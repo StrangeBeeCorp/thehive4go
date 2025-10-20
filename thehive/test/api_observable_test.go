@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_ObservableAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService CreateObservableInAlert", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var alertId string
 
@@ -38,7 +38,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService CreateObservableInCase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -52,7 +52,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService DeleteObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 
@@ -65,7 +65,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService DownloadAttachmentFromObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 		var attachmentId string
@@ -80,7 +80,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService GetObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 
@@ -94,7 +94,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService UpdateBulkOfObservables", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		httpRes, err := apiClient.ObservableAPI.UpdateBulkOfObservables(context.Background()).Execute()
 
@@ -105,7 +105,7 @@ func Test_thehive_ObservableAPIService(t *testing.T) {
 
 	t.Run("Test ObservableAPIService UpdateObservable", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var observableId string
 

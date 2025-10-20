@@ -4,34 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Name** | **string** |  | 
-**DisplayName** | **string** |  | 
-**TitlePrefix** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**SeverityLabel** | Pointer to **string** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | **bool** |  | 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**TlpLabel** | Pointer to **string** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**PapLabel** | Pointer to **string** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
-**Tasks** | Pointer to [**[]OutputTask**](OutputTask.md) |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Name** | **string** |  |
+**DisplayName** | **string** |  |
+**TitlePrefix** | Pointer to **string** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**Severity** | Pointer to **int32** |  | [optional]
+**SeverityLabel** | Pointer to **string** |  | [optional]
+**Tags** | Pointer to **[]string** |  | [optional]
+**Flag** | **bool** |  |
+**Tlp** | Pointer to **int32** |  | [optional]
+**TlpLabel** | Pointer to **string** |  | [optional]
+**Pap** | Pointer to **int32** |  | [optional]
+**PapLabel** | Pointer to **string** |  | [optional]
+**Summary** | Pointer to **string** |  | [optional]
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
+**Tasks** | Pointer to [**[]OutputTask**](OutputTask.md) |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputCaseTemplate
 
-`func NewOutputCaseTemplate(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, name string, displayName string, flag bool, extraData map[string]interface{}, ) *OutputCaseTemplate`
+`func NewOutputCaseTemplate(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, displayName string, flag bool, extraData map[string]interface{}, ) *OutputCaseTemplate`
 
 NewOutputCaseTemplate instantiates a new OutputCaseTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -133,40 +133,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputCaseTemplate) GetUnderscoreCreatedAt() int32`
+`func (o *OutputCaseTemplate) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputCaseTemplate) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputCaseTemplate) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputCaseTemplate) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputCaseTemplate) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputCaseTemplate) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputCaseTemplate) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputCaseTemplate) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputCaseTemplate) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputCaseTemplate) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputCaseTemplate) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -558,5 +558,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

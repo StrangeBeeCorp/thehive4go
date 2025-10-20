@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**PatternId** | **string** |  | 
-**Name** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
-**Tactics** | Pointer to **[]string** |  | [optional] 
-**Url** | **string** |  | 
-**PatternType** | **string** |  | 
-**CapecId** | Pointer to **string** |  | [optional] 
-**CapecUrl** | Pointer to **string** |  | [optional] 
-**Revoked** | **bool** |  | 
-**DataSources** | Pointer to **[]string** |  | [optional] 
-**DefenseBypassed** | Pointer to **[]string** |  | [optional] 
-**Detection** | Pointer to **string** |  | [optional] 
-**PermissionsRequired** | Pointer to **[]string** |  | [optional] 
-**Platforms** | Pointer to **[]string** |  | [optional] 
-**RemoteSupport** | **bool** |  | 
-**SystemRequirements** | Pointer to **[]string** |  | [optional] 
-**Version** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**PatternId** | **string** |  |
+**Name** | **string** |  |
+**Description** | Pointer to **string** |  | [optional]
+**Tactics** | Pointer to **[]string** |  | [optional]
+**Url** | **string** |  |
+**PatternType** | **string** |  |
+**CapecId** | Pointer to **string** |  | [optional]
+**CapecUrl** | Pointer to **string** |  | [optional]
+**Revoked** | **bool** |  |
+**DataSources** | Pointer to **[]string** |  | [optional]
+**DefenseBypassed** | Pointer to **[]string** |  | [optional]
+**Detection** | Pointer to **string** |  | [optional]
+**PermissionsRequired** | Pointer to **[]string** |  | [optional]
+**Platforms** | Pointer to **[]string** |  | [optional]
+**RemoteSupport** | **bool** |  |
+**SystemRequirements** | Pointer to **[]string** |  | [optional]
+**Version** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputPattern
 
-`func NewOutputPattern(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, patternId string, name string, url string, patternType string, revoked bool, remoteSupport bool, extraData map[string]interface{}, ) *OutputPattern`
+`func NewOutputPattern(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, patternId string, name string, url string, patternType string, revoked bool, remoteSupport bool, extraData map[string]interface{}, ) *OutputPattern`
 
 NewOutputPattern instantiates a new OutputPattern object
 This constructor will assign default values to properties that have it defined,
@@ -135,40 +135,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputPattern) GetUnderscoreCreatedAt() int32`
+`func (o *OutputPattern) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputPattern) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputPattern) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputPattern) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputPattern) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputPattern) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputPattern) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputPattern) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputPattern) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputPattern) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputPattern) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -595,5 +595,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

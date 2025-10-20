@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Customer** | **string** |  | 
-**Instance** | **string** |  | 
-**Plan** | **string** |  | 
-**Kind** | **string** |  | 
-**ValidFrom** | **int32** |  | 
-**ExpiresAt** | **int32** |  | 
-**Capabilities** | Pointer to **[]string** |  | [optional] 
-**IsValid** | **bool** |  | 
-**Error** | Pointer to **string** |  | [optional] 
-**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) |  | 
+**Id** | **string** |  |
+**Customer** | **string** |  |
+**Instance** | **string** |  |
+**Plan** | **string** |  |
+**Kind** | **string** |  |
+**ValidFrom** | **int64** |  |
+**ExpiresAt** | **int64** |  |
+**Capabilities** | Pointer to **[]string** |  | [optional]
+**IsValid** | **bool** |  |
+**Error** | Pointer to **string** |  | [optional]
+**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) |  |
 
 ## Methods
 
 ### NewOutputLicenseStatus
 
-`func NewOutputLicenseStatus(id string, customer string, instance string, plan string, kind string, validFrom int32, expiresAt int32, isValid bool, quotas map[string]OutputLicenseQuota, ) *OutputLicenseStatus`
+`func NewOutputLicenseStatus(id string, customer string, instance string, plan string, kind string, validFrom int64, expiresAt int64, isValid bool, quotas map[string]OutputLicenseQuota, ) *OutputLicenseStatus`
 
 NewOutputLicenseStatus instantiates a new OutputLicenseStatus object
 This constructor will assign default values to properties that have it defined,
@@ -137,40 +137,40 @@ SetKind sets Kind field to given value.
 
 ### GetValidFrom
 
-`func (o *OutputLicenseStatus) GetValidFrom() int32`
+`func (o *OutputLicenseStatus) GetValidFrom() int64`
 
 GetValidFrom returns the ValidFrom field if non-nil, zero value otherwise.
 
 ### GetValidFromOk
 
-`func (o *OutputLicenseStatus) GetValidFromOk() (*int32, bool)`
+`func (o *OutputLicenseStatus) GetValidFromOk() (*int64, bool)`
 
 GetValidFromOk returns a tuple with the ValidFrom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidFrom
 
-`func (o *OutputLicenseStatus) SetValidFrom(v int32)`
+`func (o *OutputLicenseStatus) SetValidFrom(v int64)`
 
 SetValidFrom sets ValidFrom field to given value.
 
 
 ### GetExpiresAt
 
-`func (o *OutputLicenseStatus) GetExpiresAt() int32`
+`func (o *OutputLicenseStatus) GetExpiresAt() int64`
 
 GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
 
 ### GetExpiresAtOk
 
-`func (o *OutputLicenseStatus) GetExpiresAtOk() (*int32, bool)`
+`func (o *OutputLicenseStatus) GetExpiresAtOk() (*int64, bool)`
 
 GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiresAt
 
-`func (o *OutputLicenseStatus) SetExpiresAt(v int32)`
+`func (o *OutputLicenseStatus) SetExpiresAt(v int64)`
 
 SetExpiresAt sets ExpiresAt field to given value.
 
@@ -267,5 +267,3 @@ SetQuotas sets Quotas field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**Id** | **string** |  | 
-**Customer** | **string** |  | 
-**Plan** | **string** |  | 
-**Kind** | **string** |  | 
-**ValidFrom** | **int32** |  | 
-**ExpiresAt** | **int32** |  | 
-**Current** | **bool** |  | 
-**Capabilities** | Pointer to **[]string** |  | [optional] 
-**Quotas** | **map[string]int32** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreType** | **string** |  |
+**Id** | **string** |  |
+**Customer** | **string** |  |
+**Plan** | **string** |  |
+**Kind** | **string** |  |
+**ValidFrom** | **int64** |  |
+**ExpiresAt** | **int64** |  |
+**Current** | **bool** |  |
+**Capabilities** | Pointer to **[]string** |  | [optional]
+**Quotas** | **map[string]int32** |  |
 
 ## Methods
 
 ### NewOutputLicense
 
-`func NewOutputLicense(underscoreId string, underscoreCreatedAt int32, underscoreCreatedBy string, underscoreType string, id string, customer string, plan string, kind string, validFrom int32, expiresAt int32, current bool, quotas map[string]int32, ) *OutputLicense`
+`func NewOutputLicense(underscoreId string, underscoreCreatedAt int64, underscoreCreatedBy string, underscoreType string, id string, customer string, plan string, kind string, validFrom int64, expiresAt int64, current bool, quotas map[string]int32, ) *OutputLicense`
 
 NewOutputLicense instantiates a new OutputLicense object
 This constructor will assign default values to properties that have it defined,
@@ -59,20 +59,20 @@ SetUnderscoreId sets UnderscoreId field to given value.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputLicense) GetUnderscoreCreatedAt() int32`
+`func (o *OutputLicense) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputLicense) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputLicense) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputLicense) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputLicense) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
@@ -199,40 +199,40 @@ SetKind sets Kind field to given value.
 
 ### GetValidFrom
 
-`func (o *OutputLicense) GetValidFrom() int32`
+`func (o *OutputLicense) GetValidFrom() int64`
 
 GetValidFrom returns the ValidFrom field if non-nil, zero value otherwise.
 
 ### GetValidFromOk
 
-`func (o *OutputLicense) GetValidFromOk() (*int32, bool)`
+`func (o *OutputLicense) GetValidFromOk() (*int64, bool)`
 
 GetValidFromOk returns a tuple with the ValidFrom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidFrom
 
-`func (o *OutputLicense) SetValidFrom(v int32)`
+`func (o *OutputLicense) SetValidFrom(v int64)`
 
 SetValidFrom sets ValidFrom field to given value.
 
 
 ### GetExpiresAt
 
-`func (o *OutputLicense) GetExpiresAt() int32`
+`func (o *OutputLicense) GetExpiresAt() int64`
 
 GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
 
 ### GetExpiresAtOk
 
-`func (o *OutputLicense) GetExpiresAtOk() (*int32, bool)`
+`func (o *OutputLicense) GetExpiresAtOk() (*int64, bool)`
 
 GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiresAt
 
-`func (o *OutputLicense) SetExpiresAt(v int32)`
+`func (o *OutputLicense) SetExpiresAt(v int64)`
 
 SetExpiresAt sets ExpiresAt field to given value.
 
@@ -304,5 +304,3 @@ SetQuotas sets Quotas field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

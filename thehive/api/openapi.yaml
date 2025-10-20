@@ -18493,7 +18493,7 @@ components:
         date:
           default: now()
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -18671,11 +18671,11 @@ components:
         startDate:
           default: now()
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -18833,11 +18833,11 @@ components:
           type: integer
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -19172,11 +19172,11 @@ components:
           type: string
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         includeInTimeline:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         attachments:
           description: "ignored with json content, use a multipart if you want to\
@@ -19224,7 +19224,7 @@ components:
           description: The `startDate` field for `InputCreateObservable` object is
             mapped on `_createdDate` field. This field should not be used.
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         attachment:
           $ref: "#/components/schemas/InputCreateObservable_attachment"
@@ -19261,7 +19261,7 @@ components:
           type: boolean
         sightedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         ignoreSimilarity:
           default: false
@@ -19412,18 +19412,18 @@ components:
           type: boolean
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         order:
           format: int32
           type: integer
         dueDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         assignee:
           maxLength: 128
@@ -19495,11 +19495,11 @@ components:
       properties:
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           maxLength: 128
@@ -20166,7 +20166,7 @@ components:
           type: string
         occurDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tactic:
           description: "Name of the tactic, useful if the technique belongs to several\
@@ -20733,11 +20733,11 @@ components:
           type: integer
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         lastSyncDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -21034,11 +21034,11 @@ components:
           type: integer
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         lastSyncDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -21140,11 +21140,11 @@ components:
           type: integer
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         tags:
           description: Set the case tags to this array
@@ -21450,11 +21450,11 @@ components:
           type: integer
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         tags:
           description: Set the case tags to this array
@@ -21554,11 +21554,11 @@ components:
       properties:
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         title:
           maxLength: 128
@@ -21658,7 +21658,7 @@ components:
           type: string
         includeInTimeline:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
     InputUpdateObservable:
       example:
@@ -21717,7 +21717,7 @@ components:
           type: boolean
         sightedAt:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         ignoreSimilarity:
           type: boolean
@@ -21801,7 +21801,7 @@ components:
           type: boolean
         sightedAt:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         ignoreSimilarity:
           type: boolean
@@ -21882,7 +21882,7 @@ components:
           type: string
         occurDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         patternId:
           maxLength: 128
@@ -21969,18 +21969,18 @@ components:
           type: boolean
         startDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         order:
           format: int32
           type: integer
         dueDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         assignee:
           format: nullable
@@ -22032,18 +22032,18 @@ components:
           type: boolean
         startDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         order:
           format: int32
           type: integer
         dueDate:
           example: 1640000000000
-          format: datetime_ms or null
+          format: int64 or null
           type: integer
         assignee:
           format: nullable
@@ -22622,11 +22622,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         type:
           type: string
@@ -22647,7 +22647,7 @@ components:
           type: string
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -22688,19 +22688,19 @@ components:
           type: object
         newDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         inProgressDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         closedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         importedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         timeToDetect:
           format: int64
@@ -22937,13 +22937,13 @@ components:
           type: string
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedBy:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _createdBy:
           type: string
@@ -23015,11 +23015,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -23118,11 +23118,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         action:
           type: string
@@ -23236,11 +23236,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         number:
           description: An incremental number to reference the case. This field can
@@ -23258,11 +23258,11 @@ components:
           type: string
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -23308,31 +23308,31 @@ components:
           type: object
         newDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         inProgressDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         closedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertNewDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertInProgressDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertImportedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         timeToDetect:
           format: int64
@@ -23396,11 +23396,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         contentType:
           type: string
@@ -23490,11 +23490,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           type: string
@@ -23591,13 +23591,13 @@ components:
           type: string
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedBy:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _createdBy:
           type: string
@@ -23708,11 +23708,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -23913,11 +23913,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         number:
           description: An incremental number to reference the case. This field can
@@ -23935,11 +23935,11 @@ components:
           type: string
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         tags:
           items:
@@ -23985,31 +23985,31 @@ components:
           type: object
         newDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         inProgressDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         closedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertNewDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertInProgressDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         alertImportedDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         timeToDetect:
           format: int64
@@ -24079,11 +24079,11 @@ components:
           type: string
         createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -24120,11 +24120,11 @@ components:
           type: string
         createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         updatedBy:
           type: string
@@ -24221,19 +24221,19 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           type: string
@@ -24275,11 +24275,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -24361,11 +24361,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           type: string
@@ -24775,13 +24775,13 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedBy:
           type: string
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -24795,13 +24795,13 @@ components:
           type: object
         lastSuccessDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         lastSuccessDetails:
           type: object
         lastErrorDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         lastErrorDetails:
           type: object
@@ -25146,7 +25146,7 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _createdBy:
           type: string
@@ -25162,11 +25162,11 @@ components:
           type: string
         validFrom:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         expiresAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         current:
           type: boolean
@@ -25283,11 +25283,11 @@ components:
           type: string
         validFrom:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         expiresAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         capabilities:
           items:
@@ -25365,17 +25365,17 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         message:
           type: string
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         attachments:
           items:
@@ -25385,7 +25385,7 @@ components:
           type: string
         includeInTimeline:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         extraData:
           type: object
@@ -25472,11 +25472,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         dataType:
           type: string
@@ -25484,7 +25484,7 @@ components:
           type: string
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         attachment:
           $ref: "#/components/schemas/OutputAttachment"
@@ -25508,7 +25508,7 @@ components:
           type: boolean
         sightedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         reports:
           type: object
@@ -25551,13 +25551,13 @@ components:
           type: string
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedBy:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _createdBy:
           type: string
@@ -25607,11 +25607,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           description: This field can be used to reference an organisation instead
@@ -25738,11 +25738,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           type: string
@@ -25814,11 +25814,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         patternId:
           type: string
@@ -25899,13 +25899,13 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _createdBy:
           type: string
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedBy:
           type: string
@@ -25913,7 +25913,7 @@ components:
           type: string
         occurDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         patternId:
           type: string
@@ -25958,11 +25958,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         name:
           type: string
@@ -26139,11 +26139,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         caseId:
           type: string
@@ -26342,11 +26342,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         namespace:
           type: string
@@ -26400,11 +26400,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         title:
           type: string
@@ -26418,11 +26418,11 @@ components:
           type: boolean
         startDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         assignee:
           type: string
@@ -26431,7 +26431,7 @@ components:
           type: integer
         dueDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         mandatory:
           type: boolean
@@ -26497,11 +26497,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         namespace:
           type: string
@@ -26556,7 +26556,7 @@ components:
       properties:
         date:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         kind:
           type: string
@@ -26569,7 +26569,7 @@ components:
           type: object
         endDate:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
       required:
       - date
@@ -26636,11 +26636,11 @@ components:
           type: string
         _createdAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         _updatedAt:
           example: 1640000000000
-          format: datetime_ms
+          format: int64
           type: integer
         login:
           type: string

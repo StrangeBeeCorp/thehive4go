@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,17 +21,17 @@ var _ MappedNullable = &InputCreateTask{}
 
 // InputCreateTask struct for InputCreateTask
 type InputCreateTask struct {
-	Title string `json:"title"`
-	Group *string `json:"group,omitempty"`
+	Title       string  `json:"title"`
+	Group       *string `json:"group,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Flag *bool `json:"flag,omitempty"`
-	StartDate *int32 `json:"startDate,omitempty"`
-	EndDate *int32 `json:"endDate,omitempty"`
-	Order *int32 `json:"order,omitempty"`
-	DueDate *int32 `json:"dueDate,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	Mandatory *bool `json:"mandatory,omitempty"`
+	Status      *string `json:"status,omitempty"`
+	Flag        *bool   `json:"flag,omitempty"`
+	StartDate   *int64  `json:"startDate,omitempty"`
+	EndDate     *int64  `json:"endDate,omitempty"`
+	Order       *int32  `json:"order,omitempty"`
+	DueDate     *int64  `json:"dueDate,omitempty"`
+	Assignee    *string `json:"assignee,omitempty"`
+	Mandatory   *bool   `json:"mandatory,omitempty"`
 }
 
 type _InputCreateTask InputCreateTask
@@ -207,9 +207,9 @@ func (o *InputCreateTask) SetFlag(v bool) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *InputCreateTask) GetStartDate() int32 {
+func (o *InputCreateTask) GetStartDate() int64 {
 	if o == nil || IsNil(o.StartDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartDate
@@ -217,7 +217,7 @@ func (o *InputCreateTask) GetStartDate() int32 {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateTask) GetStartDateOk() (*int32, bool) {
+func (o *InputCreateTask) GetStartDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
@@ -233,15 +233,15 @@ func (o *InputCreateTask) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given int32 and assigns it to the StartDate field.
-func (o *InputCreateTask) SetStartDate(v int32) {
+// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
+func (o *InputCreateTask) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *InputCreateTask) GetEndDate() int32 {
+func (o *InputCreateTask) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -249,7 +249,7 @@ func (o *InputCreateTask) GetEndDate() int32 {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateTask) GetEndDateOk() (*int32, bool) {
+func (o *InputCreateTask) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -265,8 +265,8 @@ func (o *InputCreateTask) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given int32 and assigns it to the EndDate field.
-func (o *InputCreateTask) SetEndDate(v int32) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *InputCreateTask) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 
@@ -303,9 +303,9 @@ func (o *InputCreateTask) SetOrder(v int32) {
 }
 
 // GetDueDate returns the DueDate field value if set, zero value otherwise.
-func (o *InputCreateTask) GetDueDate() int32 {
+func (o *InputCreateTask) GetDueDate() int64 {
 	if o == nil || IsNil(o.DueDate) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DueDate
@@ -313,7 +313,7 @@ func (o *InputCreateTask) GetDueDate() int32 {
 
 // GetDueDateOk returns a tuple with the DueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputCreateTask) GetDueDateOk() (*int32, bool) {
+func (o *InputCreateTask) GetDueDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.DueDate) {
 		return nil, false
 	}
@@ -329,8 +329,8 @@ func (o *InputCreateTask) HasDueDate() bool {
 	return false
 }
 
-// SetDueDate gets a reference to the given int32 and assigns it to the DueDate field.
-func (o *InputCreateTask) SetDueDate(v int32) {
+// SetDueDate gets a reference to the given int64 and assigns it to the DueDate field.
+func (o *InputCreateTask) SetDueDate(v int64) {
 	o.DueDate = &v
 }
 
@@ -399,7 +399,7 @@ func (o *InputCreateTask) SetMandatory(v bool) {
 }
 
 func (o InputCreateTask) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -455,10 +455,10 @@ func (o *InputCreateTask) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -514,5 +514,3 @@ func (v *NullableInputCreateTask) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

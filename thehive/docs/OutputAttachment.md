@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Name** | **string** |  | 
-**Hashes** | **[]string** |  | 
-**Size** | **int64** |  | 
-**ContentType** | **string** |  | 
-**Id** | **string** |  | 
-**Path** | **string** |  | 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Name** | **string** |  |
+**Hashes** | **[]string** |  |
+**Size** | **int64** |  |
+**ContentType** | **string** |  |
+**Id** | **string** |  |
+**Path** | **string** |  |
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputAttachment
 
-`func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}, ) *OutputAttachment`
+`func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}, ) *OutputAttachment`
 
 NewOutputAttachment instantiates a new OutputAttachment object
 This constructor will assign default values to properties that have it defined,
@@ -124,40 +124,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputAttachment) GetUnderscoreCreatedAt() int32`
+`func (o *OutputAttachment) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputAttachment) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputAttachment) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputAttachment) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputAttachment) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputAttachment) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputAttachment) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputAttachment) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputAttachment) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputAttachment) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputAttachment) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -309,5 +309,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

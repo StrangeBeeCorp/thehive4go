@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_PageAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService CreateAPage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.PageAPI.CreateAPage(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService CreateAPageInACase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 
@@ -50,7 +50,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService DeleteAPage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var pageId string
 
@@ -63,7 +63,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService DeleteAPageInACase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var pageId string
@@ -77,7 +77,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService UpdateAPage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var pageId string
 
@@ -90,7 +90,7 @@ func Test_thehive_PageAPIService(t *testing.T) {
 
 	t.Run("Test PageAPIService UpdateAPageInACase", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var caseId string
 		var pageId string

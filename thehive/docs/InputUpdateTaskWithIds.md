@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**Title** | Pointer to **string** |  | [optional] 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**StartDate** | Pointer to **int32** |  | [optional] 
-**EndDate** | Pointer to **int32** |  | [optional] 
-**Order** | Pointer to **int32** |  | [optional] 
-**DueDate** | Pointer to **int32** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Mandatory** | Pointer to **bool** |  | [optional] 
+**Ids** | **[]string** |  |
+**Title** | Pointer to **string** |  | [optional]
+**Group** | Pointer to **string** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
+**Flag** | Pointer to **bool** |  | [optional]
+**StartDate** | Pointer to **int32** |  | [optional]
+**EndDate** | Pointer to **int64** |  | [optional]
+**Order** | Pointer to **int32** |  | [optional]
+**DueDate** | Pointer to **int32** |  | [optional]
+**Assignee** | Pointer to **string** |  | [optional]
+**Mandatory** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
@@ -208,20 +208,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *InputUpdateTaskWithIds) GetEndDate() int32`
+`func (o *InputUpdateTaskWithIds) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *InputUpdateTaskWithIds) GetEndDateOk() (*int32, bool)`
+`func (o *InputUpdateTaskWithIds) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *InputUpdateTaskWithIds) SetEndDate(v int32)`
+`func (o *InputUpdateTaskWithIds) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -333,5 +333,3 @@ HasMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

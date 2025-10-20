@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,18 +21,18 @@ var _ MappedNullable = &OutputLog{}
 
 // OutputLog struct for OutputLog
 type OutputLog struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreType string `json:"_type"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
-	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
-	Message string `json:"message"`
-	Date int32 `json:"date"`
-	Attachments []OutputAttachment `json:"attachments,omitempty"`
-	Owner string `json:"owner"`
-	IncludeInTimeline *int32 `json:"includeInTimeline,omitempty"`
-	ExtraData map[string]interface{} `json:"extraData"`
+	UnderscoreId        string                 `json:"_id"`
+	UnderscoreType      string                 `json:"_type"`
+	UnderscoreCreatedBy string                 `json:"_createdBy"`
+	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
+	UnderscoreCreatedAt int64                  `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64                 `json:"_updatedAt,omitempty"`
+	Message             string                 `json:"message"`
+	Date                int64                  `json:"date"`
+	Attachments         []OutputAttachment     `json:"attachments,omitempty"`
+	Owner               string                 `json:"owner"`
+	IncludeInTimeline   *int64                 `json:"includeInTimeline,omitempty"`
+	ExtraData           map[string]interface{} `json:"extraData"`
 }
 
 type _OutputLog OutputLog
@@ -41,7 +41,7 @@ type _OutputLog OutputLog
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputLog(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, message string, date int32, owner string, extraData map[string]interface{}) *OutputLog {
+func NewOutputLog(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, message string, date int64, owner string, extraData map[string]interface{}) *OutputLog {
 	this := OutputLog{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -167,9 +167,9 @@ func (o *OutputLog) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputLog) GetUnderscoreCreatedAt() int32 {
+func (o *OutputLog) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -178,7 +178,7 @@ func (o *OutputLog) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputLog) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputLog) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -186,14 +186,14 @@ func (o *OutputLog) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputLog) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputLog) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputLog) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputLog) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -201,7 +201,7 @@ func (o *OutputLog) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputLog) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputLog) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -217,8 +217,8 @@ func (o *OutputLog) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputLog) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputLog) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -247,9 +247,9 @@ func (o *OutputLog) SetMessage(v string) {
 }
 
 // GetDate returns the Date field value
-func (o *OutputLog) GetDate() int32 {
+func (o *OutputLog) GetDate() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -258,7 +258,7 @@ func (o *OutputLog) GetDate() int32 {
 
 // GetDateOk returns a tuple with the Date field value
 // and a boolean to check if the value has been set.
-func (o *OutputLog) GetDateOk() (*int32, bool) {
+func (o *OutputLog) GetDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -266,7 +266,7 @@ func (o *OutputLog) GetDateOk() (*int32, bool) {
 }
 
 // SetDate sets field value
-func (o *OutputLog) SetDate(v int32) {
+func (o *OutputLog) SetDate(v int64) {
 	o.Date = v
 }
 
@@ -327,9 +327,9 @@ func (o *OutputLog) SetOwner(v string) {
 }
 
 // GetIncludeInTimeline returns the IncludeInTimeline field value if set, zero value otherwise.
-func (o *OutputLog) GetIncludeInTimeline() int32 {
+func (o *OutputLog) GetIncludeInTimeline() int64 {
 	if o == nil || IsNil(o.IncludeInTimeline) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.IncludeInTimeline
@@ -337,7 +337,7 @@ func (o *OutputLog) GetIncludeInTimeline() int32 {
 
 // GetIncludeInTimelineOk returns a tuple with the IncludeInTimeline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputLog) GetIncludeInTimelineOk() (*int32, bool) {
+func (o *OutputLog) GetIncludeInTimelineOk() (*int64, bool) {
 	if o == nil || IsNil(o.IncludeInTimeline) {
 		return nil, false
 	}
@@ -353,8 +353,8 @@ func (o *OutputLog) HasIncludeInTimeline() bool {
 	return false
 }
 
-// SetIncludeInTimeline gets a reference to the given int32 and assigns it to the IncludeInTimeline field.
-func (o *OutputLog) SetIncludeInTimeline(v int32) {
+// SetIncludeInTimeline gets a reference to the given int64 and assigns it to the IncludeInTimeline field.
+func (o *OutputLog) SetIncludeInTimeline(v int64) {
 	o.IncludeInTimeline = &v
 }
 
@@ -383,7 +383,7 @@ func (o *OutputLog) SetExtraData(v map[string]interface{}) {
 }
 
 func (o OutputLog) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -435,10 +435,10 @@ func (o *OutputLog) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -494,5 +494,3 @@ func (v *NullableOutputLog) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

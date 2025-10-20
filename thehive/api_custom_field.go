@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // CustomFieldAPIService CustomFieldAPI service
 type CustomFieldAPIService service
 
 type ApiCreateCustomFieldRequest struct {
-	ctx context.Context
-	ApiService *CustomFieldAPIService
+	ctx              context.Context
+	ApiService       *CustomFieldAPIService
 	inputCustomField *InputCustomField
 }
 
@@ -41,24 +40,25 @@ func (r ApiCreateCustomFieldRequest) Execute() (*OutputCustomField, *http.Respon
 /*
 CreateCustomField Method for CreateCustomField
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateCustomFieldRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCustomFieldRequest
 */
 func (a *CustomFieldAPIService) CreateCustomField(ctx context.Context) ApiCreateCustomFieldRequest {
 	return ApiCreateCustomFieldRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCustomField
+//
+//	@return OutputCustomField
 func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldRequest) (*OutputCustomField, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCustomField
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCustomField
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomFieldAPIService.CreateCustomField")
@@ -123,8 +123,8 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -134,8 +134,8 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -145,8 +145,8 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -167,8 +167,8 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -186,10 +186,10 @@ func (a *CustomFieldAPIService) CreateCustomFieldExecute(r ApiCreateCustomFieldR
 }
 
 type ApiDeleteCustomFieldRequest struct {
-	ctx context.Context
-	ApiService *CustomFieldAPIService
+	ctx           context.Context
+	ApiService    *CustomFieldAPIService
 	customFieldId string
-	force *bool
+	force         *bool
 }
 
 func (r ApiDeleteCustomFieldRequest) Force(force bool) ApiDeleteCustomFieldRequest {
@@ -204,14 +204,14 @@ func (r ApiDeleteCustomFieldRequest) Execute() (*http.Response, error) {
 /*
 DeleteCustomField Method for DeleteCustomField
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customFieldId
- @return ApiDeleteCustomFieldRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customFieldId
+	@return ApiDeleteCustomFieldRequest
 */
 func (a *CustomFieldAPIService) DeleteCustomField(ctx context.Context, customFieldId string) ApiDeleteCustomFieldRequest {
 	return ApiDeleteCustomFieldRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:    a,
+		ctx:           ctx,
 		customFieldId: customFieldId,
 	}
 }
@@ -219,9 +219,9 @@ func (a *CustomFieldAPIService) DeleteCustomField(ctx context.Context, customFie
 // Execute executes the request
 func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomFieldAPIService.DeleteCustomField")
@@ -288,8 +288,8 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -299,8 +299,8 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -310,8 +310,8 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -321,8 +321,8 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -332,8 +332,8 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -342,7 +342,7 @@ func (a *CustomFieldAPIService) DeleteCustomFieldExecute(r ApiDeleteCustomFieldR
 }
 
 type ApiListCustomFieldsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CustomFieldAPIService
 }
 
@@ -353,24 +353,25 @@ func (r ApiListCustomFieldsRequest) Execute() ([]OutputCustomField, *http.Respon
 /*
 ListCustomFields Method for ListCustomFields
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListCustomFieldsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListCustomFieldsRequest
 */
 func (a *CustomFieldAPIService) ListCustomFields(ctx context.Context) ApiListCustomFieldsRequest {
 	return ApiListCustomFieldsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputCustomField
+//
+//	@return []OutputCustomField
 func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsRequest) ([]OutputCustomField, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputCustomField
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputCustomField
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomFieldAPIService.ListCustomFields")
@@ -430,8 +431,8 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -441,8 +442,8 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -452,8 +453,8 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -463,8 +464,8 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -474,8 +475,8 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -493,9 +494,9 @@ func (a *CustomFieldAPIService) ListCustomFieldsExecute(r ApiListCustomFieldsReq
 }
 
 type ApiUpdateCustomFieldRequest struct {
-	ctx context.Context
-	ApiService *CustomFieldAPIService
-	customFieldId string
+	ctx                    context.Context
+	ApiService             *CustomFieldAPIService
+	customFieldId          string
 	inputUpdateCustomField *InputUpdateCustomField
 }
 
@@ -511,14 +512,14 @@ func (r ApiUpdateCustomFieldRequest) Execute() (*http.Response, error) {
 /*
 UpdateCustomField Method for UpdateCustomField
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customFieldId
- @return ApiUpdateCustomFieldRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param customFieldId
+	@return ApiUpdateCustomFieldRequest
 */
 func (a *CustomFieldAPIService) UpdateCustomField(ctx context.Context, customFieldId string) ApiUpdateCustomFieldRequest {
 	return ApiUpdateCustomFieldRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:    a,
+		ctx:           ctx,
 		customFieldId: customFieldId,
 	}
 }
@@ -526,9 +527,9 @@ func (a *CustomFieldAPIService) UpdateCustomField(ctx context.Context, customFie
 // Execute executes the request
 func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomFieldAPIService.UpdateCustomField")
@@ -594,8 +595,8 @@ func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -605,8 +606,8 @@ func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -616,8 +617,8 @@ func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -627,8 +628,8 @@ func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -638,8 +639,8 @@ func (a *CustomFieldAPIService) UpdateCustomFieldExecute(r ApiUpdateCustomFieldR
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

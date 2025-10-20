@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
 )
 
 func Test_thehive_PermissionAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_PermissionAPIService(t *testing.T) {
 
 	t.Run("Test PermissionAPIService ListPermissions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.PermissionAPI.ListPermissions(context.Background()).Execute()
 

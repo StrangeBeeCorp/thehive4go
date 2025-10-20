@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int32** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int32** |  | [optional] 
-**Message** | **string** |  | 
-**Date** | **int32** |  | 
-**Attachments** | Pointer to [**[]OutputAttachment**](OutputAttachment.md) |  | [optional] 
-**Owner** | **string** |  | 
-**IncludeInTimeline** | Pointer to **int32** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Message** | **string** |  |
+**Date** | **int64** |  |
+**Attachments** | Pointer to [**[]OutputAttachment**](OutputAttachment.md) |  | [optional]
+**Owner** | **string** |  |
+**IncludeInTimeline** | Pointer to **int64** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
 ### NewOutputLog
 
-`func NewOutputLog(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int32, message string, date int32, owner string, extraData map[string]interface{}, ) *OutputLog`
+`func NewOutputLog(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, message string, date int64, owner string, extraData map[string]interface{}, ) *OutputLog`
 
 NewOutputLog instantiates a new OutputLog object
 This constructor will assign default values to properties that have it defined,
@@ -123,40 +123,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputLog) GetUnderscoreCreatedAt() int32`
+`func (o *OutputLog) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputLog) GetUnderscoreCreatedAtOk() (*int32, bool)`
+`func (o *OutputLog) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputLog) SetUnderscoreCreatedAt(v int32)`
+`func (o *OutputLog) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputLog) GetUnderscoreUpdatedAt() int32`
+`func (o *OutputLog) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputLog) GetUnderscoreUpdatedAtOk() (*int32, bool)`
+`func (o *OutputLog) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputLog) SetUnderscoreUpdatedAt(v int32)`
+`func (o *OutputLog) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -188,20 +188,20 @@ SetMessage sets Message field to given value.
 
 ### GetDate
 
-`func (o *OutputLog) GetDate() int32`
+`func (o *OutputLog) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *OutputLog) GetDateOk() (*int32, bool)`
+`func (o *OutputLog) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *OutputLog) SetDate(v int32)`
+`func (o *OutputLog) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
@@ -253,20 +253,20 @@ SetOwner sets Owner field to given value.
 
 ### GetIncludeInTimeline
 
-`func (o *OutputLog) GetIncludeInTimeline() int32`
+`func (o *OutputLog) GetIncludeInTimeline() int64`
 
 GetIncludeInTimeline returns the IncludeInTimeline field if non-nil, zero value otherwise.
 
 ### GetIncludeInTimelineOk
 
-`func (o *OutputLog) GetIncludeInTimelineOk() (*int32, bool)`
+`func (o *OutputLog) GetIncludeInTimelineOk() (*int64, bool)`
 
 GetIncludeInTimelineOk returns a tuple with the IncludeInTimeline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIncludeInTimeline
 
-`func (o *OutputLog) SetIncludeInTimeline(v int32)`
+`func (o *OutputLog) SetIncludeInTimeline(v int64)`
 
 SetIncludeInTimeline sets IncludeInTimeline field to given value.
 
@@ -298,5 +298,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

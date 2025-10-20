@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,19 +21,19 @@ var _ MappedNullable = &SSLConfig{}
 
 // SSLConfig struct for SSLConfig
 type SSLConfig struct {
-	Default *bool `json:"default,omitempty"`
-	Protocol *string `json:"protocol,omitempty"`
-	CheckRevocation *bool `json:"checkRevocation,omitempty"`
-	RevocationLists []string `json:"revocationLists,omitempty"`
-	EnabledCipherSuites []string `json:"enabledCipherSuites,omitempty"`
-	EnabledProtocols []string `json:"enabledProtocols,omitempty"`
-	HostnameVerifierClass *string `json:"hostnameVerifierClass,omitempty"`
-	SecureRandom *string `json:"secureRandom,omitempty"`
-	TrustManager *Manager `json:"trustManager,omitempty"`
-	KeyManager *Manager `json:"keyManager,omitempty"`
-	SslParametersConfig *SSLParameters `json:"sslParametersConfig,omitempty"`
-	Debug *SSLDebugConfig `json:"debug,omitempty"`
-	Loose SSLLooseConfig `json:"loose"`
+	Default               *bool           `json:"default,omitempty"`
+	Protocol              *string         `json:"protocol,omitempty"`
+	CheckRevocation       *bool           `json:"checkRevocation,omitempty"`
+	RevocationLists       []string        `json:"revocationLists,omitempty"`
+	EnabledCipherSuites   []string        `json:"enabledCipherSuites,omitempty"`
+	EnabledProtocols      []string        `json:"enabledProtocols,omitempty"`
+	HostnameVerifierClass *string         `json:"hostnameVerifierClass,omitempty"`
+	SecureRandom          *string         `json:"secureRandom,omitempty"`
+	TrustManager          *Manager        `json:"trustManager,omitempty"`
+	KeyManager            *Manager        `json:"keyManager,omitempty"`
+	SslParametersConfig   *SSLParameters  `json:"sslParametersConfig,omitempty"`
+	Debug                 *SSLDebugConfig `json:"debug,omitempty"`
+	Loose                 SSLLooseConfig  `json:"loose"`
 }
 
 type _SSLConfig SSLConfig
@@ -477,7 +477,7 @@ func (o *SSLConfig) SetLoose(v SSLLooseConfig) {
 }
 
 func (o SSLConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -539,10 +539,10 @@ func (o *SSLConfig) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -598,5 +598,3 @@ func (v *NullableSSLConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

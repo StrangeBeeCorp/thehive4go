@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v1-5.5.10-1
 */
@@ -11,8 +11,8 @@ API version: v1-5.5.10-1
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,18 +21,18 @@ var _ MappedNullable = &OutputProcedure{}
 
 // OutputProcedure struct for OutputProcedure
 type OutputProcedure struct {
-	UnderscoreId string `json:"_id"`
-	UnderscoreCreatedAt int32 `json:"_createdAt"`
-	UnderscoreCreatedBy string `json:"_createdBy"`
-	UnderscoreUpdatedAt *int32 `json:"_updatedAt,omitempty"`
-	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	Description *string `json:"description,omitempty"`
-	OccurDate int32 `json:"occurDate"`
-	PatternId *string `json:"patternId,omitempty"`
-	PatternName *string `json:"patternName,omitempty"`
-	Tactic *string `json:"tactic,omitempty"`
-	TacticLabel *string `json:"tacticLabel,omitempty"`
-	ExtraData map[string]interface{} `json:"extraData"`
+	UnderscoreId        string                 `json:"_id"`
+	UnderscoreCreatedAt int64                  `json:"_createdAt"`
+	UnderscoreCreatedBy string                 `json:"_createdBy"`
+	UnderscoreUpdatedAt *int64                 `json:"_updatedAt,omitempty"`
+	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
+	Description         *string                `json:"description,omitempty"`
+	OccurDate           int64                  `json:"occurDate"`
+	PatternId           *string                `json:"patternId,omitempty"`
+	PatternName         *string                `json:"patternName,omitempty"`
+	Tactic              *string                `json:"tactic,omitempty"`
+	TacticLabel         *string                `json:"tacticLabel,omitempty"`
+	ExtraData           map[string]interface{} `json:"extraData"`
 }
 
 type _OutputProcedure OutputProcedure
@@ -41,7 +41,7 @@ type _OutputProcedure OutputProcedure
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputProcedure(underscoreId string, underscoreCreatedAt int32, underscoreCreatedBy string, occurDate int32, extraData map[string]interface{}) *OutputProcedure {
+func NewOutputProcedure(underscoreId string, underscoreCreatedAt int64, underscoreCreatedBy string, occurDate int64, extraData map[string]interface{}) *OutputProcedure {
 	this := OutputProcedure{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreCreatedAt = underscoreCreatedAt
@@ -84,9 +84,9 @@ func (o *OutputProcedure) SetUnderscoreId(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputProcedure) GetUnderscoreCreatedAt() int32 {
+func (o *OutputProcedure) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *OutputProcedure) GetUnderscoreCreatedAt() int32 {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputProcedure) GetUnderscoreCreatedAtOk() (*int32, bool) {
+func (o *OutputProcedure) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,7 +103,7 @@ func (o *OutputProcedure) GetUnderscoreCreatedAtOk() (*int32, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputProcedure) SetUnderscoreCreatedAt(v int32) {
+func (o *OutputProcedure) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
@@ -132,9 +132,9 @@ func (o *OutputProcedure) SetUnderscoreCreatedBy(v string) {
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputProcedure) GetUnderscoreUpdatedAt() int32 {
+func (o *OutputProcedure) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -142,7 +142,7 @@ func (o *OutputProcedure) GetUnderscoreUpdatedAt() int32 {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputProcedure) GetUnderscoreUpdatedAtOk() (*int32, bool) {
+func (o *OutputProcedure) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -158,8 +158,8 @@ func (o *OutputProcedure) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given int32 and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputProcedure) SetUnderscoreUpdatedAt(v int32) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputProcedure) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -228,9 +228,9 @@ func (o *OutputProcedure) SetDescription(v string) {
 }
 
 // GetOccurDate returns the OccurDate field value
-func (o *OutputProcedure) GetOccurDate() int32 {
+func (o *OutputProcedure) GetOccurDate() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -239,7 +239,7 @@ func (o *OutputProcedure) GetOccurDate() int32 {
 
 // GetOccurDateOk returns a tuple with the OccurDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputProcedure) GetOccurDateOk() (*int32, bool) {
+func (o *OutputProcedure) GetOccurDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -247,7 +247,7 @@ func (o *OutputProcedure) GetOccurDateOk() (*int32, bool) {
 }
 
 // SetOccurDate sets field value
-func (o *OutputProcedure) SetOccurDate(v int32) {
+func (o *OutputProcedure) SetOccurDate(v int64) {
 	o.OccurDate = v
 }
 
@@ -404,7 +404,7 @@ func (o *OutputProcedure) SetExtraData(v map[string]interface{}) {
 }
 
 func (o OutputProcedure) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -459,10 +459,10 @@ func (o *OutputProcedure) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -518,5 +518,3 @@ func (v *NullableOutputProcedure) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

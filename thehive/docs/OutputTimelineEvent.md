@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **int32** |  | 
-**Kind** | **string** |  | 
-**Entity** | **string** |  | 
-**EntityId** | **string** |  | 
-**Details** | **map[string]interface{}** |  | 
-**EndDate** | Pointer to **int32** |  | [optional] 
+**Date** | **int64** |  |
+**Kind** | **string** |  |
+**Entity** | **string** |  |
+**EntityId** | **string** |  |
+**Details** | **map[string]interface{}** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
 
 ## Methods
 
 ### NewOutputTimelineEvent
 
-`func NewOutputTimelineEvent(date int32, kind string, entity string, entityId string, details map[string]interface{}, ) *OutputTimelineEvent`
+`func NewOutputTimelineEvent(date int64, kind string, entity string, entityId string, details map[string]interface{}, ) *OutputTimelineEvent`
 
 NewOutputTimelineEvent instantiates a new OutputTimelineEvent object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDate
 
-`func (o *OutputTimelineEvent) GetDate() int32`
+`func (o *OutputTimelineEvent) GetDate() int64`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *OutputTimelineEvent) GetDateOk() (*int32, bool)`
+`func (o *OutputTimelineEvent) GetDateOk() (*int64, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *OutputTimelineEvent) SetDate(v int32)`
+`func (o *OutputTimelineEvent) SetDate(v int64)`
 
 SetDate sets Date field to given value.
 
@@ -132,20 +132,20 @@ SetDetails sets Details field to given value.
 
 ### GetEndDate
 
-`func (o *OutputTimelineEvent) GetEndDate() int32`
+`func (o *OutputTimelineEvent) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputTimelineEvent) GetEndDateOk() (*int32, bool)`
+`func (o *OutputTimelineEvent) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputTimelineEvent) SetEndDate(v int32)`
+`func (o *OutputTimelineEvent) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -157,5 +157,3 @@ HasEndDate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

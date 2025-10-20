@@ -1,5 +1,5 @@
 GO := go
-GO_IMAGE := golang:1.23.2-alpine
+GO_IMAGE := golang:1.24.7-alpine
 OPENAPI_GENERATOR_IMAGE := openapitools/openapi-generator-cli:v7.14.0
 BGreen="\033[1;32m"       # Green
 Color_Off="\033[0m"       # Text Reset
@@ -61,18 +61,6 @@ generate: ## Generate the client code from OpenAPI spec
 	@docker build -f Dockerfile.generator -t thehive4go-generator .
 	@docker run --rm -v $(CURDIR):/workspace -u $(shell id -u):$(shell id -g) thehive4go-generator
 
-.PHONY: check-generate
-check-generate: ## Check if generated code is up-to-date
-	@echo $(BGreen)----------------------------------$(Color_Off)
-	@echo $(BGreen)-- Checking Generated Code      --$(Color_Off)
-	@echo $(BGreen)----------------------------------$(Color_Off)
-	@if ! git diff --exit-code thehive/; then \
-		echo "❌ Generated code has uncommitted changes"; \
-		echo "Please run 'make generate' and commit the changes"; \
-		exit 1; \
-	fi
-	@echo "✅ Generated code is up-to-date"
-
 .PHONY: clean
 clean: ## Remove build artifacts and Docker images
 	@echo $(BGreen)-------------------$(Color_Off)
@@ -80,3 +68,12 @@ clean: ## Remove build artifacts and Docker images
 	@echo $(BGreen)-------------------$(Color_Off)
 	@rm -rf tmp/
 	@docker rmi thehive4go-generator 2>/dev/null || true
+
+.PHONY: integration-test
+integration-test: ## Run full integration tests with TheHive stack
+	@echo $(BGreen)---------------------------$(Color_Off)
+	@echo $(BGreen)-- Running Integration  --$(Color_Off)
+	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
+	@echo $(BGreen)---------------------------$(Color_Off)
+	cd integration && docker-compose up --abort-on-container-exit integration-tests
+	cd integration && docker-compose down
