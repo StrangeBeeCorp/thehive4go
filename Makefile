@@ -30,7 +30,7 @@ test: ## Run tests with coverage
 	@echo $(BGreen)-----------------------$(Color_Off)
 	@echo $(BGreen)-- Running UnitTests --$(Color_Off)
 	@echo $(BGreen)-----------------------$(Color_Off)
-	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./...
+	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./thehive/...
 
 .PHONY: vulncheck
 vulncheck: ## Check for vulnerabilities
