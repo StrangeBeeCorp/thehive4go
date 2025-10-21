@@ -63,7 +63,11 @@ func CreateOrgClient(t *testing.T, cfg *Config) *thehive.APIClient {
 
 	clientCfg.AddDefaultHeader("X-Organisation", cfg.OrgName)
 
-	return thehive.NewAPIClient(clientCfg)
+	orgClient := thehive.NewAPIClient(clientCfg)
+	EnsureTestOrganization(t, orgClient, CreateAuthContext(t, cfg), cfg.OrgName)
+	ctx := CreateAuthContext(t, cfg)
+	SetupUserPermissions(t, orgClient, ctx, cfg.OrgName)
+	return orgClient
 }
 
 func CreateAuthContext(t *testing.T, cfg *Config) context.Context {

@@ -15,7 +15,6 @@ func TestAlertOperations(t *testing.T) {
 
 	client := testutils.CreateOrgClient(t, cfg)
 	ctx := testutils.CreateAuthContext(t, cfg)
-	testutils.SetupUserPermissions(t, client, ctx, cfg.OrgName)
 
 	alertTitle := fmt.Sprintf("Integration Test Alert - %d", time.Now().Unix())
 	sourceRef := fmt.Sprintf("test-%d", time.Now().Unix())
