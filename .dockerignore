@@ -1,0 +1,8 @@
+# Exclude everything by default
+*
+
+# Include only what we need for code generation
+!scripts/
+!.openapi-generator-ignore
+!go.mod
+!go.sum
