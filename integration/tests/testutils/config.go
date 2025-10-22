@@ -53,6 +53,15 @@ func CreateAdminClient(t *testing.T, cfg *Config) *thehive.APIClient {
 func CreateOrgClient(t *testing.T, cfg *Config) *thehive.APIClient {
 	t.Helper()
 
+	// First, create an admin client to set up the organization and permissions
+	adminClient := CreateAdminClient(t, cfg)
+	ctx := CreateAuthContext(t, cfg)
+
+	// Ensure the organization exists and permissions are set using admin client
+	EnsureTestOrganization(t, adminClient, ctx, cfg.OrgName)
+	SetupUserPermissions(t, adminClient, ctx, cfg.OrgName)
+
+	// Now create the organization-specific client
 	clientCfg := thehive.NewConfiguration()
 	clientCfg.Host = strings.TrimPrefix(cfg.URL, "http://")
 	clientCfg.Host = strings.TrimPrefix(clientCfg.Host, "https://")
@@ -63,11 +72,7 @@ func CreateOrgClient(t *testing.T, cfg *Config) *thehive.APIClient {
 
 	clientCfg.AddDefaultHeader("X-Organisation", cfg.OrgName)
 
-	orgClient := thehive.NewAPIClient(clientCfg)
-	EnsureTestOrganization(t, orgClient, CreateAuthContext(t, cfg), cfg.OrgName)
-	ctx := CreateAuthContext(t, cfg)
-	SetupUserPermissions(t, orgClient, ctx, cfg.OrgName)
-	return orgClient
+	return thehive.NewAPIClient(clientCfg)
 }
 
 func CreateAuthContext(t *testing.T, cfg *Config) context.Context {
