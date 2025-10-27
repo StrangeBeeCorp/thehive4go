@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAttachmentsToTaskLog**](TaskLogAPI.md#AddAttachmentsToTaskLog) | **Post** /api/v1/log/{logId}/attachments | 
-[**CreateTaskLog**](TaskLogAPI.md#CreateTaskLog) | **Post** /api/v1/task/{taskId}/log | 
-[**DeleteAttachmentFromTaskLog**](TaskLogAPI.md#DeleteAttachmentFromTaskLog) | **Delete** /api/v1/log/{logId}/attachments/{attachmentId} | 
-[**DeleteTaskLog**](TaskLogAPI.md#DeleteTaskLog) | **Delete** /api/v1/log/{logId} | 
-[**DownloadAttachmentFromLog**](TaskLogAPI.md#DownloadAttachmentFromLog) | **Get** /api/v1/log/{logId}/attachment/{attachmentId}/download | 
-[**GetAttachmentFromLog**](TaskLogAPI.md#GetAttachmentFromLog) | **Get** /api/v1/log/{caseId}/attachment/{attachmentId} | 
-[**GetAttachmentFromObservable**](TaskLogAPI.md#GetAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId} | 
-[**UpdateTaskLog**](TaskLogAPI.md#UpdateTaskLog) | **Patch** /api/v1/log/{logId} | 
+[**AddAttachmentsToTaskLog**](TaskLogAPI.md#AddAttachmentsToTaskLog) | **Post** /api/v1/log/{logId}/attachments |
+[**CreateTaskLog**](TaskLogAPI.md#CreateTaskLog) | **Post** /api/v1/task/{taskId}/log |
+[**DeleteAttachmentFromTaskLog**](TaskLogAPI.md#DeleteAttachmentFromTaskLog) | **Delete** /api/v1/log/{logId}/attachments/{attachmentId} |
+[**DeleteTaskLog**](TaskLogAPI.md#DeleteTaskLog) | **Delete** /api/v1/log/{logId} |
+[**DownloadAttachmentFromLog**](TaskLogAPI.md#DownloadAttachmentFromLog) | **Get** /api/v1/log/{logId}/attachment/{attachmentId}/download |
+[**GetAttachmentFromLog**](TaskLogAPI.md#GetAttachmentFromLog) | **Get** /api/v1/log/{caseId}/attachment/{attachmentId} |
+[**GetAttachmentFromObservable**](TaskLogAPI.md#GetAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId} |
+[**UpdateTaskLog**](TaskLogAPI.md#UpdateTaskLog) | **Patch** /api/v1/log/{logId} |
 
 
 
@@ -30,11 +30,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	logId := "~354" // string | 
+	logId := "~354" // string |
 	attachments := []*os.File{"TODO"} // []*os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** |  |
 
 ### Other Parameters
 
@@ -63,7 +63,7 @@ Other parameters are passed through a pointer to a apiAddAttachmentsToTaskLogReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
+ **attachments** | **[]*os.File** |  |
 
 ### Return type
 
@@ -98,12 +98,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taskId := "~354" // string | 
-	inputCreateLog := *openapiclient.NewInputCreateLog("Message_example") // InputCreateLog | 
+	taskId := "~354" // string |
+	inputCreateLog := *openapiclient.NewInputCreateLog("Message_example") // InputCreateLog |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** |  |
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to a apiCreateTaskLogRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateLog** | [**InputCreateLog**](InputCreateLog.md) |  | 
+ **inputCreateLog** | [**InputCreateLog**](InputCreateLog.md) |  |
 
 ### Return type
 
@@ -168,12 +168,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	logId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	logId := "~354" // string |
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,8 +191,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**logId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -237,11 +237,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	logId := "~354" // string | 
+	logId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +259,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** |  |
 
 ### Other Parameters
 
@@ -303,12 +303,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	logId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	logId := "~354" // string |
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -328,8 +328,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**logId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -374,12 +374,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	caseId := "~354" // string |
+	attachmentId := "~354" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -400,8 +400,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -412,7 +412,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -447,12 +447,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	observableId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	observableId := "~354" // string |
+	attachmentId := "~354" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -473,8 +473,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**observableId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -485,7 +485,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -520,12 +520,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	logId := "~354" // string | 
-	inputUpdateLog := *openapiclient.NewInputUpdateLog() // InputUpdateLog | 
+	logId := "~354" // string |
+	inputUpdateLog := *openapiclient.NewInputUpdateLog() // InputUpdateLog |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -543,7 +543,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** |  |
 
 ### Other Parameters
 
@@ -553,7 +553,7 @@ Other parameters are passed through a pointer to a apiUpdateTaskLogRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateLog** | [**InputUpdateLog**](InputUpdateLog.md) |  | 
+ **inputUpdateLog** | [**InputUpdateLog**](InputUpdateLog.md) |  |
 
 ### Return type
 
@@ -571,4 +571,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/StrangeBee/TheHive4Go/thehive"
+	"github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 // Config holds configuration for integration tests

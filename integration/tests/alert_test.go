@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/StrangeBee/TheHive4Go/integration/tests/testutils"
-	"github.com/StrangeBee/TheHive4Go/thehive"
+	"github.com/StrangeBeeCorp/thehive4go/integration/tests/testutils"
+	"github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/require"
 )
 

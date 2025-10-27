@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -99,7 +99,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -169,7 +169,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -239,7 +239,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -309,7 +309,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -375,7 +375,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -437,7 +437,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {

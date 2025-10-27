@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExportAPIUnstableRoute**](QueryAndExportAPI.md#ExportAPIUnstableRoute) | **Get** /api/v1/export | 
-[**GetExportFieldsUnstableRoute**](QueryAndExportAPI.md#GetExportFieldsUnstableRoute) | **Get** /api/v1/export/_fields | 
-[**QueryAPI**](QueryAndExportAPI.md#QueryAPI) | **Post** /api/v1/query | 
+[**ExportAPIUnstableRoute**](QueryAndExportAPI.md#ExportAPIUnstableRoute) | **Get** /api/v1/export |
+[**GetExportFieldsUnstableRoute**](QueryAndExportAPI.md#GetExportFieldsUnstableRoute) | **Get** /api/v1/export/_fields |
+[**QueryAPI**](QueryAndExportAPI.md#QueryAPI) | **Post** /api/v1/query |
 
 
 
@@ -27,12 +27,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	query := "query_example" // string | 
-	options := "options_example" // string | 
+	query := "query_example" // string |
+	options := "options_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,8 +57,8 @@ Other parameters are passed through a pointer to a apiExportAPIUnstableRouteRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **string** |  | 
- **options** | **string** |  | 
+ **query** | **string** |  |
+ **options** | **string** |  |
 
 ### Return type
 
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -156,11 +156,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputQuery := *openapiclient.NewInputQuery() // InputQuery | 
+	inputQuery := *openapiclient.NewInputQuery() // InputQuery |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -185,7 +185,7 @@ Other parameters are passed through a pointer to a apiQueryAPIRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputQuery** | [**InputQuery**](InputQuery.md) |  | 
+ **inputQuery** | [**InputQuery**](InputQuery.md) |  |
 
 ### Return type
 
@@ -203,4 +203,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

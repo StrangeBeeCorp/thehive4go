@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPlatformPublicStatus**](StatusAPI.md#GetPlatformPublicStatus) | **Get** /api/v1/status/public | 
-[**GetPlatformStatus**](StatusAPI.md#GetPlatformStatus) | **Get** /api/v1/status | 
+[**GetPlatformPublicStatus**](StatusAPI.md#GetPlatformPublicStatus) | **Get** /api/v1/status/public |
+[**GetPlatformStatus**](StatusAPI.md#GetPlatformStatus) | **Get** /api/v1/status |
 
 
 
@@ -24,7 +24,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -83,7 +83,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -130,4 +130,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

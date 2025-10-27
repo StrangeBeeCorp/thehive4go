@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAlertStatus**](AlertStatusAPI.md#CreateAlertStatus) | **Post** /api/v1/alertStatus | 
-[**DeleteAlertStatus**](AlertStatusAPI.md#DeleteAlertStatus) | **Delete** /api/v1/alertStatus/{id} | 
-[**UpdateAlertStatus**](AlertStatusAPI.md#UpdateAlertStatus) | **Patch** /api/v1/alertStatus/{id} | 
+[**CreateAlertStatus**](AlertStatusAPI.md#CreateAlertStatus) | **Post** /api/v1/alertStatus |
+[**DeleteAlertStatus**](AlertStatusAPI.md#DeleteAlertStatus) | **Delete** /api/v1/alertStatus/{id} |
+[**UpdateAlertStatus**](AlertStatusAPI.md#UpdateAlertStatus) | **Patch** /api/v1/alertStatus/{id} |
 
 
 
@@ -25,11 +25,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputCreateAlertStatus := *openapiclient.NewInputCreateAlertStatus("Value_example", openapiclient.InputAlertStage("New")) // InputCreateAlertStatus | 
+	inputCreateAlertStatus := *openapiclient.NewInputCreateAlertStatus("Value_example", openapiclient.InputAlertStage("New")) // InputCreateAlertStatus |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiCreateAlertStatusRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateAlertStatus** | [**InputCreateAlertStatus**](InputCreateAlertStatus.md) |  | 
+ **inputCreateAlertStatus** | [**InputCreateAlertStatus**](InputCreateAlertStatus.md) |  |
 
 ### Return type
 
@@ -89,11 +89,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	id := "~354" // string | 
+	id := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +111,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
@@ -155,12 +155,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	id := "~354" // string | 
-	inputUpdateAlertStatus := *openapiclient.NewInputUpdateAlertStatus() // InputUpdateAlertStatus | 
+	id := "~354" // string |
+	inputUpdateAlertStatus := *openapiclient.NewInputUpdateAlertStatus() // InputUpdateAlertStatus |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -178,7 +178,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
@@ -188,7 +188,7 @@ Other parameters are passed through a pointer to a apiUpdateAlertStatusRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateAlertStatus** | [**InputUpdateAlertStatus**](InputUpdateAlertStatus.md) |  | 
+ **inputUpdateAlertStatus** | [**InputUpdateAlertStatus**](InputUpdateAlertStatus.md) |  |
 
 ### Return type
 
@@ -206,4 +206,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

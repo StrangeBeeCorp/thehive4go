@@ -9,8 +9,8 @@
 		<!-- Badges are commented out while repository is private; they will work once public -->
 		<!--
 		<p>
-			<a href="https://github.com/StrangeBee/TheHive4Go/releases"><img src="https://img.shields.io/github/v/tag/StrangeBee/TheHive4Go?sort=semver" alt="Latest Tag"></a>
-			<a href="https://pkg.go.dev/github.com/StrangeBee/TheHive4Go"><img src="https://pkg.go.dev/badge/github.com/StrangeBee/TheHive4Go.svg" alt="Go Reference"></a>
+			<a href="https://github.com/StrangeBeeCorp/thehive4go/releases"><img src="https://img.shields.io/github/v/tag/StrangeBeeCorp/thehive4go?sort=semver" alt="Latest Tag"></a>
+			<a href="https://pkg.go.dev/github.com/StrangeBeeCorp/thehive4go"><img src="https://pkg.go.dev/badge/github.com/StrangeBeeCorp/thehive4go.svg" alt="Go Reference"></a>
 		</p>
 		-->
 </div>
@@ -41,7 +41,7 @@ Unlike manually maintained clients, TheHive4Go is automatically generated from T
 Add the module to your project:
 
 ```bash
-go get github.com/StrangeBee/TheHive4Go
+go get github.com/StrangeBeeCorp/thehive4go
 ```
 
 ## Quick Start
@@ -55,7 +55,7 @@ import (
     "context"
     "fmt"
 
-    "github.com/StrangeBee/TheHive4Go/thehive"
+    "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {

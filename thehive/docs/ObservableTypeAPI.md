@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateObservableType**](ObservableTypeAPI.md#CreateObservableType) | **Post** /api/v1/observable/type | 
-[**DeleteObservableType**](ObservableTypeAPI.md#DeleteObservableType) | **Delete** /api/v1/observable/type/{typeId} | 
-[**GetObservableType**](ObservableTypeAPI.md#GetObservableType) | **Get** /api/v1/observable/type/{typeId} | 
+[**CreateObservableType**](ObservableTypeAPI.md#CreateObservableType) | **Post** /api/v1/observable/type |
+[**DeleteObservableType**](ObservableTypeAPI.md#DeleteObservableType) | **Delete** /api/v1/observable/type/{typeId} |
+[**GetObservableType**](ObservableTypeAPI.md#GetObservableType) | **Get** /api/v1/observable/type/{typeId} |
 
 
 
@@ -25,11 +25,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputObservableType := *openapiclient.NewInputObservableType("Name_example") // InputObservableType | 
+	inputObservableType := *openapiclient.NewInputObservableType("Name_example") // InputObservableType |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiCreateObservableTypeReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputObservableType** | [**InputObservableType**](InputObservableType.md) |  | 
+ **inputObservableType** | [**InputObservableType**](InputObservableType.md) |  |
 
 ### Return type
 
@@ -89,11 +89,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	typeId := "~354" // string | 
+	typeId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +111,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**typeId** | **string** |  | 
+**typeId** | **string** |  |
 
 ### Other Parameters
 
@@ -155,11 +155,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	typeId := "~354" // string | 
+	typeId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -179,7 +179,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**typeId** | **string** |  | 
+**typeId** | **string** |  |
 
 ### Other Parameters
 
@@ -206,4 +206,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

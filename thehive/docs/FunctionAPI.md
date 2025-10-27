@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFunction**](FunctionAPI.md#CreateFunction) | **Post** /api/v1/function | 
-[**DeleteFunction**](FunctionAPI.md#DeleteFunction) | **Delete** /api/v1/function/{functionId} | 
-[**GetDocumentationForTheContextObject**](FunctionAPI.md#GetDocumentationForTheContextObject) | **Get** /api/v1/function/_context/documentation | 
-[**GetFunction**](FunctionAPI.md#GetFunction) | **Get** /api/v1/function/{functionId} | 
-[**InvokeFunction**](FunctionAPI.md#InvokeFunction) | **Post** /api/v1/function/{function} | 
-[**InvokeFunctionOnAnObject**](FunctionAPI.md#InvokeFunctionOnAnObject) | **Post** /api/v1/function/{function}/{objectType}/{objectIdOrName} | 
-[**TestFunction**](FunctionAPI.md#TestFunction) | **Post** /api/v1/function/_test | 
-[**UpdateFunction**](FunctionAPI.md#UpdateFunction) | **Patch** /api/v1/function/{functionId} | 
+[**CreateFunction**](FunctionAPI.md#CreateFunction) | **Post** /api/v1/function |
+[**DeleteFunction**](FunctionAPI.md#DeleteFunction) | **Delete** /api/v1/function/{functionId} |
+[**GetDocumentationForTheContextObject**](FunctionAPI.md#GetDocumentationForTheContextObject) | **Get** /api/v1/function/_context/documentation |
+[**GetFunction**](FunctionAPI.md#GetFunction) | **Get** /api/v1/function/{functionId} |
+[**InvokeFunction**](FunctionAPI.md#InvokeFunction) | **Post** /api/v1/function/{function} |
+[**InvokeFunctionOnAnObject**](FunctionAPI.md#InvokeFunctionOnAnObject) | **Post** /api/v1/function/{function}/{objectType}/{objectIdOrName} |
+[**TestFunction**](FunctionAPI.md#TestFunction) | **Post** /api/v1/function/_test |
+[**UpdateFunction**](FunctionAPI.md#UpdateFunction) | **Patch** /api/v1/function/{functionId} |
 
 
 
@@ -32,11 +32,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputFunction := *openapiclient.NewInputFunction("Name_example", "Definition_example") // InputFunction | 
+	inputFunction := *openapiclient.NewInputFunction("Name_example", "Definition_example") // InputFunction |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputFunction** | [**InputFunction**](InputFunction.md) |  | 
+ **inputFunction** | [**InputFunction**](InputFunction.md) |  |
 
 ### Return type
 
@@ -96,11 +96,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	functionId := "~354" // string | 
+	functionId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** |  |
 
 ### Other Parameters
 
@@ -162,7 +162,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -221,11 +221,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	functionId := "~354" // string | 
+	functionId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -245,7 +245,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** |  |
 
 ### Other Parameters
 
@@ -289,11 +289,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	function := "~354" // string | 
+	function := "~354" // string |
 	dryRun := true // bool |  (optional) (default to false)
 	body := interface{}(987) // interface{} |  (optional)
 
@@ -315,7 +315,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**function** | **string** |  | 
+**function** | **string** |  |
 
 ### Other Parameters
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **dryRun** | **bool** |  | [default to false]
- **body** | **interface{}** |  | 
+ **body** | **interface{}** |  |
 
 ### Return type
 
@@ -363,13 +363,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	function := "~354" // string | 
-	objectType := "objectType_example" // string | 
-	objectIdOrName := "~354" // string | 
+	function := "~354" // string |
+	objectType := "objectType_example" // string |
+	objectIdOrName := "~354" // string |
 	dryRun := true // bool |  (optional) (default to false)
 	sync := true // bool |  (optional) (default to false)
 
@@ -391,9 +391,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**function** | **string** |  | 
-**objectType** | **string** |  | 
-**objectIdOrName** | **string** |  | 
+**function** | **string** |  |
+**objectType** | **string** |  |
+**objectIdOrName** | **string** |  |
 
 ### Other Parameters
 
@@ -443,11 +443,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputTestFunction := *openapiclient.NewInputTestFunction("Definition_example") // InputTestFunction | 
+	inputTestFunction := *openapiclient.NewInputTestFunction("Definition_example") // InputTestFunction |
 	dryRun := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
@@ -473,7 +473,7 @@ Other parameters are passed through a pointer to a apiTestFunctionRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTestFunction** | [**InputTestFunction**](InputTestFunction.md) |  | 
+ **inputTestFunction** | [**InputTestFunction**](InputTestFunction.md) |  |
  **dryRun** | **bool** |  | [default to false]
 
 ### Return type
@@ -509,12 +509,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	functionId := "~354" // string | 
-	inputUpdateFunction := *openapiclient.NewInputUpdateFunction() // InputUpdateFunction | 
+	functionId := "~354" // string |
+	inputUpdateFunction := *openapiclient.NewInputUpdateFunction() // InputUpdateFunction |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -532,7 +532,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** |  |
 
 ### Other Parameters
 
@@ -542,7 +542,7 @@ Other parameters are passed through a pointer to a apiUpdateFunctionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateFunction** | [**InputUpdateFunction**](InputUpdateFunction.md) |  | 
+ **inputUpdateFunction** | [**InputUpdateFunction**](InputUpdateFunction.md) |  |
 
 ### Return type
 
@@ -560,4 +560,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
