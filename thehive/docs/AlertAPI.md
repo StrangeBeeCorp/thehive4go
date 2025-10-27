@@ -4,23 +4,23 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAlertAttachment**](AlertAPI.md#AddAlertAttachment) | **Post** /api/v1/alert/{alertId}/attachments | 
-[**BulkUpdateAlert**](AlertAPI.md#BulkUpdateAlert) | **Patch** /api/v1/alert/_bulk | 
-[**CreateAlert**](AlertAPI.md#CreateAlert) | **Post** /api/v1/alert | 
-[**CreateCaseFromAlert**](AlertAPI.md#CreateCaseFromAlert) | **Post** /api/v1/alert/{alertId}/case | 
-[**DeleteAlert**](AlertAPI.md#DeleteAlert) | **Delete** /api/v1/alert/{alertId} | 
-[**DeleteAlertAttachment**](AlertAPI.md#DeleteAlertAttachment) | **Delete** /api/v1/alert/{alertId}/attachment/{attachmentId} | 
-[**DeleteAlertInBulk**](AlertAPI.md#DeleteAlertInBulk) | **Post** /api/v1/alert/delete/_bulk | 
-[**DownloadAlertAttachment**](AlertAPI.md#DownloadAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId}/download | 
-[**FollowAlert**](AlertAPI.md#FollowAlert) | **Post** /api/v1/alert/{alertId}/follow | 
-[**GetAlert**](AlertAPI.md#GetAlert) | **Get** /api/v1/alert/{alertId} | 
-[**GetAlertAttachment**](AlertAPI.md#GetAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId} | 
-[**GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase**](AlertAPI.md#GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase) | **Get** /api/v1/alert/{alertId}/similar/{alertOrCaseId}/observables | 
-[**ImportAlertObservablesAndProceduresInCase**](AlertAPI.md#ImportAlertObservablesAndProceduresInCase) | **Post** /api/v1/alert/{alertId}/import/{caseId} | 
-[**MergeAlertWithCase**](AlertAPI.md#MergeAlertWithCase) | **Post** /api/v1/alert/{alertId}/merge/{caseId} | 
-[**MergeBulkAlertsWithCase**](AlertAPI.md#MergeBulkAlertsWithCase) | **Post** /api/v1/alert/merge/_bulk | 
-[**UnfollowAlert**](AlertAPI.md#UnfollowAlert) | **Post** /api/v1/alert/{alertId}/unfollow | 
-[**UpdateAlert**](AlertAPI.md#UpdateAlert) | **Patch** /api/v1/alert/{alertId} | 
+[**AddAlertAttachment**](AlertAPI.md#AddAlertAttachment) | **Post** /api/v1/alert/{alertId}/attachments |
+[**BulkUpdateAlert**](AlertAPI.md#BulkUpdateAlert) | **Patch** /api/v1/alert/_bulk |
+[**CreateAlert**](AlertAPI.md#CreateAlert) | **Post** /api/v1/alert |
+[**CreateCaseFromAlert**](AlertAPI.md#CreateCaseFromAlert) | **Post** /api/v1/alert/{alertId}/case |
+[**DeleteAlert**](AlertAPI.md#DeleteAlert) | **Delete** /api/v1/alert/{alertId} |
+[**DeleteAlertAttachment**](AlertAPI.md#DeleteAlertAttachment) | **Delete** /api/v1/alert/{alertId}/attachment/{attachmentId} |
+[**DeleteAlertInBulk**](AlertAPI.md#DeleteAlertInBulk) | **Post** /api/v1/alert/delete/_bulk |
+[**DownloadAlertAttachment**](AlertAPI.md#DownloadAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId}/download |
+[**FollowAlert**](AlertAPI.md#FollowAlert) | **Post** /api/v1/alert/{alertId}/follow |
+[**GetAlert**](AlertAPI.md#GetAlert) | **Get** /api/v1/alert/{alertId} |
+[**GetAlertAttachment**](AlertAPI.md#GetAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId} |
+[**GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase**](AlertAPI.md#GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase) | **Get** /api/v1/alert/{alertId}/similar/{alertOrCaseId}/observables |
+[**ImportAlertObservablesAndProceduresInCase**](AlertAPI.md#ImportAlertObservablesAndProceduresInCase) | **Post** /api/v1/alert/{alertId}/import/{caseId} |
+[**MergeAlertWithCase**](AlertAPI.md#MergeAlertWithCase) | **Post** /api/v1/alert/{alertId}/merge/{caseId} |
+[**MergeBulkAlertsWithCase**](AlertAPI.md#MergeBulkAlertsWithCase) | **Post** /api/v1/alert/merge/_bulk |
+[**UnfollowAlert**](AlertAPI.md#UnfollowAlert) | **Post** /api/v1/alert/{alertId}/unfollow |
+[**UpdateAlert**](AlertAPI.md#UpdateAlert) | **Patch** /api/v1/alert/{alertId} |
 
 
 
@@ -39,12 +39,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	attachments := []*os.File{"TODO"} // []*os.File | 
+	alertId := "~354" // string |
+	attachments := []*os.File{"TODO"} // []*os.File |
 	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -65,7 +65,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -75,8 +75,8 @@ Other parameters are passed through a pointer to a apiAddAlertAttachmentRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** |  |
+ **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name |
 
 ### Return type
 
@@ -111,11 +111,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputUpdateAlertWithIds := *openapiclient.NewInputUpdateAlertWithIds([]string{"~354"}) // InputUpdateAlertWithIds | 
+	inputUpdateAlertWithIds := *openapiclient.NewInputUpdateAlertWithIds([]string{"~354"}) // InputUpdateAlertWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -138,7 +138,7 @@ Other parameters are passed through a pointer to a apiBulkUpdateAlertRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateAlertWithIds** | [**InputUpdateAlertWithIds**](InputUpdateAlertWithIds.md) |  | 
+ **inputUpdateAlertWithIds** | [**InputUpdateAlertWithIds**](InputUpdateAlertWithIds.md) |  |
 
 ### Return type
 
@@ -175,11 +175,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputCreateAlert := *openapiclient.NewInputCreateAlert("Type_example", "Source_example", "SourceRef_example", "Title_example", "Description_example") // InputCreateAlert | 
+	inputCreateAlert := *openapiclient.NewInputCreateAlert("Type_example", "Source_example", "SourceRef_example", "Title_example", "Description_example") // InputCreateAlert |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,7 +204,7 @@ Other parameters are passed through a pointer to a apiCreateAlertRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateAlert** | [**InputCreateAlert**](InputCreateAlert.md) |  | 
+ **inputCreateAlert** | [**InputCreateAlert**](InputCreateAlert.md) |  |
 
 ### Return type
 
@@ -239,11 +239,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
+	alertId := "~354" // string |
 	inputCreateCaseFromAlert := *openapiclient.NewInputCreateCaseFromAlert() // InputCreateCaseFromAlert |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -264,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -274,7 +274,7 @@ Other parameters are passed through a pointer to a apiCreateCaseFromAlertRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateCaseFromAlert** | [**InputCreateCaseFromAlert**](InputCreateCaseFromAlert.md) |  | 
+ **inputCreateCaseFromAlert** | [**InputCreateCaseFromAlert**](InputCreateCaseFromAlert.md) |  |
 
 ### Return type
 
@@ -309,11 +309,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
+	alertId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -331,7 +331,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -375,12 +375,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	alertId := "~354" // string |
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -398,8 +398,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -444,11 +444,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"~354"}) // DeleteAlertInBulkRequest | 
+	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"~354"}) // DeleteAlertInBulkRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -471,7 +471,7 @@ Other parameters are passed through a pointer to a apiDeleteAlertInBulkRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  | 
+ **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  |
 
 ### Return type
 
@@ -506,12 +506,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	alertId := "~354" // string |
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -531,8 +531,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -577,11 +577,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
+	alertId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -599,7 +599,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -643,11 +643,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
+	alertId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -667,7 +667,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -713,12 +713,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	attachmentId := "~354" // string | 
+	alertId := "~354" // string |
+	attachmentId := "~354" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -739,8 +739,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -751,7 +751,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -786,12 +786,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	alertOrCaseId := "~354" // string | 
+	alertId := "~354" // string |
+	alertOrCaseId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -811,8 +811,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**alertOrCaseId** | **string** |  | 
+**alertId** | **string** |  |
+**alertOrCaseId** | **string** |  |
 
 ### Other Parameters
 
@@ -857,12 +857,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	caseId := "~354" // string | 
+	alertId := "~354" // string |
+	caseId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -882,8 +882,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**caseId** | **string** |  | 
+**alertId** | **string** |  |
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -928,12 +928,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	caseId := "~354" // string | 
+	alertId := "~354" // string |
+	caseId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -953,8 +953,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**caseId** | **string** |  | 
+**alertId** | **string** |  |
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -999,11 +999,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputAlertsMergeWithCase := *openapiclient.NewInputAlertsMergeWithCase("~354") // InputAlertsMergeWithCase | 
+	inputAlertsMergeWithCase := *openapiclient.NewInputAlertsMergeWithCase("~354") // InputAlertsMergeWithCase |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1028,7 +1028,7 @@ Other parameters are passed through a pointer to a apiMergeBulkAlertsWithCaseReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAlertsMergeWithCase** | [**InputAlertsMergeWithCase**](InputAlertsMergeWithCase.md) |  | 
+ **inputAlertsMergeWithCase** | [**InputAlertsMergeWithCase**](InputAlertsMergeWithCase.md) |  |
 
 ### Return type
 
@@ -1063,11 +1063,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
+	alertId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1085,7 +1085,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -1129,12 +1129,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	inputUpdateAlert := *openapiclient.NewInputUpdateAlert() // InputUpdateAlert | 
+	alertId := "~354" // string |
+	inputUpdateAlert := *openapiclient.NewInputUpdateAlert() // InputUpdateAlert |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1152,7 +1152,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -1162,7 +1162,7 @@ Other parameters are passed through a pointer to a apiUpdateAlertRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateAlert** | [**InputUpdateAlert**](InputUpdateAlert.md) |  | 
+ **inputUpdateAlert** | [**InputUpdateAlert**](InputUpdateAlert.md) |  |
 
 ### Return type
 
@@ -1180,4 +1180,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

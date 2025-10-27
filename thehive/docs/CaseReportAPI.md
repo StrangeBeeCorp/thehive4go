@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteCaseReport**](CaseReportAPI.md#DeleteCaseReport) | **Delete** /api/v1/caseReport/{reportId} | 
-[**DownloadCaseReport**](CaseReportAPI.md#DownloadCaseReport) | **Get** /api/v1/caseReport/{reportId}/download | 
-[**GenerateCaseReport**](CaseReportAPI.md#GenerateCaseReport) | **Post** /api/v1/case/{caseId}/report | 
-[**ListSupportedFormats**](CaseReportAPI.md#ListSupportedFormats) | **Get** /api/v1/caseReport/formats | 
-[**RenderCaseReportTemplate**](CaseReportAPI.md#RenderCaseReportTemplate) | **Post** /api/v1/caseReport/render | 
-[**RenderCaseReportTemplateGET**](CaseReportAPI.md#RenderCaseReportTemplateGET) | **Get** /api/v1/caseReport/render | 
-[**UpdateCaseReport**](CaseReportAPI.md#UpdateCaseReport) | **Patch** /api/v1/caseReport/{reportId} | 
-[**UploadCaseReport**](CaseReportAPI.md#UploadCaseReport) | **Post** /api/v1/case/{caseId}/report/upload | 
-[**ViewCaseReport**](CaseReportAPI.md#ViewCaseReport) | **Get** /api/v1/caseReport/{reportId}/view | 
+[**DeleteCaseReport**](CaseReportAPI.md#DeleteCaseReport) | **Delete** /api/v1/caseReport/{reportId} |
+[**DownloadCaseReport**](CaseReportAPI.md#DownloadCaseReport) | **Get** /api/v1/caseReport/{reportId}/download |
+[**GenerateCaseReport**](CaseReportAPI.md#GenerateCaseReport) | **Post** /api/v1/case/{caseId}/report |
+[**ListSupportedFormats**](CaseReportAPI.md#ListSupportedFormats) | **Get** /api/v1/caseReport/formats |
+[**RenderCaseReportTemplate**](CaseReportAPI.md#RenderCaseReportTemplate) | **Post** /api/v1/caseReport/render |
+[**RenderCaseReportTemplateGET**](CaseReportAPI.md#RenderCaseReportTemplateGET) | **Get** /api/v1/caseReport/render |
+[**UpdateCaseReport**](CaseReportAPI.md#UpdateCaseReport) | **Patch** /api/v1/caseReport/{reportId} |
+[**UploadCaseReport**](CaseReportAPI.md#UploadCaseReport) | **Post** /api/v1/case/{caseId}/report/upload |
+[**ViewCaseReport**](CaseReportAPI.md#ViewCaseReport) | **Get** /api/v1/caseReport/{reportId}/view |
 
 
 
@@ -31,11 +31,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	reportId := "~354" // string | 
+	reportId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**reportId** | **string** |  | 
+**reportId** | **string** |  |
 
 ### Other Parameters
 
@@ -99,11 +99,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	reportId := "~354" // string | 
+	reportId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**reportId** | **string** |  | 
+**reportId** | **string** |  |
 
 ### Other Parameters
 
@@ -169,12 +169,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputGenerateCaseReport := *openapiclient.NewInputGenerateCaseReport("~354", "Format_example") // InputGenerateCaseReport | 
+	caseId := "~354" // string |
+	inputGenerateCaseReport := *openapiclient.NewInputGenerateCaseReport("~354", "Format_example") // InputGenerateCaseReport |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -204,7 +204,7 @@ Other parameters are passed through a pointer to a apiGenerateCaseReportRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputGenerateCaseReport** | [**InputGenerateCaseReport**](InputGenerateCaseReport.md) |  | 
+ **inputGenerateCaseReport** | [**InputGenerateCaseReport**](InputGenerateCaseReport.md) |  |
 
 ### Return type
 
@@ -239,7 +239,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -300,11 +300,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputRenderCaseReport := *openapiclient.NewInputRenderCaseReport("Format_example") // InputRenderCaseReport | 
+	inputRenderCaseReport := *openapiclient.NewInputRenderCaseReport("Format_example") // InputRenderCaseReport |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -329,7 +329,7 @@ Other parameters are passed through a pointer to a apiRenderCaseReportTemplateRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputRenderCaseReport** | [**InputRenderCaseReport**](InputRenderCaseReport.md) |  | 
+ **inputRenderCaseReport** | [**InputRenderCaseReport**](InputRenderCaseReport.md) |  |
 
 ### Return type
 
@@ -366,12 +366,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	format := "format_example" // string | 
-	caseReportTemplateId := "~354" // string | 
+	format := "format_example" // string |
+	caseReportTemplateId := "~354" // string |
 	caseId := "~354" // string |  (optional)
 	maxElements := int32(56) // int32 |  (optional)
 
@@ -398,10 +398,10 @@ Other parameters are passed through a pointer to a apiRenderCaseReportTemplateGE
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **format** | **string** |  | 
- **caseReportTemplateId** | **string** |  | 
- **caseId** | **string** |  | 
- **maxElements** | **int32** |  | 
+ **format** | **string** |  |
+ **caseReportTemplateId** | **string** |  |
+ **caseId** | **string** |  |
+ **maxElements** | **int32** |  |
 
 ### Return type
 
@@ -438,12 +438,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	reportId := "~354" // string | 
-	file := os.NewFile(1234, "some_file") // *os.File | 
+	reportId := "~354" // string |
+	file := os.NewFile(1234, "some_file") // *os.File |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -461,7 +461,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**reportId** | **string** |  | 
+**reportId** | **string** |  |
 
 ### Other Parameters
 
@@ -471,7 +471,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseReportRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **file** | ***os.File** |  | 
+ **file** | ***os.File** |  |
 
 ### Return type
 
@@ -508,12 +508,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	file := os.NewFile(1234, "some_file") // *os.File | 
+	caseId := "~354" // string |
+	file := os.NewFile(1234, "some_file") // *os.File |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -533,7 +533,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -543,7 +543,7 @@ Other parameters are passed through a pointer to a apiUploadCaseReportRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **file** | ***os.File** |  | 
+ **file** | ***os.File** |  |
 
 ### Return type
 
@@ -580,11 +580,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	reportId := "~354" // string | 
+	reportId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -604,7 +604,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**reportId** | **string** |  | 
+**reportId** | **string** |  |
 
 ### Other Parameters
 
@@ -631,4 +631,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteBrandingAttachment**](BrandingAPI.md#DeleteBrandingAttachment) | **Delete** /api/v1/branding/assets/{kind} | 
-[**GetBranding**](BrandingAPI.md#GetBranding) | **Get** /api/v1/branding | 
-[**GetBrandingAttachment**](BrandingAPI.md#GetBrandingAttachment) | **Get** /api/v1/branding/assets/{kind} | 
-[**SetBranding**](BrandingAPI.md#SetBranding) | **Post** /api/v1/branding | 
+[**DeleteBrandingAttachment**](BrandingAPI.md#DeleteBrandingAttachment) | **Delete** /api/v1/branding/assets/{kind} |
+[**GetBranding**](BrandingAPI.md#GetBranding) | **Get** /api/v1/branding |
+[**GetBrandingAttachment**](BrandingAPI.md#GetBrandingAttachment) | **Get** /api/v1/branding/assets/{kind} |
+[**SetBranding**](BrandingAPI.md#SetBranding) | **Post** /api/v1/branding |
 
 
 
@@ -26,11 +26,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	kind := "kind_example" // string | 
+	kind := "kind_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -48,7 +48,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kind** | **string** |  | 
+**kind** | **string** |  |
 
 ### Other Parameters
 
@@ -92,7 +92,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -151,11 +151,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	kind := "kind_example" // string | 
+	kind := "kind_example" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -176,7 +176,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kind** | **string** |  | 
+**kind** | **string** |  |
 
 ### Other Parameters
 
@@ -186,7 +186,7 @@ Other parameters are passed through a pointer to a apiGetBrandingAttachmentReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -221,7 +221,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -253,10 +253,10 @@ Other parameters are passed through a pointer to a apiSetBrandingRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **title** | **string** |  | 
- **loginLogo** | ***os.File** |  | 
- **menuLogo** | ***os.File** |  | 
- **favicon** | ***os.File** |  | 
+ **title** | **string** |  |
+ **loginLogo** | ***os.File** |  |
+ **menuLogo** | ***os.File** |  |
+ **favicon** | ***os.File** |  |
 
 ### Return type
 
@@ -274,4 +274,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

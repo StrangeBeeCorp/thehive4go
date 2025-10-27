@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCommentInAlert**](CommentAPI.md#CreateCommentInAlert) | **Post** /api/v1/alert/{alertId}/comment | 
-[**CreateCommentInCase**](CommentAPI.md#CreateCommentInCase) | **Post** /api/v1/case/{caseId}/comment | 
-[**DeleteComment**](CommentAPI.md#DeleteComment) | **Delete** /api/v1/comment/{commentId} | 
-[**UpdateComment**](CommentAPI.md#UpdateComment) | **Patch** /api/v1/comment/{commentId} | 
+[**CreateCommentInAlert**](CommentAPI.md#CreateCommentInAlert) | **Post** /api/v1/alert/{alertId}/comment |
+[**CreateCommentInCase**](CommentAPI.md#CreateCommentInCase) | **Post** /api/v1/case/{caseId}/comment |
+[**DeleteComment**](CommentAPI.md#DeleteComment) | **Delete** /api/v1/comment/{commentId} |
+[**UpdateComment**](CommentAPI.md#UpdateComment) | **Patch** /api/v1/comment/{commentId} |
 
 
 
@@ -26,12 +26,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	alertId := "~354" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	alertId := "~354" // string |
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** |  |
 
 ### Other Parameters
 
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiCreateCommentInAlertReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -96,12 +96,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	caseId := "~354" // string |
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiCreateCommentInCaseRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -166,11 +166,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	commentId := "~354" // string | 
+	commentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**commentId** | **string** |  | 
+**commentId** | **string** |  |
 
 ### Other Parameters
 
@@ -232,12 +232,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	commentId := "~354" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	commentId := "~354" // string |
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +255,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**commentId** | **string** |  | 
+**commentId** | **string** |  |
 
 ### Other Parameters
 
@@ -265,7 +265,7 @@ Other parameters are passed through a pointer to a apiUpdateCommentRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -283,4 +283,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

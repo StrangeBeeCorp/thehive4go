@@ -1,4 +1,4 @@
-module github.com/StrangeBee/TheHive4Go
+module github.com/StrangeBeeCorp/thehive4go
 
 go 1.18
 

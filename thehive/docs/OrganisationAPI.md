@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAttachmentToOrganisation**](OrganisationAPI.md#AddAttachmentToOrganisation) | **Post** /api/v1/attachment | 
-[**BulkLinkOrganisations**](OrganisationAPI.md#BulkLinkOrganisations) | **Put** /api/v1/organisation/{orgId}/links | 
-[**CreateOrganisation**](OrganisationAPI.md#CreateOrganisation) | **Post** /api/v1/organisation | 
-[**DeleteAttachment**](OrganisationAPI.md#DeleteAttachment) | **Delete** /api/v1/attachment/{attachmentId} | 
-[**DownloadAttachment**](OrganisationAPI.md#DownloadAttachment) | **Get** /api/v1/attachment/{attachmentId}/download | 
-[**GetAttachment**](OrganisationAPI.md#GetAttachment) | **Get** /api/v1/attachment/{attachmentId} | 
-[**GetOrganisation**](OrganisationAPI.md#GetOrganisation) | **Get** /api/v1/organisation/{orgId} | 
-[**GetOrganisationAvatar**](OrganisationAPI.md#GetOrganisationAvatar) | **Get** /api/v1/organisation/{orgId}/avatar/{fileHash} | 
-[**LinkOrganisations**](OrganisationAPI.md#LinkOrganisations) | **Put** /api/v1/organisation/{orgId}/link/{otherOrgId} | 
-[**ListOrganisationLinks**](OrganisationAPI.md#ListOrganisationLinks) | **Get** /api/v1/organisation/{orgId}/links | 
-[**ListSharingProfiles**](OrganisationAPI.md#ListSharingProfiles) | **Get** /api/v1/sharingProfile | 
-[**UnlinkOrganisations**](OrganisationAPI.md#UnlinkOrganisations) | **Delete** /api/v1/organisation/{orgId}/link/{otherOrgId} | 
-[**UpdateOrganisation**](OrganisationAPI.md#UpdateOrganisation) | **Patch** /api/v1/organisation/{orgId} | 
+[**AddAttachmentToOrganisation**](OrganisationAPI.md#AddAttachmentToOrganisation) | **Post** /api/v1/attachment |
+[**BulkLinkOrganisations**](OrganisationAPI.md#BulkLinkOrganisations) | **Put** /api/v1/organisation/{orgId}/links |
+[**CreateOrganisation**](OrganisationAPI.md#CreateOrganisation) | **Post** /api/v1/organisation |
+[**DeleteAttachment**](OrganisationAPI.md#DeleteAttachment) | **Delete** /api/v1/attachment/{attachmentId} |
+[**DownloadAttachment**](OrganisationAPI.md#DownloadAttachment) | **Get** /api/v1/attachment/{attachmentId}/download |
+[**GetAttachment**](OrganisationAPI.md#GetAttachment) | **Get** /api/v1/attachment/{attachmentId} |
+[**GetOrganisation**](OrganisationAPI.md#GetOrganisation) | **Get** /api/v1/organisation/{orgId} |
+[**GetOrganisationAvatar**](OrganisationAPI.md#GetOrganisationAvatar) | **Get** /api/v1/organisation/{orgId}/avatar/{fileHash} |
+[**LinkOrganisations**](OrganisationAPI.md#LinkOrganisations) | **Put** /api/v1/organisation/{orgId}/link/{otherOrgId} |
+[**ListOrganisationLinks**](OrganisationAPI.md#ListOrganisationLinks) | **Get** /api/v1/organisation/{orgId}/links |
+[**ListSharingProfiles**](OrganisationAPI.md#ListSharingProfiles) | **Get** /api/v1/sharingProfile |
+[**UnlinkOrganisations**](OrganisationAPI.md#UnlinkOrganisations) | **Delete** /api/v1/organisation/{orgId}/link/{otherOrgId} |
+[**UpdateOrganisation**](OrganisationAPI.md#UpdateOrganisation) | **Patch** /api/v1/organisation/{orgId} |
 
 
 
@@ -35,11 +35,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	attachments := []*os.File{"TODO"} // []*os.File | 
+	attachments := []*os.File{"TODO"} // []*os.File |
 	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -65,8 +65,8 @@ Other parameters are passed through a pointer to a apiAddAttachmentToOrganisatio
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** |  |
+ **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name |
 
 ### Return type
 
@@ -101,12 +101,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
-	inputOrganisationBulkLink := *openapiclient.NewInputOrganisationBulkLink() // InputOrganisationBulkLink | 
+	orgId := "~354" // string |
+	inputOrganisationBulkLink := *openapiclient.NewInputOrganisationBulkLink() // InputOrganisationBulkLink |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
+**orgId** | **string** |  |
 
 ### Other Parameters
 
@@ -134,7 +134,7 @@ Other parameters are passed through a pointer to a apiBulkLinkOrganisationsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputOrganisationBulkLink** | [**InputOrganisationBulkLink**](InputOrganisationBulkLink.md) |  | 
+ **inputOrganisationBulkLink** | [**InputOrganisationBulkLink**](InputOrganisationBulkLink.md) |  |
 
 ### Return type
 
@@ -169,11 +169,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputCreateOrganisation := *openapiclient.NewInputCreateOrganisation("Name_example", "Description_example") // InputCreateOrganisation | 
+	inputCreateOrganisation := *openapiclient.NewInputCreateOrganisation("Name_example", "Description_example") // InputCreateOrganisation |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -198,7 +198,7 @@ Other parameters are passed through a pointer to a apiCreateOrganisationRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateOrganisation** | [**InputCreateOrganisation**](InputCreateOrganisation.md) |  | 
+ **inputCreateOrganisation** | [**InputCreateOrganisation**](InputCreateOrganisation.md) |  |
 
 ### Return type
 
@@ -233,11 +233,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	attachmentId := "~354" // string | 
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +255,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attachmentId** | **string** |  | 
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -299,11 +299,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	attachmentId := "~354" // string | 
+	attachmentId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -323,7 +323,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attachmentId** | **string** |  | 
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -367,11 +367,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	attachmentId := "~354" // string | 
+	attachmentId := "~354" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -392,7 +392,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attachmentId** | **string** |  | 
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
@@ -402,7 +402,7 @@ Other parameters are passed through a pointer to a apiGetAttachmentRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -437,11 +437,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
+	orgId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -461,7 +461,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
+**orgId** | **string** |  |
 
 ### Other Parameters
 
@@ -505,12 +505,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
-	fileHash := "fileHash_example" // string | 
+	orgId := "~354" // string |
+	fileHash := "fileHash_example" // string |
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -531,8 +531,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
-**fileHash** | **string** |  | 
+**orgId** | **string** |  |
+**fileHash** | **string** |  |
 
 ### Other Parameters
 
@@ -543,7 +543,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** |  |
 
 ### Return type
 
@@ -578,12 +578,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
-	otherOrgId := "~354" // string | 
+	orgId := "~354" // string |
+	otherOrgId := "~354" // string |
 	inputOrganisationLink := *openapiclient.NewInputOrganisationLink() // InputOrganisationLink |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -602,8 +602,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
-**otherOrgId** | **string** |  | 
+**orgId** | **string** |  |
+**otherOrgId** | **string** |  |
 
 ### Other Parameters
 
@@ -614,7 +614,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **inputOrganisationLink** | [**InputOrganisationLink**](InputOrganisationLink.md) |  | 
+ **inputOrganisationLink** | [**InputOrganisationLink**](InputOrganisationLink.md) |  |
 
 ### Return type
 
@@ -649,11 +649,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
+	orgId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -673,7 +673,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
+**orgId** | **string** |  |
 
 ### Other Parameters
 
@@ -717,7 +717,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -776,12 +776,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
-	otherOrgId := "~354" // string | 
+	orgId := "~354" // string |
+	otherOrgId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -799,8 +799,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
-**otherOrgId** | **string** |  | 
+**orgId** | **string** |  |
+**otherOrgId** | **string** |  |
 
 ### Other Parameters
 
@@ -845,12 +845,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	orgId := "~354" // string | 
-	inputUpdateOrganisation := *openapiclient.NewInputUpdateOrganisation() // InputUpdateOrganisation | 
+	orgId := "~354" // string |
+	inputUpdateOrganisation := *openapiclient.NewInputUpdateOrganisation() // InputUpdateOrganisation |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -868,7 +868,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgId** | **string** |  | 
+**orgId** | **string** |  |
 
 ### Other Parameters
 
@@ -878,7 +878,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganisationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateOrganisation** | [**InputUpdateOrganisation**](InputUpdateOrganisation.md) |  | 
+ **inputUpdateOrganisation** | [**InputUpdateOrganisation**](InputUpdateOrganisation.md) |  |
 
 ### Return type
 
@@ -896,4 +896,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

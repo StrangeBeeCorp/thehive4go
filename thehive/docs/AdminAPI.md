@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelCurrentIntegrityCheck**](AdminAPI.md#CancelCurrentIntegrityCheck) | **Post** /api/v1/admin/check/cancel | 
-[**GetCheckAndIndexStats**](AdminAPI.md#GetCheckAndIndexStats) | **Get** /api/v1/admin/stats | 
-[**GetCheckStats**](AdminAPI.md#GetCheckStats) | **Get** /api/v1/admin/check/stats | 
-[**GetIndexStatus**](AdminAPI.md#GetIndexStatus) | **Get** /api/v1/admin/index/status | 
-[**RebuildIndex**](AdminAPI.md#RebuildIndex) | **Post** /api/v1/admin/index/{name}/rebuild | 
-[**ReindexData**](AdminAPI.md#ReindexData) | **Post** /api/v1/admin/index/{name}/reindex | 
-[**RepairSchema**](AdminAPI.md#RepairSchema) | **Post** /api/v1/admin/schema/repair/{schemaName} | 
-[**SchemaInfo**](AdminAPI.md#SchemaInfo) | **Post** /api/v1/admin/schema/info/{schemaName} | 
-[**TriggerAllChecks**](AdminAPI.md#TriggerAllChecks) | **Put** /api/v1/admin/check/_all/trigger | 
-[**TriggerDedupIntegrityCheck**](AdminAPI.md#TriggerDedupIntegrityCheck) | **Post** /api/v1/admin/check/{name}/dedup/trigger | 
-[**TriggerGlobalIntegrityCheck**](AdminAPI.md#TriggerGlobalIntegrityCheck) | **Post** /api/v1/admin/check/{name}/global/trigger | 
-[**TriggerIntegrityCheck**](AdminAPI.md#TriggerIntegrityCheck) | **Put** /api/v1/admin/check/{name}/trigger | 
-[**UpdateLogLevel**](AdminAPI.md#UpdateLogLevel) | **Put** /api/v1/admin/log/set/{packageName}/{level} | 
+[**CancelCurrentIntegrityCheck**](AdminAPI.md#CancelCurrentIntegrityCheck) | **Post** /api/v1/admin/check/cancel |
+[**GetCheckAndIndexStats**](AdminAPI.md#GetCheckAndIndexStats) | **Get** /api/v1/admin/stats |
+[**GetCheckStats**](AdminAPI.md#GetCheckStats) | **Get** /api/v1/admin/check/stats |
+[**GetIndexStatus**](AdminAPI.md#GetIndexStatus) | **Get** /api/v1/admin/index/status |
+[**RebuildIndex**](AdminAPI.md#RebuildIndex) | **Post** /api/v1/admin/index/{name}/rebuild |
+[**ReindexData**](AdminAPI.md#ReindexData) | **Post** /api/v1/admin/index/{name}/reindex |
+[**RepairSchema**](AdminAPI.md#RepairSchema) | **Post** /api/v1/admin/schema/repair/{schemaName} |
+[**SchemaInfo**](AdminAPI.md#SchemaInfo) | **Post** /api/v1/admin/schema/info/{schemaName} |
+[**TriggerAllChecks**](AdminAPI.md#TriggerAllChecks) | **Put** /api/v1/admin/check/_all/trigger |
+[**TriggerDedupIntegrityCheck**](AdminAPI.md#TriggerDedupIntegrityCheck) | **Post** /api/v1/admin/check/{name}/dedup/trigger |
+[**TriggerGlobalIntegrityCheck**](AdminAPI.md#TriggerGlobalIntegrityCheck) | **Post** /api/v1/admin/check/{name}/global/trigger |
+[**TriggerIntegrityCheck**](AdminAPI.md#TriggerIntegrityCheck) | **Put** /api/v1/admin/check/{name}/trigger |
+[**UpdateLogLevel**](AdminAPI.md#UpdateLogLevel) | **Put** /api/v1/admin/log/set/{packageName}/{level} |
 
 
 
@@ -35,7 +35,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -92,7 +92,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -151,7 +151,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -210,7 +210,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -271,7 +271,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -293,7 +293,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | use &#39;all&#39; for all indexes | 
+**name** | **string** | use &#39;all&#39; for all indexes |
 
 ### Other Parameters
 
@@ -339,11 +339,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -361,7 +361,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** |  |
 
 ### Other Parameters
 
@@ -405,11 +405,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	schemaName := "schemaName_example" // string | 
+	schemaName := "schemaName_example" // string |
 	select_ := "select__example" // string |  (optional)
 	filter := "filter_example" // string |  (optional)
 
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**schemaName** | **string** |  | 
+**schemaName** | **string** |  |
 
 ### Other Parameters
 
@@ -441,8 +441,8 @@ Other parameters are passed through a pointer to a apiRepairSchemaRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **select_** | **string** |  | 
- **filter** | **string** |  | 
+ **select_** | **string** |  |
+ **filter** | **string** |  |
 
 ### Return type
 
@@ -477,11 +477,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	schemaName := "schemaName_example" // string | 
+	schemaName := "schemaName_example" // string |
 	select_ := "select__example" // string |  (optional)
 	filter := "filter_example" // string |  (optional)
 
@@ -503,7 +503,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**schemaName** | **string** |  | 
+**schemaName** | **string** |  |
 
 ### Other Parameters
 
@@ -513,8 +513,8 @@ Other parameters are passed through a pointer to a apiSchemaInfoRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **select_** | **string** |  | 
- **filter** | **string** |  | 
+ **select_** | **string** |  |
+ **filter** | **string** |  |
 
 ### Return type
 
@@ -549,7 +549,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
@@ -606,11 +606,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -628,7 +628,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** |  |
 
 ### Other Parameters
 
@@ -672,11 +672,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -694,7 +694,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** |  |
 
 ### Other Parameters
 
@@ -738,11 +738,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -760,7 +760,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** |  |
 
 ### Other Parameters
 
@@ -804,12 +804,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	packageName := "packageName_example" // string | 
-	level := openapiclient.InputLogLevel("ALL") // InputLogLevel | 
+	packageName := "packageName_example" // string |
+	level := openapiclient.InputLogLevel("ALL") // InputLogLevel |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -827,8 +827,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**packageName** | **string** |  | 
-**level** | [**InputLogLevel**](.md) |  | 
+**packageName** | **string** |  |
+**level** | [**InputLogLevel**](.md) |  |
 
 ### Other Parameters
 
@@ -856,4 +856,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

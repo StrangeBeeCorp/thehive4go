@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ActivateTaxonomy**](TaxonomyAPI.md#ActivateTaxonomy) | **Put** /api/v1/taxonomy/{taxonomyId}/activate | 
-[**CreateTaxonomy**](TaxonomyAPI.md#CreateTaxonomy) | **Post** /api/v1/taxonomy | 
-[**DeactivateTaxonomy**](TaxonomyAPI.md#DeactivateTaxonomy) | **Put** /api/v1/taxonomy/{taxonomyId}/deactivate | 
-[**DeleteTaxonomy**](TaxonomyAPI.md#DeleteTaxonomy) | **Delete** /api/v1/taxonomy/{taxonomyId} | 
-[**GetTaxonomy**](TaxonomyAPI.md#GetTaxonomy) | **Get** /api/v1/taxonomy/{taxonomyId} | 
-[**ImportFromZipFile**](TaxonomyAPI.md#ImportFromZipFile) | **Post** /api/v1/taxonomy/import-zip | 
+[**ActivateTaxonomy**](TaxonomyAPI.md#ActivateTaxonomy) | **Put** /api/v1/taxonomy/{taxonomyId}/activate |
+[**CreateTaxonomy**](TaxonomyAPI.md#CreateTaxonomy) | **Post** /api/v1/taxonomy |
+[**DeactivateTaxonomy**](TaxonomyAPI.md#DeactivateTaxonomy) | **Put** /api/v1/taxonomy/{taxonomyId}/deactivate |
+[**DeleteTaxonomy**](TaxonomyAPI.md#DeleteTaxonomy) | **Delete** /api/v1/taxonomy/{taxonomyId} |
+[**GetTaxonomy**](TaxonomyAPI.md#GetTaxonomy) | **Get** /api/v1/taxonomy/{taxonomyId} |
+[**ImportFromZipFile**](TaxonomyAPI.md#ImportFromZipFile) | **Post** /api/v1/taxonomy/import-zip |
 
 
 
@@ -28,11 +28,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taxonomyId := "~354" // string | 
+	taxonomyId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taxonomyId** | **string** |  | 
+**taxonomyId** | **string** |  |
 
 ### Other Parameters
 
@@ -94,11 +94,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputTaxonomy := *openapiclient.NewInputTaxonomy("Namespace_example", "Description_example", int32(123)) // InputTaxonomy | 
+	inputTaxonomy := *openapiclient.NewInputTaxonomy("Namespace_example", "Description_example", int32(123)) // InputTaxonomy |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ Other parameters are passed through a pointer to a apiCreateTaxonomyRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTaxonomy** | [**InputTaxonomy**](InputTaxonomy.md) |  | 
+ **inputTaxonomy** | [**InputTaxonomy**](InputTaxonomy.md) |  |
 
 ### Return type
 
@@ -158,11 +158,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taxonomyId := "~354" // string | 
+	taxonomyId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taxonomyId** | **string** |  | 
+**taxonomyId** | **string** |  |
 
 ### Other Parameters
 
@@ -224,11 +224,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taxonomyId := "~354" // string | 
+	taxonomyId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -246,7 +246,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taxonomyId** | **string** |  | 
+**taxonomyId** | **string** |  |
 
 ### Other Parameters
 
@@ -290,11 +290,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taxonomyId := "~354" // string | 
+	taxonomyId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -314,7 +314,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taxonomyId** | **string** |  | 
+**taxonomyId** | **string** |  |
 
 ### Other Parameters
 
@@ -358,11 +358,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	file := os.NewFile(1234, "some_file") // *os.File | 
+	file := os.NewFile(1234, "some_file") // *os.File |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -387,7 +387,7 @@ Other parameters are passed through a pointer to a apiImportFromZipFileRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | ***os.File** |  | 
+ **file** | ***os.File** |  |
 
 ### Return type
 
@@ -405,4 +405,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

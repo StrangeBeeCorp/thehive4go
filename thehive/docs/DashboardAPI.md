@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ChangeDashboardOwnership**](DashboardAPI.md#ChangeDashboardOwnership) | **Post** /api/v1/dashboard/{dashboardId}/owner | 
-[**CreateDashboard**](DashboardAPI.md#CreateDashboard) | **Post** /api/v1/dashboard | 
-[**DeleteDashboard**](DashboardAPI.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboardId} | 
-[**GetDashboard**](DashboardAPI.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboardId} | 
-[**UpdateDashboard**](DashboardAPI.md#UpdateDashboard) | **Patch** /api/v1/dashboard/{dashboardId} | 
+[**ChangeDashboardOwnership**](DashboardAPI.md#ChangeDashboardOwnership) | **Post** /api/v1/dashboard/{dashboardId}/owner |
+[**CreateDashboard**](DashboardAPI.md#CreateDashboard) | **Post** /api/v1/dashboard |
+[**DeleteDashboard**](DashboardAPI.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboardId} |
+[**GetDashboard**](DashboardAPI.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboardId} |
+[**UpdateDashboard**](DashboardAPI.md#UpdateDashboard) | **Patch** /api/v1/dashboard/{dashboardId} |
 
 
 
@@ -27,12 +27,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	dashboardId := "~354" // string | 
-	inputChangeDashboardOwnership := *openapiclient.NewInputChangeDashboardOwnership("~354") // InputChangeDashboardOwnership | 
+	dashboardId := "~354" // string |
+	inputChangeDashboardOwnership := *openapiclient.NewInputChangeDashboardOwnership("~354") // InputChangeDashboardOwnership |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** |  |
 
 ### Other Parameters
 
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiChangeDashboardOwnershipRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputChangeDashboardOwnership** | [**InputChangeDashboardOwnership**](InputChangeDashboardOwnership.md) |  | 
+ **inputChangeDashboardOwnership** | [**InputChangeDashboardOwnership**](InputChangeDashboardOwnership.md) |  |
 
 ### Return type
 
@@ -95,11 +95,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputCreateDashboard := *openapiclient.NewInputCreateDashboard("Title_example", "Description_example", openapiclient.DashboardStatus("Private"), map[string]interface{}(123)) // InputCreateDashboard | 
+	inputCreateDashboard := *openapiclient.NewInputCreateDashboard("Title_example", "Description_example", openapiclient.DashboardStatus("Private"), map[string]interface{}(123)) // InputCreateDashboard |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateDashboard** | [**InputCreateDashboard**](InputCreateDashboard.md) |  | 
+ **inputCreateDashboard** | [**InputCreateDashboard**](InputCreateDashboard.md) |  |
 
 ### Return type
 
@@ -159,11 +159,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	dashboardId := "~354" // string | 
+	dashboardId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -181,7 +181,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** |  |
 
 ### Other Parameters
 
@@ -225,11 +225,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	dashboardId := "~354" // string | 
+	dashboardId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -249,7 +249,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** |  |
 
 ### Other Parameters
 
@@ -293,12 +293,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	dashboardId := "~354" // string | 
-	inputUpdateDashboard := *openapiclient.NewInputUpdateDashboard() // InputUpdateDashboard | 
+	dashboardId := "~354" // string |
+	inputUpdateDashboard := *openapiclient.NewInputUpdateDashboard() // InputUpdateDashboard |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -316,7 +316,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** |  |
 
 ### Other Parameters
 
@@ -326,7 +326,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateDashboard** | [**InputUpdateDashboard**](InputUpdateDashboard.md) |  | 
+ **inputUpdateDashboard** | [**InputUpdateDashboard**](InputUpdateDashboard.md) |  |
 
 ### Return type
 
@@ -344,4 +344,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

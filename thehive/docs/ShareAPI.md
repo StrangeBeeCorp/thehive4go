@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteSharesByShareId**](ShareAPI.md#DeleteSharesByShareId) | **Delete** /api/v1/case/shares | 
-[**ListSharesOfCase**](ShareAPI.md#ListSharesOfCase) | **Get** /api/v1/case/{caseId}/shares | 
-[**ListSharesOfObservable**](ShareAPI.md#ListSharesOfObservable) | **Get** /api/v1/observable/{observableId}/shares | 
-[**ListSharesOfTask**](ShareAPI.md#ListSharesOfTask) | **Get** /api/v1/task/{taskId}/shares | 
-[**RemoveAShareFromCase**](ShareAPI.md#RemoveAShareFromCase) | **Delete** /api/v1/case/share/{shareId} | 
-[**SetSharesForCase**](ShareAPI.md#SetSharesForCase) | **Put** /api/v1/case/{caseId}/shares | 
-[**ShareACase**](ShareAPI.md#ShareACase) | **Post** /api/v1/case/{caseId}/shares | 
-[**ShareATask**](ShareAPI.md#ShareATask) | **Post** /api/v1/task/{taskId}/shares | 
-[**ShareAnObservable**](ShareAPI.md#ShareAnObservable) | **Post** /api/v1/observable/{observableId}/shares | 
-[**UnshareACase**](ShareAPI.md#UnshareACase) | **Delete** /api/v1/case/{caseId}/shares | 
-[**UnshareATask**](ShareAPI.md#UnshareATask) | **Delete** /api/v1/task/{taskId}/shares | 
-[**UnshareAnObservable**](ShareAPI.md#UnshareAnObservable) | **Delete** /api/v1/observable/{observableId}/shares | 
-[**UpdateAShare**](ShareAPI.md#UpdateAShare) | **Patch** /api/v1/case/share/{shareId} | 
+[**DeleteSharesByShareId**](ShareAPI.md#DeleteSharesByShareId) | **Delete** /api/v1/case/shares |
+[**ListSharesOfCase**](ShareAPI.md#ListSharesOfCase) | **Get** /api/v1/case/{caseId}/shares |
+[**ListSharesOfObservable**](ShareAPI.md#ListSharesOfObservable) | **Get** /api/v1/observable/{observableId}/shares |
+[**ListSharesOfTask**](ShareAPI.md#ListSharesOfTask) | **Get** /api/v1/task/{taskId}/shares |
+[**RemoveAShareFromCase**](ShareAPI.md#RemoveAShareFromCase) | **Delete** /api/v1/case/share/{shareId} |
+[**SetSharesForCase**](ShareAPI.md#SetSharesForCase) | **Put** /api/v1/case/{caseId}/shares |
+[**ShareACase**](ShareAPI.md#ShareACase) | **Post** /api/v1/case/{caseId}/shares |
+[**ShareATask**](ShareAPI.md#ShareATask) | **Post** /api/v1/task/{taskId}/shares |
+[**ShareAnObservable**](ShareAPI.md#ShareAnObservable) | **Post** /api/v1/observable/{observableId}/shares |
+[**UnshareACase**](ShareAPI.md#UnshareACase) | **Delete** /api/v1/case/{caseId}/shares |
+[**UnshareATask**](ShareAPI.md#UnshareATask) | **Delete** /api/v1/task/{taskId}/shares |
+[**UnshareAnObservable**](ShareAPI.md#UnshareAnObservable) | **Delete** /api/v1/observable/{observableId}/shares |
+[**UpdateAShare**](ShareAPI.md#UpdateAShare) | **Patch** /api/v1/case/share/{shareId} |
 
 
 
@@ -35,11 +35,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"~354"}) // DeleteAlertInBulkRequest | 
+	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"~354"}) // DeleteAlertInBulkRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiDeleteSharesByShareIdReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  | 
+ **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  |
 
 ### Return type
 
@@ -97,11 +97,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
+	caseId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -165,11 +165,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	observableId := "~354" // string | 
+	observableId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -189,7 +189,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** |  |
 
 ### Other Parameters
 
@@ -233,11 +233,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taskId := "~354" // string | 
+	taskId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -257,7 +257,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** |  |
 
 ### Other Parameters
 
@@ -301,11 +301,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	shareId := "~354" // string | 
+	shareId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -323,7 +323,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**shareId** | **string** |  | 
+**shareId** | **string** |  |
 
 ### Other Parameters
 
@@ -369,12 +369,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares | 
+	caseId := "~354" // string |
+	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -394,7 +394,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -404,7 +404,7 @@ Other parameters are passed through a pointer to a apiSetSharesForCaseRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  | 
+ **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  |
 
 ### Return type
 
@@ -441,12 +441,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares | 
+	caseId := "~354" // string |
+	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -466,7 +466,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -476,7 +476,7 @@ Other parameters are passed through a pointer to a apiShareACaseRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  | 
+ **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  |
 
 ### Return type
 
@@ -513,12 +513,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taskId := "~354" // string | 
-	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare | 
+	taskId := "~354" // string |
+	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -536,7 +536,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** |  |
 
 ### Other Parameters
 
@@ -546,7 +546,7 @@ Other parameters are passed through a pointer to a apiShareATaskRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  | 
+ **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  |
 
 ### Return type
 
@@ -583,12 +583,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	observableId := "~354" // string | 
-	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare | 
+	observableId := "~354" // string |
+	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -606,7 +606,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** |  |
 
 ### Other Parameters
 
@@ -616,7 +616,7 @@ Other parameters are passed through a pointer to a apiShareAnObservableRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  | 
+ **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  |
 
 ### Return type
 
@@ -651,12 +651,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseId := "~354" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	caseId := "~354" // string |
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -674,7 +674,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** |  |
 
 ### Other Parameters
 
@@ -684,7 +684,7 @@ Other parameters are passed through a pointer to a apiUnshareACaseRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -719,12 +719,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	taskId := "~354" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	taskId := "~354" // string |
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -742,7 +742,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** |  |
 
 ### Other Parameters
 
@@ -752,7 +752,7 @@ Other parameters are passed through a pointer to a apiUnshareATaskRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -787,12 +787,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	observableId := "~354" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	observableId := "~354" // string |
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -810,7 +810,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** |  |
 
 ### Other Parameters
 
@@ -820,7 +820,7 @@ Other parameters are passed through a pointer to a apiUnshareAnObservableRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -855,12 +855,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	shareId := "~354" // string | 
-	inputUpdateShare := *openapiclient.NewInputUpdateShare("Profile_example") // InputUpdateShare | 
+	shareId := "~354" // string |
+	inputUpdateShare := *openapiclient.NewInputUpdateShare("Profile_example") // InputUpdateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -878,7 +878,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**shareId** | **string** |  | 
+**shareId** | **string** |  |
 
 ### Other Parameters
 
@@ -888,7 +888,7 @@ Other parameters are passed through a pointer to a apiUpdateAShareRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateShare** | [**InputUpdateShare**](InputUpdateShare.md) |  | 
+ **inputUpdateShare** | [**InputUpdateShare**](InputUpdateShare.md) |  |
 
 ### Return type
 
@@ -906,4 +906,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

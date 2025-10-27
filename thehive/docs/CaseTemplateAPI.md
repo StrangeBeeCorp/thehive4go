@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCaseTemplate**](CaseTemplateAPI.md#CreateCaseTemplate) | **Post** /api/v1/caseTemplate | 
-[**DeleteCaseTemplate**](CaseTemplateAPI.md#DeleteCaseTemplate) | **Delete** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
-[**GetCaseTemplate**](CaseTemplateAPI.md#GetCaseTemplate) | **Get** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
-[**LinkPageTemplatesToACaseTemplate**](CaseTemplateAPI.md#LinkPageTemplatesToACaseTemplate) | **Put** /api/v1/caseTemplate/{caseTemplateNameOrId}/pageTemplate/link | 
-[**UpdateCaseTemplate**](CaseTemplateAPI.md#UpdateCaseTemplate) | **Patch** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
+[**CreateCaseTemplate**](CaseTemplateAPI.md#CreateCaseTemplate) | **Post** /api/v1/caseTemplate |
+[**DeleteCaseTemplate**](CaseTemplateAPI.md#DeleteCaseTemplate) | **Delete** /api/v1/caseTemplate/{caseTemplateNameOrId} |
+[**GetCaseTemplate**](CaseTemplateAPI.md#GetCaseTemplate) | **Get** /api/v1/caseTemplate/{caseTemplateNameOrId} |
+[**LinkPageTemplatesToACaseTemplate**](CaseTemplateAPI.md#LinkPageTemplatesToACaseTemplate) | **Put** /api/v1/caseTemplate/{caseTemplateNameOrId}/pageTemplate/link |
+[**UpdateCaseTemplate**](CaseTemplateAPI.md#UpdateCaseTemplate) | **Patch** /api/v1/caseTemplate/{caseTemplateNameOrId} |
 
 
 
@@ -27,11 +27,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	inputCreateCaseTemplate := *openapiclient.NewInputCreateCaseTemplate("Name_example") // InputCreateCaseTemplate | 
+	inputCreateCaseTemplate := *openapiclient.NewInputCreateCaseTemplate("Name_example") // InputCreateCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiCreateCaseTemplateRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCaseTemplate** | [**InputCreateCaseTemplate**](InputCreateCaseTemplate.md) |  | 
+ **inputCreateCaseTemplate** | [**InputCreateCaseTemplate**](InputCreateCaseTemplate.md) |  |
 
 ### Return type
 
@@ -91,11 +91,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseTemplateNameOrId := "~354" // string | 
+	caseTemplateNameOrId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -113,7 +113,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** |  |
 
 ### Other Parameters
 
@@ -157,11 +157,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseTemplateNameOrId := "~354" // string | 
+	caseTemplateNameOrId := "~354" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -181,7 +181,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** |  |
 
 ### Other Parameters
 
@@ -225,12 +225,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseTemplateNameOrId := "~354" // string | 
-	inputLinkPageTemplatesToCaseTemplate := *openapiclient.NewInputLinkPageTemplatesToCaseTemplate() // InputLinkPageTemplatesToCaseTemplate | 
+	caseTemplateNameOrId := "~354" // string |
+	inputLinkPageTemplatesToCaseTemplate := *openapiclient.NewInputLinkPageTemplatesToCaseTemplate() // InputLinkPageTemplatesToCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -248,7 +248,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** |  |
 
 ### Other Parameters
 
@@ -258,7 +258,7 @@ Other parameters are passed through a pointer to a apiLinkPageTemplatesToACaseTe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputLinkPageTemplatesToCaseTemplate** | [**InputLinkPageTemplatesToCaseTemplate**](InputLinkPageTemplatesToCaseTemplate.md) |  | 
+ **inputLinkPageTemplatesToCaseTemplate** | [**InputLinkPageTemplatesToCaseTemplate**](InputLinkPageTemplatesToCaseTemplate.md) |  |
 
 ### Return type
 
@@ -293,12 +293,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/StrangeBee/TheHive4Go/thehive"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func main() {
-	caseTemplateNameOrId := "~354" // string | 
-	inputUpdateCaseTemplate := *openapiclient.NewInputUpdateCaseTemplate() // InputUpdateCaseTemplate | 
+	caseTemplateNameOrId := "~354" // string |
+	inputUpdateCaseTemplate := *openapiclient.NewInputUpdateCaseTemplate() // InputUpdateCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -316,7 +316,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** |  |
 
 ### Other Parameters
 
@@ -326,7 +326,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseTemplateRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCaseTemplate** | [**InputUpdateCaseTemplate**](InputUpdateCaseTemplate.md) |  | 
+ **inputUpdateCaseTemplate** | [**InputUpdateCaseTemplate**](InputUpdateCaseTemplate.md) |  |
 
 ### Return type
 
@@ -344,4 +344,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
