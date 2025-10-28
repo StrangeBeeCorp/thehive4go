@@ -11,11 +11,10 @@ package thehive
 
 import (
 	"context"
-	"testing"
-
 	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
 )
 
 func Test_thehive_MISPAPIService(t *testing.T) {
