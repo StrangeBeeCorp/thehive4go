@@ -21,8 +21,25 @@ var _ MappedNullable = &InputQueryFilterOperation{}
 
 // InputQueryFilterOperation struct for InputQueryFilterOperation
 type InputQueryFilterOperation struct {
-	Eq   map[string]interface{} `json:"_eq,omitempty"`
-	Name string                 `json:"_name"`
+	Eq           map[string]interface{} `json:"_eq,omitempty"`
+	And          []Filter               `json:"_and,omitempty"`
+	Or           []Filter               `json:"_or,omitempty"`
+	Not          *Filter                `json:"_not,omitempty"`
+	Any          map[string]interface{} `json:"_any,omitempty"`
+	Like         *FieldValue            `json:"_like,omitempty"`
+	Gt           *FieldValue            `json:"_gt,omitempty"`
+	Gte          *FieldValue            `json:"_gte,omitempty"`
+	Lt           *FieldValue            `json:"_lt,omitempty"`
+	Lte          *FieldValue            `json:"_lte,omitempty"`
+	Ne           *FieldValue            `json:"_ne,omitempty"`
+	In           *FieldValue            `json:"_in,omitempty"`
+	Between      *FieldValue            `json:"_between,omitempty"`
+	Contains     *FieldValue            `json:"_contains,omitempty"`
+	EndsWith     *FieldValue            `json:"_endsWith,omitempty"`
+	StartsWith   *FieldValue            `json:"_startsWith,omitempty"`
+	Match        *FieldValue            `json:"_match,omitempty"`
+	UnderscoreId *string                `json:"_id,omitempty"`
+	Name         string                 `json:"_name"`
 }
 
 type _InputQueryFilterOperation InputQueryFilterOperation
@@ -77,6 +94,550 @@ func (o *InputQueryFilterOperation) SetEq(v map[string]interface{}) {
 	o.Eq = v
 }
 
+// GetAnd returns the And field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetAnd() []Filter {
+	if o == nil || IsNil(o.And) {
+		var ret []Filter
+		return ret
+	}
+	return o.And
+}
+
+// GetAndOk returns a tuple with the And field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetAndOk() ([]Filter, bool) {
+	if o == nil || IsNil(o.And) {
+		return nil, false
+	}
+	return o.And, true
+}
+
+// HasAnd returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasAnd() bool {
+	if o != nil && !IsNil(o.And) {
+		return true
+	}
+
+	return false
+}
+
+// SetAnd gets a reference to the given []Filter and assigns it to the And field.
+func (o *InputQueryFilterOperation) SetAnd(v []Filter) {
+	o.And = v
+}
+
+// GetOr returns the Or field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetOr() []Filter {
+	if o == nil || IsNil(o.Or) {
+		var ret []Filter
+		return ret
+	}
+	return o.Or
+}
+
+// GetOrOk returns a tuple with the Or field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetOrOk() ([]Filter, bool) {
+	if o == nil || IsNil(o.Or) {
+		return nil, false
+	}
+	return o.Or, true
+}
+
+// HasOr returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasOr() bool {
+	if o != nil && !IsNil(o.Or) {
+		return true
+	}
+
+	return false
+}
+
+// SetOr gets a reference to the given []Filter and assigns it to the Or field.
+func (o *InputQueryFilterOperation) SetOr(v []Filter) {
+	o.Or = v
+}
+
+// GetNot returns the Not field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetNot() Filter {
+	if o == nil || IsNil(o.Not) {
+		var ret Filter
+		return ret
+	}
+	return *o.Not
+}
+
+// GetNotOk returns a tuple with the Not field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetNotOk() (*Filter, bool) {
+	if o == nil || IsNil(o.Not) {
+		return nil, false
+	}
+	return o.Not, true
+}
+
+// HasNot returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasNot() bool {
+	if o != nil && !IsNil(o.Not) {
+		return true
+	}
+
+	return false
+}
+
+// SetNot gets a reference to the given Filter and assigns it to the Not field.
+func (o *InputQueryFilterOperation) SetNot(v Filter) {
+	o.Not = &v
+}
+
+// GetAny returns the Any field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetAny() map[string]interface{} {
+	if o == nil || IsNil(o.Any) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Any
+}
+
+// GetAnyOk returns a tuple with the Any field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetAnyOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Any) {
+		return map[string]interface{}{}, false
+	}
+	return o.Any, true
+}
+
+// HasAny returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasAny() bool {
+	if o != nil && !IsNil(o.Any) {
+		return true
+	}
+
+	return false
+}
+
+// SetAny gets a reference to the given map[string]interface{} and assigns it to the Any field.
+func (o *InputQueryFilterOperation) SetAny(v map[string]interface{}) {
+	o.Any = v
+}
+
+// GetLike returns the Like field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetLike() FieldValue {
+	if o == nil || IsNil(o.Like) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Like
+}
+
+// GetLikeOk returns a tuple with the Like field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetLikeOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Like) {
+		return nil, false
+	}
+	return o.Like, true
+}
+
+// HasLike returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasLike() bool {
+	if o != nil && !IsNil(o.Like) {
+		return true
+	}
+
+	return false
+}
+
+// SetLike gets a reference to the given FieldValue and assigns it to the Like field.
+func (o *InputQueryFilterOperation) SetLike(v FieldValue) {
+	o.Like = &v
+}
+
+// GetGt returns the Gt field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetGt() FieldValue {
+	if o == nil || IsNil(o.Gt) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Gt
+}
+
+// GetGtOk returns a tuple with the Gt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetGtOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Gt) {
+		return nil, false
+	}
+	return o.Gt, true
+}
+
+// HasGt returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasGt() bool {
+	if o != nil && !IsNil(o.Gt) {
+		return true
+	}
+
+	return false
+}
+
+// SetGt gets a reference to the given FieldValue and assigns it to the Gt field.
+func (o *InputQueryFilterOperation) SetGt(v FieldValue) {
+	o.Gt = &v
+}
+
+// GetGte returns the Gte field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetGte() FieldValue {
+	if o == nil || IsNil(o.Gte) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Gte
+}
+
+// GetGteOk returns a tuple with the Gte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetGteOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Gte) {
+		return nil, false
+	}
+	return o.Gte, true
+}
+
+// HasGte returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasGte() bool {
+	if o != nil && !IsNil(o.Gte) {
+		return true
+	}
+
+	return false
+}
+
+// SetGte gets a reference to the given FieldValue and assigns it to the Gte field.
+func (o *InputQueryFilterOperation) SetGte(v FieldValue) {
+	o.Gte = &v
+}
+
+// GetLt returns the Lt field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetLt() FieldValue {
+	if o == nil || IsNil(o.Lt) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Lt
+}
+
+// GetLtOk returns a tuple with the Lt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetLtOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Lt) {
+		return nil, false
+	}
+	return o.Lt, true
+}
+
+// HasLt returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasLt() bool {
+	if o != nil && !IsNil(o.Lt) {
+		return true
+	}
+
+	return false
+}
+
+// SetLt gets a reference to the given FieldValue and assigns it to the Lt field.
+func (o *InputQueryFilterOperation) SetLt(v FieldValue) {
+	o.Lt = &v
+}
+
+// GetLte returns the Lte field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetLte() FieldValue {
+	if o == nil || IsNil(o.Lte) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Lte
+}
+
+// GetLteOk returns a tuple with the Lte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetLteOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Lte) {
+		return nil, false
+	}
+	return o.Lte, true
+}
+
+// HasLte returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasLte() bool {
+	if o != nil && !IsNil(o.Lte) {
+		return true
+	}
+
+	return false
+}
+
+// SetLte gets a reference to the given FieldValue and assigns it to the Lte field.
+func (o *InputQueryFilterOperation) SetLte(v FieldValue) {
+	o.Lte = &v
+}
+
+// GetNe returns the Ne field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetNe() FieldValue {
+	if o == nil || IsNil(o.Ne) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Ne
+}
+
+// GetNeOk returns a tuple with the Ne field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetNeOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Ne) {
+		return nil, false
+	}
+	return o.Ne, true
+}
+
+// HasNe returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasNe() bool {
+	if o != nil && !IsNil(o.Ne) {
+		return true
+	}
+
+	return false
+}
+
+// SetNe gets a reference to the given FieldValue and assigns it to the Ne field.
+func (o *InputQueryFilterOperation) SetNe(v FieldValue) {
+	o.Ne = &v
+}
+
+// GetIn returns the In field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetIn() FieldValue {
+	if o == nil || IsNil(o.In) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.In
+}
+
+// GetInOk returns a tuple with the In field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetInOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.In) {
+		return nil, false
+	}
+	return o.In, true
+}
+
+// HasIn returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasIn() bool {
+	if o != nil && !IsNil(o.In) {
+		return true
+	}
+
+	return false
+}
+
+// SetIn gets a reference to the given FieldValue and assigns it to the In field.
+func (o *InputQueryFilterOperation) SetIn(v FieldValue) {
+	o.In = &v
+}
+
+// GetBetween returns the Between field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetBetween() FieldValue {
+	if o == nil || IsNil(o.Between) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Between
+}
+
+// GetBetweenOk returns a tuple with the Between field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetBetweenOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Between) {
+		return nil, false
+	}
+	return o.Between, true
+}
+
+// HasBetween returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasBetween() bool {
+	if o != nil && !IsNil(o.Between) {
+		return true
+	}
+
+	return false
+}
+
+// SetBetween gets a reference to the given FieldValue and assigns it to the Between field.
+func (o *InputQueryFilterOperation) SetBetween(v FieldValue) {
+	o.Between = &v
+}
+
+// GetContains returns the Contains field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetContains() FieldValue {
+	if o == nil || IsNil(o.Contains) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Contains
+}
+
+// GetContainsOk returns a tuple with the Contains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetContainsOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Contains) {
+		return nil, false
+	}
+	return o.Contains, true
+}
+
+// HasContains returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasContains() bool {
+	if o != nil && !IsNil(o.Contains) {
+		return true
+	}
+
+	return false
+}
+
+// SetContains gets a reference to the given FieldValue and assigns it to the Contains field.
+func (o *InputQueryFilterOperation) SetContains(v FieldValue) {
+	o.Contains = &v
+}
+
+// GetEndsWith returns the EndsWith field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetEndsWith() FieldValue {
+	if o == nil || IsNil(o.EndsWith) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.EndsWith
+}
+
+// GetEndsWithOk returns a tuple with the EndsWith field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetEndsWithOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.EndsWith) {
+		return nil, false
+	}
+	return o.EndsWith, true
+}
+
+// HasEndsWith returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasEndsWith() bool {
+	if o != nil && !IsNil(o.EndsWith) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndsWith gets a reference to the given FieldValue and assigns it to the EndsWith field.
+func (o *InputQueryFilterOperation) SetEndsWith(v FieldValue) {
+	o.EndsWith = &v
+}
+
+// GetStartsWith returns the StartsWith field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetStartsWith() FieldValue {
+	if o == nil || IsNil(o.StartsWith) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.StartsWith
+}
+
+// GetStartsWithOk returns a tuple with the StartsWith field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetStartsWithOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.StartsWith) {
+		return nil, false
+	}
+	return o.StartsWith, true
+}
+
+// HasStartsWith returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasStartsWith() bool {
+	if o != nil && !IsNil(o.StartsWith) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartsWith gets a reference to the given FieldValue and assigns it to the StartsWith field.
+func (o *InputQueryFilterOperation) SetStartsWith(v FieldValue) {
+	o.StartsWith = &v
+}
+
+// GetMatch returns the Match field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetMatch() FieldValue {
+	if o == nil || IsNil(o.Match) {
+		var ret FieldValue
+		return ret
+	}
+	return *o.Match
+}
+
+// GetMatchOk returns a tuple with the Match field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetMatchOk() (*FieldValue, bool) {
+	if o == nil || IsNil(o.Match) {
+		return nil, false
+	}
+	return o.Match, true
+}
+
+// HasMatch returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasMatch() bool {
+	if o != nil && !IsNil(o.Match) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatch gets a reference to the given FieldValue and assigns it to the Match field.
+func (o *InputQueryFilterOperation) SetMatch(v FieldValue) {
+	o.Match = &v
+}
+
+// GetUnderscoreId returns the UnderscoreId field value if set, zero value otherwise.
+func (o *InputQueryFilterOperation) GetUnderscoreId() string {
+	if o == nil || IsNil(o.UnderscoreId) {
+		var ret string
+		return ret
+	}
+	return *o.UnderscoreId
+}
+
+// GetUnderscoreIdOk returns a tuple with the UnderscoreId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryFilterOperation) GetUnderscoreIdOk() (*string, bool) {
+	if o == nil || IsNil(o.UnderscoreId) {
+		return nil, false
+	}
+	return o.UnderscoreId, true
+}
+
+// HasUnderscoreId returns a boolean if a field has been set.
+func (o *InputQueryFilterOperation) HasUnderscoreId() bool {
+	if o != nil && !IsNil(o.UnderscoreId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnderscoreId gets a reference to the given string and assigns it to the UnderscoreId field.
+func (o *InputQueryFilterOperation) SetUnderscoreId(v string) {
+	o.UnderscoreId = &v
+}
+
 // GetName returns the Name field value
 func (o *InputQueryFilterOperation) GetName() string {
 	if o == nil {
@@ -113,6 +674,57 @@ func (o InputQueryFilterOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Eq) {
 		toSerialize["_eq"] = o.Eq
+	}
+	if !IsNil(o.And) {
+		toSerialize["_and"] = o.And
+	}
+	if !IsNil(o.Or) {
+		toSerialize["_or"] = o.Or
+	}
+	if !IsNil(o.Not) {
+		toSerialize["_not"] = o.Not
+	}
+	if !IsNil(o.Any) {
+		toSerialize["_any"] = o.Any
+	}
+	if !IsNil(o.Like) {
+		toSerialize["_like"] = o.Like
+	}
+	if !IsNil(o.Gt) {
+		toSerialize["_gt"] = o.Gt
+	}
+	if !IsNil(o.Gte) {
+		toSerialize["_gte"] = o.Gte
+	}
+	if !IsNil(o.Lt) {
+		toSerialize["_lt"] = o.Lt
+	}
+	if !IsNil(o.Lte) {
+		toSerialize["_lte"] = o.Lte
+	}
+	if !IsNil(o.Ne) {
+		toSerialize["_ne"] = o.Ne
+	}
+	if !IsNil(o.In) {
+		toSerialize["_in"] = o.In
+	}
+	if !IsNil(o.Between) {
+		toSerialize["_between"] = o.Between
+	}
+	if !IsNil(o.Contains) {
+		toSerialize["_contains"] = o.Contains
+	}
+	if !IsNil(o.EndsWith) {
+		toSerialize["_endsWith"] = o.EndsWith
+	}
+	if !IsNil(o.StartsWith) {
+		toSerialize["_startsWith"] = o.StartsWith
+	}
+	if !IsNil(o.Match) {
+		toSerialize["_match"] = o.Match
+	}
+	if !IsNil(o.UnderscoreId) {
+		toSerialize["_id"] = o.UnderscoreId
 	}
 	toSerialize["_name"] = o.Name
 	return toSerialize, nil

@@ -20206,6 +20206,44 @@ components:
       properties:
         _eq:
           type: object
+        _and:
+          items:
+            $ref: "#/components/schemas/Filter"
+          type: array
+        _or:
+          items:
+            $ref: "#/components/schemas/Filter"
+          type: array
+        _not:
+          $ref: "#/components/schemas/Filter"
+        _any:
+          type: object
+        _like:
+          $ref: "#/components/schemas/FieldValue"
+        _gt:
+          $ref: "#/components/schemas/FieldValue"
+        _gte:
+          $ref: "#/components/schemas/FieldValue"
+        _lt:
+          $ref: "#/components/schemas/FieldValue"
+        _lte:
+          $ref: "#/components/schemas/FieldValue"
+        _ne:
+          $ref: "#/components/schemas/FieldValue"
+        _in:
+          $ref: "#/components/schemas/FieldValue"
+        _between:
+          $ref: "#/components/schemas/FieldValue"
+        _contains:
+          $ref: "#/components/schemas/FieldValue"
+        _endsWith:
+          $ref: "#/components/schemas/FieldValue"
+        _startsWith:
+          $ref: "#/components/schemas/FieldValue"
+        _match:
+          $ref: "#/components/schemas/FieldValue"
+        _id:
+          type: string
         _name:
           type: string
       required:

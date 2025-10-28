@@ -21,8 +21,8 @@ echo -e "${GREEN}✅ Starting client generation...${NC}"
 /usr/local/bin/docker-entrypoint.sh generate \
   -i "$FIXED_OPENAPI_PATH" \
   -g go \
-  --git-user-id StrangeBee \
-  --git-repo-id TheHive4Go \
+  --git-user-id StrangeBeeCorp \
+  --git-repo-id thehive4go \
   -o "$CLIENT_PATH" \
   --additional-properties=packageName=thehive,enumClassPrefix=true,packageVersion=1.0.0,withGoMod=false,isGoSubmodule=true,hideGenerationTimestamp=true \
   --name-mappings _id=UnderscoreId,_type=UnderscoreType,_createdBy=UnderscoreCreatedBy,_createdAt=UnderscoreCreatedAt,_updatedBy=UnderscoreUpdatedBy,_updatedAt=UnderscoreUpdatedAt \
