@@ -13,7 +13,7 @@ info:
     \ python requests:\n```python\nheaders = {'X-Organisation': 'myOrg'}\nrequests.post('http://localhost:9000/api/v1/alert',\
     \ headers=headers, json=...)\n```\n"
   title: TheHive
-  version: v1-5.5.10-1
+  version: v1-5.5.11-1
   x-logo:
     url: /static/logo-thehive-doc.svg
     altText: TheHive Logo
@@ -20269,6 +20269,10 @@ components:
       - $ref: "#/components/schemas/InputQuerySortOperation"
     InputQueryPagingOperation:
       properties:
+        extraData:
+          items:
+            type: string
+          type: array
         from:
           format: int32
           type: integer

@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**From** | **int32** |  | 
-**To** | **int32** |  | 
-**Name** | **string** |  | 
+**ExtraData** | Pointer to **[]string** |  | [optional]
+**From** | **int32** |  |
+**To** | **int32** |  |
+**Name** | **string** |  |
 
 ## Methods
 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewInputQueryPagingOperationWithDefaults instantiates a new InputQueryPagingOperation object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetExtraData
+
+`func (o *InputQueryPagingOperation) GetExtraData() []string`
+
+GetExtraData returns the ExtraData field if non-nil, zero value otherwise.
+
+### GetExtraDataOk
+
+`func (o *InputQueryPagingOperation) GetExtraDataOk() (*[]string, bool)`
+
+GetExtraDataOk returns a tuple with the ExtraData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraData
+
+`func (o *InputQueryPagingOperation) SetExtraData(v []string)`
+
+SetExtraData sets ExtraData field to given value.
+
+### HasExtraData
+
+`func (o *InputQueryPagingOperation) HasExtraData() bool`
+
+HasExtraData returns a boolean if a field has been set.
 
 ### GetFrom
 
@@ -89,5 +115,3 @@ SetName sets Name field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
