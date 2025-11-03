@@ -20234,6 +20234,10 @@ components:
       - $ref: "#/components/schemas/InputQuerySortOperation"
     InputQueryPagingOperation:
       properties:
+        extraData:
+          items:
+            type: string
+          type: array
         from:
           format: int32
           type: integer

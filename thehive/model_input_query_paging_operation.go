@@ -21,9 +21,10 @@ var _ MappedNullable = &InputQueryPagingOperation{}
 
 // InputQueryPagingOperation struct for InputQueryPagingOperation
 type InputQueryPagingOperation struct {
-	From int32  `json:"from"`
-	To   int32  `json:"to"`
-	Name string `json:"_name"`
+	ExtraData []string `json:"extraData,omitempty"`
+	From      int32    `json:"from"`
+	To        int32    `json:"to"`
+	Name      string   `json:"_name"`
 }
 
 type _InputQueryPagingOperation InputQueryPagingOperation
@@ -46,6 +47,38 @@ func NewInputQueryPagingOperation(from int32, to int32, name string) *InputQuery
 func NewInputQueryPagingOperationWithDefaults() *InputQueryPagingOperation {
 	this := InputQueryPagingOperation{}
 	return &this
+}
+
+// GetExtraData returns the ExtraData field value if set, zero value otherwise.
+func (o *InputQueryPagingOperation) GetExtraData() []string {
+	if o == nil || IsNil(o.ExtraData) {
+		var ret []string
+		return ret
+	}
+	return o.ExtraData
+}
+
+// GetExtraDataOk returns a tuple with the ExtraData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InputQueryPagingOperation) GetExtraDataOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExtraData) {
+		return nil, false
+	}
+	return o.ExtraData, true
+}
+
+// HasExtraData returns a boolean if a field has been set.
+func (o *InputQueryPagingOperation) HasExtraData() bool {
+	if o != nil && !IsNil(o.ExtraData) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtraData gets a reference to the given []string and assigns it to the ExtraData field.
+func (o *InputQueryPagingOperation) SetExtraData(v []string) {
+	o.ExtraData = v
 }
 
 // GetFrom returns the From field value
@@ -130,6 +163,9 @@ func (o InputQueryPagingOperation) MarshalJSON() ([]byte, error) {
 
 func (o InputQueryPagingOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExtraData) {
+		toSerialize["extraData"] = o.ExtraData
+	}
 	toSerialize["from"] = o.From
 	toSerialize["to"] = o.To
 	toSerialize["_name"] = o.Name

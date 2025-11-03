@@ -67,4 +67,16 @@ awk '
 
 echo -e "${GREEN}✅ InputQueryFilterOperation converted to generic object type!${NC}"
 
+
+# Robustly inject extraData field into InputQueryPagingOperation
+echo -e "${BLUE}🔧 Forcing extraData field into InputQueryPagingOperation...${NC}"
+awk '
+  BEGIN {in_paging=0}
+  /^    InputQueryPagingOperation:/ {in_paging=1; print; next}
+  in_paging==1 && /^      properties:/ {print; print "        extraData:"; print "          type: array"; print "          items:"; print "            type: string"; next}
+  in_paging==1 && /^    [^ ]/ {in_paging=0}
+  {print}
+' "$FIXED_OPENAPI_PATH" > "$FIXED_OPENAPI_PATH.tmp" && mv "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"
+echo -e "${GREEN}✅ extraData field forcibly injected into InputQueryPagingOperation${NC}"
+
 echo -e "${BLUE}🎉 OpenAPI specification parsing and modification completed successfully!${NC}"
