@@ -186,7 +186,6 @@ docs/InputPatternImportMitre.md
 docs/InputPredicate.md
 docs/InputProcedure.md
 docs/InputQuery.md
-docs/InputQueryFilterOperation.md
 docs/InputQueryGenericOperation.md
 docs/InputQueryNamedOperation.md
 docs/InputQueryPagingOperation.md
@@ -518,7 +517,6 @@ model_input_pattern_import_mitre.go
 model_input_predicate.go
 model_input_procedure.go
 model_input_query.go
-model_input_query_filter_operation.go
 model_input_query_generic_operation.go
 model_input_query_named_operation.go
 model_input_query_paging_operation.go

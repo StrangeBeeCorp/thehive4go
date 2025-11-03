@@ -18,17 +18,10 @@ import (
 
 // InputQueryNamedOperation - struct for InputQueryNamedOperation
 type InputQueryNamedOperation struct {
-	InputQueryFilterOperation  *InputQueryFilterOperation
 	InputQueryGenericOperation *InputQueryGenericOperation
 	InputQueryPagingOperation  *InputQueryPagingOperation
 	InputQuerySortOperation    *InputQuerySortOperation
-}
-
-// InputQueryFilterOperationAsInputQueryNamedOperation is a convenience function that returns InputQueryFilterOperation wrapped in InputQueryNamedOperation
-func InputQueryFilterOperationAsInputQueryNamedOperation(v *InputQueryFilterOperation) InputQueryNamedOperation {
-	return InputQueryNamedOperation{
-		InputQueryFilterOperation: v,
-	}
+	MapmapOfStringAny          *map[string]interface{}
 }
 
 // InputQueryGenericOperationAsInputQueryNamedOperation is a convenience function that returns InputQueryGenericOperation wrapped in InputQueryNamedOperation
@@ -52,27 +45,17 @@ func InputQuerySortOperationAsInputQueryNamedOperation(v *InputQuerySortOperatio
 	}
 }
 
+// map[string]interface{}AsInputQueryNamedOperation is a convenience function that returns map[string]interface{} wrapped in InputQueryNamedOperation
+func MapmapOfStringAnyAsInputQueryNamedOperation(v *map[string]interface{}) InputQueryNamedOperation {
+	return InputQueryNamedOperation{
+		MapmapOfStringAny: v,
+	}
+}
+
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *InputQueryNamedOperation) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into InputQueryFilterOperation
-	err = newStrictDecoder(data).Decode(&dst.InputQueryFilterOperation)
-	if err == nil {
-		jsonInputQueryFilterOperation, _ := json.Marshal(dst.InputQueryFilterOperation)
-		if string(jsonInputQueryFilterOperation) == "{}" { // empty struct
-			dst.InputQueryFilterOperation = nil
-		} else {
-			if err = validator.Validate(dst.InputQueryFilterOperation); err != nil {
-				dst.InputQueryFilterOperation = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.InputQueryFilterOperation = nil
-	}
-
 	// try to unmarshal data into InputQueryGenericOperation
 	err = newStrictDecoder(data).Decode(&dst.InputQueryGenericOperation)
 	if err == nil {
@@ -124,12 +107,29 @@ func (dst *InputQueryNamedOperation) UnmarshalJSON(data []byte) error {
 		dst.InputQuerySortOperation = nil
 	}
 
+	// try to unmarshal data into MapmapOfStringAny
+	err = newStrictDecoder(data).Decode(&dst.MapmapOfStringAny)
+	if err == nil {
+		jsonMapmapOfStringAny, _ := json.Marshal(dst.MapmapOfStringAny)
+		if string(jsonMapmapOfStringAny) == "{}" { // empty struct
+			dst.MapmapOfStringAny = nil
+		} else {
+			if err = validator.Validate(dst.MapmapOfStringAny); err != nil {
+				dst.MapmapOfStringAny = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.MapmapOfStringAny = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.InputQueryFilterOperation = nil
 		dst.InputQueryGenericOperation = nil
 		dst.InputQueryPagingOperation = nil
 		dst.InputQuerySortOperation = nil
+		dst.MapmapOfStringAny = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(InputQueryNamedOperation)")
 	} else if match == 1 {
@@ -141,10 +141,6 @@ func (dst *InputQueryNamedOperation) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src InputQueryNamedOperation) MarshalJSON() ([]byte, error) {
-	if src.InputQueryFilterOperation != nil {
-		return json.Marshal(&src.InputQueryFilterOperation)
-	}
-
 	if src.InputQueryGenericOperation != nil {
 		return json.Marshal(&src.InputQueryGenericOperation)
 	}
@@ -157,6 +153,10 @@ func (src InputQueryNamedOperation) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.InputQuerySortOperation)
 	}
 
+	if src.MapmapOfStringAny != nil {
+		return json.Marshal(&src.MapmapOfStringAny)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -165,10 +165,6 @@ func (obj *InputQueryNamedOperation) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.InputQueryFilterOperation != nil {
-		return obj.InputQueryFilterOperation
-	}
-
 	if obj.InputQueryGenericOperation != nil {
 		return obj.InputQueryGenericOperation
 	}
@@ -181,16 +177,16 @@ func (obj *InputQueryNamedOperation) GetActualInstance() interface{} {
 		return obj.InputQuerySortOperation
 	}
 
+	if obj.MapmapOfStringAny != nil {
+		return obj.MapmapOfStringAny
+	}
+
 	// all schemas are nil
 	return nil
 }
 
 // Get the actual instance value
 func (obj InputQueryNamedOperation) GetActualInstanceValue() interface{} {
-	if obj.InputQueryFilterOperation != nil {
-		return *obj.InputQueryFilterOperation
-	}
-
 	if obj.InputQueryGenericOperation != nil {
 		return *obj.InputQueryGenericOperation
 	}
@@ -201,6 +197,10 @@ func (obj InputQueryNamedOperation) GetActualInstanceValue() interface{} {
 
 	if obj.InputQuerySortOperation != nil {
 		return *obj.InputQuerySortOperation
+	}
+
+	if obj.MapmapOfStringAny != nil {
+		return *obj.MapmapOfStringAny
 	}
 
 	// all schemas are nil

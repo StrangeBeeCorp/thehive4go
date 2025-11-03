@@ -9,136 +9,38 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestInputQueryFilterOperationEnhancements(t *testing.T) {
-	// This test verifies that the InputQueryFilterOperation struct now supports
-	// all filter operations, not just _eq
+// Helper function to create filters from JSON strings using the generic map approach
+// This demonstrates how to work with dynamic/LLM-generated filters
+func createFilterFromJSONString(filterString string) (thehive.InputQueryNamedOperation, error) {
+	var filterMap map[string]interface{}
+	if err := json.Unmarshal([]byte(filterString), &filterMap); err != nil {
+		return thehive.InputQueryNamedOperation{}, err
+	}
 
-	t.Run("EqualityFilter", func(t *testing.T) {
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetEq(map[string]interface{}{
-			"_field": "type",
-			"_value": "external",
-		})
-
-		// Verify it serializes correctly
-		data, err := json.Marshal(filterOp)
-		require.NoError(t, err)
-		require.Contains(t, string(data), `"_eq"`)
-		require.Contains(t, string(data), `"_name":"filter"`)
-		t.Logf("✅ Equality filter works: %s", string(data))
-	})
-
-	t.Run("LikeFilter", func(t *testing.T) {
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetLike(thehive.FieldValue{
-			Field: "title",
-			Value: "test*",
-		})
-
-		// Verify it serializes correctly
-		data, err := json.Marshal(filterOp)
-		require.NoError(t, err)
-		require.Contains(t, string(data), `"_like"`)
-		require.Contains(t, string(data), `"_name":"filter"`)
-		t.Logf("✅ Like filter works: %s", string(data))
-	})
-
-	t.Run("GreaterThanFilter", func(t *testing.T) {
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetGt(thehive.FieldValue{
-			Field: "severity",
-			Value: 1,
-		})
-
-		// Verify it serializes correctly
-		data, err := json.Marshal(filterOp)
-		require.NoError(t, err)
-		require.Contains(t, string(data), `"_gt"`)
-		require.Contains(t, string(data), `"_name":"filter"`)
-		t.Logf("✅ Greater than filter works: %s", string(data))
-	})
-
-	t.Run("AndOrFilters", func(t *testing.T) {
-		// Test _and filter combining multiple conditions
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-
-		// Create individual filters
-		titleFilter := thehive.EqAsFilter(thehive.NewEq(thehive.FieldValue{
-			Field: "type",
-			Value: "external",
-		}))
-
-		severityFilter := thehive.GteAsFilter(thehive.NewGte(thehive.FieldValue{
-			Field: "severity",
-			Value: 2,
-		}))
-
-		andFilters := []thehive.Filter{titleFilter, severityFilter}
-		filterOp.SetAnd(andFilters)
-
-		// Verify it serializes correctly
-		data, err := json.Marshal(filterOp)
-		require.NoError(t, err)
-		require.Contains(t, string(data), `"_and"`)
-		require.Contains(t, string(data), `"_name":"filter"`)
-		t.Logf("✅ AND filter works: %s", string(data))
-
-		// Test _or filter
-		filterOp2 := thehive.NewInputQueryFilterOperation("filter")
-		orFilters := []thehive.Filter{titleFilter, severityFilter}
-		filterOp2.SetOr(orFilters)
-
-		data2, err := json.Marshal(filterOp2)
-		require.NoError(t, err)
-		require.Contains(t, string(data2), `"_or"`)
-		require.Contains(t, string(data2), `"_name":"filter"`)
-		t.Logf("✅ OR filter works: %s", string(data2))
-	})
-
-	t.Run("AllFilterMethodsAvailable", func(t *testing.T) {
-		// Test that all filter operation methods are available
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-
-		// These would fail to compile if the methods don't exist
-		require.NotNil(t, filterOp.SetEq)
-		require.NotNil(t, filterOp.SetAnd)
-		require.NotNil(t, filterOp.SetOr)
-		require.NotNil(t, filterOp.SetNot)
-		require.NotNil(t, filterOp.SetLike)
-		require.NotNil(t, filterOp.SetGt)
-		require.NotNil(t, filterOp.SetGte)
-		require.NotNil(t, filterOp.SetLt)
-		require.NotNil(t, filterOp.SetLte)
-		require.NotNil(t, filterOp.SetNe)
-		require.NotNil(t, filterOp.SetIn)
-		require.NotNil(t, filterOp.SetBetween)
-		require.NotNil(t, filterOp.SetContains)
-		require.NotNil(t, filterOp.SetEndsWith)
-		require.NotNil(t, filterOp.SetStartsWith)
-		require.NotNil(t, filterOp.SetMatch)
-		require.NotNil(t, filterOp.SetAny)
-		require.NotNil(t, filterOp.SetUnderscoreId)
-
-		t.Logf("✅ All filter operations are available (total: 18 operations)")
-	})
+	// Use the generic map converter that's available in the generated client
+	return thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap), nil
 }
 
-func TestFilterOperationIntegration(t *testing.T) {
+// TestFilterOperations tests various filter operations using the generated client
+func TestFilterOperations(t *testing.T) {
 	cfg := testutils.GetTestConfig(t)
 	client := testutils.CreateOrgClient(t, cfg)
 	ctx := testutils.CreateAuthContext(t, cfg)
 
-	t.Run("EqualityFilterQuery", func(t *testing.T) {
-		// Test that queries with the _eq filter work (this was already working before)
+	t.Run("TestEqFilterAlerts", func(t *testing.T) {
+		// Create a list operation for alerts
 		listOp := thehive.NewInputQueryGenericOperation("listAlert")
 		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
 
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetEq(map[string]interface{}{
-			"_field": "type",
-			"_value": "external",
-		})
-		filterNamedOp := thehive.InputQueryFilterOperationAsInputQueryNamedOperation(filterOp)
+		// Use the generic map approach for filter - test filtering by alert type
+		filterMap := map[string]interface{}{
+			"_name": "filter",
+			"_eq": map[string]interface{}{
+				"_field": "type",
+				"_value": "external",
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap)
 
 		query := thehive.NewInputQuery()
 		query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp})
@@ -147,20 +49,23 @@ func TestFilterOperationIntegration(t *testing.T) {
 		require.NoError(t, err)
 		require.Equal(t, 200, httpResp.StatusCode)
 		require.NotNil(t, resp)
-		t.Logf("✅ _eq filter query works")
+		t.Logf("✅ _eq filter query works for alerts")
 	})
 
-	t.Run("GreaterThanFilterQuery", func(t *testing.T) {
-		// Test that queries with the _gt filter work (this was NOT working before our fix)
-		listOp := thehive.NewInputQueryGenericOperation("listAlert")
+	t.Run("TestEqFilterObservables", func(t *testing.T) {
+		// Create a list operation for observables
+		listOp := thehive.NewInputQueryGenericOperation("listObservable")
 		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
 
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetGt(thehive.FieldValue{
-			Field: "severity",
-			Value: 0, // Find alerts with severity > 0
-		})
-		filterNamedOp := thehive.InputQueryFilterOperationAsInputQueryNamedOperation(filterOp)
+		// Use the generic map approach for filter - test filtering by dataType
+		filterMap := map[string]interface{}{
+			"_name": "filter",
+			"_eq": map[string]interface{}{
+				"_field": "dataType",
+				"_value": "ip",
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap)
 
 		query := thehive.NewInputQuery()
 		query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp})
@@ -169,28 +74,23 @@ func TestFilterOperationIntegration(t *testing.T) {
 		require.NoError(t, err)
 		require.Equal(t, 200, httpResp.StatusCode)
 		require.NotNil(t, resp)
-		t.Logf("✅ _gt filter query works (this was broken before our fix)")
+		t.Logf("✅ _eq filter query works for observables")
 	})
 
-	t.Run("AndFilterQuery", func(t *testing.T) {
-		// Test that queries with the _and filter work (this was NOT working before our fix)
+	t.Run("TestGtFilter", func(t *testing.T) {
+		// Create a list operation for alerts
 		listOp := thehive.NewInputQueryGenericOperation("listAlert")
 		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
 
-		// Create individual filters for the AND operation
-		typeFilter := thehive.EqAsFilter(thehive.NewEq(thehive.FieldValue{
-			Field: "type",
-			Value: "external",
-		}))
-
-		severityFilter := thehive.GteAsFilter(thehive.NewGte(thehive.FieldValue{
-			Field: "severity",
-			Value: 1,
-		}))
-
-		filterOp := thehive.NewInputQueryFilterOperation("filter")
-		filterOp.SetAnd([]thehive.Filter{typeFilter, severityFilter})
-		filterNamedOp := thehive.InputQueryFilterOperationAsInputQueryNamedOperation(filterOp)
+		// Test _gt filter for creation date
+		filterMap := map[string]interface{}{
+			"_name": "filter",
+			"_gt": map[string]interface{}{
+				"_field": "_createdAt",
+				"_value": 1640995200000, // Unix timestamp
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap)
 
 		query := thehive.NewInputQuery()
 		query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp})
@@ -199,6 +99,151 @@ func TestFilterOperationIntegration(t *testing.T) {
 		require.NoError(t, err)
 		require.Equal(t, 200, httpResp.StatusCode)
 		require.NotNil(t, resp)
-		t.Logf("✅ _and filter query works (this was broken before our fix)")
+		t.Logf("✅ _gt filter query works")
+	})
+
+	t.Run("TestAndFilter", func(t *testing.T) {
+		// Create a list operation for alerts
+		listOp := thehive.NewInputQueryGenericOperation("listAlert")
+		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
+
+		// Test _and filter combining multiple conditions
+		filterMap := map[string]interface{}{
+			"_name": "filter",
+			"_and": []interface{}{
+				map[string]interface{}{
+					"_gte": map[string]interface{}{
+						"_field": "severity",
+						"_value": 2,
+					},
+				},
+				map[string]interface{}{
+					"_eq": map[string]interface{}{
+						"_field": "status",
+						"_value": "New",
+					},
+				},
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap)
+
+		query := thehive.NewInputQuery()
+		query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp})
+
+		resp, httpResp, err := client.QueryAndExportAPI.QueryAPI(ctx).InputQuery(*query).Execute()
+		require.NoError(t, err)
+		require.Equal(t, 200, httpResp.StatusCode)
+		require.NotNil(t, resp)
+		t.Logf("✅ _and filter query works")
+	})
+
+	t.Run("TestLLMGeneratedFilters", func(t *testing.T) {
+		// Test filters generated from JSON strings (simulating LLM output)
+		testCases := []struct {
+			name       string
+			filterJSON string
+		}{
+			{
+				name: "LLM generated equality filter",
+				filterJSON: `{
+					"_name": "filter",
+					"_eq": {
+						"_field": "type",
+						"_value": "external"
+					}
+				}`,
+			},
+			{
+				name: "LLM generated range filter",
+				filterJSON: `{
+					"_name": "filter",
+					"_gte": {
+						"_field": "severity",
+						"_value": 1
+					}
+				}`,
+			},
+		}
+
+		// Create a base list operation
+		listOp := thehive.NewInputQueryGenericOperation("listAlert")
+		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
+
+		for _, tc := range testCases {
+			t.Run(tc.name, func(t *testing.T) {
+				filterNamedOp, err := createFilterFromJSONString(tc.filterJSON)
+				require.NoError(t, err)
+
+				query := thehive.NewInputQuery()
+				query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp})
+
+				resp, httpResp, err := client.QueryAndExportAPI.QueryAPI(ctx).InputQuery(*query).Execute()
+				require.NoError(t, err)
+				require.Equal(t, 200, httpResp.StatusCode)
+				require.NotNil(t, resp)
+				t.Logf("✅ LLM generated filter works: %s", tc.name)
+			})
+		}
+	})
+
+	t.Run("TestExtraDataFiltering", func(t *testing.T) {
+		// Test that we can list observables and get extraData without separate extraData operation
+		listOp := thehive.NewInputQueryGenericOperation("listObservable")
+		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
+
+		// Filter on a valid observable field
+		filterOp := map[string]interface{}{
+			"_name": "filter",
+			"_eq": map[string]interface{}{
+				"_field": "ioc",
+				"_value": true,
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterOp)
+
+		// Add page operation to request extraData (correct way)
+		pageOp := map[string]interface{}{
+			"_name":     "page",
+			"from":      0,
+			"to":        10,
+			"extraData": []string{"all"},
+		}
+		pageNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&pageOp)
+
+		query := thehive.NewInputQuery()
+		query.SetQuery([]thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp, pageNamedOp})
+
+		resp, httpResp, err := client.QueryAndExportAPI.QueryAPI(ctx).InputQuery(*query).Execute()
+		require.NoError(t, err)
+		require.Equal(t, 200, httpResp.StatusCode)
+		require.NotNil(t, resp)
+		t.Logf("✅ extraData can be requested via page operation")
+	}) // Test building filters entirely from generic maps (LLM use case)
+	t.Run("EntirelyGenericMapFilters", func(t *testing.T) {
+		// Test the hybrid approach: proper list operation + generic map filter
+		// This is what works and is most practical for LLM use
+		listOp := thehive.NewInputQueryGenericOperation("listAlert")
+		listNamedOp := thehive.InputQueryGenericOperationAsInputQueryNamedOperation(listOp)
+
+		// LLM-generated filter as generic map
+		filterMap := map[string]interface{}{
+			"_name": "filter",
+			"_eq": map[string]interface{}{
+				"_field": "type",
+				"_value": "external",
+			},
+		}
+		filterNamedOp := thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap)
+
+		namedOps := []thehive.InputQueryNamedOperation{listNamedOp, filterNamedOp}
+
+		query := thehive.NewInputQuery()
+		query.SetQuery(namedOps)
+
+		resp, httpResp, err := client.QueryAndExportAPI.QueryAPI(ctx).InputQuery(*query).Execute()
+		require.NoError(t, err)
+		require.Equal(t, 200, httpResp.StatusCode)
+		require.NotNil(t, resp)
+		t.Logf("✅ Entirely generic map-based query works - PERFECT FOR LLM USE!")
 	})
 }

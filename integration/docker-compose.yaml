@@ -35,7 +35,7 @@ services:
       - "--s3-use-path-access-style"
 
   integration-tests:
-    image: golang:1.24.7-alpine
+    image: golang:1.24.9-alpine
     working_dir: /app
     volumes:
       - ..:/app
