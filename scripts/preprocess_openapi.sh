@@ -40,84 +40,31 @@ sed -i '/  securitySchemes:/,/^[^ ]/ {
 }' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ Header securityScheme fixed successfully${NC}"
 
-# Fix InputQueryFilterOperation to include all filter operations
-echo -e "${BLUE}🔧 Fixing InputQueryFilterOperation to support all filter operations...${NC}"
+# Fix InputQueryFilterOperation to accept generic objects (map[string]interface{})
+echo -e "${BLUE}🔧 Converting InputQueryFilterOperation to generic object type...${NC}"
 
-# Create temporary files for our operation
-INPUT_QUERY_FILTER_START=$(grep -n "^    InputQueryFilterOperation:" "$FIXED_OPENAPI_PATH" | cut -d: -f1)
-INPUT_QUERY_GENERIC_START=$(grep -n "^    InputQueryGenericOperation:" "$FIXED_OPENAPI_PATH" | cut -d: -f1)
+# Use awk to replace the entire InputQueryFilterOperation definition
+awk '
+  BEGIN {in_filter=0; skip_lines=0}
+  /^    InputQueryFilterOperation:/ {
+    in_filter=1
+    print "    InputQueryFilterOperation:"
+    print "      type: object"
+    print "      additionalProperties: true"
+    print "      example:"
+    print "        _name: filter"
+    print "        _eq:"
+    print "          _field: \"severity\""
+    print "          _value: 2"
+    print "      required:"
+    print "      - _name"
+    next
+  }
+  in_filter==1 && /^    [^ ]/ {in_filter=0}
+  in_filter==1 {next}
+  {print}
+' "$FIXED_OPENAPI_PATH" > "$FIXED_OPENAPI_PATH.tmp" && mv "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"
 
-if [ -z "$INPUT_QUERY_FILTER_START" ] || [ -z "$INPUT_QUERY_GENERIC_START" ]; then
-    echo -e "${RED}❌ Could not find InputQueryFilterOperation or InputQueryGenericOperation sections${NC}"
-    exit 1
-fi
-
-# Calculate the line where the InputQueryFilterOperation section ends
-END_LINE=$((INPUT_QUERY_GENERIC_START - 1))
-
-# Create the new complete InputQueryFilterOperation definition
-cat > /tmp/new_filter_operation.yaml << 'EOF'
-    InputQueryFilterOperation:
-      example:
-        _name: _name
-        _eq: "{}"
-      properties:
-        _eq:
-          type: object
-        _and:
-          items:
-            $ref: "#/components/schemas/Filter"
-          type: array
-        _or:
-          items:
-            $ref: "#/components/schemas/Filter"
-          type: array
-        _not:
-          $ref: "#/components/schemas/Filter"
-        _any:
-          type: object
-        _like:
-          $ref: "#/components/schemas/FieldValue"
-        _gt:
-          $ref: "#/components/schemas/FieldValue"
-        _gte:
-          $ref: "#/components/schemas/FieldValue"
-        _lt:
-          $ref: "#/components/schemas/FieldValue"
-        _lte:
-          $ref: "#/components/schemas/FieldValue"
-        _ne:
-          $ref: "#/components/schemas/FieldValue"
-        _in:
-          $ref: "#/components/schemas/FieldValue"
-        _between:
-          $ref: "#/components/schemas/FieldValue"
-        _contains:
-          $ref: "#/components/schemas/FieldValue"
-        _endsWith:
-          $ref: "#/components/schemas/FieldValue"
-        _startsWith:
-          $ref: "#/components/schemas/FieldValue"
-        _match:
-          $ref: "#/components/schemas/FieldValue"
-        _id:
-          type: string
-        _name:
-          type: string
-      required:
-      - _name
-EOF
-
-# Create temporary files to hold the parts of the original file
-head -n $((INPUT_QUERY_FILTER_START - 1)) "$FIXED_OPENAPI_PATH" > /tmp/before_filter.yaml
-tail -n +$INPUT_QUERY_GENERIC_START "$FIXED_OPENAPI_PATH" > /tmp/after_filter.yaml
-
-# Combine the parts with our new filter operation
-cat /tmp/before_filter.yaml /tmp/new_filter_operation.yaml /tmp/after_filter.yaml > "$FIXED_OPENAPI_PATH"
-
-# Clean up temporary files
-rm -f /tmp/before_filter.yaml /tmp/after_filter.yaml /tmp/new_filter_operation.yaml
-
-echo -e "${GREEN}✅ InputQueryFilterOperation fixed - now supports all filter operations!${NC}"
+echo -e "${GREEN}✅ InputQueryFilterOperation converted to generic object type!${NC}"
 
 echo -e "${BLUE}🎉 OpenAPI specification parsing and modification completed successfully!${NC}"
