@@ -106,10 +106,11 @@ ctx := context.WithValue(context.Background(), thehive.ContextAPIKeys, map[strin
 For multi-organization deployments, specify the target organization:
 
 ```go
-// Add organization header to your requests
-ctx = context.WithValue(ctx, thehive.ContextAPIKeys, map[string]thehive.APIKey{
-    "Header": {Key: "target-org-name"},
-})
+// Add organization header to the client configuration
+config.AddDefaultHeader("X-Organisation", "target-org-name")
+
+// Or create a separate client with organization header
+orgClient := thehive.NewAPIClient(config)
 ```
 
 ## Usage Examples
@@ -141,27 +142,22 @@ fmt.Printf("Found alerts: %+v\n", result)
 
 ```go
 // Search for high severity alerts with pagination
-genericOp := &thehive.InputQueryGenericOperation{
-    Name: "listAlert",
-}
+genericOp := thehive.NewInputQueryGenericOperation("listAlert")
 
-filterOp := &thehive.InputQueryFilterOperation{
-    Eq: map[string]interface{}{
-        "severity": float32(3), // High severity
+// Create filter using map[string]interface{}
+filterMap := map[string]interface{}{
+    "_name": "filter",
+    "_eq": map[string]interface{}{
+        "severity": int32(3), // High severity
     },
-    Name: "filter",
 }
 
-pagingOp := &thehive.InputQueryPagingOperation{
-    From: int32(0),
-    To:   int32(10),
-    Name: "page",
-}
+pagingOp := thehive.NewInputQueryPagingOperation(0, 10, "page")
 
 query := thehive.InputQuery{
     Query: []thehive.InputQueryNamedOperation{
         thehive.InputQueryGenericOperationAsInputQueryNamedOperation(genericOp),
-        thehive.InputQueryFilterOperationAsInputQueryNamedOperation(filterOp),
+        thehive.MapmapOfStringAnyAsInputQueryNamedOperation(&filterMap),
         thehive.InputQueryPagingOperationAsInputQueryNamedOperation(pagingOp),
     },
 }
@@ -173,12 +169,9 @@ result, resp, err := client.QueryAndExportAPI.QueryAPI(ctx).InputQuery(query).Ex
 
 ```go
 // Create a new case
-inputCase := &thehive.InputCreateCase{
-    Title:       "Security Incident",
-    Description: "Detected suspicious activity",
-    Severity:    thehive.PtrInt32(2),
-    Tlp:         thehive.PtrInt32(2),
-}
+inputCase := thehive.NewInputCreateCase("Security Incident", "Detected suspicious activity")
+inputCase.SetSeverity(2)
+inputCase.SetTlp(2)
 
 createdCase, resp, err := client.CaseAPI.CreateCase(ctx).InputCreateCase(*inputCase).Execute()
 if err != nil {
@@ -332,16 +325,6 @@ This project follows Semantic Versioning:
 
 - **v0.x.y**: API is not yet stable; breaking changes may appear in minor releases
 - **v1.0.0+**: Backwards compatibility preserved; breaking changes require major version bump
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Open an issue to discuss proposed changes
-2. Create a feature branch with a descriptive name
-3. Implement changes with appropriate tests
-4. Ensure all quality checks pass (`make security test`)
-5. Submit a pull request
 
 ## License
 
