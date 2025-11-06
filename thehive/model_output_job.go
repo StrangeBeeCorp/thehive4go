@@ -14,7 +14,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the OutputJob type satisfies the MappedNullable interface at compile time
@@ -26,14 +25,14 @@ type OutputJob struct {
 	UnderscoreType      string                 `json:"_type"`
 	UnderscoreCreatedBy string                 `json:"_createdBy"`
 	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt time.Time              `json:"_createdAt"`
-	UnderscoreUpdatedAt *time.Time             `json:"_updatedAt,omitempty"`
+	UnderscoreCreatedAt string                 `json:"_createdAt"`
+	UnderscoreUpdatedAt *string                `json:"_updatedAt,omitempty"`
 	AnalyzerId          string                 `json:"analyzerId"`
 	AnalyzerName        string                 `json:"analyzerName"`
 	AnalyzerDefinition  string                 `json:"analyzerDefinition"`
 	Status              string                 `json:"status"`
-	StartDate           time.Time              `json:"startDate"`
-	EndDate             *time.Time             `json:"endDate,omitempty"`
+	StartDate           string                 `json:"startDate"`
+	EndDate             *string                `json:"endDate,omitempty"`
 	Report              map[string]interface{} `json:"report,omitempty"`
 	CortexId            string                 `json:"cortexId"`
 	CortexJobId         string                 `json:"cortexJobId"`
@@ -48,7 +47,7 @@ type _OutputJob OutputJob
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt time.Time, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate time.Time, cortexId string, cortexJobId string, id string, operations string) *OutputJob {
+func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt string, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate string, cortexId string, cortexJobId string, id string, operations string) *OutputJob {
 	this := OutputJob{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -179,9 +178,9 @@ func (o *OutputJob) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputJob) GetUnderscoreCreatedAt() time.Time {
+func (o *OutputJob) GetUnderscoreCreatedAt() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -190,7 +189,7 @@ func (o *OutputJob) GetUnderscoreCreatedAt() time.Time {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetUnderscoreCreatedAtOk() (*time.Time, bool) {
+func (o *OutputJob) GetUnderscoreCreatedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -198,14 +197,14 @@ func (o *OutputJob) GetUnderscoreCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputJob) SetUnderscoreCreatedAt(v time.Time) {
+func (o *OutputJob) SetUnderscoreCreatedAt(v string) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputJob) GetUnderscoreUpdatedAt() time.Time {
+func (o *OutputJob) GetUnderscoreUpdatedAt() string {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -213,7 +212,7 @@ func (o *OutputJob) GetUnderscoreUpdatedAt() time.Time {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*time.Time, bool) {
+func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*string, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -229,8 +228,8 @@ func (o *OutputJob) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given time.Time and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputJob) SetUnderscoreUpdatedAt(v time.Time) {
+// SetUnderscoreUpdatedAt gets a reference to the given string and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputJob) SetUnderscoreUpdatedAt(v string) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -331,9 +330,9 @@ func (o *OutputJob) SetStatus(v string) {
 }
 
 // GetStartDate returns the StartDate field value
-func (o *OutputJob) GetStartDate() time.Time {
+func (o *OutputJob) GetStartDate() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
@@ -342,7 +341,7 @@ func (o *OutputJob) GetStartDate() time.Time {
 
 // GetStartDateOk returns a tuple with the StartDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetStartDateOk() (*time.Time, bool) {
+func (o *OutputJob) GetStartDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -350,14 +349,14 @@ func (o *OutputJob) GetStartDateOk() (*time.Time, bool) {
 }
 
 // SetStartDate sets field value
-func (o *OutputJob) SetStartDate(v time.Time) {
+func (o *OutputJob) SetStartDate(v string) {
 	o.StartDate = v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *OutputJob) GetEndDate() time.Time {
+func (o *OutputJob) GetEndDate() string {
 	if o == nil || IsNil(o.EndDate) {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.EndDate
@@ -365,7 +364,7 @@ func (o *OutputJob) GetEndDate() time.Time {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetEndDateOk() (*time.Time, bool) {
+func (o *OutputJob) GetEndDateOk() (*string, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -381,8 +380,8 @@ func (o *OutputJob) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
-func (o *OutputJob) SetEndDate(v time.Time) {
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *OutputJob) SetEndDate(v string) {
 	o.EndDate = &v
 }
 

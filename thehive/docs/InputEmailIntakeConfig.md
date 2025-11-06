@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | **string** |  | 
-**Mailbox** | [**InputEmailIntakeMailboxConfig**](InputEmailIntakeMailboxConfig.md) |  | 
-**Organisations** | Pointer to **[]string** | At least one organisation | [optional] 
+**Id** | Pointer to **string** |  | [optional]
+**Name** | **string** |  |
+**Mailbox** | [**InputEmailIntakeMailboxConfig**](InputEmailIntakeMailboxConfig.md) |  |
+**Organisations** | Pointer to **[]string** | At least one organisation | [optional]
 **Enabled** | Pointer to **bool** |  | [optional] [default to true]
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**AlertProperties** | Pointer to [**InputEmailIntakeAlertProperties**](InputEmailIntakeAlertProperties.md) |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional]
+**AlertProperties** | Pointer to [**InputEmailIntakeAlertProperties**](InputEmailIntakeAlertProperties.md) |  | [optional]
 
 ## Methods
 
@@ -148,20 +148,20 @@ HasEnabled returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *InputEmailIntakeConfig) GetCreatedAt() time.Time`
+`func (o *InputEmailIntakeConfig) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *InputEmailIntakeConfig) SetCreatedAt(v time.Time)`
+`func (o *InputEmailIntakeConfig) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -198,5 +198,3 @@ HasAlertProperties returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

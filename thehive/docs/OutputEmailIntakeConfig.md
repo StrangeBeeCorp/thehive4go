@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  | 
-**Organisations** | Pointer to **[]string** |  | [optional] 
-**Enabled** | **bool** |  | 
-**CreatedAt** | **time.Time** |  | 
-**AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  | 
+**Id** | **string** |  |
+**Name** | **string** |  |
+**Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  |
+**Organisations** | Pointer to **[]string** |  | [optional]
+**Enabled** | **bool** |  |
+**CreatedAt** | **string** |  |
+**AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  |
 
 ## Methods
 
 ### NewOutputEmailIntakeConfig
 
-`func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt time.Time, alertProperties OutputEmailIntakeAlertProperties, ) *OutputEmailIntakeConfig`
+`func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt string, alertProperties OutputEmailIntakeAlertProperties, ) *OutputEmailIntakeConfig`
 
 NewOutputEmailIntakeConfig instantiates a new OutputEmailIntakeConfig object
 This constructor will assign default values to properties that have it defined,
@@ -138,20 +138,20 @@ SetEnabled sets Enabled field to given value.
 
 ### GetCreatedAt
 
-`func (o *OutputEmailIntakeConfig) GetCreatedAt() time.Time`
+`func (o *OutputEmailIntakeConfig) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *OutputEmailIntakeConfig) SetCreatedAt(v time.Time)`
+`func (o *OutputEmailIntakeConfig) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -178,5 +178,3 @@ SetAlertProperties sets AlertProperties field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
