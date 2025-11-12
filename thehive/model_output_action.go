@@ -25,8 +25,8 @@ type OutputAction struct {
 	UnderscoreType      string  `json:"_type"`
 	UnderscoreCreatedBy string  `json:"_createdBy"`
 	UnderscoreUpdatedBy *string `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt string  `json:"_createdAt"`
-	UnderscoreUpdatedAt *string `json:"_updatedAt,omitempty"`
+	UnderscoreCreatedAt int64   `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64  `json:"_updatedAt,omitempty"`
 	ResponderId         string  `json:"responderId"`
 	ResponderName       *string `json:"responderName,omitempty"`
 	ResponderDefinition *string `json:"responderDefinition,omitempty"`
@@ -35,8 +35,8 @@ type OutputAction struct {
 	ObjectType          string  `json:"objectType"`
 	ObjectId            string  `json:"objectId"`
 	Status              string  `json:"status"`
-	StartDate           string  `json:"startDate"`
-	EndDate             *string `json:"endDate,omitempty"`
+	StartDate           int64   `json:"startDate"`
+	EndDate             *int64  `json:"endDate,omitempty"`
 	Operations          string  `json:"operations"`
 	Report              string  `json:"report"`
 }
@@ -47,7 +47,7 @@ type _OutputAction OutputAction
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt string, responderId string, objectType string, objectId string, status string, startDate string, operations string, report string) *OutputAction {
+func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, responderId string, objectType string, objectId string, status string, startDate int64, operations string, report string) *OutputAction {
 	this := OutputAction{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -176,9 +176,9 @@ func (o *OutputAction) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputAction) GetUnderscoreCreatedAt() string {
+func (o *OutputAction) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -187,7 +187,7 @@ func (o *OutputAction) GetUnderscoreCreatedAt() string {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputAction) GetUnderscoreCreatedAtOk() (*string, bool) {
+func (o *OutputAction) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -195,14 +195,14 @@ func (o *OutputAction) GetUnderscoreCreatedAtOk() (*string, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputAction) SetUnderscoreCreatedAt(v string) {
+func (o *OutputAction) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputAction) GetUnderscoreUpdatedAt() string {
+func (o *OutputAction) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -210,7 +210,7 @@ func (o *OutputAction) GetUnderscoreUpdatedAt() string {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*string, bool) {
+func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -226,8 +226,8 @@ func (o *OutputAction) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given string and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputAction) SetUnderscoreUpdatedAt(v string) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputAction) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -456,9 +456,9 @@ func (o *OutputAction) SetStatus(v string) {
 }
 
 // GetStartDate returns the StartDate field value
-func (o *OutputAction) GetStartDate() string {
+func (o *OutputAction) GetStartDate() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -467,7 +467,7 @@ func (o *OutputAction) GetStartDate() string {
 
 // GetStartDateOk returns a tuple with the StartDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputAction) GetStartDateOk() (*string, bool) {
+func (o *OutputAction) GetStartDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -475,14 +475,14 @@ func (o *OutputAction) GetStartDateOk() (*string, bool) {
 }
 
 // SetStartDate sets field value
-func (o *OutputAction) SetStartDate(v string) {
+func (o *OutputAction) SetStartDate(v int64) {
 	o.StartDate = v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *OutputAction) GetEndDate() string {
+func (o *OutputAction) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -490,7 +490,7 @@ func (o *OutputAction) GetEndDate() string {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputAction) GetEndDateOk() (*string, bool) {
+func (o *OutputAction) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -506,8 +506,8 @@ func (o *OutputAction) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
-func (o *OutputAction) SetEndDate(v string) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *OutputAction) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 

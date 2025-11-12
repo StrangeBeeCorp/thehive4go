@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  |
 **Organisations** | Pointer to **[]string** |  | [optional]
 **Enabled** | **bool** |  |
-**CreatedAt** | **string** |  |
+**CreatedAt** | **int64** |  |
 **AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  |
 
 ## Methods
 
 ### NewOutputEmailIntakeConfig
 
-`func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt string, alertProperties OutputEmailIntakeAlertProperties, ) *OutputEmailIntakeConfig`
+`func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt int64, alertProperties OutputEmailIntakeAlertProperties, ) *OutputEmailIntakeConfig`
 
 NewOutputEmailIntakeConfig instantiates a new OutputEmailIntakeConfig object
 This constructor will assign default values to properties that have it defined,
@@ -138,20 +138,20 @@ SetEnabled sets Enabled field to given value.
 
 ### GetCreatedAt
 
-`func (o *OutputEmailIntakeConfig) GetCreatedAt() string`
+`func (o *OutputEmailIntakeConfig) GetCreatedAt() int64`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*string, bool)`
+`func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*int64, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *OutputEmailIntakeConfig) SetCreatedAt(v string)`
+`func (o *OutputEmailIntakeConfig) SetCreatedAt(v int64)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

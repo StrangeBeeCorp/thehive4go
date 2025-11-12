@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Mailbox** | [**InputEmailIntakeMailboxConfig**](InputEmailIntakeMailboxConfig.md) |  |
 **Organisations** | Pointer to **[]string** | At least one organisation | [optional]
 **Enabled** | Pointer to **bool** |  | [optional] [default to true]
-**CreatedAt** | Pointer to **string** |  | [optional]
+**CreatedAt** | Pointer to **int64** |  | [optional]
 **AlertProperties** | Pointer to [**InputEmailIntakeAlertProperties**](InputEmailIntakeAlertProperties.md) |  | [optional]
 
 ## Methods
@@ -148,20 +148,20 @@ HasEnabled returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *InputEmailIntakeConfig) GetCreatedAt() string`
+`func (o *InputEmailIntakeConfig) GetCreatedAt() int64`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*string, bool)`
+`func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*int64, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *InputEmailIntakeConfig) SetCreatedAt(v string)`
+`func (o *InputEmailIntakeConfig) SetCreatedAt(v int64)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

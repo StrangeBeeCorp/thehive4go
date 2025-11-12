@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **UnderscoreType** | **string** |  |
 **UnderscoreCreatedBy** | **string** |  |
 **UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
 **AnalyzerId** | **string** |  |
 **AnalyzerName** | **string** |  |
 **AnalyzerDefinition** | **string** |  |
 **Status** | **string** |  |
-**StartDate** | **string** |  |
-**EndDate** | Pointer to **string** |  | [optional]
+**StartDate** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
 **Report** | Pointer to **map[string]interface{}** |  | [optional]
 **CortexId** | **string** |  |
 **CortexJobId** | **string** |  |
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewOutputJob
 
-`func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt string, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate string, cortexId string, cortexJobId string, id string, operations string, ) *OutputJob`
+`func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate int64, cortexId string, cortexJobId string, id string, operations string, ) *OutputJob`
 
 NewOutputJob instantiates a new OutputJob object
 This constructor will assign default values to properties that have it defined,
@@ -129,40 +129,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputJob) GetUnderscoreCreatedAt() string`
+`func (o *OutputJob) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputJob) GetUnderscoreCreatedAtOk() (*string, bool)`
+`func (o *OutputJob) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputJob) SetUnderscoreCreatedAt(v string)`
+`func (o *OutputJob) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputJob) GetUnderscoreUpdatedAt() string`
+`func (o *OutputJob) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*string, bool)`
+`func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputJob) SetUnderscoreUpdatedAt(v string)`
+`func (o *OutputJob) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -254,40 +254,40 @@ SetStatus sets Status field to given value.
 
 ### GetStartDate
 
-`func (o *OutputJob) GetStartDate() string`
+`func (o *OutputJob) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputJob) GetStartDateOk() (*string, bool)`
+`func (o *OutputJob) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputJob) SetStartDate(v string)`
+`func (o *OutputJob) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
 
 ### GetEndDate
 
-`func (o *OutputJob) GetEndDate() string`
+`func (o *OutputJob) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputJob) GetEndDateOk() (*string, bool)`
+`func (o *OutputJob) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputJob) SetEndDate(v string)`
+`func (o *OutputJob) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 

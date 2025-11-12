@@ -27,7 +27,7 @@ type InputEmailIntakeConfig struct {
 	// At least one organisation
 	Organisations   []string                         `json:"organisations,omitempty"`
 	Enabled         *bool                            `json:"enabled,omitempty"`
-	CreatedAt       *string                          `json:"createdAt,omitempty"`
+	CreatedAt       *int64                           `json:"createdAt,omitempty"`
 	AlertProperties *InputEmailIntakeAlertProperties `json:"alertProperties,omitempty"`
 }
 
@@ -201,9 +201,9 @@ func (o *InputEmailIntakeConfig) SetEnabled(v bool) {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *InputEmailIntakeConfig) GetCreatedAt() string {
+func (o *InputEmailIntakeConfig) GetCreatedAt() int64 {
 	if o == nil || IsNil(o.CreatedAt) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.CreatedAt
@@ -211,7 +211,7 @@ func (o *InputEmailIntakeConfig) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*string, bool) {
+func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -227,8 +227,8 @@ func (o *InputEmailIntakeConfig) HasCreatedAt() bool {
 	return false
 }
 
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *InputEmailIntakeConfig) SetCreatedAt(v string) {
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *InputEmailIntakeConfig) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 

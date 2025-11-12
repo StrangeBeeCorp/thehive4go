@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **UnderscoreType** | **string** |  |
 **UnderscoreCreatedBy** | **string** |  |
 **UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
 **ResponderId** | **string** |  |
 **ResponderName** | Pointer to **string** |  | [optional]
 **ResponderDefinition** | Pointer to **string** |  | [optional]
@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **ObjectType** | **string** |  |
 **ObjectId** | **string** |  |
 **Status** | **string** |  |
-**StartDate** | **string** |  |
-**EndDate** | Pointer to **string** |  | [optional]
+**StartDate** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
 **Operations** | **string** |  |
 **Report** | **string** |  |
 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewOutputAction
 
-`func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt string, responderId string, objectType string, objectId string, status string, startDate string, operations string, report string, ) *OutputAction`
+`func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, responderId string, objectType string, objectId string, status string, startDate int64, operations string, report string, ) *OutputAction`
 
 NewOutputAction instantiates a new OutputAction object
 This constructor will assign default values to properties that have it defined,
@@ -129,40 +129,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputAction) GetUnderscoreCreatedAt() string`
+`func (o *OutputAction) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputAction) GetUnderscoreCreatedAtOk() (*string, bool)`
+`func (o *OutputAction) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputAction) SetUnderscoreCreatedAt(v string)`
+`func (o *OutputAction) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputAction) GetUnderscoreUpdatedAt() string`
+`func (o *OutputAction) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*string, bool)`
+`func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputAction) SetUnderscoreUpdatedAt(v string)`
+`func (o *OutputAction) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -354,40 +354,40 @@ SetStatus sets Status field to given value.
 
 ### GetStartDate
 
-`func (o *OutputAction) GetStartDate() string`
+`func (o *OutputAction) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputAction) GetStartDateOk() (*string, bool)`
+`func (o *OutputAction) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputAction) SetStartDate(v string)`
+`func (o *OutputAction) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
 
 ### GetEndDate
 
-`func (o *OutputAction) GetEndDate() string`
+`func (o *OutputAction) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputAction) GetEndDateOk() (*string, bool)`
+`func (o *OutputAction) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputAction) SetEndDate(v string)`
+`func (o *OutputAction) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 

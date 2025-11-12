@@ -25,14 +25,14 @@ type OutputJob struct {
 	UnderscoreType      string                 `json:"_type"`
 	UnderscoreCreatedBy string                 `json:"_createdBy"`
 	UnderscoreUpdatedBy *string                `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt string                 `json:"_createdAt"`
-	UnderscoreUpdatedAt *string                `json:"_updatedAt,omitempty"`
+	UnderscoreCreatedAt int64                  `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64                 `json:"_updatedAt,omitempty"`
 	AnalyzerId          string                 `json:"analyzerId"`
 	AnalyzerName        string                 `json:"analyzerName"`
 	AnalyzerDefinition  string                 `json:"analyzerDefinition"`
 	Status              string                 `json:"status"`
-	StartDate           string                 `json:"startDate"`
-	EndDate             *string                `json:"endDate,omitempty"`
+	StartDate           int64                  `json:"startDate"`
+	EndDate             *int64                 `json:"endDate,omitempty"`
 	Report              map[string]interface{} `json:"report,omitempty"`
 	CortexId            string                 `json:"cortexId"`
 	CortexJobId         string                 `json:"cortexJobId"`
@@ -47,7 +47,7 @@ type _OutputJob OutputJob
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt string, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate string, cortexId string, cortexJobId string, id string, operations string) *OutputJob {
+func NewOutputJob(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, analyzerId string, analyzerName string, analyzerDefinition string, status string, startDate int64, cortexId string, cortexJobId string, id string, operations string) *OutputJob {
 	this := OutputJob{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -178,9 +178,9 @@ func (o *OutputJob) SetUnderscoreUpdatedBy(v string) {
 }
 
 // GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field value
-func (o *OutputJob) GetUnderscoreCreatedAt() string {
+func (o *OutputJob) GetUnderscoreCreatedAt() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -189,7 +189,7 @@ func (o *OutputJob) GetUnderscoreCreatedAt() string {
 
 // GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetUnderscoreCreatedAtOk() (*string, bool) {
+func (o *OutputJob) GetUnderscoreCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,14 +197,14 @@ func (o *OutputJob) GetUnderscoreCreatedAtOk() (*string, bool) {
 }
 
 // SetUnderscoreCreatedAt sets field value
-func (o *OutputJob) SetUnderscoreCreatedAt(v string) {
+func (o *OutputJob) SetUnderscoreCreatedAt(v int64) {
 	o.UnderscoreCreatedAt = v
 }
 
 // GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field value if set, zero value otherwise.
-func (o *OutputJob) GetUnderscoreUpdatedAt() string {
+func (o *OutputJob) GetUnderscoreUpdatedAt() int64 {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.UnderscoreUpdatedAt
@@ -212,7 +212,7 @@ func (o *OutputJob) GetUnderscoreUpdatedAt() string {
 
 // GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*string, bool) {
+func (o *OutputJob) GetUnderscoreUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnderscoreUpdatedAt) {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *OutputJob) HasUnderscoreUpdatedAt() bool {
 	return false
 }
 
-// SetUnderscoreUpdatedAt gets a reference to the given string and assigns it to the UnderscoreUpdatedAt field.
-func (o *OutputJob) SetUnderscoreUpdatedAt(v string) {
+// SetUnderscoreUpdatedAt gets a reference to the given int64 and assigns it to the UnderscoreUpdatedAt field.
+func (o *OutputJob) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
@@ -330,9 +330,9 @@ func (o *OutputJob) SetStatus(v string) {
 }
 
 // GetStartDate returns the StartDate field value
-func (o *OutputJob) GetStartDate() string {
+func (o *OutputJob) GetStartDate() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -341,7 +341,7 @@ func (o *OutputJob) GetStartDate() string {
 
 // GetStartDateOk returns a tuple with the StartDate field value
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetStartDateOk() (*string, bool) {
+func (o *OutputJob) GetStartDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -349,14 +349,14 @@ func (o *OutputJob) GetStartDateOk() (*string, bool) {
 }
 
 // SetStartDate sets field value
-func (o *OutputJob) SetStartDate(v string) {
+func (o *OutputJob) SetStartDate(v int64) {
 	o.StartDate = v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *OutputJob) GetEndDate() string {
+func (o *OutputJob) GetEndDate() int64 {
 	if o == nil || IsNil(o.EndDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.EndDate
@@ -364,7 +364,7 @@ func (o *OutputJob) GetEndDate() string {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutputJob) GetEndDateOk() (*string, bool) {
+func (o *OutputJob) GetEndDateOk() (*int64, bool) {
 	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
@@ -380,8 +380,8 @@ func (o *OutputJob) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
-func (o *OutputJob) SetEndDate(v string) {
+// SetEndDate gets a reference to the given int64 and assigns it to the EndDate field.
+func (o *OutputJob) SetEndDate(v int64) {
 	o.EndDate = &v
 }
 
