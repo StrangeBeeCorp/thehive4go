@@ -14,7 +14,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the InputEmailIntakeConfig type satisfies the MappedNullable interface at compile time
@@ -28,7 +27,7 @@ type InputEmailIntakeConfig struct {
 	// At least one organisation
 	Organisations   []string                         `json:"organisations,omitempty"`
 	Enabled         *bool                            `json:"enabled,omitempty"`
-	CreatedAt       *time.Time                       `json:"createdAt,omitempty"`
+	CreatedAt       *int64                           `json:"createdAt,omitempty"`
 	AlertProperties *InputEmailIntakeAlertProperties `json:"alertProperties,omitempty"`
 }
 
@@ -202,9 +201,9 @@ func (o *InputEmailIntakeConfig) SetEnabled(v bool) {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *InputEmailIntakeConfig) GetCreatedAt() time.Time {
+func (o *InputEmailIntakeConfig) GetCreatedAt() int64 {
 	if o == nil || IsNil(o.CreatedAt) {
-		var ret time.Time
+		var ret int64
 		return ret
 	}
 	return *o.CreatedAt
@@ -212,7 +211,7 @@ func (o *InputEmailIntakeConfig) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*time.Time, bool) {
+func (o *InputEmailIntakeConfig) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -228,8 +227,8 @@ func (o *InputEmailIntakeConfig) HasCreatedAt() bool {
 	return false
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *InputEmailIntakeConfig) SetCreatedAt(v time.Time) {
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *InputEmailIntakeConfig) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 

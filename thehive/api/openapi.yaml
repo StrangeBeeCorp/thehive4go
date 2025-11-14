@@ -19661,7 +19661,7 @@ components:
       - name
     InputEmailIntakeConfig:
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 0
         mailbox:
           credential:
             basicAuth:
@@ -19712,8 +19712,8 @@ components:
           default: true
           type: boolean
         createdAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         alertProperties:
           $ref: "#/components/schemas/InputEmailIntakeAlertProperties"
       required:
@@ -22498,20 +22498,20 @@ components:
         _updatedBy: _updatedBy
         responderDefinition: responderDefinition
         responderName: responderName
-        endDate: 2000-01-23T04:56:07.000+00:00
+        endDate: 5
         _type: _type
         _createdBy: _createdBy
         objectType: objectType
         responderId: responderId
         operations: operations
-        _createdAt: 2000-01-23T04:56:07.000+00:00
+        _createdAt: 0
         report: report
         _id: _id
         cortexJobId: cortexJobId
-        _updatedAt: 2000-01-23T04:56:07.000+00:00
+        _updatedAt: 6
         cortexId: cortexId
         objectId: objectId
-        startDate: 2000-01-23T04:56:07.000+00:00
+        startDate: 1
         status: status
       properties:
         _id:
@@ -22523,11 +22523,11 @@ components:
         _updatedBy:
           type: string
         _createdAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         _updatedAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         responderId:
           type: string
         responderName:
@@ -22545,11 +22545,11 @@ components:
         status:
           type: string
         startDate:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         endDate:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         operations:
           type: string
         report:
@@ -24406,7 +24406,7 @@ components:
     OutputEmailIntake:
       example:
         configs:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 0
           mailbox:
             credential:
               basicAuth:
@@ -24439,7 +24439,7 @@ components:
             tags:
             - tags
             - tags
-        - createdAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 0
           mailbox:
             credential:
               basicAuth:
@@ -24565,7 +24565,7 @@ components:
       - password
     OutputEmailIntakeConfig:
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 0
         mailbox:
           credential:
             basicAuth:
@@ -24612,8 +24612,8 @@ components:
         enabled:
           type: boolean
         createdAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         alertProperties:
           $ref: "#/components/schemas/OutputEmailIntakeAlertProperties"
       required:
@@ -25059,20 +25059,20 @@ components:
       example:
         _updatedBy: _updatedBy
         analyzerName: analyzerName
-        endDate: 2000-01-23T04:56:07.000+00:00
+        endDate: 5
         _type: _type
         _createdBy: _createdBy
         analyzerId: analyzerId
         analyzerDefinition: analyzerDefinition
         operations: operations
-        _createdAt: 2000-01-23T04:56:07.000+00:00
+        _createdAt: 0
         report: "{}"
         case_artifact: "{}"
         _id: _id
         cortexJobId: cortexJobId
         id: id
-        _updatedAt: 2000-01-23T04:56:07.000+00:00
-        startDate: 2000-01-23T04:56:07.000+00:00
+        _updatedAt: 6
+        startDate: 1
         cortexId: cortexId
         status: status
       properties:
@@ -25085,11 +25085,11 @@ components:
         _updatedBy:
           type: string
         _createdAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         _updatedAt:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         analyzerId:
           type: string
         analyzerName:
@@ -25099,11 +25099,11 @@ components:
         status:
           type: string
         startDate:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         endDate:
-          format: date-time
-          type: string
+          format: int64
+          type: integer
         report:
           type: object
         cortexId:
@@ -26022,7 +26022,7 @@ components:
       example:
         outputEmailIntake:
           configs:
-          - createdAt: 2000-01-23T04:56:07.000+00:00
+          - createdAt: 0
             mailbox:
               credential:
                 basicAuth:
@@ -26055,7 +26055,7 @@ components:
               tags:
               - tags
               - tags
-          - createdAt: 2000-01-23T04:56:07.000+00:00
+          - createdAt: 0
             mailbox:
               credential:
                 basicAuth:

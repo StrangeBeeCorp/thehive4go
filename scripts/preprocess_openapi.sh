@@ -24,6 +24,34 @@ echo -e "${GREEN}✅ Api Key fix applied successfully${NC}"
 sed -i 's/format: datetime_ms/format: int64/g' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ Timestamp format fix applied successfully (datetime_ms -> int64)${NC}"
 
+# Fix date-time fields: replace format: date-time with format: int64 and type: string with type: integer
+echo -e "${BLUE}🔧 Converting date-time fields to int64 format...${NC}"
+
+awk '
+NR == 1 { prev = $0; next }
+{
+  if (prev ~ /type: string/ && $0 ~ /format: date-time/) {
+    gsub(/type: string/, "type: integer", prev)
+    gsub(/format: date-time/, "format: int64")
+  } else if (prev ~ /format: date-time/ && $0 ~ /type: string/) {
+    gsub(/format: date-time/, "format: int64", prev)
+    gsub(/type: string/, "type: integer")
+  } else if (prev ~ /format: date-time/) {
+    gsub(/format: date-time/, "format: int64", prev)
+  }
+  print prev
+  prev = $0
+}
+END {
+  if (prev ~ /format: date-time/) {
+    gsub(/format: date-time/, "format: int64", prev)
+  }
+  print prev
+}
+' "$FIXED_OPENAPI_PATH" > "$FIXED_OPENAPI_PATH.tmp" && mv "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"
+
+echo -e "${GREEN}✅ Date-time fields converted to int64 format successfully${NC}"
+
 # Remove ProxyConfig default section
 sed -i '/    ProxyConfig:/,/^    [^ ]/ { /      default:/,/        state: disabled/d; }' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ ProxyConfig default section removed successfully${NC}"

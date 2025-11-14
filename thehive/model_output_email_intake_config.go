@@ -14,7 +14,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
 // checks if the OutputEmailIntakeConfig type satisfies the MappedNullable interface at compile time
@@ -27,7 +26,7 @@ type OutputEmailIntakeConfig struct {
 	Mailbox         OutputEmailIntakeMailbox         `json:"mailbox"`
 	Organisations   []string                         `json:"organisations,omitempty"`
 	Enabled         bool                             `json:"enabled"`
-	CreatedAt       time.Time                        `json:"createdAt"`
+	CreatedAt       int64                            `json:"createdAt"`
 	AlertProperties OutputEmailIntakeAlertProperties `json:"alertProperties"`
 }
 
@@ -37,7 +36,7 @@ type _OutputEmailIntakeConfig OutputEmailIntakeConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt time.Time, alertProperties OutputEmailIntakeAlertProperties) *OutputEmailIntakeConfig {
+func NewOutputEmailIntakeConfig(id string, name string, mailbox OutputEmailIntakeMailbox, enabled bool, createdAt int64, alertProperties OutputEmailIntakeAlertProperties) *OutputEmailIntakeConfig {
 	this := OutputEmailIntakeConfig{}
 	this.Id = id
 	this.Name = name
@@ -185,9 +184,9 @@ func (o *OutputEmailIntakeConfig) SetEnabled(v bool) {
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *OutputEmailIntakeConfig) GetCreatedAt() time.Time {
+func (o *OutputEmailIntakeConfig) GetCreatedAt() int64 {
 	if o == nil {
-		var ret time.Time
+		var ret int64
 		return ret
 	}
 
@@ -196,7 +195,7 @@ func (o *OutputEmailIntakeConfig) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*time.Time, bool) {
+func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +203,7 @@ func (o *OutputEmailIntakeConfig) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *OutputEmailIntakeConfig) SetCreatedAt(v time.Time) {
+func (o *OutputEmailIntakeConfig) SetCreatedAt(v int64) {
 	o.CreatedAt = v
 }
 

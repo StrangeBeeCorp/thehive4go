@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **time.Time** |  | 
-**UnderscoreUpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**ResponderId** | **string** |  | 
-**ResponderName** | Pointer to **string** |  | [optional] 
-**ResponderDefinition** | Pointer to **string** |  | [optional] 
-**CortexId** | Pointer to **string** |  | [optional] 
-**CortexJobId** | Pointer to **string** |  | [optional] 
-**ObjectType** | **string** |  | 
-**ObjectId** | **string** |  | 
-**Status** | **string** |  | 
-**StartDate** | **time.Time** |  | 
-**EndDate** | Pointer to **time.Time** |  | [optional] 
-**Operations** | **string** |  | 
-**Report** | **string** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**ResponderId** | **string** |  |
+**ResponderName** | Pointer to **string** |  | [optional]
+**ResponderDefinition** | Pointer to **string** |  | [optional]
+**CortexId** | Pointer to **string** |  | [optional]
+**CortexJobId** | Pointer to **string** |  | [optional]
+**ObjectType** | **string** |  |
+**ObjectId** | **string** |  |
+**Status** | **string** |  |
+**StartDate** | **int64** |  |
+**EndDate** | Pointer to **int64** |  | [optional]
+**Operations** | **string** |  |
+**Report** | **string** |  |
 
 ## Methods
 
 ### NewOutputAction
 
-`func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt time.Time, responderId string, objectType string, objectId string, status string, startDate time.Time, operations string, report string, ) *OutputAction`
+`func NewOutputAction(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, responderId string, objectType string, objectId string, status string, startDate int64, operations string, report string, ) *OutputAction`
 
 NewOutputAction instantiates a new OutputAction object
 This constructor will assign default values to properties that have it defined,
@@ -129,40 +129,40 @@ HasUnderscoreUpdatedBy returns a boolean if a field has been set.
 
 ### GetUnderscoreCreatedAt
 
-`func (o *OutputAction) GetUnderscoreCreatedAt() time.Time`
+`func (o *OutputAction) GetUnderscoreCreatedAt() int64`
 
 GetUnderscoreCreatedAt returns the UnderscoreCreatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreCreatedAtOk
 
-`func (o *OutputAction) GetUnderscoreCreatedAtOk() (*time.Time, bool)`
+`func (o *OutputAction) GetUnderscoreCreatedAtOk() (*int64, bool)`
 
 GetUnderscoreCreatedAtOk returns a tuple with the UnderscoreCreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreCreatedAt
 
-`func (o *OutputAction) SetUnderscoreCreatedAt(v time.Time)`
+`func (o *OutputAction) SetUnderscoreCreatedAt(v int64)`
 
 SetUnderscoreCreatedAt sets UnderscoreCreatedAt field to given value.
 
 
 ### GetUnderscoreUpdatedAt
 
-`func (o *OutputAction) GetUnderscoreUpdatedAt() time.Time`
+`func (o *OutputAction) GetUnderscoreUpdatedAt() int64`
 
 GetUnderscoreUpdatedAt returns the UnderscoreUpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUnderscoreUpdatedAtOk
 
-`func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*time.Time, bool)`
+`func (o *OutputAction) GetUnderscoreUpdatedAtOk() (*int64, bool)`
 
 GetUnderscoreUpdatedAtOk returns a tuple with the UnderscoreUpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnderscoreUpdatedAt
 
-`func (o *OutputAction) SetUnderscoreUpdatedAt(v time.Time)`
+`func (o *OutputAction) SetUnderscoreUpdatedAt(v int64)`
 
 SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
@@ -354,40 +354,40 @@ SetStatus sets Status field to given value.
 
 ### GetStartDate
 
-`func (o *OutputAction) GetStartDate() time.Time`
+`func (o *OutputAction) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *OutputAction) GetStartDateOk() (*time.Time, bool)`
+`func (o *OutputAction) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *OutputAction) SetStartDate(v time.Time)`
+`func (o *OutputAction) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
 
 ### GetEndDate
 
-`func (o *OutputAction) GetEndDate() time.Time`
+`func (o *OutputAction) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *OutputAction) GetEndDateOk() (*time.Time, bool)`
+`func (o *OutputAction) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *OutputAction) SetEndDate(v time.Time)`
+`func (o *OutputAction) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -439,5 +439,3 @@ SetReport sets Report field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
