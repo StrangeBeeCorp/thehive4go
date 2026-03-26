@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Sso** | **bool** |  | 
 **SsoProviders** | Pointer to [**[]OutputSsoProvider**](OutputSsoProvider.md) |  | [optional] 
 **Version** | **string** |  | 
+**Imports** | [**Imports**](Imports.md) |  | 
 
 ## Methods
 
 ### NewOutputPublicStatus
 
-`func NewOutputPublicStatus(sso bool, version string, ) *OutputPublicStatus`
+`func NewOutputPublicStatus(sso bool, version string, imports Imports, ) *OutputPublicStatus`
 
 NewOutputPublicStatus instantiates a new OutputPublicStatus object
 This constructor will assign default values to properties that have it defined,
@@ -90,6 +91,26 @@ and a boolean to check if the value has been set.
 `func (o *OutputPublicStatus) SetVersion(v string)`
 
 SetVersion sets Version field to given value.
+
+
+### GetImports
+
+`func (o *OutputPublicStatus) GetImports() Imports`
+
+GetImports returns the Imports field if non-nil, zero value otherwise.
+
+### GetImportsOk
+
+`func (o *OutputPublicStatus) GetImportsOk() (*Imports, bool)`
+
+GetImportsOk returns a tuple with the Imports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImports
+
+`func (o *OutputPublicStatus) SetImports(v Imports)`
+
+SetImports sets Imports field to given value.
 
 
 

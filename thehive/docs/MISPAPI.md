@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExportCaseToMISP**](MISPAPI.md#ExportCaseToMISP) | **Post** /api/v1/connector/misp/export/{caseId}/{mispName} |
-[**GetMISPStatus**](MISPAPI.md#GetMISPStatus) | **Get** /api/v1/connector/misp/status |
-[**ImportCaseFromMISP**](MISPAPI.md#ImportCaseFromMISP) | **Post** /api/v1/connector/misp/case/import |
-[**SyncWithMISPServers**](MISPAPI.md#SyncWithMISPServers) | **Get** /api/v1/connector/misp/_syncAlerts |
+[**ExportCaseToMISP**](MISPAPI.md#ExportCaseToMISP) | **Post** /api/v1/connector/misp/export/{caseId}/{mispName} | 
+[**GetMISPStatus**](MISPAPI.md#GetMISPStatus) | **Get** /api/v1/connector/misp/status | 
+[**ImportCaseFromMISP**](MISPAPI.md#ImportCaseFromMISP) | **Post** /api/v1/connector/misp/case/import | 
+[**SyncWithMISPServers**](MISPAPI.md#SyncWithMISPServers) | **Get** /api/v1/connector/misp/_syncAlerts | 
 
 
 
@@ -30,8 +30,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	mispName := "mispName_example" // string |
+	caseId := "caseId_example" // string | 
+	mispName := "mispName_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -49,8 +49,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
-**mispName** | **string** |  |
+**caseId** | **string** |  | 
+**mispName** | **string** |  | 
 
 ### Other Parameters
 
@@ -158,8 +158,8 @@ import (
 )
 
 func main() {
-	json := *openapiclient.NewInputImportCase1() // InputImportCase1 |
-	file := os.NewFile(1234, "some_file") // *os.File |
+	json := *openapiclient.NewInputImportCase1() // InputImportCase1 | 
+	file := os.NewFile(1234, "some_file") // *os.File | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,8 +184,8 @@ Other parameters are passed through a pointer to a apiImportCaseFromMISPRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **json** | [**InputImportCase1**](InputImportCase1.md) |  |
- **file** | ***os.File** |  |
+ **json** | [**InputImportCase1**](InputImportCase1.md) |  | 
+ **file** | ***os.File** |  | 
 
 ### Return type
 
@@ -260,3 +260,4 @@ Other parameters are passed through a pointer to a apiSyncWithMISPServersRequest
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteTag**](TagAPI.md#DeleteTag) | **Delete** /api/v1/tag/{tagId} |
-[**GetTag**](TagAPI.md#GetTag) | **Get** /api/v1/tag/{tagId} |
-[**UpdateTag**](TagAPI.md#UpdateTag) | **Patch** /api/v1/tag/{tagId} |
+[**DeleteTag**](TagAPI.md#DeleteTag) | **Delete** /api/v1/tag/{tagId} | 
+[**GetTag**](TagAPI.md#GetTag) | **Get** /api/v1/tag/{tagId} | 
+[**UpdateTag**](TagAPI.md#UpdateTag) | **Patch** /api/v1/tag/{tagId} | 
 
 
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	tagId := "~354" // string |
+	tagId := "tagId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -47,7 +47,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  |
+**tagId** | **string** |  | 
 
 ### Other Parameters
 
@@ -95,7 +95,7 @@ import (
 )
 
 func main() {
-	tagId := "~354" // string |
+	tagId := "tagId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -115,7 +115,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  |
+**tagId** | **string** |  | 
 
 ### Other Parameters
 
@@ -163,8 +163,8 @@ import (
 )
 
 func main() {
-	tagId := "~354" // string |
-	inputUpdateTag := *openapiclient.NewInputUpdateTag() // InputUpdateTag |
+	tagId := "tagId_example" // string | 
+	inputUpdateTag := *openapiclient.NewInputUpdateTag() // InputUpdateTag | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +182,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  |
+**tagId** | **string** |  | 
 
 ### Other Parameters
 
@@ -192,7 +192,7 @@ Other parameters are passed through a pointer to a apiUpdateTagRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateTag** | [**InputUpdateTag**](InputUpdateTag.md) |  |
+ **inputUpdateTag** | [**InputUpdateTag**](InputUpdateTag.md) |  | 
 
 ### Return type
 
@@ -210,3 +210,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

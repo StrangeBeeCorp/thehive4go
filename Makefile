@@ -1,5 +1,5 @@
 GO := go
-GO_IMAGE := golang:1.24.9-alpine
+GO_IMAGE := golang:1.25.8-alpine
 OPENAPI_GENERATOR_IMAGE := openapitools/openapi-generator-cli:v7.14.0
 BGreen="\033[1;32m"       # Green
 Color_Off="\033[0m"       # Text Reset

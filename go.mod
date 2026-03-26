@@ -1,6 +1,8 @@
 module github.com/StrangeBeeCorp/thehive4go
 
-go 1.18
+go 1.24
+
+toolchain go1.25.8
 
 require (
 	github.com/stretchr/testify v1.11.1

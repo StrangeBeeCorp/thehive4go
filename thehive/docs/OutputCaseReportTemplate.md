@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Group** | **string** |  |
-**Description** | **string** |  |
-**Version** | **int32** |  |
-**Definition** | [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Title** | **string** |  | 
+**Group** | **string** |  | 
+**Description** | **string** |  | 
+**Version** | **int32** |  | 
+**Definition** | [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) |  | 
 
 ## Methods
 
@@ -267,3 +267,5 @@ SetDefinition sets Definition field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

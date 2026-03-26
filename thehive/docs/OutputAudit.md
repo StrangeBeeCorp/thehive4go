@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Action** | **string** |  |
-**RequestId** | **string** |  |
-**RootId** | **string** |  |
-**Details** | **map[string]interface{}** |  |
-**ObjectId** | Pointer to **string** |  | [optional]
-**ObjectType** | Pointer to **string** |  | [optional]
-**Object** | Pointer to **map[string]interface{}** |  | [optional]
-**Context** | Pointer to **map[string]interface{}** |  | [optional]
-**MainAction** | **bool** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Action** | **string** |  | 
+**RequestId** | **string** |  | 
+**RootId** | **string** |  | 
+**Details** | **map[string]interface{}** |  | 
+**ObjectId** | Pointer to **string** |  | [optional] 
+**ObjectType** | Pointer to **string** |  | [optional] 
+**Object** | Pointer to **map[string]interface{}** |  | [optional] 
+**Context** | Pointer to **map[string]interface{}** |  | [optional] 
+**MainAction** | **bool** |  | 
 
 ## Methods
 
@@ -371,3 +371,5 @@ SetMainAction sets MainAction field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

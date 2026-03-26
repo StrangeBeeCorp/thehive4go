@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Message** | Pointer to **string** |  | [optional] 
-**IncludeInTimeline** | Pointer to **int32** |  | [optional] 
+**IncludeInTimeline** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetIncludeInTimeline
 
-`func (o *InputUpdateLog) GetIncludeInTimeline() int32`
+`func (o *InputUpdateLog) GetIncludeInTimeline() int64`
 
 GetIncludeInTimeline returns the IncludeInTimeline field if non-nil, zero value otherwise.
 
 ### GetIncludeInTimelineOk
 
-`func (o *InputUpdateLog) GetIncludeInTimelineOk() (*int32, bool)`
+`func (o *InputUpdateLog) GetIncludeInTimelineOk() (*int64, bool)`
 
 GetIncludeInTimelineOk returns a tuple with the IncludeInTimeline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIncludeInTimeline
 
-`func (o *InputUpdateLog) SetIncludeInTimeline(v int32)`
+`func (o *InputUpdateLog) SetIncludeInTimeline(v int64)`
 
 SetIncludeInTimeline sets IncludeInTimeline field to given value.
 

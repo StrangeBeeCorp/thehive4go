@@ -4,24 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**Permissions** | Pointer to **[]string** |  | [optional]
-**Editable** | **bool** |  |
-**ForAdmin** | **bool** |  |
-**ForOrg** | **bool** |  |
-**ConsumesLicense** | **bool** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Type** | [**ProfileType**](ProfileType.md) |  | 
+**Name** | **string** |  | 
+**Permissions** | Pointer to **[]string** |  | [optional] 
+**Editable** | **bool** |  | 
+**ForAdmin** | **bool** |  | 
+**ForOrg** | **bool** |  | 
+**ForExternal** | **bool** |  | 
+**ConsumesLicense** | **bool** |  | 
 
 ## Methods
 
 ### NewOutputProfile
 
-`func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, editable bool, forAdmin bool, forOrg bool, consumesLicense bool, ) *OutputProfile`
+`func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, type_ ProfileType, name string, editable bool, forAdmin bool, forOrg bool, forExternal bool, consumesLicense bool, ) *OutputProfile`
 
 NewOutputProfile instantiates a new OutputProfile object
 This constructor will assign default values to properties that have it defined,
@@ -166,6 +168,26 @@ SetUnderscoreUpdatedAt sets UnderscoreUpdatedAt field to given value.
 
 HasUnderscoreUpdatedAt returns a boolean if a field has been set.
 
+### GetType
+
+`func (o *OutputProfile) GetType() ProfileType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *OutputProfile) GetTypeOk() (*ProfileType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *OutputProfile) SetType(v ProfileType)`
+
+SetType sets Type field to given value.
+
+
 ### GetName
 
 `func (o *OutputProfile) GetName() string`
@@ -271,6 +293,26 @@ and a boolean to check if the value has been set.
 SetForOrg sets ForOrg field to given value.
 
 
+### GetForExternal
+
+`func (o *OutputProfile) GetForExternal() bool`
+
+GetForExternal returns the ForExternal field if non-nil, zero value otherwise.
+
+### GetForExternalOk
+
+`func (o *OutputProfile) GetForExternalOk() (*bool, bool)`
+
+GetForExternalOk returns a tuple with the ForExternal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForExternal
+
+`func (o *OutputProfile) SetForExternal(v bool)`
+
+SetForExternal sets ForExternal field to given value.
+
+
 ### GetConsumesLicense
 
 `func (o *OutputProfile) GetConsumesLicense() bool`
@@ -293,3 +335,5 @@ SetConsumesLicense sets ConsumesLicense field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

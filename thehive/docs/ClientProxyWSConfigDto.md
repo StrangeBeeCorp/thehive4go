@@ -21,13 +21,13 @@ Name | Type | Description | Notes
 **KeepAlive** | Pointer to **bool** |  | [optional] [default to true]
 **UseLaxCookieEncoder** | Pointer to **bool** |  | [optional] [default to false]
 **UseCookieStore** | Pointer to **bool** |  | [optional] [default to false]
-**Proxy** | Pointer to [**ProxyConfig**](ProxyConfig.md) |  | [optional] 
+**Proxy** | [**ProxyConfig**](ProxyConfig.md) |  | 
 
 ## Methods
 
 ### NewClientProxyWSConfigDto
 
-`func NewClientProxyWSConfigDto(ssl SSLConfig, ) *ClientProxyWSConfigDto`
+`func NewClientProxyWSConfigDto(ssl SSLConfig, proxy ProxyConfig, ) *ClientProxyWSConfigDto`
 
 NewClientProxyWSConfigDto instantiates a new ClientProxyWSConfigDto object
 This constructor will assign default values to properties that have it defined,
@@ -481,11 +481,6 @@ and a boolean to check if the value has been set.
 
 SetProxy sets Proxy field to given value.
 
-### HasProxy
-
-`func (o *ClientProxyWSConfigDto) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

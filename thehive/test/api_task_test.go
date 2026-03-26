@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_TaskAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService CreateTaskInCase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseId string
 
@@ -38,7 +38,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService DeleteTask", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 
@@ -51,7 +51,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService GetTask", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 
@@ -65,7 +65,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService SetTaskAsDoneByOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 		var orgId string
@@ -79,7 +79,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService SetTaskAsRequiredByOrganisation", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 		var orgId string
@@ -93,7 +93,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService TaskActionsRequired", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 
@@ -107,7 +107,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService UpdateBulkOfTask", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.TaskAPI.UpdateBulkOfTask(context.Background()).Execute()
 
@@ -118,7 +118,7 @@ func Test_thehive_TaskAPIService(t *testing.T) {
 
 	t.Run("Test TaskAPIService UpdateTask", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taskId string
 

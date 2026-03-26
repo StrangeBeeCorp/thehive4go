@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAttachmentToCaseReportTemplate**](CaseReportTemplateAPI.md#CreateAttachmentToCaseReportTemplate) | **Post** /api/v1/caseReportTemplate/{templateId}/attachment |
-[**CreateCaseReportTemplate**](CaseReportTemplateAPI.md#CreateCaseReportTemplate) | **Post** /api/v1/caseReportTemplate |
-[**DeleteAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteAttachmentForCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} |
-[**DeleteCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{idOrName} |
-[**DownloadAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DownloadAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId}/download |
-[**GetAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#GetAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} |
-[**GetCaseReportTemplate**](CaseReportTemplateAPI.md#GetCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId} |
-[**GetCaseReportTemplateOptions**](CaseReportTemplateAPI.md#GetCaseReportTemplateOptions) | **Get** /api/v1/caseReportTemplate/_info |
-[**UpdateCaseReportTemplate**](CaseReportTemplateAPI.md#UpdateCaseReportTemplate) | **Patch** /api/v1/caseReportTemplate/{idOrName} |
+[**CreateAttachmentToCaseReportTemplate**](CaseReportTemplateAPI.md#CreateAttachmentToCaseReportTemplate) | **Post** /api/v1/caseReportTemplate/{templateId}/attachment | 
+[**CreateCaseReportTemplate**](CaseReportTemplateAPI.md#CreateCaseReportTemplate) | **Post** /api/v1/caseReportTemplate | 
+[**DeleteAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteAttachmentForCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | 
+[**DeleteCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{idOrName} | 
+[**DownloadAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DownloadAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId}/download | 
+[**GetAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#GetAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | 
+[**GetCaseReportTemplate**](CaseReportTemplateAPI.md#GetCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId} | 
+[**GetCaseReportTemplateOptions**](CaseReportTemplateAPI.md#GetCaseReportTemplateOptions) | **Get** /api/v1/caseReportTemplate/_info | 
+[**UpdateCaseReportTemplate**](CaseReportTemplateAPI.md#UpdateCaseReportTemplate) | **Patch** /api/v1/caseReportTemplate/{idOrName} | 
 
 
 
@@ -35,8 +35,8 @@ import (
 )
 
 func main() {
-	templateId := "~354" // string |
-	attachments := []*os.File{"TODO"} // []*os.File |
+	templateId := "templateId_example" // string | 
+	attachments := []*os.File{"TODO"} // []*os.File | 
 	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -57,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  |
+**templateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -67,8 +67,8 @@ Other parameters are passed through a pointer to a apiCreateAttachmentToCaseRepo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  |
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name |
+ **attachments** | **[]*os.File** |  | 
+ **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
 
 ### Return type
 
@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-	inputCreateCaseReportTemplate := *openapiclient.NewInputCreateCaseReportTemplate("Title_example", *openapiclient.NewCaseReportTemplateDefinition(*openapiclient.NewI18n())) // InputCreateCaseReportTemplate |
+	inputCreateCaseReportTemplate := *openapiclient.NewInputCreateCaseReportTemplate("Title_example", *openapiclient.NewCaseReportTemplateDefinition(*openapiclient.NewI18n())) // InputCreateCaseReportTemplate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +134,7 @@ Other parameters are passed through a pointer to a apiCreateCaseReportTemplateRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCaseReportTemplate** | [**InputCreateCaseReportTemplate**](InputCreateCaseReportTemplate.md) |  |
+ **inputCreateCaseReportTemplate** | [**InputCreateCaseReportTemplate**](InputCreateCaseReportTemplate.md) |  | 
 
 ### Return type
 
@@ -173,8 +173,8 @@ import (
 )
 
 func main() {
-	templateId := "~354" // string |
-	attachmentId := "~354" // string |
+	templateId := "templateId_example" // string | 
+	attachmentId := "attachmentId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -192,8 +192,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  |
-**attachmentId** | **string** |  |
+**templateId** | **string** |  | 
+**attachmentId** | **string** |  | 
 
 ### Other Parameters
 
@@ -242,7 +242,7 @@ import (
 )
 
 func main() {
-	idOrName := "~354" // string |
+	idOrName := "idOrName_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -260,7 +260,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  |
+**idOrName** | **string** |  | 
 
 ### Other Parameters
 
@@ -308,8 +308,8 @@ import (
 )
 
 func main() {
-	templateId := "~354" // string |
-	attachmentId := "~354" // string |
+	templateId := "templateId_example" // string | 
+	attachmentId := "attachmentId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -329,8 +329,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  |
-**attachmentId** | **string** |  |
+**templateId** | **string** |  | 
+**attachmentId** | **string** |  | 
 
 ### Other Parameters
 
@@ -379,8 +379,8 @@ import (
 )
 
 func main() {
-	templateId := "~354" // string |
-	attachmentId := "~354" // string |
+	templateId := "templateId_example" // string | 
+	attachmentId := "attachmentId_example" // string | 
 	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -401,8 +401,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  |
-**attachmentId** | **string** |  |
+**templateId** | **string** |  | 
+**attachmentId** | **string** |  | 
 
 ### Other Parameters
 
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  |
+ **ifNoneMatch** | **string** |  | 
 
 ### Return type
 
@@ -452,7 +452,7 @@ import (
 )
 
 func main() {
-	templateId := "~354" // string |
+	templateId := "templateId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -472,7 +472,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  |
+**templateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -579,8 +579,8 @@ import (
 )
 
 func main() {
-	idOrName := "~354" // string |
-	inputUpdateCaseReportTemplate := *openapiclient.NewInputUpdateCaseReportTemplate() // InputUpdateCaseReportTemplate |
+	idOrName := "idOrName_example" // string | 
+	inputUpdateCaseReportTemplate := *openapiclient.NewInputUpdateCaseReportTemplate() // InputUpdateCaseReportTemplate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -598,7 +598,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  |
+**idOrName** | **string** |  | 
 
 ### Other Parameters
 
@@ -608,7 +608,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseReportTemplateRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCaseReportTemplate** | [**InputUpdateCaseReportTemplate**](InputUpdateCaseReportTemplate.md) |  |
+ **inputUpdateCaseReportTemplate** | [**InputUpdateCaseReportTemplate**](InputUpdateCaseReportTemplate.md) |  | 
 
 ### Return type
 
@@ -626,3 +626,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

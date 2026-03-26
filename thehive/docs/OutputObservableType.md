@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**Name** | **string** |  |
-**IsAttachment** | **bool** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**Name** | **string** |  | 
+**IsAttachment** | **bool** |  | 
 
 ## Methods
 
@@ -204,3 +204,5 @@ SetIsAttachment sets IsAttachment field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

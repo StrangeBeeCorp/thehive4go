@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreType** | **string** |  |
-**Id** | **string** |  |
-**Customer** | **string** |  |
-**Plan** | **string** |  |
-**Kind** | **string** |  |
-**ValidFrom** | **int64** |  |
-**ExpiresAt** | **int64** |  |
-**Current** | **bool** |  |
-**Capabilities** | Pointer to **[]string** |  | [optional]
-**Quotas** | **map[string]int32** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**Id** | **string** |  | 
+**Customer** | **string** |  | 
+**Plan** | **string** |  | 
+**Kind** | **string** |  | 
+**ValidFrom** | **int64** |  | 
+**ExpiresAt** | **int64** |  | 
+**Current** | **bool** |  | 
+**Capabilities** | Pointer to **[]string** |  | [optional] 
+**Quotas** | **map[string]int32** |  | 
 
 ## Methods
 
@@ -304,3 +304,5 @@ SetQuotas sets Quotas field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateObservableInAlert**](ObservableAPI.md#CreateObservableInAlert) | **Post** /api/v1/alert/{alertId}/observable |
-[**CreateObservableInCase**](ObservableAPI.md#CreateObservableInCase) | **Post** /api/v1/case/{caseId}/observable |
-[**DeleteObservable**](ObservableAPI.md#DeleteObservable) | **Delete** /api/v1/observable/{observableId} |
-[**DownloadAttachmentFromObservable**](ObservableAPI.md#DownloadAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId}/download |
-[**GetObservable**](ObservableAPI.md#GetObservable) | **Get** /api/v1/observable/{observableId} |
-[**UpdateBulkOfObservables**](ObservableAPI.md#UpdateBulkOfObservables) | **Patch** /api/v1/observable/_bulk |
-[**UpdateObservable**](ObservableAPI.md#UpdateObservable) | **Patch** /api/v1/observable/{observableId} |
+[**CreateObservableInAlert**](ObservableAPI.md#CreateObservableInAlert) | **Post** /api/v1/alert/{alertId}/observable | 
+[**CreateObservableInCase**](ObservableAPI.md#CreateObservableInCase) | **Post** /api/v1/case/{caseId}/observable | 
+[**DeleteObservable**](ObservableAPI.md#DeleteObservable) | **Delete** /api/v1/observable/{observableId} | 
+[**DownloadAttachmentFromObservable**](ObservableAPI.md#DownloadAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId}/download | 
+[**GetObservable**](ObservableAPI.md#GetObservable) | **Get** /api/v1/observable/{observableId} | 
+[**UpdateBulkOfObservables**](ObservableAPI.md#UpdateBulkOfObservables) | **Patch** /api/v1/observable/_bulk | 
+[**UpdateObservable**](ObservableAPI.md#UpdateObservable) | **Patch** /api/v1/observable/{observableId} | 
 
 
 
@@ -35,8 +35,8 @@ import (
 )
 
 func main() {
-	alertId := "~354" // string |
-	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable |
+	alertId := "alertId_example" // string | 
+	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable | 
 	dataType := "dataType_example" // string | allow to set the dataType from the query parameters (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -57,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  |
+**alertId** | **string** |  | 
 
 ### Other Parameters
 
@@ -67,8 +67,8 @@ Other parameters are passed through a pointer to a apiCreateObservableInAlertReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  |
- **dataType** | **string** | allow to set the dataType from the query parameters |
+ **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  | 
+ **dataType** | **string** | allow to set the dataType from the query parameters | 
 
 ### Return type
 
@@ -109,8 +109,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable |
+	caseId := "caseId_example" // string | 
+	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable | 
 	dataType := "dataType_example" // string | allow to set the dataType from the query parameters (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -131,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
+**caseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -141,8 +141,8 @@ Other parameters are passed through a pointer to a apiCreateObservableInCaseRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  |
- **dataType** | **string** | allow to set the dataType from the query parameters |
+ **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  | 
+ **dataType** | **string** | allow to set the dataType from the query parameters | 
 
 ### Return type
 
@@ -181,7 +181,7 @@ import (
 )
 
 func main() {
-	observableId := "~354" // string |
+	observableId := "observableId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -199,7 +199,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  |
+**observableId** | **string** |  | 
 
 ### Other Parameters
 
@@ -249,8 +249,8 @@ import (
 )
 
 func main() {
-	observableId := "~354" // string |
-	attachmentId := "~354" // string |
+	observableId := "observableId_example" // string | 
+	attachmentId := "attachmentId_example" // string | 
 	asZip := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
@@ -271,8 +271,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  |
-**attachmentId** | **string** |  |
+**observableId** | **string** |  | 
+**attachmentId** | **string** |  | 
 
 ### Other Parameters
 
@@ -322,7 +322,7 @@ import (
 )
 
 func main() {
-	observableId := "~354" // string |
+	observableId := "observableId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -342,7 +342,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  |
+**observableId** | **string** |  | 
 
 ### Other Parameters
 
@@ -390,7 +390,7 @@ import (
 )
 
 func main() {
-	inputUpdateObservableWithIds := *openapiclient.NewInputUpdateObservableWithIds([]string{"~354"}) // InputUpdateObservableWithIds |
+	inputUpdateObservableWithIds := *openapiclient.NewInputUpdateObservableWithIds([]string{"Ids_example"}) // InputUpdateObservableWithIds | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -413,7 +413,7 @@ Other parameters are passed through a pointer to a apiUpdateBulkOfObservablesReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateObservableWithIds** | [**InputUpdateObservableWithIds**](InputUpdateObservableWithIds.md) |  |
+ **inputUpdateObservableWithIds** | [**InputUpdateObservableWithIds**](InputUpdateObservableWithIds.md) |  | 
 
 ### Return type
 
@@ -452,8 +452,8 @@ import (
 )
 
 func main() {
-	observableId := "~354" // string |
-	inputUpdateObservable := *openapiclient.NewInputUpdateObservable() // InputUpdateObservable |
+	observableId := "observableId_example" // string | 
+	inputUpdateObservable := *openapiclient.NewInputUpdateObservable() // InputUpdateObservable | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -471,7 +471,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  |
+**observableId** | **string** |  | 
 
 ### Other Parameters
 
@@ -481,7 +481,7 @@ Other parameters are passed through a pointer to a apiUpdateObservableRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateObservable** | [**InputUpdateObservable**](InputUpdateObservable.md) |  |
+ **inputUpdateObservable** | [**InputUpdateObservable**](InputUpdateObservable.md) |  | 
 
 ### Return type
 
@@ -499,3 +499,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

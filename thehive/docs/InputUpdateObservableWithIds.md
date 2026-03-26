@@ -12,10 +12,11 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Ioc** | Pointer to **bool** |  | [optional] 
 **Sighted** | Pointer to **bool** |  | [optional] 
-**SightedAt** | Pointer to **int32** |  | [optional] 
+**SightedAt** | Pointer to **int64** |  | [optional] 
 **IgnoreSimilarity** | Pointer to **bool** |  | [optional] 
 **AddTags** | Pointer to **[]string** | Those tags will be added to the current observable | [optional] 
 **RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current observable | [optional] 
+**External** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -233,20 +234,20 @@ HasSighted returns a boolean if a field has been set.
 
 ### GetSightedAt
 
-`func (o *InputUpdateObservableWithIds) GetSightedAt() int32`
+`func (o *InputUpdateObservableWithIds) GetSightedAt() int64`
 
 GetSightedAt returns the SightedAt field if non-nil, zero value otherwise.
 
 ### GetSightedAtOk
 
-`func (o *InputUpdateObservableWithIds) GetSightedAtOk() (*int32, bool)`
+`func (o *InputUpdateObservableWithIds) GetSightedAtOk() (*int64, bool)`
 
 GetSightedAtOk returns a tuple with the SightedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSightedAt
 
-`func (o *InputUpdateObservableWithIds) SetSightedAt(v int32)`
+`func (o *InputUpdateObservableWithIds) SetSightedAt(v int64)`
 
 SetSightedAt sets SightedAt field to given value.
 
@@ -330,6 +331,31 @@ SetRemoveTags sets RemoveTags field to given value.
 `func (o *InputUpdateObservableWithIds) HasRemoveTags() bool`
 
 HasRemoveTags returns a boolean if a field has been set.
+
+### GetExternal
+
+`func (o *InputUpdateObservableWithIds) GetExternal() bool`
+
+GetExternal returns the External field if non-nil, zero value otherwise.
+
+### GetExternalOk
+
+`func (o *InputUpdateObservableWithIds) GetExternalOk() (*bool, bool)`
+
+GetExternalOk returns a tuple with the External field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternal
+
+`func (o *InputUpdateObservableWithIds) SetExternal(v bool)`
+
+SetExternal sets External field to given value.
+
+### HasExternal
+
+`func (o *InputUpdateObservableWithIds) HasExternal() bool`
+
+HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

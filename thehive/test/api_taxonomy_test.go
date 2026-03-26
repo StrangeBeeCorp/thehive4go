@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_TaxonomyAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService ActivateTaxonomy", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taxonomyId string
 
@@ -37,7 +37,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService CreateTaxonomy", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.TaxonomyAPI.CreateTaxonomy(context.Background()).Execute()
 
@@ -49,7 +49,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService DeactivateTaxonomy", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taxonomyId string
 
@@ -62,7 +62,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService DeleteTaxonomy", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taxonomyId string
 
@@ -75,7 +75,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService GetTaxonomy", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var taxonomyId string
 
@@ -89,7 +89,7 @@ func Test_thehive_TaxonomyAPIService(t *testing.T) {
 
 	t.Run("Test TaxonomyAPIService ImportFromZipFile", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.TaxonomyAPI.ImportFromZipFile(context.Background()).Execute()
 

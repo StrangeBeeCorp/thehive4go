@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  |
-**StartDate** | Pointer to **int64** |  | [optional]
-**IncludeInTimeline** | Pointer to **int64** |  | [optional]
-**Attachments** | Pointer to **[]*os.File** | ignored with json content, use a multipart if you want to pass attachments | [optional]
+**Message** | **string** |  | 
+**StartDate** | Pointer to **int64** |  | [optional] 
+**IncludeInTimeline** | Pointer to **int64** |  | [optional] 
+**Attachments** | Pointer to **[]*os.File** | ignored with json content, use a multipart if you want to pass attachments | [optional] 
 
 ## Methods
 
@@ -125,3 +125,5 @@ HasAttachments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

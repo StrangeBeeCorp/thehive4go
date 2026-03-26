@@ -4,21 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**CreatedBy** | **string** |  |
-**CreatedAt** | **int64** |  |
-**UpdatedAt** | Pointer to **int64** |  | [optional]
-**UpdatedBy** | Pointer to **string** |  | [optional]
-**Message** | **string** |  |
-**IsEdited** | **bool** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**CreatedBy** | **string** |  | 
+**CreatedAt** | **int64** |  | 
+**UpdatedAt** | Pointer to **int64** |  | [optional] 
+**UpdatedBy** | Pointer to **string** |  | [optional] 
+**Message** | **string** |  | 
+**IsEdited** | **bool** |  | 
+**ExtraData** | **map[string]interface{}** |  | 
+**External** | **bool** |  | 
 
 ## Methods
 
 ### NewOutputComment
 
-`func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}, ) *OutputComment`
+`func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}, external bool, ) *OutputComment`
 
 NewOutputComment instantiates a new OutputComment object
 This constructor will assign default values to properties that have it defined,
@@ -223,5 +224,27 @@ and a boolean to check if the value has been set.
 SetExtraData sets ExtraData field to given value.
 
 
+### GetExternal
+
+`func (o *OutputComment) GetExternal() bool`
+
+GetExternal returns the External field if non-nil, zero value otherwise.
+
+### GetExternalOk
+
+`func (o *OutputComment) GetExternalOk() (*bool, bool)`
+
+GetExternalOk returns a tuple with the External field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternal
+
+`func (o *OutputComment) SetExternal(v bool)`
+
+SetExternal sets External field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

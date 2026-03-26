@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**Mode** | **string** |  |
-**Definition** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Config** | **map[string]interface{}** |  |
-**LastSuccessDate** | Pointer to **int64** |  | [optional]
-**LastSuccessDetails** | Pointer to **map[string]interface{}** |  | [optional]
-**LastErrorDate** | Pointer to **int64** |  | [optional]
-**LastErrorDetails** | Pointer to **map[string]interface{}** |  | [optional]
-**Types** | Pointer to **[]string** |  | [optional]
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Name** | **string** |  | 
+**Mode** | **string** |  | 
+**Definition** | **string** |  | 
+**Description** | Pointer to **string** |  | [optional] 
+**Config** | **map[string]interface{}** |  | 
+**LastSuccessDate** | Pointer to **int64** |  | [optional] 
+**LastSuccessDetails** | Pointer to **map[string]interface{}** |  | [optional] 
+**LastErrorDate** | Pointer to **int64** |  | [optional] 
+**LastErrorDetails** | Pointer to **map[string]interface{}** |  | [optional] 
+**Types** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -402,3 +402,5 @@ HasTypes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

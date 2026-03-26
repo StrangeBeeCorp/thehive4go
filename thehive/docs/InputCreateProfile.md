@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | Pointer to [**ProfileType**](ProfileType.md) | Optional. If not present, the &#x60;type&#x60; will be inferred based on the provided permissions. | [optional] 
 **Name** | **string** |  | 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewInputCreateProfileWithDefaults instantiates a new InputCreateProfile object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *InputCreateProfile) GetType() ProfileType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *InputCreateProfile) GetTypeOk() (*ProfileType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *InputCreateProfile) SetType(v ProfileType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *InputCreateProfile) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetName
 

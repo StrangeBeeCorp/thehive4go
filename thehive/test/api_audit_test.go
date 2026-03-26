@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_AuditAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AuditAPIService(t *testing.T) {
 
 	t.Run("Test AuditAPIService CreateAStreamOfAudits", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AuditAPI.CreateAStreamOfAudits(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_AuditAPIService(t *testing.T) {
 
 	t.Run("Test AuditAPIService GetAStreamOfAudits", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var streamId string
 
@@ -50,7 +50,7 @@ func Test_thehive_AuditAPIService(t *testing.T) {
 
 	t.Run("Test AuditAPIService GetFlowOfAudit", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AuditAPI.GetFlowOfAudit(context.Background()).Execute()
 

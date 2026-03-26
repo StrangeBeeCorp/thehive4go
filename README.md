@@ -321,10 +321,24 @@ Run `make help` to see all available targets with descriptions.
 
 ## Versioning Policy
 
-This project follows Semantic Versioning:
+This client's version reflects the TheHive version it targets:
 
-- **v0.x.y**: API is not yet stable; breaking changes may appear in minor releases
-- **v1.0.0+**: Backwards compatibility preserved; breaking changes require major version bump
+| thehive4go | TheHive | OpenAPI Spec | Notes |
+|---|---|---|---|
+| `v0.55.x` | 5.5.x | v1-5.5.11-1 | Initial release, strict JSON decoding |
+| `v0.56.x` | 5.6.x+ | v5.6.2 | Forward-compatible JSON decoding, `external` field support |
+
+**Version scheme**: `v0.<thehive_minor>.<patch>` — pick the version matching your TheHive deployment.
+
+Go module users can pin a compatible version:
+
+```bash
+# For TheHive 5.5.x
+go get github.com/StrangeBeeCorp/thehive4go@v0.55.0
+
+# For TheHive 5.6.x+
+go get github.com/StrangeBeeCorp/thehive4go@v0.56.0
+```
 
 ## License
 

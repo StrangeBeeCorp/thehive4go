@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**ResponderId** | **string** |  |
-**ResponderName** | Pointer to **string** |  | [optional]
-**ResponderDefinition** | Pointer to **string** |  | [optional]
-**CortexId** | Pointer to **string** |  | [optional]
-**CortexJobId** | Pointer to **string** |  | [optional]
-**ObjectType** | **string** |  |
-**ObjectId** | **string** |  |
-**Status** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Operations** | **string** |  |
-**Report** | **string** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**ResponderId** | **string** |  | 
+**ResponderName** | Pointer to **string** |  | [optional] 
+**ResponderDefinition** | Pointer to **string** |  | [optional] 
+**CortexId** | Pointer to **string** |  | [optional] 
+**CortexJobId** | Pointer to **string** |  | [optional] 
+**ObjectType** | **string** |  | 
+**ObjectId** | **string** |  | 
+**Status** | **string** |  | 
+**StartDate** | **int64** |  | 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Operations** | **string** |  | 
+**Report** | **string** |  | 
 
 ## Methods
 
@@ -439,3 +439,5 @@ SetReport sets Report field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

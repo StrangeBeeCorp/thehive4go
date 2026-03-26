@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetUserConfigurationItem**](ConfigAPI.md#GetUserConfigurationItem) | **Get** /api/v1/config/user/{path} |
-[**ListUserConfigurationItems**](ConfigAPI.md#ListUserConfigurationItems) | **Get** /api/v1/config/user |
-[**SetUserConfigurationItem**](ConfigAPI.md#SetUserConfigurationItem) | **Put** /api/v1/config/user/{path} |
+[**GetUserConfigurationItem**](ConfigAPI.md#GetUserConfigurationItem) | **Get** /api/v1/config/user/{path} | 
+[**ListUserConfigurationItems**](ConfigAPI.md#ListUserConfigurationItems) | **Get** /api/v1/config/user | 
+[**SetUserConfigurationItem**](ConfigAPI.md#SetUserConfigurationItem) | **Put** /api/v1/config/user/{path} | 
 
 
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	path := "path_example" // string |
+	path := "path_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**path** | **string** |  |
+**path** | **string** |  | 
 
 ### Other Parameters
 
@@ -122,7 +122,7 @@ Other parameters are passed through a pointer to a apiListUserConfigurationItems
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **string** |  |
+ **path** | **string** |  | 
 
 ### Return type
 
@@ -161,8 +161,8 @@ import (
 )
 
 func main() {
-	path := "path_example" // string |
-	inputConfig := *openapiclient.NewInputConfig(interface{}(123)) // InputConfig |
+	path := "path_example" // string | 
+	inputConfig := *openapiclient.NewInputConfig(interface{}(123)) // InputConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +182,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**path** | **string** |  |
+**path** | **string** |  | 
 
 ### Other Parameters
 
@@ -192,7 +192,7 @@ Other parameters are passed through a pointer to a apiSetUserConfigurationItemRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputConfig** | [**InputConfig**](InputConfig.md) |  |
+ **inputConfig** | [**InputConfig**](InputConfig.md) |  | 
 
 ### Return type
 
@@ -210,3 +210,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

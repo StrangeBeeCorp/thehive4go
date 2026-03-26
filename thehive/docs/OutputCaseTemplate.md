@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**DisplayName** | **string** |  |
-**TitlePrefix** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Severity** | Pointer to **int32** |  | [optional]
-**SeverityLabel** | Pointer to **string** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | **bool** |  |
-**Tlp** | Pointer to **int32** |  | [optional]
-**TlpLabel** | Pointer to **string** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**PapLabel** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
-**Tasks** | Pointer to [**[]OutputTask**](OutputTask.md) |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Name** | **string** |  | 
+**DisplayName** | **string** |  | 
+**TitlePrefix** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Severity** | Pointer to **int32** |  | [optional] 
+**SeverityLabel** | Pointer to **string** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Flag** | **bool** |  | 
+**Tlp** | Pointer to **int32** |  | [optional] 
+**TlpLabel** | Pointer to **string** |  | [optional] 
+**Pap** | Pointer to **int32** |  | [optional] 
+**PapLabel** | Pointer to **string** |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
+**Tasks** | Pointer to [**[]OutputTask**](OutputTask.md) |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
 
 ## Methods
 
@@ -558,3 +558,5 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

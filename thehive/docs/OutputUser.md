@@ -4,32 +4,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Login** | **string** |  |
-**Name** | **string** |  |
-**Email** | Pointer to **string** |  | [optional]
-**HasKey** | **bool** |  |
-**HasPassword** | **bool** |  |
-**HasMFA** | **bool** |  |
-**Locked** | **bool** |  |
-**Profile** | **string** |  |
-**Permissions** | Pointer to **[]string** |  | [optional]
-**Organisation** | **string** |  |
-**Avatar** | Pointer to **string** |  | [optional]
-**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) |  | [optional]
-**Type** | **string** |  |
-**DefaultOrganisation** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Login** | **string** |  | 
+**Name** | **string** |  | 
+**Email** | Pointer to **string** |  | [optional] 
+**HasKey** | **bool** |  | 
+**HasPassword** | **bool** |  | 
+**HasMFA** | **bool** |  | 
+**Locked** | **bool** |  | 
+**Profile** | **string** |  | 
+**Permissions** | Pointer to **[]string** |  | [optional] 
+**Organisation** | **string** |  | 
+**Avatar** | Pointer to **string** |  | [optional] 
+**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) |  | [optional] 
+**Type** | [**UserType**](UserType.md) |  | 
+**DefaultOrganisation** | Pointer to **string** |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewOutputUser
 
-`func NewOutputUser(underscoreId string, underscoreCreatedBy string, underscoreCreatedAt int64, login string, name string, hasKey bool, hasPassword bool, hasMFA bool, locked bool, profile string, organisation string, type_ string, extraData map[string]interface{}, ) *OutputUser`
+`func NewOutputUser(underscoreId string, underscoreCreatedBy string, underscoreCreatedAt int64, login string, name string, hasKey bool, hasPassword bool, hasMFA bool, locked bool, profile string, organisation string, type_ UserType, extraData map[string]interface{}, ) *OutputUser`
 
 NewOutputUser instantiates a new OutputUser object
 This constructor will assign default values to properties that have it defined,
@@ -416,20 +416,20 @@ HasOrganisations returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *OutputUser) GetType() string`
+`func (o *OutputUser) GetType() UserType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *OutputUser) GetTypeOk() (*string, bool)`
+`func (o *OutputUser) GetTypeOk() (*UserType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *OutputUser) SetType(v string)`
+`func (o *OutputUser) SetType(v UserType)`
 
 SetType sets Type field to given value.
 
@@ -481,3 +481,5 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateProfile**](ProfileAPI.md#CreateProfile) | **Post** /api/v1/profile |
-[**DeleteProfile**](ProfileAPI.md#DeleteProfile) | **Delete** /api/v1/profile/{profileId} |
-[**GetProfile**](ProfileAPI.md#GetProfile) | **Get** /api/v1/profile/{profileId} |
-[**UpdateProfile**](ProfileAPI.md#UpdateProfile) | **Patch** /api/v1/profile/{profileId} |
+[**CreateProfile**](ProfileAPI.md#CreateProfile) | **Post** /api/v1/profile | 
+[**DeleteProfile**](ProfileAPI.md#DeleteProfile) | **Delete** /api/v1/profile/{profileId} | 
+[**GetProfile**](ProfileAPI.md#GetProfile) | **Get** /api/v1/profile/{profileId} | 
+[**UpdateProfile**](ProfileAPI.md#UpdateProfile) | **Patch** /api/v1/profile/{profileId} | 
 
 
 
@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	inputCreateProfile := *openapiclient.NewInputCreateProfile("Name_example") // InputCreateProfile |
+	inputCreateProfile := *openapiclient.NewInputCreateProfile("Name_example") // InputCreateProfile | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiCreateProfileRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateProfile** | [**InputCreateProfile**](InputCreateProfile.md) |  |
+ **inputCreateProfile** | [**InputCreateProfile**](InputCreateProfile.md) |  | 
 
 ### Return type
 
@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-	profileId := "~354" // string |
+	profileId := "profileId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +112,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  |
+**profileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -160,7 +160,7 @@ import (
 )
 
 func main() {
-	profileId := "~354" // string |
+	profileId := "profileId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  |
+**profileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -228,8 +228,8 @@ import (
 )
 
 func main() {
-	profileId := "~354" // string |
-	inputUpdateProfile := *openapiclient.NewInputUpdateProfile() // InputUpdateProfile |
+	profileId := "profileId_example" // string | 
+	inputUpdateProfile := *openapiclient.NewInputUpdateProfile() // InputUpdateProfile | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -247,7 +247,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  |
+**profileId** | **string** |  | 
 
 ### Other Parameters
 
@@ -257,7 +257,7 @@ Other parameters are passed through a pointer to a apiUpdateProfileRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateProfile** | [**InputUpdateProfile**](InputUpdateProfile.md) |  |
+ **inputUpdateProfile** | [**InputUpdateProfile**](InputUpdateProfile.md) |  | 
 
 ### Return type
 
@@ -275,3 +275,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

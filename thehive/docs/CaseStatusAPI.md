@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCaseStatus**](CaseStatusAPI.md#CreateCaseStatus) | **Post** /api/v1/caseStatus |
-[**DeleteCaseStatus**](CaseStatusAPI.md#DeleteCaseStatus) | **Delete** /api/v1/caseStatus/{id} |
-[**UpdateCaseStatus**](CaseStatusAPI.md#UpdateCaseStatus) | **Patch** /api/v1/caseStatus/{id} |
+[**CreateCaseStatus**](CaseStatusAPI.md#CreateCaseStatus) | **Post** /api/v1/caseStatus | 
+[**DeleteCaseStatus**](CaseStatusAPI.md#DeleteCaseStatus) | **Delete** /api/v1/caseStatus/{id} | 
+[**UpdateCaseStatus**](CaseStatusAPI.md#UpdateCaseStatus) | **Patch** /api/v1/caseStatus/{id} | 
 
 
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	inputCreateCaseStatus := *openapiclient.NewInputCreateCaseStatus("Value_example", openapiclient.InputCaseStage("New")) // InputCreateCaseStatus |
+	inputCreateCaseStatus := *openapiclient.NewInputCreateCaseStatus("Value_example", openapiclient.InputCaseStage("New")) // InputCreateCaseStatus | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiCreateCaseStatusRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCaseStatus** | [**InputCreateCaseStatus**](InputCreateCaseStatus.md) |  |
+ **inputCreateCaseStatus** | [**InputCreateCaseStatus**](InputCreateCaseStatus.md) |  | 
 
 ### Return type
 
@@ -93,7 +93,7 @@ import (
 )
 
 func main() {
-	id := "~354" // string |
+	id := "id_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +111,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  |
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -159,8 +159,8 @@ import (
 )
 
 func main() {
-	id := "~354" // string |
-	inputUpdateCaseStatus := *openapiclient.NewInputUpdateCaseStatus() // InputUpdateCaseStatus |
+	id := "id_example" // string | 
+	inputUpdateCaseStatus := *openapiclient.NewInputUpdateCaseStatus() // InputUpdateCaseStatus | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -178,7 +178,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  |
+**id** | **string** |  | 
 
 ### Other Parameters
 
@@ -188,7 +188,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseStatusRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCaseStatus** | [**InputUpdateCaseStatus**](InputUpdateCaseStatus.md) |  |
+ **inputUpdateCaseStatus** | [**InputUpdateCaseStatus**](InputUpdateCaseStatus.md) |  | 
 
 ### Return type
 
@@ -206,3 +206,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

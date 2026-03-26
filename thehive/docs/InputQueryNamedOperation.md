@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
-**ExtraData** | Pointer to **[]string** |  | [optional]
-**From** | **int32** |  |
-**To** | **int32** |  |
-**Fields** | Pointer to **[]map[string]interface{}** |  | [optional]
+**Name** | **string** |  | 
+**ExtraData** | Pointer to **[]string** |  | [optional] 
+**From** | **int32** |  | 
+**To** | **int32** |  | 
+**Fields** | Pointer to **[]map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -141,3 +141,5 @@ HasFields returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

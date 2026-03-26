@@ -1,7 +1,7 @@
 services:
   thehive:
     container_name: thehive
-    image: strangebee/thehive:5.5.2
+    image: strangebee/thehive:5.6
     ports:
       - "9000:9000"
     restart: on-failure

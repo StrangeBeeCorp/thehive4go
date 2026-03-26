@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **int64** |  |
-**Kind** | **string** |  |
-**Entity** | **string** |  |
-**EntityId** | **string** |  |
-**Details** | **map[string]interface{}** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
+**Date** | **int64** |  | 
+**Kind** | **string** |  | 
+**Entity** | **string** |  | 
+**EntityId** | **string** |  | 
+**Details** | **map[string]interface{}** |  | 
+**EndDate** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -157,3 +157,5 @@ HasEndDate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

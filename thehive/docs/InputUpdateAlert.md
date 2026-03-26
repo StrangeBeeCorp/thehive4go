@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional]
-**Source** | Pointer to **string** |  | [optional]
-**SourceRef** | Pointer to **string** |  | [optional]
-**ExternalLink** | Pointer to **string** |  | [optional]
-**Title** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Severity** | Pointer to **int32** |  | [optional]
-**Date** | Pointer to **int64** |  | [optional]
-**LastSyncDate** | Pointer to **int64** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Tlp** | Pointer to **int32** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**Follow** | Pointer to **bool** |  | [optional]
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**AddTags** | Pointer to **[]string** | Those tags will be added to the current alert | [optional]
-**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current alert | [optional]
+**Type** | Pointer to **string** |  | [optional] 
+**Source** | Pointer to **string** |  | [optional] 
+**SourceRef** | Pointer to **string** |  | [optional] 
+**ExternalLink** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Severity** | Pointer to **int32** |  | [optional] 
+**Date** | Pointer to **int64** |  | [optional] 
+**LastSyncDate** | Pointer to **int64** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Tlp** | Pointer to **int32** |  | [optional] 
+**Pap** | Pointer to **int32** |  | [optional] 
+**Follow** | Pointer to **bool** |  | [optional] 
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** |  | [optional] 
+**AddTags** | Pointer to **[]string** | Those tags will be added to the current alert | [optional] 
+**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current alert | [optional] 
 
 ## Methods
 
@@ -520,3 +520,5 @@ HasRemoveTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

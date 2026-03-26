@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorType** | **string** |  | 
-**ErrorMessage** | **string** |  | 
+**ErrorType** | **string** | Error type encountered by the server | 
+**ErrorMessage** | **string** | Precise error that led to execution failure | 
 **Stdout** | **string** | Content of stdout | 
 **Stderr** | **string** | Content of stderr | 
 **Result** | **interface{}** |  | 

@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**PatternId** | **string** |  |
-**Name** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Tactics** | Pointer to **[]string** |  | [optional]
-**Url** | **string** |  |
-**PatternType** | **string** |  |
-**CapecId** | Pointer to **string** |  | [optional]
-**CapecUrl** | Pointer to **string** |  | [optional]
-**Revoked** | **bool** |  |
-**DataSources** | Pointer to **[]string** |  | [optional]
-**DefenseBypassed** | Pointer to **[]string** |  | [optional]
-**Detection** | Pointer to **string** |  | [optional]
-**PermissionsRequired** | Pointer to **[]string** |  | [optional]
-**Platforms** | Pointer to **[]string** |  | [optional]
-**RemoteSupport** | **bool** |  |
-**SystemRequirements** | Pointer to **[]string** |  | [optional]
-**Version** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**PatternId** | **string** |  | 
+**Name** | **string** |  | 
+**Description** | Pointer to **string** |  | [optional] 
+**Tactics** | Pointer to **[]string** |  | [optional] 
+**Url** | **string** |  | 
+**PatternType** | **string** |  | 
+**CapecId** | Pointer to **string** |  | [optional] 
+**CapecUrl** | Pointer to **string** |  | [optional] 
+**Revoked** | **bool** |  | 
+**DataSources** | Pointer to **[]string** |  | [optional] 
+**DefenseBypassed** | Pointer to **[]string** |  | [optional] 
+**Detection** | Pointer to **string** |  | [optional] 
+**PermissionsRequired** | Pointer to **[]string** |  | [optional] 
+**Platforms** | Pointer to **[]string** |  | [optional] 
+**RemoteSupport** | **bool** |  | 
+**SystemRequirements** | Pointer to **[]string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
 
 ## Methods
 
@@ -595,3 +595,5 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

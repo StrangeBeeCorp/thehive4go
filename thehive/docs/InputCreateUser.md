@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Profile** | **string** | Profile to assign the user in the organisation | 
 **Organisation** | Pointer to **string** |  | [optional] 
 **Avatar** | Pointer to ***os.File** | ignored in json body | [optional] 
-**Type** | Pointer to [**InputUserType**](InputUserType.md) |  | [optional] 
+**Type** | Pointer to [**UserType**](UserType.md) | Normal, Service or External. A service user cannot use the ui and needs to provide an api key for authentication. An external user only has access to the portal | [optional] 
 
 ## Methods
 
@@ -194,20 +194,20 @@ HasAvatar returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *InputCreateUser) GetType() InputUserType`
+`func (o *InputCreateUser) GetType() UserType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *InputCreateUser) GetTypeOk() (*InputUserType, bool)`
+`func (o *InputCreateUser) GetTypeOk() (*UserType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *InputCreateUser) SetType(v InputUserType)`
+`func (o *InputCreateUser) SetType(v UserType)`
 
 SetType sets Type field to given value.
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  |
-**Title** | Pointer to **string** |  | [optional]
-**Group** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Flag** | Pointer to **bool** |  | [optional]
-**StartDate** | Pointer to **int32** |  | [optional]
-**EndDate** | Pointer to **int64** |  | [optional]
-**Order** | Pointer to **int32** |  | [optional]
-**DueDate** | Pointer to **int32** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**Mandatory** | Pointer to **bool** |  | [optional]
+**Ids** | **[]string** |  | 
+**Title** | Pointer to **string** |  | [optional] 
+**Group** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Flag** | Pointer to **bool** |  | [optional] 
+**StartDate** | Pointer to **int64** |  | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Order** | Pointer to **int32** |  | [optional] 
+**DueDate** | Pointer to **int64** |  | [optional] 
+**Assignee** | Pointer to **string** |  | [optional] 
+**Mandatory** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -183,20 +183,20 @@ HasFlag returns a boolean if a field has been set.
 
 ### GetStartDate
 
-`func (o *InputUpdateTaskWithIds) GetStartDate() int32`
+`func (o *InputUpdateTaskWithIds) GetStartDate() int64`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *InputUpdateTaskWithIds) GetStartDateOk() (*int32, bool)`
+`func (o *InputUpdateTaskWithIds) GetStartDateOk() (*int64, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *InputUpdateTaskWithIds) SetStartDate(v int32)`
+`func (o *InputUpdateTaskWithIds) SetStartDate(v int64)`
 
 SetStartDate sets StartDate field to given value.
 
@@ -258,20 +258,20 @@ HasOrder returns a boolean if a field has been set.
 
 ### GetDueDate
 
-`func (o *InputUpdateTaskWithIds) GetDueDate() int32`
+`func (o *InputUpdateTaskWithIds) GetDueDate() int64`
 
 GetDueDate returns the DueDate field if non-nil, zero value otherwise.
 
 ### GetDueDateOk
 
-`func (o *InputUpdateTaskWithIds) GetDueDateOk() (*int32, bool)`
+`func (o *InputUpdateTaskWithIds) GetDueDateOk() (*int64, bool)`
 
 GetDueDateOk returns a tuple with the DueDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDueDate
 
-`func (o *InputUpdateTaskWithIds) SetDueDate(v int32)`
+`func (o *InputUpdateTaskWithIds) SetDueDate(v int64)`
 
 SetDueDate sets DueDate field to given value.
 
@@ -333,3 +333,5 @@ HasMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

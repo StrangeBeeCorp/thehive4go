@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_StatusAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_StatusAPIService(t *testing.T) {
 
 	t.Run("Test StatusAPIService GetPlatformPublicStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StatusAPI.GetPlatformPublicStatus(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_StatusAPIService(t *testing.T) {
 
 	t.Run("Test StatusAPIService GetPlatformStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.StatusAPI.GetPlatformStatus(context.Background()).Execute()
 

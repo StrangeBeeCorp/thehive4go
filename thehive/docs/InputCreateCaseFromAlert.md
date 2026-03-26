@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Severity** | Pointer to **int32** |  | [optional]
-**StartDate** | Pointer to **int64** |  | [optional]
-**EndDate** | Pointer to **int64** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | Pointer to **bool** |  | [optional]
-**Tlp** | Pointer to **int32** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** | User to assign the case to | [optional]
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
-**CaseTemplate** | Pointer to **string** | Name or id of the Case Template to use | [optional]
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Additional tasks to create | [optional]
-**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional]
-**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional]
-**TaskRule** | Pointer to **string** |  | [optional]
-**ObservableRule** | Pointer to **string** |  | [optional]
+**Title** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Severity** | Pointer to **int32** |  | [optional] 
+**StartDate** | Pointer to **int64** |  | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Flag** | Pointer to **bool** |  | [optional] 
+**Tlp** | Pointer to **int32** |  | [optional] 
+**Pap** | Pointer to **int32** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** | User to assign the case to | [optional] 
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
+**CaseTemplate** | Pointer to **string** | Name or id of the Case Template to use | [optional] 
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Additional tasks to create | [optional] 
+**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional] 
+**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional] 
+**TaskRule** | Pointer to **string** |  | [optional] 
+**ObservableRule** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -520,3 +520,5 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

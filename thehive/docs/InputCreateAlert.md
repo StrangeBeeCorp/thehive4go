@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  |
-**Source** | **string** |  |
-**SourceRef** | **string** |  |
-**ExternalLink** | Pointer to **string** |  | [optional]
-**Title** | **string** |  |
-**Description** | **string** |  |
-**Severity** | Pointer to **int32** |  | [optional]
-**Date** | Pointer to **int64** |  | [optional] [default to now()]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | Pointer to **bool** |  | [optional]
-**Tlp** | Pointer to **int32** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** | User to assign the alert to | [optional]
-**CaseTemplate** | Pointer to **string** |  | [optional]
-**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) |  | [optional]
-**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | List of procedures (TTPs) to link the alert to | [optional]
+**Type** | **string** |  | 
+**Source** | **string** |  | 
+**SourceRef** | **string** |  | 
+**ExternalLink** | Pointer to **string** |  | [optional] 
+**Title** | **string** |  | 
+**Description** | **string** |  | 
+**Severity** | Pointer to **int32** |  | [optional] 
+**Date** | Pointer to **int64** | If not provided, the current date is used | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Flag** | Pointer to **bool** |  | [optional] 
+**Tlp** | Pointer to **int32** |  | [optional] 
+**Pap** | Pointer to **int32** |  | [optional] 
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** | User to assign the alert to | [optional] 
+**CaseTemplate** | Pointer to **string** |  | [optional] 
+**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) |  | [optional] 
+**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | List of procedures (TTPs) to link the alert to | [optional] 
 
 ## Methods
 
@@ -495,3 +495,5 @@ HasProcedures returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

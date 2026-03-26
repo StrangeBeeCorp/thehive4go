@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPageTemplate**](PageTemplateAPI.md#CreateAPageTemplate) | **Post** /api/v1/pageTemplate |
-[**DeleteAPageTemplate**](PageTemplateAPI.md#DeleteAPageTemplate) | **Delete** /api/v1/pageTemplate/{pageTemplateId} |
-[**UpdateAPageTemplate**](PageTemplateAPI.md#UpdateAPageTemplate) | **Patch** /api/v1/pageTemplate/{pageTemplateId} |
+[**CreateAPageTemplate**](PageTemplateAPI.md#CreateAPageTemplate) | **Post** /api/v1/pageTemplate | 
+[**DeleteAPageTemplate**](PageTemplateAPI.md#DeleteAPageTemplate) | **Delete** /api/v1/pageTemplate/{pageTemplateId} | 
+[**UpdateAPageTemplate**](PageTemplateAPI.md#UpdateAPageTemplate) | **Patch** /api/v1/pageTemplate/{pageTemplateId} | 
 
 
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiCreateAPageTemplateRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
 
 ### Return type
 
@@ -93,7 +93,7 @@ import (
 )
 
 func main() {
-	pageTemplateId := "~354" // string |
+	pageTemplateId := "pageTemplateId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +111,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageTemplateId** | **string** |  |
+**pageTemplateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -159,8 +159,8 @@ import (
 )
 
 func main() {
-	pageTemplateId := "~354" // string |
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
+	pageTemplateId := "pageTemplateId_example" // string | 
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -178,7 +178,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageTemplateId** | **string** |  |
+**pageTemplateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -188,7 +188,7 @@ Other parameters are passed through a pointer to a apiUpdateAPageTemplateRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
 
 ### Return type
 
@@ -206,3 +206,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

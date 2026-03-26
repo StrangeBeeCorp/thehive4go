@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | Pointer to **int64** |  | [optional]
-**EndDate** | Pointer to **int32** |  | [optional]
-**Title** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
+**Date** | Pointer to **int64** |  | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,20 +55,20 @@ HasDate returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *InputUpdateCustomEvent) GetEndDate() int32`
+`func (o *InputUpdateCustomEvent) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *InputUpdateCustomEvent) GetEndDateOk() (*int32, bool)`
+`func (o *InputUpdateCustomEvent) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *InputUpdateCustomEvent) SetEndDate(v int32)`
+`func (o *InputUpdateCustomEvent) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -130,3 +130,5 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,44 +4,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Type** | **string** |  |
-**Source** | **string** |  |
-**SourceRef** | **string** |  |
-**ExternalLink** | Pointer to **string** |  | [optional]
-**Title** | **string** |  |
-**Description** | **string** |  |
-**Severity** | **int32** |  |
-**SeverityLabel** | **string** |  |
-**Date** | **int64** |  |
-**Tags** | Pointer to **[]string** |  | [optional]
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Follow** | **bool** |  |
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
-**CaseTemplate** | Pointer to **string** |  | [optional]
-**ObservableCount** | **int64** |  |
-**CaseId** | Pointer to **string** |  | [optional]
-**Status** | **string** |  |
-**Stage** | **string** |  |
-**Assignee** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
-**NewDate** | **int64** |  |
-**InProgressDate** | Pointer to **int64** |  | [optional]
-**ClosedDate** | Pointer to **int64** |  | [optional]
-**ImportedDate** | Pointer to **int64** |  | [optional]
-**TimeToDetect** | **int64** |  |
-**TimeToTriage** | Pointer to **int64** |  | [optional]
-**TimeToQualify** | Pointer to **int64** |  | [optional]
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Type** | **string** |  | 
+**Source** | **string** |  | 
+**SourceRef** | **string** |  | 
+**ExternalLink** | Pointer to **string** |  | [optional] 
+**Title** | **string** |  | 
+**Description** | **string** |  | 
+**Severity** | **int32** |  | 
+**SeverityLabel** | **string** |  | 
+**Date** | **int64** |  | 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Tlp** | **int32** |  | 
+**TlpLabel** | **string** |  | 
+**Pap** | **int32** |  | 
+**PapLabel** | **string** |  | 
+**Follow** | **bool** |  | 
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
+**CaseTemplate** | Pointer to **string** |  | [optional] 
+**ObservableCount** | **int64** |  | 
+**CaseId** | Pointer to **string** |  | [optional] 
+**Status** | **string** |  | 
+**Stage** | **string** |  | 
+**Assignee** | Pointer to **string** |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
+**NewDate** | **int64** |  | 
+**InProgressDate** | Pointer to **int64** |  | [optional] 
+**ClosedDate** | Pointer to **int64** |  | [optional] 
+**ImportedDate** | Pointer to **int64** |  | [optional] 
+**TimeToDetect** | **int64** |  | 
+**TimeToTriage** | Pointer to **int64** |  | [optional] 
+**TimeToQualify** | Pointer to **int64** |  | [optional] 
+**TimeToAcknowledge** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -899,3 +899,5 @@ HasTimeToAcknowledge returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
