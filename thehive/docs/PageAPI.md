@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPage**](PageAPI.md#CreateAPage) | **Post** /api/v1/page |
-[**CreateAPageInACase**](PageAPI.md#CreateAPageInACase) | **Post** /api/v1/case/{caseId}/page |
-[**DeleteAPage**](PageAPI.md#DeleteAPage) | **Delete** /api/v1/page/{pageId} |
-[**DeleteAPageInACase**](PageAPI.md#DeleteAPageInACase) | **Delete** /api/v1/case/{caseId}/page/{pageId} |
-[**UpdateAPage**](PageAPI.md#UpdateAPage) | **Patch** /api/v1/page/{pageId} |
-[**UpdateAPageInACase**](PageAPI.md#UpdateAPageInACase) | **Patch** /api/v1/case/{caseId}/page/{pageId} |
+[**CreateAPage**](PageAPI.md#CreateAPage) | **Post** /api/v1/page | 
+[**CreateAPageInACase**](PageAPI.md#CreateAPageInACase) | **Post** /api/v1/case/{caseId}/page | 
+[**DeleteAPage**](PageAPI.md#DeleteAPage) | **Delete** /api/v1/page/{pageId} | 
+[**DeleteAPageInACase**](PageAPI.md#DeleteAPageInACase) | **Delete** /api/v1/case/{caseId}/page/{pageId} | 
+[**UpdateAPage**](PageAPI.md#UpdateAPage) | **Patch** /api/v1/page/{pageId} | 
+[**UpdateAPageInACase**](PageAPI.md#UpdateAPageInACase) | **Patch** /api/v1/case/{caseId}/page/{pageId} | 
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateAPageRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
 
 ### Return type
 
@@ -96,8 +96,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
+	caseId := "caseId_example" // string | 
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
+**caseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -127,7 +127,7 @@ Other parameters are passed through a pointer to a apiCreateAPageInACaseRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
 
 ### Return type
 
@@ -166,7 +166,7 @@ import (
 )
 
 func main() {
-	pageId := "~354" // string |
+	pageId := "pageId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageId** | **string** |  |
+**pageId** | **string** |  | 
 
 ### Other Parameters
 
@@ -232,8 +232,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	pageId := "~354" // string |
+	caseId := "caseId_example" // string | 
+	pageId := "pageId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -251,8 +251,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
-**pageId** | **string** |  |
+**caseId** | **string** |  | 
+**pageId** | **string** |  | 
 
 ### Other Parameters
 
@@ -301,8 +301,8 @@ import (
 )
 
 func main() {
-	pageId := "~354" // string |
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
+	pageId := "pageId_example" // string | 
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -320,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageId** | **string** |  |
+**pageId** | **string** |  | 
 
 ### Other Parameters
 
@@ -330,7 +330,7 @@ Other parameters are passed through a pointer to a apiUpdateAPageRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
 
 ### Return type
 
@@ -369,9 +369,9 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	pageId := "~354" // string |
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
+	caseId := "caseId_example" // string | 
+	pageId := "pageId_example" // string | 
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -389,8 +389,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
-**pageId** | **string** |  |
+**caseId** | **string** |  | 
+**pageId** | **string** |  | 
 
 ### Other Parameters
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
 
 ### Return type
 
@@ -419,3 +419,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Message** | **string** |  | 
+**External** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -44,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
+
+### GetExternal
+
+`func (o *InputComment) GetExternal() bool`
+
+GetExternal returns the External field if non-nil, zero value otherwise.
+
+### GetExternalOk
+
+`func (o *InputComment) GetExternalOk() (*bool, bool)`
+
+GetExternalOk returns a tuple with the External field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternal
+
+`func (o *InputComment) SetExternal(v bool)`
+
+SetExternal sets External field to given value.
+
+### HasExternal
+
+`func (o *InputComment) HasExternal() bool`
+
+HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

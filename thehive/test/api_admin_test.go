@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_AdminAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService CancelCurrentIntegrityCheck", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.AdminAPI.CancelCurrentIntegrityCheck(context.Background()).Execute()
 
@@ -35,7 +35,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService GetCheckAndIndexStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AdminAPI.GetCheckAndIndexStats(context.Background()).Execute()
 
@@ -47,7 +47,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService GetCheckStats", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AdminAPI.GetCheckStats(context.Background()).Execute()
 
@@ -59,7 +59,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService GetIndexStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AdminAPI.GetIndexStatus(context.Background()).Execute()
 
@@ -71,7 +71,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService RebuildIndex", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var name string
 
@@ -84,7 +84,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService ReindexData", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var name string
 
@@ -97,7 +97,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService RepairSchema", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var schemaName string
 
@@ -111,7 +111,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService SchemaInfo", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var schemaName string
 
@@ -125,7 +125,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService TriggerAllChecks", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.AdminAPI.TriggerAllChecks(context.Background()).Execute()
 
@@ -136,7 +136,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService TriggerDedupIntegrityCheck", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var name string
 
@@ -149,7 +149,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService TriggerGlobalIntegrityCheck", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var name string
 
@@ -162,7 +162,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService TriggerIntegrityCheck", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var name string
 
@@ -175,7 +175,7 @@ func Test_thehive_AdminAPIService(t *testing.T) {
 
 	t.Run("Test AdminAPIService UpdateLogLevel", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var packageName string
 		var level openapiclient.InputLogLevel

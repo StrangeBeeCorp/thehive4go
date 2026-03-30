@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Avatar** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **DefaultOrganisation** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**InputUserType**](InputUserType.md) |  | [optional] 
+**Type** | Pointer to [**UserType**](UserType.md) | Normal or Service. A service user cannot use the ui and needs to provide an api key for authentication | [optional] 
 
 ## Methods
 
@@ -209,20 +209,20 @@ HasDefaultOrganisation returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *InputUpdateUser) GetType() InputUserType`
+`func (o *InputUpdateUser) GetType() UserType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *InputUpdateUser) GetTypeOk() (*InputUserType, bool)`
+`func (o *InputUpdateUser) GetTypeOk() (*UserType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *InputUpdateUser) SetType(v InputUserType)`
+`func (o *InputUpdateUser) SetType(v UserType)`
 
 SetType sets Type field to given value.
 

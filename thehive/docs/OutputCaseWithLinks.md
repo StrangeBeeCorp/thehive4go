@@ -4,49 +4,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Number** | **int32** | An incremental number to reference the case. This field can be used in the apis in place of the _id |
-**Title** | **string** |  |
-**Description** | **string** |  |
-**Severity** | **int32** |  |
-**SeverityLabel** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | **bool** |  |
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Status** | **string** |  |
-**Stage** | **string** | The value of the stage depends on the status of the case. Can be one of &#39;New&#39; &#39;InProgress&#39; or &#39;Closed&#39; |
-**Summary** | Pointer to **string** |  | [optional]
-**ImpactStatus** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**Access** | [**Access**](Access.md) |  |
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
-**UserPermissions** | Pointer to **[]string** | A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case | [optional]
-**ExtraData** | **map[string]interface{}** |  |
-**NewDate** | **int64** |  |
-**InProgressDate** | Pointer to **int64** |  | [optional]
-**ClosedDate** | Pointer to **int64** |  | [optional]
-**AlertDate** | Pointer to **int64** |  | [optional]
-**AlertNewDate** | Pointer to **int64** |  | [optional]
-**AlertInProgressDate** | Pointer to **int64** |  | [optional]
-**AlertImportedDate** | Pointer to **int64** |  | [optional]
-**TimeToDetect** | **int64** |  |
-**TimeToTriage** | Pointer to **int64** |  | [optional]
-**TimeToQualify** | Pointer to **int64** |  | [optional]
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
-**TimeToResolve** | Pointer to **int64** |  | [optional]
-**HandlingDuration** | Pointer to **int64** |  | [optional]
-**LinkedWith** | Pointer to [**[]OutputObservable**](OutputObservable.md) |  | [optional]
-**LinksCount** | **int32** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**Number** | **int32** | An incremental number to reference the case. This field can be used in the apis in place of the _id | 
+**Title** | **string** |  | 
+**Description** | **string** |  | 
+**Severity** | **int32** |  | 
+**SeverityLabel** | **string** |  | 
+**StartDate** | **int64** |  | 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Flag** | **bool** |  | 
+**Tlp** | **int32** |  | 
+**TlpLabel** | **string** |  | 
+**Pap** | **int32** |  | 
+**PapLabel** | **string** |  | 
+**Status** | **string** |  | 
+**Stage** | **string** | The value of the stage depends on the status of the case. Can be one of &#39;New&#39; &#39;InProgress&#39; or &#39;Closed&#39; | 
+**Summary** | Pointer to **string** |  | [optional] 
+**ImpactStatus** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** |  | [optional] 
+**Access** | [**Access**](Access.md) |  | 
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional] 
+**UserPermissions** | Pointer to **[]string** | A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
+**NewDate** | **int64** |  | 
+**InProgressDate** | Pointer to **int64** |  | [optional] 
+**ClosedDate** | Pointer to **int64** |  | [optional] 
+**AlertDate** | Pointer to **int64** |  | [optional] 
+**AlertNewDate** | Pointer to **int64** |  | [optional] 
+**AlertInProgressDate** | Pointer to **int64** |  | [optional] 
+**AlertImportedDate** | Pointer to **int64** |  | [optional] 
+**TimeToDetect** | **int64** |  | 
+**TimeToTriage** | Pointer to **int64** |  | [optional] 
+**TimeToQualify** | Pointer to **int64** |  | [optional] 
+**TimeToAcknowledge** | Pointer to **int64** |  | [optional] 
+**TimeToResolve** | Pointer to **int64** |  | [optional] 
+**HandlingDuration** | Pointer to **int64** |  | [optional] 
+**LinkedWith** | Pointer to [**[]OutputObservable**](OutputObservable.md) |  | [optional] 
+**LinksCount** | **int32** |  | 
 
 ## Methods
 
@@ -1034,3 +1034,5 @@ SetLinksCount sets LinksCount field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

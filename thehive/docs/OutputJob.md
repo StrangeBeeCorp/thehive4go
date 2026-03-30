@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**AnalyzerId** | **string** |  |
-**AnalyzerName** | **string** |  |
-**AnalyzerDefinition** | **string** |  |
-**Status** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Report** | Pointer to **map[string]interface{}** |  | [optional]
-**CortexId** | **string** |  |
-**CortexJobId** | **string** |  |
-**Id** | **string** |  |
-**CaseArtifact** | Pointer to **map[string]interface{}** |  | [optional]
-**Operations** | **string** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**AnalyzerId** | **string** |  | 
+**AnalyzerName** | **string** |  | 
+**AnalyzerDefinition** | **string** |  | 
+**Status** | **string** |  | 
+**StartDate** | **int64** |  | 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Report** | Pointer to **map[string]interface{}** |  | [optional] 
+**CortexId** | **string** |  | 
+**CortexJobId** | **string** |  | 
+**Id** | **string** |  | 
+**CaseArtifact** | Pointer to **map[string]interface{}** |  | [optional] 
+**Operations** | **string** |  | 
 
 ## Methods
 
@@ -429,3 +429,5 @@ SetOperations sets Operations field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

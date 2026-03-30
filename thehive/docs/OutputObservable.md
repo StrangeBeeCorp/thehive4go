@@ -4,34 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**DataType** | **string** |  |
-**Data** | Pointer to **string** |  | [optional]
-**StartDate** | **int64** |  |
-**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) |  | [optional]
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Tags** | Pointer to **[]string** |  | [optional]
-**Ioc** | **bool** |  |
-**Sighted** | **bool** |  |
-**SightedAt** | Pointer to **int64** |  | [optional]
-**Reports** | **map[string]interface{}** |  |
-**Message** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
-**IgnoreSimilarity** | **bool** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreType** | **string** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**DataType** | **string** |  | 
+**Data** | Pointer to **string** |  | [optional] 
+**StartDate** | **int64** |  | 
+**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) |  | [optional] 
+**Tlp** | **int32** |  | 
+**TlpLabel** | **string** |  | 
+**Pap** | **int32** |  | 
+**PapLabel** | **string** |  | 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Ioc** | **bool** |  | 
+**Sighted** | **bool** |  | 
+**SightedAt** | Pointer to **int64** |  | [optional] 
+**Reports** | **map[string]interface{}** |  | 
+**Message** | Pointer to **string** |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
+**IgnoreSimilarity** | **bool** |  | 
+**External** | **bool** |  | 
 
 ## Methods
 
 ### NewOutputObservable
 
-`func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, dataType string, startDate int64, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool, ) *OutputObservable`
+`func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, dataType string, startDate int64, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool, external bool, ) *OutputObservable`
 
 NewOutputObservable instantiates a new OutputObservable object
 This constructor will assign default values to properties that have it defined,
@@ -521,5 +522,27 @@ and a boolean to check if the value has been set.
 SetIgnoreSimilarity sets IgnoreSimilarity field to given value.
 
 
+### GetExternal
+
+`func (o *OutputObservable) GetExternal() bool`
+
+GetExternal returns the External field if non-nil, zero value otherwise.
+
+### GetExternalOk
+
+`func (o *OutputObservable) GetExternalOk() (*bool, bool)`
+
+GetExternalOk returns a tuple with the External field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternal
+
+`func (o *OutputObservable) SetExternal(v bool)`
+
+SetExternal sets External field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

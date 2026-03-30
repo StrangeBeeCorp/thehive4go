@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCatalogOfTTP**](AttckAPI.md#CreateCatalogOfTTP) | **Post** /api/v1/catalog |
-[**DeleteACatalogOfTTP**](AttckAPI.md#DeleteACatalogOfTTP) | **Delete** /api/v1/catalog/{catalogId} |
-[**DeletePattern**](AttckAPI.md#DeletePattern) | **Delete** /api/v1/pattern/{patternId} |
-[**GetCasePatterns**](AttckAPI.md#GetCasePatterns) | **Get** /api/v1/pattern/case/{caseId} |
-[**GetPattern**](AttckAPI.md#GetPattern) | **Get** /api/v1/pattern/{patternId} |
-[**ImportMITREAttckFile**](AttckAPI.md#ImportMITREAttckFile) | **Post** /api/v1/pattern/import/attack |
-[**UpdateCatalogOfTTP**](AttckAPI.md#UpdateCatalogOfTTP) | **Patch** /api/v1/catalog/{catalogId} |
+[**CreateCatalogOfTTP**](AttckAPI.md#CreateCatalogOfTTP) | **Post** /api/v1/catalog | 
+[**DeleteACatalogOfTTP**](AttckAPI.md#DeleteACatalogOfTTP) | **Delete** /api/v1/catalog/{catalogId} | 
+[**DeletePattern**](AttckAPI.md#DeletePattern) | **Delete** /api/v1/pattern/{patternId} | 
+[**GetCasePatterns**](AttckAPI.md#GetCasePatterns) | **Get** /api/v1/pattern/case/{caseId} | 
+[**GetPattern**](AttckAPI.md#GetPattern) | **Get** /api/v1/pattern/{patternId} | 
+[**ImportMITREAttckFile**](AttckAPI.md#ImportMITREAttckFile) | **Post** /api/v1/pattern/import/attack | 
+[**UpdateCatalogOfTTP**](AttckAPI.md#UpdateCatalogOfTTP) | **Patch** /api/v1/catalog/{catalogId} | 
 
 
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	inputCatalogOfPattern := *openapiclient.NewInputCatalogOfPattern("Name_example") // InputCatalogOfPattern |
+	inputCatalogOfPattern := *openapiclient.NewInputCatalogOfPattern("Name_example") // InputCatalogOfPattern | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateCatalogOfTTPRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCatalogOfPattern** | [**InputCatalogOfPattern**](InputCatalogOfPattern.md) |  |
+ **inputCatalogOfPattern** | [**InputCatalogOfPattern**](InputCatalogOfPattern.md) |  | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-	catalogId := "~354" // string |
+	catalogId := "catalogId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -115,7 +115,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**catalogId** | **string** |  |
+**catalogId** | **string** |  | 
 
 ### Other Parameters
 
@@ -163,7 +163,7 @@ import (
 )
 
 func main() {
-	patternId := "~354" // string |
+	patternId := "patternId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -181,7 +181,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**patternId** | **string** |  |
+**patternId** | **string** |  | 
 
 ### Other Parameters
 
@@ -229,7 +229,7 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
+	caseId := "caseId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -249,7 +249,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
+**caseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -297,7 +297,7 @@ import (
 )
 
 func main() {
-	patternId := "~354" // string |
+	patternId := "patternId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -317,7 +317,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**patternId** | **string** |  |
+**patternId** | **string** |  | 
 
 ### Other Parameters
 
@@ -367,7 +367,7 @@ import (
 )
 
 func main() {
-	inputPatternImportMitre := *openapiclient.NewInputPatternImportMitre("Catalog_example") // InputPatternImportMitre |
+	inputPatternImportMitre := *openapiclient.NewInputPatternImportMitre("Catalog_example") // InputPatternImportMitre | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -392,7 +392,7 @@ Other parameters are passed through a pointer to a apiImportMITREAttckFileReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputPatternImportMitre** | [**InputPatternImportMitre**](InputPatternImportMitre.md) |  |
+ **inputPatternImportMitre** | [**InputPatternImportMitre**](InputPatternImportMitre.md) |  | 
 
 ### Return type
 
@@ -431,8 +431,8 @@ import (
 )
 
 func main() {
-	catalogId := "~354" // string |
-	inputUpdateCatalogOfPattern := *openapiclient.NewInputUpdateCatalogOfPattern() // InputUpdateCatalogOfPattern |
+	catalogId := "catalogId_example" // string | 
+	inputUpdateCatalogOfPattern := *openapiclient.NewInputUpdateCatalogOfPattern() // InputUpdateCatalogOfPattern | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -450,7 +450,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**catalogId** | **string** |  |
+**catalogId** | **string** |  | 
 
 ### Other Parameters
 
@@ -460,7 +460,7 @@ Other parameters are passed through a pointer to a apiUpdateCatalogOfTTPRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCatalogOfPattern** | [**InputUpdateCatalogOfPattern**](InputUpdateCatalogOfPattern.md) |  |
+ **inputUpdateCatalogOfPattern** | [**InputUpdateCatalogOfPattern**](InputUpdateCatalogOfPattern.md) |  | 
 
 ### Return type
 
@@ -478,3 +478,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

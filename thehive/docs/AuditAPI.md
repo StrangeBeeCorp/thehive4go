@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAStreamOfAudits**](AuditAPI.md#CreateAStreamOfAudits) | **Post** /api/v1/stream |
-[**GetAStreamOfAudits**](AuditAPI.md#GetAStreamOfAudits) | **Get** /api/v1/stream/{streamId} |
-[**GetFlowOfAudit**](AuditAPI.md#GetFlowOfAudit) | **Get** /api/v1/flow |
+[**CreateAStreamOfAudits**](AuditAPI.md#CreateAStreamOfAudits) | **Post** /api/v1/stream | 
+[**GetAStreamOfAudits**](AuditAPI.md#GetAStreamOfAudits) | **Get** /api/v1/stream/{streamId} | 
+[**GetFlowOfAudit**](AuditAPI.md#GetFlowOfAudit) | **Get** /api/v1/flow | 
 
 
 
@@ -88,7 +88,7 @@ import (
 )
 
 func main() {
-	streamId := "streamId_example" // string |
+	streamId := "streamId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -108,7 +108,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**streamId** | **string** |  |
+**streamId** | **string** |  | 
 
 ### Other Parameters
 
@@ -182,8 +182,8 @@ Other parameters are passed through a pointer to a apiGetFlowOfAuditRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rootId** | **string** |  |
- **count** | **int32** |  |
+ **rootId** | **string** |  | 
+ **count** | **int32** |  | 
 
 ### Return type
 
@@ -201,3 +201,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

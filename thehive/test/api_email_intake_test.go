@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_EmailIntakeAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService AddNewConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.EmailIntakeAPI.AddNewConfig(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService AvailableProviders", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.EmailIntakeAPI.AvailableProviders(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService DeleteConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var configId string
 
@@ -61,7 +61,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService GWSetAuthorizationCode", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.EmailIntakeAPI.GWSetAuthorizationCode(context.Background()).Execute()
 
@@ -73,7 +73,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService GetConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var configId string
 
@@ -87,7 +87,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService GetConfigs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.EmailIntakeAPI.GetConfigs(context.Background()).Execute()
 
@@ -99,7 +99,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService GetMailboxFolders", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.EmailIntakeAPI.GetMailboxFolders(context.Background()).Execute()
 
@@ -111,7 +111,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService Sync", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.EmailIntakeAPI.Sync(context.Background()).Execute()
 
@@ -122,7 +122,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService TestConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.EmailIntakeAPI.TestConfig(context.Background()).Execute()
 
@@ -133,7 +133,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService UpdateConfig", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var configId string
 
@@ -146,7 +146,7 @@ func Test_thehive_EmailIntakeAPIService(t *testing.T) {
 
 	t.Run("Test EmailIntakeAPIService UpdateConfigs", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.EmailIntakeAPI.UpdateConfigs(context.Background()).Execute()
 

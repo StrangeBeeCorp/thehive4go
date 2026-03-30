@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTaskInCase**](TaskAPI.md#CreateTaskInCase) | **Post** /api/v1/case/{caseId}/task |
-[**DeleteTask**](TaskAPI.md#DeleteTask) | **Delete** /api/v1/task/{taskId} |
-[**GetTask**](TaskAPI.md#GetTask) | **Get** /api/v1/task/{taskId} |
-[**SetTaskAsDoneByOrganisation**](TaskAPI.md#SetTaskAsDoneByOrganisation) | **Put** /api/v1/task/{taskId}/actionDone/{orgId} |
-[**SetTaskAsRequiredByOrganisation**](TaskAPI.md#SetTaskAsRequiredByOrganisation) | **Put** /api/v1/task/{taskId}/actionRequired/{orgId} |
-[**TaskActionsRequired**](TaskAPI.md#TaskActionsRequired) | **Get** /api/v1/task/{taskId}/actionRequired |
-[**UpdateBulkOfTask**](TaskAPI.md#UpdateBulkOfTask) | **Patch** /api/v1/task/_bulk |
-[**UpdateTask**](TaskAPI.md#UpdateTask) | **Patch** /api/v1/task/{taskId} |
+[**CreateTaskInCase**](TaskAPI.md#CreateTaskInCase) | **Post** /api/v1/case/{caseId}/task | 
+[**DeleteTask**](TaskAPI.md#DeleteTask) | **Delete** /api/v1/task/{taskId} | 
+[**GetTask**](TaskAPI.md#GetTask) | **Get** /api/v1/task/{taskId} | 
+[**SetTaskAsDoneByOrganisation**](TaskAPI.md#SetTaskAsDoneByOrganisation) | **Put** /api/v1/task/{taskId}/actionDone/{orgId} | 
+[**SetTaskAsRequiredByOrganisation**](TaskAPI.md#SetTaskAsRequiredByOrganisation) | **Put** /api/v1/task/{taskId}/actionRequired/{orgId} | 
+[**TaskActionsRequired**](TaskAPI.md#TaskActionsRequired) | **Get** /api/v1/task/{taskId}/actionRequired | 
+[**UpdateBulkOfTask**](TaskAPI.md#UpdateBulkOfTask) | **Patch** /api/v1/task/_bulk | 
+[**UpdateTask**](TaskAPI.md#UpdateTask) | **Patch** /api/v1/task/{taskId} | 
 
 
 
@@ -34,8 +34,8 @@ import (
 )
 
 func main() {
-	caseId := "~354" // string |
-	inputCreateTask := *openapiclient.NewInputCreateTask("Title_example") // InputCreateTask |
+	caseId := "caseId_example" // string | 
+	inputCreateTask := *openapiclient.NewInputCreateTask("Title_example") // InputCreateTask | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  |
+**caseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -65,7 +65,7 @@ Other parameters are passed through a pointer to a apiCreateTaskInCaseRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateTask** | [**InputCreateTask**](InputCreateTask.md) |  |
+ **inputCreateTask** | [**InputCreateTask**](InputCreateTask.md) |  | 
 
 ### Return type
 
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
+	taskId := "taskId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -170,7 +170,7 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
+	taskId := "taskId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -238,8 +238,8 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
-	orgId := "~354" // string |
+	taskId := "taskId_example" // string | 
+	orgId := "orgId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -257,8 +257,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
-**orgId** | **string** |  |
+**taskId** | **string** |  | 
+**orgId** | **string** |  | 
 
 ### Other Parameters
 
@@ -307,8 +307,8 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
-	orgId := "~354" // string |
+	taskId := "taskId_example" // string | 
+	orgId := "orgId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -326,8 +326,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
-**orgId** | **string** |  |
+**taskId** | **string** |  | 
+**orgId** | **string** |  | 
 
 ### Other Parameters
 
@@ -376,7 +376,7 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
+	taskId := "taskId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -396,7 +396,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -444,7 +444,7 @@ import (
 )
 
 func main() {
-	inputUpdateTaskWithIds := *openapiclient.NewInputUpdateTaskWithIds([]string{"~354"}) // InputUpdateTaskWithIds |
+	inputUpdateTaskWithIds := *openapiclient.NewInputUpdateTaskWithIds([]string{"Ids_example"}) // InputUpdateTaskWithIds | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -467,7 +467,7 @@ Other parameters are passed through a pointer to a apiUpdateBulkOfTaskRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateTaskWithIds** | [**InputUpdateTaskWithIds**](InputUpdateTaskWithIds.md) |  |
+ **inputUpdateTaskWithIds** | [**InputUpdateTaskWithIds**](InputUpdateTaskWithIds.md) |  | 
 
 ### Return type
 
@@ -506,8 +506,8 @@ import (
 )
 
 func main() {
-	taskId := "~354" // string |
-	inputUpdateTask := *openapiclient.NewInputUpdateTask() // InputUpdateTask |
+	taskId := "taskId_example" // string | 
+	inputUpdateTask := *openapiclient.NewInputUpdateTask() // InputUpdateTask | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -525,7 +525,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  |
+**taskId** | **string** |  | 
 
 ### Other Parameters
 
@@ -535,7 +535,7 @@ Other parameters are passed through a pointer to a apiUpdateTaskRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateTask** | [**InputUpdateTask**](InputUpdateTask.md) |  |
+ **inputUpdateTask** | [**InputUpdateTask**](InputUpdateTask.md) |  | 
 
 ### Return type
 
@@ -553,3 +553,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

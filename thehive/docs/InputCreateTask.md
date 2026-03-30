@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  |
-**Group** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Flag** | Pointer to **bool** |  | [optional]
-**StartDate** | Pointer to **int64** |  | [optional]
-**EndDate** | Pointer to **int64** |  | [optional]
-**Order** | Pointer to **int32** |  | [optional]
-**DueDate** | Pointer to **int64** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**Mandatory** | Pointer to **bool** |  | [optional]
+**Title** | **string** |  | 
+**Group** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Flag** | Pointer to **bool** |  | [optional] 
+**StartDate** | Pointer to **int64** |  | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Order** | Pointer to **int32** |  | [optional] 
+**DueDate** | Pointer to **int64** |  | [optional] 
+**Assignee** | Pointer to **string** |  | [optional] 
+**Mandatory** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -307,3 +307,5 @@ HasMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

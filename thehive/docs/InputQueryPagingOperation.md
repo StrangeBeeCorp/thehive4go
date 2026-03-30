@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExtraData** | Pointer to **[]string** |  | [optional]
-**From** | **int32** |  |
-**To** | **int32** |  |
-**Name** | **string** |  |
+**ExtraData** | Pointer to **[]string** |  | [optional] 
+**From** | **int32** |  | 
+**To** | **int32** |  | 
+**Name** | **string** |  | 
 
 ## Methods
 
@@ -115,3 +115,5 @@ SetName sets Name field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

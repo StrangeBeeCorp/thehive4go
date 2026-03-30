@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PatternId** | **string** | Id of the technique in the catalog |
-**OccurDate** | **int64** |  |
-**Tactic** | Pointer to **string** | Name of the tactic, useful if the technique belongs to several tactics | [optional]
-**Description** | Pointer to **string** |  | [optional]
+**PatternId** | **string** | Id of the technique in the catalog | 
+**OccurDate** | **int64** |  | 
+**Tactic** | Pointer to **string** | Name of the tactic, useful if the technique belongs to several tactics | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -120,3 +120,5 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  |
-**Description** | **string** | Description of the case, supports markdown |
+**Title** | **string** |  | 
+**Description** | **string** | Description of the case, supports markdown | 
 **Severity** | Pointer to **int32** |  | [optional] [default to 2]
-**StartDate** | Pointer to **int64** |  | [optional] [default to now()]
-**EndDate** | Pointer to **int64** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
+**StartDate** | Pointer to **int64** | If not provided, the current date is used | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
 **Flag** | Pointer to **bool** |  | [optional] [default to false]
 **Tlp** | Pointer to **int32** |  | [optional] [default to 2]
 **Pap** | Pointer to **int32** |  | [optional] [default to 2]
 **Status** | Pointer to **string** |  | [optional] [default to "New"]
-**Summary** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** | User to assign the case to | [optional]
-**Access** | Pointer to [**Access**](Access.md) | Access type. The default value is the organisation based access | [optional]
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
-**CaseTemplate** | Pointer to **string** | Name or id of the Case Template to use | [optional]
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Tasks to create. If null, tasks from the Case Template will be used | [optional]
-**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional]
-**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional]
-**TaskRule** | Pointer to **string** |  | [optional]
-**ObservableRule** | Pointer to **string** |  | [optional]
+**Summary** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** | User to assign the case to | [optional] 
+**Access** | Pointer to [**Access**](Access.md) | Access type. The default value is the organisation based access | [optional] 
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
+**CaseTemplate** | Pointer to **string** | Name or id of the Case Template to use | [optional] 
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Tasks to create. If null, tasks from the Case Template will be used | [optional] 
+**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional] 
+**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional] 
+**TaskRule** | Pointer to **string** |  | [optional] 
+**ObservableRule** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -536,3 +536,5 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**Name** | **string** |  |
-**Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  |
-**Organisations** | Pointer to **[]string** |  | [optional]
-**Enabled** | **bool** |  |
-**CreatedAt** | **int64** |  |
-**AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  |
+**Id** | **string** |  | 
+**Name** | **string** |  | 
+**Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  | 
+**Organisations** | Pointer to **[]string** |  | [optional] 
+**Enabled** | **bool** |  | 
+**CreatedAt** | **int64** |  | 
+**AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  | 
 
 ## Methods
 
@@ -178,3 +178,5 @@ SetAlertProperties sets AlertProperties field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddTemporaryAttachment**](UserAPI.md#AddTemporaryAttachment) | **Post** /api/v1/user/current/attachments |
-[**ChangeUserPassword**](UserAPI.md#ChangeUserPassword) | **Post** /api/v1/user/{userId}/password/change |
-[**CreateUser**](UserAPI.md#CreateUser) | **Post** /api/v1/user |
-[**DeleteUser**](UserAPI.md#DeleteUser) | **Delete** /api/v1/user/{userId}/force |
-[**GetCurrentUserInfo**](UserAPI.md#GetCurrentUserInfo) | **Get** /api/v1/user/current |
-[**GetUser**](UserAPI.md#GetUser) | **Get** /api/v1/user/{userId} |
-[**GetUserApiKey**](UserAPI.md#GetUserApiKey) | **Get** /api/v1/user/{userId}/key |
-[**GetUserAvatar**](UserAPI.md#GetUserAvatar) | **Get** /api/v1/user/{userId}/avatar |
-[**LockUser**](UserAPI.md#LockUser) | **Delete** /api/v1/user/{userId} |
-[**RemoveUserApiKey**](UserAPI.md#RemoveUserApiKey) | **Delete** /api/v1/user/{userId}/key |
-[**RenewUserApiKey**](UserAPI.md#RenewUserApiKey) | **Post** /api/v1/user/{userId}/key/renew |
-[**SetUserLogin**](UserAPI.md#SetUserLogin) | **Post** /api/v1/user/{userId}/login/set |
-[**SetUserOrganisations**](UserAPI.md#SetUserOrganisations) | **Put** /api/v1/user/{userId}/organisations |
-[**SetUserPassword**](UserAPI.md#SetUserPassword) | **Post** /api/v1/user/{userId}/password/set |
-[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /api/v1/user/{userId} |
+[**AddTemporaryAttachment**](UserAPI.md#AddTemporaryAttachment) | **Post** /api/v1/user/current/attachments | 
+[**ChangeUserPassword**](UserAPI.md#ChangeUserPassword) | **Post** /api/v1/user/{userId}/password/change | 
+[**CreateUser**](UserAPI.md#CreateUser) | **Post** /api/v1/user | 
+[**DeleteUser**](UserAPI.md#DeleteUser) | **Delete** /api/v1/user/{userId}/force | 
+[**GetCurrentUserInfo**](UserAPI.md#GetCurrentUserInfo) | **Get** /api/v1/user/current | 
+[**GetUser**](UserAPI.md#GetUser) | **Get** /api/v1/user/{userId} | 
+[**GetUserApiKey**](UserAPI.md#GetUserApiKey) | **Get** /api/v1/user/{userId}/key | 
+[**GetUserAvatar**](UserAPI.md#GetUserAvatar) | **Get** /api/v1/user/{userId}/avatar/{file} | 
+[**LockUser**](UserAPI.md#LockUser) | **Delete** /api/v1/user/{userId} | 
+[**RemoveUserApiKey**](UserAPI.md#RemoveUserApiKey) | **Delete** /api/v1/user/{userId}/key | 
+[**RenewUserApiKey**](UserAPI.md#RenewUserApiKey) | **Post** /api/v1/user/{userId}/key/renew | 
+[**SetUserLogin**](UserAPI.md#SetUserLogin) | **Post** /api/v1/user/{userId}/login/set | 
+[**SetUserOrganisations**](UserAPI.md#SetUserOrganisations) | **Put** /api/v1/user/{userId}/organisations | 
+[**SetUserPassword**](UserAPI.md#SetUserPassword) | **Post** /api/v1/user/{userId}/password/set | 
+[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /api/v1/user/{userId} | 
 
 
 
@@ -41,7 +41,7 @@ import (
 )
 
 func main() {
-	attachments := []*os.File{"TODO"} // []*os.File |
+	attachments := []*os.File{"TODO"} // []*os.File | 
 	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -67,8 +67,8 @@ Other parameters are passed through a pointer to a apiAddTemporaryAttachmentRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attachments** | **[]*os.File** |  |
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name |
+ **attachments** | **[]*os.File** |  | 
+ **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
 
 ### Return type
 
@@ -107,8 +107,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	inputChangeUserPassword := *openapiclient.NewInputChangeUserPassword("Password_example", "CurrentPassword_example") // InputChangeUserPassword |
+	userId := "userId_example" // string | 
+	inputChangeUserPassword := *openapiclient.NewInputChangeUserPassword("Password_example", "CurrentPassword_example") // InputChangeUserPassword | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -126,7 +126,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -136,7 +136,7 @@ Other parameters are passed through a pointer to a apiChangeUserPasswordRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputChangeUserPassword** | [**InputChangeUserPassword**](InputChangeUserPassword.md) |  |
+ **inputChangeUserPassword** | [**InputChangeUserPassword**](InputChangeUserPassword.md) |  | 
 
 ### Return type
 
@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	inputCreateUser := *openapiclient.NewInputCreateUser("Login_example", "Name_example", "Profile_example") // InputCreateUser |
+	inputCreateUser := *openapiclient.NewInputCreateUser("Login_example", "Name_example", "Profile_example") // InputCreateUser | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateUser** | [**InputCreateUser**](InputCreateUser.md) |  |
+ **inputCreateUser** | [**InputCreateUser**](InputCreateUser.md) |  | 
 
 ### Return type
 
@@ -239,8 +239,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	organisation := "~354" // string |  (optional)
+	userId := "userId_example" // string | 
+	organisation := "organisation_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -268,7 +268,7 @@ Other parameters are passed through a pointer to a apiDeleteUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **organisation** | **string** |  |
+ **organisation** | **string** |  | 
 
 ### Return type
 
@@ -366,7 +366,7 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -386,7 +386,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -434,7 +434,7 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -454,7 +454,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -485,7 +485,7 @@ Name | Type | Description  | Notes
 
 ## GetUserAvatar
 
-> *os.File GetUserAvatar(ctx, userId).Execute()
+> *os.File GetUserAvatar(ctx, userId, file).IfNoneMatch(ifNoneMatch).Execute()
 
 
 
@@ -502,11 +502,13 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
+	file := "file_example" // string | 
+	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.GetUserAvatar(context.Background(), userId).Execute()
+	resp, r, err := apiClient.UserAPI.GetUserAvatar(context.Background(), userId, file).IfNoneMatch(ifNoneMatch).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.GetUserAvatar``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -522,7 +524,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
+**file** | **string** |  | 
 
 ### Other Parameters
 
@@ -532,6 +535,8 @@ Other parameters are passed through a pointer to a apiGetUserAvatarRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+ **ifNoneMatch** | **string** |  | 
 
 ### Return type
 
@@ -572,7 +577,7 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -590,7 +595,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -638,7 +643,7 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -656,7 +661,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -704,7 +709,7 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
+	userId := "userId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -724,7 +729,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -772,8 +777,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	inputSetUserLogin := *openapiclient.NewInputSetUserLogin("Login_example") // InputSetUserLogin |
+	userId := "userId_example" // string | 
+	inputSetUserLogin := *openapiclient.NewInputSetUserLogin("Login_example") // InputSetUserLogin | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -791,7 +796,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -801,7 +806,7 @@ Other parameters are passed through a pointer to a apiSetUserLoginRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputSetUserLogin** | [**InputSetUserLogin**](InputSetUserLogin.md) |  |
+ **inputSetUserLogin** | [**InputSetUserLogin**](InputSetUserLogin.md) |  | 
 
 ### Return type
 
@@ -840,8 +845,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	inputSetUserOrganisations := *openapiclient.NewInputSetUserOrganisations() // InputSetUserOrganisations |
+	userId := "userId_example" // string | 
+	inputSetUserOrganisations := *openapiclient.NewInputSetUserOrganisations() // InputSetUserOrganisations | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -861,7 +866,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -871,7 +876,7 @@ Other parameters are passed through a pointer to a apiSetUserOrganisationsReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputSetUserOrganisations** | [**InputSetUserOrganisations**](InputSetUserOrganisations.md) |  |
+ **inputSetUserOrganisations** | [**InputSetUserOrganisations**](InputSetUserOrganisations.md) |  | 
 
 ### Return type
 
@@ -910,8 +915,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	inputSetUserPassword := *openapiclient.NewInputSetUserPassword("Password_example") // InputSetUserPassword |
+	userId := "userId_example" // string | 
+	inputSetUserPassword := *openapiclient.NewInputSetUserPassword("Password_example") // InputSetUserPassword | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -929,7 +934,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -939,7 +944,7 @@ Other parameters are passed through a pointer to a apiSetUserPasswordRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputSetUserPassword** | [**InputSetUserPassword**](InputSetUserPassword.md) |  |
+ **inputSetUserPassword** | [**InputSetUserPassword**](InputSetUserPassword.md) |  | 
 
 ### Return type
 
@@ -978,8 +983,8 @@ import (
 )
 
 func main() {
-	userId := "~354" // string |
-	inputUpdateUser := *openapiclient.NewInputUpdateUser() // InputUpdateUser |
+	userId := "userId_example" // string | 
+	inputUpdateUser := *openapiclient.NewInputUpdateUser() // InputUpdateUser | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -997,7 +1002,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  |
+**userId** | **string** |  | 
 
 ### Other Parameters
 
@@ -1007,7 +1012,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateUser** | [**InputUpdateUser**](InputUpdateUser.md) |  |
+ **inputUpdateUser** | [**InputUpdateUser**](InputUpdateUser.md) |  | 
 
 ### Return type
 
@@ -1025,3 +1030,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

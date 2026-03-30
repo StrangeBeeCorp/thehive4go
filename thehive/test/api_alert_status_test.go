@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_AlertStatusAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_AlertStatusAPIService(t *testing.T) {
 
 	t.Run("Test AlertStatusAPIService CreateAlertStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AlertStatusAPI.CreateAlertStatus(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_AlertStatusAPIService(t *testing.T) {
 
 	t.Run("Test AlertStatusAPIService DeleteAlertStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var id string
 
@@ -49,7 +49,7 @@ func Test_thehive_AlertStatusAPIService(t *testing.T) {
 
 	t.Run("Test AlertStatusAPIService UpdateAlertStatus", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var id string
 

@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAnAction**](CortexAPI.md#CreateAnAction) | **Post** /api/v1/connector/cortex/action |
-[**CreateAnalyzerTemplate**](CortexAPI.md#CreateAnalyzerTemplate) | **Post** /api/v1/connector/cortex/analyzer/template |
-[**CreateCortexJob**](CortexAPI.md#CreateCortexJob) | **Post** /api/v1/connector/cortex/job |
-[**DeleteAnalyzerTemplate**](CortexAPI.md#DeleteAnalyzerTemplate) | **Delete** /api/v1/connector/cortex/analyzer/template/{analyzerTemplateId} |
-[**GetActionByEntity**](CortexAPI.md#GetActionByEntity) | **Get** /api/v1/connector/cortex/action/{entityType}/{entityId} |
-[**GetAnalyzerById**](CortexAPI.md#GetAnalyzerById) | **Get** /api/v1/connector/cortex/analyzer/{analyzerId} |
-[**GetAnalyzerTemplateContent**](CortexAPI.md#GetAnalyzerTemplateContent) | **Get** /api/v1/connector/cortex/analyzer/template/content/{analyzerId} |
-[**GetCortexJob**](CortexAPI.md#GetCortexJob) | **Get** /api/v1/connector/cortex/job/{jobId} |
-[**ImportAnalyzerTemplates**](CortexAPI.md#ImportAnalyzerTemplates) | **Post** /api/v1/connector/cortex/analyzer/template/_import |
-[**ListAnalyzers**](CortexAPI.md#ListAnalyzers) | **Get** /api/v1/connector/cortex/analyzer |
-[**ListAnalyzersByType**](CortexAPI.md#ListAnalyzersByType) | **Get** /api/v1/connector/cortex/analyzer/type/{dataType} |
-[**ListResponders**](CortexAPI.md#ListResponders) | **Get** /api/v1/connector/cortex/responder/{entityType}/{entityId} |
-[**UpdateAnalyzerTemplate**](CortexAPI.md#UpdateAnalyzerTemplate) | **Patch** /api/v1/connector/cortex/analyzer/template/{analyzerTemplateId} |
+[**CreateAnAction**](CortexAPI.md#CreateAnAction) | **Post** /api/v1/connector/cortex/action | 
+[**CreateAnalyzerTemplate**](CortexAPI.md#CreateAnalyzerTemplate) | **Post** /api/v1/connector/cortex/analyzer/template | 
+[**CreateCortexJob**](CortexAPI.md#CreateCortexJob) | **Post** /api/v1/connector/cortex/job | 
+[**DeleteAnalyzerTemplate**](CortexAPI.md#DeleteAnalyzerTemplate) | **Delete** /api/v1/connector/cortex/analyzer/template/{analyzerTemplateId} | 
+[**GetActionByEntity**](CortexAPI.md#GetActionByEntity) | **Get** /api/v1/connector/cortex/action/{entityType}/{entityId} | 
+[**GetAnalyzerById**](CortexAPI.md#GetAnalyzerById) | **Get** /api/v1/connector/cortex/analyzer/{analyzerId} | 
+[**GetAnalyzerTemplateContent**](CortexAPI.md#GetAnalyzerTemplateContent) | **Get** /api/v1/connector/cortex/analyzer/template/content/{analyzerId} | 
+[**GetCortexJob**](CortexAPI.md#GetCortexJob) | **Get** /api/v1/connector/cortex/job/{jobId} | 
+[**ImportAnalyzerTemplates**](CortexAPI.md#ImportAnalyzerTemplates) | **Post** /api/v1/connector/cortex/analyzer/template/_import | 
+[**ListAnalyzers**](CortexAPI.md#ListAnalyzers) | **Get** /api/v1/connector/cortex/analyzer | 
+[**ListAnalyzersByType**](CortexAPI.md#ListAnalyzersByType) | **Get** /api/v1/connector/cortex/analyzer/type/{dataType} | 
+[**ListResponders**](CortexAPI.md#ListResponders) | **Get** /api/v1/connector/cortex/responder/{entityType}/{entityId} | 
+[**UpdateAnalyzerTemplate**](CortexAPI.md#UpdateAnalyzerTemplate) | **Patch** /api/v1/connector/cortex/analyzer/template/{analyzerTemplateId} | 
 
 
 
@@ -39,7 +39,7 @@ import (
 )
 
 func main() {
-	inputAction := *openapiclient.NewInputAction("ResponderId_example", "ObjectType_example", "ObjectId_example") // InputAction |
+	inputAction := *openapiclient.NewInputAction("ResponderId_example", "ObjectType_example", "ObjectId_example") // InputAction | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateAnActionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAction** | [**InputAction**](InputAction.md) |  |
+ **inputAction** | [**InputAction**](InputAction.md) |  | 
 
 ### Return type
 
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	inputAnalyzerTemplate := *openapiclient.NewInputAnalyzerTemplate("AnalyzerId_example", "Content_example") // InputAnalyzerTemplate |
+	inputAnalyzerTemplate := *openapiclient.NewInputAnalyzerTemplate("AnalyzerId_example", "Content_example") // InputAnalyzerTemplate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -128,7 +128,7 @@ Other parameters are passed through a pointer to a apiCreateAnalyzerTemplateRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAnalyzerTemplate** | [**InputAnalyzerTemplate**](InputAnalyzerTemplate.md) |  |
+ **inputAnalyzerTemplate** | [**InputAnalyzerTemplate**](InputAnalyzerTemplate.md) |  | 
 
 ### Return type
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	inputJob := *openapiclient.NewInputJob("AnalyzerId_example", "CortexId_example", "ArtifactId_example") // InputJob |
+	inputJob := *openapiclient.NewInputJob("AnalyzerId_example", "CortexId_example", "ArtifactId_example") // InputJob | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -192,7 +192,7 @@ Other parameters are passed through a pointer to a apiCreateCortexJobRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputJob** | [**InputJob**](InputJob.md) |  |
+ **inputJob** | [**InputJob**](InputJob.md) |  | 
 
 ### Return type
 
@@ -231,7 +231,7 @@ import (
 )
 
 func main() {
-	analyzerTemplateId := "~354" // string |
+	analyzerTemplateId := "analyzerTemplateId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -249,7 +249,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**analyzerTemplateId** | **string** |  |
+**analyzerTemplateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -297,8 +297,8 @@ import (
 )
 
 func main() {
-	entityType := "entityType_example" // string |
-	entityId := "~354" // string |
+	entityType := "entityType_example" // string | 
+	entityId := "entityId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -318,8 +318,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**entityType** | **string** |  |
-**entityId** | **string** |  |
+**entityType** | **string** |  | 
+**entityId** | **string** |  | 
 
 ### Other Parameters
 
@@ -368,7 +368,7 @@ import (
 )
 
 func main() {
-	analyzerId := "analyzerId_example" // string |
+	analyzerId := "analyzerId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -388,7 +388,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**analyzerId** | **string** |  |
+**analyzerId** | **string** |  | 
 
 ### Other Parameters
 
@@ -436,7 +436,7 @@ import (
 )
 
 func main() {
-	analyzerId := "~354" // string |
+	analyzerId := "analyzerId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -456,7 +456,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**analyzerId** | **string** |  |
+**analyzerId** | **string** |  | 
 
 ### Other Parameters
 
@@ -504,7 +504,7 @@ import (
 )
 
 func main() {
-	jobId := "~354" // string |
+	jobId := "jobId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -524,7 +524,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**jobId** | **string** |  |
+**jobId** | **string** |  | 
 
 ### Other Parameters
 
@@ -572,7 +572,7 @@ import (
 )
 
 func main() {
-	templates := os.NewFile(1234, "some_file") // *os.File |
+	templates := os.NewFile(1234, "some_file") // *os.File | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -597,7 +597,7 @@ Other parameters are passed through a pointer to a apiImportAnalyzerTemplatesReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templates** | ***os.File** |  |
+ **templates** | ***os.File** |  | 
 
 ### Return type
 
@@ -661,7 +661,7 @@ Other parameters are passed through a pointer to a apiListAnalyzersRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **range_** | **string** |  |
+ **range_** | **string** |  | 
 
 ### Return type
 
@@ -700,7 +700,7 @@ import (
 )
 
 func main() {
-	dataType := "dataType_example" // string |
+	dataType := "dataType_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -720,7 +720,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dataType** | **string** |  |
+**dataType** | **string** |  | 
 
 ### Other Parameters
 
@@ -768,8 +768,8 @@ import (
 )
 
 func main() {
-	entityType := "entityType_example" // string |
-	entityId := "~354" // string |
+	entityType := "entityType_example" // string | 
+	entityId := "entityId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -789,8 +789,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**entityType** | **string** |  |
-**entityId** | **string** |  |
+**entityType** | **string** |  | 
+**entityId** | **string** |  | 
 
 ### Other Parameters
 
@@ -839,8 +839,8 @@ import (
 )
 
 func main() {
-	analyzerTemplateId := "~354" // string |
-	inputAnalyzerTemplateUpdate := *openapiclient.NewInputAnalyzerTemplateUpdate() // InputAnalyzerTemplateUpdate |
+	analyzerTemplateId := "analyzerTemplateId_example" // string | 
+	inputAnalyzerTemplateUpdate := *openapiclient.NewInputAnalyzerTemplateUpdate() // InputAnalyzerTemplateUpdate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -860,7 +860,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**analyzerTemplateId** | **string** |  |
+**analyzerTemplateId** | **string** |  | 
 
 ### Other Parameters
 
@@ -870,7 +870,7 @@ Other parameters are passed through a pointer to a apiUpdateAnalyzerTemplateRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputAnalyzerTemplateUpdate** | [**InputAnalyzerTemplateUpdate**](InputAnalyzerTemplateUpdate.md) |  |
+ **inputAnalyzerTemplateUpdate** | [**InputAnalyzerTemplateUpdate**](InputAnalyzerTemplateUpdate.md) |  | 
 
 ### Return type
 
@@ -888,3 +888,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomField**](CustomFieldAPI.md#CreateCustomField) | **Post** /api/v1/customField |
-[**DeleteCustomField**](CustomFieldAPI.md#DeleteCustomField) | **Delete** /api/v1/customField/{customFieldId} |
-[**ListCustomFields**](CustomFieldAPI.md#ListCustomFields) | **Get** /api/v1/customField |
-[**UpdateCustomField**](CustomFieldAPI.md#UpdateCustomField) | **Patch** /api/v1/customField/{customFieldId} |
+[**CreateCustomField**](CustomFieldAPI.md#CreateCustomField) | **Post** /api/v1/customField | 
+[**DeleteCustomField**](CustomFieldAPI.md#DeleteCustomField) | **Delete** /api/v1/customField/{customFieldId} | 
+[**ListCustomFields**](CustomFieldAPI.md#ListCustomFields) | **Get** /api/v1/customField | 
+[**UpdateCustomField**](CustomFieldAPI.md#UpdateCustomField) | **Patch** /api/v1/customField/{customFieldId} | 
 
 
 
@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	inputCustomField := *openapiclient.NewInputCustomField("Name_example", "Group_example", "Description_example", openapiclient.CustomFieldType("string")) // InputCustomField |
+	inputCustomField := *openapiclient.NewInputCustomField("Name_example", "Group_example", "Description_example", openapiclient.CustomFieldType("string")) // InputCustomField | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiCreateCustomFieldRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCustomField** | [**InputCustomField**](InputCustomField.md) |  |
+ **inputCustomField** | [**InputCustomField**](InputCustomField.md) |  | 
 
 ### Return type
 
@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-	customFieldId := "~354" // string |
+	customFieldId := "customFieldId_example" // string | 
 	force := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
@@ -113,7 +113,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customFieldId** | **string** |  |
+**customFieldId** | **string** |  | 
 
 ### Other Parameters
 
@@ -221,8 +221,8 @@ import (
 )
 
 func main() {
-	customFieldId := "~354" // string |
-	inputUpdateCustomField := *openapiclient.NewInputUpdateCustomField() // InputUpdateCustomField |
+	customFieldId := "customFieldId_example" // string | 
+	inputUpdateCustomField := *openapiclient.NewInputUpdateCustomField() // InputUpdateCustomField | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -240,7 +240,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customFieldId** | **string** |  |
+**customFieldId** | **string** |  | 
 
 ### Other Parameters
 
@@ -250,7 +250,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomFieldRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCustomField** | [**InputUpdateCustomField**](InputUpdateCustomField.md) |  |
+ **inputUpdateCustomField** | [**InputUpdateCustomField**](InputUpdateCustomField.md) |  | 
 
 ### Return type
 
@@ -268,3 +268,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

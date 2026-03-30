@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_CaseTemplateAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_CaseTemplateAPIService(t *testing.T) {
 
 	t.Run("Test CaseTemplateAPIService CreateCaseTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.CaseTemplateAPI.CreateCaseTemplate(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_CaseTemplateAPIService(t *testing.T) {
 
 	t.Run("Test CaseTemplateAPIService DeleteCaseTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseTemplateNameOrId string
 
@@ -49,7 +49,7 @@ func Test_thehive_CaseTemplateAPIService(t *testing.T) {
 
 	t.Run("Test CaseTemplateAPIService GetCaseTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseTemplateNameOrId string
 
@@ -63,7 +63,7 @@ func Test_thehive_CaseTemplateAPIService(t *testing.T) {
 
 	t.Run("Test CaseTemplateAPIService LinkPageTemplatesToACaseTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseTemplateNameOrId string
 
@@ -76,7 +76,7 @@ func Test_thehive_CaseTemplateAPIService(t *testing.T) {
 
 	t.Run("Test CaseTemplateAPIService UpdateCaseTemplate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseTemplateNameOrId string
 

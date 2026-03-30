@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListPermissions**](PermissionAPI.md#ListPermissions) | **Get** /api/v1/permission |
+[**ListPermissions**](PermissionAPI.md#ListPermissions) | **Get** /api/v1/permission | 
 
 
 
@@ -67,3 +67,4 @@ Other parameters are passed through a pointer to a apiListPermissionsRequest str
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

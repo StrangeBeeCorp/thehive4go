@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**Customer** | **string** |  |
-**Instance** | **string** |  |
-**Plan** | **string** |  |
-**Kind** | **string** |  |
-**ValidFrom** | **int64** |  |
-**ExpiresAt** | **int64** |  |
-**Capabilities** | Pointer to **[]string** |  | [optional]
-**IsValid** | **bool** |  |
-**Error** | Pointer to **string** |  | [optional]
-**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) |  |
+**Id** | **string** |  | 
+**Customer** | **string** |  | 
+**Instance** | **string** |  | 
+**Plan** | **string** |  | 
+**Kind** | **string** |  | 
+**ValidFrom** | **int64** |  | 
+**ExpiresAt** | **int64** |  | 
+**Capabilities** | Pointer to **[]string** |  | [optional] 
+**IsValid** | **bool** |  | 
+**Error** | Pointer to **string** |  | [optional] 
+**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) |  | 
 
 ## Methods
 
@@ -267,3 +267,5 @@ SetQuotas sets Quotas field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

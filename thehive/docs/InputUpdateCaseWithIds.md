@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  |
-**Title** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Severity** | Pointer to **int32** |  | [optional]
-**StartDate** | Pointer to **int64** |  | [optional]
-**EndDate** | Pointer to **int32** |  | [optional]
-**Tags** | Pointer to **[]string** | Set the case tags to this array | [optional]
-**Flag** | Pointer to **bool** |  | [optional]
-**Tlp** | Pointer to **int32** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**Status** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**ImpactStatus** | Pointer to **string** |  | [optional]
-**CustomFields** | Pointer to [**InputUpdateCaseCustomFields**](InputUpdateCaseCustomFields.md) |  | [optional]
-**TaskRule** | Pointer to **string** |  | [optional]
-**ObservableRule** | Pointer to **string** |  | [optional]
-**AddTags** | Pointer to **[]string** | Those tags will be added to the current case | [optional]
-**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current case | [optional]
+**Ids** | **[]string** |  | 
+**Title** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Severity** | Pointer to **int32** |  | [optional] 
+**StartDate** | Pointer to **int64** |  | [optional] 
+**EndDate** | Pointer to **int64** |  | [optional] 
+**Tags** | Pointer to **[]string** | Set the case tags to this array | [optional] 
+**Flag** | Pointer to **bool** |  | [optional] 
+**Tlp** | Pointer to **int32** |  | [optional] 
+**Pap** | Pointer to **int32** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Summary** | Pointer to **string** |  | [optional] 
+**Assignee** | Pointer to **string** |  | [optional] 
+**ImpactStatus** | Pointer to **string** |  | [optional] 
+**CustomFields** | Pointer to [**InputUpdateCaseCustomFields**](InputUpdateCaseCustomFields.md) |  | [optional] 
+**TaskRule** | Pointer to **string** |  | [optional] 
+**ObservableRule** | Pointer to **string** |  | [optional] 
+**AddTags** | Pointer to **[]string** | Those tags will be added to the current case | [optional] 
+**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current case | [optional] 
 
 ## Methods
 
@@ -165,20 +165,20 @@ HasStartDate returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *InputUpdateCaseWithIds) GetEndDate() int32`
+`func (o *InputUpdateCaseWithIds) GetEndDate() int64`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *InputUpdateCaseWithIds) GetEndDateOk() (*int32, bool)`
+`func (o *InputUpdateCaseWithIds) GetEndDateOk() (*int64, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *InputUpdateCaseWithIds) SetEndDate(v int32)`
+`func (o *InputUpdateCaseWithIds) SetEndDate(v int64)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -515,3 +515,5 @@ HasRemoveTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

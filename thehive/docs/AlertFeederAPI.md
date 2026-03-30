@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAnAlertFeeder**](AlertFeederAPI.md#CreateAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder |
-[**DeleteAnAlertFeeder**](AlertFeederAPI.md#DeleteAnAlertFeeder) | **Delete** /api/v1/connector/alert-feeder/{alertFeederName} |
-[**GetAlertFeeders**](AlertFeederAPI.md#GetAlertFeeders) | **Get** /api/v1/connector/alert-feeder |
-[**RunAnAlertFeeder**](AlertFeederAPI.md#RunAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/run/{alertFeederName} |
-[**TestAnAlertFeeder**](AlertFeederAPI.md#TestAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/test |
-[**UpdateAnAlertFeeder**](AlertFeederAPI.md#UpdateAnAlertFeeder) | **Put** /api/v1/connector/alert-feeder/{alertFeederName} |
+[**CreateAnAlertFeeder**](AlertFeederAPI.md#CreateAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder | 
+[**DeleteAnAlertFeeder**](AlertFeederAPI.md#DeleteAnAlertFeeder) | **Delete** /api/v1/connector/alert-feeder/{alertFeederName} | 
+[**GetAlertFeeders**](AlertFeederAPI.md#GetAlertFeeders) | **Get** /api/v1/connector/alert-feeder | 
+[**RunAnAlertFeeder**](AlertFeederAPI.md#RunAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/run/{alertFeederName} | 
+[**TestAnAlertFeeder**](AlertFeederAPI.md#TestAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/test | 
+[**UpdateAnAlertFeeder**](AlertFeederAPI.md#UpdateAnAlertFeeder) | **Put** /api/v1/connector/alert-feeder/{alertFeederName} | 
 
 
 
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	inputAlertFeeder := *openapiclient.NewInputAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days")), "FunctionName_example") // InputAlertFeeder |
+	inputAlertFeeder := *openapiclient.NewInputAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days")), "FunctionName_example") // InputAlertFeeder | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateAnAlertFeederRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAlertFeeder** | [**InputAlertFeeder**](InputAlertFeeder.md) |  |
+ **inputAlertFeeder** | [**InputAlertFeeder**](InputAlertFeeder.md) |  | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string |
+	alertFeederName := "alertFeederName_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  |
+**alertFeederName** | **string** |  | 
 
 ### Other Parameters
 
@@ -229,7 +229,7 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string |
+	alertFeederName := "alertFeederName_example" // string | 
 	dryRun := true // bool |  (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
@@ -250,7 +250,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  |
+**alertFeederName** | **string** |  | 
 
 ### Other Parameters
 
@@ -301,7 +301,7 @@ import (
 )
 
 func main() {
-	inputTestAlertFeeder := *openapiclient.NewInputTestAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputTestAlertFeeder |
+	inputTestAlertFeeder := *openapiclient.NewInputTestAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputTestAlertFeeder | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -326,7 +326,7 @@ Other parameters are passed through a pointer to a apiTestAnAlertFeederRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTestAlertFeeder** | [**InputTestAlertFeeder**](InputTestAlertFeeder.md) |  |
+ **inputTestAlertFeeder** | [**InputTestAlertFeeder**](InputTestAlertFeeder.md) |  | 
 
 ### Return type
 
@@ -367,8 +367,8 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string |
-	inputUpdateAlertFeeder := *openapiclient.NewInputUpdateAlertFeeder("Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputUpdateAlertFeeder |
+	alertFeederName := "alertFeederName_example" // string | 
+	inputUpdateAlertFeeder := *openapiclient.NewInputUpdateAlertFeeder("Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputUpdateAlertFeeder | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -388,7 +388,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  |
+**alertFeederName** | **string** |  | 
 
 ### Other Parameters
 
@@ -398,7 +398,7 @@ Other parameters are passed through a pointer to a apiUpdateAnAlertFeederRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateAlertFeeder** | [**InputUpdateAlertFeeder**](InputUpdateAlertFeeder.md) |  |
+ **inputUpdateAlertFeeder** | [**InputUpdateAlertFeeder**](InputUpdateAlertFeeder.md) |  | 
 
 ### Return type
 
@@ -416,3 +416,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

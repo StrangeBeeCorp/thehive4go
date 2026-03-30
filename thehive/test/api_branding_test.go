@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_BrandingAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_BrandingAPIService(t *testing.T) {
 
 	t.Run("Test BrandingAPIService DeleteBrandingAttachment", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var kind string
 
@@ -37,7 +37,7 @@ func Test_thehive_BrandingAPIService(t *testing.T) {
 
 	t.Run("Test BrandingAPIService GetBranding", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.BrandingAPI.GetBranding(context.Background()).Execute()
 
@@ -49,7 +49,7 @@ func Test_thehive_BrandingAPIService(t *testing.T) {
 
 	t.Run("Test BrandingAPIService GetBrandingAttachment", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var kind string
 
@@ -63,7 +63,7 @@ func Test_thehive_BrandingAPIService(t *testing.T) {
 
 	t.Run("Test BrandingAPIService SetBranding", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.BrandingAPI.SetBranding(context.Background()).Execute()
 

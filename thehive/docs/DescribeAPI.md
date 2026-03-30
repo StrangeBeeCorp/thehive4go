@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DescribeAModel**](DescribeAPI.md#DescribeAModel) | **Get** /api/v1/describe/{model} |
-[**DescribeAllModels**](DescribeAPI.md#DescribeAllModels) | **Get** /api/v1/describe/_all |
+[**DescribeAModel**](DescribeAPI.md#DescribeAModel) | **Get** /api/v1/describe/{model} | 
+[**DescribeAllModels**](DescribeAPI.md#DescribeAllModels) | **Get** /api/v1/describe/_all | 
 
 
 
@@ -28,7 +28,7 @@ import (
 )
 
 func main() {
-	model := "model_example" // string |
+	model := "model_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -48,7 +48,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**model** | **string** |  |
+**model** | **string** |  | 
 
 ### Other Parameters
 
@@ -134,3 +134,4 @@ Other parameters are passed through a pointer to a apiDescribeAllModelsRequest s
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

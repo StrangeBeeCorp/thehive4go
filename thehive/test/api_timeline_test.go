@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_TimelineAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_TimelineAPIService(t *testing.T) {
 
 	t.Run("Test TimelineAPIService CreateCustomEvent", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var caseId string
 
@@ -38,7 +38,7 @@ func Test_thehive_TimelineAPIService(t *testing.T) {
 
 	t.Run("Test TimelineAPIService DeleteACustomEvent", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var eventId string
 
@@ -51,7 +51,7 @@ func Test_thehive_TimelineAPIService(t *testing.T) {
 
 	t.Run("Test TimelineAPIService UpdateACustomEvent", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var eventId string
 

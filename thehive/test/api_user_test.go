@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_UserAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService AddTemporaryAttachment", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.AddTemporaryAttachment(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService ChangeUserPassword", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -49,7 +49,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService CreateUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.CreateUser(context.Background()).Execute()
 
@@ -61,7 +61,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService DeleteUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -74,7 +74,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetCurrentUserInfo", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.GetCurrentUserInfo(context.Background()).Execute()
 
@@ -86,7 +86,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -100,7 +100,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetUserApiKey", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -114,11 +114,12 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetUserAvatar", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
+		var file string
 
-		resp, httpRes, err := apiClient.UserAPI.GetUserAvatar(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserAPI.GetUserAvatar(context.Background(), userId, file).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -128,7 +129,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService LockUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -141,7 +142,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService RemoveUserApiKey", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -154,7 +155,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService RenewUserApiKey", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -168,7 +169,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService SetUserLogin", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -181,7 +182,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService SetUserOrganisations", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -195,7 +196,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService SetUserPassword", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
@@ -208,7 +209,7 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UpdateUser", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var userId string
 

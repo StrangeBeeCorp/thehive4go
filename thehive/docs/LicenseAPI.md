@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ActivateLicense**](LicenseAPI.md#ActivateLicense) | **Put** /api/v1/license/{licenseId}/activate |
-[**AddLicenseAndActivate**](LicenseAPI.md#AddLicenseAndActivate) | **Post** /api/v1/license |
-[**GetChallenge**](LicenseAPI.md#GetChallenge) | **Get** /api/v1/license/challenge |
-[**GetCurrentLicense**](LicenseAPI.md#GetCurrentLicense) | **Get** /api/v1/license/current |
-[**GetLicense**](LicenseAPI.md#GetLicense) | **Get** /api/v1/license/{licenseId} |
-[**ListAllLicenses**](LicenseAPI.md#ListAllLicenses) | **Get** /api/v1/license |
+[**ActivateLicense**](LicenseAPI.md#ActivateLicense) | **Put** /api/v1/license/{licenseId}/activate | 
+[**AddLicenseAndActivate**](LicenseAPI.md#AddLicenseAndActivate) | **Post** /api/v1/license | 
+[**GetChallenge**](LicenseAPI.md#GetChallenge) | **Get** /api/v1/license/challenge | 
+[**GetCurrentLicense**](LicenseAPI.md#GetCurrentLicense) | **Get** /api/v1/license/current | 
+[**GetLicense**](LicenseAPI.md#GetLicense) | **Get** /api/v1/license/{licenseId} | 
+[**ListAllLicenses**](LicenseAPI.md#ListAllLicenses) | **Get** /api/v1/license | 
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	licenseId := "~354" // string |
+	licenseId := "licenseId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**licenseId** | **string** |  |
+**licenseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-	inputLicense := *openapiclient.NewInputLicense("License_example") // InputLicense |
+	inputLicense := *openapiclient.NewInputLicense("License_example") // InputLicense | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ Other parameters are passed through a pointer to a apiAddLicenseAndActivateReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputLicense** | [**InputLicense**](InputLicense.md) |  |
+ **inputLicense** | [**InputLicense**](InputLicense.md) |  | 
 
 ### Return type
 
@@ -278,7 +278,7 @@ import (
 )
 
 func main() {
-	licenseId := "~354" // string |
+	licenseId := "licenseId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**licenseId** | **string** |  |
+**licenseId** | **string** |  | 
 
 ### Other Parameters
 
@@ -384,3 +384,4 @@ Other parameters are passed through a pointer to a apiListAllLicensesRequest str
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+

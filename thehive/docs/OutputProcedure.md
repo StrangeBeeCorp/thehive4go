@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**OccurDate** | **int64** |  |
-**PatternId** | Pointer to **string** |  | [optional]
-**PatternName** | Pointer to **string** |  | [optional]
-**Tactic** | Pointer to **string** |  | [optional]
-**TacticLabel** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** |  | 
+**UnderscoreCreatedAt** | **int64** |  | 
+**UnderscoreCreatedBy** | **string** |  | 
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**OccurDate** | **int64** |  | 
+**PatternId** | Pointer to **string** |  | [optional] 
+**PatternName** | Pointer to **string** |  | [optional] 
+**Tactic** | Pointer to **string** |  | [optional] 
+**TacticLabel** | Pointer to **string** |  | [optional] 
+**ExtraData** | **map[string]interface{}** |  | 
 
 ## Methods
 
@@ -313,3 +313,5 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

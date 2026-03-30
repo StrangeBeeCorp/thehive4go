@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddNewConfig**](EmailIntakeAPI.md#AddNewConfig) | **Post** /api/v1/connector/email-intake/config |
-[**AvailableProviders**](EmailIntakeAPI.md#AvailableProviders) | **Get** /api/v1/connector/email-intake/providers |
-[**DeleteConfig**](EmailIntakeAPI.md#DeleteConfig) | **Delete** /api/v1/connector/email-intake/config/{configId} |
-[**GWSetAuthorizationCode**](EmailIntakeAPI.md#GWSetAuthorizationCode) | **Post** /api/v1/connector/email-intake/config/authorizationCode |
-[**GetConfig**](EmailIntakeAPI.md#GetConfig) | **Get** /api/v1/connector/email-intake/config/{configId} |
-[**GetConfigs**](EmailIntakeAPI.md#GetConfigs) | **Get** /api/v1/connector/email-intake/configs |
-[**GetMailboxFolders**](EmailIntakeAPI.md#GetMailboxFolders) | **Post** /api/v1/connector/email-intake/folders |
-[**Sync**](EmailIntakeAPI.md#Sync) | **Post** /api/v1/connector/email-intake/sync |
-[**TestConfig**](EmailIntakeAPI.md#TestConfig) | **Post** /api/v1/connector/email-intake/config/test |
-[**UpdateConfig**](EmailIntakeAPI.md#UpdateConfig) | **Put** /api/v1/connector/email-intake/config/{configId} |
-[**UpdateConfigs**](EmailIntakeAPI.md#UpdateConfigs) | **Put** /api/v1/connector/email-intake/configs |
+[**AddNewConfig**](EmailIntakeAPI.md#AddNewConfig) | **Post** /api/v1/connector/email-intake/config | 
+[**AvailableProviders**](EmailIntakeAPI.md#AvailableProviders) | **Get** /api/v1/connector/email-intake/providers | 
+[**DeleteConfig**](EmailIntakeAPI.md#DeleteConfig) | **Delete** /api/v1/connector/email-intake/config/{configId} | 
+[**GWSetAuthorizationCode**](EmailIntakeAPI.md#GWSetAuthorizationCode) | **Post** /api/v1/connector/email-intake/config/authorizationCode | 
+[**GetConfig**](EmailIntakeAPI.md#GetConfig) | **Get** /api/v1/connector/email-intake/config/{configId} | 
+[**GetConfigs**](EmailIntakeAPI.md#GetConfigs) | **Get** /api/v1/connector/email-intake/configs | 
+[**GetMailboxFolders**](EmailIntakeAPI.md#GetMailboxFolders) | **Post** /api/v1/connector/email-intake/folders | 
+[**Sync**](EmailIntakeAPI.md#Sync) | **Post** /api/v1/connector/email-intake/sync | 
+[**TestConfig**](EmailIntakeAPI.md#TestConfig) | **Post** /api/v1/connector/email-intake/config/test | 
+[**UpdateConfig**](EmailIntakeAPI.md#UpdateConfig) | **Put** /api/v1/connector/email-intake/config/{configId} | 
+[**UpdateConfigs**](EmailIntakeAPI.md#UpdateConfigs) | **Put** /api/v1/connector/email-intake/configs | 
 
 
 
@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiAddNewConfigRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string |
+	configId := "configId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  |
+**configId** | **string** |  | 
 
 ### Other Parameters
 
@@ -230,7 +230,7 @@ import (
 )
 
 func main() {
-	body := interface{}(987) // interface{} |
+	body := interface{}(987) // interface{} | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +255,7 @@ Other parameters are passed through a pointer to a apiGWSetAuthorizationCodeRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **interface{}** |  |
+ **body** | **interface{}** |  | 
 
 ### Return type
 
@@ -294,7 +294,7 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string |
+	configId := "configId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -314,7 +314,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  |
+**configId** | **string** |  | 
 
 ### Other Parameters
 
@@ -425,7 +425,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -450,7 +450,7 @@ Other parameters are passed through a pointer to a apiGetMailboxFoldersRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
 
 ### Return type
 
@@ -550,7 +550,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -573,7 +573,7 @@ Other parameters are passed through a pointer to a apiTestConfigRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
 
 ### Return type
 
@@ -612,8 +612,8 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string |
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
+	configId := "configId_example" // string | 
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -631,7 +631,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  |
+**configId** | **string** |  | 
 
 ### Other Parameters
 
@@ -641,7 +641,7 @@ Other parameters are passed through a pointer to a apiUpdateConfigRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
 
 ### Return type
 
@@ -682,7 +682,7 @@ import (
 )
 
 func main() {
-	inputEmailIntake := *openapiclient.NewInputEmailIntake("Interval_example") // InputEmailIntake |
+	inputEmailIntake := *openapiclient.NewInputEmailIntake("Interval_example") // InputEmailIntake | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -705,7 +705,7 @@ Other parameters are passed through a pointer to a apiUpdateConfigsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntake** | [**InputEmailIntake**](InputEmailIntake.md) |  |
+ **inputEmailIntake** | [**InputEmailIntake**](InputEmailIntake.md) |  | 
 
 ### Return type
 
@@ -723,3 +723,4 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
+
