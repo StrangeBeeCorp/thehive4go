@@ -272,6 +272,7 @@ make security         # Run security scans in Docker
 make vulncheck        # Check for vulnerabilities using Go in Docker
 make vetlint          # Run linter in Docker
 make integration-test # Run integration tests with full TheHive stack
+make regression-test  # Run hand-maintained regression tests against the generated SDK
 ```
 
 ### Dependencies
@@ -300,13 +301,14 @@ Run `make help` to see all available targets with descriptions.
 │   └── workflows/
 │       ├── ci.yml           # Continuous integration
 │       └── release.yml      # Release automation
-├── integration/            # Integration tests with full stack
-│   ├── docker-compose.yaml # TheHive test environment
-│   └── tests/              # Integration test suite
-│       ├── testutils/      # Test utilities and helpers
-│       ├── alert_test.go   # Alert API integration tests
-│       ├── case_test.go    # Case API integration tests
-│       └── ...             # Other integration tests
+├── tests/                  # Hand-maintained test suites (survive `make generate`)
+│   ├── integration/        # Integration tests with full TheHive stack
+│   │   ├── docker-compose.yaml # TheHive test environment
+│   │   ├── testutils/      # Test utilities and helpers
+│   │   ├── alert_test.go   # Alert API integration tests
+│   │   └── ...             # Other integration tests
+│   └── regression/         # Decoder-level regression tests pinning known SDK bugs
+│       └── decoder_test.go
 ├── scripts/                # Code generation scripts
 │   ├── download_openapi.sh
 │   ├── preprocess_openapi.sh

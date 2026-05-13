@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/StrangeBeeCorp/thehive4go/integration/tests/testutils"
+	"github.com/StrangeBeeCorp/thehive4go/tests/integration/testutils"
 	"github.com/stretchr/testify/require"
 )
 

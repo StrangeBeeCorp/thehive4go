@@ -38,7 +38,7 @@ services:
     image: golang:1.24.9-alpine
     working_dir: /app
     volumes:
-      - ..:/app
+      - ../..:/app
     depends_on:
       thehive:
         condition: service_healthy
@@ -50,7 +50,7 @@ services:
       - THEHIVE_PASSWORD=secret
       - THEHIVE_ORG=main-org
       - CGO_ENABLED=0
-    command: sh -c "go mod download && go test -v -timeout=5m ./integration/tests/"
+    command: sh -c "go mod download && go test -v -timeout=5m ./tests/integration/..."
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27

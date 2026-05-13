@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/StrangeBeeCorp/thehive4go/integration/tests/testutils"
+	"github.com/StrangeBeeCorp/thehive4go/tests/integration/testutils"
 	"github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/require"
 )

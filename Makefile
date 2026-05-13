@@ -32,6 +32,13 @@ test: ## Run tests with coverage
 	@echo $(BGreen)-----------------------$(Color_Off)
 	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./thehive/...
 
+.PHONY: regression-test
+regression-test: ## Run hand-maintained regression tests against the generated SDK
+	@echo $(BGreen)-----------------------------$(Color_Off)
+	@echo $(BGreen)-- Running RegressionTests --$(Color_Off)
+	@echo $(BGreen)-----------------------------$(Color_Off)
+	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./tests/regression/...
+
 .PHONY: vulncheck
 vulncheck: ## Check for vulnerabilities
 	@echo $(BGreen)------------------------------$(Color_Off)
@@ -75,5 +82,5 @@ integration-test: ## Run full integration tests with TheHive stack
 	@echo $(BGreen)-- Running Integration  --$(Color_Off)
 	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
 	@echo $(BGreen)---------------------------$(Color_Off)
-	cd integration && docker compose up --abort-on-container-exit integration-tests
-	cd integration && docker compose down
+	cd tests/integration && docker compose up --abort-on-container-exit integration-tests
+	cd tests/integration && docker compose down
