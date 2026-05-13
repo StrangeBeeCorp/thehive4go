@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -11,8 +11,8 @@ API version: v5.6.2
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,26 +21,26 @@ var _ MappedNullable = &InputCreateAlert{}
 
 // InputCreateAlert struct for InputCreateAlert
 type InputCreateAlert struct {
-	Type string `json:"type"`
-	Source string `json:"source"`
-	SourceRef string `json:"sourceRef"`
+	Type         string  `json:"type"`
+	Source       string  `json:"source"`
+	SourceRef    string  `json:"sourceRef"`
 	ExternalLink *string `json:"externalLink,omitempty"`
-	Title string `json:"title"`
-	Description string `json:"description"`
-	Severity *int32 `json:"severity,omitempty"`
+	Title        string  `json:"title"`
+	Description  string  `json:"description"`
+	Severity     *int32  `json:"severity,omitempty"`
 	// If not provided, the current date is used
-	Date *int64 `json:"date,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Flag *bool `json:"flag,omitempty"`
-	Tlp *int32 `json:"tlp,omitempty"`
-	Pap *int32 `json:"pap,omitempty"`
+	Date         *int64                        `json:"date,omitempty"`
+	Tags         []string                      `json:"tags,omitempty"`
+	Flag         *bool                         `json:"flag,omitempty"`
+	Tlp          *int32                        `json:"tlp,omitempty"`
+	Pap          *int32                        `json:"pap,omitempty"`
 	CustomFields *InputCreateAlertCustomFields `json:"customFields,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Summary      *string                       `json:"summary,omitempty"`
+	Status       *string                       `json:"status,omitempty"`
 	// User to assign the alert to
-	Assignee *string `json:"assignee,omitempty"`
-	CaseTemplate *string `json:"caseTemplate,omitempty"`
-	Observables []InputCreateObservable `json:"observables,omitempty"`
+	Assignee     *string                 `json:"assignee,omitempty"`
+	CaseTemplate *string                 `json:"caseTemplate,omitempty"`
+	Observables  []InputCreateObservable `json:"observables,omitempty"`
 	// List of procedures (TTPs) to link the alert to
 	Procedures []InputProcedure `json:"procedures,omitempty"`
 }
@@ -638,7 +638,7 @@ func (o *InputCreateAlert) SetProcedures(v []InputProcedure) {
 }
 
 func (o InputCreateAlert) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -714,10 +714,10 @@ func (o *InputCreateAlert) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -773,5 +773,3 @@ func (v *NullableInputCreateAlert) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

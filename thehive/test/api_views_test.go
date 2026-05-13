@@ -11,10 +11,10 @@ package thehive
 
 import (
 	"context"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
 )
 
 func Test_thehive_ViewsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_thehive_ViewsAPIService(t *testing.T) {
 
 	t.Run("Test ViewsAPIService CreateViews", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ViewsAPI.CreateViews(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_thehive_ViewsAPIService(t *testing.T) {
 
 	t.Run("Test ViewsAPIService DeleteViews", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var viewsId string
 
@@ -49,7 +49,7 @@ func Test_thehive_ViewsAPIService(t *testing.T) {
 
 	t.Run("Test ViewsAPIService GetViews", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var viewsId string
 
@@ -63,7 +63,7 @@ func Test_thehive_ViewsAPIService(t *testing.T) {
 
 	t.Run("Test ViewsAPIService UpdateViews", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var viewsId string
 
