@@ -13,7 +13,6 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // PropertyDescription - struct for PropertyDescription
@@ -86,160 +85,42 @@ func UserPropertyDescriptionAsPropertyDescription(v *UserPropertyDescription) Pr
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PropertyDescription) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BooleanPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.BooleanPropertyDescription)
-	if err == nil {
-		jsonBooleanPropertyDescription, _ := json.Marshal(dst.BooleanPropertyDescription)
-		if string(jsonBooleanPropertyDescription) == "{}" { // empty struct
-			dst.BooleanPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.BooleanPropertyDescription); err != nil {
-				dst.BooleanPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BooleanPropertyDescription = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"type"`
 	}
-
-	// try to unmarshal data into DatePropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.DatePropertyDescription)
-	if err == nil {
-		jsonDatePropertyDescription, _ := json.Marshal(dst.DatePropertyDescription)
-		if string(jsonDatePropertyDescription) == "{}" { // empty struct
-			dst.DatePropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.DatePropertyDescription); err != nil {
-				dst.DatePropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.DatePropertyDescription = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(PropertyDescription): cannot read discriminator type: %w", err)
 	}
-
-	// try to unmarshal data into EnumerationPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.EnumerationPropertyDescription)
-	if err == nil {
-		jsonEnumerationPropertyDescription, _ := json.Marshal(dst.EnumerationPropertyDescription)
-		if string(jsonEnumerationPropertyDescription) == "{}" { // empty struct
-			dst.EnumerationPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.EnumerationPropertyDescription); err != nil {
-				dst.EnumerationPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.EnumerationPropertyDescription = nil
-	}
-
-	// try to unmarshal data into FloatPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.FloatPropertyDescription)
-	if err == nil {
-		jsonFloatPropertyDescription, _ := json.Marshal(dst.FloatPropertyDescription)
-		if string(jsonFloatPropertyDescription) == "{}" { // empty struct
-			dst.FloatPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.FloatPropertyDescription); err != nil {
-				dst.FloatPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.FloatPropertyDescription = nil
-	}
-
-	// try to unmarshal data into IntegerPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.IntegerPropertyDescription)
-	if err == nil {
-		jsonIntegerPropertyDescription, _ := json.Marshal(dst.IntegerPropertyDescription)
-		if string(jsonIntegerPropertyDescription) == "{}" { // empty struct
-			dst.IntegerPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.IntegerPropertyDescription); err != nil {
-				dst.IntegerPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.IntegerPropertyDescription = nil
-	}
-
-	// try to unmarshal data into StringPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.StringPropertyDescription)
-	if err == nil {
-		jsonStringPropertyDescription, _ := json.Marshal(dst.StringPropertyDescription)
-		if string(jsonStringPropertyDescription) == "{}" { // empty struct
-			dst.StringPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.StringPropertyDescription); err != nil {
-				dst.StringPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.StringPropertyDescription = nil
-	}
-
-	// try to unmarshal data into UrlPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.UrlPropertyDescription)
-	if err == nil {
-		jsonUrlPropertyDescription, _ := json.Marshal(dst.UrlPropertyDescription)
-		if string(jsonUrlPropertyDescription) == "{}" { // empty struct
-			dst.UrlPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.UrlPropertyDescription); err != nil {
-				dst.UrlPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.UrlPropertyDescription = nil
-	}
-
-	// try to unmarshal data into UserPropertyDescription
-	err = newStrictDecoder(data).Decode(&dst.UserPropertyDescription)
-	if err == nil {
-		jsonUserPropertyDescription, _ := json.Marshal(dst.UserPropertyDescription)
-		if string(jsonUserPropertyDescription) == "{}" { // empty struct
-			dst.UserPropertyDescription = nil
-		} else {
-			if err = validator.Validate(dst.UserPropertyDescription); err != nil {
-				dst.UserPropertyDescription = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.UserPropertyDescription = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BooleanPropertyDescription = nil
-		dst.DatePropertyDescription = nil
-		dst.EnumerationPropertyDescription = nil
-		dst.FloatPropertyDescription = nil
-		dst.IntegerPropertyDescription = nil
-		dst.StringPropertyDescription = nil
-		dst.UrlPropertyDescription = nil
-		dst.UserPropertyDescription = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PropertyDescription)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(PropertyDescription)")
+	switch disc.Kind {
+	case "boolean":
+		dst.BooleanPropertyDescription = new(BooleanPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.BooleanPropertyDescription)
+	case "date":
+		dst.DatePropertyDescription = new(DatePropertyDescription)
+		return newStrictDecoder(data).Decode(dst.DatePropertyDescription)
+	case "enumeration":
+		dst.EnumerationPropertyDescription = new(EnumerationPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.EnumerationPropertyDescription)
+	case "float":
+		dst.FloatPropertyDescription = new(FloatPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.FloatPropertyDescription)
+	case "integer":
+		dst.IntegerPropertyDescription = new(IntegerPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.IntegerPropertyDescription)
+	case "string":
+		dst.StringPropertyDescription = new(StringPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.StringPropertyDescription)
+	case "url":
+		dst.UrlPropertyDescription = new(UrlPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.UrlPropertyDescription)
+	case "user":
+		dst.UserPropertyDescription = new(UserPropertyDescription)
+		return newStrictDecoder(data).Decode(dst.UserPropertyDescription)
+	default:
+		return fmt.Errorf("oneOf(PropertyDescription): unknown type value %q", disc.Kind)
 	}
 }
 

@@ -13,7 +13,6 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // Auth - struct for Auth
@@ -54,88 +53,30 @@ func NoneAuthAsAuth(v *NoneAuth) Auth {
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Auth) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BasicAuthCredentials
-	err = newStrictDecoder(data).Decode(&dst.BasicAuthCredentials)
-	if err == nil {
-		jsonBasicAuthCredentials, _ := json.Marshal(dst.BasicAuthCredentials)
-		if string(jsonBasicAuthCredentials) == "{}" { // empty struct
-			dst.BasicAuthCredentials = nil
-		} else {
-			if err = validator.Validate(dst.BasicAuthCredentials); err != nil {
-				dst.BasicAuthCredentials = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BasicAuthCredentials = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"type"`
 	}
-
-	// try to unmarshal data into BearerAuth
-	err = newStrictDecoder(data).Decode(&dst.BearerAuth)
-	if err == nil {
-		jsonBearerAuth, _ := json.Marshal(dst.BearerAuth)
-		if string(jsonBearerAuth) == "{}" { // empty struct
-			dst.BearerAuth = nil
-		} else {
-			if err = validator.Validate(dst.BearerAuth); err != nil {
-				dst.BearerAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BearerAuth = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(Auth): cannot read discriminator type: %w", err)
 	}
-
-	// try to unmarshal data into KeyAuth
-	err = newStrictDecoder(data).Decode(&dst.KeyAuth)
-	if err == nil {
-		jsonKeyAuth, _ := json.Marshal(dst.KeyAuth)
-		if string(jsonKeyAuth) == "{}" { // empty struct
-			dst.KeyAuth = nil
-		} else {
-			if err = validator.Validate(dst.KeyAuth); err != nil {
-				dst.KeyAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.KeyAuth = nil
-	}
-
-	// try to unmarshal data into NoneAuth
-	err = newStrictDecoder(data).Decode(&dst.NoneAuth)
-	if err == nil {
-		jsonNoneAuth, _ := json.Marshal(dst.NoneAuth)
-		if string(jsonNoneAuth) == "{}" { // empty struct
-			dst.NoneAuth = nil
-		} else {
-			if err = validator.Validate(dst.NoneAuth); err != nil {
-				dst.NoneAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.NoneAuth = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BasicAuthCredentials = nil
-		dst.BearerAuth = nil
-		dst.KeyAuth = nil
-		dst.NoneAuth = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Auth)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(Auth)")
+	switch disc.Kind {
+	case "basic":
+		dst.BasicAuthCredentials = new(BasicAuthCredentials)
+		return newStrictDecoder(data).Decode(dst.BasicAuthCredentials)
+	case "bearer":
+		dst.BearerAuth = new(BearerAuth)
+		return newStrictDecoder(data).Decode(dst.BearerAuth)
+	case "key":
+		dst.KeyAuth = new(KeyAuth)
+		return newStrictDecoder(data).Decode(dst.KeyAuth)
+	case "none":
+		dst.NoneAuth = new(NoneAuth)
+		return newStrictDecoder(data).Decode(dst.NoneAuth)
+	default:
+		return fmt.Errorf("oneOf(Auth): unknown type value %q", disc.Kind)
 	}
 }
 

@@ -67,6 +67,8 @@ generate: ## Generate the client code from OpenAPI spec
 	@echo $(BGreen)-----------------------$(Color_Off)
 	@docker build -f Dockerfile.generator -t thehive4go-generator .
 	@docker run --rm -v $(CURDIR):/workspace -u $(shell id -u):$(shell id -g) thehive4go-generator
+	@echo $(BGreen)-- Post-fix: oneOf decoders --$(Color_Off)
+	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go run ./scripts/fix-oneof-decoder
 
 .PHONY: clean
 clean: ## Remove build artifacts and Docker images

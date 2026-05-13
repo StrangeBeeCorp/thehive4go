@@ -13,7 +13,6 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // OutputEmailIntakeMailbox - struct for OutputEmailIntakeMailbox
@@ -38,52 +37,24 @@ func OutputEmailIntakeImapMailboxAsOutputEmailIntakeMailbox(v *OutputEmailIntake
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputEmailIntakeMailbox) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into OutputEmailIntakeApiMailbox
-	err = newStrictDecoder(data).Decode(&dst.OutputEmailIntakeApiMailbox)
-	if err == nil {
-		jsonOutputEmailIntakeApiMailbox, _ := json.Marshal(dst.OutputEmailIntakeApiMailbox)
-		if string(jsonOutputEmailIntakeApiMailbox) == "{}" { // empty struct
-			dst.OutputEmailIntakeApiMailbox = nil
-		} else {
-			if err = validator.Validate(dst.OutputEmailIntakeApiMailbox); err != nil {
-				dst.OutputEmailIntakeApiMailbox = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.OutputEmailIntakeApiMailbox = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"_kind"`
 	}
-
-	// try to unmarshal data into OutputEmailIntakeImapMailbox
-	err = newStrictDecoder(data).Decode(&dst.OutputEmailIntakeImapMailbox)
-	if err == nil {
-		jsonOutputEmailIntakeImapMailbox, _ := json.Marshal(dst.OutputEmailIntakeImapMailbox)
-		if string(jsonOutputEmailIntakeImapMailbox) == "{}" { // empty struct
-			dst.OutputEmailIntakeImapMailbox = nil
-		} else {
-			if err = validator.Validate(dst.OutputEmailIntakeImapMailbox); err != nil {
-				dst.OutputEmailIntakeImapMailbox = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.OutputEmailIntakeImapMailbox = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(OutputEmailIntakeMailbox): cannot read discriminator _kind: %w", err)
 	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.OutputEmailIntakeApiMailbox = nil
-		dst.OutputEmailIntakeImapMailbox = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(OutputEmailIntakeMailbox)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(OutputEmailIntakeMailbox)")
+	switch disc.Kind {
+	case "api":
+		dst.OutputEmailIntakeApiMailbox = new(OutputEmailIntakeApiMailbox)
+		return newStrictDecoder(data).Decode(dst.OutputEmailIntakeApiMailbox)
+	case "imap":
+		dst.OutputEmailIntakeImapMailbox = new(OutputEmailIntakeImapMailbox)
+		return newStrictDecoder(data).Decode(dst.OutputEmailIntakeImapMailbox)
+	default:
+		return fmt.Errorf("oneOf(OutputEmailIntakeMailbox): unknown _kind value %q", disc.Kind)
 	}
 }
 
