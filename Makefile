@@ -1,5 +1,9 @@
 GO := go
 GO_IMAGE := golang:1.25.10-alpine
+# scripts/fix-oneof-decoder/main.go pattern-matches the UnmarshalJSON body
+# this image emits. When bumping the generator, re-run `make generate` — the
+# tool runs in strict mode and will log.Fatalf if its detection patterns no
+# longer match.
 OPENAPI_GENERATOR_IMAGE := openapitools/openapi-generator-cli:v7.14.0
 BGreen="\033[1;32m"       # Green
 Color_Off="\033[0m"       # Text Reset

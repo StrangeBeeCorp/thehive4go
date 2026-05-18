@@ -14,8 +14,14 @@
 // This tool runs AFTER the generator container exits, scans the generated
 // client, and replaces the buggy UnmarshalJSON with a `_kind`-driven switch
 // for any wrapper that has a discriminator mapping declared in the spec.
-// Wrappers without a discriminator are left alone — their variants are
-// usually structurally distinct enough for the naive matcher to work.
+//
+// Strict mode: for every type that has a `discriminator:` block in the spec
+// we MUST be able to handle it — either by rewriting the naive pattern, or
+// by detecting that we've already rewritten it (idempotent re-runs). If we
+// see something we don't recognise — typically because openapi-generator
+// changed the wording of its UnmarshalJSON template — we log.Fatalf and
+// fail `make generate` loudly instead of silently shipping a SDK whose
+// decoders revert to the broken naive matcher.
 package main
 
 import (
@@ -38,6 +44,11 @@ import (
 const (
 	defaultClientDir = "thehive"
 	defaultSpecPath  = "tmp/thehive_openapi_fixed.yaml"
+
+	// rewrittenMarker is the unique comment we emit at the top of every
+	// UnmarshalJSON body we rewrite. classifyUnmarshal looks for it to
+	// recognise an already-rewritten file on re-runs (idempotence).
+	rewrittenMarker = "Postprocessed by scripts/fix-oneof-decoder:"
 )
 
 func main() {
@@ -54,11 +65,13 @@ func main() {
 	}
 	log.Printf("loaded %d discriminator mapping(s) from %s", len(discriminators), *specPath)
 
-	fixed, err := walkAndFix(*clientDir, discriminators)
+	typeToPath, err := indexTypeDecls(*clientDir)
 	if err != nil {
-		log.Fatalf("walk %s: %v", *clientDir, err)
+		log.Fatalf("index type declarations in %s: %v", *clientDir, err)
 	}
-	log.Printf("done — %d file(s) rewritten", fixed)
+
+	rewritten, idempotent := applyToDiscriminators(discriminators, typeToPath, *clientDir)
+	log.Printf("done — %d rewritten, %d already up-to-date", rewritten, idempotent)
 }
 
 // Discriminator captures the propertyName + value→variant mapping from a
@@ -110,25 +123,117 @@ func loadDiscriminators(path string) (map[string]Discriminator, error) {
 	return out, nil
 }
 
-func walkAndFix(dir string, discs map[string]Discriminator) (int, error) {
-	count := 0
+// indexTypeDecls walks the client directory and builds a map from each
+// top-level Go type name to the file that declares it. We use this to look
+// up wrapper structs by name rather than by structural shape: lookup is more
+// robust to future template changes, and strict mode can confidently report
+// "type X has a discriminator in the spec but no Go file declares it".
+func indexTypeDecls(dir string) (map[string]string, error) {
+	out := make(map[string]string)
 	err := filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
-		if err != nil || d.IsDir() {
+		if err != nil || d.IsDir() || !strings.HasSuffix(path, ".go") {
 			return err
 		}
-		if !strings.HasSuffix(path, ".go") {
-			return nil
+		fset := token.NewFileSet()
+		file, perr := parser.ParseFile(fset, path, nil, parser.PackageClauseOnly|parser.SkipObjectResolution)
+		_ = file
+		_ = perr
+		// Re-parse with declarations included; PackageClauseOnly is too narrow.
+		file, perr = parser.ParseFile(fset, path, nil, parser.SkipObjectResolution)
+		if perr != nil {
+			return fmt.Errorf("%s: parse: %w", path, perr)
 		}
-		fixed, err := tryFixFile(path, discs)
-		if err != nil {
-			return err
-		}
-		if fixed {
-			count++
+		for _, decl := range file.Decls {
+			gen, ok := decl.(*ast.GenDecl)
+			if !ok || gen.Tok != token.TYPE {
+				continue
+			}
+			for _, spec := range gen.Specs {
+				ts, ok := spec.(*ast.TypeSpec)
+				if !ok {
+					continue
+				}
+				out[ts.Name.Name] = path
+			}
 		}
 		return nil
 	})
-	return count, err
+	return out, err
+}
+
+// fileState captures what we found in a file's UnmarshalJSON.
+type fileState int
+
+const (
+	stateNaive       fileState = iota // matches the buggy generator template — rewrite it
+	stateRewritten                    // already postprocessed by us — idempotent skip
+	stateUnknown                      // matches neither pattern — fail loud in strict mode
+	stateExoticShape                  // struct has non-standard variant shape (e.g. *map[string]any) — leave naive matcher in place
+)
+
+// applyToDiscriminators iterates the spec's discriminator types and ensures
+// each is handled. Returns (rewritten, idempotent) counters. Fatals on any
+// type that isn't accounted for.
+func applyToDiscriminators(discs map[string]Discriminator, typeToPath map[string]string, clientDir string) (int, int) {
+	rewritten, idempotent := 0, 0
+
+	// Sort for deterministic log output (helps reviewers compare runs).
+	typeNames := make([]string, 0, len(discs))
+	for t := range discs {
+		typeNames = append(typeNames, t)
+	}
+	sort.Strings(typeNames)
+
+	for _, typeName := range typeNames {
+		disc := discs[typeName]
+		path, ok := typeToPath[typeName]
+		if !ok {
+			// The spec declares a discriminator for this type but no Go file
+			// in the generated client declares it. Either the generator
+			// dropped a schema, or the dir argument is wrong. Either way,
+			// shipping silently is the worst option.
+			log.Fatalf("strict: type %q has a discriminator in the spec but no .go file under %s declares it", typeName, clientDir)
+		}
+
+		state, variants, err := classifyUnmarshal(path, typeName)
+		if err != nil {
+			log.Fatalf("classify %s in %s: %v", typeName, path, err)
+		}
+
+		switch state {
+		case stateNaive:
+			if err := rewriteFile(path, typeName, variants, disc); err != nil {
+				log.Fatalf("rewrite %s in %s: %v", typeName, path, err)
+			}
+			log.Printf("rewrote UnmarshalJSON for %s in %s", typeName, path)
+			rewritten++
+		case stateRewritten:
+			log.Printf("%s in %s already rewritten — idempotent skip", typeName, path)
+			idempotent++
+		case stateExoticShape:
+			// The wrapper has at least one non-struct variant (typically a
+			// `*map[string]interface{}` for a schema that's `type: object`
+			// with `additionalProperties: true`). The discriminator can't
+			// cleanly dispatch to that field, so we leave the naive matcher
+			// in place. It works in practice because the map variant is
+			// structurally distinct from the other (named-struct) variants.
+			log.Printf("%s in %s has exotic variant shape — leaving naive matcher in place", typeName, path)
+		case stateUnknown:
+			// Strict mode: this is the failure that matters. Either
+			// openapi-generator changed its UnmarshalJSON template (so neither
+			// the naive pattern nor our marker is present), or this tool has
+			// a detection bug. Fail loud so `make generate` blocks instead of
+			// silently shipping a SDK whose oneOf decoders revert to the
+			// buggy naive matcher.
+			log.Fatalf(
+				"strict: %s.UnmarshalJSON in %s matches neither the naive generator pattern "+
+					"nor our rewritten marker. openapi-generator template may have changed "+
+					"(see scripts/fix-oneof-decoder/main.go for the patterns we look for) — "+
+					"re-audit and adapt this tool",
+				typeName, path)
+		}
+	}
+	return rewritten, idempotent
 }
 
 // variant captures one field of a oneOf wrapper struct: the field name as it
@@ -138,36 +243,58 @@ type variant struct {
 	typeName  string
 }
 
-func tryFixFile(path string, discs map[string]Discriminator) (bool, error) {
+// classifyUnmarshal parses the file, locates UnmarshalJSON on *typeName, and
+// decides whether we're looking at the naive generator template (needs
+// rewrite), our own rewrite (skip), or something we don't recognise (fail
+// loud upstream). It also returns the variants extracted from the wrapper
+// struct, which the rewriter needs.
+func classifyUnmarshal(path, typeName string) (fileState, []variant, error) {
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, path, nil, parser.ParseComments)
 	if err != nil {
-		return false, fmt.Errorf("%s: parse: %w", path, err)
+		return stateUnknown, nil, fmt.Errorf("parse: %w", err)
 	}
 
-	typeName, variants, ok := findOneOfWrapper(file)
-	if !ok {
-		return false, nil
+	variants, shape, err := extractWrapperVariants(file, typeName)
+	if err != nil {
+		return stateUnknown, nil, err
 	}
-	disc, ok := discs[typeName]
-	if !ok {
-		return false, nil
-	}
-	if !hasNaiveUnmarshal(file, typeName) {
-		return false, nil
+	if shape == shapeExotic {
+		return stateExoticShape, nil, nil
 	}
 
-	if err := rewriteFile(fset, file, path, typeName, variants, disc); err != nil {
-		return false, fmt.Errorf("%s: rewrite: %w", path, err)
+	fd := findUnmarshal(file, typeName)
+	if fd == nil {
+		return stateUnknown, nil, fmt.Errorf("UnmarshalJSON not found")
 	}
-	log.Printf("rewrote UnmarshalJSON for %s in %s", typeName, path)
-	return true, nil
+
+	bodySrc, err := funcSource(fd)
+	if err != nil {
+		return stateUnknown, nil, err
+	}
+
+	if isAlreadyRewritten(bodySrc) {
+		return stateRewritten, variants, nil
+	}
+	if isNaiveTemplate(bodySrc, typeName) {
+		return stateNaive, variants, nil
+	}
+	return stateUnknown, variants, nil
 }
 
-// findOneOfWrapper scans the file for a top-level struct whose every field is
-// a pointer (the openapi-generator convention for oneOf wrappers). Returns
-// the struct name and the list of variants. Skips structs with mixed shapes.
-func findOneOfWrapper(file *ast.File) (typeName string, variants []variant, ok bool) {
+// wrapperShape classifies the struct's field layout.
+type wrapperShape int
+
+const (
+	shapeStandard wrapperShape = iota // every field is *NamedType — can be rewritten
+	shapeExotic                       // every field is a pointer but at least one is *map / *iface — leave alone
+	shapeOther                        // not a oneOf wrapper shape at all (mixed/non-pointer fields, etc.)
+)
+
+// extractWrapperVariants looks up the named struct in the file and inspects
+// its field layout. Returns the variants extracted from the struct (only
+// populated for standard shape) and the shape classification.
+func extractWrapperVariants(file *ast.File, typeName string) ([]variant, wrapperShape, error) {
 	for _, decl := range file.Decls {
 		gen, ok := decl.(*ast.GenDecl)
 		if !ok || gen.Tok != token.TYPE {
@@ -175,91 +302,110 @@ func findOneOfWrapper(file *ast.File) (typeName string, variants []variant, ok b
 		}
 		for _, spec := range gen.Specs {
 			ts, ok := spec.(*ast.TypeSpec)
-			if !ok {
+			if !ok || ts.Name.Name != typeName {
 				continue
 			}
 			st, ok := ts.Type.(*ast.StructType)
 			if !ok || st.Fields == nil {
-				continue
+				return nil, shapeOther, nil
 			}
-			vars, ok := extractPointerVariants(st)
-			if !ok {
-				continue
-			}
-			return ts.Name.Name, vars, true
+			vars, shape := extractPointerVariants(st)
+			return vars, shape, nil
 		}
 	}
-	return "", nil, false
+	return nil, shapeOther, fmt.Errorf("struct %s not found", typeName)
 }
 
-func extractPointerVariants(st *ast.StructType) ([]variant, bool) {
+func extractPointerVariants(st *ast.StructType) ([]variant, wrapperShape) {
 	var variants []variant
+	hasExotic := false
 	for _, f := range st.Fields.List {
 		star, ok := f.Type.(*ast.StarExpr)
 		if !ok {
-			return nil, false
+			// Non-pointer field — not a oneOf wrapper at all.
+			return nil, shapeOther
+		}
+		if len(f.Names) != 1 {
+			// Embedded or grouped declaration; not a oneOf wrapper.
+			return nil, shapeOther
 		}
 		ident, ok := star.X.(*ast.Ident)
 		if !ok {
-			return nil, false
-		}
-		if len(f.Names) != 1 {
-			// Embedded field or grouped declaration; skip — not a oneOf wrapper.
-			return nil, false
+			// Pointer to a non-named type (map, slice, interface…).
+			// The wrapper still looks like a oneOf union but at least one
+			// variant has no Go type name we can dispatch to via the
+			// discriminator — flag as exotic so the caller can skip safely.
+			hasExotic = true
+			continue
 		}
 		variants = append(variants, variant{
 			fieldName: f.Names[0].Name,
 			typeName:  ident.Name,
 		})
 	}
-	if len(variants) < 2 {
-		return nil, false
+	if hasExotic {
+		return variants, shapeExotic
 	}
-	return variants, true
+	if len(variants) < 2 {
+		return nil, shapeOther
+	}
+	return variants, shapeStandard
 }
 
-// hasNaiveUnmarshal returns true if the file's UnmarshalJSON contains the
-// exact error string the buggy generator template emits. We match on that
-// rather than reconstructing the whole pattern — it's the closest thing to a
-// signature this template has, and it costs us nothing if we get a false
-// negative (we just leave the file alone).
-func hasNaiveUnmarshal(file *ast.File, typeName string) bool {
-	needle := fmt.Sprintf("data matches more than one schema in oneOf(%s)", typeName)
+func findUnmarshal(file *ast.File, typeName string) *ast.FuncDecl {
 	for _, decl := range file.Decls {
 		fd, ok := decl.(*ast.FuncDecl)
 		if !ok || fd.Name.Name != "UnmarshalJSON" || fd.Recv == nil {
 			continue
 		}
-		if !receiverIs(fd.Recv, typeName) {
-			continue
-		}
-		var buf bytes.Buffer
-		if err := format.Node(&buf, token.NewFileSet(), fd); err == nil {
-			if strings.Contains(buf.String(), needle) {
-				return true
-			}
+		if receiverIs(fd.Recv, typeName) {
+			return fd
 		}
 	}
-	return false
+	return nil
 }
 
-func rewriteFile(fset *token.FileSet, file *ast.File, path, typeName string, variants []variant, disc Discriminator) error {
+func funcSource(fd *ast.FuncDecl) (string, error) {
+	var buf bytes.Buffer
+	if err := format.Node(&buf, token.NewFileSet(), fd); err != nil {
+		return "", fmt.Errorf("format func: %w", err)
+	}
+	return buf.String(), nil
+}
+
+// isAlreadyRewritten returns true if the function body carries our marker
+// comment. This lets us re-run the tool idempotently without misclassifying
+// an already-fixed file as "unknown".
+func isAlreadyRewritten(bodySrc string) bool {
+	return strings.Contains(bodySrc, rewrittenMarker)
+}
+
+// isNaiveTemplate detects the buggy openapi-generator template using two
+// independent signals (belt-and-braces): the unique error string AND the
+// `match := 0` counter declaration. Requiring BOTH means a wording change
+// on just one of them still classifies as naive — only a template that
+// drops both falls through to the strict-mode failure.
+//
+// Coupled to openapitools/openapi-generator v7.14.0 Go template (see
+// Makefile OPENAPI_GENERATOR_IMAGE). If you bump the generator, re-audit
+// these markers.
+func isNaiveTemplate(bodySrc, typeName string) bool {
+	errString := fmt.Sprintf("data matches more than one schema in oneOf(%s)", typeName)
+	return strings.Contains(bodySrc, errString) && strings.Contains(bodySrc, "match := 0")
+}
+
+func rewriteFile(path, typeName string, variants []variant, disc Discriminator) error {
+	fset := token.NewFileSet()
+	file, err := parser.ParseFile(fset, path, nil, parser.ParseComments)
+	if err != nil {
+		return fmt.Errorf("parse: %w", err)
+	}
+
 	// Locate the old UnmarshalJSON we're replacing so we can splice it out of
 	// the source bytes by byte offset. Grafting an AST node parsed under a
 	// different FileSet causes go/format to interleave the old body's
 	// comments at stale positions; text splice + reparse is cleaner.
-	var oldFd *ast.FuncDecl
-	for _, d := range file.Decls {
-		fd, ok := d.(*ast.FuncDecl)
-		if !ok || fd.Name.Name != "UnmarshalJSON" || fd.Recv == nil {
-			continue
-		}
-		if !receiverIs(fd.Recv, typeName) {
-			continue
-		}
-		oldFd = fd
-		break
-	}
+	oldFd := findUnmarshal(file, typeName)
 	if oldFd == nil {
 		return fmt.Errorf("UnmarshalJSON for %s not found", typeName)
 	}
@@ -360,7 +506,7 @@ func generateUnmarshalJSON(typeName string, variants []variant, disc Discriminat
 
 	var b strings.Builder
 	fmt.Fprintf(&b, "func (dst *%s) UnmarshalJSON(data []byte) error {\n", typeName)
-	b.WriteString("\t// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI\n")
+	fmt.Fprintf(&b, "\t// %s dispatch by the OpenAPI\n", rewrittenMarker)
 	b.WriteString("\t// discriminator instead of naive structural matching, which fails when\n")
 	b.WriteString("\t// two variants generate to byte-identical Go structs.\n")
 	fmt.Fprintf(&b, "\tvar disc struct {\n\t\tKind string `json:\"%s\"`\n\t}\n", disc.Property)

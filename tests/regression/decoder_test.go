@@ -125,3 +125,87 @@ func TestOutputCaseDecodesAccessField(t *testing.T) {
 	require.NotNil(t, access.OrganisationAccess)
 	assert.Equal(t, "OrganisationAccessKind", access.OrganisationAccess.GetKind())
 }
+
+// TestOneOfWrapperSmoke covers the five other wrappers the fix-oneof-decoder
+// tool rewrites alongside Access (Auth, InputEmailIntakeMailboxConfig,
+// OutputEmailIntakeMailbox, PropertyDescription, Widget). For each one we
+// feed a minimal payload carrying just the discriminator, confirm the
+// dispatcher routes to the expected variant field and leaves the others
+// nil. If the AST rewriter ever miswires a wrapper — wrong field, wrong
+// discriminator key, missing case — these tests catch it before CI green-
+// lights a broken release.
+func TestOneOfWrapperSmoke(t *testing.T) {
+	t.Run("Auth dispatches basic to BasicAuthCredentials", func(t *testing.T) {
+		var a thehive.Auth
+		require.NoError(t, json.Unmarshal([]byte(`{"type":"basic","username":"u","password":"p"}`), &a))
+		require.NotNil(t, a.BasicAuthCredentials)
+		assert.Equal(t, "basic", a.BasicAuthCredentials.Type)
+		assert.Equal(t, "u", a.BasicAuthCredentials.Username)
+		assert.Nil(t, a.BearerAuth)
+		assert.Nil(t, a.KeyAuth)
+		assert.Nil(t, a.NoneAuth)
+	})
+
+	t.Run("InputEmailIntakeMailboxConfig dispatches api to InputEmailIntakeApiMailbox", func(t *testing.T) {
+		payload := []byte(`{
+			"_kind": "api",
+			"provider": {"name": "office365"},
+			"credential": {"email": "test@example.com"}
+		}`)
+		var c thehive.InputEmailIntakeMailboxConfig
+		require.NoError(t, json.Unmarshal(payload, &c))
+		require.NotNil(t, c.InputEmailIntakeApiMailbox)
+		require.NotNil(t, c.InputEmailIntakeApiMailbox.Kind)
+		assert.Equal(t, "api", *c.InputEmailIntakeApiMailbox.Kind)
+		assert.Nil(t, c.InputEmailIntakeImapMailbox)
+	})
+
+	t.Run("OutputEmailIntakeMailbox dispatches imap to OutputEmailIntakeImapMailbox", func(t *testing.T) {
+		payload := []byte(`{
+			"_kind": "imap",
+			"provider": {"name": "office365"},
+			"credential": {"email": "test@example.com"},
+			"inbox": "INBOX",
+			"markAsRead": true
+		}`)
+		var m thehive.OutputEmailIntakeMailbox
+		require.NoError(t, json.Unmarshal(payload, &m))
+		require.NotNil(t, m.OutputEmailIntakeImapMailbox)
+		assert.Equal(t, "imap", m.OutputEmailIntakeImapMailbox.Kind)
+		assert.Nil(t, m.OutputEmailIntakeApiMailbox)
+	})
+
+	t.Run("PropertyDescription dispatches boolean to BooleanPropertyDescription", func(t *testing.T) {
+		payload := []byte(`{
+			"type": "boolean",
+			"name": "isActive",
+			"cardinality": "single",
+			"aggregable": false,
+			"indexType": "standard"
+		}`)
+		var p thehive.PropertyDescription
+		require.NoError(t, json.Unmarshal(payload, &p))
+		require.NotNil(t, p.BooleanPropertyDescription)
+		assert.Equal(t, "boolean", p.BooleanPropertyDescription.Type)
+		assert.Equal(t, "isActive", p.BooleanPropertyDescription.Name)
+		assert.Nil(t, p.DatePropertyDescription)
+		assert.Nil(t, p.EnumerationPropertyDescription)
+		assert.Nil(t, p.FloatPropertyDescription)
+		assert.Nil(t, p.IntegerPropertyDescription)
+		assert.Nil(t, p.StringPropertyDescription)
+		assert.Nil(t, p.UrlPropertyDescription)
+		assert.Nil(t, p.UserPropertyDescription)
+	})
+
+	t.Run("Widget dispatches Comments to Comments", func(t *testing.T) {
+		var w thehive.Widget
+		require.NoError(t, json.Unmarshal([]byte(`{"_kind":"Comments"}`), &w))
+		require.NotNil(t, w.Comments)
+		assert.Equal(t, thehive.Kind("Comments"), w.Comments.Kind)
+		assert.Nil(t, w.AlertList)
+		assert.Nil(t, w.AlertTable)
+		assert.Nil(t, w.Image)
+		assert.Nil(t, w.Text)
+		assert.Nil(t, w.Timeline)
+	})
+}
