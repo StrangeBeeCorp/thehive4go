@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -13,15 +13,14 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // Auth - struct for Auth
 type Auth struct {
 	BasicAuthCredentials *BasicAuthCredentials
-	BearerAuth *BearerAuth
-	KeyAuth *KeyAuth
-	NoneAuth *NoneAuth
+	BearerAuth           *BearerAuth
+	KeyAuth              *KeyAuth
+	NoneAuth             *NoneAuth
 }
 
 // BasicAuthCredentialsAsAuth is a convenience function that returns BasicAuthCredentials wrapped in Auth
@@ -52,91 +51,32 @@ func NoneAuthAsAuth(v *NoneAuth) Auth {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Auth) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BasicAuthCredentials
-	err = newStrictDecoder(data).Decode(&dst.BasicAuthCredentials)
-	if err == nil {
-		jsonBasicAuthCredentials, _ := json.Marshal(dst.BasicAuthCredentials)
-		if string(jsonBasicAuthCredentials) == "{}" { // empty struct
-			dst.BasicAuthCredentials = nil
-		} else {
-			if err = validator.Validate(dst.BasicAuthCredentials); err != nil {
-				dst.BasicAuthCredentials = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BasicAuthCredentials = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"type"`
 	}
-
-	// try to unmarshal data into BearerAuth
-	err = newStrictDecoder(data).Decode(&dst.BearerAuth)
-	if err == nil {
-		jsonBearerAuth, _ := json.Marshal(dst.BearerAuth)
-		if string(jsonBearerAuth) == "{}" { // empty struct
-			dst.BearerAuth = nil
-		} else {
-			if err = validator.Validate(dst.BearerAuth); err != nil {
-				dst.BearerAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BearerAuth = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(Auth): cannot read discriminator type: %w", err)
 	}
-
-	// try to unmarshal data into KeyAuth
-	err = newStrictDecoder(data).Decode(&dst.KeyAuth)
-	if err == nil {
-		jsonKeyAuth, _ := json.Marshal(dst.KeyAuth)
-		if string(jsonKeyAuth) == "{}" { // empty struct
-			dst.KeyAuth = nil
-		} else {
-			if err = validator.Validate(dst.KeyAuth); err != nil {
-				dst.KeyAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.KeyAuth = nil
-	}
-
-	// try to unmarshal data into NoneAuth
-	err = newStrictDecoder(data).Decode(&dst.NoneAuth)
-	if err == nil {
-		jsonNoneAuth, _ := json.Marshal(dst.NoneAuth)
-		if string(jsonNoneAuth) == "{}" { // empty struct
-			dst.NoneAuth = nil
-		} else {
-			if err = validator.Validate(dst.NoneAuth); err != nil {
-				dst.NoneAuth = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.NoneAuth = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BasicAuthCredentials = nil
-		dst.BearerAuth = nil
-		dst.KeyAuth = nil
-		dst.NoneAuth = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Auth)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(Auth)")
+	switch disc.Kind {
+	case "basic":
+		dst.BasicAuthCredentials = new(BasicAuthCredentials)
+		return newStrictDecoder(data).Decode(dst.BasicAuthCredentials)
+	case "bearer":
+		dst.BearerAuth = new(BearerAuth)
+		return newStrictDecoder(data).Decode(dst.BearerAuth)
+	case "key":
+		dst.KeyAuth = new(KeyAuth)
+		return newStrictDecoder(data).Decode(dst.KeyAuth)
+	case "none":
+		dst.NoneAuth = new(NoneAuth)
+		return newStrictDecoder(data).Decode(dst.NoneAuth)
+	default:
+		return fmt.Errorf("oneOf(Auth): unknown type value %q", disc.Kind)
 	}
 }
 
@@ -162,7 +102,7 @@ func (src Auth) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Auth) GetActualInstance() (interface{}) {
+func (obj *Auth) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +127,7 @@ func (obj *Auth) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Auth) GetActualInstanceValue() (interface{}) {
+func (obj Auth) GetActualInstanceValue() interface{} {
 	if obj.BasicAuthCredentials != nil {
 		return *obj.BasicAuthCredentials
 	}
@@ -243,5 +183,3 @@ func (v *NullableAuth) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // ViewsAPIService ViewsAPI service
 type ViewsAPIService service
 
 type ApiCreateViewsRequest struct {
-	ctx context.Context
-	ApiService *ViewsAPIService
+	ctx                 context.Context
+	ApiService          *ViewsAPIService
 	inputCreateListView *InputCreateListView
 }
 
@@ -43,24 +42,25 @@ CreateViews Method for CreateViews
 
 Input data must not exceed 1 MB.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateViewsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateViewsRequest
 */
 func (a *ViewsAPIService) CreateViews(ctx context.Context) ApiCreateViewsRequest {
 	return ApiCreateViewsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputListView
+//
+//	@return OutputListView
 func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputListView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputListView
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputListView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ViewsAPIService.CreateViews")
@@ -125,8 +125,8 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -136,8 +136,8 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -147,8 +147,8 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -158,8 +158,8 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -169,8 +169,8 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -188,9 +188,9 @@ func (a *ViewsAPIService) CreateViewsExecute(r ApiCreateViewsRequest) (*OutputLi
 }
 
 type ApiDeleteViewsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ViewsAPIService
-	viewsId string
+	viewsId    string
 }
 
 func (r ApiDeleteViewsRequest) Execute() (*http.Response, error) {
@@ -200,24 +200,24 @@ func (r ApiDeleteViewsRequest) Execute() (*http.Response, error) {
 /*
 DeleteViews Method for DeleteViews
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param viewsId
- @return ApiDeleteViewsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param viewsId
+	@return ApiDeleteViewsRequest
 */
 func (a *ViewsAPIService) DeleteViews(ctx context.Context, viewsId string) ApiDeleteViewsRequest {
 	return ApiDeleteViewsRequest{
 		ApiService: a,
-		ctx: ctx,
-		viewsId: viewsId,
+		ctx:        ctx,
+		viewsId:    viewsId,
 	}
 }
 
 // Execute executes the request
 func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ViewsAPIService.DeleteViews")
@@ -278,8 +278,8 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -289,8 +289,8 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -300,8 +300,8 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -311,8 +311,8 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -322,8 +322,8 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -332,9 +332,9 @@ func (a *ViewsAPIService) DeleteViewsExecute(r ApiDeleteViewsRequest) (*http.Res
 }
 
 type ApiGetViewsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ViewsAPIService
-	viewsId string
+	viewsId    string
 }
 
 func (r ApiGetViewsRequest) Execute() (*OutputListView, *http.Response, error) {
@@ -344,26 +344,27 @@ func (r ApiGetViewsRequest) Execute() (*OutputListView, *http.Response, error) {
 /*
 GetViews Method for GetViews
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param viewsId
- @return ApiGetViewsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param viewsId
+	@return ApiGetViewsRequest
 */
 func (a *ViewsAPIService) GetViews(ctx context.Context, viewsId string) ApiGetViewsRequest {
 	return ApiGetViewsRequest{
 		ApiService: a,
-		ctx: ctx,
-		viewsId: viewsId,
+		ctx:        ctx,
+		viewsId:    viewsId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputListView
+//
+//	@return OutputListView
 func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputListView
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputListView
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ViewsAPIService.GetViews")
@@ -424,8 +425,8 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -435,8 +436,8 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -446,8 +447,8 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -457,8 +458,8 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -468,8 +469,8 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -487,9 +488,9 @@ func (a *ViewsAPIService) GetViewsExecute(r ApiGetViewsRequest) (*OutputListView
 }
 
 type ApiUpdateViewsRequest struct {
-	ctx context.Context
-	ApiService *ViewsAPIService
-	viewsId string
+	ctx                 context.Context
+	ApiService          *ViewsAPIService
+	viewsId             string
 	inputUpdateListView *InputUpdateListView
 }
 
@@ -507,24 +508,24 @@ UpdateViews Method for UpdateViews
 
 Input data must not exceed 1 MB.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param viewsId
- @return ApiUpdateViewsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param viewsId
+	@return ApiUpdateViewsRequest
 */
 func (a *ViewsAPIService) UpdateViews(ctx context.Context, viewsId string) ApiUpdateViewsRequest {
 	return ApiUpdateViewsRequest{
 		ApiService: a,
-		ctx: ctx,
-		viewsId: viewsId,
+		ctx:        ctx,
+		viewsId:    viewsId,
 	}
 }
 
 // Execute executes the request
 func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ViewsAPIService.UpdateViews")
@@ -590,8 +591,8 @@ func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -601,8 +602,8 @@ func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -612,8 +613,8 @@ func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -623,8 +624,8 @@ func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -634,8 +635,8 @@ func (a *ViewsAPIService) UpdateViewsExecute(r ApiUpdateViewsRequest) (*http.Res
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

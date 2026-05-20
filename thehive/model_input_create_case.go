@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -11,8 +11,8 @@ API version: v5.6.2
 package thehive
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -24,29 +24,29 @@ type InputCreateCase struct {
 	Title string `json:"title"`
 	// Description of the case, supports markdown
 	Description string `json:"description"`
-	Severity *int32 `json:"severity,omitempty"`
+	Severity    *int32 `json:"severity,omitempty"`
 	// If not provided, the current date is used
-	StartDate *int64 `json:"startDate,omitempty"`
-	EndDate *int64 `json:"endDate,omitempty"`
-	Tags []string `json:"tags,omitempty"`
-	Flag *bool `json:"flag,omitempty"`
-	Tlp *int32 `json:"tlp,omitempty"`
-	Pap *int32 `json:"pap,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Summary *string `json:"summary,omitempty"`
+	StartDate *int64   `json:"startDate,omitempty"`
+	EndDate   *int64   `json:"endDate,omitempty"`
+	Tags      []string `json:"tags,omitempty"`
+	Flag      *bool    `json:"flag,omitempty"`
+	Tlp       *int32   `json:"tlp,omitempty"`
+	Pap       *int32   `json:"pap,omitempty"`
+	Status    *string  `json:"status,omitempty"`
+	Summary   *string  `json:"summary,omitempty"`
 	// User to assign the case to
 	Assignee *string `json:"assignee,omitempty"`
 	// Access type. The default value is the organisation based access
-	Access *Access `json:"access,omitempty"`
+	Access       *Access                       `json:"access,omitempty"`
 	CustomFields *InputCreateAlertCustomFields `json:"customFields,omitempty"`
 	// Name or id of the Case Template to use
 	CaseTemplate *string `json:"caseTemplate,omitempty"`
 	// Tasks to create. If null, tasks from the Case Template will be used
-	Tasks []InputCreateTask `json:"tasks,omitempty"`
-	Pages []InputCreatePage `json:"pages,omitempty"`
-	SharingParameters []InputShare `json:"sharingParameters,omitempty"`
-	TaskRule *string `json:"taskRule,omitempty"`
-	ObservableRule *string `json:"observableRule,omitempty"`
+	Tasks             []InputCreateTask `json:"tasks,omitempty"`
+	Pages             []InputCreatePage `json:"pages,omitempty"`
+	SharingParameters []InputShare      `json:"sharingParameters,omitempty"`
+	TaskRule          *string           `json:"taskRule,omitempty"`
+	ObservableRule    *string           `json:"observableRule,omitempty"`
 }
 
 type _InputCreateCase InputCreateCase
@@ -715,7 +715,7 @@ func (o *InputCreateCase) SetObservableRule(v string) {
 }
 
 func (o InputCreateCase) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -797,10 +797,10 @@ func (o *InputCreateCase) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -856,5 +856,3 @@ func (v *NullableInputCreateCase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -13,26 +13,25 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // Widget - struct for Widget
 type Widget struct {
-	AlertList *AlertList
-	AlertTable *AlertTable
-	Comments *Comments
-	CustomFields *CustomFields
+	AlertList        *AlertList
+	AlertTable       *AlertTable
+	Comments         *Comments
+	CustomFields     *CustomFields
 	CustomFieldsList *CustomFieldsList
-	Image *Image
-	ObservableList *ObservableList
-	ObservableTable *ObservableTable
-	Pages *Pages
-	TTPList *TTPList
-	TTPTable *TTPTable
-	TaskList *TaskList
-	TaskTable *TaskTable
-	Text *Text
-	Timeline *Timeline
+	Image            *Image
+	ObservableList   *ObservableList
+	ObservableTable  *ObservableTable
+	Pages            *Pages
+	TTPList          *TTPList
+	TTPTable         *TTPTable
+	TaskList         *TaskList
+	TaskTable        *TaskTable
+	Text             *Text
+	Timeline         *Timeline
 }
 
 // AlertListAsWidget is a convenience function that returns AlertList wrapped in Widget
@@ -140,289 +139,65 @@ func TimelineAsWidget(v *Timeline) Widget {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Widget) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into AlertList
-	err = newStrictDecoder(data).Decode(&dst.AlertList)
-	if err == nil {
-		jsonAlertList, _ := json.Marshal(dst.AlertList)
-		if string(jsonAlertList) == "{}" { // empty struct
-			dst.AlertList = nil
-		} else {
-			if err = validator.Validate(dst.AlertList); err != nil {
-				dst.AlertList = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.AlertList = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"_kind"`
 	}
-
-	// try to unmarshal data into AlertTable
-	err = newStrictDecoder(data).Decode(&dst.AlertTable)
-	if err == nil {
-		jsonAlertTable, _ := json.Marshal(dst.AlertTable)
-		if string(jsonAlertTable) == "{}" { // empty struct
-			dst.AlertTable = nil
-		} else {
-			if err = validator.Validate(dst.AlertTable); err != nil {
-				dst.AlertTable = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.AlertTable = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(Widget): cannot read discriminator _kind: %w", err)
 	}
-
-	// try to unmarshal data into Comments
-	err = newStrictDecoder(data).Decode(&dst.Comments)
-	if err == nil {
-		jsonComments, _ := json.Marshal(dst.Comments)
-		if string(jsonComments) == "{}" { // empty struct
-			dst.Comments = nil
-		} else {
-			if err = validator.Validate(dst.Comments); err != nil {
-				dst.Comments = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Comments = nil
-	}
-
-	// try to unmarshal data into CustomFields
-	err = newStrictDecoder(data).Decode(&dst.CustomFields)
-	if err == nil {
-		jsonCustomFields, _ := json.Marshal(dst.CustomFields)
-		if string(jsonCustomFields) == "{}" { // empty struct
-			dst.CustomFields = nil
-		} else {
-			if err = validator.Validate(dst.CustomFields); err != nil {
-				dst.CustomFields = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.CustomFields = nil
-	}
-
-	// try to unmarshal data into CustomFieldsList
-	err = newStrictDecoder(data).Decode(&dst.CustomFieldsList)
-	if err == nil {
-		jsonCustomFieldsList, _ := json.Marshal(dst.CustomFieldsList)
-		if string(jsonCustomFieldsList) == "{}" { // empty struct
-			dst.CustomFieldsList = nil
-		} else {
-			if err = validator.Validate(dst.CustomFieldsList); err != nil {
-				dst.CustomFieldsList = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.CustomFieldsList = nil
-	}
-
-	// try to unmarshal data into Image
-	err = newStrictDecoder(data).Decode(&dst.Image)
-	if err == nil {
-		jsonImage, _ := json.Marshal(dst.Image)
-		if string(jsonImage) == "{}" { // empty struct
-			dst.Image = nil
-		} else {
-			if err = validator.Validate(dst.Image); err != nil {
-				dst.Image = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Image = nil
-	}
-
-	// try to unmarshal data into ObservableList
-	err = newStrictDecoder(data).Decode(&dst.ObservableList)
-	if err == nil {
-		jsonObservableList, _ := json.Marshal(dst.ObservableList)
-		if string(jsonObservableList) == "{}" { // empty struct
-			dst.ObservableList = nil
-		} else {
-			if err = validator.Validate(dst.ObservableList); err != nil {
-				dst.ObservableList = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ObservableList = nil
-	}
-
-	// try to unmarshal data into ObservableTable
-	err = newStrictDecoder(data).Decode(&dst.ObservableTable)
-	if err == nil {
-		jsonObservableTable, _ := json.Marshal(dst.ObservableTable)
-		if string(jsonObservableTable) == "{}" { // empty struct
-			dst.ObservableTable = nil
-		} else {
-			if err = validator.Validate(dst.ObservableTable); err != nil {
-				dst.ObservableTable = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ObservableTable = nil
-	}
-
-	// try to unmarshal data into Pages
-	err = newStrictDecoder(data).Decode(&dst.Pages)
-	if err == nil {
-		jsonPages, _ := json.Marshal(dst.Pages)
-		if string(jsonPages) == "{}" { // empty struct
-			dst.Pages = nil
-		} else {
-			if err = validator.Validate(dst.Pages); err != nil {
-				dst.Pages = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Pages = nil
-	}
-
-	// try to unmarshal data into TTPList
-	err = newStrictDecoder(data).Decode(&dst.TTPList)
-	if err == nil {
-		jsonTTPList, _ := json.Marshal(dst.TTPList)
-		if string(jsonTTPList) == "{}" { // empty struct
-			dst.TTPList = nil
-		} else {
-			if err = validator.Validate(dst.TTPList); err != nil {
-				dst.TTPList = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.TTPList = nil
-	}
-
-	// try to unmarshal data into TTPTable
-	err = newStrictDecoder(data).Decode(&dst.TTPTable)
-	if err == nil {
-		jsonTTPTable, _ := json.Marshal(dst.TTPTable)
-		if string(jsonTTPTable) == "{}" { // empty struct
-			dst.TTPTable = nil
-		} else {
-			if err = validator.Validate(dst.TTPTable); err != nil {
-				dst.TTPTable = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.TTPTable = nil
-	}
-
-	// try to unmarshal data into TaskList
-	err = newStrictDecoder(data).Decode(&dst.TaskList)
-	if err == nil {
-		jsonTaskList, _ := json.Marshal(dst.TaskList)
-		if string(jsonTaskList) == "{}" { // empty struct
-			dst.TaskList = nil
-		} else {
-			if err = validator.Validate(dst.TaskList); err != nil {
-				dst.TaskList = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.TaskList = nil
-	}
-
-	// try to unmarshal data into TaskTable
-	err = newStrictDecoder(data).Decode(&dst.TaskTable)
-	if err == nil {
-		jsonTaskTable, _ := json.Marshal(dst.TaskTable)
-		if string(jsonTaskTable) == "{}" { // empty struct
-			dst.TaskTable = nil
-		} else {
-			if err = validator.Validate(dst.TaskTable); err != nil {
-				dst.TaskTable = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.TaskTable = nil
-	}
-
-	// try to unmarshal data into Text
-	err = newStrictDecoder(data).Decode(&dst.Text)
-	if err == nil {
-		jsonText, _ := json.Marshal(dst.Text)
-		if string(jsonText) == "{}" { // empty struct
-			dst.Text = nil
-		} else {
-			if err = validator.Validate(dst.Text); err != nil {
-				dst.Text = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Text = nil
-	}
-
-	// try to unmarshal data into Timeline
-	err = newStrictDecoder(data).Decode(&dst.Timeline)
-	if err == nil {
-		jsonTimeline, _ := json.Marshal(dst.Timeline)
-		if string(jsonTimeline) == "{}" { // empty struct
-			dst.Timeline = nil
-		} else {
-			if err = validator.Validate(dst.Timeline); err != nil {
-				dst.Timeline = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Timeline = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AlertList = nil
-		dst.AlertTable = nil
-		dst.Comments = nil
-		dst.CustomFields = nil
-		dst.CustomFieldsList = nil
-		dst.Image = nil
-		dst.ObservableList = nil
-		dst.ObservableTable = nil
-		dst.Pages = nil
-		dst.TTPList = nil
-		dst.TTPTable = nil
-		dst.TaskList = nil
-		dst.TaskTable = nil
-		dst.Text = nil
-		dst.Timeline = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Widget)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(Widget)")
+	switch disc.Kind {
+	case "AlertList":
+		dst.AlertList = new(AlertList)
+		return newStrictDecoder(data).Decode(dst.AlertList)
+	case "AlertTable":
+		dst.AlertTable = new(AlertTable)
+		return newStrictDecoder(data).Decode(dst.AlertTable)
+	case "Comments":
+		dst.Comments = new(Comments)
+		return newStrictDecoder(data).Decode(dst.Comments)
+	case "CustomFields":
+		dst.CustomFields = new(CustomFields)
+		return newStrictDecoder(data).Decode(dst.CustomFields)
+	case "CustomFieldsList":
+		dst.CustomFieldsList = new(CustomFieldsList)
+		return newStrictDecoder(data).Decode(dst.CustomFieldsList)
+	case "Image":
+		dst.Image = new(Image)
+		return newStrictDecoder(data).Decode(dst.Image)
+	case "ObservableList":
+		dst.ObservableList = new(ObservableList)
+		return newStrictDecoder(data).Decode(dst.ObservableList)
+	case "ObservableTable":
+		dst.ObservableTable = new(ObservableTable)
+		return newStrictDecoder(data).Decode(dst.ObservableTable)
+	case "Pages":
+		dst.Pages = new(Pages)
+		return newStrictDecoder(data).Decode(dst.Pages)
+	case "TTPList":
+		dst.TTPList = new(TTPList)
+		return newStrictDecoder(data).Decode(dst.TTPList)
+	case "TTPTable":
+		dst.TTPTable = new(TTPTable)
+		return newStrictDecoder(data).Decode(dst.TTPTable)
+	case "TaskList":
+		dst.TaskList = new(TaskList)
+		return newStrictDecoder(data).Decode(dst.TaskList)
+	case "TaskTable":
+		dst.TaskTable = new(TaskTable)
+		return newStrictDecoder(data).Decode(dst.TaskTable)
+	case "Text":
+		dst.Text = new(Text)
+		return newStrictDecoder(data).Decode(dst.Text)
+	case "Timeline":
+		dst.Timeline = new(Timeline)
+		return newStrictDecoder(data).Decode(dst.Timeline)
+	default:
+		return fmt.Errorf("oneOf(Widget): unknown _kind value %q", disc.Kind)
 	}
 }
 
@@ -492,7 +267,7 @@ func (src Widget) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Widget) GetActualInstance() (interface{}) {
+func (obj *Widget) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -561,7 +336,7 @@ func (obj *Widget) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Widget) GetActualInstanceValue() (interface{}) {
+func (obj Widget) GetActualInstanceValue() interface{} {
 	if obj.AlertList != nil {
 		return *obj.AlertList
 	}
@@ -661,5 +436,3 @@ func (v *NullableWidget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,5 +1,9 @@
 GO := go
-GO_IMAGE := golang:1.25.8-alpine
+GO_IMAGE := golang:1.25.10-alpine
+# scripts/fix-oneof-decoder/main.go pattern-matches the UnmarshalJSON body
+# this image emits. When bumping the generator, re-run `make generate` — the
+# tool runs in strict mode and will log.Fatalf if its detection patterns no
+# longer match.
 OPENAPI_GENERATOR_IMAGE := openapitools/openapi-generator-cli:v7.14.0
 BGreen="\033[1;32m"       # Green
 Color_Off="\033[0m"       # Text Reset
@@ -32,6 +36,13 @@ test: ## Run tests with coverage
 	@echo $(BGreen)-----------------------$(Color_Off)
 	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./thehive/...
 
+.PHONY: regression-test
+regression-test: ## Run hand-maintained regression tests against the generated SDK
+	@echo $(BGreen)-----------------------------$(Color_Off)
+	@echo $(BGreen)-- Running RegressionTests --$(Color_Off)
+	@echo $(BGreen)-----------------------------$(Color_Off)
+	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go test -v ./tests/regression/...
+
 .PHONY: vulncheck
 vulncheck: ## Check for vulnerabilities
 	@echo $(BGreen)------------------------------$(Color_Off)
@@ -60,6 +71,8 @@ generate: ## Generate the client code from OpenAPI spec
 	@echo $(BGreen)-----------------------$(Color_Off)
 	@docker build -f Dockerfile.generator -t thehive4go-generator .
 	@docker run --rm -v $(CURDIR):/workspace -u $(shell id -u):$(shell id -g) thehive4go-generator
+	@echo $(BGreen)-- Post-fix: oneOf decoders --$(Color_Off)
+	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go run ./scripts/fix-oneof-decoder
 
 .PHONY: clean
 clean: ## Remove build artifacts and Docker images
@@ -75,5 +88,5 @@ integration-test: ## Run full integration tests with TheHive stack
 	@echo $(BGreen)-- Running Integration  --$(Color_Off)
 	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
 	@echo $(BGreen)---------------------------$(Color_Off)
-	cd integration && docker compose up --abort-on-container-exit integration-tests
-	cd integration && docker compose down
+	cd tests/integration && docker compose up --abort-on-container-exit integration-tests
+	cd tests/integration && docker compose down

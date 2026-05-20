@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -13,15 +13,14 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // Access - struct for Access
 type Access struct {
-	AllExternalAccess *AllExternalAccess
-	ExternalAccess *ExternalAccess
+	AllExternalAccess  *AllExternalAccess
+	ExternalAccess     *ExternalAccess
 	OrganisationAccess *OrganisationAccess
-	UserAccess *UserAccess
+	UserAccess         *UserAccess
 }
 
 // AllExternalAccessAsAccess is a convenience function that returns AllExternalAccess wrapped in Access
@@ -52,91 +51,32 @@ func UserAccessAsAccess(v *UserAccess) Access {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Access) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into AllExternalAccess
-	err = newStrictDecoder(data).Decode(&dst.AllExternalAccess)
-	if err == nil {
-		jsonAllExternalAccess, _ := json.Marshal(dst.AllExternalAccess)
-		if string(jsonAllExternalAccess) == "{}" { // empty struct
-			dst.AllExternalAccess = nil
-		} else {
-			if err = validator.Validate(dst.AllExternalAccess); err != nil {
-				dst.AllExternalAccess = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.AllExternalAccess = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"_kind"`
 	}
-
-	// try to unmarshal data into ExternalAccess
-	err = newStrictDecoder(data).Decode(&dst.ExternalAccess)
-	if err == nil {
-		jsonExternalAccess, _ := json.Marshal(dst.ExternalAccess)
-		if string(jsonExternalAccess) == "{}" { // empty struct
-			dst.ExternalAccess = nil
-		} else {
-			if err = validator.Validate(dst.ExternalAccess); err != nil {
-				dst.ExternalAccess = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ExternalAccess = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(Access): cannot read discriminator _kind: %w", err)
 	}
-
-	// try to unmarshal data into OrganisationAccess
-	err = newStrictDecoder(data).Decode(&dst.OrganisationAccess)
-	if err == nil {
-		jsonOrganisationAccess, _ := json.Marshal(dst.OrganisationAccess)
-		if string(jsonOrganisationAccess) == "{}" { // empty struct
-			dst.OrganisationAccess = nil
-		} else {
-			if err = validator.Validate(dst.OrganisationAccess); err != nil {
-				dst.OrganisationAccess = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.OrganisationAccess = nil
-	}
-
-	// try to unmarshal data into UserAccess
-	err = newStrictDecoder(data).Decode(&dst.UserAccess)
-	if err == nil {
-		jsonUserAccess, _ := json.Marshal(dst.UserAccess)
-		if string(jsonUserAccess) == "{}" { // empty struct
-			dst.UserAccess = nil
-		} else {
-			if err = validator.Validate(dst.UserAccess); err != nil {
-				dst.UserAccess = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.UserAccess = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AllExternalAccess = nil
-		dst.ExternalAccess = nil
-		dst.OrganisationAccess = nil
-		dst.UserAccess = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Access)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(Access)")
+	switch disc.Kind {
+	case "AllExternalAccessKind":
+		dst.AllExternalAccess = new(AllExternalAccess)
+		return newStrictDecoder(data).Decode(dst.AllExternalAccess)
+	case "ExternalAccessKind":
+		dst.ExternalAccess = new(ExternalAccess)
+		return newStrictDecoder(data).Decode(dst.ExternalAccess)
+	case "OrganisationAccessKind":
+		dst.OrganisationAccess = new(OrganisationAccess)
+		return newStrictDecoder(data).Decode(dst.OrganisationAccess)
+	case "UserAccessKind":
+		dst.UserAccess = new(UserAccess)
+		return newStrictDecoder(data).Decode(dst.UserAccess)
+	default:
+		return fmt.Errorf("oneOf(Access): unknown _kind value %q", disc.Kind)
 	}
 }
 
@@ -162,7 +102,7 @@ func (src Access) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Access) GetActualInstance() (interface{}) {
+func (obj *Access) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +127,7 @@ func (obj *Access) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Access) GetActualInstanceValue() (interface{}) {
+func (obj Access) GetActualInstanceValue() interface{} {
 	if obj.AllExternalAccess != nil {
 		return *obj.AllExternalAccess
 	}
@@ -243,5 +183,3 @@ func (v *NullableAccess) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

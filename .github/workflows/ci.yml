@@ -29,5 +29,8 @@ jobs:
       - name: Run tests
         run: make test
 
+      - name: Run regression tests
+        run: make regression-test
+
       - name: Run integration tests
         run: make integration-test

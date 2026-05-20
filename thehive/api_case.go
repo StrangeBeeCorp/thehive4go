@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -16,20 +16,19 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // CaseAPIService CaseAPI service
 type CaseAPIService service
 
 type ApiAddAttachmentToCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx         context.Context
+	ApiService  *CaseAPIService
+	caseId      string
 	attachments []*os.File
-	canRename *bool
+	canRename   *bool
 }
 
 func (r ApiAddAttachmentToCaseRequest) Attachments(attachments []*os.File) ApiAddAttachmentToCaseRequest {
@@ -50,26 +49,27 @@ func (r ApiAddAttachmentToCaseRequest) Execute() (*OutputAttachments, *http.Resp
 /*
 AddAttachmentToCase Method for AddAttachmentToCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiAddAttachmentToCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiAddAttachmentToCaseRequest
 */
 func (a *CaseAPIService) AddAttachmentToCase(ctx context.Context, caseId string) ApiAddAttachmentToCaseRequest {
 	return ApiAddAttachmentToCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputAttachments
+//
+//	@return OutputAttachments
 func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequest) (*OutputAttachments, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputAttachments
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputAttachments
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.AddAttachmentToCase")
@@ -105,8 +105,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var attachmentsLocalVarFormFileName string
-	var attachmentsLocalVarFileName     string
-	var attachmentsLocalVarFileBytes    []byte
+	var attachmentsLocalVarFileName string
+	var attachmentsLocalVarFileBytes []byte
 
 	attachmentsLocalVarFormFileName = "attachments"
 	attachmentsLocalVarFile := r.attachments
@@ -154,8 +154,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -165,8 +165,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -176,8 +176,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -187,8 +187,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -198,8 +198,8 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -217,9 +217,9 @@ func (a *CaseAPIService) AddAttachmentToCaseExecute(r ApiAddAttachmentToCaseRequ
 }
 
 type ApiAddLinkWithAnExternalURLRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx               context.Context
+	ApiService        *CaseAPIService
+	caseId            string
 	inputExternalLink *InputExternalLink
 }
 
@@ -235,26 +235,24 @@ func (r ApiAddLinkWithAnExternalURLRequest) Execute() (*http.Response, error) {
 /*
 AddLinkWithAnExternalURL Method for AddLinkWithAnExternalURL
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiAddLinkWithAnExternalURLRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiAddLinkWithAnExternalURLRequest
 */
 func (a *CaseAPIService) AddLinkWithAnExternalURL(ctx context.Context, caseId string) ApiAddLinkWithAnExternalURLRequest {
 	return ApiAddLinkWithAnExternalURLRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExternalURLRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.AddLinkWithAnExternalURL")
@@ -320,8 +318,8 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -331,8 +329,8 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -342,8 +340,8 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -353,8 +351,8 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -364,8 +362,8 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -374,9 +372,9 @@ func (a *CaseAPIService) AddLinkWithAnExternalURLExecute(r ApiAddLinkWithAnExter
 }
 
 type ApiAddLinkWithAnotherCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx           context.Context
+	ApiService    *CaseAPIService
+	caseId        string
 	inputCaseLink *InputCaseLink
 }
 
@@ -392,26 +390,24 @@ func (r ApiAddLinkWithAnotherCaseRequest) Execute() (*http.Response, error) {
 /*
 AddLinkWithAnotherCase Method for AddLinkWithAnotherCase
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiAddLinkWithAnotherCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiAddLinkWithAnotherCaseRequest
 */
 func (a *CaseAPIService) AddLinkWithAnotherCase(ctx context.Context, caseId string) ApiAddLinkWithAnotherCaseRequest {
 	return ApiAddLinkWithAnotherCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.AddLinkWithAnotherCase")
@@ -477,8 +473,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -488,8 +484,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -499,8 +495,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -510,8 +506,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -521,8 +517,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -531,8 +527,8 @@ func (a *CaseAPIService) AddLinkWithAnotherCaseExecute(r ApiAddLinkWithAnotherCa
 }
 
 type ApiApplyCaseTemplateOnExistingCasesRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
+	ctx                           context.Context
+	ApiService                    *CaseAPIService
 	inputApplyCaseTemplateWithIds *InputApplyCaseTemplateWithIds
 }
 
@@ -550,22 +546,22 @@ ApplyCaseTemplateOnExistingCases Method for ApplyCaseTemplateOnExistingCases
 
 You can choose what part of the case template to apply on the existing case(s)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiApplyCaseTemplateOnExistingCasesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApplyCaseTemplateOnExistingCasesRequest
 */
 func (a *CaseAPIService) ApplyCaseTemplateOnExistingCases(ctx context.Context) ApiApplyCaseTemplateOnExistingCasesRequest {
 	return ApiApplyCaseTemplateOnExistingCasesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseTemplateOnExistingCasesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.ApplyCaseTemplateOnExistingCases")
@@ -630,8 +626,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -641,8 +637,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -652,8 +648,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -663,8 +659,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -674,8 +670,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -684,8 +680,8 @@ func (a *CaseAPIService) ApplyCaseTemplateOnExistingCasesExecute(r ApiApplyCaseT
 }
 
 type ApiBulkManageCaseAccessRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
+	ctx                          context.Context
+	ApiService                   *CaseAPIService
 	inputManageCaseAccessWithIds *InputManageCaseAccessWithIds
 }
 
@@ -703,22 +699,22 @@ BulkManageCaseAccess Method for BulkManageCaseAccess
 
 Make a list of cases private, external or public and manage the users list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBulkManageCaseAccessRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBulkManageCaseAccessRequest
 */
 func (a *CaseAPIService) BulkManageCaseAccess(ctx context.Context) ApiBulkManageCaseAccessRequest {
 	return ApiBulkManageCaseAccessRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.BulkManageCaseAccess")
@@ -783,8 +779,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -794,8 +790,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -805,8 +801,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -816,8 +812,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -827,8 +823,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -837,8 +833,8 @@ func (a *CaseAPIService) BulkManageCaseAccessExecute(r ApiBulkManageCaseAccessRe
 }
 
 type ApiBulkUpdateCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
+	ctx                    context.Context
+	ApiService             *CaseAPIService
 	inputUpdateCaseWithIds *InputUpdateCaseWithIds
 }
 
@@ -854,22 +850,22 @@ func (r ApiBulkUpdateCaseRequest) Execute() (*http.Response, error) {
 /*
 BulkUpdateCase Method for BulkUpdateCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBulkUpdateCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBulkUpdateCaseRequest
 */
 func (a *CaseAPIService) BulkUpdateCase(ctx context.Context) ApiBulkUpdateCaseRequest {
 	return ApiBulkUpdateCaseRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.BulkUpdateCase")
@@ -934,8 +930,8 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -945,8 +941,8 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -956,8 +952,8 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -967,8 +963,8 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -978,8 +974,8 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -988,9 +984,9 @@ func (a *CaseAPIService) BulkUpdateCaseExecute(r ApiBulkUpdateCaseRequest) (*htt
 }
 
 type ApiChangeCaseOwningOrganisationRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx                      context.Context
+	ApiService               *CaseAPIService
+	caseId                   string
 	inputChangeCaseOwnership *InputChangeCaseOwnership
 }
 
@@ -1008,24 +1004,24 @@ ChangeCaseOwningOrganisation Method for ChangeCaseOwningOrganisation
 
 Update the current owner of the case. Beware, the current organisation could lose access to the case if no profile is set
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiChangeCaseOwningOrganisationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiChangeCaseOwningOrganisationRequest
 */
 func (a *CaseAPIService) ChangeCaseOwningOrganisation(ctx context.Context, caseId string) ApiChangeCaseOwningOrganisationRequest {
 	return ApiChangeCaseOwningOrganisationRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwningOrganisationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.ChangeCaseOwningOrganisation")
@@ -1091,8 +1087,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1102,8 +1098,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1113,8 +1109,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1124,8 +1120,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1135,8 +1131,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1145,8 +1141,8 @@ func (a *CaseAPIService) ChangeCaseOwningOrganisationExecute(r ApiChangeCaseOwni
 }
 
 type ApiCreateCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
+	ctx             context.Context
+	ApiService      *CaseAPIService
 	inputCreateCase *InputCreateCase
 }
 
@@ -1164,24 +1160,25 @@ CreateCase Method for CreateCase
 
 Create a new case empty case. A Case Template can be used to provide tasks and custom fields
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCaseRequest
 */
 func (a *CaseAPIService) CreateCase(ctx context.Context) ApiCreateCaseRequest {
 	return ApiCreateCaseRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCase
+//
+//	@return OutputCase
 func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCase
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCase
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.CreateCase")
@@ -1246,8 +1243,8 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1257,8 +1254,8 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1268,8 +1265,8 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1279,8 +1276,8 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1290,8 +1287,8 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1309,9 +1306,9 @@ func (a *CaseAPIService) CreateCaseExecute(r ApiCreateCaseRequest) (*OutputCase,
 }
 
 type ApiDeleteACustomFieldRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	cfId string
+	cfId       string
 }
 
 func (r ApiDeleteACustomFieldRequest) Execute() (*http.Response, error) {
@@ -1321,24 +1318,24 @@ func (r ApiDeleteACustomFieldRequest) Execute() (*http.Response, error) {
 /*
 DeleteACustomField Method for DeleteACustomField
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param cfId
- @return ApiDeleteACustomFieldRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param cfId
+	@return ApiDeleteACustomFieldRequest
 */
 func (a *CaseAPIService) DeleteACustomField(ctx context.Context, cfId string) ApiDeleteACustomFieldRequest {
 	return ApiDeleteACustomFieldRequest{
 		ApiService: a,
-		ctx: ctx,
-		cfId: cfId,
+		ctx:        ctx,
+		cfId:       cfId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DeleteACustomField")
@@ -1399,8 +1396,8 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1410,8 +1407,8 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1421,8 +1418,8 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1432,8 +1429,8 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1443,8 +1440,8 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1453,9 +1450,9 @@ func (a *CaseAPIService) DeleteACustomFieldExecute(r ApiDeleteACustomFieldReques
 }
 
 type ApiDeleteCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	idOrName string
+	idOrName   string
 }
 
 func (r ApiDeleteCaseRequest) Execute() (*http.Response, error) {
@@ -1465,24 +1462,24 @@ func (r ApiDeleteCaseRequest) Execute() (*http.Response, error) {
 /*
 DeleteCase Method for DeleteCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param idOrName
- @return ApiDeleteCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param idOrName
+	@return ApiDeleteCaseRequest
 */
 func (a *CaseAPIService) DeleteCase(ctx context.Context, idOrName string) ApiDeleteCaseRequest {
 	return ApiDeleteCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		idOrName: idOrName,
+		ctx:        ctx,
+		idOrName:   idOrName,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DeleteCase")
@@ -1543,8 +1540,8 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1554,8 +1551,8 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1565,8 +1562,8 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1576,8 +1573,8 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1587,8 +1584,8 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1597,9 +1594,9 @@ func (a *CaseAPIService) DeleteCaseExecute(r ApiDeleteCaseRequest) (*http.Respon
 }
 
 type ApiDeleteCaseAttachmentRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx          context.Context
+	ApiService   *CaseAPIService
+	caseId       string
 	attachmentId string
 }
 
@@ -1610,16 +1607,16 @@ func (r ApiDeleteCaseAttachmentRequest) Execute() (*http.Response, error) {
 /*
 DeleteCaseAttachment Method for DeleteCaseAttachment
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param attachmentId
- @return ApiDeleteCaseAttachmentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param attachmentId
+	@return ApiDeleteCaseAttachmentRequest
 */
 func (a *CaseAPIService) DeleteCaseAttachment(ctx context.Context, caseId string, attachmentId string) ApiDeleteCaseAttachmentRequest {
 	return ApiDeleteCaseAttachmentRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:   a,
+		ctx:          ctx,
+		caseId:       caseId,
 		attachmentId: attachmentId,
 	}
 }
@@ -1627,9 +1624,9 @@ func (a *CaseAPIService) DeleteCaseAttachment(ctx context.Context, caseId string
 // Execute executes the request
 func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DeleteCaseAttachment")
@@ -1691,8 +1688,8 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1702,8 +1699,8 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1713,8 +1710,8 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1724,8 +1721,8 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1735,8 +1732,8 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1745,9 +1742,9 @@ func (a *CaseAPIService) DeleteCaseAttachmentExecute(r ApiDeleteCaseAttachmentRe
 }
 
 type ApiDeleteLinkWithAnAnotherCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx           context.Context
+	ApiService    *CaseAPIService
+	caseId        string
 	inputCaseLink *InputCaseLink
 }
 
@@ -1763,26 +1760,24 @@ func (r ApiDeleteLinkWithAnAnotherCaseRequest) Execute() (*http.Response, error)
 /*
 DeleteLinkWithAnAnotherCase Method for DeleteLinkWithAnAnotherCase
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiDeleteLinkWithAnAnotherCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiDeleteLinkWithAnAnotherCaseRequest
 */
 func (a *CaseAPIService) DeleteLinkWithAnAnotherCase(ctx context.Context, caseId string) ApiDeleteLinkWithAnAnotherCaseRequest {
 	return ApiDeleteLinkWithAnAnotherCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithAnAnotherCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DeleteLinkWithAnAnotherCase")
@@ -1848,8 +1843,8 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1859,8 +1854,8 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1870,8 +1865,8 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1881,8 +1876,8 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1892,8 +1887,8 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1902,9 +1897,9 @@ func (a *CaseAPIService) DeleteLinkWithAnAnotherCaseExecute(r ApiDeleteLinkWithA
 }
 
 type ApiDeleteLinkWithAnExternalURLRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx               context.Context
+	ApiService        *CaseAPIService
+	caseId            string
 	inputExternalLink *InputExternalLink
 }
 
@@ -1920,26 +1915,24 @@ func (r ApiDeleteLinkWithAnExternalURLRequest) Execute() (*http.Response, error)
 /*
 DeleteLinkWithAnExternalURL Method for DeleteLinkWithAnExternalURL
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiDeleteLinkWithAnExternalURLRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiDeleteLinkWithAnExternalURLRequest
 */
 func (a *CaseAPIService) DeleteLinkWithAnExternalURL(ctx context.Context, caseId string) ApiDeleteLinkWithAnExternalURLRequest {
 	return ApiDeleteLinkWithAnExternalURLRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithAnExternalURLRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DeleteLinkWithAnExternalURL")
@@ -2005,8 +1998,8 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2016,8 +2009,8 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2027,8 +2020,8 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2038,8 +2031,8 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2049,8 +2042,8 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2059,9 +2052,9 @@ func (a *CaseAPIService) DeleteLinkWithAnExternalURLExecute(r ApiDeleteLinkWithA
 }
 
 type ApiDownloadAttachmentFromCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx          context.Context
+	ApiService   *CaseAPIService
+	caseId       string
 	attachmentId string
 }
 
@@ -2072,31 +2065,33 @@ func (r ApiDownloadAttachmentFromCaseRequest) Execute() (*os.File, *http.Respons
 /*
 DownloadAttachmentFromCase Method for DownloadAttachmentFromCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param attachmentId
- @return ApiDownloadAttachmentFromCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param attachmentId
+	@return ApiDownloadAttachmentFromCaseRequest
 
 Deprecated
 */
 func (a *CaseAPIService) DownloadAttachmentFromCase(ctx context.Context, caseId string, attachmentId string) ApiDownloadAttachmentFromCaseRequest {
 	return ApiDownloadAttachmentFromCaseRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:   a,
+		ctx:          ctx,
+		caseId:       caseId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
+//
 // Deprecated
 func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachmentFromCaseRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.DownloadAttachmentFromCase")
@@ -2158,8 +2153,8 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2169,8 +2164,8 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2180,8 +2175,8 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2191,8 +2186,8 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2202,8 +2197,8 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2221,10 +2216,10 @@ func (a *CaseAPIService) DownloadAttachmentFromCaseExecute(r ApiDownloadAttachme
 }
 
 type ApiExportCaseAsArchiveRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	caseId string
-	password *string
+	caseId     string
+	password   *string
 }
 
 // A password to encrypt the file. Needs to be provided when importing the file
@@ -2242,26 +2237,27 @@ ExportCaseAsArchive Method for ExportCaseAsArchive
 
 Export the case as a TheHive archive (.thar) file. The file can be used to import the Case in an other TheHive instance
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiExportCaseAsArchiveRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiExportCaseAsArchiveRequest
 */
 func (a *CaseAPIService) ExportCaseAsArchive(ctx context.Context, caseId string) ApiExportCaseAsArchiveRequest {
 	return ApiExportCaseAsArchiveRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.ExportCaseAsArchive")
@@ -2326,8 +2322,8 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2337,8 +2333,8 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2348,8 +2344,8 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2359,8 +2355,8 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2370,8 +2366,8 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2389,7 +2385,7 @@ func (a *CaseAPIService) ExportCaseAsArchiveExecute(r ApiExportCaseAsArchiveRequ
 }
 
 type ApiGetAllLinkTypesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
 }
 
@@ -2400,26 +2396,25 @@ func (r ApiGetAllLinkTypesRequest) Execute() ([]string, *http.Response, error) {
 /*
 GetAllLinkTypes Method for GetAllLinkTypes
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAllLinkTypesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAllLinkTypesRequest
 */
 func (a *CaseAPIService) GetAllLinkTypes(ctx context.Context) ApiGetAllLinkTypesRequest {
 	return ApiGetAllLinkTypesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
+//
+//	@return []string
 func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []string
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetAllLinkTypes")
@@ -2479,8 +2474,8 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2490,8 +2485,8 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2501,8 +2496,8 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2512,8 +2507,8 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2523,8 +2518,8 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2542,11 +2537,11 @@ func (a *CaseAPIService) GetAllLinkTypesExecute(r ApiGetAllLinkTypesRequest) ([]
 }
 
 type ApiGetAttachmentFromCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx          context.Context
+	ApiService   *CaseAPIService
+	caseId       string
 	attachmentId string
-	ifNoneMatch *string
+	ifNoneMatch  *string
 }
 
 func (r ApiGetAttachmentFromCaseRequest) IfNoneMatch(ifNoneMatch string) ApiGetAttachmentFromCaseRequest {
@@ -2563,31 +2558,33 @@ GetAttachmentFromCase Method for GetAttachmentFromCase
 
 Deprecated: use `Organisation / Get attachment` instead
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param attachmentId
- @return ApiGetAttachmentFromCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param attachmentId
+	@return ApiGetAttachmentFromCaseRequest
 
 Deprecated
 */
 func (a *CaseAPIService) GetAttachmentFromCase(ctx context.Context, caseId string, attachmentId string) ApiGetAttachmentFromCaseRequest {
 	return ApiGetAttachmentFromCaseRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:   a,
+		ctx:          ctx,
+		caseId:       caseId,
 		attachmentId: attachmentId,
 	}
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
+//
 // Deprecated
 func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCaseRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetAttachmentFromCase")
@@ -2652,8 +2649,8 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2663,8 +2660,8 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2674,8 +2671,8 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2685,8 +2682,8 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2696,8 +2693,8 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2715,9 +2712,9 @@ func (a *CaseAPIService) GetAttachmentFromCaseExecute(r ApiGetAttachmentFromCase
 }
 
 type ApiGetCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	idOrName string
+	idOrName   string
 }
 
 func (r ApiGetCaseRequest) Execute() (*OutputCase, *http.Response, error) {
@@ -2727,26 +2724,27 @@ func (r ApiGetCaseRequest) Execute() (*OutputCase, *http.Response, error) {
 /*
 GetCase Method for GetCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param idOrName
- @return ApiGetCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param idOrName
+	@return ApiGetCaseRequest
 */
 func (a *CaseAPIService) GetCase(ctx context.Context, idOrName string) ApiGetCaseRequest {
 	return ApiGetCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		idOrName: idOrName,
+		ctx:        ctx,
+		idOrName:   idOrName,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCase
+//
+//	@return OutputCase
 func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCase
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCase
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetCase")
@@ -2807,8 +2805,8 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2818,8 +2816,8 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2829,8 +2827,8 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2840,8 +2838,8 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2851,8 +2849,8 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2870,9 +2868,9 @@ func (a *CaseAPIService) GetCaseExecute(r ApiGetCaseRequest) (*OutputCase, *http
 }
 
 type ApiGetCaseTimelineRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	caseId string
+	caseId     string
 }
 
 func (r ApiGetCaseTimelineRequest) Execute() (*OutputTimeline, *http.Response, error) {
@@ -2882,26 +2880,27 @@ func (r ApiGetCaseTimelineRequest) Execute() (*OutputTimeline, *http.Response, e
 /*
 GetCaseTimeline Method for GetCaseTimeline
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiGetCaseTimelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiGetCaseTimelineRequest
 */
 func (a *CaseAPIService) GetCaseTimeline(ctx context.Context, caseId string) ApiGetCaseTimelineRequest {
 	return ApiGetCaseTimelineRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputTimeline
+//
+//	@return OutputTimeline
 func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*OutputTimeline, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputTimeline
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputTimeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetCaseTimeline")
@@ -2962,8 +2961,8 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -2973,8 +2972,8 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2984,8 +2983,8 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2995,8 +2994,8 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3006,8 +3005,8 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3025,9 +3024,9 @@ func (a *CaseAPIService) GetCaseTimelineExecute(r ApiGetCaseTimelineRequest) (*O
 }
 
 type ApiGetSimilarCasesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	caseId string
+	caseId     string
 }
 
 func (r ApiGetSimilarCasesRequest) Execute() ([]OutputCaseWithLinks, *http.Response, error) {
@@ -3039,29 +3038,31 @@ GetSimilarCases Method for GetSimilarCases
 
 **deprecated:** use the `similarCasesLight` query instead. ~Get the similar cases of a given case, along with the observables.~
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiGetSimilarCasesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiGetSimilarCasesRequest
 
 Deprecated
 */
 func (a *CaseAPIService) GetSimilarCases(ctx context.Context, caseId string) ApiGetSimilarCasesRequest {
 	return ApiGetSimilarCasesRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputCaseWithLinks
+//
+//	@return []OutputCaseWithLinks
+//
 // Deprecated
 func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]OutputCaseWithLinks, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputCaseWithLinks
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputCaseWithLinks
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetSimilarCases")
@@ -3122,8 +3123,8 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3133,8 +3134,8 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3144,8 +3145,8 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3155,8 +3156,8 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3166,8 +3167,8 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3185,9 +3186,9 @@ func (a *CaseAPIService) GetSimilarCasesExecute(r ApiGetSimilarCasesRequest) ([]
 }
 
 type ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx           context.Context
+	ApiService    *CaseAPIService
+	caseId        string
 	alertOrCaseId string
 }
 
@@ -3198,28 +3199,29 @@ func (r ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest) Execut
 /*
 GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert Method for GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param alertOrCaseId
- @return ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param alertOrCaseId
+	@return ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest
 */
 func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert(ctx context.Context, caseId string, alertOrCaseId string) ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest {
 	return ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:    a,
+		ctx:           ctx,
+		caseId:        caseId,
 		alertOrCaseId: alertOrCaseId,
 	}
 }
 
 // Execute executes the request
-//  @return []OutputObservable
+//
+//	@return []OutputObservable
 func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertExecute(r ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest) ([]OutputObservable, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []OutputObservable
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OutputObservable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert")
@@ -3281,8 +3283,8 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3292,8 +3294,8 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3303,8 +3305,8 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3314,8 +3316,8 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3325,8 +3327,8 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3344,10 +3346,10 @@ func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertE
 }
 
 type ApiImportCaseFromFileRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	json *InputImportCase
-	file *os.File
+	json       *InputImportCase
+	file       *os.File
 }
 
 func (r ApiImportCaseFromFileRequest) Json(json InputImportCase) ApiImportCaseFromFileRequest {
@@ -3369,24 +3371,25 @@ ImportCaseFromFile Method for ImportCaseFromFile
 
 The file must be a .thar file
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiImportCaseFromFileRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportCaseFromFileRequest
 */
 func (a *CaseAPIService) ImportCaseFromFile(ctx context.Context) ApiImportCaseFromFileRequest {
 	return ApiImportCaseFromFileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OutputImportCase
+//
+//	@return OutputImportCase
 func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileRequest) (*OutputImportCase, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputImportCase
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputImportCase
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.ImportCaseFromFile")
@@ -3425,8 +3428,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 	}
 	parameterAddToHeaderOrQuery(localVarFormParams, "_json", r.json, "", "")
 	var fileLocalVarFormFileName string
-	var fileLocalVarFileName     string
-	var fileLocalVarFileBytes    []byte
+	var fileLocalVarFileName string
+	var fileLocalVarFileBytes []byte
 
 	fileLocalVarFormFileName = "file"
 	fileLocalVarFile := r.file
@@ -3468,8 +3471,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3479,8 +3482,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3490,8 +3493,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3501,8 +3504,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3512,8 +3515,8 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3531,9 +3534,9 @@ func (a *CaseAPIService) ImportCaseFromFileExecute(r ApiImportCaseFromFileReques
 }
 
 type ApiManageCaseAccessRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
+	ctx                   context.Context
+	ApiService            *CaseAPIService
+	caseId                string
 	inputManageCaseAccess *InputManageCaseAccess
 }
 
@@ -3551,24 +3554,24 @@ ManageCaseAccess Method for ManageCaseAccess
 
 Make a case private, external or public and manage the users list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiManageCaseAccessRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiManageCaseAccessRequest
 */
 func (a *CaseAPIService) ManageCaseAccess(ctx context.Context, caseId string) ApiManageCaseAccessRequest {
 	return ApiManageCaseAccessRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.ManageCaseAccess")
@@ -3634,8 +3637,8 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3645,8 +3648,8 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3656,8 +3659,8 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3667,8 +3670,8 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3678,8 +3681,8 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -3688,9 +3691,9 @@ func (a *CaseAPIService) ManageCaseAccessExecute(r ApiManageCaseAccessRequest) (
 }
 
 type ApiMergeCasesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	ids string
+	ids        string
 }
 
 func (r ApiMergeCasesRequest) Execute() (*OutputCase, *http.Response, error) {
@@ -3702,26 +3705,27 @@ MergeCases Method for MergeCases
 
 Create a new case by merging the provided cases. The similar observables will be merged
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param ids
- @return ApiMergeCasesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ids
+	@return ApiMergeCasesRequest
 */
 func (a *CaseAPIService) MergeCases(ctx context.Context, ids string) ApiMergeCasesRequest {
 	return ApiMergeCasesRequest{
 		ApiService: a,
-		ctx: ctx,
-		ids: ids,
+		ctx:        ctx,
+		ids:        ids,
 	}
 }
 
 // Execute executes the request
-//  @return OutputCase
+//
+//	@return OutputCase
 func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputCase
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputCase
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.MergeCases")
@@ -3782,8 +3786,8 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3793,8 +3797,8 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3804,8 +3808,8 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3815,8 +3819,8 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3826,8 +3830,8 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3845,9 +3849,9 @@ func (a *CaseAPIService) MergeCasesExecute(r ApiMergeCasesRequest) (*OutputCase,
 }
 
 type ApiMergeSimilarObservablesOfThisCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	caseId string
+	caseId     string
 }
 
 func (r ApiMergeSimilarObservablesOfThisCaseRequest) Execute() (*OutputMergeCases, *http.Response, error) {
@@ -3857,26 +3861,27 @@ func (r ApiMergeSimilarObservablesOfThisCaseRequest) Execute() (*OutputMergeCase
 /*
 MergeSimilarObservablesOfThisCase Method for MergeSimilarObservablesOfThisCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @return ApiMergeSimilarObservablesOfThisCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@return ApiMergeSimilarObservablesOfThisCaseRequest
 */
 func (a *CaseAPIService) MergeSimilarObservablesOfThisCase(ctx context.Context, caseId string) ApiMergeSimilarObservablesOfThisCaseRequest {
 	return ApiMergeSimilarObservablesOfThisCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ctx:        ctx,
+		caseId:     caseId,
 	}
 }
 
 // Execute executes the request
-//  @return OutputMergeCases
+//
+//	@return OutputMergeCases
 func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimilarObservablesOfThisCaseRequest) (*OutputMergeCases, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OutputMergeCases
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OutputMergeCases
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.MergeSimilarObservablesOfThisCase")
@@ -3937,8 +3942,8 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -3948,8 +3953,8 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3959,8 +3964,8 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3970,8 +3975,8 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3981,8 +3986,8 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4000,10 +4005,10 @@ func (a *CaseAPIService) MergeSimilarObservablesOfThisCaseExecute(r ApiMergeSimi
 }
 
 type ApiUnlinkAlertFromCaseRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CaseAPIService
-	caseId string
-	alertId string
+	caseId     string
+	alertId    string
 }
 
 func (r ApiUnlinkAlertFromCaseRequest) Execute() (*http.Response, error) {
@@ -4013,26 +4018,26 @@ func (r ApiUnlinkAlertFromCaseRequest) Execute() (*http.Response, error) {
 /*
 UnlinkAlertFromCase Method for UnlinkAlertFromCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param alertId
- @return ApiUnlinkAlertFromCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param alertId
+	@return ApiUnlinkAlertFromCaseRequest
 */
 func (a *CaseAPIService) UnlinkAlertFromCase(ctx context.Context, caseId string, alertId string) ApiUnlinkAlertFromCaseRequest {
 	return ApiUnlinkAlertFromCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
-		alertId: alertId,
+		ctx:        ctx,
+		caseId:     caseId,
+		alertId:    alertId,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.UnlinkAlertFromCase")
@@ -4094,8 +4099,8 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -4105,8 +4110,8 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -4116,8 +4121,8 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -4127,8 +4132,8 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -4138,8 +4143,8 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -4148,10 +4153,10 @@ func (a *CaseAPIService) UnlinkAlertFromCaseExecute(r ApiUnlinkAlertFromCaseRequ
 }
 
 type ApiUpdateAttachmentRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	caseId string
-	attachmentId string
+	ctx                   context.Context
+	ApiService            *CaseAPIService
+	caseId                string
+	attachmentId          string
 	inputUpdateAttachment *InputUpdateAttachment
 }
 
@@ -4169,16 +4174,16 @@ UpdateAttachment Method for UpdateAttachment
 
 You can only change the access to/from External
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param caseId
- @param attachmentId
- @return ApiUpdateAttachmentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param caseId
+	@param attachmentId
+	@return ApiUpdateAttachmentRequest
 */
 func (a *CaseAPIService) UpdateAttachment(ctx context.Context, caseId string, attachmentId string) ApiUpdateAttachmentRequest {
 	return ApiUpdateAttachmentRequest{
-		ApiService: a,
-		ctx: ctx,
-		caseId: caseId,
+		ApiService:   a,
+		ctx:          ctx,
+		caseId:       caseId,
 		attachmentId: attachmentId,
 	}
 }
@@ -4186,9 +4191,9 @@ func (a *CaseAPIService) UpdateAttachment(ctx context.Context, caseId string, at
 // Execute executes the request
 func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.UpdateAttachment")
@@ -4255,8 +4260,8 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -4266,8 +4271,8 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -4277,8 +4282,8 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -4288,8 +4293,8 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -4299,8 +4304,8 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -4309,9 +4314,9 @@ func (a *CaseAPIService) UpdateAttachmentExecute(r ApiUpdateAttachmentRequest) (
 }
 
 type ApiUpdateCaseRequest struct {
-	ctx context.Context
-	ApiService *CaseAPIService
-	idOrName string
+	ctx             context.Context
+	ApiService      *CaseAPIService
+	idOrName        string
 	inputUpdateCase *InputUpdateCase
 }
 
@@ -4327,24 +4332,24 @@ func (r ApiUpdateCaseRequest) Execute() (*http.Response, error) {
 /*
 UpdateCase Method for UpdateCase
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param idOrName
- @return ApiUpdateCaseRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param idOrName
+	@return ApiUpdateCaseRequest
 */
 func (a *CaseAPIService) UpdateCase(ctx context.Context, idOrName string) ApiUpdateCaseRequest {
 	return ApiUpdateCaseRequest{
 		ApiService: a,
-		ctx: ctx,
-		idOrName: idOrName,
+		ctx:        ctx,
+		idOrName:   idOrName,
 	}
 }
 
 // Execute executes the request
 func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CaseAPIService.UpdateCase")
@@ -4410,8 +4415,8 @@ func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -4421,8 +4426,8 @@ func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -4432,8 +4437,8 @@ func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -4443,8 +4448,8 @@ func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -4454,8 +4459,8 @@ func (a *CaseAPIService) UpdateCaseExecute(r ApiUpdateCaseRequest) (*http.Respon
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

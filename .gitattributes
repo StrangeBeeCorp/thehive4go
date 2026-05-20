@@ -1,0 +1,4 @@
+# thehive/ is produced by `make generate` (openapi-generator + postprocess).
+# Mark it as generated so GitHub collapses these files in PR diffs — review
+# focus stays on hand-written changes (Makefile, scripts/, tests/, etc.).
+thehive/** linguist-generated=true

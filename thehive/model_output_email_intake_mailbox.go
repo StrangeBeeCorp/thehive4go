@@ -1,7 +1,7 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ``` 
+ ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
 
 API version: v5.6.2
 */
@@ -13,12 +13,11 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // OutputEmailIntakeMailbox - struct for OutputEmailIntakeMailbox
 type OutputEmailIntakeMailbox struct {
-	OutputEmailIntakeApiMailbox *OutputEmailIntakeApiMailbox
+	OutputEmailIntakeApiMailbox  *OutputEmailIntakeApiMailbox
 	OutputEmailIntakeImapMailbox *OutputEmailIntakeImapMailbox
 }
 
@@ -36,55 +35,26 @@ func OutputEmailIntakeImapMailboxAsOutputEmailIntakeMailbox(v *OutputEmailIntake
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputEmailIntakeMailbox) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into OutputEmailIntakeApiMailbox
-	err = newStrictDecoder(data).Decode(&dst.OutputEmailIntakeApiMailbox)
-	if err == nil {
-		jsonOutputEmailIntakeApiMailbox, _ := json.Marshal(dst.OutputEmailIntakeApiMailbox)
-		if string(jsonOutputEmailIntakeApiMailbox) == "{}" { // empty struct
-			dst.OutputEmailIntakeApiMailbox = nil
-		} else {
-			if err = validator.Validate(dst.OutputEmailIntakeApiMailbox); err != nil {
-				dst.OutputEmailIntakeApiMailbox = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.OutputEmailIntakeApiMailbox = nil
+	// Postprocessed by scripts/fix-oneof-decoder: dispatch by the OpenAPI
+	// discriminator instead of naive structural matching, which fails when
+	// two variants generate to byte-identical Go structs.
+	var disc struct {
+		Kind string `json:"_kind"`
 	}
-
-	// try to unmarshal data into OutputEmailIntakeImapMailbox
-	err = newStrictDecoder(data).Decode(&dst.OutputEmailIntakeImapMailbox)
-	if err == nil {
-		jsonOutputEmailIntakeImapMailbox, _ := json.Marshal(dst.OutputEmailIntakeImapMailbox)
-		if string(jsonOutputEmailIntakeImapMailbox) == "{}" { // empty struct
-			dst.OutputEmailIntakeImapMailbox = nil
-		} else {
-			if err = validator.Validate(dst.OutputEmailIntakeImapMailbox); err != nil {
-				dst.OutputEmailIntakeImapMailbox = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.OutputEmailIntakeImapMailbox = nil
+	if err := json.Unmarshal(data, &disc); err != nil {
+		return fmt.Errorf("oneOf(OutputEmailIntakeMailbox): cannot read discriminator _kind: %w", err)
 	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.OutputEmailIntakeApiMailbox = nil
-		dst.OutputEmailIntakeImapMailbox = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(OutputEmailIntakeMailbox)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(OutputEmailIntakeMailbox)")
+	switch disc.Kind {
+	case "api":
+		dst.OutputEmailIntakeApiMailbox = new(OutputEmailIntakeApiMailbox)
+		return newStrictDecoder(data).Decode(dst.OutputEmailIntakeApiMailbox)
+	case "imap":
+		dst.OutputEmailIntakeImapMailbox = new(OutputEmailIntakeImapMailbox)
+		return newStrictDecoder(data).Decode(dst.OutputEmailIntakeImapMailbox)
+	default:
+		return fmt.Errorf("oneOf(OutputEmailIntakeMailbox): unknown _kind value %q", disc.Kind)
 	}
 }
 
@@ -102,7 +72,7 @@ func (src OutputEmailIntakeMailbox) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *OutputEmailIntakeMailbox) GetActualInstance() (interface{}) {
+func (obj *OutputEmailIntakeMailbox) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +89,7 @@ func (obj *OutputEmailIntakeMailbox) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj OutputEmailIntakeMailbox) GetActualInstanceValue() (interface{}) {
+func (obj OutputEmailIntakeMailbox) GetActualInstanceValue() interface{} {
 	if obj.OutputEmailIntakeApiMailbox != nil {
 		return *obj.OutputEmailIntakeApiMailbox
 	}
@@ -167,5 +137,3 @@ func (v *NullableOutputEmailIntakeMailbox) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
