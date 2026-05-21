@@ -209,3 +209,107 @@ func TestOneOfWrapperSmoke(t *testing.T) {
 		assert.Nil(t, w.Timeline)
 	})
 }
+
+// TestRelaxedRequiredFields55Compatibility pins the cross-version 5.5/5.6
+// SDK contract: scripts/preprocess_openapi.sh drops five fields from the
+// `required:` list of as many models so that 5.5 payloads (which don't
+// carry them) decode successfully. If a future regeneration silently
+// re-introduces any of these as required — because the preprocess awk
+// stopped matching, or the spec changed shape — the matching subtest
+// here fires immediately, before a 5.5 deployment hits a "no value given
+// for required property X" decode failure in prod.
+//
+// Each subtest feeds the minimal payload TheHive 5.5 actually emits for
+// that model (no relaxed field present) and asserts the decode succeeds
+// AND the relaxed field is left nil.
+func TestRelaxedRequiredFields55Compatibility(t *testing.T) {
+	t.Run("OutputComment decodes without external", func(t *testing.T) {
+		payload := []byte(`{
+			"_id": "~1",
+			"_type": "Comment",
+			"createdBy": "admin@thehive.local",
+			"createdAt": 1700000000000,
+			"message": "hello",
+			"isEdited": false,
+			"extraData": {}
+		}`)
+		var c thehive.OutputComment
+		require.NoError(t, json.Unmarshal(payload, &c))
+		assert.Equal(t, "hello", c.Message)
+		assert.Nil(t, c.External, "External must be optional for 5.5 compatibility")
+	})
+
+	t.Run("OutputObservable decodes without external", func(t *testing.T) {
+		payload := []byte(`{
+			"_id": "~1",
+			"_type": "Observable",
+			"_createdBy": "admin@thehive.local",
+			"_createdAt": 1700000000000,
+			"dataType": "ip",
+			"startDate": 1700000000000,
+			"tlp": 2,
+			"tlpLabel": "AMBER",
+			"pap": 2,
+			"papLabel": "AMBER",
+			"ioc": false,
+			"sighted": false,
+			"reports": {},
+			"extraData": {},
+			"ignoreSimilarity": false
+		}`)
+		var o thehive.OutputObservable
+		require.NoError(t, json.Unmarshal(payload, &o))
+		assert.Equal(t, "ip", o.DataType)
+		assert.Nil(t, o.External, "External must be optional for 5.5 compatibility")
+	})
+
+	t.Run("OutputAttachment decodes without external", func(t *testing.T) {
+		payload := []byte(`{
+			"_id": "~1",
+			"_type": "Attachment",
+			"_createdBy": "admin@thehive.local",
+			"_createdAt": 1700000000000,
+			"name": "f.txt",
+			"hashes": ["sha256:abc"],
+			"size": 1,
+			"contentType": "text/plain",
+			"id": "id-1",
+			"path": "/tmp/f.txt",
+			"extraData": {}
+		}`)
+		var a thehive.OutputAttachment
+		require.NoError(t, json.Unmarshal(payload, &a))
+		assert.Equal(t, "f.txt", a.Name)
+		assert.Nil(t, a.External, "External must be optional for 5.5 compatibility")
+	})
+
+	t.Run("OutputProfile decodes without type and forExternal", func(t *testing.T) {
+		payload := []byte(`{
+			"_id": "~1",
+			"_type": "Profile",
+			"_createdBy": "admin@thehive.local",
+			"_createdAt": 1700000000000,
+			"name": "analyst",
+			"editable": true,
+			"forAdmin": false,
+			"forOrg": true,
+			"consumesLicense": true
+		}`)
+		var p thehive.OutputProfile
+		require.NoError(t, json.Unmarshal(payload, &p))
+		assert.Equal(t, "analyst", p.Name)
+		assert.Nil(t, p.Type, "Type must be optional for 5.5 compatibility")
+		assert.Nil(t, p.ForExternal, "ForExternal must be optional for 5.5 compatibility")
+	})
+
+	t.Run("OutputPublicStatus decodes without imports", func(t *testing.T) {
+		payload := []byte(`{
+			"sso": false,
+			"version": "5.5.14"
+		}`)
+		var s thehive.OutputPublicStatus
+		require.NoError(t, json.Unmarshal(payload, &s))
+		assert.Equal(t, "5.5.14", s.Version)
+		assert.Nil(t, s.Imports, "Imports must be optional for 5.5 compatibility")
+	})
+}

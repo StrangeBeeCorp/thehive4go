@@ -32,5 +32,12 @@ jobs:
       - name: Run regression tests
         run: make regression-test
 
-      - name: Run integration tests
-        run: make integration-test
+      # Cross-version: every PR must pass against both supported TheHive
+      # versions. Without this matrix step a regression on 5.5 would
+      # silently land because the default `make integration-test` only
+      # exercises 5.6.
+      - name: Run integration tests against TheHive 5.5
+        run: make integration-test-5.5
+
+      - name: Run integration tests against TheHive 5.6
+        run: make integration-test-5.6

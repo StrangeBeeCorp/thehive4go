@@ -2,6 +2,7 @@ TEMP_BASE_OPENAPI_PATH="/workspace/tmp/thehive_openapi.yaml"
 FIXED_OPENAPI_PATH="/workspace/tmp/thehive_openapi_fixed.yaml"
 
 # Colors for output
+RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
@@ -92,6 +93,32 @@ awk '
   { print }
 ' "$FIXED_OPENAPI_PATH" > "$FIXED_OPENAPI_PATH.tmp" && mv "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ 5.6-only required fields relaxed (Output{Comment,Observable,Attachment,Profile,PublicStatus})${NC}"
+
+# Strict mode: assert each targeted entry is actually gone from its schema's
+# required: list. If a future spec rename or removal silently defeats the
+# awk match, fail preprocess instead of shipping a SDK that's strict-
+# required-again on 5.5 payloads. The relax must have a visible effect or
+# we want to know about it.
+relax_assert_removed() {
+  local schema=$1 field=$2
+  awk -v s="    ${schema}:" -v f="      - ${field}" '
+    $0 == s        { in_block = 1; next }
+    /^    [A-Z]/   { in_block = 0 }
+    in_block && $0 == f { found = 1 }
+    END { exit found ? 1 : 0 }
+  ' "$FIXED_OPENAPI_PATH" && return 0
+  echo -e "${RED}❌ Strict check failed: '${field}' is still listed in ${schema}.required after the relax awk.${NC}" >&2
+  echo -e "${RED}   The awk pattern stopped matching (spec format may have changed). Re-audit the relax block before shipping.${NC}" >&2
+  exit 1
+}
+
+relax_assert_removed OutputComment      external
+relax_assert_removed OutputObservable   external
+relax_assert_removed OutputAttachment   external
+relax_assert_removed OutputProfile      type
+relax_assert_removed OutputProfile      forExternal
+relax_assert_removed OutputPublicStatus imports
+echo -e "${GREEN}✅ Strict check: all 6 relax targets confirmed removed${NC}"
 
 # Inject extraData field into InputQueryPagingOperation
 echo -e "${BLUE}🔧 Forcing extraData field into InputQueryPagingOperation...${NC}"
