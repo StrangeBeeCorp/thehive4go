@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Current** | Pointer to **int32** |  | [optional] 
-**Quota** | **int32** |  | 
+**Current** | Pointer to **int32** |  | [optional]
+**Quota** | **int32** |  |
 
 ## Methods
 
@@ -73,5 +73,3 @@ SetQuota sets Quota field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

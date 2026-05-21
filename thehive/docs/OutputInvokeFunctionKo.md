@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorType** | **string** | Error type encountered by the server | 
-**ErrorMessage** | **string** | Precise error that led to execution failure | 
-**Stdout** | **string** | Content of stdout | 
-**Stderr** | **string** | Content of stderr | 
+**ErrorType** | **string** | Error type encountered by the server |
+**ErrorMessage** | **string** | Precise error that led to execution failure |
+**Stdout** | **string** | Content of stdout |
+**Stderr** | **string** | Content of stderr |
 
 ## Methods
 
@@ -110,5 +110,3 @@ SetStderr sets Stderr field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

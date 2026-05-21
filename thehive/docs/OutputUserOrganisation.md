@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisation** | **string** |  | 
-**Profile** | **string** |  | 
-**Default** | **bool** |  | 
+**Organisation** | **string** |  |
+**Profile** | **string** |  |
+**Default** | **bool** |  |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetDefault sets Default field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

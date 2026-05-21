@@ -43,7 +43,7 @@ type OutputObservable struct {
 	Message             *string                `json:"message,omitempty"`
 	ExtraData           map[string]interface{} `json:"extraData"`
 	IgnoreSimilarity    bool                   `json:"ignoreSimilarity"`
-	External            bool                   `json:"external"`
+	External            *bool                  `json:"external,omitempty"`
 }
 
 type _OutputObservable OutputObservable
@@ -52,7 +52,7 @@ type _OutputObservable OutputObservable
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, dataType string, startDate int64, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool, external bool) *OutputObservable {
+func NewOutputObservable(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, dataType string, startDate int64, tlp int32, tlpLabel string, pap int32, papLabel string, ioc bool, sighted bool, reports map[string]interface{}, extraData map[string]interface{}, ignoreSimilarity bool) *OutputObservable {
 	this := OutputObservable{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -69,7 +69,6 @@ func NewOutputObservable(underscoreId string, underscoreType string, underscoreC
 	this.Reports = reports
 	this.ExtraData = extraData
 	this.IgnoreSimilarity = ignoreSimilarity
-	this.External = external
 	return &this
 }
 
@@ -665,28 +664,36 @@ func (o *OutputObservable) SetIgnoreSimilarity(v bool) {
 	o.IgnoreSimilarity = v
 }
 
-// GetExternal returns the External field value
+// GetExternal returns the External field value if set, zero value otherwise.
 func (o *OutputObservable) GetExternal() bool {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		var ret bool
 		return ret
 	}
-
-	return o.External
+	return *o.External
 }
 
-// GetExternalOk returns a tuple with the External field value
+// GetExternalOk returns a tuple with the External field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputObservable) GetExternalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		return nil, false
 	}
-	return &o.External, true
+	return o.External, true
 }
 
-// SetExternal sets field value
+// HasExternal returns a boolean if a field has been set.
+func (o *OutputObservable) HasExternal() bool {
+	if o != nil && !IsNil(o.External) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternal gets a reference to the given bool and assigns it to the External field.
 func (o *OutputObservable) SetExternal(v bool) {
-	o.External = v
+	o.External = &v
 }
 
 func (o OutputObservable) MarshalJSON() ([]byte, error) {
@@ -735,7 +742,9 @@ func (o OutputObservable) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["extraData"] = o.ExtraData
 	toSerialize["ignoreSimilarity"] = o.IgnoreSimilarity
-	toSerialize["external"] = o.External
+	if !IsNil(o.External) {
+		toSerialize["external"] = o.External
+	}
 	return toSerialize, nil
 }
 
@@ -759,7 +768,6 @@ func (o *OutputObservable) UnmarshalJSON(data []byte) (err error) {
 		"reports",
 		"extraData",
 		"ignoreSimilarity",
-		"external",
 	}
 
 	allProperties := make(map[string]interface{})

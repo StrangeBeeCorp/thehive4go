@@ -73,6 +73,8 @@ generate: ## Generate the client code from OpenAPI spec
 	@docker run --rm -v $(CURDIR):/workspace -u $(shell id -u):$(shell id -g) thehive4go-generator
 	@echo $(BGreen)-- Post-fix: oneOf decoders --$(Color_Off)
 	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go run ./scripts/fix-oneof-decoder
+	@echo $(BGreen)-- Post-fix: gofmt the generated client --$(Color_Off)
+	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go fmt ./thehive/...
 
 .PHONY: clean
 clean: ## Remove build artifacts and Docker images
@@ -83,10 +85,23 @@ clean: ## Remove build artifacts and Docker images
 	@docker rmi thehive4go-generator 2>/dev/null || true
 
 .PHONY: integration-test
-integration-test: ## Run full integration tests with TheHive stack
+integration-test: ## Run full integration tests with TheHive stack (default: 5.6)
 	@echo $(BGreen)---------------------------$(Color_Off)
 	@echo $(BGreen)-- Running Integration  --$(Color_Off)
 	@echo $(BGreen)-- Tests with Full Stack--$(Color_Off)
+	@echo "-- THEHIVE_TAG=$${THEHIVE_TAG:-5.6}"
 	@echo $(BGreen)---------------------------$(Color_Off)
+	cd tests/integration && docker compose down -v 2>/dev/null || true
 	cd tests/integration && docker compose up --abort-on-container-exit integration-tests
-	cd tests/integration && docker compose down
+	cd tests/integration && docker compose down -v
+
+.PHONY: integration-test-5.5
+integration-test-5.5: ## Run integration tests against TheHive 5.5
+	THEHIVE_TAG=5.5 $(MAKE) integration-test
+
+.PHONY: integration-test-5.6
+integration-test-5.6: ## Run integration tests against TheHive 5.6
+	THEHIVE_TAG=5.6 $(MAKE) integration-test
+
+.PHONY: integration-test-matrix
+integration-test-matrix: integration-test-5.5 integration-test-5.6 ## Run integration tests against both 5.5 and 5.6

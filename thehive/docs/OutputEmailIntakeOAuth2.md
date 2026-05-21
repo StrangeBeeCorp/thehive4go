@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** |  | 
-**TenantId** | Pointer to **string** |  | [optional] 
-**Secret** | **string** |  | 
-**Authority** | Pointer to **string** |  | [optional] 
-**Scopes** | Pointer to **[]string** |  | [optional] 
-**AuthorizationCode** | Pointer to **string** |  | [optional] 
+**ClientId** | **string** |  |
+**TenantId** | Pointer to **string** |  | [optional]
+**Secret** | **string** |  |
+**Authority** | Pointer to **string** |  | [optional]
+**Scopes** | Pointer to **[]string** |  | [optional]
+**AuthorizationCode** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -172,5 +172,3 @@ HasAuthorizationCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

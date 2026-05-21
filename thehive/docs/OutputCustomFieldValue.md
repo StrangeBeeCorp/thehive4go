@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**Value** | **interface{}** |  | 
-**Order** | **int32** |  | 
+**UnderscoreId** | **string** |  |
+**Name** | **string** |  |
+**Type** | **string** |  |
+**Value** | **interface{}** |  |
+**Order** | **int32** |  |
 
 ## Methods
 
@@ -141,5 +141,3 @@ SetOrder sets Order field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | **string** |  | 
-**AutoShare** | **bool** |  | 
-**Editable** | **bool** |  | 
-**PermissionProfile** | **string** |  | 
-**TaskRule** | **string** |  | 
-**ObservableRule** | **string** |  | 
+**Name** | **string** |  |
+**Description** | **string** |  |
+**AutoShare** | **bool** |  |
+**Editable** | **bool** |  |
+**PermissionProfile** | **string** |  |
+**TaskRule** | **string** |  |
+**ObservableRule** | **string** |  |
 
 ## Methods
 
@@ -173,5 +173,3 @@ SetObservableRule sets ObservableRule field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int64** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
-**Login** | **string** |  | 
-**Name** | **string** |  | 
-**Email** | Pointer to **string** |  | [optional] 
-**HasKey** | **bool** |  | 
-**HasPassword** | **bool** |  | 
-**HasMFA** | **bool** |  | 
-**Locked** | **bool** |  | 
-**Profile** | **string** |  | 
-**Permissions** | Pointer to **[]string** |  | [optional] 
-**Organisation** | **string** |  | 
-**Avatar** | Pointer to **string** |  | [optional] 
-**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) |  | [optional] 
-**Type** | [**UserType**](UserType.md) |  | 
-**DefaultOrganisation** | Pointer to **string** |  | [optional] 
-**ExtraData** | **map[string]interface{}** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Login** | **string** |  |
+**Name** | **string** |  |
+**Email** | Pointer to **string** |  | [optional]
+**HasKey** | **bool** |  |
+**HasPassword** | **bool** |  |
+**HasMFA** | **bool** |  |
+**Locked** | **bool** |  |
+**Profile** | **string** |  |
+**Permissions** | Pointer to **[]string** |  | [optional]
+**Organisation** | **string** |  |
+**Avatar** | Pointer to **string** |  | [optional]
+**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) |  | [optional]
+**Type** | [**UserType**](UserType.md) |  |
+**DefaultOrganisation** | Pointer to **string** |  | [optional]
+**ExtraData** | **map[string]interface{}** |  |
 
 ## Methods
 
@@ -481,5 +481,3 @@ SetExtraData sets ExtraData field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

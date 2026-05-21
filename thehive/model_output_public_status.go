@@ -24,7 +24,7 @@ type OutputPublicStatus struct {
 	Sso          bool                `json:"sso"`
 	SsoProviders []OutputSsoProvider `json:"ssoProviders,omitempty"`
 	Version      string              `json:"version"`
-	Imports      Imports             `json:"imports"`
+	Imports      *Imports            `json:"imports,omitempty"`
 }
 
 type _OutputPublicStatus OutputPublicStatus
@@ -33,11 +33,10 @@ type _OutputPublicStatus OutputPublicStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputPublicStatus(sso bool, version string, imports Imports) *OutputPublicStatus {
+func NewOutputPublicStatus(sso bool, version string) *OutputPublicStatus {
 	this := OutputPublicStatus{}
 	this.Sso = sso
 	this.Version = version
-	this.Imports = imports
 	return &this
 }
 
@@ -129,28 +128,36 @@ func (o *OutputPublicStatus) SetVersion(v string) {
 	o.Version = v
 }
 
-// GetImports returns the Imports field value
+// GetImports returns the Imports field value if set, zero value otherwise.
 func (o *OutputPublicStatus) GetImports() Imports {
-	if o == nil {
+	if o == nil || IsNil(o.Imports) {
 		var ret Imports
 		return ret
 	}
-
-	return o.Imports
+	return *o.Imports
 }
 
-// GetImportsOk returns a tuple with the Imports field value
+// GetImportsOk returns a tuple with the Imports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputPublicStatus) GetImportsOk() (*Imports, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Imports) {
 		return nil, false
 	}
-	return &o.Imports, true
+	return o.Imports, true
 }
 
-// SetImports sets field value
+// HasImports returns a boolean if a field has been set.
+func (o *OutputPublicStatus) HasImports() bool {
+	if o != nil && !IsNil(o.Imports) {
+		return true
+	}
+
+	return false
+}
+
+// SetImports gets a reference to the given Imports and assigns it to the Imports field.
 func (o *OutputPublicStatus) SetImports(v Imports) {
-	o.Imports = v
+	o.Imports = &v
 }
 
 func (o OutputPublicStatus) MarshalJSON() ([]byte, error) {
@@ -168,7 +175,9 @@ func (o OutputPublicStatus) ToMap() (map[string]interface{}, error) {
 		toSerialize["ssoProviders"] = o.SsoProviders
 	}
 	toSerialize["version"] = o.Version
-	toSerialize["imports"] = o.Imports
+	if !IsNil(o.Imports) {
+		toSerialize["imports"] = o.Imports
+	}
 	return toSerialize, nil
 }
 
@@ -179,7 +188,6 @@ func (o *OutputPublicStatus) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"sso",
 		"version",
-		"imports",
 	}
 
 	allProperties := make(map[string]interface{})

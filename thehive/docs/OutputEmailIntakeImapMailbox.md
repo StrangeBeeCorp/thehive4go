@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Provider** | [**OutputEmailIntakeImapProvider**](OutputEmailIntakeImapProvider.md) |  | 
-**Credential** | [**OutputEmailIntakeCredential**](OutputEmailIntakeCredential.md) |  | 
-**Inbox** | **string** |  | 
-**Archive** | Pointer to **string** |  | [optional] 
-**MarkAsRead** | **bool** |  | 
-**Kind** | **string** |  | 
+**Provider** | [**OutputEmailIntakeImapProvider**](OutputEmailIntakeImapProvider.md) |  |
+**Credential** | [**OutputEmailIntakeCredential**](OutputEmailIntakeCredential.md) |  |
+**Inbox** | **string** |  |
+**Archive** | Pointer to **string** |  | [optional]
+**MarkAsRead** | **bool** |  |
+**Kind** | **string** |  |
 
 ## Methods
 
@@ -157,5 +157,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

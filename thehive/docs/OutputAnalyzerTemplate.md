@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**AnalyzerId** | **string** |  | 
-**Content** | **string** |  | 
+**Id** | **string** |  |
+**AnalyzerId** | **string** |  |
+**Content** | **string** |  |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetContent sets Content field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedAt** | **int64** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**Name** | **string** |  | 
-**Entity** | **string** |  | 
-**Filter** | **map[string]interface{}** |  | 
-**ListOptions** | [**ListOptions**](ListOptions.md) |  | 
-**SortList** | Pointer to **[]string** |  | [optional] 
-**ShowColumns** | Pointer to **[]string** |  | [optional] 
-**IsShared** | **bool** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**Name** | **string** |  |
+**Entity** | **string** |  |
+**Filter** | **map[string]interface{}** |  |
+**ListOptions** | [**ListOptions**](ListOptions.md) |  |
+**SortList** | Pointer to **[]string** |  | [optional]
+**ShowColumns** | Pointer to **[]string** |  | [optional]
+**IsShared** | **bool** |  |
 
 ## Methods
 
@@ -319,5 +319,3 @@ SetIsShared sets IsShared field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

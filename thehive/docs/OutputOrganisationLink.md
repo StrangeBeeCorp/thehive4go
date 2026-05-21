@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LinkType** | **string** |  | 
-**OtherLinkType** | **string** |  | 
-**Organisation** | [**OutputOrganisation**](OutputOrganisation.md) |  | 
+**LinkType** | **string** |  |
+**OtherLinkType** | **string** |  |
+**Organisation** | [**OutputOrganisation**](OutputOrganisation.md) |  |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetOrganisation sets Organisation field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

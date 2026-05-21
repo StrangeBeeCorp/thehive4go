@@ -24192,7 +24192,6 @@ components:
       - _id
       - _type
       - contentType
-      - external
       - extraData
       - hashes
       - id
@@ -25286,7 +25285,6 @@ components:
       - _type
       - createdAt
       - createdBy
-      - external
       - extraData
       - isEdited
       - message
@@ -26788,7 +26786,6 @@ components:
       - _id
       - _type
       - dataType
-      - external
       - extraData
       - ignoreSimilarity
       - ioc
@@ -27257,10 +27254,8 @@ components:
       - consumesLicense
       - editable
       - forAdmin
-      - forExternal
       - forOrg
       - name
-      - type
       title: OutputProfile
     OutputPublicStatus:
       example:
@@ -27287,7 +27282,6 @@ components:
         imports:
           $ref: "#/components/schemas/Imports"
       required:
-      - imports
       - sso
       - version
       title: OutputPublicStatus

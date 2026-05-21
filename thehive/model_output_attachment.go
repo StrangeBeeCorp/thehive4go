@@ -34,7 +34,7 @@ type OutputAttachment struct {
 	Id                  string                 `json:"id"`
 	Path                string                 `json:"path"`
 	ExtraData           map[string]interface{} `json:"extraData"`
-	External            bool                   `json:"external"`
+	External            *bool                  `json:"external,omitempty"`
 }
 
 type _OutputAttachment OutputAttachment
@@ -43,7 +43,7 @@ type _OutputAttachment OutputAttachment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}, external bool) *OutputAttachment {
+func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}) *OutputAttachment {
 	this := OutputAttachment{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -56,7 +56,6 @@ func NewOutputAttachment(underscoreId string, underscoreType string, underscoreC
 	this.Id = id
 	this.Path = path
 	this.ExtraData = extraData
-	this.External = external
 	return &this
 }
 
@@ -396,28 +395,36 @@ func (o *OutputAttachment) SetExtraData(v map[string]interface{}) {
 	o.ExtraData = v
 }
 
-// GetExternal returns the External field value
+// GetExternal returns the External field value if set, zero value otherwise.
 func (o *OutputAttachment) GetExternal() bool {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		var ret bool
 		return ret
 	}
-
-	return o.External
+	return *o.External
 }
 
-// GetExternalOk returns a tuple with the External field value
+// GetExternalOk returns a tuple with the External field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputAttachment) GetExternalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		return nil, false
 	}
-	return &o.External, true
+	return o.External, true
 }
 
-// SetExternal sets field value
+// HasExternal returns a boolean if a field has been set.
+func (o *OutputAttachment) HasExternal() bool {
+	if o != nil && !IsNil(o.External) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternal gets a reference to the given bool and assigns it to the External field.
 func (o *OutputAttachment) SetExternal(v bool) {
-	o.External = v
+	o.External = &v
 }
 
 func (o OutputAttachment) MarshalJSON() ([]byte, error) {
@@ -447,7 +454,9 @@ func (o OutputAttachment) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["path"] = o.Path
 	toSerialize["extraData"] = o.ExtraData
-	toSerialize["external"] = o.External
+	if !IsNil(o.External) {
+		toSerialize["external"] = o.External
+	}
 	return toSerialize, nil
 }
 
@@ -467,7 +476,6 @@ func (o *OutputAttachment) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"path",
 		"extraData",
-		"external",
 	}
 
 	allProperties := make(map[string]interface{})

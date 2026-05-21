@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OrganisationId** | **string** |  | 
-**Organisation** | **string** |  | 
-**Profile** | **string** |  | 
-**Avatar** | Pointer to **string** |  | [optional] 
-**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) |  | [optional] 
+**OrganisationId** | **string** |  |
+**Organisation** | **string** |  |
+**Profile** | **string** |  |
+**Avatar** | Pointer to **string** |  | [optional]
+**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) |  | [optional]
 
 ## Methods
 
@@ -141,5 +141,3 @@ HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

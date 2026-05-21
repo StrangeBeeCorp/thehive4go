@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Untouched** | **int32** | Number of observables left untouched | 
-**Updated** | **int32** | Number of observables updated | 
-**Deleted** | **int32** | Number of observables deleted | 
+**Untouched** | **int32** | Number of observables left untouched |
+**Updated** | **int32** | Number of observables updated |
+**Deleted** | **int32** | Number of observables deleted |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetDeleted sets Deleted field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

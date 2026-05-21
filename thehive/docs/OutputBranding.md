@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**LoginLogo** | Pointer to **string** |  | [optional] 
-**MenuLogo** | Pointer to **string** |  | [optional] 
-**Favicon** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional]
+**LoginLogo** | Pointer to **string** |  | [optional]
+**MenuLogo** | Pointer to **string** |  | [optional]
+**Favicon** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -130,5 +130,3 @@ HasFavicon returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

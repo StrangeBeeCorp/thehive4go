@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Result** | **interface{}** |  | 
-**DurationMillis** | **int64** | Time taken by the function | 
-**Stdout** | **string** | Content of stdout | 
-**Stderr** | **string** | Content of stderr | 
+**Result** | **interface{}** |  |
+**DurationMillis** | **int64** | Time taken by the function |
+**Stdout** | **string** | Content of stdout |
+**Stderr** | **string** | Content of stderr |
 
 ## Methods
 
@@ -120,5 +120,3 @@ SetStderr sets Stderr field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
