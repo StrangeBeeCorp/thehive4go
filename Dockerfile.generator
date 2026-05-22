@@ -11,8 +11,5 @@ RUN chmod +x /scripts/*.sh
 # Set working directory
 WORKDIR /workspace
 
-# Set the post-process file environment variable
-ENV GO_POST_PROCESS_FILE=/scripts/postprocess_client.sh
-
 # Default command - run the full pipeline
 CMD ["/scripts/generate_full_pipeline.sh"]

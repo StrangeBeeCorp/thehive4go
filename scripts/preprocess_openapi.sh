@@ -21,11 +21,6 @@ echo -e "${GREEN}✅ BasicAuth fix applied successfully${NC}"
 sed -i 's/Api Key:/ApiKey:/g' "$FIXED_OPENAPI_PATH"
 echo -e "${GREEN}✅ Api Key fix applied successfully${NC}"
 
-# Fix timestamp fields: replace format: datetime_ms with format: int64
-# (harmless no-op if the spec already uses int64 natively)
-sed -i 's/format: datetime_ms/format: int64/g' "$FIXED_OPENAPI_PATH"
-echo -e "${GREEN}✅ Timestamp format fix applied (datetime_ms -> int64, if any)${NC}"
-
 # Fix Header securityScheme - change from http to apiKey and fix name
 sed -i '/  securitySchemes:/,/^[^ ]/ {
   /    Header:/,/^    [^ ]/ {
