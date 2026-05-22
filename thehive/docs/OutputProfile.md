@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int64** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
-**Type** | [**ProfileType**](ProfileType.md) |  | 
-**Name** | **string** |  | 
-**Permissions** | Pointer to **[]string** |  | [optional] 
-**Editable** | **bool** |  | 
-**ForAdmin** | **bool** |  | 
-**ForOrg** | **bool** |  | 
-**ForExternal** | **bool** |  | 
-**ConsumesLicense** | **bool** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Type** | Pointer to [**ProfileType**](ProfileType.md) |  | [optional]
+**Name** | **string** |  |
+**Permissions** | Pointer to **[]string** |  | [optional]
+**Editable** | **bool** |  |
+**ForAdmin** | **bool** |  |
+**ForOrg** | **bool** |  |
+**ForExternal** | Pointer to **bool** |  | [optional]
+**ConsumesLicense** | **bool** |  |
 
 ## Methods
 
 ### NewOutputProfile
 
-`func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, type_ ProfileType, name string, editable bool, forAdmin bool, forOrg bool, forExternal bool, consumesLicense bool, ) *OutputProfile`
+`func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, editable bool, forAdmin bool, forOrg bool, consumesLicense bool, ) *OutputProfile`
 
 NewOutputProfile instantiates a new OutputProfile object
 This constructor will assign default values to properties that have it defined,
@@ -187,6 +187,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *OutputProfile) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetName
 
@@ -312,6 +317,11 @@ and a boolean to check if the value has been set.
 
 SetForExternal sets ForExternal field to given value.
 
+### HasForExternal
+
+`func (o *OutputProfile) HasForExternal() bool`
+
+HasForExternal returns a boolean if a field has been set.
 
 ### GetConsumesLicense
 
@@ -335,5 +345,3 @@ SetConsumesLicense sets ConsumesLicense field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

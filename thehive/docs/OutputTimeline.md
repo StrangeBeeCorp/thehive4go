@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]OutputTimelineEvent**](OutputTimelineEvent.md) |  | [optional] 
+**Events** | Pointer to [**[]OutputTimelineEvent**](OutputTimelineEvent.md) |  | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

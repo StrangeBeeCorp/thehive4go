@@ -21,20 +21,20 @@ var _ MappedNullable = &OutputProfile{}
 
 // OutputProfile struct for OutputProfile
 type OutputProfile struct {
-	UnderscoreId        string      `json:"_id"`
-	UnderscoreType      string      `json:"_type"`
-	UnderscoreCreatedBy string      `json:"_createdBy"`
-	UnderscoreUpdatedBy *string     `json:"_updatedBy,omitempty"`
-	UnderscoreCreatedAt int64       `json:"_createdAt"`
-	UnderscoreUpdatedAt *int64      `json:"_updatedAt,omitempty"`
-	Type                ProfileType `json:"type"`
-	Name                string      `json:"name"`
-	Permissions         []string    `json:"permissions,omitempty"`
-	Editable            bool        `json:"editable"`
-	ForAdmin            bool        `json:"forAdmin"`
-	ForOrg              bool        `json:"forOrg"`
-	ForExternal         bool        `json:"forExternal"`
-	ConsumesLicense     bool        `json:"consumesLicense"`
+	UnderscoreId        string       `json:"_id"`
+	UnderscoreType      string       `json:"_type"`
+	UnderscoreCreatedBy string       `json:"_createdBy"`
+	UnderscoreUpdatedBy *string      `json:"_updatedBy,omitempty"`
+	UnderscoreCreatedAt int64        `json:"_createdAt"`
+	UnderscoreUpdatedAt *int64       `json:"_updatedAt,omitempty"`
+	Type                *ProfileType `json:"type,omitempty"`
+	Name                string       `json:"name"`
+	Permissions         []string     `json:"permissions,omitempty"`
+	Editable            bool         `json:"editable"`
+	ForAdmin            bool         `json:"forAdmin"`
+	ForOrg              bool         `json:"forOrg"`
+	ForExternal         *bool        `json:"forExternal,omitempty"`
+	ConsumesLicense     bool         `json:"consumesLicense"`
 }
 
 type _OutputProfile OutputProfile
@@ -43,18 +43,16 @@ type _OutputProfile OutputProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, type_ ProfileType, name string, editable bool, forAdmin bool, forOrg bool, forExternal bool, consumesLicense bool) *OutputProfile {
+func NewOutputProfile(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, editable bool, forAdmin bool, forOrg bool, consumesLicense bool) *OutputProfile {
 	this := OutputProfile{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
 	this.UnderscoreCreatedBy = underscoreCreatedBy
 	this.UnderscoreCreatedAt = underscoreCreatedAt
-	this.Type = type_
 	this.Name = name
 	this.Editable = editable
 	this.ForAdmin = forAdmin
 	this.ForOrg = forOrg
-	this.ForExternal = forExternal
 	this.ConsumesLicense = consumesLicense
 	return &this
 }
@@ -227,28 +225,36 @@ func (o *OutputProfile) SetUnderscoreUpdatedAt(v int64) {
 	o.UnderscoreUpdatedAt = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *OutputProfile) GetType() ProfileType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret ProfileType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputProfile) GetTypeOk() (*ProfileType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *OutputProfile) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ProfileType and assigns it to the Type field.
 func (o *OutputProfile) SetType(v ProfileType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetName returns the Name field value
@@ -379,28 +385,36 @@ func (o *OutputProfile) SetForOrg(v bool) {
 	o.ForOrg = v
 }
 
-// GetForExternal returns the ForExternal field value
+// GetForExternal returns the ForExternal field value if set, zero value otherwise.
 func (o *OutputProfile) GetForExternal() bool {
-	if o == nil {
+	if o == nil || IsNil(o.ForExternal) {
 		var ret bool
 		return ret
 	}
-
-	return o.ForExternal
+	return *o.ForExternal
 }
 
-// GetForExternalOk returns a tuple with the ForExternal field value
+// GetForExternalOk returns a tuple with the ForExternal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputProfile) GetForExternalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ForExternal) {
 		return nil, false
 	}
-	return &o.ForExternal, true
+	return o.ForExternal, true
 }
 
-// SetForExternal sets field value
+// HasForExternal returns a boolean if a field has been set.
+func (o *OutputProfile) HasForExternal() bool {
+	if o != nil && !IsNil(o.ForExternal) {
+		return true
+	}
+
+	return false
+}
+
+// SetForExternal gets a reference to the given bool and assigns it to the ForExternal field.
 func (o *OutputProfile) SetForExternal(v bool) {
-	o.ForExternal = v
+	o.ForExternal = &v
 }
 
 // GetConsumesLicense returns the ConsumesLicense field value
@@ -447,7 +461,9 @@ func (o OutputProfile) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UnderscoreUpdatedAt) {
 		toSerialize["_updatedAt"] = o.UnderscoreUpdatedAt
 	}
-	toSerialize["type"] = o.Type
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
@@ -455,7 +471,9 @@ func (o OutputProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize["editable"] = o.Editable
 	toSerialize["forAdmin"] = o.ForAdmin
 	toSerialize["forOrg"] = o.ForOrg
-	toSerialize["forExternal"] = o.ForExternal
+	if !IsNil(o.ForExternal) {
+		toSerialize["forExternal"] = o.ForExternal
+	}
 	toSerialize["consumesLicense"] = o.ConsumesLicense
 	return toSerialize, nil
 }
@@ -469,12 +487,10 @@ func (o *OutputProfile) UnmarshalJSON(data []byte) (err error) {
 		"_type",
 		"_createdBy",
 		"_createdAt",
-		"type",
 		"name",
 		"editable",
 		"forAdmin",
 		"forOrg",
-		"forExternal",
 		"consumesLicense",
 	}
 

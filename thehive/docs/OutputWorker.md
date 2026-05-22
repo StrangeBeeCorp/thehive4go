@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**Version** | **string** |  | 
-**Description** | **string** |  | 
-**DataTypeList** | Pointer to **[]string** |  | [optional] 
-**CortexIds** | Pointer to **[]string** |  | [optional] 
+**Id** | **string** |  |
+**Name** | **string** |  |
+**Version** | **string** |  |
+**Description** | **string** |  |
+**DataTypeList** | Pointer to **[]string** |  | [optional]
+**CortexIds** | Pointer to **[]string** |  | [optional]
 
 ## Methods
 
@@ -162,5 +162,3 @@ HasCortexIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

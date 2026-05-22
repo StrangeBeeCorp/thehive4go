@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Widgets** | Pointer to [**[]Kind**](Kind.md) |  | [optional] 
-**AlertFields** | Pointer to [**[]AlertField**](AlertField.md) |  | [optional] 
-**ObservableFields** | Pointer to [**[]ObservableField**](ObservableField.md) |  | [optional] 
-**TaskFields** | Pointer to [**[]TaskField**](TaskField.md) |  | [optional] 
-**TtpFields** | Pointer to [**[]TTPField**](TTPField.md) |  | [optional] 
-**LogFields** | Pointer to [**[]LogField**](LogField.md) |  | [optional] 
-**TimelineEvents** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) |  | [optional] 
+**Widgets** | Pointer to [**[]Kind**](Kind.md) |  | [optional]
+**AlertFields** | Pointer to [**[]AlertField**](AlertField.md) |  | [optional]
+**ObservableFields** | Pointer to [**[]ObservableField**](ObservableField.md) |  | [optional]
+**TaskFields** | Pointer to [**[]TaskField**](TaskField.md) |  | [optional]
+**TtpFields** | Pointer to [**[]TTPField**](TTPField.md) |  | [optional]
+**LogFields** | Pointer to [**[]LogField**](LogField.md) |  | [optional]
+**TimelineEvents** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) |  | [optional]
 
 ## Methods
 
@@ -208,5 +208,3 @@ HasTimelineEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

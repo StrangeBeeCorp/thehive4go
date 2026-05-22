@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FieldsByModel** | [**map[string][]ExportFieldDescription**](array.md) |  | 
+**FieldsByModel** | [**map[string][]ExportFieldDescription**](array.md) |  |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetFieldsByModel sets FieldsByModel field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

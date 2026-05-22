@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Secret** | **string** |  | 
-**Uri** | **string** |  | 
+**Secret** | **string** |  |
+**Uri** | **string** |  |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetUri sets Uri field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

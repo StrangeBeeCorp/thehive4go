@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | **string** |  | 
-**Fallback** | [**OutputLicense**](OutputLicense.md) |  | 
-**NotFound** | **bool** |  | 
-**License** | [**OutputLicense**](OutputLicense.md) |  | 
+**Error** | **string** |  |
+**Fallback** | [**OutputLicense**](OutputLicense.md) |  |
+**NotFound** | **bool** |  |
+**License** | [**OutputLicense**](OutputLicense.md) |  |
 
 ## Methods
 
@@ -110,5 +110,3 @@ SetLicense sets License field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

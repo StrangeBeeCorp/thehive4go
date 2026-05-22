@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**UnderscoreCreatedBy** | **string** |  | 
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional] 
-**UnderscoreCreatedAt** | **int64** |  | 
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional] 
-**Name** | **string** |  | 
-**Hashes** | **[]string** |  | 
-**Size** | **int64** |  | 
-**ContentType** | **string** |  | 
-**Id** | **string** |  | 
-**Path** | **string** |  | 
-**ExtraData** | **map[string]interface{}** |  | 
-**External** | **bool** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**UnderscoreCreatedBy** | **string** |  |
+**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
+**UnderscoreCreatedAt** | **int64** |  |
+**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
+**Name** | **string** |  |
+**Hashes** | **[]string** |  |
+**Size** | **int64** |  |
+**ContentType** | **string** |  |
+**Id** | **string** |  |
+**Path** | **string** |  |
+**ExtraData** | **map[string]interface{}** |  |
+**External** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
 ### NewOutputAttachment
 
-`func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}, external bool, ) *OutputAttachment`
+`func NewOutputAttachment(underscoreId string, underscoreType string, underscoreCreatedBy string, underscoreCreatedAt int64, name string, hashes []string, size int64, contentType string, id string, path string, extraData map[string]interface{}, ) *OutputAttachment`
 
 NewOutputAttachment instantiates a new OutputAttachment object
 This constructor will assign default values to properties that have it defined,
@@ -327,8 +327,11 @@ and a boolean to check if the value has been set.
 
 SetExternal sets External field to given value.
 
+### HasExternal
+
+`func (o *OutputAttachment) HasExternal() bool`
+
+HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

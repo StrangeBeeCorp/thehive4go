@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Name of the provider | 
-**Kind** | [**EmailIntakeConfigKind**](EmailIntakeConfigKind.md) |  | 
+**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Name of the provider |
+**Kind** | [**EmailIntakeConfigKind**](EmailIntakeConfigKind.md) |  |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

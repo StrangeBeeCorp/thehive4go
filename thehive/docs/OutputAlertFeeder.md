@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | **string** |  | 
-**Method** | [**Method**](Method.md) |  | 
-**Url** | **string** |  | 
-**Interval** | [**Interval**](Interval.md) |  | 
-**Function** | [**OutputFunction**](OutputFunction.md) |  | 
-**Headers** | Pointer to [**[]Header**](Header.md) |  | [optional] 
-**Auth** | Pointer to [**Auth**](Auth.md) |  | [optional] 
-**Body** | Pointer to **string** |  | [optional] 
-**Enabled** | **bool** |  | 
-**RequestTimeout** | [**Interval**](Interval.md) |  | 
-**ResponseMaxSize** | **int64** |  | 
-**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) |  | [optional] 
+**Name** | **string** |  |
+**Description** | **string** |  |
+**Method** | [**Method**](Method.md) |  |
+**Url** | **string** |  |
+**Interval** | [**Interval**](Interval.md) |  |
+**Function** | [**OutputFunction**](OutputFunction.md) |  |
+**Headers** | Pointer to [**[]Header**](Header.md) |  | [optional]
+**Auth** | Pointer to [**Auth**](Auth.md) |  | [optional]
+**Body** | Pointer to **string** |  | [optional]
+**Enabled** | **bool** |  |
+**RequestTimeout** | [**Interval**](Interval.md) |  |
+**ResponseMaxSize** | **int64** |  |
+**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) |  | [optional]
 
 ## Methods
 
@@ -319,5 +319,3 @@ HasProxyConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

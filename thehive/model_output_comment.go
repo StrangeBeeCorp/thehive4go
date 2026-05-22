@@ -30,7 +30,7 @@ type OutputComment struct {
 	Message        string                 `json:"message"`
 	IsEdited       bool                   `json:"isEdited"`
 	ExtraData      map[string]interface{} `json:"extraData"`
-	External       bool                   `json:"external"`
+	External       *bool                  `json:"external,omitempty"`
 }
 
 type _OutputComment OutputComment
@@ -39,7 +39,7 @@ type _OutputComment OutputComment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}, external bool) *OutputComment {
+func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}) *OutputComment {
 	this := OutputComment{}
 	this.UnderscoreId = underscoreId
 	this.UnderscoreType = underscoreType
@@ -48,7 +48,6 @@ func NewOutputComment(underscoreId string, underscoreType string, createdBy stri
 	this.Message = message
 	this.IsEdited = isEdited
 	this.ExtraData = extraData
-	this.External = external
 	return &this
 }
 
@@ -292,28 +291,36 @@ func (o *OutputComment) SetExtraData(v map[string]interface{}) {
 	o.ExtraData = v
 }
 
-// GetExternal returns the External field value
+// GetExternal returns the External field value if set, zero value otherwise.
 func (o *OutputComment) GetExternal() bool {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		var ret bool
 		return ret
 	}
-
-	return o.External
+	return *o.External
 }
 
-// GetExternalOk returns a tuple with the External field value
+// GetExternalOk returns a tuple with the External field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OutputComment) GetExternalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.External) {
 		return nil, false
 	}
-	return &o.External, true
+	return o.External, true
 }
 
-// SetExternal sets field value
+// HasExternal returns a boolean if a field has been set.
+func (o *OutputComment) HasExternal() bool {
+	if o != nil && !IsNil(o.External) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternal gets a reference to the given bool and assigns it to the External field.
 func (o *OutputComment) SetExternal(v bool) {
-	o.External = v
+	o.External = &v
 }
 
 func (o OutputComment) MarshalJSON() ([]byte, error) {
@@ -339,7 +346,9 @@ func (o OutputComment) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	toSerialize["isEdited"] = o.IsEdited
 	toSerialize["extraData"] = o.ExtraData
-	toSerialize["external"] = o.External
+	if !IsNil(o.External) {
+		toSerialize["external"] = o.External
+	}
 	return toSerialize, nil
 }
 
@@ -355,7 +364,6 @@ func (o *OutputComment) UnmarshalJSON(data []byte) (err error) {
 		"message",
 		"isEdited",
 		"extraData",
-		"external",
 	}
 
 	allProperties := make(map[string]interface{})

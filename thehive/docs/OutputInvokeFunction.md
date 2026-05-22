@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorType** | **string** | Error type encountered by the server | 
-**ErrorMessage** | **string** | Precise error that led to execution failure | 
-**Stdout** | **string** | Content of stdout | 
-**Stderr** | **string** | Content of stderr | 
-**Result** | **interface{}** |  | 
-**DurationMillis** | **int64** | Time taken by the function | 
+**ErrorType** | **string** | Error type encountered by the server |
+**ErrorMessage** | **string** | Precise error that led to execution failure |
+**Stdout** | **string** | Content of stdout |
+**Stderr** | **string** | Content of stderr |
+**Result** | **interface{}** |  |
+**DurationMillis** | **int64** | Time taken by the function |
 
 ## Methods
 
@@ -162,5 +162,3 @@ SetDurationMillis sets DurationMillis field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

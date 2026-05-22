@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **string** |  | 
-**GitDescription** | **string** |  | 
-**Connectors** | **map[string]map[string]interface{}** |  | 
-**Config** | **map[string]interface{}** |  | 
-**License** | [**OutputLicenseStatus**](OutputLicenseStatus.md) |  | 
-**Cluster** | Pointer to **map[string]interface{}** |  | [optional] 
-**SchemaStatus** | Pointer to **[]map[string]interface{}** | Filled when verbose | [optional] 
-**Features** | Pointer to **[]string** |  | [optional] 
+**Version** | **string** |  |
+**GitDescription** | **string** |  |
+**Connectors** | **map[string]map[string]interface{}** |  |
+**Config** | **map[string]interface{}** |  |
+**License** | [**OutputLicenseStatus**](OutputLicenseStatus.md) |  |
+**Cluster** | Pointer to **map[string]interface{}** |  | [optional]
+**SchemaStatus** | Pointer to **[]map[string]interface{}** | Filled when verbose | [optional]
+**Features** | Pointer to **[]string** |  | [optional]
 
 ## Methods
 
@@ -209,5 +209,3 @@ HasFeatures returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

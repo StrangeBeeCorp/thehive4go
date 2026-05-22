@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  | 
-**UnderscoreType** | **string** |  | 
-**CreatedBy** | **string** |  | 
-**CreatedAt** | **int64** |  | 
-**UpdatedAt** | Pointer to **int64** |  | [optional] 
-**UpdatedBy** | Pointer to **string** |  | [optional] 
-**Message** | **string** |  | 
-**IsEdited** | **bool** |  | 
-**ExtraData** | **map[string]interface{}** |  | 
-**External** | **bool** |  | 
+**UnderscoreId** | **string** |  |
+**UnderscoreType** | **string** |  |
+**CreatedBy** | **string** |  |
+**CreatedAt** | **int64** |  |
+**UpdatedAt** | Pointer to **int64** |  | [optional]
+**UpdatedBy** | Pointer to **string** |  | [optional]
+**Message** | **string** |  |
+**IsEdited** | **bool** |  |
+**ExtraData** | **map[string]interface{}** |  |
+**External** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
 ### NewOutputComment
 
-`func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}, external bool, ) *OutputComment`
+`func NewOutputComment(underscoreId string, underscoreType string, createdBy string, createdAt int64, message string, isEdited bool, extraData map[string]interface{}, ) *OutputComment`
 
 NewOutputComment instantiates a new OutputComment object
 This constructor will assign default values to properties that have it defined,
@@ -243,8 +243,11 @@ and a boolean to check if the value has been set.
 
 SetExternal sets External field to given value.
 
+### HasExternal
+
+`func (o *OutputComment) HasExternal() bool`
+
+HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

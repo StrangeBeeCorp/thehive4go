@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Host** | Pointer to **string** |  | [optional] 
-**Protocol** | Pointer to **string** |  | [optional] 
-**Port** | Pointer to **int32** |  | [optional] 
-**Ssl** | Pointer to **bool** |  | [optional] 
-**StartTLS** | Pointer to **bool** |  | [optional] 
-**CheckServerIdentity** | Pointer to **bool** |  | [optional] 
-**Certificates** | Pointer to [**[]OutputEmailIntakeSSLCert**](OutputEmailIntakeSSLCert.md) |  | [optional] 
+**Name** | **string** |  |
+**Host** | Pointer to **string** |  | [optional]
+**Protocol** | Pointer to **string** |  | [optional]
+**Port** | Pointer to **int32** |  | [optional]
+**Ssl** | Pointer to **bool** |  | [optional]
+**StartTLS** | Pointer to **bool** |  | [optional]
+**CheckServerIdentity** | Pointer to **bool** |  | [optional]
+**Certificates** | Pointer to [**[]OutputEmailIntakeSSLCert**](OutputEmailIntakeSSLCert.md) |  | [optional]
 
 ## Methods
 
@@ -229,5 +229,3 @@ HasCertificates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

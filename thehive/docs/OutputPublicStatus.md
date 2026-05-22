@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sso** | **bool** |  | 
-**SsoProviders** | Pointer to [**[]OutputSsoProvider**](OutputSsoProvider.md) |  | [optional] 
-**Version** | **string** |  | 
-**Imports** | [**Imports**](Imports.md) |  | 
+**Sso** | **bool** |  |
+**SsoProviders** | Pointer to [**[]OutputSsoProvider**](OutputSsoProvider.md) |  | [optional]
+**Version** | **string** |  |
+**Imports** | Pointer to [**Imports**](Imports.md) |  | [optional]
 
 ## Methods
 
 ### NewOutputPublicStatus
 
-`func NewOutputPublicStatus(sso bool, version string, imports Imports, ) *OutputPublicStatus`
+`func NewOutputPublicStatus(sso bool, version string, ) *OutputPublicStatus`
 
 NewOutputPublicStatus instantiates a new OutputPublicStatus object
 This constructor will assign default values to properties that have it defined,
@@ -112,8 +112,11 @@ and a boolean to check if the value has been set.
 
 SetImports sets Imports field to given value.
 
+### HasImports
+
+`func (o *OutputPublicStatus) HasImports() bool`
+
+HasImports returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

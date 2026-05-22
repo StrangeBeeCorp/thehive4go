@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Case** | [**OutputCase**](OutputCase.md) |  | 
-**Observables** | Pointer to [**[]OutputObservable**](OutputObservable.md) |  | [optional] 
-**Procedures** | Pointer to [**[]OutputProcedure**](OutputProcedure.md) |  | [optional] 
-**Errors** | Pointer to **[]interface{}** | Field is present if there were some errors during import | [optional] 
+**Case** | [**OutputCase**](OutputCase.md) |  |
+**Observables** | Pointer to [**[]OutputObservable**](OutputObservable.md) |  | [optional]
+**Procedures** | Pointer to [**[]OutputProcedure**](OutputProcedure.md) |  | [optional]
+**Errors** | Pointer to **[]interface{}** | Field is present if there were some errors during import | [optional]
 
 ## Methods
 
@@ -125,5 +125,3 @@ HasErrors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

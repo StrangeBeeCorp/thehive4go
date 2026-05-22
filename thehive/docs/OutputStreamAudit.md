@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Base** | [**OutputAudit**](OutputAudit.md) |  | 
-**Summary** | **map[string]map[string]int32** |  | 
+**Base** | [**OutputAudit**](OutputAudit.md) |  |
+**Summary** | **map[string]map[string]int32** |  |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetSummary sets Summary field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
