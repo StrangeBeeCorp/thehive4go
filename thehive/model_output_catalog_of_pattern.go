@@ -355,7 +355,8 @@ func (o *OutputCatalogOfPattern) UnmarshalJSON(data []byte) (err error) {
 	varOutputCatalogOfPattern := _OutputCatalogOfPattern{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varOutputCatalogOfPattern)
 
 	if err != nil {

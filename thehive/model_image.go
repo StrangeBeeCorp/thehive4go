@@ -171,7 +171,8 @@ func (o *Image) UnmarshalJSON(data []byte) (err error) {
 	varImage := _Image{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varImage)
 
 	if err != nil {

@@ -32,12 +32,21 @@ jobs:
       - name: Run regression tests
         run: make regression-test
 
-      # Cross-version: every PR must pass against both supported TheHive
-      # versions. Without this matrix step a regression on 5.5 would
+      # The client is generated, then post-processed: a regeneration that
+      # skipped a step would bring back the decoders it fixes.
+      - name: Check the client is post-processed
+        run: make check-postprocess
+
+      # Cross-version: every PR must pass against every supported TheHive
+      # version. Without this matrix step a regression on 5.5 would
       # silently land because the default `make integration-test` only
-      # exercises 5.6.
+      # exercises 5.6. 5.8 is newer than the spec the client is generated
+      # from: it catches a response the models do not accept.
       - name: Run integration tests against TheHive 5.5
         run: make integration-test-5.5
 
       - name: Run integration tests against TheHive 5.6
         run: make integration-test-5.6
+
+      - name: Run integration tests against TheHive 5.8
+        run: make integration-test-5.8

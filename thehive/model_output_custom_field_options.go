@@ -13,7 +13,6 @@ package thehive
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // OutputCustomFieldOptions - struct for OutputCustomFieldOptions
@@ -46,71 +45,26 @@ func ArrayOfStringAsOutputCustomFieldOptions(v *[]string) OutputCustomFieldOptio
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputCustomFieldOptions) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into ArrayOfFloat64
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfFloat64)
-	if err == nil {
-		jsonArrayOfFloat64, _ := json.Marshal(dst.ArrayOfFloat64)
-		if string(jsonArrayOfFloat64) == "{}" { // empty struct
-			dst.ArrayOfFloat64 = nil
-		} else {
-			if err = validator.Validate(dst.ArrayOfFloat64); err != nil {
-				dst.ArrayOfFloat64 = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ArrayOfFloat64 = nil
+	// Postprocessed by scripts/tolerant-response-decoder: first match wins.
+	// An empty array, or an array of integers, decodes as several of these
+	// variants at once, and TheHive sends both: counting matches rejects them.
+	*dst = OutputCustomFieldOptions{}
+	var vArrayOfFloat64 []float64
+	if err := json.Unmarshal(data, &vArrayOfFloat64); err == nil {
+		dst.ArrayOfFloat64 = &vArrayOfFloat64
+		return nil
 	}
-
-	// try to unmarshal data into ArrayOfInt32
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfInt32)
-	if err == nil {
-		jsonArrayOfInt32, _ := json.Marshal(dst.ArrayOfInt32)
-		if string(jsonArrayOfInt32) == "{}" { // empty struct
-			dst.ArrayOfInt32 = nil
-		} else {
-			if err = validator.Validate(dst.ArrayOfInt32); err != nil {
-				dst.ArrayOfInt32 = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ArrayOfInt32 = nil
+	var vArrayOfInt32 []int32
+	if err := json.Unmarshal(data, &vArrayOfInt32); err == nil {
+		dst.ArrayOfInt32 = &vArrayOfInt32
+		return nil
 	}
-
-	// try to unmarshal data into ArrayOfString
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfString)
-	if err == nil {
-		jsonArrayOfString, _ := json.Marshal(dst.ArrayOfString)
-		if string(jsonArrayOfString) == "{}" { // empty struct
-			dst.ArrayOfString = nil
-		} else {
-			if err = validator.Validate(dst.ArrayOfString); err != nil {
-				dst.ArrayOfString = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ArrayOfString = nil
+	var vArrayOfString []string
+	if err := json.Unmarshal(data, &vArrayOfString); err == nil {
+		dst.ArrayOfString = &vArrayOfString
+		return nil
 	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.ArrayOfFloat64 = nil
-		dst.ArrayOfInt32 = nil
-		dst.ArrayOfString = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(OutputCustomFieldOptions)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(OutputCustomFieldOptions)")
-	}
+	return fmt.Errorf("data failed to match schemas in oneOf(OutputCustomFieldOptions)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

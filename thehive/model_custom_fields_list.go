@@ -143,7 +143,8 @@ func (o *CustomFieldsList) UnmarshalJSON(data []byte) (err error) {
 	varCustomFieldsList := _CustomFieldsList{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varCustomFieldsList)
 
 	if err != nil {

@@ -403,7 +403,8 @@ func (o *OutputLicenseStatus) UnmarshalJSON(data []byte) (err error) {
 	varOutputLicenseStatus := _OutputLicenseStatus{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varOutputLicenseStatus)
 
 	if err != nil {

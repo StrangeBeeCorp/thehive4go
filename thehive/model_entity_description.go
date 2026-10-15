@@ -191,7 +191,8 @@ func (o *EntityDescription) UnmarshalJSON(data []byte) (err error) {
 	varEntityDescription := _EntityDescription{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varEntityDescription)
 
 	if err != nil {

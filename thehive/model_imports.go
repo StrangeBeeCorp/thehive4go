@@ -107,7 +107,8 @@ func (o *Imports) UnmarshalJSON(data []byte) (err error) {
 	varImports := _Imports{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varImports)
 
 	if err != nil {

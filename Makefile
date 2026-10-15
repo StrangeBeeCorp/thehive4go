@@ -73,8 +73,19 @@ generate: ## Generate the client code from OpenAPI spec
 	@docker run --rm -v $(CURDIR):/workspace -u $(shell id -u):$(shell id -g) thehive4go-generator
 	@echo $(BGreen)-- Post-fix: oneOf decoders --$(Color_Off)
 	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go run ./scripts/fix-oneof-decoder
+	@echo $(BGreen)-- Post-fix: tolerant response decoders --$(Color_Off)
+	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go run ./scripts/tolerant-response-decoder
 	@echo $(BGreen)-- Post-fix: gofmt the generated client --$(Color_Off)
 	@docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) go fmt ./thehive/...
+
+.PHONY: check-postprocess
+check-postprocess: ## Fail if the committed client misses a post-generation fix
+	@echo $(BGreen)-- Post-fixes re-run on the committed client --$(Color_Off)
+	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) sh -c '\
+		go run ./scripts/fix-oneof-decoder -spec thehive/api/openapi.yaml && \
+		go run ./scripts/tolerant-response-decoder && \
+		go fmt ./thehive/... >/dev/null'
+	git diff --exit-code -- thehive
 
 .PHONY: clean
 clean: ## Remove build artifacts and Docker images
@@ -103,5 +114,9 @@ integration-test-5.5: ## Run integration tests against TheHive 5.5
 integration-test-5.6: ## Run integration tests against TheHive 5.6
 	THEHIVE_TAG=5.6 $(MAKE) integration-test
 
+.PHONY: integration-test-5.8
+integration-test-5.8: ## Run integration tests against TheHive 5.8, newer than the 5.6 spec the client is generated from
+	THEHIVE_TAG=5.8 $(MAKE) integration-test
+
 .PHONY: integration-test-matrix
-integration-test-matrix: integration-test-5.5 integration-test-5.6 ## Run integration tests against both 5.5 and 5.6
+integration-test-matrix: integration-test-5.5 integration-test-5.6 integration-test-5.8 ## Run integration tests against 5.5, 5.6 and 5.8
