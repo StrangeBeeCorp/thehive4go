@@ -1,5 +1,7 @@
 GO := go
-GO_IMAGE := golang:1.25.10-alpine
+GO_IMAGE := golang:1.26.9-alpine
+# Pinned: `@latest` broke CI when v1.8.0 started to need a newer Go than GO_IMAGE. Bump both together.
+GOVULNCHECK_VERSION := v1.9.0
 # scripts/fix-oneof-decoder/main.go pattern-matches the UnmarshalJSON body
 # this image emits. When bumping the generator, re-run `make generate` — the
 # tool runs in strict mode and will log.Fatalf if its detection patterns no
@@ -48,7 +50,7 @@ vulncheck: ## Check for vulnerabilities
 	@echo $(BGreen)------------------------------$(Color_Off)
 	@echo $(BGreen)-- Security Vulnerability  --$(Color_Off)
 	@echo $(BGreen)------------------------------$(Color_Off)
-	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) sh -c 'go install golang.org/x/vuln/cmd/govulncheck@latest && govulncheck ./...'
+	docker run -i --rm -v $(CURDIR):/app -w /app $(GO_IMAGE) sh -c 'go install golang.org/x/vuln/cmd/govulncheck@$(GOVULNCHECK_VERSION) && govulncheck ./...'
 
 .PHONY: vetlint
 vetlint: ## Run linter checks
