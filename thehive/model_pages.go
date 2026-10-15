@@ -179,7 +179,8 @@ func (o *Pages) UnmarshalJSON(data []byte) (err error) {
 	varPages := _Pages{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varPages)
 
 	if err != nil {

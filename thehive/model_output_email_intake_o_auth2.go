@@ -279,7 +279,8 @@ func (o *OutputEmailIntakeOAuth2) UnmarshalJSON(data []byte) (err error) {
 	varOutputEmailIntakeOAuth2 := _OutputEmailIntakeOAuth2{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varOutputEmailIntakeOAuth2)
 
 	if err != nil {

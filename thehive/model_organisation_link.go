@@ -200,7 +200,8 @@ func (o *OrganisationLink) UnmarshalJSON(data []byte) (err error) {
 	varOrganisationLink := _OrganisationLink{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varOrganisationLink)
 
 	if err != nil {

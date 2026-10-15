@@ -551,7 +551,8 @@ func (o *SSLConfig) UnmarshalJSON(data []byte) (err error) {
 	varSSLConfig := _SSLConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varSSLConfig)
 
 	if err != nil {
