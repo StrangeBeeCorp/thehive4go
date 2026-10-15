@@ -86,23 +86,47 @@ func TestResponseModelsStillRequireTheirFields(t *testing.T) {
 	assert.Contains(t, err.Error(), "no value given for required property")
 }
 
+// customFieldOptionsVariant names the one variant of the oneOf that is set.
+func customFieldOptionsVariant(t *testing.T, o thehive.OutputCustomFieldOptions) string {
+	t.Helper()
+	var set []string
+	if o.ArrayOfInt32 != nil {
+		set = append(set, "ArrayOfInt32")
+	}
+	if o.ArrayOfFloat64 != nil {
+		set = append(set, "ArrayOfFloat64")
+	}
+	if o.ArrayOfString != nil {
+		set = append(set, "ArrayOfString")
+	}
+	require.Len(t, set, 1, "exactly one variant must be set")
+	return set[0]
+}
+
 // TestCustomFieldOptionsDecodeEveryShapeTheHiveSends pins the naive oneOf
 // decoder of OutputCustomFieldOptions ([]float64 | []int32 | []string). It
 // counted the variants that decode and failed on more than one, so `[]` (all
 // three) and integer options (float and int) broke
-// GET /api/v1/customField for most organisations.
+// GET /api/v1/customField for most organisations. The first variant that
+// decodes wins, the most specific first: integer options must not come out as
+// floats.
 func TestCustomFieldOptionsDecodeEveryShapeTheHiveSends(t *testing.T) {
 	cases := []struct {
 		name    string
 		fieldTy string
 		options string
+		variant string
 	}{
-		{"no options", "string", `[]`},
-		{"integer options", "integer", `[0,1,2,3,10]`},
-		{"float options", "float", `[1.5,2]`},
-		{"string options", "string", `["HR","Sales"]`},
+		{"no options", "string", `[]`, "ArrayOfInt32"},
+		{"null options", "string", `null`, "ArrayOfInt32"},
+		{"integer options", "integer", `[0,1,2,3,10]`, "ArrayOfInt32"},
+		{"float options", "float", `[1.5,2]`, "ArrayOfFloat64"},
+		// Past int32: the integers fall to the float variant, and survive it.
+		{"integer options past int32", "integer", `[3000000000]`, "ArrayOfFloat64"},
+		{"string options", "string", `["HR","Sales"]`, "ArrayOfString"},
+		{"one string option", "string", `["a"]`, "ArrayOfString"},
 		// TheHive keeps the options when a field's type changes.
-		{"string options on an integer field", "integer", `["Malware","Intrusion"]`},
+		{"string options on an integer field", "integer", `["Malware","Intrusion"]`, "ArrayOfString"},
 	}
 
 	for _, tc := range cases {
@@ -114,6 +138,7 @@ func TestCustomFieldOptionsDecodeEveryShapeTheHiveSends(t *testing.T) {
 			var field thehive.OutputCustomField
 			require.NoError(t, json.Unmarshal([]byte(payload), &field))
 
+			assert.Equal(t, tc.variant, customFieldOptionsVariant(t, field.Options))
 			out, err := json.Marshal(field.Options)
 			require.NoError(t, err)
 			assert.JSONEq(t, tc.options, string(out), "options must survive a decode and an encode unchanged")
@@ -126,17 +151,77 @@ func TestCustomFieldOptionsDecodeEveryShapeTheHiveSends(t *testing.T) {
 	})
 }
 
+// TestEnumerationValuesDecodeEveryShapeTheHiveSends pins the same fix on the
+// other primitive-array oneOf, the values of an enumeration property
+// description ([]int32 | []string).
+func TestEnumerationValuesDecodeEveryShapeTheHiveSends(t *testing.T) {
+	cases := []struct {
+		name   string
+		values string
+		isInt  bool
+	}{
+		{"no values", `[]`, true},
+		{"integer values", `[1,2]`, true},
+		{"string values", `["open","closed"]`, false},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			var values thehive.EnumerationPropertyDescriptionValues
+			require.NoError(t, json.Unmarshal([]byte(tc.values), &values))
+
+			assert.Equal(t, tc.isInt, values.ArrayOfInt32 != nil)
+			assert.Equal(t, !tc.isInt, values.ArrayOfString != nil)
+			out, err := json.Marshal(values)
+			require.NoError(t, err)
+			assert.JSONEq(t, tc.values, string(out))
+		})
+	}
+}
+
+// TestLicenseCurrentDecodesWithAnUnknownField pins the variants of
+// OutputLicenseCurrent, a naive oneOf no request refers to. Each variant
+// requires a property the others do not declare, so they stay apart without
+// DisallowUnknownFields; before, `{"license":{...},"newField":1}` failed
+// GetCurrentLicense.
+func TestLicenseCurrentDecodesWithAnUnknownField(t *testing.T) {
+	const license = `{"_id":"~1","_type":"License","_createdBy":"admin@thehive.local","_createdAt":1,"id":"l1",
+		"customer":"c","plan":"p","kind":"k","validFrom":1,"expiresAt":2,"current":true,"quotas":{"users":10}}`
+
+	cases := []struct {
+		name    string
+		payload string
+		variant string
+	}{
+		{"license", `"license":` + license, "Ok"},
+		{"error with a fallback", `"error":"unreadable","fallback":` + license, "Error"},
+		{"no license found", `"notFound":true,"fallback":` + license, "NotFound"},
+	}
+
+	for _, tc := range cases {
+		for _, extra := range []string{"", `,"newField":1`} {
+			t.Run(tc.name+extra, func(t *testing.T) {
+				var current thehive.OutputLicenseCurrent
+				require.NoError(t, json.Unmarshal([]byte(`{`+tc.payload+extra+`}`), &current))
+
+				assert.Equal(t, tc.variant == "Ok", current.OutputLicenseCurrentOk != nil)
+				assert.Equal(t, tc.variant == "Error", current.OutputLicenseCurrentError != nil)
+				assert.Equal(t, tc.variant == "NotFound", current.OutputLicenseCurrentNotFound != nil)
+			})
+		}
+	}
+}
+
 // TestNoResponseModelDisallowsUnknownFields guards the generated sources: a
 // regeneration that skips scripts/tolerant-response-decoder brings
-// DisallowUnknownFields back into the Output models. The variants of the naive
-// oneOf wrappers keep it: their strictness is what tells them apart.
+// DisallowUnknownFields back into the Output models. The variants of
+// OutputInvokeFunction keep it: its map variant matches any object, so a
+// lenient Ok or Ko would make an answer with an unknown field match two
+// variants and fail.
 func TestNoResponseModelDisallowsUnknownFields(t *testing.T) {
 	keptStrict := map[string]bool{
-		"model_output_invoke_function_ko.go":        true,
-		"model_output_invoke_function_ok.go":        true,
-		"model_output_license_current_error.go":     true,
-		"model_output_license_current_not_found.go": true,
-		"model_output_license_current_ok.go":        true,
+		"model_output_invoke_function_ko.go": true,
+		"model_output_invoke_function_ok.go": true,
 	}
 
 	files, err := filepath.Glob(filepath.Join("..", "..", "thehive", "model_output_*.go"))

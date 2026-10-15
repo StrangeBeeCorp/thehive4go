@@ -9,23 +9,35 @@
 // client generated from the 5.6 spec rejected every 5.8 responder action
 // although TheHive had created it. A client must ignore what it does not know
 // in a response: this tool removes DisallowUnknownFields from every model
-// reachable from a response in the spec. Request models (Input*) stay strict,
-// since a consumer may decode a caller's input into them.
+// reachable from a response in the spec. Top-level request models (Input*)
+// stay strict, since a consumer may decode a caller's input into them; a type
+// shared between a request and a response (Access, in InputManageCaseAccess,
+// for one) becomes lenient. That is the accepted trade-off.
 //
 // It also rewrites the naive oneOf decoder of wrappers whose variants are all
 // arrays of primitives (OutputCustomFieldOptions: []float64 | []int32 |
 // []string). There, the template counts how many variants decode and fails
 // when more than one does, which `[]` (every variant) and `[1, 2]` (float and
-// int) always do. The rewrite takes the first variant that decodes, in
-// declaration order.
+// int) always do. The rewrite takes the first variant that decodes, trying the
+// most specific type first (integers, floats, booleans, strings): `[1, 2]` is
+// an []int32, `[1.5]` an []float64 and `[]` the first of the order.
 //
 // The variants of the other naive oneOf wrappers keep DisallowUnknownFields:
-// that strictness is what lets the naive matcher tell them apart.
+// that strictness is what lets the naive matcher tell them apart. Only one
+// kind of wrapper is spared: one that no request refers to, whose variants are
+// all model types that each require a property the others do not declare
+// (OutputLicenseCurrent). Its variants resolve to exactly one variant even when
+// they ignore unknown fields, so they become lenient. Filter, which requests
+// build, and OutputInvokeFunction, whose map variant matches anything, keep
+// theirs.
 //
 // Strict mode: the tool fails when a response model has an UnmarshalJSON it
-// does not recognise, when a schema has no Go type, or when, after it ran, a
-// response model still disallows unknown fields without being on the list of
-// naive oneOf variants. Idempotent: every rewrite leaves a marker comment.
+// does not recognise, when a schema has no Go type, when a model a
+// discriminated oneOf dispatches to has no UnmarshalJSON of its own (the
+// dispatch would decode it with DisallowUnknownFields again), or when, after
+// it ran, a response model still disallows unknown fields without being on the
+// list of naive oneOf variants. Idempotent: every rewrite leaves a marker
+// comment.
 package main
 
 import (
@@ -39,7 +51,9 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
+	"strconv"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -55,6 +69,9 @@ const (
 	lenientMarker = "Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored"
 	// firstMatchMarker opens the oneOf decoders this tool rewrites.
 	firstMatchMarker = "Postprocessed by scripts/tolerant-response-decoder: first match wins"
+
+	// dispatchMarker opens the discriminated oneOf decoders of fix-oneof-decoder.
+	dispatchMarker = "Postprocessed by scripts/fix-oneof-decoder:"
 
 	disallowCall = "decoder.DisallowUnknownFields()"
 )
@@ -93,8 +110,15 @@ func main() {
 	}
 	sort.Strings(responseTypes)
 
+	requestTypes := map[string]bool{}
+	for _, schema := range spec.requestSchemas() {
+		if goType, ok := types.lookup(schema); ok {
+			requestTypes[goType] = true
+		}
+	}
+
 	strictVariants := map[string]string{}
-	firstMatch := 0
+	firstMatch, spared := 0, 0
 	for _, goType := range responseTypes {
 		w, err := inspectWrapper(types.files[goType], goType)
 		if err != nil {
@@ -104,19 +128,34 @@ func main() {
 			continue
 		}
 		switch {
-		case w.rewritten:
-			log.Printf("%s: first-match decoder already in place — idempotent skip", goType)
-			firstMatch++
 		case w.primitiveArrays:
-			if err := rewriteFirstMatch(types.files[goType], goType, w.fields); err != nil {
+			changed, err := rewriteFirstMatch(types.files[goType], goType, w.fields)
+			if err != nil {
 				log.Fatalf("rewrite %s: %v", goType, err)
 			}
-			log.Printf("%s: rewrote the naive oneOf decoder to first match wins", goType)
+			if changed {
+				log.Printf("%s: rewrote the naive oneOf decoder to first match wins, most specific type first", goType)
+			} else {
+				log.Printf("%s: first-match decoder already in place — idempotent skip", goType)
+			}
 			firstMatch++
-		default:
+		case len(w.namedVariants) == 0:
+			// Nothing to keep strict: its variants are slices or maps.
+		case requestTypes[goType]:
+			log.Printf("%s: variants kept strict, a request refers to it", goType)
 			for _, v := range w.namedVariants {
 				strictVariants[v] = goType
 			}
+		default:
+			if why := whyIndistinguishable(w, types.files); why != "" {
+				log.Printf("%s: variants kept strict, %s", goType, why)
+				for _, v := range w.namedVariants {
+					strictVariants[v] = goType
+				}
+				continue
+			}
+			log.Printf("%s: variants made lenient, each still resolves to exactly one variant", goType)
+			spared += len(w.namedVariants)
 		}
 	}
 
@@ -141,8 +180,8 @@ func main() {
 	if err := verify(responseTypes, strictVariants, types.files); err != nil {
 		log.Fatalf("strict: %v", err)
 	}
-	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict",
-		lenient, already, firstMatch, len(strictVariants))
+	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict, %d naive oneOf variant(s) lenient",
+		lenient, already, firstMatch, len(strictVariants), spared)
 }
 
 // spec is the part of the OpenAPI document this tool reads.
@@ -171,6 +210,19 @@ func loadSpec(path string) (*spec, error) {
 // responseSchemas lists, sorted, every component schema a response body
 // refers to, directly or through other schemas.
 func (s *spec) responseSchemas() []string {
+	return s.schemasUnder("responses")
+}
+
+// requestSchemas lists, sorted, every component schema a request refers to
+// (its body or its parameters), directly or through other schemas.
+func (s *spec) requestSchemas() []string {
+	return s.schemasUnder("requestBody", "parameters")
+}
+
+// schemasUnder lists, sorted, every component schema that the given parts of
+// the operations refer to, directly or through other schemas. A path may also
+// declare `parameters` for all its operations.
+func (s *spec) schemasUnder(parts ...string) []string {
 	seen := map[string]bool{}
 	var queue []string
 	add := func(node *yaml.Node) {
@@ -184,11 +236,21 @@ func (s *spec) responseSchemas() []string {
 
 	for _, ops := range s.Paths {
 		for method, op := range ops {
-			if method == "parameters" || op.Kind != yaml.MappingNode {
+			if method == "parameters" {
+				for _, part := range parts {
+					if part == "parameters" {
+						add(&op)
+					}
+				}
 				continue
 			}
-			if responses := child(&op, "responses"); responses != nil {
-				add(responses)
+			if op.Kind != yaml.MappingNode {
+				continue
+			}
+			for _, part := range parts {
+				if node := child(&op, part); node != nil {
+					add(node)
+				}
 			}
 		}
 	}
@@ -209,13 +271,21 @@ func (s *spec) responseSchemas() []string {
 	return out
 }
 
-// isObject reports whether the schema would generate a Go struct.
+// isObject reports whether the schema would generate a Go type: an object with
+// properties, or a composition of schemas. A pure map (`additionalProperties`
+// alone, like Map_Boolean) generates none: the models that use it declare a
+// map[string]bool inline.
 func (s *spec) isObject(name string) bool {
 	node, ok := s.Components.Schemas[name]
 	if !ok {
 		return false
 	}
-	return child(&node, "properties") != nil || child(&node, "oneOf") != nil
+	for _, key := range []string{"properties", "oneOf", "allOf", "anyOf"} {
+		if child(&node, key) != nil {
+			return true
+		}
+	}
+	return false
 }
 
 func child(node *yaml.Node, key string) *yaml.Node {
@@ -325,7 +395,6 @@ type wrapper struct {
 	fields          []field
 	namedVariants   []string // the variants that are named model types
 	primitiveArrays bool     // every variant is a pointer to a slice of a primitive
-	rewritten       bool     // UnmarshalJSON already carries firstMatchMarker
 }
 
 type field struct {
@@ -360,7 +429,7 @@ func inspectWrapper(path, goType string) (*wrapper, error) {
 	if st == nil {
 		return nil, fmt.Errorf("oneOf wrapper struct %s not found in %s", goType, path)
 	}
-	w := &wrapper{rewritten: rewritten, primitiveArrays: true}
+	w := &wrapper{primitiveArrays: true}
 	for _, f := range st.Fields.List {
 		star, ok := f.Type.(*ast.StarExpr)
 		if !ok || len(f.Names) != 1 {
@@ -386,15 +455,33 @@ func inspectWrapper(path, goType string) (*wrapper, error) {
 	return w, nil
 }
 
-// rewriteFirstMatch replaces the naive decoder of a primitive-array oneOf.
-func rewriteFirstMatch(path, goType string, fields []field) error {
+// specificity ranks the element type of a primitive-array variant, the most
+// specific first: an array of integers also decodes as floats, and an array of
+// anything decodes as nothing but strings last.
+var specificity = map[string]int{"int32": 0, "int64": 1, "float32": 2, "float64": 3, "bool": 4, "string": 5}
+
+// bySpecificity orders the variants of a primitive-array oneOf, the generator
+// having listed them alphabetically.
+func bySpecificity(fields []field) []field {
+	out := append([]field(nil), fields...)
+	rank := func(f field) int { return specificity[strings.TrimPrefix(f.goType, "[]")] }
+	sort.SliceStable(out, func(i, j int) bool { return rank(out[i]) < rank(out[j]) })
+	return out
+}
+
+// rewriteFirstMatch replaces the naive decoder of a primitive-array oneOf, and
+// reports whether that changed the file. A decoder already rewritten is
+// rewritten again, so a change of order reaches the committed client.
+func rewriteFirstMatch(path, goType string, fields []field) (bool, error) {
 	var b strings.Builder
 	fmt.Fprintf(&b, "func (dst *%s) UnmarshalJSON(data []byte) error {\n", goType)
 	fmt.Fprintf(&b, "\t// %s.\n", firstMatchMarker)
 	b.WriteString("\t// An empty array, or an array of integers, decodes as several of these\n")
 	b.WriteString("\t// variants at once, and TheHive sends both: counting matches rejects them.\n")
+	b.WriteString("\t// The most specific variant comes first (integers, floats, booleans, strings),\n")
+	b.WriteString("\t// so [1, 2] is an []int32 and not an []float64.\n")
 	fmt.Fprintf(&b, "\t*dst = %s{}\n", goType)
-	for _, f := range fields {
+	for _, f := range bySpecificity(fields) {
 		v := "v" + f.name
 		fmt.Fprintf(&b, "\tvar %s %s\n", v, f.goType)
 		fmt.Fprintf(&b, "\tif err := json.Unmarshal(data, &%s); err == nil {\n", v)
@@ -402,7 +489,122 @@ func rewriteFirstMatch(path, goType string, fields []field) error {
 	}
 	fmt.Fprintf(&b, "\treturn fmt.Errorf(\"data failed to match schemas in oneOf(%s)\")\n}\n", goType)
 
-	return spliceFunc(path, goType, b.String(), "gopkg.in/validator.v2")
+	before, err := os.ReadFile(path)
+	if err != nil {
+		return false, err
+	}
+	if err := spliceFunc(path, goType, b.String(), "gopkg.in/validator.v2"); err != nil {
+		return false, err
+	}
+	after, err := os.ReadFile(path)
+	if err != nil {
+		return false, err
+	}
+	return !bytes.Equal(before, after), nil
+}
+
+// shape is what tells a model type apart from the other variants of a naive
+// oneOf: what its UnmarshalJSON requires, and what its struct declares.
+type shape struct {
+	required map[string]bool
+	declared map[string]bool
+}
+
+// readShape returns nil when goType has no UnmarshalJSON that checks required
+// properties, or a field without a JSON name.
+func readShape(path, goType string) (*shape, error) {
+	_, file, _, err := parseFile(path)
+	if err != nil {
+		return nil, err
+	}
+	fd := findUnmarshal(file, goType)
+	st := findStruct(file, goType)
+	if fd == nil || st == nil {
+		return nil, nil
+	}
+
+	sh := &shape{required: map[string]bool{}, declared: map[string]bool{}}
+	for _, f := range st.Fields.List {
+		if f.Tag == nil {
+			return nil, nil
+		}
+		name, _, _ := strings.Cut(reflect.StructTag(strings.Trim(f.Tag.Value, "`")).Get("json"), ",")
+		if name == "" {
+			return nil, nil
+		}
+		if name != "-" {
+			sh.declared[name] = true
+		}
+	}
+
+	found := false
+	ast.Inspect(fd.Body, func(n ast.Node) bool {
+		assign, ok := n.(*ast.AssignStmt)
+		if !ok || len(assign.Lhs) != 1 || len(assign.Rhs) != 1 {
+			return true
+		}
+		if id, ok := assign.Lhs[0].(*ast.Ident); !ok || id.Name != "requiredProperties" {
+			return true
+		}
+		lit, ok := assign.Rhs[0].(*ast.CompositeLit)
+		if !ok {
+			return true
+		}
+		found = true
+		for _, elt := range lit.Elts {
+			if bl, ok := elt.(*ast.BasicLit); ok && bl.Kind == token.STRING {
+				name, err := strconv.Unquote(bl.Value)
+				if err == nil {
+					sh.required[name] = true
+				}
+			}
+		}
+		return false
+	})
+	if !found {
+		return nil, nil
+	}
+	return sh, nil
+}
+
+// whyIndistinguishable returns "" when the variants of a naive oneOf wrapper
+// would still resolve to exactly one variant if they ignored unknown fields,
+// and the reason why they would not otherwise. They do when every variant is a
+// model type that requires a property which no other variant declares: an
+// answer shaped like one variant then misses a required property of the others.
+func whyIndistinguishable(w *wrapper, files map[string]string) string {
+	if len(w.namedVariants) != len(w.fields) {
+		return "a variant is not a model type and matches anything the others do"
+	}
+	shapes := map[string]*shape{}
+	for _, v := range w.namedVariants {
+		sh, err := readShape(files[v], v)
+		if err != nil {
+			log.Fatalf("read %s: %v", v, err)
+		}
+		if sh == nil {
+			return fmt.Sprintf("%s does not check required properties", v)
+		}
+		shapes[v] = sh
+	}
+	for _, x := range w.namedVariants {
+		for _, y := range w.namedVariants {
+			if x == y {
+				continue
+			}
+			distinct := false
+			for p := range shapes[y].required {
+				if !shapes[x].declared[p] {
+					distinct = true
+					break
+				}
+			}
+			if !distinct {
+				return fmt.Sprintf("an answer shaped like %s would also match %s", x, y)
+			}
+		}
+	}
+	return ""
 }
 
 type result int
@@ -464,13 +666,12 @@ func dropDisallow(path, goType string) (result, error) {
 }
 
 // verify fails when a response model still disallows unknown fields without
-// being a variant of a naive oneOf.
+// being a variant of a naive oneOf, or when a discriminated oneOf dispatches to
+// a model without an UnmarshalJSON of its own: newStrictDecoder would decode it
+// with DisallowUnknownFields, and no rewrite above could reach it.
 func verify(responseTypes []string, strictVariants map[string]string, files map[string]string) error {
-	var left []string
+	var left, orphans []string
 	for _, goType := range responseTypes {
-		if _, kept := strictVariants[goType]; kept {
-			continue
-		}
 		fset, file, src, err := parseFile(files[goType])
 		if err != nil {
 			return err
@@ -479,14 +680,60 @@ func verify(responseTypes []string, strictVariants map[string]string, files map[
 		if fd == nil {
 			continue
 		}
-		if strings.Contains(rawText(fset, src, fd), "DisallowUnknownFields()") {
+		body := rawText(fset, src, fd)
+
+		if strings.Contains(body, dispatchMarker) {
+			for _, target := range dispatchTargets(fd) {
+				path, ok := files[target]
+				if !ok {
+					return fmt.Errorf("%s dispatches to %s, which no Go type declares", goType, target)
+				}
+				_, targetFile, _, err := parseFile(path)
+				if err != nil {
+					return err
+				}
+				if findUnmarshal(targetFile, target) == nil {
+					orphans = append(orphans, goType+" → "+target)
+				}
+			}
+		}
+
+		if _, kept := strictVariants[goType]; !kept && strings.Contains(body, "DisallowUnknownFields()") {
 			left = append(left, goType)
 		}
+	}
+	if len(orphans) > 0 {
+		return fmt.Errorf("discriminated oneOf dispatch target(s) without an UnmarshalJSON of their own, which newStrictDecoder decodes strictly: %s",
+			strings.Join(orphans, ", "))
 	}
 	if len(left) > 0 {
 		return fmt.Errorf("response model(s) still disallow unknown fields: %s", strings.Join(left, ", "))
 	}
 	return nil
+}
+
+// dispatchTargets lists the model types a discriminated oneOf decoder
+// allocates: `dst.Field = new(Type)`.
+func dispatchTargets(fd *ast.FuncDecl) []string {
+	var out []string
+	ast.Inspect(fd.Body, func(n ast.Node) bool {
+		assign, ok := n.(*ast.AssignStmt)
+		if !ok || len(assign.Rhs) != 1 {
+			return true
+		}
+		call, ok := assign.Rhs[0].(*ast.CallExpr)
+		if !ok || len(call.Args) != 1 {
+			return true
+		}
+		if fn, ok := call.Fun.(*ast.Ident); !ok || fn.Name != "new" {
+			return true
+		}
+		if arg, ok := call.Args[0].(*ast.Ident); ok {
+			out = append(out, arg.Name)
+		}
+		return true
+	})
+	return out
 }
 
 func findUnmarshal(file *ast.File, goType string) *ast.FuncDecl {

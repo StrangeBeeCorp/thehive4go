@@ -48,15 +48,17 @@ func (dst *OutputCustomFieldOptions) UnmarshalJSON(data []byte) error {
 	// Postprocessed by scripts/tolerant-response-decoder: first match wins.
 	// An empty array, or an array of integers, decodes as several of these
 	// variants at once, and TheHive sends both: counting matches rejects them.
+	// The most specific variant comes first (integers, floats, booleans, strings),
+	// so [1, 2] is an []int32 and not an []float64.
 	*dst = OutputCustomFieldOptions{}
-	var vArrayOfFloat64 []float64
-	if err := json.Unmarshal(data, &vArrayOfFloat64); err == nil {
-		dst.ArrayOfFloat64 = &vArrayOfFloat64
-		return nil
-	}
 	var vArrayOfInt32 []int32
 	if err := json.Unmarshal(data, &vArrayOfInt32); err == nil {
 		dst.ArrayOfInt32 = &vArrayOfInt32
+		return nil
+	}
+	var vArrayOfFloat64 []float64
+	if err := json.Unmarshal(data, &vArrayOfFloat64); err == nil {
+		dst.ArrayOfFloat64 = &vArrayOfFloat64
 		return nil
 	}
 	var vArrayOfString []string

@@ -244,7 +244,8 @@ The generation process uses these containerized scripts:
 - `scripts/generate_client.sh`: Generates the Go client using OpenAPI Generator
 - `scripts/fix-oneof-decoder`: Rewrites oneOf decoders to dispatch on their `_kind` discriminator
 - `scripts/tolerant-response-decoder`: Makes every model TheHive sends back ignore fields it does not know (newer TheHive
-  versions add fields to their responses), and lets oneOf arrays such as custom field options take the first type that fits
+  versions add fields to their responses), and lets oneOf arrays such as custom field options take the first type that fits.
+  Top-level request models stay strict; a type shared between a request and a response becomes lenient
 
 `make check-postprocess` re-runs both post-processing steps on the committed client and fails if they change anything.
 
@@ -332,7 +333,7 @@ This client's version reflects the TheHive version it targets:
 | thehive4go | TheHive | OpenAPI Spec | Notes |
 |---|---|---|---|
 | `v0.55.x` | 5.5.x | v1-5.5.11-1 | Initial release, strict JSON decoding |
-| `v0.56.x` | 5.6.x+ | v5.6.2 | Forward-compatible JSON decoding, `external` field support; since `v0.56.3`, responses decode on TheHive 5.8 and 6.0 (unknown fields are ignored) |
+| `v0.56.x` | 5.6.x+ | v5.6.2 | Forward-compatible JSON decoding, `external` field support; since `v0.56.3`, response models ignore the fields the client does not know (verified on TheHive 5.8 and 6.0 answers) |
 
 **Version scheme**: `v0.<thehive_minor>.<patch>` — pick the version matching your TheHive deployment.
 

@@ -40,6 +40,8 @@ func (dst *EnumerationPropertyDescriptionValues) UnmarshalJSON(data []byte) erro
 	// Postprocessed by scripts/tolerant-response-decoder: first match wins.
 	// An empty array, or an array of integers, decodes as several of these
 	// variants at once, and TheHive sends both: counting matches rejects them.
+	// The most specific variant comes first (integers, floats, booleans, strings),
+	// so [1, 2] is an []int32 and not an []float64.
 	*dst = EnumerationPropertyDescriptionValues{}
 	var vArrayOfInt32 []int32
 	if err := json.Unmarshal(data, &vArrayOfInt32); err == nil {
