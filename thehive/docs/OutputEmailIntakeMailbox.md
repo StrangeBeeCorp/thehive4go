@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Provider** | [**OutputEmailIntakeImapProvider**](OutputEmailIntakeImapProvider.md) |  |
 **Credential** | [**OutputEmailIntakeCredential**](OutputEmailIntakeCredential.md) |  |
-**Inbox** | **string** |  |
-**Archive** | Pointer to **string** |  | [optional]
-**MarkAsRead** | **bool** |  |
-**Kind** | **string** |  |
+**Inbox** | **string** | Folder from which emails are fetched. |
+**Archive** | Pointer to **string** | Folder where processed emails are moved after fetching. | [optional]
+**MarkAsRead** | **bool** | Indicates whether processed emails are marked as read after fetching. |
+**Kind** | **string** | Discriminator identifying this as an IMAP mailbox configuration. |
 
 ## Methods
 

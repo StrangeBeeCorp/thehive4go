@@ -4,16 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCommentInAlert**](CommentAPI.md#CreateCommentInAlert) | **Post** /api/v1/alert/{alertId}/comment | 
-[**CreateCommentInCase**](CommentAPI.md#CreateCommentInCase) | **Post** /api/v1/case/{caseId}/comment | 
-[**DeleteComment**](CommentAPI.md#DeleteComment) | **Delete** /api/v1/comment/{commentId} | 
-[**UpdateComment**](CommentAPI.md#UpdateComment) | **Patch** /api/v1/comment/{commentId} | 
+[**CreateCommentInAlert**](CommentAPI.md#CreateCommentInAlert) | **Post** /api/v1/alert/{alertId}/comment | Add a comment to an alert
+[**CreateCommentInCase**](CommentAPI.md#CreateCommentInCase) | **Post** /api/v1/case/{caseId}/comment | Add a comment to a case
+[**DeleteComment**](CommentAPI.md#DeleteComment) | **Delete** /api/v1/comment/{commentId} | Delete a comment
+[**UpdateComment**](CommentAPI.md#UpdateComment) | **Patch** /api/v1/comment/{commentId} | Update a comment
 
 
 
 ## CreateCommentInAlert
 
 > OutputComment CreateCommentInAlert(ctx, alertId).InputComment(inputComment).Execute()
+
+Add a comment to an alert
 
 
 
@@ -30,8 +32,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -51,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -61,7 +63,7 @@ Other parameters are passed through a pointer to a apiCreateCommentInAlertReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -69,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -84,6 +86,8 @@ Name | Type | Description  | Notes
 ## CreateCommentInCase
 
 > OutputComment CreateCommentInCase(ctx, caseId).InputComment(inputComment).Execute()
+
+Add a comment to a case
 
 
 
@@ -100,8 +104,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +125,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -131,7 +135,7 @@ Other parameters are passed through a pointer to a apiCreateCommentInCaseRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -139,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -154,6 +158,8 @@ Name | Type | Description  | Notes
 ## DeleteComment
 
 > DeleteComment(ctx, commentId).Execute()
+
+Delete a comment
 
 
 
@@ -170,7 +176,7 @@ import (
 )
 
 func main() {
-	commentId := "commentId_example" // string | 
+	commentId := "commentId_example" // string | The comment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**commentId** | **string** |  | 
+**commentId** | **string** | The comment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -205,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -220,6 +226,8 @@ Name | Type | Description  | Notes
 ## UpdateComment
 
 > UpdateComment(ctx, commentId).InputComment(inputComment).Execute()
+
+Update a comment
 
 
 
@@ -236,8 +244,8 @@ import (
 )
 
 func main() {
-	commentId := "commentId_example" // string | 
-	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment | 
+	commentId := "commentId_example" // string | The comment ID preceded by `~`.
+	inputComment := *openapiclient.NewInputComment("Message_example") // InputComment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +263,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**commentId** | **string** |  | 
+**commentId** | **string** | The comment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -265,7 +273,7 @@ Other parameters are passed through a pointer to a apiUpdateCommentRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputComment** | [**InputComment**](InputComment.md) |  | 
+ **inputComment** | [**InputComment**](InputComment.md) |  |
 
 ### Return type
 
@@ -273,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -283,4 +291,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

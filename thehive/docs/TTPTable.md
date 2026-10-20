@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Columns** | Pointer to [**[]TTPField**](TTPField.md) |  | [optional] 
-**Filter** | Pointer to [**Filter**](Filter.md) |  | [optional] 
-**Sort** | Pointer to [**[]AlertListSortInner**](AlertListSortInner.md) |  | [optional] 
-**MaxElements** | Pointer to **int32** |  | [optional] 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Columns** | Pointer to [**[]TTPField**](TTPField.md) | TTP fields to include as columns in the table. | [optional]
+**Filter** | Pointer to [**Filter**](Filter.md) | Filter to apply to the TTP list. See the [Query and Export](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the filter syntax. | [optional]
+**Sort** | Pointer to [**[]AlertListSortInner**](AlertListSortInner.md) | Sort order for the TTP list. See the [Query and Export](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the sort syntax. | [optional]
+**MaxElements** | Pointer to **int32** | Maximum number of TTPs to include in the widget. If omitted, the global &#x60;maxElements&#x60; limit applies. | [optional]
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -177,5 +177,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

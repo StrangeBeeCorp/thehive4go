@@ -4,14 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPlatformPublicStatus**](StatusAPI.md#GetPlatformPublicStatus) | **Get** /api/v1/status/public | 
-[**GetPlatformStatus**](StatusAPI.md#GetPlatformStatus) | **Get** /api/v1/status | 
+[**GetPlatformPublicStatus**](StatusAPI.md#GetPlatformPublicStatus) | **Get** /api/v1/status/public | Get the public platform status
+[**GetPlatformStatus**](StatusAPI.md#GetPlatformStatus) | **Get** /api/v1/status | Get the platform status
 
 
 
 ## GetPlatformPublicStatus
 
 > OutputPublicStatus GetPlatformPublicStatus(ctx).Execute()
+
+Get the public platform status
 
 
 
@@ -72,6 +74,8 @@ No authorization required
 
 > OutputStatus GetPlatformStatus(ctx).Verbose(verbose).Execute()
 
+Get the platform status
+
 
 
 ### Example
@@ -87,7 +91,7 @@ import (
 )
 
 func main() {
-	verbose := true // bool |  (optional) (default to false)
+	verbose := true // bool | When `true`, include the cluster state and the database schema version of each module in the response. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +116,7 @@ Other parameters are passed through a pointer to a apiGetPlatformStatusRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **verbose** | **bool** |  | [default to false]
+ **verbose** | **bool** | When &#x60;true&#x60;, include the cluster state and the database schema version of each module in the response. | [default to false]
 
 ### Return type
 
@@ -120,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -130,4 +134,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

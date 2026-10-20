@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**Name** | **string** |  |
+**Id** | **string** | Unique identifier of the mailbox configuration. |
+**Name** | **string** | Display name of the mailbox configuration. |
 **Mailbox** | [**OutputEmailIntakeMailbox**](OutputEmailIntakeMailbox.md) |  |
-**Organisations** | Pointer to **[]string** |  | [optional]
-**Enabled** | **bool** |  |
-**CreatedAt** | **int64** |  |
+**Organisations** | Pointer to **[]string** | Organizations where emails from this mailbox create alerts. | [optional]
+**Enabled** | **bool** | Indicates whether this mailbox configuration is active. |
+**CreatedAt** | **int64** | Creation date of the configuration, as a Unix timestamp in milliseconds. |
 **AlertProperties** | [**OutputEmailIntakeAlertProperties**](OutputEmailIntakeAlertProperties.md) |  |
 
 ## Methods

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OrganisationId** | **string** |  |
-**Organisation** | **string** |  |
-**Profile** | **string** |  |
-**Avatar** | Pointer to **string** |  | [optional]
-**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) |  | [optional]
+**OrganisationId** | **string** | Internal unique identifier of the organization. |
+**Organisation** | **string** | Name of the organization. |
+**Profile** | **string** | Permission profile of the user in this organization. |
+**Avatar** | Pointer to **string** | Relative path to the organization&#39;s avatar image. | [optional]
+**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) | Sharing links configured for this organization. | [optional]
 
 ## Methods
 

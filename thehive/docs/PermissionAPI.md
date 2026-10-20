@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListPermissions**](PermissionAPI.md#ListPermissions) | **Get** /api/v1/permission | 
+[**ListPermissions**](PermissionAPI.md#ListPermissions) | **Get** /api/v1/permission | List all permissions
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > []PermissionDesc ListPermissions(ctx).Execute()
 
-
+List all permissions
 
 
 
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiListPermissionsRequest str
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -67,4 +67,3 @@ Other parameters are passed through a pointer to a apiListPermissionsRequest str
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

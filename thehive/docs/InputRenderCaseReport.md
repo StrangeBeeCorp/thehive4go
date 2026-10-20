@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Format** | **string** |  | 
-**Definition** | Pointer to [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) | Either provide &#x60;definition&#x60; or &#x60;caseReportTemplateId&#x60; | [optional] 
-**CaseReportTemplateId** | Pointer to **string** | Either provide &#x60;definition&#x60; or &#x60;caseReportTemplateId&#x60; | [optional] 
-**CaseId** | Pointer to **string** | The _id of the entity or its &#39;name&#39; (depends of the entity) | [optional] 
-**MaxElements** | Pointer to **int32** | Limit the number of elements in tables and lists, useful for a preview | [optional] 
+**Format** | **string** | Output format for the rendered report. |
+**Definition** | Pointer to [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) | Inline template definition used when rendering without a saved case report template. A definition is an ordered list of widgets—building blocks that each render one section of the report, such as a &#x60;Text&#x60; widget for free-form Mustache content or an &#x60;ObservableList&#x60; widget for the case observables. Either &#x60;definition&#x60; or &#x60;caseReportTemplateId&#x60; is required. | [optional]
+**CaseReportTemplateId** | Pointer to **string** | ID of the saved case report template to use. Must match an existing template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseReportTemplate&#x60; to retrieve available templates and their IDs. Either &#x60;caseReportTemplateId&#x60; or &#x60;definition&#x60; is required. | [optional]
+**CaseId** | Pointer to **string** | ID of the case to use for data. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCase&#x60; to retrieve available cases and their IDs. If omitted, TheHive uses fake data to fill the template. | [optional]
+**MaxElements** | Pointer to **int32** | Maximum number of elements displayed per widget in the preview. Doesn&#39;t affect the number of elements included when saving or downloading the report. | [optional]
 
 ## Methods
 
@@ -151,5 +151,3 @@ HasMaxElements returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

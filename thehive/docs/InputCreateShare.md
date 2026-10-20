@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisations** | Pointer to **[]string** | Names or ids of the organisations | [optional] 
+**Organisations** | Pointer to **[]string** | Names or IDs of the organizations to share with. Each must match an existing linked organization. Use &#x60;GET /api/v1/organisation/{orgId}/links&#x60; to list linked organizations. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasOrganisations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

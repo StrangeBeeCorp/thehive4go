@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**License** | **string** |  | 
+**License** | **string** | Raw license key string provided by StrangeBee. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetLicense sets License field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

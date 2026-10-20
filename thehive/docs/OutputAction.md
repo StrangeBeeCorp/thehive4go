@@ -4,24 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**ResponderId** | **string** |  |
-**ResponderName** | Pointer to **string** |  | [optional]
-**ResponderDefinition** | Pointer to **string** |  | [optional]
-**CortexId** | Pointer to **string** |  | [optional]
-**CortexJobId** | Pointer to **string** |  | [optional]
-**ObjectType** | **string** |  |
-**ObjectId** | **string** |  |
-**Status** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Operations** | **string** |  |
-**Report** | **string** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the action. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Action&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who triggered the action. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the action. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the action was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the action was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**ResponderId** | **string** | ID of the responder that ran. |
+**ResponderName** | Pointer to **string** | Display name of the responder that ran. | [optional]
+**ResponderDefinition** | Pointer to **string** | Definition of the responder that ran, as returned by Cortex. | [optional]
+**CortexId** | Pointer to **string** | Name of the Cortex server the responder ran on. | [optional]
+**CortexJobId** | Pointer to **string** | ID of the corresponding job on the Cortex server. | [optional]
+**ObjectType** | **string** | Type of the entity the action targeted. One of &#x60;Case&#x60;, &#x60;Alert&#x60;, &#x60;Observable&#x60;, &#x60;Task&#x60;, or &#x60;Log&#x60;. |
+**ObjectId** | **string** | ID of the entity the action targeted. |
+**Status** | **string** | Status of the action. One of &#x60;Waiting&#x60;, &#x60;InProgress&#x60;, &#x60;Success&#x60;, &#x60;Failure&#x60;, or &#x60;Deleted&#x60;. |
+**StartDate** | **int64** | Date and time when the action started. Returned as a Unix timestamp in milliseconds. |
+**EndDate** | Pointer to **int64** | Date and time when the action finished. Returned as a Unix timestamp in milliseconds. | [optional]
+**Operations** | **string** | JSON-encoded array of operations the responder performed, such as adding a tag or closing the case. |
+**Report** | **string** | JSON-encoded report returned by the responder. |
+**ExtraData** | Pointer to **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. | [optional]
 
 ## Methods
 
@@ -436,6 +437,31 @@ and a boolean to check if the value has been set.
 
 SetReport sets Report field to given value.
 
+
+### GetExtraData
+
+`func (o *OutputAction) GetExtraData() map[string]interface{}`
+
+GetExtraData returns the ExtraData field if non-nil, zero value otherwise.
+
+### GetExtraDataOk
+
+`func (o *OutputAction) GetExtraDataOk() (*map[string]interface{}, bool)`
+
+GetExtraDataOk returns a tuple with the ExtraData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraData
+
+`func (o *OutputAction) SetExtraData(v map[string]interface{})`
+
+SetExtraData sets ExtraData field to given value.
+
+### HasExtraData
+
+`func (o *OutputAction) HasExtraData() bool`
+
+HasExtraData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

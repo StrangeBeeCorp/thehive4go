@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MitreCatalog** | **string** |  | 
+**MitreCatalog** | **string** | Status of the built-in MITRE ATT&amp;CK catalog import: &#x60;Idle&#x60;, &#x60;Loading&#x60;, &#x60;Failed&#x60;, or &#x60;Complete&#x60;. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetMitreCatalog sets MitreCatalog field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

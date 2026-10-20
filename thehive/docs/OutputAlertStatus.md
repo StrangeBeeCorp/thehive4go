@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**Value** | **string** |  |
-**Stage** | **string** |  |
-**Order** | Pointer to **int32** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Colour** | Pointer to **string** |  | [optional]
-**Hidden** | **bool** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Unique identifier of the alert status. |
+**UnderscoreType** | **string** | Object type, always &#x60;AlertStatus&#x60;. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time of the last update, as a Unix timestamp in milliseconds. | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the status. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time the status was created, as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the status. |
+**Value** | **string** | Display name of the alert status. |
+**Stage** | **string** | Stage the status belongs to. One of *New*, *In progress*, *Closed*, or *Imported*. |
+**Order** | Pointer to **int32** | Position of the status in the UI dropdown list. | [optional]
+**Description** | Pointer to **string** | Human-readable description of the status. | [optional]
+**Colour** | Pointer to **string** | Hex color code used to display the status in the UI. | [optional]
+**Hidden** | **bool** | Whether the status is hidden from the UI dropdown. Hidden statuses remain accessible through the API. |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

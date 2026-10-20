@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LinkType** | Pointer to **string** |  | [optional] 
-**OtherLinkType** | Pointer to **string** |  | [optional] 
+**LinkType** | Pointer to **string** | Sharing profile applied when the current organization shares a case with the other organization. Use &#x60;GET /api/v1/sharingProfile&#x60; to retrieve available profiles. | [optional] [default to "default"]
+**OtherLinkType** | Pointer to **string** | Sharing profile applied when the other organization shares a case with the current organization. Use &#x60;GET /api/v1/sharingProfile&#x60; to retrieve available profiles. | [optional] [default to "default"]
 
 ## Methods
 
@@ -78,5 +78,3 @@ HasOtherLinkType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Cardinality** | [**Cardinality**](Cardinality.md) |  | 
-**Values** | [**EnumerationPropertyDescriptionValues**](EnumerationPropertyDescriptionValues.md) |  | 
-**Labels** | **[]string** |  | 
-**Aggregable** | **bool** |  | 
-**IndexType** | [**BasicIndexType**](BasicIndexType.md) |  | 
-**Type** | **string** |  | 
+**Name** | **string** | Name of the property, as used in &#x60;filter&#x60; and &#x60;sort&#x60; steps of &#x60;POST /api/v1/query&#x60;. |
+**Cardinality** | [**Cardinality**](Cardinality.md) |  |
+**Values** | [**EnumerationPropertyDescriptionValues**](EnumerationPropertyDescriptionValues.md) |  |
+**Labels** | Pointer to **[]string** | Human-readable label for each entry in &#x60;values&#x60;, in the same order. | [optional]
+**Aggregable** | **bool** | Whether the property can be used in aggregation operations, such as grouping or counting, when building a query with &#x60;POST /api/v1/query&#x60;. |
+**IndexType** | [**BasicIndexType**](BasicIndexType.md) |  |
+**Type** | **string** | Identifies this property as an enumeration. |
 
 ## Methods
 
 ### NewEnumerationPropertyDescription
 
-`func NewEnumerationPropertyDescription(name string, cardinality Cardinality, values EnumerationPropertyDescriptionValues, labels []string, aggregable bool, indexType BasicIndexType, type_ string, ) *EnumerationPropertyDescription`
+`func NewEnumerationPropertyDescription(name string, cardinality Cardinality, values EnumerationPropertyDescriptionValues, aggregable bool, indexType BasicIndexType, type_ string, ) *EnumerationPropertyDescription`
 
 NewEnumerationPropertyDescription instantiates a new EnumerationPropertyDescription object
 This constructor will assign default values to properties that have it defined,
@@ -110,6 +110,11 @@ and a boolean to check if the value has been set.
 
 SetLabels sets Labels field to given value.
 
+### HasLabels
+
+`func (o *EnumerationPropertyDescription) HasLabels() bool`
+
+HasLabels returns a boolean if a field has been set.
 
 ### GetAggregable
 
@@ -173,5 +178,3 @@ SetType sets Type field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

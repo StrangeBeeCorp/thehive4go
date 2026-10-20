@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **string** |  |
-**GitDescription** | **string** |  |
-**Connectors** | **map[string]map[string]interface{}** |  |
-**Config** | **map[string]interface{}** |  |
+**Version** | **string** | Version of your TheHive instance. |
+**GitDescription** | **string** | Abbreviated commit hash TheHive was built from. |
+**Connectors** | **map[string]map[string]interface{}** | Status of each connector configured on your instance, keyed by connector name. |
+**Config** | **map[string]interface{}** | Non-sensitive authentication and platform configuration. |
 **License** | [**OutputLicenseStatus**](OutputLicenseStatus.md) |  |
-**Cluster** | Pointer to **map[string]interface{}** |  | [optional]
-**SchemaStatus** | Pointer to **[]map[string]interface{}** | Filled when verbose | [optional]
-**Features** | Pointer to **[]string** |  | [optional]
+**Cluster** | Pointer to **map[string]interface{}** | Filled when &#x60;verbose&#x60; is &#x60;true&#x60;. Pekko cluster state of your instance. | [optional]
+**SchemaStatus** | Pointer to **[]map[string]interface{}** | Filled when &#x60;verbose&#x60; is &#x60;true&#x60;. Database schema version of each module. | [optional]
+**Features** | Pointer to **[]string** | Enabled feature flags on your instance. | [optional]
 
 ## Methods
 

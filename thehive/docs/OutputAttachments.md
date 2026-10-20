@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attachments** | [**[]OutputAttachment**](OutputAttachment.md) |  |
+**Attachments** | [**[]OutputAttachment**](OutputAttachment.md) | List of attachments created by the upload. |
 
 ## Methods
 

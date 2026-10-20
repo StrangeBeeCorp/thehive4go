@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) |  | 
+**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Email provider name. Use &#x60;GET /api/v1/connector/email-intake/providers&#x60; to list available providers. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetName sets Name field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

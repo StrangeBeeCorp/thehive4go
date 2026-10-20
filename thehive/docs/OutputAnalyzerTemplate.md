@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**AnalyzerId** | **string** |  |
-**Content** | **string** |  |
+**Id** | **string** | Internal unique identifier of the analyzer template. |
+**AnalyzerId** | **string** | Name of the analyzer the template renders reports for, matching the &#x60;name&#x60; field returned by &#x60;GET /api/v1/connector/cortex/analyzer&#x60;. |
+**Content** | **string** | HTML content that defines how the analyzer&#39;s reports are displayed. |
 
 ## Methods
 

@@ -4,19 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateProcedureForAlert**](TTPAPI.md#CreateProcedureForAlert) | **Post** /api/v1/alert/{alertId}/procedure | 
-[**CreateProcedureForCase**](TTPAPI.md#CreateProcedureForCase) | **Post** /api/v1/case/{caseId}/procedure | 
-[**CreateSeveralProceduresForAlert**](TTPAPI.md#CreateSeveralProceduresForAlert) | **Post** /api/v1/alert/{alertId}/procedures | 
-[**CreateSeveralProceduresForCase**](TTPAPI.md#CreateSeveralProceduresForCase) | **Post** /api/v1/case/{caseId}/procedures | 
-[**DeleteProcedure**](TTPAPI.md#DeleteProcedure) | **Delete** /api/v1/procedure/{procedureId} | 
-[**DeleteProceduresInBulk**](TTPAPI.md#DeleteProceduresInBulk) | **Post** /api/v1/procedure/delete/_bulk | 
-[**UpdateProcedure**](TTPAPI.md#UpdateProcedure) | **Patch** /api/v1/procedure/{procedureId} | 
+[**CreateProcedureForAlert**](TTPAPI.md#CreateProcedureForAlert) | **Post** /api/v1/alert/{alertId}/procedure | Add a TTP to an alert
+[**CreateProcedureForCase**](TTPAPI.md#CreateProcedureForCase) | **Post** /api/v1/case/{caseId}/procedure | Add a TTP to a case
+[**CreateSeveralProceduresForAlert**](TTPAPI.md#CreateSeveralProceduresForAlert) | **Post** /api/v1/alert/{alertId}/procedures | Add multiple TTPs to an alert
+[**CreateSeveralProceduresForCase**](TTPAPI.md#CreateSeveralProceduresForCase) | **Post** /api/v1/case/{caseId}/procedures | Add multiple TTPs to a case
+[**DeleteProcedure**](TTPAPI.md#DeleteProcedure) | **Delete** /api/v1/procedure/{procedureId} | Delete a TTP
+[**DeleteProceduresInBulk**](TTPAPI.md#DeleteProceduresInBulk) | **Post** /api/v1/procedure/delete/_bulk | Delete multiple TTPs
+[**UpdateProcedure**](TTPAPI.md#UpdateProcedure) | **Patch** /api/v1/procedure/{procedureId} | Update a TTP
 
 
 
 ## CreateProcedureForAlert
 
 > OutputProcedure CreateProcedureForAlert(ctx, alertId).InputProcedure(inputProcedure).Execute()
+
+Add a TTP to an alert
 
 
 
@@ -33,8 +35,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	inputProcedure := *openapiclient.NewInputProcedure("PatternId_example", int64(123)) // InputProcedure | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	inputProcedure := *openapiclient.NewInputProcedure("PatternId_example", int64(123)) // InputProcedure |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -64,7 +66,7 @@ Other parameters are passed through a pointer to a apiCreateProcedureForAlertReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputProcedure** | [**InputProcedure**](InputProcedure.md) |  | 
+ **inputProcedure** | [**InputProcedure**](InputProcedure.md) |  |
 
 ### Return type
 
@@ -72,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -87,6 +89,8 @@ Name | Type | Description  | Notes
 ## CreateProcedureForCase
 
 > OutputProcedure CreateProcedureForCase(ctx, caseId).InputProcedure(inputProcedure).Execute()
+
+Add a TTP to a case
 
 
 
@@ -103,8 +107,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputProcedure := *openapiclient.NewInputProcedure("PatternId_example", int64(123)) // InputProcedure | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputProcedure := *openapiclient.NewInputProcedure("PatternId_example", int64(123)) // InputProcedure |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +128,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -134,7 +138,7 @@ Other parameters are passed through a pointer to a apiCreateProcedureForCaseRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputProcedure** | [**InputProcedure**](InputProcedure.md) |  | 
+ **inputProcedure** | [**InputProcedure**](InputProcedure.md) |  |
 
 ### Return type
 
@@ -142,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -157,6 +161,8 @@ Name | Type | Description  | Notes
 ## CreateSeveralProceduresForAlert
 
 > []OutputProcedure CreateSeveralProceduresForAlert(ctx, alertId).InputBulkProcedure(inputBulkProcedure).Execute()
+
+Add multiple TTPs to an alert
 
 
 
@@ -173,8 +179,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	inputBulkProcedure := *openapiclient.NewInputBulkProcedure() // InputBulkProcedure | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	inputBulkProcedure := *openapiclient.NewInputBulkProcedure() // InputBulkProcedure |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -194,7 +200,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -204,7 +210,7 @@ Other parameters are passed through a pointer to a apiCreateSeveralProceduresFor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputBulkProcedure** | [**InputBulkProcedure**](InputBulkProcedure.md) |  | 
+ **inputBulkProcedure** | [**InputBulkProcedure**](InputBulkProcedure.md) |  |
 
 ### Return type
 
@@ -212,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -227,6 +233,8 @@ Name | Type | Description  | Notes
 ## CreateSeveralProceduresForCase
 
 > []OutputProcedure CreateSeveralProceduresForCase(ctx, caseId).InputBulkProcedure(inputBulkProcedure).Execute()
+
+Add multiple TTPs to a case
 
 
 
@@ -243,8 +251,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputBulkProcedure := *openapiclient.NewInputBulkProcedure() // InputBulkProcedure | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputBulkProcedure := *openapiclient.NewInputBulkProcedure() // InputBulkProcedure |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -264,7 +272,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -274,7 +282,7 @@ Other parameters are passed through a pointer to a apiCreateSeveralProceduresFor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputBulkProcedure** | [**InputBulkProcedure**](InputBulkProcedure.md) |  | 
+ **inputBulkProcedure** | [**InputBulkProcedure**](InputBulkProcedure.md) |  |
 
 ### Return type
 
@@ -282,7 +290,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -297,6 +305,8 @@ Name | Type | Description  | Notes
 ## DeleteProcedure
 
 > DeleteProcedure(ctx, procedureId).Execute()
+
+Delete a TTP
 
 
 
@@ -313,7 +323,7 @@ import (
 )
 
 func main() {
-	procedureId := "procedureId_example" // string | 
+	procedureId := "procedureId_example" // string | The TTP ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -331,7 +341,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**procedureId** | **string** |  | 
+**procedureId** | **string** | The TTP ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -348,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -363,6 +373,8 @@ Name | Type | Description  | Notes
 ## DeleteProceduresInBulk
 
 > DeleteProceduresInBulk(ctx).DeleteAlertInBulkRequest(deleteAlertInBulkRequest).Execute()
+
+Delete multiple TTPs
 
 
 
@@ -379,7 +391,7 @@ import (
 )
 
 func main() {
-	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest | 
+	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -402,7 +414,7 @@ Other parameters are passed through a pointer to a apiDeleteProceduresInBulkRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  | 
+ **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  |
 
 ### Return type
 
@@ -410,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -425,6 +437,8 @@ Name | Type | Description  | Notes
 ## UpdateProcedure
 
 > UpdateProcedure(ctx, procedureId).InputUpdateProcedure(inputUpdateProcedure).Execute()
+
+Update a TTP
 
 
 
@@ -441,8 +455,8 @@ import (
 )
 
 func main() {
-	procedureId := "procedureId_example" // string | 
-	inputUpdateProcedure := *openapiclient.NewInputUpdateProcedure() // InputUpdateProcedure | 
+	procedureId := "procedureId_example" // string | The TTP ID preceded by `~`.
+	inputUpdateProcedure := *openapiclient.NewInputUpdateProcedure() // InputUpdateProcedure |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -460,7 +474,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**procedureId** | **string** |  | 
+**procedureId** | **string** | The TTP ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -470,7 +484,7 @@ Other parameters are passed through a pointer to a apiUpdateProcedureRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateProcedure** | [**InputUpdateProcedure**](InputUpdateProcedure.md) |  | 
+ **inputUpdateProcedure** | [**InputUpdateProcedure**](InputUpdateProcedure.md) |  |
 
 ### Return type
 
@@ -478,7 +492,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -488,4 +502,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

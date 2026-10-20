@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **string** |  | [optional] 
-**Catalog** | **string** | Either a name or id of an existing catalog in TheHive or if a catalog with this name does not exists, one will be created | 
-**Variant** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** | URL of the MITRE ATT&amp;CK JSON file to import. Use this or &#x60;file&#x60;, not both. | [optional]
+**Catalog** | **string** | Name or ID of the catalog to import techniques into. If no catalog with that name exists, TheHive creates it automatically. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCatalog&#x60; to retrieve available catalogs, their IDs, and names. |
+**Variant** | Pointer to **string** | Variant identifier set on the catalog after import. Defaults to today&#39;s date in YYYY-MM-DD format if not provided. | [optional]
 
 ## Methods
 
@@ -99,5 +99,3 @@ HasVariant returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

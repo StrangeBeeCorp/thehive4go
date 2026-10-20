@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  | 
-**Content** | **string** |  | 
-**Order** | Pointer to **int32** |  | [optional] 
-**Category** | **string** |  | 
+**Title** | **string** | Title of the page. |
+**Content** | **string** | Content of the page. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). |
+**Order** | Pointer to **int32** | Display order of the page within its category. | [optional]
+**Category** | **string** | Category the page belongs to. Unknown categories are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listPage&#x60; to retrieve existing categories. |
 
 ## Methods
 
@@ -115,5 +115,3 @@ SetCategory sets Category field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

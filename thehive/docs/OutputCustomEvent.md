@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Date** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the custom event. |
+**UnderscoreType** | **string** | Entity type, always &#x60;CustomEvent&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the custom event. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the custom event. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the custom event was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the custom event was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Date** | **int64** | Start date of the custom event. Returned as a Unix timestamp in milliseconds. |
+**EndDate** | Pointer to **int64** | End date of the custom event. Returned as a Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the custom event. |
+**Description** | Pointer to **string** | Brief description of the custom event. | [optional]
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | **string** |  | 
+**Kind** | **string** | All external users of the organization can access the case through [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Internal users can still access the case through the main TheHive interface. Platinum or One license required. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

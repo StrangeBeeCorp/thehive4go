@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**DataType** | **string** |  |
-**Data** | Pointer to **string** |  | [optional]
-**StartDate** | **int64** |  |
-**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) |  | [optional]
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Tags** | Pointer to **[]string** |  | [optional]
-**Ioc** | **bool** |  |
-**Sighted** | **bool** |  |
-**SightedAt** | Pointer to **int64** |  | [optional]
-**Reports** | **map[string]interface{}** |  |
-**Message** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
-**IgnoreSimilarity** | **bool** |  |
-**External** | Pointer to **bool** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the observable. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Observable&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the observable. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the observable. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the observable was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the observable was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**DataType** | **string** | The observable type. |
+**Data** | Pointer to **string** | Observable value. &#x60;null&#x60; for attachment types. | [optional]
+**StartDate** | **int64** | Date and time when the observable was created. Returned as a Unix timestamp in milliseconds. |
+**Attachment** | Pointer to [**OutputAttachment**](OutputAttachment.md) | File attachment for observable types that require a file. Absent for value-based observables. | [optional]
+**Tlp** | **int32** | Numeric Traffic Light Protocol (TLP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). |
+**TlpLabel** | **string** | Human-readable label of the TLP level. |
+**Pap** | **int32** | Numeric Permissible Actions Protocol (PAP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). |
+**PapLabel** | **string** | Human-readable label of the PAP level. |
+**Tags** | Pointer to **[]string** | Tags applied to the observable. | [optional]
+**Ioc** | **bool** | Whether the observable is an indicator of compromise (IOC). |
+**Sighted** | **bool** | Whether the observable has been sighted in the environment. |
+**SightedAt** | Pointer to **int64** | Date and time when the observable was last sighted. Returned as a Unix timestamp in milliseconds. | [optional]
+**Reports** | **map[string]interface{}** | Analyzer reports attached to the observable, keyed by analyzer name. |
+**Message** | Pointer to **string** | A description of the observable. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
+**IgnoreSimilarity** | **bool** | Whether the observable is excluded from similarity checks. |
+**External** | Pointer to **bool** | Whether the observable is accessible to external users with [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Platinum or One license required. | [optional]
 
 ## Methods
 

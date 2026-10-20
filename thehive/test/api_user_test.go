@@ -167,19 +167,6 @@ func Test_thehive_UserAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserAPIService SetUserLogin", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var userId string
-
-		httpRes, err := apiClient.UserAPI.SetUserLogin(context.Background(), userId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UserAPIService SetUserOrganisations", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test

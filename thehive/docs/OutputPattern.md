@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**PatternId** | **string** |  |
-**Name** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Tactics** | Pointer to **[]string** |  | [optional]
-**Url** | **string** |  |
-**PatternType** | **string** |  |
-**CapecId** | Pointer to **string** |  | [optional]
-**CapecUrl** | Pointer to **string** |  | [optional]
-**Revoked** | **bool** |  |
-**DataSources** | Pointer to **[]string** |  | [optional]
-**DefenseBypassed** | Pointer to **[]string** |  | [optional]
-**Detection** | Pointer to **string** |  | [optional]
-**PermissionsRequired** | Pointer to **[]string** |  | [optional]
-**Platforms** | Pointer to **[]string** |  | [optional]
-**RemoteSupport** | **bool** |  |
-**SystemRequirements** | Pointer to **[]string** |  | [optional]
-**Version** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Unique identifier of the attack technique. |
+**UnderscoreType** | **string** | Entity type, always \&quot;Pattern\&quot;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the attack technique record. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the attack technique record. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the attack technique record was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the attack technique record was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**PatternId** | **string** | MITRE ATT&amp;CK pattern identifier. |
+**Name** | **string** | Name of the attack technique. |
+**Description** | Pointer to **string** | Description of the attack technique. | [optional]
+**Tactics** | Pointer to **[]string** | MITRE ATT&amp;CK tactics associated with this technique. | [optional]
+**Url** | **string** | URL of the MITRE ATT&amp;CK page for this technique. |
+**PatternType** | **string** | MITRE ATT&amp;CK object type for this entry. |
+**CapecId** | Pointer to **string** | CAPEC (Common Attack Pattern Enumeration and Classification) identifier, if applicable. | [optional]
+**CapecUrl** | Pointer to **string** | URL of the CAPEC entry for this technique, if applicable. | [optional]
+**Revoked** | **bool** | Whether this technique has been revoked in the MITRE ATT&amp;CK framework. |
+**DataSources** | Pointer to **[]string** | Data sources that can be used to detect this technique. | [optional]
+**DefenseBypassed** | Pointer to **[]string** | Defenses this technique can bypass. | [optional]
+**Detection** | Pointer to **string** | Guidance for detecting this technique. | [optional]
+**PermissionsRequired** | Pointer to **[]string** | Permissions required to execute this technique. | [optional]
+**Platforms** | Pointer to **[]string** | Target platforms for this technique. | [optional]
+**RemoteSupport** | **bool** | Whether this technique can be executed remotely. |
+**SystemRequirements** | Pointer to **[]string** | System requirements for executing this technique. | [optional]
+**Version** | Pointer to **string** | Version of this technique in the MITRE ATT&amp;CK framework. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

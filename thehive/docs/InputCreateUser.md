@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Login** | **string** | Login the user will need to enter, this will be the main identifier for the user | 
-**Name** | **string** | Name of the user | 
-**Email** | Pointer to **string** |  | [optional] 
-**Password** | Pointer to **string** |  | [optional] 
-**Profile** | **string** | Profile to assign the user in the organisation | 
-**Organisation** | Pointer to **string** |  | [optional] 
-**Avatar** | Pointer to ***os.File** | ignored in json body | [optional] 
-**Type** | Pointer to [**UserType**](UserType.md) | Normal, Service or External. A service user cannot use the ui and needs to provide an api key for authentication. An external user only has access to the portal | [optional] 
+**Login** | **string** | Login name for the user account, used to sign in. Must be a valid email address. |
+**Name** | **string** | Display name for the user account. |
+**Email** | Pointer to **string** | Email address for sending notifications. | [optional]
+**Password** | Pointer to **string** | Initial password for the user account. | [optional]
+**Profile** | **string** | Permission profile for the user in the organization. Must match an existing profile. Use &#x60;GET /api/v1/profile&#x60; to list available profiles. |
+**Organisation** | Pointer to **string** | Organization the user belongs to. Must match an existing organization. Use &#x60;POST /api/v1/query&#x60; with &#x60;listOrganisation&#x60; to retrieve available organizations. | [optional]
+**Type** | Pointer to [**UserType**](UserType.md) | Type of user account. Normal accounts can use the web interface and the API. Service accounts authenticate exclusively with an API key and can&#39;t sign in to the web interface. External accounts access TheHive through the Portal (requires a Platinum or One license). | [optional]
 
 ## Methods
 
@@ -167,31 +166,6 @@ SetOrganisation sets Organisation field to given value.
 
 HasOrganisation returns a boolean if a field has been set.
 
-### GetAvatar
-
-`func (o *InputCreateUser) GetAvatar() *os.File`
-
-GetAvatar returns the Avatar field if non-nil, zero value otherwise.
-
-### GetAvatarOk
-
-`func (o *InputCreateUser) GetAvatarOk() (**os.File, bool)`
-
-GetAvatarOk returns a tuple with the Avatar field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvatar
-
-`func (o *InputCreateUser) SetAvatar(v *os.File)`
-
-SetAvatar sets Avatar field to given value.
-
-### HasAvatar
-
-`func (o *InputCreateUser) HasAvatar() bool`
-
-HasAvatar returns a boolean if a field has been set.
-
 ### GetType
 
 `func (o *InputCreateUser) GetType() UserType`
@@ -219,5 +193,3 @@ HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

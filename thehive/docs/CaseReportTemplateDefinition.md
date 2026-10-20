@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Widgets** | Pointer to [**[]Widget**](Widget.md) |  | [optional] 
-**Header** | Pointer to [**HeaderWidget**](HeaderWidget.md) |  | [optional] 
-**Footer** | Pointer to [**FooterWidget**](FooterWidget.md) |  | [optional] 
-**DateFormat** | Pointer to **string** |  | [optional] [default to "yyyy-MM-dd"]
-**DateTimeFormat** | Pointer to **string** |  | [optional] [default to "yyyy-MM-dd HH:mm"]
-**I18n** | [**I18n**](I18n.md) |  | 
+**Widgets** | Pointer to [**[]Widget**](Widget.md) | Ordered list of widgets that define the report body. A widget is a self-contained section—for example, an observable table, an alert list, or a free-text block. | [optional]
+**Header** | Pointer to [**HeaderWidget**](HeaderWidget.md) |  | [optional]
+**Footer** | Pointer to [**FooterWidget**](FooterWidget.md) |  | [optional]
+**DateFormat** | Pointer to **string** | Date format pattern applied to date fields in the report. | [optional] [default to "yyyy-MM-dd"]
+**DateTimeFormat** | Pointer to **string** | Date and time format pattern applied to datetime fields in the report. | [optional] [default to "yyyy-MM-dd HH:mm"]
+**I18n** | [**I18n**](I18n.md) |  |
 
 ## Methods
 
@@ -177,5 +177,3 @@ SetI18n sets I18n field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

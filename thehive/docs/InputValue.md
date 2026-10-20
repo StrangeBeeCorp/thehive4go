@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Predicate** | **string** |  | 
-**Entry** | Pointer to [**[]InputEntry**](InputEntry.md) |  | [optional] 
+**Predicate** | **string** | Predicate identifier this set of entries belongs to. |
+**Entry** | Pointer to [**[]InputEntry**](InputEntry.md) |  | [optional]
 
 ## Methods
 
@@ -73,5 +73,3 @@ HasEntry returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAnAlertFeeder**](AlertFeederAPI.md#CreateAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder | 
-[**DeleteAnAlertFeeder**](AlertFeederAPI.md#DeleteAnAlertFeeder) | **Delete** /api/v1/connector/alert-feeder/{alertFeederName} | 
-[**GetAlertFeeders**](AlertFeederAPI.md#GetAlertFeeders) | **Get** /api/v1/connector/alert-feeder | 
-[**RunAnAlertFeeder**](AlertFeederAPI.md#RunAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/run/{alertFeederName} | 
-[**TestAnAlertFeeder**](AlertFeederAPI.md#TestAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/test | 
-[**UpdateAnAlertFeeder**](AlertFeederAPI.md#UpdateAnAlertFeeder) | **Put** /api/v1/connector/alert-feeder/{alertFeederName} | 
+[**CreateAnAlertFeeder**](AlertFeederAPI.md#CreateAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder | Create an alert feeder
+[**DeleteAnAlertFeeder**](AlertFeederAPI.md#DeleteAnAlertFeeder) | **Delete** /api/v1/connector/alert-feeder/{alertFeederName} | Delete an alert feeder
+[**GetAlertFeeders**](AlertFeederAPI.md#GetAlertFeeders) | **Get** /api/v1/connector/alert-feeder | List all alert feeders
+[**RunAnAlertFeeder**](AlertFeederAPI.md#RunAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/run/{alertFeederName} | Run an alert feeder immediately
+[**TestAnAlertFeeder**](AlertFeederAPI.md#TestAnAlertFeeder) | **Post** /api/v1/connector/alert-feeder/test | Test an alert feeder connection
+[**UpdateAnAlertFeeder**](AlertFeederAPI.md#UpdateAnAlertFeeder) | **Put** /api/v1/connector/alert-feeder/{alertFeederName} | Update an alert feeder
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > OutputAlertFeeder CreateAnAlertFeeder(ctx).InputAlertFeeder(inputAlertFeeder).Execute()
 
-
+Create an alert feeder
 
 
 
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	inputAlertFeeder := *openapiclient.NewInputAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days")), "FunctionName_example") // InputAlertFeeder | 
+	inputAlertFeeder := *openapiclient.NewInputAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days")), "FunctionName_example") // InputAlertFeeder |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateAnAlertFeederRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAlertFeeder** | [**InputAlertFeeder**](InputAlertFeeder.md) |  | 
+ **inputAlertFeeder** | [**InputAlertFeeder**](InputAlertFeeder.md) |  |
 
 ### Return type
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 > DeleteAnAlertFeeder(ctx, alertFeederName).Execute()
 
-
+Delete an alert feeder
 
 
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string | 
+	alertFeederName := "alertFeederName_example" // string | The name of the alert feeder.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  | 
+**alertFeederName** | **string** | The name of the alert feeder. |
 
 ### Other Parameters
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 > []OutputAlertFeeder GetAlertFeeders(ctx).Execute()
 
-
+List all alert feeders
 
 
 
@@ -196,7 +196,7 @@ Other parameters are passed through a pointer to a apiGetAlertFeedersRequest str
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -210,9 +210,9 @@ Other parameters are passed through a pointer to a apiGetAlertFeedersRequest str
 
 ## RunAnAlertFeeder
 
-> OutputInvokeFunction RunAnAlertFeeder(ctx, alertFeederName).DryRun(dryRun).Execute()
+> OutputInvokeFunctionOk RunAnAlertFeeder(ctx, alertFeederName).DryRun(dryRun).Execute()
 
-
+Run an alert feeder immediately
 
 
 
@@ -229,8 +229,8 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string | 
-	dryRun := true // bool |  (optional) (default to false)
+	alertFeederName := "alertFeederName_example" // string | The name of the alert feeder.
+	dryRun := true // bool | Set to `true` to simulate the execution without creating alerts. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -239,7 +239,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AlertFeederAPI.RunAnAlertFeeder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RunAnAlertFeeder`: OutputInvokeFunction
+	// response from `RunAnAlertFeeder`: OutputInvokeFunctionOk
 	fmt.Fprintf(os.Stdout, "Response from `AlertFeederAPI.RunAnAlertFeeder`: %v\n", resp)
 }
 ```
@@ -250,7 +250,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  | 
+**alertFeederName** | **string** | The name of the alert feeder. |
 
 ### Other Parameters
 
@@ -260,15 +260,15 @@ Other parameters are passed through a pointer to a apiRunAnAlertFeederRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dryRun** | **bool** |  | [default to false]
+ **dryRun** | **bool** | Set to &#x60;true&#x60; to simulate the execution without creating alerts. | [default to false]
 
 ### Return type
 
-[**OutputInvokeFunction**](OutputInvokeFunction.md)
+[**OutputInvokeFunctionOk**](OutputInvokeFunctionOk.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 > interface{} TestAnAlertFeeder(ctx).InputTestAlertFeeder(inputTestAlertFeeder).Execute()
 
-
+Test an alert feeder connection
 
 
 
@@ -301,7 +301,7 @@ import (
 )
 
 func main() {
-	inputTestAlertFeeder := *openapiclient.NewInputTestAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputTestAlertFeeder | 
+	inputTestAlertFeeder := *openapiclient.NewInputTestAlertFeeder("Name_example", "Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputTestAlertFeeder |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -326,7 +326,7 @@ Other parameters are passed through a pointer to a apiTestAnAlertFeederRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTestAlertFeeder** | [**InputTestAlertFeeder**](InputTestAlertFeeder.md) |  | 
+ **inputTestAlertFeeder** | [**InputTestAlertFeeder**](InputTestAlertFeeder.md) |  |
 
 ### Return type
 
@@ -334,7 +334,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 > OutputAlertFeeder UpdateAnAlertFeeder(ctx, alertFeederName).InputUpdateAlertFeeder(inputUpdateAlertFeeder).Execute()
 
-
+Update an alert feeder
 
 
 
@@ -367,8 +367,8 @@ import (
 )
 
 func main() {
-	alertFeederName := "alertFeederName_example" // string | 
-	inputUpdateAlertFeeder := *openapiclient.NewInputUpdateAlertFeeder("Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputUpdateAlertFeeder | 
+	alertFeederName := "alertFeederName_example" // string | The name of the alert feeder.
+	inputUpdateAlertFeeder := *openapiclient.NewInputUpdateAlertFeeder("Description_example", openapiclient.Method("GET"), "Url_example", *openapiclient.NewInterval(int32(123), openapiclient.IntervalUnit("Days"))) // InputUpdateAlertFeeder |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -388,7 +388,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertFeederName** | **string** |  | 
+**alertFeederName** | **string** | The name of the alert feeder. |
 
 ### Other Parameters
 
@@ -398,7 +398,7 @@ Other parameters are passed through a pointer to a apiUpdateAnAlertFeederRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateAlertFeeder** | [**InputUpdateAlertFeeder**](InputUpdateAlertFeeder.md) |  | 
+ **inputUpdateAlertFeeder** | [**InputUpdateAlertFeeder**](InputUpdateAlertFeeder.md) |  |
 
 ### Return type
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -416,4 +416,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Source** | **string** |  | 
-**SourceRef** | **string** |  | 
-**ExternalLink** | Pointer to **string** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | **string** |  | 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Date** | Pointer to **int64** | If not provided, the current date is used | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** | User to assign the alert to | [optional] 
-**CaseTemplate** | Pointer to **string** |  | [optional] 
-**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) |  | [optional] 
-**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | List of procedures (TTPs) to link the alert to | [optional] 
+**Type** | **string** | Type of the alert. Identifies the event category and groups related alerts. |
+**Source** | **string** | Source system that generated the alert. |
+**SourceRef** | **string** | Unique reference identifier from the source system. Combined with &#x60;type&#x60; and &#x60;source&#x60;, uniquely identifies an alert. |
+**ExternalLink** | Pointer to **string** | External URL linking to the alert in the source system. | [optional]
+**Title** | **string** | Short title describing the alert. |
+**Description** | **string** | Full description of the alert. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). |
+**Severity** | Pointer to **int32** | Numeric severity level of the alert: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). | [optional] [default to 2]
+**Date** | Pointer to **int64** | Date and time of the event that triggered the alert, as a Unix timestamp in milliseconds. If not provided, the current date is used. | [optional]
+**Tags** | Pointer to **[]string** | Labels to categorize the alert. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Flag** | Pointer to **bool** | Marks the alert as important for quick filtering. | [optional] [default to false]
+**Tlp** | Pointer to **int32** | [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level controlling how alert information can be shared: 0 (Clear — no restrictions), 1 (Green — community), 2 (Amber — organization and clients), 3 (Amber+Strict — organization only), 4 (Red — named recipients only). | [optional] [default to 2]
+**Pap** | Pointer to **int32** | [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level controlling what actions can be taken with alert information: 0 (Clear — no restrictions), 1 (Green — active actions allowed), 2 (Amber — passive checks only), 3 (Red — non-detectable actions only). | [optional] [default to 2]
+**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional]
+**Summary** | Pointer to **string** | Brief summary of the triage findings. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Status** | Pointer to **string** | Name of the alert status to apply. Must match an existing status. Use &#x60;POST /api/v1/query&#x60; with &#x60;listAlertStatus&#x60; to list available statuses. | [optional] [default to "New"]
+**Assignee** | Pointer to **string** | Login of the user to assign the alert to. Typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their logins. If omitted, the alert is unassigned. | [optional]
+**CaseTemplate** | Pointer to **string** | Name of the case template to apply when creating a case from this alert. Applies the template&#39;s tasks, custom fields, and pages. Must match an existing case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; to list available case templates. | [optional]
+**Observables** | Pointer to [**[]InputCreateObservable**](InputCreateObservable.md) | Observables to attach to the alert. Can also be added after creation with &#x60;POST /api/v1/alert/{alertId}/observable&#x60;. | [optional]
+**Procedures** | Pointer to [**[]InputProcedure**](InputProcedure.md) | Tactics, techniques, and procedures (TTPs) to link to the alert based on the MITRE ATT&amp;CK framework. | [optional]
 
 ## Methods
 
@@ -495,5 +495,3 @@ HasProcedures returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,27 +4,28 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddTemporaryAttachment**](UserAPI.md#AddTemporaryAttachment) | **Post** /api/v1/user/current/attachments | 
-[**ChangeUserPassword**](UserAPI.md#ChangeUserPassword) | **Post** /api/v1/user/{userId}/password/change | 
-[**CreateUser**](UserAPI.md#CreateUser) | **Post** /api/v1/user | 
-[**DeleteUser**](UserAPI.md#DeleteUser) | **Delete** /api/v1/user/{userId}/force | 
-[**GetCurrentUserInfo**](UserAPI.md#GetCurrentUserInfo) | **Get** /api/v1/user/current | 
-[**GetUser**](UserAPI.md#GetUser) | **Get** /api/v1/user/{userId} | 
-[**GetUserApiKey**](UserAPI.md#GetUserApiKey) | **Get** /api/v1/user/{userId}/key | 
-[**GetUserAvatar**](UserAPI.md#GetUserAvatar) | **Get** /api/v1/user/{userId}/avatar/{file} | 
-[**LockUser**](UserAPI.md#LockUser) | **Delete** /api/v1/user/{userId} | 
-[**RemoveUserApiKey**](UserAPI.md#RemoveUserApiKey) | **Delete** /api/v1/user/{userId}/key | 
-[**RenewUserApiKey**](UserAPI.md#RenewUserApiKey) | **Post** /api/v1/user/{userId}/key/renew | 
-[**SetUserLogin**](UserAPI.md#SetUserLogin) | **Post** /api/v1/user/{userId}/login/set | 
-[**SetUserOrganisations**](UserAPI.md#SetUserOrganisations) | **Put** /api/v1/user/{userId}/organisations | 
-[**SetUserPassword**](UserAPI.md#SetUserPassword) | **Post** /api/v1/user/{userId}/password/set | 
-[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /api/v1/user/{userId} | 
+[**AddTemporaryAttachment**](UserAPI.md#AddTemporaryAttachment) | **Post** /api/v1/user/current/attachments | Upload temporary attachments
+[**ChangeUserPassword**](UserAPI.md#ChangeUserPassword) | **Post** /api/v1/user/{userId}/password/change | Change a user account password
+[**CreateUser**](UserAPI.md#CreateUser) | **Post** /api/v1/user | Create a user account
+[**DeleteUser**](UserAPI.md#DeleteUser) | **Delete** /api/v1/user/{userId}/force | Delete a user account
+[**GetCurrentUserInfo**](UserAPI.md#GetCurrentUserInfo) | **Get** /api/v1/user/current | Get current user info
+[**GetUser**](UserAPI.md#GetUser) | **Get** /api/v1/user/{userId} | Get a user account
+[**GetUserApiKey**](UserAPI.md#GetUserApiKey) | **Get** /api/v1/user/{userId}/key | Get a user API key
+[**GetUserAvatar**](UserAPI.md#GetUserAvatar) | **Get** /api/v1/user/{userId}/avatar/{file} | Get a user avatar
+[**LockUser**](UserAPI.md#LockUser) | **Delete** /api/v1/user/{userId} | Lock a user account
+[**RemoveUserApiKey**](UserAPI.md#RemoveUserApiKey) | **Delete** /api/v1/user/{userId}/key | Revoke a user API key
+[**RenewUserApiKey**](UserAPI.md#RenewUserApiKey) | **Post** /api/v1/user/{userId}/key/renew | Renew a user API key
+[**SetUserOrganisations**](UserAPI.md#SetUserOrganisations) | **Put** /api/v1/user/{userId}/organisations | Set user account organizations
+[**SetUserPassword**](UserAPI.md#SetUserPassword) | **Post** /api/v1/user/{userId}/password/set | Set a user account password
+[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /api/v1/user/{userId} | Update a user account
 
 
 
 ## AddTemporaryAttachment
 
 > OutputAttachments AddTemporaryAttachment(ctx).Attachments(attachments).CanRename(canRename).Execute()
+
+Upload temporary attachments
 
 
 
@@ -41,8 +42,8 @@ import (
 )
 
 func main() {
-	attachments := []*os.File{"TODO"} // []*os.File | 
-	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
+	attachments := []*os.File{"TODO"} // []*os.File | Files to attach. Each part is a multipart form file field.
+	canRename := true // bool | When `true`, renames files that already exist with the same name. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -67,8 +68,8 @@ Other parameters are passed through a pointer to a apiAddTemporaryAttachmentRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** | Files to attach. Each part is a multipart form file field. |
+ **canRename** | **bool** | When &#x60;true&#x60;, renames files that already exist with the same name. |
 
 ### Return type
 
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -91,6 +92,8 @@ Name | Type | Description  | Notes
 ## ChangeUserPassword
 
 > ChangeUserPassword(ctx, userId).InputChangeUserPassword(inputChangeUserPassword).Execute()
+
+Change a user account password
 
 
 
@@ -107,8 +110,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	inputChangeUserPassword := *openapiclient.NewInputChangeUserPassword("Password_example", "CurrentPassword_example") // InputChangeUserPassword | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	inputChangeUserPassword := *openapiclient.NewInputChangeUserPassword("Password_example", "CurrentPassword_example") // InputChangeUserPassword |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -126,7 +129,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -136,7 +139,7 @@ Other parameters are passed through a pointer to a apiChangeUserPasswordRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputChangeUserPassword** | [**InputChangeUserPassword**](InputChangeUserPassword.md) |  | 
+ **inputChangeUserPassword** | [**InputChangeUserPassword**](InputChangeUserPassword.md) |  |
 
 ### Return type
 
@@ -144,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -159,6 +162,8 @@ Name | Type | Description  | Notes
 ## CreateUser
 
 > OutputUser CreateUser(ctx).InputCreateUser(inputCreateUser).Execute()
+
+Create a user account
 
 
 
@@ -175,7 +180,7 @@ import (
 )
 
 func main() {
-	inputCreateUser := *openapiclient.NewInputCreateUser("Login_example", "Name_example", "Profile_example") // InputCreateUser | 
+	inputCreateUser := *openapiclient.NewInputCreateUser("Login_example", "Name_example", "Profile_example") // InputCreateUser |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,7 +205,7 @@ Other parameters are passed through a pointer to a apiCreateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateUser** | [**InputCreateUser**](InputCreateUser.md) |  | 
+ **inputCreateUser** | [**InputCreateUser**](InputCreateUser.md) |  |
 
 ### Return type
 
@@ -208,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -223,6 +228,8 @@ Name | Type | Description  | Notes
 ## DeleteUser
 
 > DeleteUser(ctx, userId).Organisation(organisation).Execute()
+
+Delete a user account
 
 
 
@@ -239,8 +246,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	organisation := "organisation_example" // string |  (optional)
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	organisation := "TheOrganization" // string | Name or ID of the organization to remove the user from. Use `POST /api/v1/query` with `listOrganisation` to retrieve available organizations. If omitted, the user is deleted from all organizations. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -268,7 +275,7 @@ Other parameters are passed through a pointer to a apiDeleteUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **organisation** | **string** |  | 
+ **organisation** | **string** | Name or ID of the organization to remove the user from. Use &#x60;POST /api/v1/query&#x60; with &#x60;listOrganisation&#x60; to retrieve available organizations. If omitted, the user is deleted from all organizations. |
 
 ### Return type
 
@@ -276,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -291,6 +298,8 @@ Name | Type | Description  | Notes
 ## GetCurrentUserInfo
 
 > OutputUser GetCurrentUserInfo(ctx).Execute()
+
+Get current user info
 
 
 
@@ -335,7 +344,7 @@ Other parameters are passed through a pointer to a apiGetCurrentUserInfoRequest 
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -350,6 +359,8 @@ Other parameters are passed through a pointer to a apiGetCurrentUserInfoRequest 
 ## GetUser
 
 > OutputUser GetUser(ctx, userId).Execute()
+
+Get a user account
 
 
 
@@ -366,7 +377,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -386,7 +397,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -403,7 +414,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -418,6 +429,8 @@ Name | Type | Description  | Notes
 ## GetUserApiKey
 
 > string GetUserApiKey(ctx, userId).Execute()
+
+Get a user API key
 
 
 
@@ -434,7 +447,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -454,7 +467,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -471,7 +484,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -486,6 +499,8 @@ Name | Type | Description  | Notes
 ## GetUserAvatar
 
 > *os.File GetUserAvatar(ctx, userId, file).IfNoneMatch(ifNoneMatch).Execute()
+
+Get a user avatar
 
 
 
@@ -502,9 +517,9 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	file := "file_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	file := "file_example" // string | The avatar filename returned in the user's `avatar` field.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -524,8 +539,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**file** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
+**file** | **string** | The avatar filename returned in the user&#39;s &#x60;avatar&#x60; field. |
 
 ### Other Parameters
 
@@ -536,7 +551,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -544,7 +559,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -560,7 +575,7 @@ Name | Type | Description  | Notes
 
 > LockUser(ctx, userId).Execute()
 
-
+Lock a user account
 
 
 
@@ -577,7 +592,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -595,7 +610,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -612,7 +627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -627,6 +642,8 @@ Name | Type | Description  | Notes
 ## RemoveUserApiKey
 
 > RemoveUserApiKey(ctx, userId).Execute()
+
+Revoke a user API key
 
 
 
@@ -643,7 +660,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -661,7 +678,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -678,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -693,6 +710,8 @@ Name | Type | Description  | Notes
 ## RenewUserApiKey
 
 > string RenewUserApiKey(ctx, userId).Execute()
+
+Renew a user API key
 
 
 
@@ -709,7 +728,7 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -729,7 +748,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -746,7 +765,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -758,78 +777,12 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SetUserLogin
-
-> SetUserLogin(ctx, userId).InputSetUserLogin(inputSetUserLogin).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
-)
-
-func main() {
-	userId := "userId_example" // string | 
-	inputSetUserLogin := *openapiclient.NewInputSetUserLogin("Login_example") // InputSetUserLogin | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UserAPI.SetUserLogin(context.Background(), userId).InputSetUserLogin(inputSetUserLogin).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.SetUserLogin``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetUserLoginRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **inputSetUserLogin** | [**InputSetUserLogin**](InputSetUserLogin.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## SetUserOrganisations
 
 > OutputSetUserOrganisations SetUserOrganisations(ctx, userId).InputSetUserOrganisations(inputSetUserOrganisations).Execute()
 
+Set user account organizations
+
 
 
 ### Example
@@ -845,8 +798,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	inputSetUserOrganisations := *openapiclient.NewInputSetUserOrganisations() // InputSetUserOrganisations | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	inputSetUserOrganisations := *openapiclient.NewInputSetUserOrganisations() // InputSetUserOrganisations |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -866,7 +819,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -876,7 +829,7 @@ Other parameters are passed through a pointer to a apiSetUserOrganisationsReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputSetUserOrganisations** | [**InputSetUserOrganisations**](InputSetUserOrganisations.md) |  | 
+ **inputSetUserOrganisations** | [**InputSetUserOrganisations**](InputSetUserOrganisations.md) |  |
 
 ### Return type
 
@@ -884,7 +837,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -899,6 +852,8 @@ Name | Type | Description  | Notes
 ## SetUserPassword
 
 > SetUserPassword(ctx, userId).InputSetUserPassword(inputSetUserPassword).Execute()
+
+Set a user account password
 
 
 
@@ -915,8 +870,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	inputSetUserPassword := *openapiclient.NewInputSetUserPassword("Password_example") // InputSetUserPassword | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	inputSetUserPassword := *openapiclient.NewInputSetUserPassword("Password_example") // InputSetUserPassword |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -934,7 +889,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -944,7 +899,7 @@ Other parameters are passed through a pointer to a apiSetUserPasswordRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputSetUserPassword** | [**InputSetUserPassword**](InputSetUserPassword.md) |  | 
+ **inputSetUserPassword** | [**InputSetUserPassword**](InputSetUserPassword.md) |  |
 
 ### Return type
 
@@ -952,7 +907,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -967,6 +922,8 @@ Name | Type | Description  | Notes
 ## UpdateUser
 
 > UpdateUser(ctx, userId).InputUpdateUser(inputUpdateUser).Execute()
+
+Update a user account
 
 
 
@@ -983,8 +940,8 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	inputUpdateUser := *openapiclient.NewInputUpdateUser() // InputUpdateUser | 
+	userId := "userId_example" // string | The user ID preceded by `~`, or the user login.
+	inputUpdateUser := *openapiclient.NewInputUpdateUser() // InputUpdateUser |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1002,7 +959,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | The user ID preceded by &#x60;~&#x60;, or the user login. |
 
 ### Other Parameters
 
@@ -1012,7 +969,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateUser** | [**InputUpdateUser**](InputUpdateUser.md) |  | 
+ **inputUpdateUser** | [**InputUpdateUser**](InputUpdateUser.md) |  |
 
 ### Return type
 
@@ -1020,7 +977,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1030,4 +987,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -1,9 +1,9 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
+ ## Get started  This guide covers everything you need to make your first successful API call to TheHive.  The publicly hosted API documentation reflects the latest version of TheHive. To browse the documentation that matches the version of TheHive you are running, open it from within the application: select the **?** button in the top right corner, then **API Docs**.  The v0 API is deprecated and isn't documented. New integrations should target v1.  ### Prerequisites  You need a running TheHive instance and an unlocked user account.  ### Authentication  Almost all endpoints require authentication.  TheHive supports two authentication methods:  #### API key (recommended)  Use your API key as a bearer token in the `Authorization` header.  Generate a new API key with `POST /api/v1/user/{userId}/key/renew`, or retrieve an existing one with `GET /api/v1/user/{userId}/key`.  If you have a [Normal user account](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types), you can also manage your API key in your [user settings](https://docs.strangebee.com/thehive/user-guides/manage-user-settings/#manage-your-api-key).  curl ```bash curl -X <http_method> -H 'Authorization: Bearer <api_key>' \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  headers = {\"Authorization\": \"Bearer <api_key>\"} response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", headers=headers) ```  #### Basic authentication  Only available for [Normal user accounts](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types).  Pass your login and password using HTTP Basic authentication. The login is typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted.  curl ```bash curl -X <http_method> -u <login>:<password> \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", auth=(\"<login>\", \"<password>\")) ```  The following endpoints are public and can be called without credentials:  - `POST /api/v1/login`: Authenticate with login, password, and a TOTP code if MFA is enabled. Returns a session cookie used to authenticate subsequent requests. - `GET /api/v1/logout`: Invalidate the current session. - `POST /api/v1/logout`: Invalidate the current session. Same as `GET`, provided for clients that can't send `GET` requests with a body. - `GET /api/v1/auth/local/passwordPolicy`: Retrieve the password policy configured on the server such as minimum length or complexity requirements. - `GET /api/v1/status/public`: Retrieve public server information, including the TheHive version and license status, without exposing sensitive configuration.  All other endpoints return `401 Unauthorized` when called without valid credentials.  ### Your first API call  Start with `GET /api/v1/user/current`: it requires no request body, confirms your credentials work, and returns your user ID.  curl ```bash curl -X GET -H 'Authorization: Bearer <api_key>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### X-Organisation header  By default, API calls target the user's default organization. The `defaultOrganisation` field returned by `GET /api/v1/user/current` tells you which one it is.  If your account belongs to several organizations and you need to target a specific one, add the `X-Organisation` header. This is also required when performing administration actions, as these must be executed in the context of the `admin` organization.  curl ```bash curl -H 'Authorization: Bearer <api_key>' \\      -H 'X-Organisation: <organization_name>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\", \"X-Organisation\": \"<organization_name>\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### Request and response format  All request and response bodies use JSON: `Content-Type: application/json`.  Dates are represented as Unix timestamps in milliseconds.  ### How the API is organized  TheHive exposes two kinds of endpoints.  #### The Query API  `POST /api/v1/query` handles all listing, filtering, sorting, and pagination needs.  A single endpoint accepts a structured body that chains operations:  ```json {   \"query\": [     { \"_name\": \"listCase\" },     { \"_name\": \"filter\", \"_eq\": { \"_field\": \"status\", \"_value\": \"Open\" } },     { \"_name\": \"sort\", \"_fields\": [{ \"_createdAt\": \"desc\" }] },     { \"_name\": \"page\", \"from\": 0, \"to\": 15, \"extraData\": [\"taskStats\", \"shareCount\"] }   ],   \"excludeFields\": [\"description\", \"summary\"] } ```  See the [**Query and Export**](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the full query reference.  #### Standard REST endpoints  Standard REST endpoints handle write operations and direct entity lookups.  They follow conventional HTTP conventions:  | <nobr>Operation </nobr>| Method | Example | |-----------|--------|---------| | <nobr>Create </nobr>| `POST` | `POST /api/v1/case` | | <nobr>Read </nobr>| `GET` | `GET /api/v1/case/{idOrName}` | | <nobr>Update </nobr>| `PATCH` | `PATCH /api/v1/case/{idOrName}` | | <nobr>Replace / set </nobr>| `PUT` | `PUT /api/v1/case/{caseId}/shares` | | <nobr>Delete </nobr>| `DELETE` | `DELETE /api/v1/case/{idOrName}` |  ### Permissions and capabilities  Each user account has permissions defined by their profile. TheHive checks them on every API call.  Some endpoints are only available with a Gold, Platinum, or One license. When that's the case, the required license tier is listed on the endpoint.  To check which license is active on your instance and what capabilities it includes, call `GET /api/v1/status`.  ### Request size limits  TheHive enforces the following request size limits:  | <nobr>Request type </nobr>| Default limit | Description | |---|---|---| | <nobr>Standard API requests (JSON payloads) </nobr>| 10 MB | Maximum size for request bodies processed in memory | | <nobr>File uploads and attachments </nobr>| 1 GB | Maximum size for streamed request bodies written to disk |  TheHive rejects requests that exceed these limits.  To stay within these limits: - Avoid sending excessively large JSON payloads. - Upload large files as attachments rather than embedding data directly in requests. - Implement rate limiting and additional protections at the reverse proxy level when exposing the API externally.  ### Errors  Every endpoint returns at least the following HTTP status codes:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`400 Bad Request` </nobr>| Invalid request parameters or body | | <nobr>`404 Not Found` </nobr>| Resource does not exist | | <nobr>`500 Internal Server Error` </nobr>| Unexpected server-side error |  Endpoints that require authentication additionally return:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`401 Unauthorized` </nobr>| Missing or invalid credentials | | <nobr>`403 Forbidden` </nobr>| Authenticated but insufficient permissions |  Other codes may appear depending on the specific operation. Refer to individual endpoint documentation for the full list.  The standard error response body is:  ```json {   \"type\": \"AuthorizationError\",   \"message\": \"You don't have permission to perform this action\" } ```  A small number of endpoints deviate from this format. These cases are noted in the relevant endpoint descriptions.
 
-API version: v5.6.2
+API version: v6.0.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -38,7 +38,21 @@ func (r ApiAddNewConfigRequest) Execute() (*OutputEmailIntakeConfig, *http.Respo
 }
 
 /*
-AddNewConfig Method for AddNewConfig
+AddNewConfig Add a mailbox configuration
+
+Add a new mailbox connection to the email intake module.
+
+Use `GET /api/v1/connector/email-intake/providers` to list available
+providers. Use `POST /api/v1/connector/email-intake/config/test` to
+verify the connection before saving. Use
+`POST /api/v1/connector/email-intake/folders` to list available folders
+and pick the inbox folder.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One — Platinum or One required for OAuth 2.0 providers: Microsoft 365, Microsoft Graph API, and Google Workspace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiAddNewConfigRequest
@@ -195,9 +209,17 @@ func (r ApiAvailableProvidersRequest) Execute() ([]OutputRichEmailIntakeProvider
 }
 
 /*
-AvailableProviders Method for AvailableProviders
+AvailableProviders List available email intake providers
 
-Get the available providers to add new configs.
+Lists all email intake providers available on the server.
+Use the returned `name` and `_kind` values to set the provider
+when configuring a new mailbox connection.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiAvailableProvidersRequest
@@ -350,10 +372,21 @@ func (r ApiDeleteConfigRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteConfig Method for DeleteConfig
+DeleteConfig Delete a mailbox configuration
+
+Permanently remove the mailbox configuration identified by `configId`.
+
+Use `GET /api/v1/connector/email-intake/configs` to retrieve available
+configurations and their IDs.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param configId
+	@param configId The mailbox configuration ID preceded by `~`.
 	@return ApiDeleteConfigRequest
 */
 func (a *EmailIntakeAPIService) DeleteConfig(ctx context.Context, configId string) ApiDeleteConfigRequest {
@@ -499,11 +532,24 @@ func (r ApiGWSetAuthorizationCodeRequest) Execute() (interface{}, *http.Response
 }
 
 /*
-GWSetAuthorizationCode Method for GWSetAuthorizationCode
+GWSetAuthorizationCode Complete Google Workspace OAuth 2.0 authorization
 
-Set the authorization code for a new 'Google Workspace' config before creating it.
+Exchange a Google Workspace OAuth 2.0 authorization code for a new pending
+configuration entry and returns its ID. Call this after the user completes
+the Google consent flow and your application receives the authorization code.
 
-Return the new config id in the payload.
+Request body: `{ "authorizationCode": "<code>" }`
+
+Response body: `{ "id": "<configId>", "authorizationCode": "<code>" }`
+
+Pass the returned `id` as the `id` field when calling
+`POST /api/v1/connector/email-intake/config` to save the configuration.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGWSetAuthorizationCodeRequest
@@ -661,10 +707,21 @@ func (r ApiGetConfigRequest) Execute() (*OutputEmailIntakeConfig, *http.Response
 }
 
 /*
-GetConfig Method for GetConfig
+GetConfig Get a mailbox configuration
+
+Returns the configuration of the mailbox identified by `configId`.
+
+Use `GET /api/v1/connector/email-intake/configs` to retrieve available
+configurations and their IDs.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param configId
+	@param configId The mailbox configuration ID preceded by `~`.
 	@return ApiGetConfigRequest
 */
 func (a *EmailIntakeAPIService) GetConfig(ctx context.Context, configId string) ApiGetConfigRequest {
@@ -816,9 +873,16 @@ func (r ApiGetConfigsRequest) Execute() (*OutputRichEmailIntake, *http.Response,
 }
 
 /*
-GetConfigs Method for GetConfigs
+GetConfigs Get the email intake module configuration
 
-Get the whole configuration of the module.
+Returns the full configuration of the email intake module, including
+whether it's enabled, the sync interval, and all mailbox configurations.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetConfigsRequest
@@ -976,9 +1040,17 @@ func (r ApiGetMailboxFoldersRequest) Execute() ([]string, *http.Response, error)
 }
 
 /*
-GetMailboxFolders Method for GetMailboxFolders
+GetMailboxFolders List mailbox folders
 
-Get all folders of the mailbox.
+Returns all folders available in the mailbox described by the request body.
+Use this to discover folder names before setting `mailbox.inbox` or
+`mailbox.archive` when adding or updating a configuration.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One — Platinum or One required for OAuth 2.0 providers: Microsoft 365, Microsoft Graph API, and Google Workspace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetMailboxFoldersRequest
@@ -1135,11 +1207,20 @@ func (r ApiSyncRequest) Execute() (*http.Response, error) {
 }
 
 /*
-Sync Method for Sync
+Sync Trigger an immediate email fetch
 
-Run immediately a new sync of all mailboxes,
+Trigger an immediate email fetch without waiting for the next scheduled
+interval. By default, syncs all connected mailboxes. To sync a single
+mailbox, add the `configId` query parameter:
+`POST /api/v1/connector/email-intake/sync?configId=<configId>`.
+Use `GET /api/v1/connector/email-intake/configs` to retrieve available
+configuration IDs.
 
-it can be used only one-by-one by adding `~/sync?{configId}` in the query.
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSyncRequest
@@ -1285,9 +1366,18 @@ func (r ApiTestConfigRequest) Execute() (*http.Response, error) {
 }
 
 /*
-TestConfig Method for TestConfig
+TestConfig Test a mailbox connection
 
-Test the connexion to the mailbox.
+Test the connection to a mailbox using the provided configuration without
+saving it. Use this before calling
+`POST /api/v1/connector/email-intake/config` to verify credentials and
+network connectivity.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One — Platinum or One required for OAuth 2.0 providers: Microsoft 365, Microsoft Graph API, and Google Workspace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiTestConfigRequest
@@ -1439,10 +1529,21 @@ func (r ApiUpdateConfigRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateConfig Method for UpdateConfig
+UpdateConfig Update a mailbox configuration
+
+Replace the mailbox configuration identified by `configId`.
+
+Use `GET /api/v1/connector/email-intake/configs` to retrieve available
+configurations and their IDs.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One — Platinum or One required for OAuth 2.0 providers: Microsoft 365, Microsoft Graph API, and Google Workspace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param configId
+	@param configId The mailbox configuration ID preceded by `~`.
 	@return ApiUpdateConfigRequest
 */
 func (a *EmailIntakeAPIService) UpdateConfig(ctx context.Context, configId string) ApiUpdateConfigRequest {
@@ -1593,9 +1694,19 @@ func (r ApiUpdateConfigsRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateConfigs Method for UpdateConfigs
+UpdateConfigs Update the email intake module settings
 
-Update the global configuration.
+Update the global email intake module settings: the enabled flag and
+the sync interval. This endpoint doesn't manage individual mailbox
+configurations. Use `POST /api/v1/connector/email-intake/config` to add a
+mailbox, or `PUT /api/v1/connector/email-intake/config/{configId}` to
+update one.
+
+Required permissions: `manageConfig`. Call it
+with the `X-Organisation: admin` header to target the `admin`
+organization.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUpdateConfigsRequest

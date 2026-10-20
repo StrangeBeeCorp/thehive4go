@@ -61,4 +61,17 @@ func Test_thehive_ObservableTypeAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ObservableTypeAPIService UpdateObservableType", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var typeId string
+
+		httpRes, err := apiClient.ObservableTypeAPI.UpdateObservableType(context.Background(), typeId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

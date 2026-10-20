@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **string** | The e-mail of the user account | 
-**BasicAuth** | Pointer to [**InputEmailBasicAuthConfig**](InputEmailBasicAuthConfig.md) |  | [optional] 
-**OAuth2** | Pointer to [**InputEmailIntakeOAuth2**](InputEmailIntakeOAuth2.md) |  | [optional] 
+**Email** | **string** | Email address or username for the mailbox account. |
+**BasicAuth** | Pointer to [**InputEmailBasicAuthConfig**](InputEmailBasicAuthConfig.md) |  | [optional]
+**OAuth2** | Pointer to [**InputEmailIntakeOAuth2**](InputEmailIntakeOAuth2.md) |  | [optional]
 
 ## Methods
 
@@ -99,5 +99,3 @@ HasOAuth2 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

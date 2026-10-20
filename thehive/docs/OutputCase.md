@@ -4,47 +4,47 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Number** | **int32** | An incremental number to reference the case. This field can be used in the apis in place of the _id |
-**Title** | **string** |  |
-**Description** | **string** |  |
-**Severity** | **int32** |  |
-**SeverityLabel** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | **bool** |  |
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Status** | **string** |  |
-**Stage** | **string** | The value of the stage depends on the status of the case. Can be one of &#39;New&#39; &#39;InProgress&#39; or &#39;Closed&#39; |
-**Summary** | Pointer to **string** |  | [optional]
-**ImpactStatus** | Pointer to **string** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**Access** | [**Access**](Access.md) |  |
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
-**UserPermissions** | Pointer to **[]string** | A list of permissions the current user has access on the case. This depends on the profile of the user and the sharing of the Case | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the case. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Case&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the case. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the case. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the case was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the case was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Number** | **int32** | An incremental number to reference the case. This field can be used in the API in place of &#x60;_id&#x60;. |
+**Title** | **string** | Title of the case. |
+**Description** | **string** | Details of the case. |
+**Severity** | **int32** | Numeric severity level: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). |
+**SeverityLabel** | **string** | Human-readable severity label. |
+**StartDate** | **int64** | Start date of the incident. Returned as a Unix timestamp in milliseconds. |
+**EndDate** | Pointer to **int64** | End date of the incident. Returned as a Unix timestamp in milliseconds. | [optional]
+**Tags** | Pointer to **[]string** | Tags assigned to the case. | [optional]
+**Flag** | **bool** | Whether the case is flagged for quick filtering. |
+**Tlp** | **int32** | Numeric Traffic Light Protocol (TLP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). |
+**TlpLabel** | **string** | Human-readable TLP label. |
+**Pap** | **int32** | Numeric Permissible Actions Protocol (PAP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). |
+**PapLabel** | **string** | Human-readable PAP label. |
+**Status** | **string** | Current status of the case. |
+**Stage** | **string** | Stage derived from the case status. One of *New*, *InProgress*, or *Closed*. |
+**Summary** | Pointer to **string** | Brief summary of the investigation findings. | [optional]
+**ImpactStatus** | Pointer to **string** | Verdict on whether the incident had real consequences for the organization. Only set when the case is closed with a status that requires an impact. One of &#x60;WithImpact&#x60;, &#x60;NoImpact&#x60;, or &#x60;NotApplicable&#x60;. | [optional]
+**Assignee** | Pointer to **string** | Login of the user assigned to the case. | [optional]
+**Access** | [**Access**](Access.md) | Access control settings of the case. |
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) | Custom field values set on the case. | [optional]
+**UserPermissions** | Pointer to **[]string** | Permissions the current user has on this case, based on their profile and the case sharing configuration. | [optional]
 **ExtraData** | **map[string]interface{}** |  |
-**NewDate** | **int64** |  |
-**InProgressDate** | Pointer to **int64** |  | [optional]
-**ClosedDate** | Pointer to **int64** |  | [optional]
-**AlertDate** | Pointer to **int64** |  | [optional]
-**AlertNewDate** | Pointer to **int64** |  | [optional]
-**AlertInProgressDate** | Pointer to **int64** |  | [optional]
-**AlertImportedDate** | Pointer to **int64** |  | [optional]
-**TimeToDetect** | **int64** |  |
-**TimeToTriage** | Pointer to **int64** |  | [optional]
-**TimeToQualify** | Pointer to **int64** |  | [optional]
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
-**TimeToResolve** | Pointer to **int64** |  | [optional]
-**HandlingDuration** | Pointer to **int64** |  | [optional]
+**NewDate** | **int64** | Date when the case first entered a status linked to the *New* stage. Returned as a Unix timestamp in milliseconds. |
+**InProgressDate** | Pointer to **int64** | Date when the case first entered a status linked to the *In Progress* stage. Returned as a Unix timestamp in milliseconds. | [optional]
+**ClosedDate** | Pointer to **int64** | Date when the case first entered a status linked to the *Closed* stage. Returned as a Unix timestamp in milliseconds. | [optional]
+**AlertDate** | Pointer to **int64** | The date the incident occurred according to the earliest linked alert. Returned as a Unix timestamp in milliseconds. | [optional]
+**AlertNewDate** | Pointer to **int64** | Date when the earliest linked alert first entered the *New* stage. Returned as a Unix timestamp in milliseconds. | [optional]
+**AlertInProgressDate** | Pointer to **int64** | Date when the earliest linked alert first entered the *In Progress* stage. Returned as a Unix timestamp in milliseconds. | [optional]
+**AlertImportedDate** | Pointer to **int64** | Date when the earliest linked alert was imported into a case. Returned as a Unix timestamp in milliseconds. | [optional]
+**TimeToDetect** | **int64** | [Time to Detect (TTD)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-detect-ttd), in milliseconds. |
+**TimeToTriage** | Pointer to **int64** | [Time to Triage (TTT)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-triage-ttt), in milliseconds. | [optional]
+**TimeToQualify** | Pointer to **int64** | [Time to Qualify (TTQ)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-qualify-ttq), in milliseconds. | [optional]
+**TimeToAcknowledge** | Pointer to **int64** | [Time to Acknowledge (TTA)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-acknowledge-tta), in milliseconds. | [optional]
+**TimeToResolve** | Pointer to **int64** | [Time to Resolve (TTR)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-resolve-ttr), in milliseconds. | [optional]
+**HandlingDuration** | Pointer to **int64** | [Handling duration](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-resolve-ttr), in milliseconds. | [optional]
 
 ## Methods
 

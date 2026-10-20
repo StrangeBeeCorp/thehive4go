@@ -4,25 +4,27 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteSharesByShareId**](ShareAPI.md#DeleteSharesByShareId) | **Delete** /api/v1/case/shares | 
-[**ListSharesOfCase**](ShareAPI.md#ListSharesOfCase) | **Get** /api/v1/case/{caseId}/shares | 
-[**ListSharesOfObservable**](ShareAPI.md#ListSharesOfObservable) | **Get** /api/v1/observable/{observableId}/shares | 
-[**ListSharesOfTask**](ShareAPI.md#ListSharesOfTask) | **Get** /api/v1/task/{taskId}/shares | 
-[**RemoveAShareFromCase**](ShareAPI.md#RemoveAShareFromCase) | **Delete** /api/v1/case/share/{shareId} | 
-[**SetSharesForCase**](ShareAPI.md#SetSharesForCase) | **Put** /api/v1/case/{caseId}/shares | 
-[**ShareACase**](ShareAPI.md#ShareACase) | **Post** /api/v1/case/{caseId}/shares | 
-[**ShareATask**](ShareAPI.md#ShareATask) | **Post** /api/v1/task/{taskId}/shares | 
-[**ShareAnObservable**](ShareAPI.md#ShareAnObservable) | **Post** /api/v1/observable/{observableId}/shares | 
-[**UnshareACase**](ShareAPI.md#UnshareACase) | **Delete** /api/v1/case/{caseId}/shares | 
-[**UnshareATask**](ShareAPI.md#UnshareATask) | **Delete** /api/v1/task/{taskId}/shares | 
-[**UnshareAnObservable**](ShareAPI.md#UnshareAnObservable) | **Delete** /api/v1/observable/{observableId}/shares | 
-[**UpdateAShare**](ShareAPI.md#UpdateAShare) | **Patch** /api/v1/case/share/{shareId} | 
+[**DeleteSharesByShareId**](ShareAPI.md#DeleteSharesByShareId) | **Delete** /api/v1/case/shares | Delete multiple shares
+[**ListSharesOfCase**](ShareAPI.md#ListSharesOfCase) | **Get** /api/v1/case/{caseId}/shares | List shares of a case
+[**ListSharesOfObservable**](ShareAPI.md#ListSharesOfObservable) | **Get** /api/v1/observable/{observableId}/shares | List shares of an observable
+[**ListSharesOfTask**](ShareAPI.md#ListSharesOfTask) | **Get** /api/v1/task/{taskId}/shares | List shares of a task
+[**RemoveAShareFromCase**](ShareAPI.md#RemoveAShareFromCase) | **Delete** /api/v1/case/share/{shareId} | Remove a share by ID
+[**SetSharesForCase**](ShareAPI.md#SetSharesForCase) | **Put** /api/v1/case/{caseId}/shares | Set all shares for a case
+[**ShareACase**](ShareAPI.md#ShareACase) | **Post** /api/v1/case/{caseId}/shares | Share a case with other organizations
+[**ShareATask**](ShareAPI.md#ShareATask) | **Post** /api/v1/task/{taskId}/shares | Share a task with organizations
+[**ShareAnObservable**](ShareAPI.md#ShareAnObservable) | **Post** /api/v1/observable/{observableId}/shares | Share an observable with organizations
+[**UnshareACase**](ShareAPI.md#UnshareACase) | **Delete** /api/v1/case/{caseId}/shares | Unshare a case from organizations
+[**UnshareATask**](ShareAPI.md#UnshareATask) | **Delete** /api/v1/task/{taskId}/shares | Unshare a task from organizations
+[**UnshareAnObservable**](ShareAPI.md#UnshareAnObservable) | **Delete** /api/v1/observable/{observableId}/shares | Unshare an observable from organizations
+[**UpdateAShare**](ShareAPI.md#UpdateAShare) | **Patch** /api/v1/case/share/{shareId} | Update a share&#39;s permission profile
 
 
 
 ## DeleteSharesByShareId
 
 > DeleteSharesByShareId(ctx).DeleteAlertInBulkRequest(deleteAlertInBulkRequest).Execute()
+
+Delete multiple shares
 
 
 
@@ -39,7 +41,7 @@ import (
 )
 
 func main() {
-	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest | 
+	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,7 +64,7 @@ Other parameters are passed through a pointer to a apiDeleteSharesByShareIdReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  | 
+ **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  |
 
 ### Return type
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -85,6 +87,8 @@ Name | Type | Description  | Notes
 ## ListSharesOfCase
 
 > []OutputShare ListSharesOfCase(ctx, caseId).Execute()
+
+List shares of a case
 
 
 
@@ -101,7 +105,7 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -121,7 +125,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -138,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -153,6 +157,8 @@ Name | Type | Description  | Notes
 ## ListSharesOfObservable
 
 > []OutputShare ListSharesOfObservable(ctx, observableId).Execute()
+
+List shares of an observable
 
 
 
@@ -169,7 +175,7 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -189,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -206,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -221,6 +227,8 @@ Name | Type | Description  | Notes
 ## ListSharesOfTask
 
 > []OutputShare ListSharesOfTask(ctx, taskId).Execute()
+
+List shares of a task
 
 
 
@@ -237,7 +245,7 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -257,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -274,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -289,6 +297,8 @@ Name | Type | Description  | Notes
 ## RemoveAShareFromCase
 
 > RemoveAShareFromCase(ctx, shareId).Execute()
+
+Remove a share by ID
 
 
 
@@ -305,7 +315,7 @@ import (
 )
 
 func main() {
-	shareId := "shareId_example" // string | 
+	shareId := "shareId_example" // string | The share ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -323,7 +333,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**shareId** | **string** |  | 
+**shareId** | **string** | The share ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -340,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -356,7 +366,7 @@ Name | Type | Description  | Notes
 
 > []OutputShare SetSharesForCase(ctx, caseId).InputCreateShares(inputCreateShares).Execute()
 
-
+Set all shares for a case
 
 
 
@@ -373,8 +383,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -394,7 +404,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -404,7 +414,7 @@ Other parameters are passed through a pointer to a apiSetSharesForCaseRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  | 
+ **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  |
 
 ### Return type
 
@@ -412,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -428,7 +438,7 @@ Name | Type | Description  | Notes
 
 > []OutputShare ShareACase(ctx, caseId).InputCreateShares(inputCreateShares).Execute()
 
-
+Share a case with other organizations
 
 
 
@@ -445,8 +455,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCreateShares := *openapiclient.NewInputCreateShares() // InputCreateShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -466,7 +476,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -476,7 +486,7 @@ Other parameters are passed through a pointer to a apiShareACaseRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  | 
+ **inputCreateShares** | [**InputCreateShares**](InputCreateShares.md) |  |
 
 ### Return type
 
@@ -484,7 +494,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -500,7 +510,7 @@ Name | Type | Description  | Notes
 
 > ShareATask(ctx, taskId).InputCreateShare(inputCreateShare).Execute()
 
-
+Share a task with organizations
 
 
 
@@ -517,8 +527,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -536,7 +546,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -546,7 +556,7 @@ Other parameters are passed through a pointer to a apiShareATaskRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  | 
+ **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  |
 
 ### Return type
 
@@ -554,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -570,7 +580,7 @@ Name | Type | Description  | Notes
 
 > ShareAnObservable(ctx, observableId).InputCreateShare(inputCreateShare).Execute()
 
-
+Share an observable with organizations
 
 
 
@@ -587,8 +597,8 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
-	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
+	inputCreateShare := *openapiclient.NewInputCreateShare() // InputCreateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -606,7 +616,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -616,7 +626,7 @@ Other parameters are passed through a pointer to a apiShareAnObservableRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  | 
+ **inputCreateShare** | [**InputCreateShare**](InputCreateShare.md) |  |
 
 ### Return type
 
@@ -624,7 +634,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -639,6 +649,8 @@ Name | Type | Description  | Notes
 ## UnshareACase
 
 > UnshareACase(ctx, caseId).InputRemoveShares(inputRemoveShares).Execute()
+
+Unshare a case from organizations
 
 
 
@@ -655,8 +667,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -674,7 +686,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -684,7 +696,7 @@ Other parameters are passed through a pointer to a apiUnshareACaseRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -692,7 +704,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -707,6 +719,8 @@ Name | Type | Description  | Notes
 ## UnshareATask
 
 > UnshareATask(ctx, taskId).InputRemoveShares(inputRemoveShares).Execute()
+
+Unshare a task from organizations
 
 
 
@@ -723,8 +737,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -742,7 +756,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -752,7 +766,7 @@ Other parameters are passed through a pointer to a apiUnshareATaskRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -760,7 +774,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -775,6 +789,8 @@ Name | Type | Description  | Notes
 ## UnshareAnObservable
 
 > UnshareAnObservable(ctx, observableId).InputRemoveShares(inputRemoveShares).Execute()
+
+Unshare an observable from organizations
 
 
 
@@ -791,8 +807,8 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
-	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
+	inputRemoveShares := *openapiclient.NewInputRemoveShares() // InputRemoveShares |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -810,7 +826,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -820,7 +836,7 @@ Other parameters are passed through a pointer to a apiUnshareAnObservableRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  | 
+ **inputRemoveShares** | [**InputRemoveShares**](InputRemoveShares.md) |  |
 
 ### Return type
 
@@ -828,7 +844,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -843,6 +859,8 @@ Name | Type | Description  | Notes
 ## UpdateAShare
 
 > UpdateAShare(ctx, shareId).InputUpdateShare(inputUpdateShare).Execute()
+
+Update a share's permission profile
 
 
 
@@ -859,8 +877,8 @@ import (
 )
 
 func main() {
-	shareId := "shareId_example" // string | 
-	inputUpdateShare := *openapiclient.NewInputUpdateShare("Profile_example") // InputUpdateShare | 
+	shareId := "shareId_example" // string | The share ID preceded by `~`.
+	inputUpdateShare := *openapiclient.NewInputUpdateShare("Profile_example") // InputUpdateShare |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -878,7 +896,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**shareId** | **string** |  | 
+**shareId** | **string** | The share ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -888,7 +906,7 @@ Other parameters are passed through a pointer to a apiUpdateAShareRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateShare** | [**InputUpdateShare**](InputUpdateShare.md) |  | 
+ **inputUpdateShare** | [**InputUpdateShare**](InputUpdateShare.md) |  |
 
 ### Return type
 
@@ -896,7 +914,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -906,4 +924,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

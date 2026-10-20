@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LinkType** | **string** |  |
-**OtherLinkType** | **string** |  |
-**Organisation** | [**OutputOrganisation**](OutputOrganisation.md) |  |
+**LinkType** | **string** | Sharing profile applied when the current organization shares a case with this organization. |
+**OtherLinkType** | **string** | Sharing profile applied when this organization shares a case with the current organization. |
+**Organisation** | [**OutputOrganisation**](OutputOrganisation.md) | Details of the linked organization. |
 
 ## Methods
 

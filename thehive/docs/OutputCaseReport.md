@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**ContentType** | **string** |  |
-**Size** | **int64** |  |
-**Filename** | **string** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the case report. |
+**UnderscoreType** | **string** | Entity type, always &#x60;CaseReport&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the case report. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the case report. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the case report was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the case report was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**ContentType** | **string** | MIME type of the report file. |
+**Size** | **int64** | Size of the report file in bytes. |
+**Filename** | **string** | Name of the report file. |
 
 ## Methods
 

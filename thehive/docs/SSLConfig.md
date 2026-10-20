@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Default** | Pointer to **bool** |  | [optional] [default to false]
-**Protocol** | Pointer to **string** |  | [optional] [default to "TLSv1.2"]
-**CheckRevocation** | Pointer to **bool** |  | [optional] 
-**RevocationLists** | Pointer to **[]string** |  | [optional] 
-**EnabledCipherSuites** | Pointer to **[]string** |  | [optional] 
-**EnabledProtocols** | Pointer to **[]string** |  | [optional] 
-**HostnameVerifierClass** | Pointer to **string** |  | [optional] [default to "NoopHostnameVerifier"]
-**SecureRandom** | Pointer to **string** |  | [optional] 
-**TrustManager** | Pointer to [**Manager**](Manager.md) |  | [optional] 
-**KeyManager** | Pointer to [**Manager**](Manager.md) |  | [optional] 
-**SslParametersConfig** | Pointer to [**SSLParameters**](SSLParameters.md) |  | [optional] 
-**Debug** | Pointer to [**SSLDebugConfig**](SSLDebugConfig.md) |  | [optional] 
-**Loose** | [**SSLLooseConfig**](SSLLooseConfig.md) |  | 
+**Default** | Pointer to **bool** | Whether to use the default JVM SSL configuration. | [optional] [default to false]
+**Protocol** | Pointer to **string** | SSL/TLS protocol version to use. | [optional] [default to "TLSv1.2"]
+**CheckRevocation** | Pointer to **bool** | Whether to check certificate revocation lists. | [optional]
+**RevocationLists** | Pointer to **[]string** | Certificate revocation list URLs to check. | [optional]
+**EnabledCipherSuites** | Pointer to **[]string** | Override for the platform default cipher suites. | [optional]
+**EnabledProtocols** | Pointer to **[]string** | Override for the platform default TLS protocols. | [optional]
+**HostnameVerifierClass** | Pointer to **string** | Hostname verifier class name. | [optional] [default to "NoopHostnameVerifier"]
+**SecureRandom** | Pointer to **string** | SecureRandom implementation class name. | [optional]
+**TrustManager** | Pointer to [**Manager**](Manager.md) | Trust manager configuration. | [optional]
+**KeyManager** | Pointer to [**Manager**](Manager.md) | Key manager configuration. | [optional]
+**SslParametersConfig** | Pointer to [**SSLParameters**](SSLParameters.md) |  | [optional]
+**Debug** | Pointer to [**SSLDebugConfig**](SSLDebugConfig.md) |  | [optional]
+**Loose** | [**SSLLooseConfig**](SSLLooseConfig.md) |  |
 
 ## Methods
 
@@ -359,5 +359,3 @@ SetLoose sets Loose field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

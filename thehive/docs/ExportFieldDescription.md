@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FieldPath** | **string** |  | 
-**FieldType** | **string** |  | 
-**SelectedByDefault** | **bool** |  | 
+**FieldPath** | **string** | Path of the field as it should be referenced in the &#x60;fields&#x60; parameter of the Export API endpoint. Nested fields use a dotted notation (for example, &#x60;attachment.name&#x60;) |
+**FieldType** | **string** | Logical type of the field. Possible values are &#x60;string&#x60;, &#x60;string[]&#x60;, &#x60;number&#x60;, &#x60;boolean&#x60;, &#x60;date&#x60;, &#x60;user&#x60;, &#x60;customFields&#x60;, &#x60;organisationLink[]&#x60;, and &#x60;organisationProfile[]&#x60; |
+**SelectedByDefault** | **bool** | Whether the field is part of the default selection when the &#x60;fields&#x60; parameter is omitted in a CSV export |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetSelectedByDefault sets SelectedByDefault field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **int64** |  |
-**Kind** | **string** |  |
-**Entity** | **string** |  |
-**EntityId** | **string** |  |
-**Details** | **map[string]interface{}** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
+**Date** | **int64** | Start date and time of the event. Returned as a Unix timestamp in milliseconds. |
+**Kind** | **string** | The event type. Possible values: &#x60;case.start&#x60;, &#x60;case.created&#x60;, &#x60;case.new&#x60;, &#x60;case.inProgress&#x60;, &#x60;case.closed&#x60;, &#x60;case.end&#x60;, &#x60;alert.occurred&#x60;, &#x60;procedure.occurred&#x60;, &#x60;observable.sighted&#x60;, &#x60;task&#x60;, &#x60;log.created&#x60;, &#x60;custom&#x60;. |
+**Entity** | **string** | The entity type involved in the event. Possible values: &#x60;Case&#x60;, &#x60;Alert&#x60;, &#x60;Procedure&#x60;, &#x60;Observable&#x60;, &#x60;Task&#x60;, &#x60;Log&#x60;, &#x60;CustomEvent&#x60;. |
+**EntityId** | **string** | Unique identifier of the entity involved in the event. |
+**Details** | **map[string]interface{}** | Event-specific details. Content varies by &#x60;kind&#x60;. For entity events, holds the full JSON representation of the related entity under a key matching the entity type (for example, &#x60;{\&quot;task\&quot;: {...}}&#x60;). Empty for case lifecycle events. |
+**EndDate** | Pointer to **int64** | End date and time of range events such as tasks. &#x60;null&#x60; for point-in-time events. Returned as a Unix timestamp in milliseconds. | [optional]
 
 ## Methods
 

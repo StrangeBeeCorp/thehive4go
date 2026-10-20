@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**Name** | **string** |  |
-**IsAttachment** | **bool** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the observable type. |
+**UnderscoreType** | **string** | Entity type, always &#x60;ObservableType&#x60;. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the observable type was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the observable type. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the observable type was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the observable type. |
+**Name** | **string** | Name of the observable type. |
+**IsAttachment** | **bool** | When &#x60;true&#x60;, observables of this type require a file attachment instead of a text value. |
+**IsCaseSensitive** | Pointer to **bool** | When &#x60;false&#x60;, values are automatically normalized to lowercase upon creation. | [optional]
 
 ## Methods
 
@@ -201,6 +202,31 @@ and a boolean to check if the value has been set.
 
 SetIsAttachment sets IsAttachment field to given value.
 
+
+### GetIsCaseSensitive
+
+`func (o *OutputObservableType) GetIsCaseSensitive() bool`
+
+GetIsCaseSensitive returns the IsCaseSensitive field if non-nil, zero value otherwise.
+
+### GetIsCaseSensitiveOk
+
+`func (o *OutputObservableType) GetIsCaseSensitiveOk() (*bool, bool)`
+
+GetIsCaseSensitiveOk returns a tuple with the IsCaseSensitive field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsCaseSensitive
+
+`func (o *OutputObservableType) SetIsCaseSensitive(v bool)`
+
+SetIsCaseSensitive sets IsCaseSensitive field to given value.
+
+### HasIsCaseSensitive
+
+`func (o *OutputObservableType) HasIsCaseSensitive() bool`
+
+HasIsCaseSensitive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

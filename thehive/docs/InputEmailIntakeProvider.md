@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Select an existing provider or define a custom one | 
-**Host** | Pointer to **string** | The name of the &#39;imap&#39; server | [optional] 
-**Protocol** | Pointer to **string** |  | [optional] [default to "imap"]
-**Port** | Pointer to **int32** |  | [optional] [default to 993]
-**Ssl** | Pointer to **bool** |  | [optional] [default to true]
-**StartTLS** | Pointer to **bool** |  | [optional] [default to false]
-**CheckServerIdentity** | Pointer to **bool** |  | [optional] [default to true]
-**Certificates** | Pointer to [**[]InputEmailIntakeSSLCert**](InputEmailIntakeSSLCert.md) | *.pem files | [optional] 
+**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Email provider type. Use &#x60;GET /api/v1/connector/email-intake/providers&#x60; to list available providers. |
+**Host** | Pointer to **string** | Hostname of the IMAP server. Required when using a custom IMAP provider. | [optional]
+**Protocol** | Pointer to **string** | IMAP protocol variant to use. | [optional] [default to "imap"]
+**Port** | Pointer to **int32** | Port number for the IMAP server. | [optional] [default to 993]
+**Ssl** | Pointer to **bool** | Enables SSL for the IMAP connection. | [optional] [default to true]
+**StartTLS** | Pointer to **bool** | Enables STARTTLS for the IMAP connection. | [optional] [default to false]
+**CheckServerIdentity** | Pointer to **bool** | Turns off host name verification against the SSL certificate when set to &#x60;false&#x60;. Don&#39;t deactivate this in production environments. | [optional] [default to true]
+**Certificates** | Pointer to [**[]InputEmailIntakeSSLCert**](InputEmailIntakeSSLCert.md) | PEM certificate authority certificates to trust for the IMAP server SSL connection. Required when the server uses a certificate from an internal CA or a self-signed certificate. | [optional]
 
 ## Methods
 
@@ -229,5 +229,3 @@ HasCertificates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

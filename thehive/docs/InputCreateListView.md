@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Entity** | [**InputListViewEntity**](InputListViewEntity.md) |  | 
-**Filter** | **map[string]interface{}** |  | 
-**ListOptions** | [**ListOptions**](ListOptions.md) |  | 
-**SortList** | Pointer to **[]string** |  | [optional] 
-**ShowColumns** | Pointer to **[]string** |  | [optional] 
-**IsShared** | **bool** |  | 
+**Name** | **string** | Name of the view. |
+**Entity** | [**InputListViewEntity**](InputListViewEntity.md) |  |
+**Filter** | **map[string]interface{}** | Filter applied to the list. Uses the same operators as the [&#x60;filter&#x60; step of the Query API](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export). |
+**ListOptions** | [**ListOptions**](ListOptions.md) | Display options saved for the view. |
+**SortList** | Pointer to **[]string** | Sort order saved for the view. Each entry is a field name prefixed with &#x60;+&#x60; for ascending order or &#x60;-&#x60; for descending order. | [optional]
+**ShowColumns** | Pointer to **[]string** | Optional columns displayed in the list, on top of the fixed set of columns shown for that entity type. The available optional columns vary by entity: check the corresponding list in TheHive web interface. | [optional]
+**IsShared** | **bool** | Whether the view is shared with your entire organization. When false, the view is private and visible only to you.  Every member of the organization can use, modify, and delete a shared view.  |
 
 ## Methods
 
@@ -183,5 +183,3 @@ SetIsShared sets IsShared field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

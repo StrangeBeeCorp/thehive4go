@@ -90,6 +90,20 @@ func Test_thehive_CaseReportTemplateAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test CaseReportTemplateAPIService ExportCaseReportTemplateAsArchive", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var caseReportTemplateId string
+
+		resp, httpRes, err := apiClient.CaseReportTemplateAPI.ExportCaseReportTemplateAsArchive(context.Background(), caseReportTemplateId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CaseReportTemplateAPIService GetAttachmentForCaseReportTemplate", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -124,6 +138,18 @@ func Test_thehive_CaseReportTemplateAPIService(t *testing.T) {
 		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CaseReportTemplateAPI.GetCaseReportTemplateOptions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CaseReportTemplateAPIService ImportCaseReportTemplateFromFile", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		resp, httpRes, err := apiClient.CaseReportTemplateAPI.ImportCaseReportTemplateFromFile(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

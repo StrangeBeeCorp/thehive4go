@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  |
-**Source** | **string** |  |
-**Tags** | Pointer to **[]string** |  | [optional]
+**Type** | **string** | Type of the alerts created through the email intake connector. |
+**Source** | **string** | Source of the alerts created through the email intake connector. |
+**Tags** | Pointer to **[]string** | Tags applied to alerts created through the email intake connector. | [optional]
 
 ## Methods
 

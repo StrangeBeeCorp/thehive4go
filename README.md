@@ -192,7 +192,7 @@ The generated client includes comprehensive support for all TheHive APIs:
 - **TaskAPI**: Task management within cases
 - **CommentAPI**: Comments on alerts and cases
 - **UserAPI**: User management and authentication
-- **OrganisationAPI**: Multi-organization support
+- **OrganizationAPI**: Multi-organization support
 - **DashboardAPI**: Dashboard and reporting
 - **QueryAndExportAPI**: Advanced querying and data export
 - **AdminAPI**: System administration
@@ -334,6 +334,7 @@ This client's version reflects the TheHive version it targets:
 |---|---|---|---|
 | `v0.55.x` | 5.5.x | v1-5.5.11-1 | Initial release, strict JSON decoding |
 | `v0.56.x` | 5.6.x+ | v5.6.2 | Forward-compatible JSON decoding, `external` field support; since `v0.56.3`, response models ignore the fields the client does not know (verified on TheHive 5.8 and 6.0 answers) |
+| `v0.60.x` | 6.0.x | v6.0.0 | Regenerated from the 6.0 spec; CI runs the integration tests on TheHive 5.5, 5.6, 5.8 and 6.0. Breaking changes against `v0.56.x` (removed operations, renamed types) are listed in the pull request that introduced it |
 
 **Version scheme**: `v0.<thehive_minor>.<patch>` — pick the version matching your TheHive deployment.
 
@@ -343,8 +344,11 @@ Go module users can pin a compatible version:
 # For TheHive 5.5.x
 go get github.com/StrangeBeeCorp/thehive4go@v0.55.0
 
-# For TheHive 5.6.x+
-go get github.com/StrangeBeeCorp/thehive4go@v0.56.0
+# For TheHive 5.6.x to 5.8.x
+go get github.com/StrangeBeeCorp/thehive4go@v0.56.3
+
+# For TheHive 6.0.x
+go get github.com/StrangeBeeCorp/thehive4go@v0.60.0
 ```
 
 ## License

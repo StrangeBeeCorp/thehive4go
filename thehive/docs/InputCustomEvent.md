@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **int64** |  | 
-**EndDate** | Pointer to **int64** |  | [optional] 
-**Title** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
+**Date** | **int64** | Start date of the custom event. Expected format: Unix timestamp in milliseconds. |
+**EndDate** | Pointer to **int64** | End date of the custom event. Expected format: Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the custom event, visible on the timeline. |
+**Description** | Pointer to **string** | Brief description of the custom event. Visible when users select **Preview** in the timeline. | [optional]
 
 ## Methods
 
@@ -120,5 +120,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AnalyzerId** | **string** |  | 
-**CortexId** | **string** |  | 
-**ArtifactId** | **string** | &#x3D;&#x3D; observableId field | 
-**Parameters** | Pointer to **map[string]interface{}** |  | [optional] 
+**AnalyzerId** | **string** | ID of the analyzer to run. Use &#x60;GET /api/v1/connector/cortex/analyzer&#x60; to list available analyzers. |
+**CortexId** | **string** | Name of the Cortex server to run the analyzer on. Check the &#x60;cortexIds&#x60; field returned by &#x60;GET /api/v1/connector/cortex/analyzer&#x60; for the servers where &#x60;analyzerId&#x60; is available. |
+**ArtifactId** | **string** | ID of the observable to analyze. Must match an existing observable. Use &#x60;POST /api/v1/query&#x60; with &#x60;listObservable&#x60; to retrieve available observables and their IDs. |
+**Parameters** | Pointer to **map[string]interface{}** | Additional parameters passed to the analyzer. Available keys depend on &#x60;analyzerId&#x60; and are defined by that analyzer&#39;s own configuration on the Cortex server. See [the Cortex API guide](https://docs.strangebee.com/cortex/api/api-guide/#run) for the expected format. | [optional]
 
 ## Methods
 
@@ -115,5 +115,3 @@ HasParameters returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

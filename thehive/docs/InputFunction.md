@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Name of the function, should be unique in an organisation | 
-**Mode** | Pointer to [**InputFunctionMode**](InputFunctionMode.md) |  | [optional] 
-**Definition** | **string** | Code of the function | 
-**Description** | Pointer to **string** |  | [optional] 
-**Config** | Pointer to **map[string]interface{}** |  | [optional] 
-**Types** | Pointer to [**[]InputFunctionType**](InputFunctionType.md) |  | [optional] 
+**Name** | **string** | Name of the function. Must be unique within the organization. |
+**Mode** | Pointer to [**InputFunctionMode**](InputFunctionMode.md) |  | [optional]
+**Definition** | **string** | JavaScript source code. Must define a &#x60;handle(input, context)&#x60; function as the entry point. |
+**Description** | Pointer to **string** | Description of the function. | [optional]
+**Config** | Pointer to **map[string]interface{}** | Configuration object passed to the function at runtime. Accessible via the context object. | [optional]
+**Types** | Pointer to [**[]InputFunctionType**](InputFunctionType.md) | [Function types](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-functions/about-functions/#function-types). Determines how and when the function can be invoked. | [optional]
 
 ## Methods
 
@@ -172,5 +172,3 @@ HasTypes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

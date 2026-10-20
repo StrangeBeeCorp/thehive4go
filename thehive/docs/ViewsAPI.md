@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateViews**](ViewsAPI.md#CreateViews) | **Post** /api/v1/views | 
-[**DeleteViews**](ViewsAPI.md#DeleteViews) | **Delete** /api/v1/views/{viewsId} | 
-[**GetViews**](ViewsAPI.md#GetViews) | **Get** /api/v1/views/{viewsId} | 
-[**UpdateViews**](ViewsAPI.md#UpdateViews) | **Patch** /api/v1/views/{viewsId} | 
+[**CreateViews**](ViewsAPI.md#CreateViews) | **Post** /api/v1/views | Create a view
+[**DeleteViews**](ViewsAPI.md#DeleteViews) | **Delete** /api/v1/views/{viewsId} | Delete a view
+[**GetViews**](ViewsAPI.md#GetViews) | **Get** /api/v1/views/{viewsId} | Get a view
+[**UpdateViews**](ViewsAPI.md#UpdateViews) | **Patch** /api/v1/views/{viewsId} | Update a view
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > OutputListView CreateViews(ctx).InputCreateListView(inputCreateListView).Execute()
 
-
+Create a view
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	inputCreateListView := *openapiclient.NewInputCreateListView("Name_example", openapiclient.InputListViewEntity("Alert"), map[string]interface{}(123), *openapiclient.NewListOptions(int32(123), false, false, false), false) // InputCreateListView | 
+	inputCreateListView := *openapiclient.NewInputCreateListView("Name_example", openapiclient.InputListViewEntity("Alert"), map[string]interface{}(123), *openapiclient.NewListOptions(int32(123), false, false, false), false) // InputCreateListView |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateViewsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateListView** | [**InputCreateListView**](InputCreateListView.md) |  | 
+ **inputCreateListView** | [**InputCreateListView**](InputCreateListView.md) |  |
 
 ### Return type
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -80,6 +80,8 @@ Name | Type | Description  | Notes
 ## DeleteViews
 
 > DeleteViews(ctx, viewsId).Execute()
+
+Delete a view
 
 
 
@@ -96,7 +98,7 @@ import (
 )
 
 func main() {
-	viewsId := "viewsId_example" // string | 
+	viewsId := "viewsId_example" // string | The view ID, with or without being preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -114,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**viewsId** | **string** |  | 
+**viewsId** | **string** | The view ID, with or without being preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -131,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -146,6 +148,8 @@ Name | Type | Description  | Notes
 ## GetViews
 
 > OutputListView GetViews(ctx, viewsId).Execute()
+
+Get a view
 
 
 
@@ -162,7 +166,7 @@ import (
 )
 
 func main() {
-	viewsId := "viewsId_example" // string | 
+	viewsId := "viewsId_example" // string | The view ID, with or without being preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**viewsId** | **string** |  | 
+**viewsId** | **string** | The view ID, with or without being preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -199,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -215,7 +219,7 @@ Name | Type | Description  | Notes
 
 > UpdateViews(ctx, viewsId).InputUpdateListView(inputUpdateListView).Execute()
 
-
+Update a view
 
 
 
@@ -232,8 +236,8 @@ import (
 )
 
 func main() {
-	viewsId := "viewsId_example" // string | 
-	inputUpdateListView := *openapiclient.NewInputUpdateListView() // InputUpdateListView | 
+	viewsId := "viewsId_example" // string | The view ID, with or without being preceded by `~`.
+	inputUpdateListView := *openapiclient.NewInputUpdateListView() // InputUpdateListView |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -251,7 +255,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**viewsId** | **string** |  | 
+**viewsId** | **string** | The view ID, with or without being preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -261,7 +265,7 @@ Other parameters are passed through a pointer to a apiUpdateViewsRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateListView** | [**InputUpdateListView**](InputUpdateListView.md) |  | 
+ **inputUpdateListView** | [**InputUpdateListView**](InputUpdateListView.md) |  |
 
 ### Return type
 
@@ -269,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -279,4 +283,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

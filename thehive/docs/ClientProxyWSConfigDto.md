@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | Pointer to [**Timeout**](Timeout.md) |  | [optional] 
-**FollowRedirects** | Pointer to **bool** |  | [optional] [default to true]
-**UseProxyProperties** | Pointer to **bool** |  | [optional] [default to true]
-**UserAgent** | Pointer to **string** |  | [optional] 
-**CompressionEnabled** | Pointer to **bool** |  | [optional] [default to false]
-**Ssl** | [**SSLConfig**](SSLConfig.md) |  | 
-**MaxConnectionsPerHost** | Pointer to **int32** |  | [optional] [default to -1]
-**MaxConnectionsTotal** | Pointer to **int32** |  | [optional] [default to -1]
-**MaxConnectionLifetime** | Pointer to **string** |  | [optional] [default to "Duration.Inf"]
-**IdleConnectionInPoolTimeout** | Pointer to **string** |  | [optional] [default to "1 minute"]
-**ConnectionPoolCleanerPeriod** | Pointer to **string** |  | [optional] [default to "1 minute"]
-**MaxNumberOfRedirects** | Pointer to **int32** |  | [optional] [default to 5]
-**MaxRequestRetry** | Pointer to **int32** |  | [optional] [default to 5]
-**DisableUrlEncoding** | Pointer to **bool** |  | [optional] [default to false]
-**KeepAlive** | Pointer to **bool** |  | [optional] [default to true]
-**UseLaxCookieEncoder** | Pointer to **bool** |  | [optional] [default to false]
-**UseCookieStore** | Pointer to **bool** |  | [optional] [default to false]
-**Proxy** | [**ProxyConfig**](ProxyConfig.md) |  | 
+**Timeout** | Pointer to [**Timeout**](Timeout.md) |  | [optional]
+**FollowRedirects** | Pointer to **bool** | Whether to follow HTTP redirects automatically. | [optional] [default to true]
+**UseProxyProperties** | Pointer to **bool** | Whether to use system proxy properties. | [optional] [default to true]
+**UserAgent** | Pointer to **string** | Custom User-Agent header value to send with requests. | [optional]
+**CompressionEnabled** | Pointer to **bool** | Whether to enable HTTP response compression. | [optional] [default to false]
+**Ssl** | [**SSLConfig**](SSLConfig.md) |  |
+**MaxConnectionsPerHost** | Pointer to **int32** | Maximum number of connections per host. Use -1 for no limit. | [optional] [default to -1]
+**MaxConnectionsTotal** | Pointer to **int32** | Maximum total number of connections. Use -1 for no limit. | [optional] [default to -1]
+**MaxConnectionLifetime** | Pointer to **string** | Maximum lifetime of a connection in the pool. | [optional] [default to "Duration.Inf"]
+**IdleConnectionInPoolTimeout** | Pointer to **string** | How long an idle connection is kept in the pool before being discarded. | [optional] [default to "1 minute"]
+**ConnectionPoolCleanerPeriod** | Pointer to **string** | How often the connection pool cleaner runs. | [optional] [default to "1 minute"]
+**MaxNumberOfRedirects** | Pointer to **int32** | Maximum number of redirects to follow before failing. | [optional] [default to 5]
+**MaxRequestRetry** | Pointer to **int32** | Maximum number of times a failed request is retried. | [optional] [default to 5]
+**DisableUrlEncoding** | Pointer to **bool** | Whether to skip URL encoding of query parameters. | [optional] [default to false]
+**KeepAlive** | Pointer to **bool** | Whether to use HTTP keep-alive connections. | [optional] [default to true]
+**UseLaxCookieEncoder** | Pointer to **bool** | Whether to use a lax cookie encoder that accepts non-standard cookie syntax. | [optional] [default to false]
+**UseCookieStore** | Pointer to **bool** | Whether to use a cookie store to persist cookies across requests. | [optional] [default to false]
+**Proxy** | [**ProxyConfig**](ProxyConfig.md) |  |
 
 ## Methods
 
@@ -484,5 +484,3 @@ SetProxy sets Proxy field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

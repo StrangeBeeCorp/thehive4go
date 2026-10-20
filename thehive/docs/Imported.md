@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Namespace** | **string** |  | 
-**NumberOfTags** | **int32** |  | 
-**Status** | **string** |  | 
+**Namespace** | **string** | Namespace of the successfully imported taxonomy. |
+**NumberOfTags** | **int32** | Number of tags imported from this taxonomy. |
+**Status** | **string** | Import status. Always &#x60;Success&#x60; for this variant. |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetStatus sets Status field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

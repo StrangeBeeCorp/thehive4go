@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DataType** | **string** |  | 
-**Data** | Pointer to [**InputObservableData**](InputObservableData.md) |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**StartDate** | Pointer to **int64** | The &#x60;startDate&#x60; field for &#x60;InputCreateObservable&#x60; object is mapped on &#x60;_createdDate&#x60; field. This field should not be used. | [optional] 
-**Attachment** | Pointer to [**InputCreateObservableAttachment**](InputCreateObservableAttachment.md) |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] [default to 2]
-**Pap** | Pointer to **int32** |  | [optional] [default to 2]
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Ioc** | Pointer to **bool** |  | [optional] [default to false]
-**Sighted** | Pointer to **bool** |  | [optional] [default to false]
-**SightedAt** | Pointer to **int64** |  | [optional] 
-**IgnoreSimilarity** | Pointer to **bool** |  | [optional] [default to false]
-**IsZip** | Pointer to **bool** | If set to true, the file is unzipped using the &#x60;zipPassword&#x60; and each file in the zip is treated as an observable | [optional] 
-**ZipPassword** | Pointer to **string** |  | [optional] 
+**DataType** | **string** | The observable type. Must match an existing observable type defined in TheHive. When set, this field takes priority over the &#x60;dataType&#x60; query parameter. Use &#x60;POST /api/v1/query&#x60; with &#x60;listObservableType&#x60; to list available types. |
+**Data** | Pointer to [**InputCreateObservableData**](InputCreateObservableData.md) |  | [optional]
+**Message** | Pointer to **string** | Note or additional context about the observable. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**StartDate** | Pointer to **int64** | Deprecated. Maps to the &#x60;_createdAt&#x60; field. Don&#39;t use this field. | [optional]
+**Attachment** | Pointer to [**InputCreateObservableAttachment**](InputCreateObservableAttachment.md) |  | [optional]
+**Tlp** | Pointer to **int32** | [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level controlling how the observable&#39;s information can be shared: 0 (Clear — no restrictions), 1 (Green — community), 2 (Amber — organization and clients), 3 (Amber+Strict — organization only), 4 (Red — named recipients only). | [optional] [default to 2]
+**Pap** | Pointer to **int32** | [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level controlling what actions can be taken with the observable data: 0 (Clear — no restrictions), 1 (Green — active actions allowed), 2 (Amber — passive checks only), 3 (Red — non-detectable actions only). | [optional] [default to 2]
+**Tags** | Pointer to **[]string** | Labels to categorize the observable. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Ioc** | Pointer to **bool** | Marks the observable as an indicator of compromise (IOC), indicating it&#39;s linked to suspicious or malicious activity. | [optional] [default to false]
+**Sighted** | Pointer to **bool** | Marks the observable as sighted, meaning it has been detected or observed in the environment. | [optional] [default to false]
+**SightedAt** | Pointer to **int64** | Date and time when the observable was sighted. Expected format: Unix timestamp in milliseconds. | [optional]
+**IgnoreSimilarity** | Pointer to **bool** | When &#x60;true&#x60;, excludes the observable from similarity checks used to identify related alerts and cases. Useful for contextual observables such as the company domain name that aren&#39;t indicators of a threat. | [optional] [default to false]
+**IsZip** | Pointer to **bool** | When &#x60;true&#x60;, TheHive unpacks the zip archive using &#x60;zipPassword&#x60; (if provided) and creates one observable per file it contains. | [optional] [default to false]
+**ZipPassword** | Pointer to **string** | Password to decrypt the zip archive when &#x60;isZip&#x60; is &#x60;true&#x60;. | [optional]
 
 ## Methods
 
@@ -60,20 +60,20 @@ SetDataType sets DataType field to given value.
 
 ### GetData
 
-`func (o *InputCreateObservable) GetData() InputObservableData`
+`func (o *InputCreateObservable) GetData() InputCreateObservableData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InputCreateObservable) GetDataOk() (*InputObservableData, bool)`
+`func (o *InputCreateObservable) GetDataOk() (*InputCreateObservableData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InputCreateObservable) SetData(v InputObservableData)`
+`func (o *InputCreateObservable) SetData(v InputCreateObservableData)`
 
 SetData sets Data field to given value.
 
@@ -385,5 +385,3 @@ HasZipPassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

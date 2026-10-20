@@ -4,18 +4,20 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPage**](PageAPI.md#CreateAPage) | **Post** /api/v1/page | 
-[**CreateAPageInACase**](PageAPI.md#CreateAPageInACase) | **Post** /api/v1/case/{caseId}/page | 
-[**DeleteAPage**](PageAPI.md#DeleteAPage) | **Delete** /api/v1/page/{pageId} | 
-[**DeleteAPageInACase**](PageAPI.md#DeleteAPageInACase) | **Delete** /api/v1/case/{caseId}/page/{pageId} | 
-[**UpdateAPage**](PageAPI.md#UpdateAPage) | **Patch** /api/v1/page/{pageId} | 
-[**UpdateAPageInACase**](PageAPI.md#UpdateAPageInACase) | **Patch** /api/v1/case/{caseId}/page/{pageId} | 
+[**CreateAPage**](PageAPI.md#CreateAPage) | **Post** /api/v1/page | Create a Knowledge Base page
+[**CreateAPageInACase**](PageAPI.md#CreateAPageInACase) | **Post** /api/v1/case/{caseId}/page | Create a case page
+[**DeleteAPage**](PageAPI.md#DeleteAPage) | **Delete** /api/v1/page/{pageId} | Delete a Knowledge Base page
+[**DeleteAPageInACase**](PageAPI.md#DeleteAPageInACase) | **Delete** /api/v1/case/{caseId}/page/{pageId} | Delete a case page
+[**UpdateAPage**](PageAPI.md#UpdateAPage) | **Patch** /api/v1/page/{pageId} | Update a Knowledge Base page
+[**UpdateAPageInACase**](PageAPI.md#UpdateAPageInACase) | **Patch** /api/v1/case/{caseId}/page/{pageId} | Update a case page
 
 
 
 ## CreateAPage
 
 > OutputPage CreateAPage(ctx).InputCreatePage(inputCreatePage).Execute()
+
+Create a Knowledge Base page
 
 
 
@@ -32,7 +34,7 @@ import (
 )
 
 func main() {
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateAPageRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
 
 ### Return type
 
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -80,6 +82,8 @@ Name | Type | Description  | Notes
 ## CreateAPageInACase
 
 > OutputPage CreateAPageInACase(ctx, caseId).InputCreatePage(inputCreatePage).Execute()
+
+Create a case page
 
 
 
@@ -96,8 +100,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -127,7 +131,7 @@ Other parameters are passed through a pointer to a apiCreateAPageInACaseRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
 
 ### Return type
 
@@ -135,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -150,6 +154,8 @@ Name | Type | Description  | Notes
 ## DeleteAPage
 
 > DeleteAPage(ctx, pageId).Execute()
+
+Delete a Knowledge Base page
 
 
 
@@ -166,7 +172,7 @@ import (
 )
 
 func main() {
-	pageId := "pageId_example" // string | 
+	pageId := "pageId_example" // string | The page ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageId** | **string** |  | 
+**pageId** | **string** | The page ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -201,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -216,6 +222,8 @@ Name | Type | Description  | Notes
 ## DeleteAPageInACase
 
 > DeleteAPageInACase(ctx, caseId, pageId).Execute()
+
+Delete a case page
 
 
 
@@ -232,8 +240,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	pageId := "pageId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	pageId := "pageId_example" // string | The page ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -251,8 +259,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**pageId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**pageId** | **string** | The page ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -270,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -285,6 +293,8 @@ Name | Type | Description  | Notes
 ## UpdateAPage
 
 > UpdateAPage(ctx, pageId).InputUpdatePage(inputUpdatePage).Execute()
+
+Update a Knowledge Base page
 
 
 
@@ -301,8 +311,8 @@ import (
 )
 
 func main() {
-	pageId := "pageId_example" // string | 
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
+	pageId := "pageId_example" // string | The page ID preceded by `~`.
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -320,7 +330,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageId** | **string** |  | 
+**pageId** | **string** | The page ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -330,7 +340,7 @@ Other parameters are passed through a pointer to a apiUpdateAPageRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
 
 ### Return type
 
@@ -338,7 +348,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -353,6 +363,8 @@ Name | Type | Description  | Notes
 ## UpdateAPageInACase
 
 > UpdateAPageInACase(ctx, caseId, pageId).InputUpdatePage(inputUpdatePage).Execute()
+
+Update a case page
 
 
 
@@ -369,9 +381,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	pageId := "pageId_example" // string | 
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	pageId := "pageId_example" // string | The page ID preceded by `~`.
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -389,8 +401,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**pageId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**pageId** | **string** | The page ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -401,7 +413,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
 
 ### Return type
 
@@ -409,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -419,4 +431,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

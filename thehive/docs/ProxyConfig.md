@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | Pointer to **string** |  | [optional] 
-**Port** | Pointer to **int32** |  | [optional] 
-**State** | [**State**](State.md) |  | 
-**Protocol** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Password** | Pointer to **string** |  | [optional] 
-**NtlmDomain** | Pointer to **string** |  | [optional] 
-**Encoding** | Pointer to **string** |  | [optional] 
-**NonProxyHosts** | Pointer to **[]string** |  | [optional] 
+**Host** | Pointer to **string** | Hostname or IP address of the proxy server. | [optional]
+**Port** | Pointer to **int32** | Port number of the proxy server. | [optional]
+**State** | [**State**](State.md) |  |
+**Protocol** | Pointer to **string** | Proxy protocol. Accepts &#x60;http&#x60; or &#x60;https&#x60;. | [optional]
+**Principal** | Pointer to **string** | Username to authenticate with the proxy server. | [optional]
+**Password** | Pointer to **string** | Password to authenticate with the proxy server. | [optional]
+**NtlmDomain** | Pointer to **string** | NTLM domain for proxy authentication. | [optional]
+**Encoding** | Pointer to **string** | Character encoding for proxy authentication. | [optional]
+**NonProxyHosts** | Pointer to **[]string** | List of hostnames or patterns that bypass the proxy. | [optional]
 
 ## Methods
 
@@ -255,5 +255,3 @@ HasNonProxyHosts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

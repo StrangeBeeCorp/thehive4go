@@ -40,8 +40,8 @@ jobs:
       # Cross-version: every PR must pass against every supported TheHive
       # version. Without this matrix step a regression on 5.5 would
       # silently land because the default `make integration-test` only
-      # exercises 5.6. 5.8 is newer than the spec the client is generated
-      # from: it catches a response the models do not accept.
+      # exercises 5.6. The client is generated from the 6.0 spec; 5.5, 5.6
+      # and 5.8 are older: they catch a response the models do not accept.
       - name: Run integration tests against TheHive 5.5
         run: make integration-test-5.5
 
@@ -50,3 +50,6 @@ jobs:
 
       - name: Run integration tests against TheHive 5.8
         run: make integration-test-5.8
+
+      - name: Run integration tests against TheHive 6.0
+        run: make integration-test-6.0
