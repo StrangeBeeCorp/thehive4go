@@ -4,14 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DescribeAModel**](DescribeAPI.md#DescribeAModel) | **Get** /api/v1/describe/{model} | 
-[**DescribeAllModels**](DescribeAPI.md#DescribeAllModels) | **Get** /api/v1/describe/_all | 
+[**DescribeAModel**](DescribeAPI.md#DescribeAModel) | **Get** /api/v1/describe/{model} | Get the property metadata of an entity model
+[**DescribeAllModels**](DescribeAPI.md#DescribeAllModels) | **Get** /api/v1/describe/_all | Get the property metadata of every entity model
 
 
 
 ## DescribeAModel
 
 > EntityDescription DescribeAModel(ctx, model).Execute()
+
+Get the property metadata of an entity model
 
 
 
@@ -28,7 +30,7 @@ import (
 )
 
 func main() {
-	model := "model_example" // string | 
+	model := "model_example" // string | Name of the entity type to describe: the kind of object TheHive stores and exposes through the API, for example `case`, `alert`, `task`, `observable`, or `user`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -48,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**model** | **string** |  | 
+**model** | **string** | Name of the entity type to describe: the kind of object TheHive stores and exposes through the API, for example &#x60;case&#x60;, &#x60;alert&#x60;, &#x60;task&#x60;, &#x60;observable&#x60;, or &#x60;user&#x60;. |
 
 ### Other Parameters
 
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -80,6 +82,8 @@ Name | Type | Description  | Notes
 ## DescribeAllModels
 
 > map[string]EntityDescription DescribeAllModels(ctx).Execute()
+
+Get the property metadata of every entity model
 
 
 
@@ -124,7 +128,7 @@ Other parameters are passed through a pointer to a apiDescribeAllModelsRequest s
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -134,4 +138,3 @@ Other parameters are passed through a pointer to a apiDescribeAllModelsRequest s
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

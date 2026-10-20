@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Template** | **string** |  | 
+**Template** | **string** | Mustache template string rendered as the report header. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetTemplate sets Template field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

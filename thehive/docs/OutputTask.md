@@ -4,24 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Group** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Status** | **string** |  |
-**Flag** | **bool** |  |
-**StartDate** | Pointer to **int64** |  | [optional]
-**EndDate** | Pointer to **int64** |  | [optional]
-**Assignee** | Pointer to **string** |  | [optional]
-**Order** | **int32** |  |
-**DueDate** | Pointer to **int64** |  | [optional]
-**Mandatory** | **bool** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the task. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Task&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the task. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the task. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the task was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the task was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the task. |
+**Group** | **string** | Group name used to organize the task within the case. |
+**Description** | Pointer to **string** | Details of the task. | [optional]
+**Status** | **string** | Current status of the task. One of &#x60;Waiting&#x60;, &#x60;InProgress&#x60;, &#x60;Completed&#x60;,or &#x60;Cancel&#x60;. |
+**Flag** | **bool** | Whether the task is flagged as important. |
+**StartDate** | Pointer to **int64** | Date and time when the task started. Returned as a Unix timestamp in milliseconds. | [optional]
+**EndDate** | Pointer to **int64** | Date and time when the task ended. Returned as a Unix timestamp in milliseconds. | [optional]
+**Assignee** | Pointer to **string** | Login of the user assigned to the task. | [optional]
+**Order** | **int32** | Display order of the task within its group. |
+**DueDate** | Pointer to **int64** | Due date for the task. Returned as a Unix timestamp in milliseconds. | [optional]
+**Mandatory** | **bool** | Whether the task must be completed before the case can be closed. |
 **ExtraData** | **map[string]interface{}** |  |
+**TimeToHandle** | Pointer to **int64** | Duration of the task from start to completion, in milliseconds. | [optional]
 
 ## Methods
 
@@ -436,6 +437,31 @@ and a boolean to check if the value has been set.
 
 SetExtraData sets ExtraData field to given value.
 
+
+### GetTimeToHandle
+
+`func (o *OutputTask) GetTimeToHandle() int64`
+
+GetTimeToHandle returns the TimeToHandle field if non-nil, zero value otherwise.
+
+### GetTimeToHandleOk
+
+`func (o *OutputTask) GetTimeToHandleOk() (*int64, bool)`
+
+GetTimeToHandleOk returns a tuple with the TimeToHandle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeToHandle
+
+`func (o *OutputTask) SetTimeToHandle(v int64)`
+
+SetTimeToHandle sets TimeToHandle field to given value.
+
+### HasTimeToHandle
+
+`func (o *OutputTask) HasTimeToHandle() bool`
+
+HasTimeToHandle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

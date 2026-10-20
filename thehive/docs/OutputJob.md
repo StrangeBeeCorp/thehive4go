@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**AnalyzerId** | **string** |  |
-**AnalyzerName** | **string** |  |
-**AnalyzerDefinition** | **string** |  |
-**Status** | **string** |  |
-**StartDate** | **int64** |  |
-**EndDate** | Pointer to **int64** |  | [optional]
-**Report** | Pointer to **map[string]interface{}** |  | [optional]
-**CortexId** | **string** |  |
-**CortexJobId** | **string** |  |
-**Id** | **string** |  |
-**CaseArtifact** | Pointer to **map[string]interface{}** |  | [optional]
-**Operations** | **string** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the job. |
+**UnderscoreType** | **string** | Entity type, always &#x60;case_artifact_job&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who launched the job. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the job. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the job was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the job was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**AnalyzerId** | **string** | ID of the analyzer that ran. |
+**AnalyzerName** | **string** | Display name of the analyzer that ran. |
+**AnalyzerDefinition** | **string** | Definition of the analyzer that ran, as returned by Cortex. |
+**Status** | **string** | Status of the job. One of &#x60;Waiting&#x60;, &#x60;InProgress&#x60;, &#x60;Success&#x60;, &#x60;Failure&#x60;, or &#x60;Deleted&#x60;. |
+**StartDate** | **int64** | Date and time when the job started. Returned as a Unix timestamp in milliseconds. |
+**EndDate** | Pointer to **int64** | Date and time when the job finished. Returned as a Unix timestamp in milliseconds. | [optional]
+**Report** | Pointer to **map[string]interface{}** | Cortex analysis report for the job, once the analyzer has completed. | [optional]
+**CortexId** | **string** | Name of the Cortex server the analyzer ran on. |
+**CortexJobId** | **string** | ID of the corresponding job on the Cortex server. |
+**Id** | **string** | Internal unique identifier of the job, identical to &#x60;_id&#x60;. |
+**CaseArtifact** | Pointer to **map[string]interface{}** | The observable the job analyzed. | [optional]
+**Operations** | **string** | Serialized JSON array of follow-up operations produced by the analyzer report. |
 
 ## Methods
 

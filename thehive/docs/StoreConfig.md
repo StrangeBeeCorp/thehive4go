@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to **string** |  | [optional] 
-**FilePath** | Pointer to **string** |  | [optional] 
-**IsFileOnClasspath** | Pointer to **bool** |  | [optional] [default to false]
-**Password** | Pointer to **string** |  | [optional] 
-**Type** | **string** |  | 
+**Data** | Pointer to **string** | PEM or base64-encoded key store data, used as an alternative to a file path. | [optional]
+**FilePath** | Pointer to **string** | Path to the key store file on disk. | [optional]
+**IsFileOnClasspath** | Pointer to **bool** | Whether the key store file is on the classpath. | [optional] [default to false]
+**Password** | Pointer to **string** | Password to unlock the key store file. | [optional]
+**Type** | **string** | Key store format. |
 
 ## Methods
 
@@ -151,5 +151,3 @@ SetType sets Type field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

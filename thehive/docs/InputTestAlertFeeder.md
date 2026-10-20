@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | **string** |  | 
-**Method** | [**Method**](Method.md) |  | 
-**Url** | **string** |  | 
-**Interval** | [**Interval**](Interval.md) | 1 minute is the minimal interval allowed | 
-**Body** | Pointer to **string** | The body that may be necessary to the alert provider | [optional] 
-**Headers** | Pointer to [**[]Header**](Header.md) |  | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] [default to true]
-**Auth** | Pointer to [**Auth**](Auth.md) | Optional, the type of authentication: basic, bearer or key. Leaving it empty means no authentication | [optional] 
-**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) |  | [optional] 
-**RequestTimeout** | Pointer to [**Interval**](Interval.md) | The maximum amount of time the request is allowed to take | [optional] 
-**ResponseMaxSize** | Pointer to **int64** | The maximum tolerated response payload max size in bytes | [optional] [default to 10485760]
+**Name** | **string** | Unique name for the alert feeder. |
+**Description** | **string** | Description providing additional context about the alert feeder configuration. |
+**Method** | [**Method**](Method.md) | HTTP method to use when requesting data from the external system. |
+**Url** | **string** | Endpoint URL of the external system. |
+**Interval** | [**Interval**](Interval.md) | Polling interval. The minimum interval is 1 minute. |
+**Body** | Pointer to **string** | Optional HTTP request body to send with the request. Used when the HTTP method is &#x60;POST&#x60;. | [optional]
+**Headers** | Pointer to [**[]Header**](Header.md) | Optional HTTP headers to include in the request. | [optional]
+**Enabled** | Pointer to **bool** | Whether the alert feeder is active and runs on schedule. | [optional] [default to true]
+**Auth** | Pointer to [**UpdateAuth**](UpdateAuth.md) | Optional authentication configuration. Supports &#x60;none&#x60;, &#x60;basic&#x60;, &#x60;bearer&#x60;, &#x60;key&#x60;, and &#x60;oauth2&#x60;. Omitting this field or setting it to &#x60;none&#x60; means no authentication. | [optional]
+**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) | Optional proxy configuration for the HTTP request. | [optional]
+**RequestTimeout** | Pointer to [**Interval**](Interval.md) | Maximum time to wait for the external system to respond. | [optional]
+**ResponseMaxSize** | Pointer to **int64** | Maximum response payload size in bytes that the alert feeder accepts from the external system. | [optional] [default to 10485760]
 
 ## Methods
 
@@ -213,20 +213,20 @@ HasEnabled returns a boolean if a field has been set.
 
 ### GetAuth
 
-`func (o *InputTestAlertFeeder) GetAuth() Auth`
+`func (o *InputTestAlertFeeder) GetAuth() UpdateAuth`
 
 GetAuth returns the Auth field if non-nil, zero value otherwise.
 
 ### GetAuthOk
 
-`func (o *InputTestAlertFeeder) GetAuthOk() (*Auth, bool)`
+`func (o *InputTestAlertFeeder) GetAuthOk() (*UpdateAuth, bool)`
 
 GetAuthOk returns a tuple with the Auth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuth
 
-`func (o *InputTestAlertFeeder) SetAuth(v Auth)`
+`func (o *InputTestAlertFeeder) SetAuth(v UpdateAuth)`
 
 SetAuth sets Auth field to given value.
 
@@ -313,5 +313,3 @@ HasResponseMaxSize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

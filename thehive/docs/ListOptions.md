@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ItemsPerPage** | **int32** |  | 
-**ListAsGroup** | **bool** |  | 
-**AutoRefresh** | **bool** |  | 
-**StatsIsOpen** | **bool** |  | 
+**ItemsPerPage** | **int32** | Number of rows shown per page in the list. |
+**ListAsGroup** | **bool** | Whether the list groups its items by their group value instead of showing them as a flat list. Only applies to lists that support grouping, such as tasks. |
+**AutoRefresh** | **bool** | Whether the list refreshes automatically when new activity occurs. See [About Autorefresh](https://docs.strangebee.com/thehive/user-guides/analyst-corner/about-autorefresh/) for more information.  |
+**StatsIsOpen** | **bool** | Whether the statistics panel above the list is expanded. See [About Statistics](https://docs.strangebee.com/thehive/user-guides/analyst-corner/about-statistics/) for more information.  |
 
 ## Methods
 
@@ -110,5 +110,3 @@ SetStatsIsOpen sets StatsIsOpen field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

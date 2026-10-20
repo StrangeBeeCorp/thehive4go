@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**CaseId** | **string** |  |
-**ProfileName** | **string** |  |
-**OrganisationName** | **string** |  |
-**Owner** | **bool** |  |
-**TaskRule** | **string** |  |
-**ObservableRule** | **string** |  |
+**UnderscoreId** | **string** | Unique identifier of the share. |
+**UnderscoreType** | **string** | Object type, always &#x60;Share&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the share. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the share. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date the sharing record was created, as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date the sharing record was last updated, as a Unix timestamp in milliseconds. | [optional]
+**CaseId** | **string** | ID of the case this share belongs to. |
+**ProfileName** | **string** | Name of the permission profile granted to the organization. |
+**OrganisationName** | **string** | Name of the organization this sharing record is for. |
+**Owner** | **bool** | Whether this organization owns the case. |
+**TaskRule** | **string** | Task-sharing rule for the organization. One of &#x60;autoShare&#x60; or &#x60;manual&#x60;. |
+**ObservableRule** | **string** | Observable-sharing rule for the organization. One of &#x60;autoShare&#x60; or &#x60;manual&#x60;. |
 
 ## Methods
 

@@ -33,7 +33,7 @@ func EnsureTestOrganization(t *testing.T, client *thehive.APIClient, ctx context
 	}
 
 	createOrgInput := thehive.NewInputCreateOrganisation(orgName, "Integration test organization")
-	createResp, httpResp, err := client.OrganisationAPI.CreateOrganisation(ctx).InputCreateOrganisation(*createOrgInput).Execute()
+	createResp, httpResp, err := client.OrganizationAPI.CreateOrganisation(ctx).InputCreateOrganisation(*createOrgInput).Execute()
 	if err != nil && httpResp != nil && (httpResp.StatusCode == 409 || httpResp.StatusCode == 403) {
 		return orgName
 	}

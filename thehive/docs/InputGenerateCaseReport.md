@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CaseReportTemplateId** | **string** | The _id of the entity or its &#39;name&#39; (depends of the entity) | 
-**Format** | **string** |  | 
+**CaseReportTemplateId** | **string** | Must match an existing case report template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseReportTemplate&#x60; to retrieve available templates and their IDs. |
+**Format** | **string** | Output format for the generated report. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetFormat sets Format field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

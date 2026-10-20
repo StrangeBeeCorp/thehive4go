@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | **string** |  |
-**Fallback** | [**OutputLicense**](OutputLicense.md) |  |
-**NotFound** | **bool** |  |
-**License** | [**OutputLicense**](OutputLicense.md) |  |
+**Error** | **string** | Error message describing why the license failed validation. |
+**Fallback** | [**OutputLicense**](OutputLicense.md) | Placeholder license representing an unlicensed instance. |
+**NotFound** | Pointer to **bool** | Always &#x60;true&#x60; for this response variant. | [optional] [default to true]
+**License** | [**OutputLicense**](OutputLicense.md) | The currently active license. |
 
 ## Methods
 
 ### NewOutputLicenseCurrent
 
-`func NewOutputLicenseCurrent(error_ string, fallback OutputLicense, notFound bool, license OutputLicense, ) *OutputLicenseCurrent`
+`func NewOutputLicenseCurrent(error_ string, fallback OutputLicense, license OutputLicense, ) *OutputLicenseCurrent`
 
 NewOutputLicenseCurrent instantiates a new OutputLicenseCurrent object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +87,11 @@ and a boolean to check if the value has been set.
 
 SetNotFound sets NotFound field to given value.
 
+### HasNotFound
+
+`func (o *OutputLicenseCurrent) HasNotFound() bool`
+
+HasNotFound returns a boolean if a field has been set.
 
 ### GetLicense
 

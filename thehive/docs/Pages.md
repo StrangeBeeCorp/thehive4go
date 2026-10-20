@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Filter** | Pointer to [**Filter**](Filter.md) |  | [optional] 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Filter** | Pointer to [**Filter**](Filter.md) | Filter to apply to the page list. See the [Query and Export](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the filter syntax. | [optional]
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -99,5 +99,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
-**Description** | **string** |  |
-**Method** | [**Method**](Method.md) |  |
-**Url** | **string** |  |
-**Interval** | [**Interval**](Interval.md) |  |
-**Function** | [**OutputFunction**](OutputFunction.md) |  |
-**Headers** | Pointer to [**[]Header**](Header.md) |  | [optional]
-**Auth** | Pointer to [**Auth**](Auth.md) |  | [optional]
-**Body** | Pointer to **string** |  | [optional]
-**Enabled** | **bool** |  |
-**RequestTimeout** | [**Interval**](Interval.md) |  |
-**ResponseMaxSize** | **int64** |  |
-**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) |  | [optional]
+**Name** | **string** | Name of the alert feeder. |
+**Description** | **string** | Description of the alert feeder. |
+**Method** | [**Method**](Method.md) | HTTP method used when requesting data from the external system. |
+**Url** | **string** | Endpoint URL of the external system. |
+**Interval** | [**Interval**](Interval.md) | Polling interval. |
+**Function** | [**OutputFunction**](OutputFunction.md) | Feeder function that converts the HTTP response into alerts. |
+**Headers** | Pointer to [**[]Header**](Header.md) | HTTP headers included in the request. | [optional]
+**Auth** | Pointer to [**OutputAuth**](OutputAuth.md) |  | [optional]
+**Body** | Pointer to **string** | HTTP request body sent with the request. | [optional]
+**Enabled** | **bool** | Whether the alert feeder is active and runs on schedule. |
+**RequestTimeout** | [**Interval**](Interval.md) | Maximum time to wait for the external system to respond. |
+**ResponseMaxSize** | **int64** | Maximum response payload size in bytes. |
+**ProxyConfig** | Pointer to [**ClientProxyWSConfigDto**](ClientProxyWSConfigDto.md) | Proxy configuration for the HTTP request. | [optional]
 
 ## Methods
 
@@ -184,20 +184,20 @@ HasHeaders returns a boolean if a field has been set.
 
 ### GetAuth
 
-`func (o *OutputAlertFeeder) GetAuth() Auth`
+`func (o *OutputAlertFeeder) GetAuth() OutputAuth`
 
 GetAuth returns the Auth field if non-nil, zero value otherwise.
 
 ### GetAuthOk
 
-`func (o *OutputAlertFeeder) GetAuthOk() (*Auth, bool)`
+`func (o *OutputAlertFeeder) GetAuthOk() (*OutputAuth, bool)`
 
 GetAuthOk returns a tuple with the Auth field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuth
 
-`func (o *OutputAlertFeeder) SetAuth(v Auth)`
+`func (o *OutputAlertFeeder) SetAuth(v OutputAuth)`
 
 SetAuth sets Auth field to given value.
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Organisation** | Pointer to **string** | When updating the profile, use this field to determine the organisation to update | [optional] 
-**Profile** | Pointer to **string** | Requires admin permission to update this field | [optional] 
-**Locked** | Pointer to **bool** | Requires admin permission to update this field | [optional] 
-**Avatar** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**DefaultOrganisation** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**UserType**](UserType.md) | Normal or Service. A service user cannot use the ui and needs to provide an api key for authentication | [optional] 
+**Name** | Pointer to **string** | New display name for the user account. | [optional]
+**Organisation** | Pointer to **string** | Organization context when updating the profile. Must match an existing organization the user belongs to. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; and &#x60;extraData: [\&quot;organisations\&quot;]&#x60; to retrieve the organizations the user belongs to. | [optional]
+**Profile** | Pointer to **string** | New permission profile for the user in the specified organization. Must match an existing profile. Use &#x60;GET /api/v1/profile&#x60; to list available profiles. | [optional]
+**Locked** | Pointer to **bool** | Locks or unlocks the user account. A locked account can&#39;t sign in or use the API. Requires &#x60;manageUser&#x60; permission. | [optional]
+**Avatar** | Pointer to **string** | Avatar image as a raw Base64-encoded string. Always stored as JPEG regardless of the source format. Set to &#x60;null&#x60; or an empty string to remove the current avatar. | [optional]
+**Email** | Pointer to **string** | Email address for sending notifications. Set to &#x60;null&#x60; to remove the current address. | [optional]
+**DefaultOrganisation** | Pointer to **string** | New default organization for the user account. Must match an organization the user already belongs to. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; and &#x60;extraData: [\&quot;organisations\&quot;]&#x60; to retrieve the organizations the user belongs to. | [optional]
+**Type** | Pointer to [**UserType**](UserType.md) | Type of user account. Normal accounts can use the web interface and the API. Service accounts authenticate exclusively with an API key and can&#39;t sign in to the web interface. External accounts access TheHive through the Portal (requires a Platinum or One license). A user&#39;s type can&#39;t be changed to or from &#x60;External&#x60; after creation. | [optional]
 
 ## Methods
 
@@ -234,5 +234,3 @@ HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

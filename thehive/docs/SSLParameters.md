@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientAuth** | Pointer to **string** |  | [optional] [default to "Default"]
-**Protocols** | Pointer to **[]string** |  | [optional] 
+**ClientAuth** | Pointer to **string** | Client authentication mode. &#x60;Need&#x60; fails the handshake if the peer doesn&#39;t provide credentials, &#x60;Want&#x60; verifies them if provided, &#x60;Default&#x60; uses the platform default. | [optional] [default to "Default"]
+**Protocols** | Pointer to **[]string** | TLS protocol versions to enable for this SSL engine. | [optional]
 
 ## Methods
 
@@ -78,5 +78,3 @@ HasProtocols returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

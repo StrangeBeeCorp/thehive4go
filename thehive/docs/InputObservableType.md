@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**IsAttachment** | Pointer to **bool** |  | [optional] 
+**Name** | **string** | Name of the observable type. Once created, this becomes a valid value for the &#x60;dataType&#x60; field when creating or updating observables. |
+**IsAttachment** | Pointer to **bool** | When &#x60;true&#x60;, observables of this type require a file upload instead of a text value. | [optional]
+**IsCaseSensitive** | Pointer to **bool** | When &#x60;false&#x60;, new observables of this type are automatically normalized to lowercase upon creation to ensure that values are treated as identical regardless of letter casing. Existing observables aren&#39;t affected. | [optional]
 
 ## Methods
 
@@ -71,7 +72,30 @@ SetIsAttachment sets IsAttachment field to given value.
 
 HasIsAttachment returns a boolean if a field has been set.
 
+### GetIsCaseSensitive
+
+`func (o *InputObservableType) GetIsCaseSensitive() bool`
+
+GetIsCaseSensitive returns the IsCaseSensitive field if non-nil, zero value otherwise.
+
+### GetIsCaseSensitiveOk
+
+`func (o *InputObservableType) GetIsCaseSensitiveOk() (*bool, bool)`
+
+GetIsCaseSensitiveOk returns a tuple with the IsCaseSensitive field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsCaseSensitive
+
+`func (o *InputObservableType) SetIsCaseSensitive(v bool)`
+
+SetIsCaseSensitive sets IsCaseSensitive field to given value.
+
+### HasIsCaseSensitive
+
+`func (o *InputObservableType) HasIsCaseSensitive() bool`
+
+HasIsCaseSensitive returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

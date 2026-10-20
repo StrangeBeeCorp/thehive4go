@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) |  | [optional] 
+**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) | Complete set of sharing links to apply to the organization. Replaces all existing links for the organization. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasLinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**Access** | [**Access**](Access.md) |  | 
+**Ids** | **[]string** | Identifiers of the entities to target. IDs must be prefixed with &#x60;~&#x60;. Case numbers and names are passed as plain strings without a prefix. |
+**Access** | [**Access**](Access.md) |  |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetAccess sets Access field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

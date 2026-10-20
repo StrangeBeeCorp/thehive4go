@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | **string** |  |
-**Type** | Pointer to **string** |  | [optional]
+**Data** | **string** | PEM-encoded certificate data. |
+**Type** | Pointer to **string** | Certificate type identifier. | [optional]
 
 ## Methods
 

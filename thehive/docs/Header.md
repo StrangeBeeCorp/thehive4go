@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** |  | 
-**Value** | **string** |  | 
+**Key** | **string** | HTTP header name. |
+**Value** | **string** | HTTP header value. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetValue sets Value field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

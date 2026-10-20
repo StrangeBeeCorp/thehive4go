@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**Hashes** | **[]string** |  |
-**Size** | **int64** |  |
-**ContentType** | **string** |  |
-**Id** | **string** |  |
-**Path** | **string** |  |
-**ExtraData** | **map[string]interface{}** |  |
-**External** | Pointer to **bool** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the attachment. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Attachment&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who uploaded the attachment. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the attachment. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the attachment was uploaded. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the attachment was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Name** | **string** | File name of the attachment. |
+**Hashes** | **[]string** | Cryptographic hashes of the file. |
+**Size** | **int64** | Size of the file in bytes. |
+**ContentType** | **string** | MIME content type of the file. |
+**Id** | **string** | Unique storage identifier of the file content. |
+**Path** | **string** | Storage path of the file in the configured backend. |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
+**External** | Pointer to **bool** | Whether the attachment is accessible to external users with [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Platinum or One license required. | [optional]
 
 ## Methods
 

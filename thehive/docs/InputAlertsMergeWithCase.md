@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CaseId** | **string** | Case id or number | 
-**AlertIds** | Pointer to **[]string** | List of alert ids | [optional] 
+**CaseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**AlertIds** | Pointer to **[]string** | The alert IDs preceded by &#x60;~&#x60;. | [optional]
 
 ## Methods
 
@@ -73,5 +73,3 @@ HasAlertIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

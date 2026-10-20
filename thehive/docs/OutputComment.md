@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**CreatedBy** | **string** |  |
-**CreatedAt** | **int64** |  |
-**UpdatedAt** | Pointer to **int64** |  | [optional]
-**UpdatedBy** | Pointer to **string** |  | [optional]
-**Message** | **string** |  |
-**IsEdited** | **bool** |  |
+**UnderscoreId** | **string** | Unique identifier of the comment. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Comment&#x60;. |
+**CreatedBy** | **string** | Login of the user who created the comment. |
+**CreatedAt** | **int64** | Date and time when the comment was created. Returned as a Unix timestamp in milliseconds. |
+**UpdatedAt** | Pointer to **int64** | Date and time when the comment was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**UpdatedBy** | Pointer to **string** | Login of the user who last updated the comment. | [optional]
+**Message** | **string** | Text of the comment. |
+**IsEdited** | **bool** | Whether the comment has been edited since it was created. |
 **ExtraData** | **map[string]interface{}** |  |
-**External** | Pointer to **bool** |  | [optional]
+**External** | Pointer to **bool** | Whether the comment is visible to external users through TheHive Portal. | [optional]
 
 ## Methods
 

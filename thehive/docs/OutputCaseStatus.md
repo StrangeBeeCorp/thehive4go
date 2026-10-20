@@ -4,19 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**Value** | **string** |  |
-**Stage** | **string** |  |
-**Order** | Pointer to **int32** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Colour** | Pointer to **string** |  | [optional]
-**Hidden** | **bool** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Unique identifier of the case status. |
+**UnderscoreType** | **string** | Object type, always &#x60;CaseStatus&#x60;. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time of the last update, as a Unix timestamp in milliseconds. | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the status. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time the status was created, as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the status. |
+**Value** | **string** | Display name of the case status. |
+**Stage** | **string** | Stage the status belongs to. One of *New*, *In progress*, or *Closed*. |
+**Order** | Pointer to **int32** | Position of the status in the UI dropdown list. | [optional]
+**Description** | Pointer to **string** | Human-readable description of the status. | [optional]
+**Colour** | Pointer to **string** | Hex color code used to display the status in the UI. | [optional]
+**Hidden** | **bool** | Whether the status is hidden from the UI dropdown. Hidden statuses remain accessible through the API. |
+**RequiresImpact** | Pointer to **bool** | Whether closing a case with this status requires an &#x60;impactStatus&#x60;. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 
@@ -301,6 +302,31 @@ and a boolean to check if the value has been set.
 
 SetHidden sets Hidden field to given value.
 
+
+### GetRequiresImpact
+
+`func (o *OutputCaseStatus) GetRequiresImpact() bool`
+
+GetRequiresImpact returns the RequiresImpact field if non-nil, zero value otherwise.
+
+### GetRequiresImpactOk
+
+`func (o *OutputCaseStatus) GetRequiresImpactOk() (*bool, bool)`
+
+GetRequiresImpactOk returns a tuple with the RequiresImpact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiresImpact
+
+`func (o *OutputCaseStatus) SetRequiresImpact(v bool)`
+
+SetRequiresImpact sets RequiresImpact field to given value.
+
+### HasRequiresImpact
+
+`func (o *OutputCaseStatus) HasRequiresImpact() bool`
+
+HasRequiresImpact returns a boolean if a field has been set.
 
 ### GetExtraData
 

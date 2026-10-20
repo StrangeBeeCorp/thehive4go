@@ -4,21 +4,25 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAttachmentToCaseReportTemplate**](CaseReportTemplateAPI.md#CreateAttachmentToCaseReportTemplate) | **Post** /api/v1/caseReportTemplate/{templateId}/attachment | 
-[**CreateCaseReportTemplate**](CaseReportTemplateAPI.md#CreateCaseReportTemplate) | **Post** /api/v1/caseReportTemplate | 
-[**DeleteAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteAttachmentForCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | 
-[**DeleteCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{idOrName} | 
-[**DownloadAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DownloadAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId}/download | 
-[**GetAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#GetAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | 
-[**GetCaseReportTemplate**](CaseReportTemplateAPI.md#GetCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId} | 
-[**GetCaseReportTemplateOptions**](CaseReportTemplateAPI.md#GetCaseReportTemplateOptions) | **Get** /api/v1/caseReportTemplate/_info | 
-[**UpdateCaseReportTemplate**](CaseReportTemplateAPI.md#UpdateCaseReportTemplate) | **Patch** /api/v1/caseReportTemplate/{idOrName} | 
+[**CreateAttachmentToCaseReportTemplate**](CaseReportTemplateAPI.md#CreateAttachmentToCaseReportTemplate) | **Post** /api/v1/caseReportTemplate/{templateId}/attachment | Add an attachment to a case report template
+[**CreateCaseReportTemplate**](CaseReportTemplateAPI.md#CreateCaseReportTemplate) | **Post** /api/v1/caseReportTemplate | Create a case report template
+[**DeleteAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteAttachmentForCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | Remove an attachment from a case report template
+[**DeleteCaseReportTemplate**](CaseReportTemplateAPI.md#DeleteCaseReportTemplate) | **Delete** /api/v1/caseReportTemplate/{idOrName} | Delete a case report template
+[**DownloadAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#DownloadAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId}/download | Download an attachment from a case report template
+[**ExportCaseReportTemplateAsArchive**](CaseReportTemplateAPI.md#ExportCaseReportTemplateAsArchive) | **Get** /api/v1/caseReportTemplate/{caseReportTemplateId}/export | Export a case report template as a file
+[**GetAttachmentForCaseReportTemplate**](CaseReportTemplateAPI.md#GetAttachmentForCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId}/attachment/{attachmentId} | Get an attachment from a case report template
+[**GetCaseReportTemplate**](CaseReportTemplateAPI.md#GetCaseReportTemplate) | **Get** /api/v1/caseReportTemplate/{templateId} | Get a case report template
+[**GetCaseReportTemplateOptions**](CaseReportTemplateAPI.md#GetCaseReportTemplateOptions) | **Get** /api/v1/caseReportTemplate/_info | List available widget types and field options
+[**ImportCaseReportTemplateFromFile**](CaseReportTemplateAPI.md#ImportCaseReportTemplateFromFile) | **Post** /api/v1/caseReportTemplate/import | Import a case report template from a file
+[**UpdateCaseReportTemplate**](CaseReportTemplateAPI.md#UpdateCaseReportTemplate) | **Patch** /api/v1/caseReportTemplate/{idOrName} | Update a case report template
 
 
 
 ## CreateAttachmentToCaseReportTemplate
 
 > OutputAttachments CreateAttachmentToCaseReportTemplate(ctx, templateId).Attachments(attachments).CanRename(canRename).Execute()
+
+Add an attachment to a case report template
 
 
 
@@ -35,9 +39,9 @@ import (
 )
 
 func main() {
-	templateId := "templateId_example" // string | 
-	attachments := []*os.File{"TODO"} // []*os.File | 
-	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
+	templateId := "templateId_example" // string | The case report template ID preceded by `~`.
+	attachments := []*os.File{"TODO"} // []*os.File | Files to attach. Each part is a multipart form file field.
+	canRename := true // bool | When `true`, renames files that already exist with the same name. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +61,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  | 
+**templateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -67,8 +71,8 @@ Other parameters are passed through a pointer to a apiCreateAttachmentToCaseRepo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** | Files to attach. Each part is a multipart form file field. |
+ **canRename** | **bool** | When &#x60;true&#x60;, renames files that already exist with the same name. |
 
 ### Return type
 
@@ -76,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -92,7 +96,7 @@ Name | Type | Description  | Notes
 
 > OutputCaseReportTemplate CreateCaseReportTemplate(ctx).InputCreateCaseReportTemplate(inputCreateCaseReportTemplate).Execute()
 
-
+Create a case report template
 
 
 
@@ -109,7 +113,7 @@ import (
 )
 
 func main() {
-	inputCreateCaseReportTemplate := *openapiclient.NewInputCreateCaseReportTemplate("Title_example", *openapiclient.NewCaseReportTemplateDefinition(*openapiclient.NewI18n())) // InputCreateCaseReportTemplate | 
+	inputCreateCaseReportTemplate := *openapiclient.NewInputCreateCaseReportTemplate("Title_example", *openapiclient.NewCaseReportTemplateDefinition(*openapiclient.NewI18n())) // InputCreateCaseReportTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +138,7 @@ Other parameters are passed through a pointer to a apiCreateCaseReportTemplateRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCaseReportTemplate** | [**InputCreateCaseReportTemplate**](InputCreateCaseReportTemplate.md) |  | 
+ **inputCreateCaseReportTemplate** | [**InputCreateCaseReportTemplate**](InputCreateCaseReportTemplate.md) |  |
 
 ### Return type
 
@@ -142,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -157,6 +161,8 @@ Name | Type | Description  | Notes
 ## DeleteAttachmentForCaseReportTemplate
 
 > DeleteAttachmentForCaseReportTemplate(ctx, templateId, attachmentId).Execute()
+
+Remove an attachment from a case report template
 
 
 
@@ -173,8 +179,8 @@ import (
 )
 
 func main() {
-	templateId := "templateId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	templateId := "templateId_example" // string | The case report template ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -192,8 +198,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**templateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -211,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -226,6 +232,8 @@ Name | Type | Description  | Notes
 ## DeleteCaseReportTemplate
 
 > DeleteCaseReportTemplate(ctx, idOrName).Execute()
+
+Delete a case report template
 
 
 
@@ -242,7 +250,7 @@ import (
 )
 
 func main() {
-	idOrName := "idOrName_example" // string | 
+	idOrName := "idOrName_example" // string | The case report template ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -260,7 +268,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  | 
+**idOrName** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -277,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -292,6 +300,8 @@ Name | Type | Description  | Notes
 ## DownloadAttachmentForCaseReportTemplate
 
 > *os.File DownloadAttachmentForCaseReportTemplate(ctx, templateId, attachmentId).Execute()
+
+Download an attachment from a case report template
 
 
 
@@ -308,8 +318,8 @@ import (
 )
 
 func main() {
-	templateId := "templateId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	templateId := "templateId_example" // string | The case report template ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -329,8 +339,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**templateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -348,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -360,9 +370,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAttachmentForCaseReportTemplate
+## ExportCaseReportTemplateAsArchive
 
-> *os.File GetAttachmentForCaseReportTemplate(ctx, templateId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
+> *os.File ExportCaseReportTemplateAsArchive(ctx, caseReportTemplateId).Execute()
+
+Export a case report template as a file
 
 
 
@@ -379,9 +391,79 @@ import (
 )
 
 func main() {
-	templateId := "templateId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	caseReportTemplateId := "caseReportTemplateId_example" // string | The case report template ID preceded by `~`.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CaseReportTemplateAPI.ExportCaseReportTemplateAsArchive(context.Background(), caseReportTemplateId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CaseReportTemplateAPI.ExportCaseReportTemplateAsArchive``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportCaseReportTemplateAsArchive`: *os.File
+	fmt.Fprintf(os.Stdout, "Response from `CaseReportTemplateAPI.ExportCaseReportTemplateAsArchive`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**caseReportTemplateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportCaseReportTemplateAsArchiveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/octet-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAttachmentForCaseReportTemplate
+
+> *os.File GetAttachmentForCaseReportTemplate(ctx, templateId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
+
+Get an attachment from a case report template
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
+)
+
+func main() {
+	templateId := "templateId_example" // string | The case report template ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -401,8 +483,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**templateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -413,7 +495,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -421,7 +503,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -436,6 +518,8 @@ Name | Type | Description  | Notes
 ## GetCaseReportTemplate
 
 > OutputCaseReportTemplate GetCaseReportTemplate(ctx, templateId).Execute()
+
+Get a case report template
 
 
 
@@ -452,7 +536,7 @@ import (
 )
 
 func main() {
-	templateId := "templateId_example" // string | 
+	templateId := "templateId_example" // string | The case report template ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -472,7 +556,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **string** |  | 
+**templateId** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -489,7 +573,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -504,6 +588,8 @@ Name | Type | Description  | Notes
 ## GetCaseReportTemplateOptions
 
 > OutputCaseReportTemplateObjects GetCaseReportTemplateOptions(ctx).Execute()
+
+List available widget types and field options
 
 
 
@@ -548,7 +634,7 @@ Other parameters are passed through a pointer to a apiGetCaseReportTemplateOptio
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -560,9 +646,11 @@ Other parameters are passed through a pointer to a apiGetCaseReportTemplateOptio
 [[Back to README]](../README.md)
 
 
-## UpdateCaseReportTemplate
+## ImportCaseReportTemplateFromFile
 
-> UpdateCaseReportTemplate(ctx, idOrName).InputUpdateCaseReportTemplate(inputUpdateCaseReportTemplate).Execute()
+> OutputCaseReportTemplate ImportCaseReportTemplateFromFile(ctx).Json(json).File(file).Execute()
+
+Import a case report template from a file
 
 
 
@@ -579,8 +667,76 @@ import (
 )
 
 func main() {
-	idOrName := "idOrName_example" // string | 
-	inputUpdateCaseReportTemplate := *openapiclient.NewInputUpdateCaseReportTemplate() // InputUpdateCaseReportTemplate | 
+	json := *openapiclient.NewImportCaseReportTemplate() // ImportCaseReportTemplate |
+	file := os.NewFile(1234, "some_file") // *os.File |
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CaseReportTemplateAPI.ImportCaseReportTemplateFromFile(context.Background()).Json(json).File(file).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CaseReportTemplateAPI.ImportCaseReportTemplateFromFile``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportCaseReportTemplateFromFile`: OutputCaseReportTemplate
+	fmt.Fprintf(os.Stdout, "Response from `CaseReportTemplateAPI.ImportCaseReportTemplateFromFile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportCaseReportTemplateFromFileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **json** | [**ImportCaseReportTemplate**](ImportCaseReportTemplate.md) |  |
+ **file** | ***os.File** |  |
+
+### Return type
+
+[**OutputCaseReportTemplate**](OutputCaseReportTemplate.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateCaseReportTemplate
+
+> UpdateCaseReportTemplate(ctx, idOrName).InputUpdateCaseReportTemplate(inputUpdateCaseReportTemplate).Execute()
+
+Update a case report template
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
+)
+
+func main() {
+	idOrName := "idOrName_example" // string | The case report template ID preceded by `~`.
+	inputUpdateCaseReportTemplate := *openapiclient.NewInputUpdateCaseReportTemplate() // InputUpdateCaseReportTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -598,7 +754,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  | 
+**idOrName** | **string** | The case report template ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -608,7 +764,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseReportTemplateRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCaseReportTemplate** | [**InputUpdateCaseReportTemplate**](InputUpdateCaseReportTemplate.md) |  | 
+ **inputUpdateCaseReportTemplate** | [**InputUpdateCaseReportTemplate**](InputUpdateCaseReportTemplate.md) |  |
 
 ### Return type
 
@@ -616,7 +772,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -626,4 +782,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

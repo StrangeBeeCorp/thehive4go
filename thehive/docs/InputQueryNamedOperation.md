@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**ExtraData** | Pointer to **[]string** |  | [optional] 
-**From** | **int32** |  | 
-**To** | **int32** |  | 
-**Fields** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Name** | **string** |  |
+**From** | **int32** |  |
+**To** | **int32** |  |
+**ExtraData** | Pointer to **[]string** |  | [optional]
+**Fields** | Pointer to **[]map[string]interface{}** |  | [optional]
 
 ## Methods
 
@@ -48,31 +48,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-### GetExtraData
-
-`func (o *InputQueryNamedOperation) GetExtraData() []string`
-
-GetExtraData returns the ExtraData field if non-nil, zero value otherwise.
-
-### GetExtraDataOk
-
-`func (o *InputQueryNamedOperation) GetExtraDataOk() (*[]string, bool)`
-
-GetExtraDataOk returns a tuple with the ExtraData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExtraData
-
-`func (o *InputQueryNamedOperation) SetExtraData(v []string)`
-
-SetExtraData sets ExtraData field to given value.
-
-### HasExtraData
-
-`func (o *InputQueryNamedOperation) HasExtraData() bool`
-
-HasExtraData returns a boolean if a field has been set.
 
 ### GetFrom
 
@@ -114,6 +89,31 @@ and a boolean to check if the value has been set.
 SetTo sets To field to given value.
 
 
+### GetExtraData
+
+`func (o *InputQueryNamedOperation) GetExtraData() []string`
+
+GetExtraData returns the ExtraData field if non-nil, zero value otherwise.
+
+### GetExtraDataOk
+
+`func (o *InputQueryNamedOperation) GetExtraDataOk() (*[]string, bool)`
+
+GetExtraDataOk returns a tuple with the ExtraData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraData
+
+`func (o *InputQueryNamedOperation) SetExtraData(v []string)`
+
+SetExtraData sets ExtraData field to given value.
+
+### HasExtraData
+
+`func (o *InputQueryNamedOperation) HasExtraData() bool`
+
+HasExtraData returns a boolean if a field has been set.
+
 ### GetFields
 
 `func (o *InputQueryNamedOperation) GetFields() []map[string]interface{}`
@@ -141,5 +141,3 @@ HasFields returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

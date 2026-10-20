@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**CaseTemplate** | **string** | Id or name of the CaseTemplate to apply | 
-**UpdateTitlePrefix** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateDescription** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateTags** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateSeverity** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateFlag** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateTlp** | Pointer to **bool** |  | [optional] [default to false]
-**UpdatePap** | Pointer to **bool** |  | [optional] [default to false]
-**UpdateCustomFields** | Pointer to **bool** |  | [optional] [default to false]
-**ImportTasks** | Pointer to **[]string** | Define which tasks to import in the case | [optional] 
-**ImportPages** | Pointer to **[]string** | Define which pages to import in the case | [optional] 
+**Ids** | **[]string** | Identifiers of the entities to target. IDs must be prefixed with &#x60;~&#x60;. Case numbers and names are passed as plain strings without a prefix. |
+**CaseTemplate** | **string** | Name or ID of the case template to apply. Must match an existing case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; to list available case templates. |
+**UpdateTitlePrefix** | Pointer to **bool** | Applies the title prefix from the case template to each case. | [optional] [default to false]
+**UpdateDescription** | Pointer to **bool** | Replaces each case&#39;s description with the one from the case template. | [optional] [default to false]
+**UpdateTags** | Pointer to **bool** | Applies the tags from the case template to each case. | [optional] [default to false]
+**UpdateSeverity** | Pointer to **bool** | Applies the severity from the case template to each case. | [optional] [default to false]
+**UpdateFlag** | Pointer to **bool** | Applies the flag from the case template to each case. | [optional] [default to false]
+**UpdateTlp** | Pointer to **bool** | Applies the [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level from the case template to each case. | [optional] [default to false]
+**UpdatePap** | Pointer to **bool** | Applies the [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level from the case template to each case. | [optional] [default to false]
+**UpdateCustomFields** | Pointer to **bool** | Applies custom field values from the case template to each case, adding them to any existing values without removing what&#39;s already set. Custom fields not defined in the template remain unchanged. | [optional] [default to false]
+**ImportTasks** | Pointer to **[]string** | IDs or titles of tasks in the case template to import into each case. If empty, no tasks are imported. Must match tasks that exist in the specified case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; followed by a &#x60;tasks&#x60; operation to retrieve available tasks, their IDs, and titles. | [optional]
+**ImportPages** | Pointer to **[]string** | IDs of pages in the case template to import into each case. If empty, no pages are imported. Must match page IDs that exist in the specified case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; followed by a &#x60;pageTemplates&#x60; operation to retrieve available page IDs. | [optional]
 
 ## Methods
 
@@ -328,5 +328,3 @@ HasImportPages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

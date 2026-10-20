@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**StartDate** | Pointer to **int64** |  | [optional] 
-**EndDate** | Pointer to **int64** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** | User to assign the case to | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**CaseTemplate** | Pointer to **string** | Name or id of the Case Template to use | [optional] 
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Additional tasks to create | [optional] 
-**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional] 
-**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional] 
-**TaskRule** | Pointer to **string** |  | [optional] 
-**ObservableRule** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** | Title of the case. When omitted, the alert title is used. | [optional]
+**Description** | Pointer to **string** | Details of the case. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). When omitted, the alert description is used. | [optional]
+**Severity** | Pointer to **int32** | Numeric severity level of the case: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). When omitted, the alert severity is used. | [optional] [default to 2]
+**StartDate** | Pointer to **int64** | Start date of the incident. Unix timestamp in milliseconds. When omitted, the alert date is used. | [optional]
+**EndDate** | Pointer to **int64** | End date of the incident. Unix timestamp in milliseconds. | [optional]
+**Tags** | Pointer to **[]string** | Labels to categorize the case. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. When omitted, the alert tags are used. | [optional]
+**Flag** | Pointer to **bool** | Marks the case as important for quick filtering. | [optional] [default to false]
+**Tlp** | Pointer to **int32** | [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level controlling how case information can be shared: 0 (Clear — no restrictions), 1 (Green — community), 2 (Amber — organization and clients), 3 (Amber+Strict — organization only), 4 (Red — named recipients only). When omitted, the alert TLP is used. | [optional] [default to 2]
+**Pap** | Pointer to **int32** | [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level controlling what actions can be taken with case information: 0 (Clear — no restrictions), 1 (Green — active actions allowed), 2 (Amber — passive checks only), 3 (Red — non-detectable actions only). When omitted, the alert PAP is used. | [optional] [default to 2]
+**Status** | Pointer to **string** | Name of the case status to apply. Must match an existing status. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseStatus&#x60; to list available statuses. | [optional] [default to "New"]
+**Summary** | Pointer to **string** | Brief summary of the investigation findings. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Assignee** | Pointer to **string** | Login of the user to assign the case to. Typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their logins. If omitted, the case is unassigned. | [optional]
+**CustomFields** | Pointer to [**InputCreateCaseCustomFields**](InputCreateCaseCustomFields.md) |  | [optional]
+**CaseTemplate** | Pointer to **string** | Name or ID of the case template to use. Applies the template&#39;s tasks, custom fields, and pages. Must match an existing case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; to list available case templates. | [optional]
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Additional tasks to create in the case, on top of any tasks inherited from the alert or a case template. | [optional]
+**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) | Additional pages to create in the case. Pages are collaborative notes attached to the case for sharing information within the team during an investigation, such as lessons learned or meeting notes. | [optional]
+**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) | Per-organization sharing configuration for this case. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/) for specific linked organizations. | [optional]
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Task-sharing rule for the owner organization: &#x60;autoShare&#x60; shares new tasks with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per task. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Observable-sharing rule for the owner organization: &#x60;autoShare&#x60; shares new observables with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per observable. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional]
 
 ## Methods
 
@@ -345,20 +345,20 @@ HasAssignee returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *InputCreateCaseFromAlert) GetCustomFields() InputCreateAlertCustomFields`
+`func (o *InputCreateCaseFromAlert) GetCustomFields() InputCreateCaseCustomFields`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *InputCreateCaseFromAlert) GetCustomFieldsOk() (*InputCreateAlertCustomFields, bool)`
+`func (o *InputCreateCaseFromAlert) GetCustomFieldsOk() (*InputCreateCaseCustomFields, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *InputCreateCaseFromAlert) SetCustomFields(v InputCreateAlertCustomFields)`
+`func (o *InputCreateCaseFromAlert) SetCustomFields(v InputCreateCaseCustomFields)`
 
 SetCustomFields sets CustomFields field to given value.
 
@@ -520,5 +520,3 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

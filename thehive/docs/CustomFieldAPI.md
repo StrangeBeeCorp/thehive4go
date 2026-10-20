@@ -4,16 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomField**](CustomFieldAPI.md#CreateCustomField) | **Post** /api/v1/customField | 
-[**DeleteCustomField**](CustomFieldAPI.md#DeleteCustomField) | **Delete** /api/v1/customField/{customFieldId} | 
-[**ListCustomFields**](CustomFieldAPI.md#ListCustomFields) | **Get** /api/v1/customField | 
-[**UpdateCustomField**](CustomFieldAPI.md#UpdateCustomField) | **Patch** /api/v1/customField/{customFieldId} | 
+[**CreateCustomField**](CustomFieldAPI.md#CreateCustomField) | **Post** /api/v1/customField | Create a custom field
+[**DeleteCustomField**](CustomFieldAPI.md#DeleteCustomField) | **Delete** /api/v1/customField/{customFieldId} | Delete a custom field
+[**ListCustomFields**](CustomFieldAPI.md#ListCustomFields) | **Get** /api/v1/customField | List all custom fields
+[**UpdateCustomField**](CustomFieldAPI.md#UpdateCustomField) | **Patch** /api/v1/customField/{customFieldId} | Update a custom field
 
 
 
 ## CreateCustomField
 
 > OutputCustomField CreateCustomField(ctx).InputCustomField(inputCustomField).Execute()
+
+Create a custom field
 
 
 
@@ -30,7 +32,7 @@ import (
 )
 
 func main() {
-	inputCustomField := *openapiclient.NewInputCustomField("Name_example", "Group_example", "Description_example", openapiclient.CustomFieldType("string")) // InputCustomField | 
+	inputCustomField := *openapiclient.NewInputCustomField("Name_example", "Group_example", "Description_example", openapiclient.CustomFieldType("string")) // InputCustomField |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateCustomFieldRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCustomField** | [**InputCustomField**](InputCustomField.md) |  | 
+ **inputCustomField** | [**InputCustomField**](InputCustomField.md) |  |
 
 ### Return type
 
@@ -63,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -78,6 +80,8 @@ Name | Type | Description  | Notes
 ## DeleteCustomField
 
 > DeleteCustomField(ctx, customFieldId).Force(force).Execute()
+
+Delete a custom field
 
 
 
@@ -94,8 +98,8 @@ import (
 )
 
 func main() {
-	customFieldId := "customFieldId_example" // string | 
-	force := true // bool |  (optional) (default to false)
+	customFieldId := "customFieldId_example" // string | The custom field ID preceded by `~`, or custom field name.
+	force := true // bool | If `true`, deletes the custom field even when assigned to cases or alerts. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -113,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customFieldId** | **string** |  | 
+**customFieldId** | **string** | The custom field ID preceded by &#x60;~&#x60;, or custom field name. |
 
 ### Other Parameters
 
@@ -123,7 +127,7 @@ Other parameters are passed through a pointer to a apiDeleteCustomFieldRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **force** | **bool** |  | [default to false]
+ **force** | **bool** | If &#x60;true&#x60;, deletes the custom field even when assigned to cases or alerts. | [default to false]
 
 ### Return type
 
@@ -131,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -146,6 +150,8 @@ Name | Type | Description  | Notes
 ## ListCustomFields
 
 > []OutputCustomField ListCustomFields(ctx).Execute()
+
+List all custom fields
 
 
 
@@ -190,7 +196,7 @@ Other parameters are passed through a pointer to a apiListCustomFieldsRequest st
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -205,6 +211,8 @@ Other parameters are passed through a pointer to a apiListCustomFieldsRequest st
 ## UpdateCustomField
 
 > UpdateCustomField(ctx, customFieldId).InputUpdateCustomField(inputUpdateCustomField).Execute()
+
+Update a custom field
 
 
 
@@ -221,8 +229,8 @@ import (
 )
 
 func main() {
-	customFieldId := "customFieldId_example" // string | 
-	inputUpdateCustomField := *openapiclient.NewInputUpdateCustomField() // InputUpdateCustomField | 
+	customFieldId := "customFieldId_example" // string | The custom field ID preceded by `~`, or custom field name.
+	inputUpdateCustomField := *openapiclient.NewInputUpdateCustomField() // InputUpdateCustomField |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -240,7 +248,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customFieldId** | **string** |  | 
+**customFieldId** | **string** | The custom field ID preceded by &#x60;~&#x60;, or custom field name. |
 
 ### Other Parameters
 
@@ -250,7 +258,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomFieldRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCustomField** | [**InputUpdateCustomField**](InputUpdateCustomField.md) |  | 
+ **inputUpdateCustomField** | [**InputUpdateCustomField**](InputUpdateCustomField.md) |  |
 
 ### Return type
 
@@ -258,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -268,4 +276,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

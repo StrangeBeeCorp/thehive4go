@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetUserConfigurationItem**](ConfigAPI.md#GetUserConfigurationItem) | **Get** /api/v1/config/user/{path} | 
-[**ListUserConfigurationItems**](ConfigAPI.md#ListUserConfigurationItems) | **Get** /api/v1/config/user | 
-[**SetUserConfigurationItem**](ConfigAPI.md#SetUserConfigurationItem) | **Put** /api/v1/config/user/{path} | 
+[**GetUserConfigurationItem**](ConfigAPI.md#GetUserConfigurationItem) | **Get** /api/v1/config/user/{path} | Get a configuration item
+[**ListUserConfigurationItems**](ConfigAPI.md#ListUserConfigurationItems) | **Get** /api/v1/config/user | List your configuration items
+[**SetUserConfigurationItem**](ConfigAPI.md#SetUserConfigurationItem) | **Put** /api/v1/config/user/{path} | Set a configuration item
 
 
 
 ## GetUserConfigurationItem
 
 > OutputConfig GetUserConfigurationItem(ctx, path).Execute()
+
+Get a configuration item
 
 
 
@@ -29,7 +31,7 @@ import (
 )
 
 func main() {
-	path := "path_example" // string | 
+	path := "path_example" // string | Key of the configuration item.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -49,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**path** | **string** |  | 
+**path** | **string** | Key of the configuration item. |
 
 ### Other Parameters
 
@@ -66,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -81,6 +83,8 @@ Name | Type | Description  | Notes
 ## ListUserConfigurationItems
 
 > interface{} ListUserConfigurationItems(ctx).Path(path).Execute()
+
+List your configuration items
 
 
 
@@ -97,7 +101,7 @@ import (
 )
 
 func main() {
-	path := "path_example" // string |  (optional)
+	path := "path_example" // string | Key of a single configuration item. Omit it to return your full configuration. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -122,7 +126,7 @@ Other parameters are passed through a pointer to a apiListUserConfigurationItems
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **string** |  | 
+ **path** | **string** | Key of a single configuration item. Omit it to return your full configuration. |
 
 ### Return type
 
@@ -130,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -145,6 +149,8 @@ Name | Type | Description  | Notes
 ## SetUserConfigurationItem
 
 > OutputConfig SetUserConfigurationItem(ctx, path).InputConfig(inputConfig).Execute()
+
+Set a configuration item
 
 
 
@@ -161,8 +167,8 @@ import (
 )
 
 func main() {
-	path := "path_example" // string | 
-	inputConfig := *openapiclient.NewInputConfig(interface{}(123)) // InputConfig | 
+	path := "path_example" // string | Key of the configuration item.
+	inputConfig := *openapiclient.NewInputConfig(interface{}(123)) // InputConfig |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**path** | **string** |  | 
+**path** | **string** | Key of the configuration item. |
 
 ### Other Parameters
 
@@ -192,7 +198,7 @@ Other parameters are passed through a pointer to a apiSetUserConfigurationItemRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputConfig** | [**InputConfig**](InputConfig.md) |  | 
+ **inputConfig** | [**InputConfig**](InputConfig.md) |  |
 
 ### Return type
 
@@ -200,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -210,4 +216,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

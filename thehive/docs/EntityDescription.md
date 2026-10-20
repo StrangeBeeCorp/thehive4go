@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** |  | 
-**Path** | **string** |  | 
-**InitialQuery** | **string** |  | 
-**Attributes** | [**[]PropertyDescription**](PropertyDescription.md) |  | 
+**Label** | **string** | Name of the entity model. |
+**Path** | **string** | Reserved for future use. Currently always empty. |
+**InitialQuery** | **string** | Name of the primary &#x60;list&#x60; operation to use with &#x60;POST /api/v1/query&#x60; to list entities of this model. Empty if the model isn&#39;t queryable. Names only this single &#x60;list&#x60; operation. It doesn&#39;t include the corresponding &#x60;get&#x60; operation, or any related object operations available for the model. |
+**Attributes** | [**[]PropertyDescription**](PropertyDescription.md) | Properties available on this model, including computed metadata fields such as &#x60;_createdBy&#x60; and &#x60;_createdAt&#x60;. |
 
 ## Methods
 
@@ -110,5 +110,3 @@ SetAttributes sets Attributes field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

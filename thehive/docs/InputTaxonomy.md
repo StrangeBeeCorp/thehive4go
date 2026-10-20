@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Namespace** | **string** |  | 
-**Description** | **string** |  | 
-**Version** | **int32** |  | 
-**Exclusive** | Pointer to **bool** |  | [optional] 
-**Predicates** | Pointer to [**[]InputPredicate**](InputPredicate.md) |  | [optional] 
-**Values** | Pointer to [**[]InputValue**](InputValue.md) |  | [optional] 
+**Namespace** | **string** | Namespace of the taxonomy. Must be unique in TheHive. |
+**Description** | **string** | Description of what this taxonomy covers. |
+**Version** | **int32** | Version number of the taxonomy. |
+**Exclusive** | Pointer to **bool** | Whether only one predicate can be applied at a time. When &#x60;true&#x60;, applying a second predicate from this taxonomy removes the first. | [optional]
+**Predicates** | Pointer to [**[]InputPredicate**](InputPredicate.md) | Predicates to define in this taxonomy. A predicate is a tag label within the namespace. | [optional]
+**Values** | Pointer to [**[]InputValue**](InputValue.md) | Value sets for predicates that have a third-level entry. A value groups entries under a predicate, forming tags of the form &#x60;namespace:predicate:entry&#x60;. Omit if none of the predicates have entries. | [optional]
 
 ## Methods
 
@@ -167,5 +167,3 @@ HasValues returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

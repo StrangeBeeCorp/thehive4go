@@ -4,17 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCaseTemplate**](CaseTemplateAPI.md#CreateCaseTemplate) | **Post** /api/v1/caseTemplate | 
-[**DeleteCaseTemplate**](CaseTemplateAPI.md#DeleteCaseTemplate) | **Delete** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
-[**GetCaseTemplate**](CaseTemplateAPI.md#GetCaseTemplate) | **Get** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
-[**LinkPageTemplatesToACaseTemplate**](CaseTemplateAPI.md#LinkPageTemplatesToACaseTemplate) | **Put** /api/v1/caseTemplate/{caseTemplateNameOrId}/pageTemplate/link | 
-[**UpdateCaseTemplate**](CaseTemplateAPI.md#UpdateCaseTemplate) | **Patch** /api/v1/caseTemplate/{caseTemplateNameOrId} | 
+[**CreateCaseTemplate**](CaseTemplateAPI.md#CreateCaseTemplate) | **Post** /api/v1/caseTemplate | Create a case template
+[**DeleteCaseTemplate**](CaseTemplateAPI.md#DeleteCaseTemplate) | **Delete** /api/v1/caseTemplate/{caseTemplateNameOrId} | Delete a case template
+[**GetCaseTemplate**](CaseTemplateAPI.md#GetCaseTemplate) | **Get** /api/v1/caseTemplate/{caseTemplateNameOrId} | Get a case template
+[**LinkPageTemplatesToACaseTemplate**](CaseTemplateAPI.md#LinkPageTemplatesToACaseTemplate) | **Put** /api/v1/caseTemplate/{caseTemplateNameOrId}/pageTemplate/link | Link page templates to a case template
+[**UpdateCaseTemplate**](CaseTemplateAPI.md#UpdateCaseTemplate) | **Patch** /api/v1/caseTemplate/{caseTemplateNameOrId} | Update a case template
 
 
 
 ## CreateCaseTemplate
 
 > OutputCaseTemplate CreateCaseTemplate(ctx).InputCreateCaseTemplate(inputCreateCaseTemplate).Execute()
+
+Create a case template
 
 
 
@@ -31,7 +33,7 @@ import (
 )
 
 func main() {
-	inputCreateCaseTemplate := *openapiclient.NewInputCreateCaseTemplate("Name_example") // InputCreateCaseTemplate | 
+	inputCreateCaseTemplate := *openapiclient.NewInputCreateCaseTemplate("Name_example") // InputCreateCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateCaseTemplateRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCaseTemplate** | [**InputCreateCaseTemplate**](InputCreateCaseTemplate.md) |  | 
+ **inputCreateCaseTemplate** | [**InputCreateCaseTemplate**](InputCreateCaseTemplate.md) |  |
 
 ### Return type
 
@@ -64,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -79,6 +81,8 @@ Name | Type | Description  | Notes
 ## DeleteCaseTemplate
 
 > DeleteCaseTemplate(ctx, caseTemplateNameOrId).Execute()
+
+Delete a case template
 
 
 
@@ -95,7 +99,7 @@ import (
 )
 
 func main() {
-	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | 
+	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | The case template ID preceded by `~`, or its name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -113,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** | The case template ID preceded by &#x60;~&#x60;, or its name. |
 
 ### Other Parameters
 
@@ -130,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -145,6 +149,8 @@ Name | Type | Description  | Notes
 ## GetCaseTemplate
 
 > OutputCaseTemplate GetCaseTemplate(ctx, caseTemplateNameOrId).Execute()
+
+Get a case template
 
 
 
@@ -161,7 +167,7 @@ import (
 )
 
 func main() {
-	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | 
+	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | The case template ID preceded by `~`, or its name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -181,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** | The case template ID preceded by &#x60;~&#x60;, or its name. |
 
 ### Other Parameters
 
@@ -198,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -213,6 +219,8 @@ Name | Type | Description  | Notes
 ## LinkPageTemplatesToACaseTemplate
 
 > LinkPageTemplatesToACaseTemplate(ctx, caseTemplateNameOrId).InputLinkPageTemplatesToCaseTemplate(inputLinkPageTemplatesToCaseTemplate).Execute()
+
+Link page templates to a case template
 
 
 
@@ -229,8 +237,8 @@ import (
 )
 
 func main() {
-	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | 
-	inputLinkPageTemplatesToCaseTemplate := *openapiclient.NewInputLinkPageTemplatesToCaseTemplate() // InputLinkPageTemplatesToCaseTemplate | 
+	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | The case template ID preceded by `~`, or its name.
+	inputLinkPageTemplatesToCaseTemplate := *openapiclient.NewInputLinkPageTemplatesToCaseTemplate() // InputLinkPageTemplatesToCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -248,7 +256,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** | The case template ID preceded by &#x60;~&#x60;, or its name. |
 
 ### Other Parameters
 
@@ -258,7 +266,7 @@ Other parameters are passed through a pointer to a apiLinkPageTemplatesToACaseTe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputLinkPageTemplatesToCaseTemplate** | [**InputLinkPageTemplatesToCaseTemplate**](InputLinkPageTemplatesToCaseTemplate.md) |  | 
+ **inputLinkPageTemplatesToCaseTemplate** | [**InputLinkPageTemplatesToCaseTemplate**](InputLinkPageTemplatesToCaseTemplate.md) |  |
 
 ### Return type
 
@@ -266,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -281,6 +289,8 @@ Name | Type | Description  | Notes
 ## UpdateCaseTemplate
 
 > UpdateCaseTemplate(ctx, caseTemplateNameOrId).InputUpdateCaseTemplate(inputUpdateCaseTemplate).Execute()
+
+Update a case template
 
 
 
@@ -297,8 +307,8 @@ import (
 )
 
 func main() {
-	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | 
-	inputUpdateCaseTemplate := *openapiclient.NewInputUpdateCaseTemplate() // InputUpdateCaseTemplate | 
+	caseTemplateNameOrId := "caseTemplateNameOrId_example" // string | The case template ID preceded by `~`, or its name.
+	inputUpdateCaseTemplate := *openapiclient.NewInputUpdateCaseTemplate() // InputUpdateCaseTemplate |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -316,7 +326,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseTemplateNameOrId** | **string** |  | 
+**caseTemplateNameOrId** | **string** | The case template ID preceded by &#x60;~&#x60;, or its name. |
 
 ### Other Parameters
 
@@ -326,7 +336,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseTemplateRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCaseTemplate** | [**InputUpdateCaseTemplate**](InputUpdateCaseTemplate.md) |  | 
+ **inputUpdateCaseTemplate** | [**InputUpdateCaseTemplate**](InputUpdateCaseTemplate.md) |  |
 
 ### Return type
 
@@ -334,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -344,4 +354,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

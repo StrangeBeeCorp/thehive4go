@@ -4,16 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateProfile**](ProfileAPI.md#CreateProfile) | **Post** /api/v1/profile | 
-[**DeleteProfile**](ProfileAPI.md#DeleteProfile) | **Delete** /api/v1/profile/{profileId} | 
-[**GetProfile**](ProfileAPI.md#GetProfile) | **Get** /api/v1/profile/{profileId} | 
-[**UpdateProfile**](ProfileAPI.md#UpdateProfile) | **Patch** /api/v1/profile/{profileId} | 
+[**CreateProfile**](ProfileAPI.md#CreateProfile) | **Post** /api/v1/profile | Create a profile
+[**DeleteProfile**](ProfileAPI.md#DeleteProfile) | **Delete** /api/v1/profile/{profileId} | Delete a profile
+[**GetProfile**](ProfileAPI.md#GetProfile) | **Get** /api/v1/profile/{profileId} | Get a profile
+[**UpdateProfile**](ProfileAPI.md#UpdateProfile) | **Patch** /api/v1/profile/{profileId} | Update a profile
 
 
 
 ## CreateProfile
 
 > OutputProfile CreateProfile(ctx).InputCreateProfile(inputCreateProfile).Execute()
+
+Create a profile
 
 
 
@@ -30,7 +32,7 @@ import (
 )
 
 func main() {
-	inputCreateProfile := *openapiclient.NewInputCreateProfile("Name_example") // InputCreateProfile | 
+	inputCreateProfile := *openapiclient.NewInputCreateProfile("Name_example") // InputCreateProfile |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateProfileRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateProfile** | [**InputCreateProfile**](InputCreateProfile.md) |  | 
+ **inputCreateProfile** | [**InputCreateProfile**](InputCreateProfile.md) |  |
 
 ### Return type
 
@@ -63,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -78,6 +80,8 @@ Name | Type | Description  | Notes
 ## DeleteProfile
 
 > DeleteProfile(ctx, profileId).Execute()
+
+Delete a profile
 
 
 
@@ -94,7 +98,7 @@ import (
 )
 
 func main() {
-	profileId := "profileId_example" // string | 
+	profileId := "profileId_example" // string | The profile ID preceded by `~`, or profile name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  | 
+**profileId** | **string** | The profile ID preceded by &#x60;~&#x60;, or profile name. |
 
 ### Other Parameters
 
@@ -129,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -144,6 +148,8 @@ Name | Type | Description  | Notes
 ## GetProfile
 
 > OutputProfile GetProfile(ctx, profileId).Execute()
+
+Get a profile
 
 
 
@@ -160,7 +166,7 @@ import (
 )
 
 func main() {
-	profileId := "profileId_example" // string | 
+	profileId := "profileId_example" // string | The profile ID preceded by `~`, or profile name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +186,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  | 
+**profileId** | **string** | The profile ID preceded by &#x60;~&#x60;, or profile name. |
 
 ### Other Parameters
 
@@ -197,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -212,6 +218,8 @@ Name | Type | Description  | Notes
 ## UpdateProfile
 
 > UpdateProfile(ctx, profileId).InputUpdateProfile(inputUpdateProfile).Execute()
+
+Update a profile
 
 
 
@@ -228,8 +236,8 @@ import (
 )
 
 func main() {
-	profileId := "profileId_example" // string | 
-	inputUpdateProfile := *openapiclient.NewInputUpdateProfile() // InputUpdateProfile | 
+	profileId := "profileId_example" // string | The profile ID preceded by `~`, or profile name.
+	inputUpdateProfile := *openapiclient.NewInputUpdateProfile() // InputUpdateProfile |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -247,7 +255,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**profileId** | **string** |  | 
+**profileId** | **string** | The profile ID preceded by &#x60;~&#x60;, or profile name. |
 
 ### Other Parameters
 
@@ -257,7 +265,7 @@ Other parameters are passed through a pointer to a apiUpdateProfileRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateProfile** | [**InputUpdateProfile**](InputUpdateProfile.md) |  | 
+ **inputUpdateProfile** | [**InputUpdateProfile**](InputUpdateProfile.md) |  |
 
 ### Return type
 
@@ -265,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -275,4 +283,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

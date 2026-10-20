@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **string** |  | 
-**Expanded** | Pointer to **string** |  | [optional] 
-**Exclusive** | Pointer to **bool** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
+**Value** | **string** | Identifier string for this predicate, used in the tag label. |
+**Expanded** | Pointer to **string** | Full display label for this predicate, shown instead of the identifier where supported. | [optional]
+**Exclusive** | Pointer to **bool** | Whether only one entry from this predicate can be selected at a time. | [optional]
+**Description** | Pointer to **string** | Description of what this predicate represents. | [optional]
+**Colour** | Pointer to **string** | Hex color code for the predicate tag&#39;s visual appearance. Must be a six-digit hex color preceded by &#x60;#&#x60;. | [optional]
 
 ## Methods
 
@@ -151,5 +151,3 @@ HasColour returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

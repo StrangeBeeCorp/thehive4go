@@ -1,9 +1,9 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
+ ## Get started  This guide covers everything you need to make your first successful API call to TheHive.  The publicly hosted API documentation reflects the latest version of TheHive. To browse the documentation that matches the version of TheHive you are running, open it from within the application: select the **?** button in the top right corner, then **API Docs**.  The v0 API is deprecated and isn't documented. New integrations should target v1.  ### Prerequisites  You need a running TheHive instance and an unlocked user account.  ### Authentication  Almost all endpoints require authentication.  TheHive supports two authentication methods:  #### API key (recommended)  Use your API key as a bearer token in the `Authorization` header.  Generate a new API key with `POST /api/v1/user/{userId}/key/renew`, or retrieve an existing one with `GET /api/v1/user/{userId}/key`.  If you have a [Normal user account](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types), you can also manage your API key in your [user settings](https://docs.strangebee.com/thehive/user-guides/manage-user-settings/#manage-your-api-key).  curl ```bash curl -X <http_method> -H 'Authorization: Bearer <api_key>' \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  headers = {\"Authorization\": \"Bearer <api_key>\"} response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", headers=headers) ```  #### Basic authentication  Only available for [Normal user accounts](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types).  Pass your login and password using HTTP Basic authentication. The login is typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted.  curl ```bash curl -X <http_method> -u <login>:<password> \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", auth=(\"<login>\", \"<password>\")) ```  The following endpoints are public and can be called without credentials:  - `POST /api/v1/login`: Authenticate with login, password, and a TOTP code if MFA is enabled. Returns a session cookie used to authenticate subsequent requests. - `GET /api/v1/logout`: Invalidate the current session. - `POST /api/v1/logout`: Invalidate the current session. Same as `GET`, provided for clients that can't send `GET` requests with a body. - `GET /api/v1/auth/local/passwordPolicy`: Retrieve the password policy configured on the server such as minimum length or complexity requirements. - `GET /api/v1/status/public`: Retrieve public server information, including the TheHive version and license status, without exposing sensitive configuration.  All other endpoints return `401 Unauthorized` when called without valid credentials.  ### Your first API call  Start with `GET /api/v1/user/current`: it requires no request body, confirms your credentials work, and returns your user ID.  curl ```bash curl -X GET -H 'Authorization: Bearer <api_key>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### X-Organisation header  By default, API calls target the user's default organization. The `defaultOrganisation` field returned by `GET /api/v1/user/current` tells you which one it is.  If your account belongs to several organizations and you need to target a specific one, add the `X-Organisation` header. This is also required when performing administration actions, as these must be executed in the context of the `admin` organization.  curl ```bash curl -H 'Authorization: Bearer <api_key>' \\      -H 'X-Organisation: <organization_name>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\", \"X-Organisation\": \"<organization_name>\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### Request and response format  All request and response bodies use JSON: `Content-Type: application/json`.  Dates are represented as Unix timestamps in milliseconds.  ### How the API is organized  TheHive exposes two kinds of endpoints.  #### The Query API  `POST /api/v1/query` handles all listing, filtering, sorting, and pagination needs.  A single endpoint accepts a structured body that chains operations:  ```json {   \"query\": [     { \"_name\": \"listCase\" },     { \"_name\": \"filter\", \"_eq\": { \"_field\": \"status\", \"_value\": \"Open\" } },     { \"_name\": \"sort\", \"_fields\": [{ \"_createdAt\": \"desc\" }] },     { \"_name\": \"page\", \"from\": 0, \"to\": 15, \"extraData\": [\"taskStats\", \"shareCount\"] }   ],   \"excludeFields\": [\"description\", \"summary\"] } ```  See the [**Query and Export**](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the full query reference.  #### Standard REST endpoints  Standard REST endpoints handle write operations and direct entity lookups.  They follow conventional HTTP conventions:  | <nobr>Operation </nobr>| Method | Example | |-----------|--------|---------| | <nobr>Create </nobr>| `POST` | `POST /api/v1/case` | | <nobr>Read </nobr>| `GET` | `GET /api/v1/case/{idOrName}` | | <nobr>Update </nobr>| `PATCH` | `PATCH /api/v1/case/{idOrName}` | | <nobr>Replace / set </nobr>| `PUT` | `PUT /api/v1/case/{caseId}/shares` | | <nobr>Delete </nobr>| `DELETE` | `DELETE /api/v1/case/{idOrName}` |  ### Permissions and capabilities  Each user account has permissions defined by their profile. TheHive checks them on every API call.  Some endpoints are only available with a Gold, Platinum, or One license. When that's the case, the required license tier is listed on the endpoint.  To check which license is active on your instance and what capabilities it includes, call `GET /api/v1/status`.  ### Request size limits  TheHive enforces the following request size limits:  | <nobr>Request type </nobr>| Default limit | Description | |---|---|---| | <nobr>Standard API requests (JSON payloads) </nobr>| 10 MB | Maximum size for request bodies processed in memory | | <nobr>File uploads and attachments </nobr>| 1 GB | Maximum size for streamed request bodies written to disk |  TheHive rejects requests that exceed these limits.  To stay within these limits: - Avoid sending excessively large JSON payloads. - Upload large files as attachments rather than embedding data directly in requests. - Implement rate limiting and additional protections at the reverse proxy level when exposing the API externally.  ### Errors  Every endpoint returns at least the following HTTP status codes:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`400 Bad Request` </nobr>| Invalid request parameters or body | | <nobr>`404 Not Found` </nobr>| Resource does not exist | | <nobr>`500 Internal Server Error` </nobr>| Unexpected server-side error |  Endpoints that require authentication additionally return:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`401 Unauthorized` </nobr>| Missing or invalid credentials | | <nobr>`403 Forbidden` </nobr>| Authenticated but insufficient permissions |  Other codes may appear depending on the specific operation. Refer to individual endpoint documentation for the full list.  The standard error response body is:  ```json {   \"type\": \"AuthorizationError\",   \"message\": \"You don't have permission to perform this action\" } ```  A small number of endpoints deviate from this format. These cases are noted in the relevant endpoint descriptions.
 
-API version: v5.6.2
+API version: v6.0.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -31,12 +31,13 @@ type ApiAddAttachmentToCaseRequest struct {
 	canRename   *bool
 }
 
+// Files to attach. Each part is a multipart form file field.
 func (r ApiAddAttachmentToCaseRequest) Attachments(attachments []*os.File) ApiAddAttachmentToCaseRequest {
 	r.attachments = attachments
 	return r
 }
 
-// If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name
+// When &#x60;true&#x60;, renames files that already exist with the same name.
 func (r ApiAddAttachmentToCaseRequest) CanRename(canRename bool) ApiAddAttachmentToCaseRequest {
 	r.canRename = &canRename
 	return r
@@ -47,10 +48,17 @@ func (r ApiAddAttachmentToCaseRequest) Execute() (*OutputAttachments, *http.Resp
 }
 
 /*
-AddAttachmentToCase Method for AddAttachmentToCase
+AddAttachmentToCase Add attachments to a case
+
+Add one or more files to a case as attachments. Files are uploaded as
+a multipart form and saved to the configured storage backend.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiAddAttachmentToCaseRequest
 */
 func (a *CaseAPIService) AddAttachmentToCase(ctx context.Context, caseId string) ApiAddAttachmentToCaseRequest {
@@ -233,10 +241,19 @@ func (r ApiAddLinkWithAnExternalURLRequest) Execute() (*http.Response, error) {
 }
 
 /*
-AddLinkWithAnExternalURL Method for AddLinkWithAnExternalURL
+AddLinkWithAnExternalURL Link a case to an external URL
+
+Create a link from a case to an external resource URL.
+Link type categorizes the relationship. Users can pick an existing
+type or create a new one by providing any string.
+Use `GET /api/v1/case/link/types` to list available types.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiAddLinkWithAnExternalURLRequest
 */
 func (a *CaseAPIService) AddLinkWithAnExternalURL(ctx context.Context, caseId string) ApiAddLinkWithAnExternalURLRequest {
@@ -388,10 +405,23 @@ func (r ApiAddLinkWithAnotherCaseRequest) Execute() (*http.Response, error) {
 }
 
 /*
-AddLinkWithAnotherCase Method for AddLinkWithAnotherCase
+AddLinkWithAnotherCase Link a case to another case
+
+Create a directed link from a case to another TheHive case.
+Link type categorizes the relationship. Users can pick an existing
+type or create a new one by providing any string.
+Use `GET /api/v1/case/link/types` to list available types.
+
+This doesn't apply to alert links, which are created automatically
+when a case is created from an alert or when an alert is added to
+an existing case.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiAddLinkWithAnotherCaseRequest
 */
 func (a *CaseAPIService) AddLinkWithAnotherCase(ctx context.Context, caseId string) ApiAddLinkWithAnotherCaseRequest {
@@ -542,9 +572,17 @@ func (r ApiApplyCaseTemplateOnExistingCasesRequest) Execute() (*http.Response, e
 }
 
 /*
-ApplyCaseTemplateOnExistingCases Method for ApplyCaseTemplateOnExistingCases
+ApplyCaseTemplateOnExistingCases Apply a case template to existing cases
 
-You can choose what part of the case template to apply on the existing case(s)
+Apply a case template to one or more existing cases. For each case,
+you can choose which template elements to apply: title prefix,
+description, tags, severity, flag, TLP, PAP, and custom fields.
+You can also import specific tasks and pages from the template
+into each case.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApplyCaseTemplateOnExistingCasesRequest
@@ -695,9 +733,28 @@ func (r ApiBulkManageCaseAccessRequest) Execute() (*http.Response, error) {
 }
 
 /*
-BulkManageCaseAccess Method for BulkManageCaseAccess
+BulkManageCaseAccess Set the access mode of multiple cases
 
-Make a list of cases private, external or public and manage the users list
+Set the access mode for multiple cases at once. For each
+case, you can restrict visibility to specific internal users,
+share with external users through [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/), or restore
+default organization-wide visibility. To update a single
+case, use `POST /api/v1/case/{caseId}/access`.
+
+All cases must have the same initial access.
+
+Direct transitions between restricted visibility and
+external access aren't allowed—restore to visible
+access first using `OrganisationAccessKind`.
+
+Required permission: `manageCaseAccess/restrict` to switch
+to or from restricted visibility, or
+`manageCaseAccess/external` to switch to or from external
+access.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiBulkManageCaseAccessRequest
@@ -848,7 +905,16 @@ func (r ApiBulkUpdateCaseRequest) Execute() (*http.Response, error) {
 }
 
 /*
-BulkUpdateCase Method for BulkUpdateCase
+BulkUpdateCase Update multiple cases
+
+Apply the same field updates to multiple cases at once. Only the fields
+included in the request body are modified on each case. Omitted fields
+retain their current values. To update a single case, use
+`PATCH /api/v1/case/{idOrName}`.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiBulkUpdateCaseRequest
@@ -1000,12 +1066,17 @@ func (r ApiChangeCaseOwningOrganisationRequest) Execute() (*http.Response, error
 }
 
 /*
-ChangeCaseOwningOrganisation Method for ChangeCaseOwningOrganisation
+ChangeCaseOwningOrganisation Change the owner organization of a case
 
-Update the current owner of the case. Beware, the current organisation could lose access to the case if no profile is set
+Transfer case ownership to another organization. The current owner loses
+access to the case unless `keepProfile` specifies a sharing profile for them.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/changeOwnership`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiChangeCaseOwningOrganisationRequest
 */
 func (a *CaseAPIService) ChangeCaseOwningOrganisation(ctx context.Context, caseId string) ApiChangeCaseOwningOrganisationRequest {
@@ -1156,9 +1227,14 @@ func (r ApiCreateCaseRequest) Execute() (*OutputCase, *http.Response, error) {
 }
 
 /*
-CreateCase Method for CreateCase
+CreateCase Create a case
 
-Create a new case empty case. A Case Template can be used to provide tasks and custom fields
+Create a new case in TheHive. You can use a case template to pre-populate
+tasks, custom fields, and pages, or build the case from scratch.
+By default, sharing rules set at the organization level apply to
+the new case.
+
+Required permission: `manageCase/create`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateCaseRequest
@@ -1316,10 +1392,18 @@ func (r ApiDeleteACustomFieldRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteACustomField Method for DeleteACustomField
+DeleteACustomField Remove a custom field from a case
+
+Remove a custom field from a case when it's no longer needed
+or was added incorrectly. The custom field definition remains
+in TheHive and can still be added to other cases.
+
+Use `GET /api/v1/case/{idOrName}` to retrieve the custom field ID from the `_id` field in the `customFields` array.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param cfId
+	@param cfId The custom field ID preceded by `~`.
 	@return ApiDeleteACustomFieldRequest
 */
 func (a *CaseAPIService) DeleteACustomField(ctx context.Context, cfId string) ApiDeleteACustomFieldRequest {
@@ -1460,10 +1544,22 @@ func (r ApiDeleteCaseRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteCase Method for DeleteCase
+DeleteCase Delete a case
+
+Permanently delete a case from TheHive. This action is
+irreversible: once deleted, the case can't be recovered
+by anyone, including the StrangeBee Support team.
+
+For false positives or duplicates, consider closing the
+case rather than deleting it. Use `PATCH /api/v1/case/{idOrName}`
+to set the case to a status linked to the *Closed* stage.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/delete`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param idOrName
+	@param idOrName The case ID preceded by `~`, or the case number.
 	@return ApiDeleteCaseRequest
 */
 func (a *CaseAPIService) DeleteCase(ctx context.Context, idOrName string) ApiDeleteCaseRequest {
@@ -1605,11 +1701,19 @@ func (r ApiDeleteCaseAttachmentRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteCaseAttachment Method for DeleteCaseAttachment
+DeleteCaseAttachment Remove an attachment from a case
+
+Remove an attachment from a case. The file is unlinked from the case
+but may still exist in the storage backend if referenced by other objects.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers,
+and `getCase` followed by `attachments` to retrieve attachment IDs.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param attachmentId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiDeleteCaseAttachmentRequest
 */
 func (a *CaseAPIService) DeleteCaseAttachment(ctx context.Context, caseId string, attachmentId string) ApiDeleteCaseAttachmentRequest {
@@ -1758,10 +1862,23 @@ func (r ApiDeleteLinkWithAnAnotherCaseRequest) Execute() (*http.Response, error)
 }
 
 /*
-DeleteLinkWithAnAnotherCase Method for DeleteLinkWithAnAnotherCase
+DeleteLinkWithAnAnotherCase Remove a link to another case
+
+Remove the link from a case to another TheHive case. Provide the
+same link type and case ID or case number used when adding the link.
+
+Use `POST /api/v1/query` with the `getCase` operation and
+`extraData: ["links"]` to list a case's current links and their
+types.
+
+Deleting or merging the target case removes its links automatically.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiDeleteLinkWithAnAnotherCaseRequest
 */
 func (a *CaseAPIService) DeleteLinkWithAnAnotherCase(ctx context.Context, caseId string) ApiDeleteLinkWithAnAnotherCaseRequest {
@@ -1913,10 +2030,21 @@ func (r ApiDeleteLinkWithAnExternalURLRequest) Execute() (*http.Response, error)
 }
 
 /*
-DeleteLinkWithAnExternalURL Method for DeleteLinkWithAnExternalURL
+DeleteLinkWithAnExternalURL Remove a link to an external URL
+
+Remove the link from a case to an external resource URL. Provide the
+same link type and URL used when adding the link.
+
+Use `POST /api/v1/query` with the `getCase` operation and
+`extraData: ["links"]` to list a case's current links and their
+types.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiDeleteLinkWithAnExternalURLRequest
 */
 func (a *CaseAPIService) DeleteLinkWithAnExternalURL(ctx context.Context, caseId string) ApiDeleteLinkWithAnExternalURLRequest {
@@ -2063,11 +2191,19 @@ func (r ApiDownloadAttachmentFromCaseRequest) Execute() (*os.File, *http.Respons
 }
 
 /*
-DownloadAttachmentFromCase Method for DownloadAttachmentFromCase
+DownloadAttachmentFromCase Download an attachment from a case
+
+Deprecated. Use `GET /api/v1/attachment/{attachmentId}/download` instead.
+
+Stream the binary content of an attachment linked to a case. The response
+includes content-type, content-length, and content-disposition headers.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers,
+and `getCase` followed by `attachments` to retrieve attachment IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param attachmentId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiDownloadAttachmentFromCaseRequest
 
 Deprecated
@@ -2222,7 +2358,7 @@ type ApiExportCaseAsArchiveRequest struct {
 	password   *string
 }
 
-// A password to encrypt the file. Needs to be provided when importing the file
+// Password to encrypt the archive. Required when restoring it via &#x60;POST /api/v1/case/import&#x60;.
 func (r ApiExportCaseAsArchiveRequest) Password(password string) ApiExportCaseAsArchiveRequest {
 	r.password = &password
 	return r
@@ -2233,12 +2369,24 @@ func (r ApiExportCaseAsArchiveRequest) Execute() (*os.File, *http.Response, erro
 }
 
 /*
-ExportCaseAsArchive Method for ExportCaseAsArchive
+ExportCaseAsArchive Export a case as an archive
 
-Export the case as a TheHive archive (.thar) file. The file can be used to import the Case in an other TheHive instance
+Export a case as a THAR archive file to preserve
+the full investigation for later reuse. Typical uses include
+basing a new investigation on a past one, or transferring a
+case to another TheHive instance. The
+archive includes all case data: tasks, observables, TTPs,
+comments, and attachments.
+
+To restore the archive as a new case, use
+`POST /api/v1/case/import`.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiExportCaseAsArchiveRequest
 */
 func (a *CaseAPIService) ExportCaseAsArchive(ctx context.Context, caseId string) ApiExportCaseAsArchiveRequest {
@@ -2394,7 +2542,13 @@ func (r ApiGetAllLinkTypesRequest) Execute() ([]string, *http.Response, error) {
 }
 
 /*
-GetAllLinkTypes Method for GetAllLinkTypes
+GetAllLinkTypes List all case link types
+
+Returns all link type names currently in use across cases in TheHive.
+Use this to list available types before adding a link. New types are
+created automatically when a new name is provided to
+`POST /api/v1/case/{caseId}/link/case/add` or
+`POST /api/v1/case/{caseId}/link/external/add`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetAllLinkTypesRequest
@@ -2544,6 +2698,7 @@ type ApiGetAttachmentFromCaseRequest struct {
 	ifNoneMatch  *string
 }
 
+// ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content.
 func (r ApiGetAttachmentFromCaseRequest) IfNoneMatch(ifNoneMatch string) ApiGetAttachmentFromCaseRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
@@ -2554,13 +2709,21 @@ func (r ApiGetAttachmentFromCaseRequest) Execute() (*os.File, *http.Response, er
 }
 
 /*
-GetAttachmentFromCase Method for GetAttachmentFromCase
+GetAttachmentFromCase Get an attachment from a case
 
-Deprecated: use `Organisation / Get attachment` instead
+Deprecated. Use `GET /api/v1/attachment/{attachmentId}` instead.
+
+Stream the binary content of an attachment linked to a case. Supports
+conditional requests with the `If-None-Match` header: if the attachment
+hasn't changed since the last request, returns `304 Not Modified` with
+an empty body.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers,
+and `getCase` followed by `attachments` to retrieve attachment IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param attachmentId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiGetAttachmentFromCaseRequest
 
 Deprecated
@@ -2722,10 +2885,15 @@ func (r ApiGetCaseRequest) Execute() (*OutputCase, *http.Response, error) {
 }
 
 /*
-GetCase Method for GetCase
+GetCase Get a case
+
+Returns the full details of a case, including metadata, custom fields,
+access settings, KPI metrics, and date fields.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param idOrName
+	@param idOrName The case ID preceded by `~`, or the case number.
 	@return ApiGetCaseRequest
 */
 func (a *CaseAPIService) GetCase(ctx context.Context, idOrName string) ApiGetCaseRequest {
@@ -2878,10 +3046,19 @@ func (r ApiGetCaseTimelineRequest) Execute() (*OutputTimeline, *http.Response, e
 }
 
 /*
-GetCaseTimeline Method for GetCaseTimeline
+GetCaseTimeline Get the timeline of a case
+
+Returns the activity timeline of a case—a chronological list of
+events that occurred during the case lifecycle. Events include
+case status changes, alert occurrences, task activity, flagged
+task logs, IOC sightings, TTPs occurrences, and custom events.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required license: Gold, Platinum, or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiGetCaseTimelineRequest
 */
 func (a *CaseAPIService) GetCaseTimeline(ctx context.Context, caseId string) ApiGetCaseTimelineRequest {
@@ -3034,12 +3211,15 @@ func (r ApiGetSimilarCasesRequest) Execute() ([]OutputCaseWithLinks, *http.Respo
 }
 
 /*
-GetSimilarCases Method for GetSimilarCases
+GetSimilarCases List similar cases
 
-**deprecated:** use the `similarCasesLight` query instead. ~Get the similar cases of a given case, along with the observables.~
+**Deprecated.** Use the `similarCasesLight` query via `POST /api/v1/query` instead.
+
+Returns cases that share observables with the specified case, along with
+the matching observables for each similar case.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiGetSimilarCasesRequest
 
 Deprecated
@@ -3197,11 +3377,21 @@ func (r ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest) Execut
 }
 
 /*
-GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert Method for GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert
+GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert List observables shared with another case or alert
+
+Returns the observables shared between a case and another case
+or alert. TheHive uses shared observables to detect related
+incidents and surface them in the **Similar cases** and **Similar alerts** tabs.
+
+Only observables not excluded from similarity checks are
+included. By default, at most 100 observables are returned.
+Administrators can raise this limit in `application.conf`.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers, and with `listAlert` to retrieve available alerts and their IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param alertOrCaseId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param alertOrCaseId The ID of the alert or case, preceded by `~`.
 	@return ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest
 */
 func (a *CaseAPIService) GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert(ctx context.Context, caseId string, alertOrCaseId string) ApiGetSimilarObservablesBetweenACaseAndAnotherCaseOrAlertRequest {
@@ -3367,9 +3557,21 @@ func (r ApiImportCaseFromFileRequest) Execute() (*OutputImportCase, *http.Respon
 }
 
 /*
-ImportCaseFromFile Method for ImportCaseFromFile
+ImportCaseFromFile Create a case from an archive
 
-The file must be a .thar file
+Create a case from a THAR archive file. Typical uses include basing
+a new investigation on a past one, or transferring a case
+from another TheHive instance. Observables, TTPs, tasks,
+comments, attachments, pages, and custom fields from the
+archive are restored into the new case.
+
+Required permission: `manageCase/create`
+Required license: Gold, Platinum, or One
+
+Prerequisites: A THAR archive file and its password, obtained by exporting a case
+
+	 with `GET /api/v1/case/{caseId}/export`.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiImportCaseFromFileRequest
@@ -3550,12 +3752,28 @@ func (r ApiManageCaseAccessRequest) Execute() (*http.Response, error) {
 }
 
 /*
-ManageCaseAccess Method for ManageCaseAccess
+ManageCaseAccess Set the access mode of a case
 
-Make a case private, external or public and manage the users list
+Set the access mode for a case. You can restrict visibility to specific internal users,
+share with external users through [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/), or restore
+default organization-wide visibility. To update multiple
+cases, use `POST /api/v1/case/_bulk/access`.
+
+Direct transitions between restricted visibility and
+external access aren't allowed—restore to visible
+access first using `OrganisationAccessKind`.
+
+Required permission: `manageCaseAccess/restrict` to switch
+to or from restricted visibility, or
+`manageCaseAccess/external` to switch to or from external
+access.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiManageCaseAccessRequest
 */
 func (a *CaseAPIService) ManageCaseAccess(ctx context.Context, caseId string) ApiManageCaseAccessRequest {
@@ -3701,12 +3919,22 @@ func (r ApiMergeCasesRequest) Execute() (*OutputCase, *http.Response, error) {
 }
 
 /*
-MergeCases Method for MergeCases
+MergeCases Merge cases into a new case
 
-Create a new case by merging the provided cases. The similar observables will be merged
+Merge two or more cases to consolidate related investigations
+into a single case created for the merge. Tasks, observables,
+alerts, TTPs, comments, attachments, pages, and custom
+fields from all source cases are moved into the new case,
+concatenating values for custom fields from all cases without
+duplicates. The source cases are deleted, and duplicate
+observables and tasks are automatically deduplicated.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/merge`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param ids
+	@param ids List of case IDs preceded by `~`, or case numbers.
 	@return ApiMergeCasesRequest
 */
 func (a *CaseAPIService) MergeCases(ctx context.Context, ids string) ApiMergeCasesRequest {
@@ -3859,10 +4087,24 @@ func (r ApiMergeSimilarObservablesOfThisCaseRequest) Execute() (*OutputMergeCase
 }
 
 /*
-MergeSimilarObservablesOfThisCase Method for MergeSimilarObservablesOfThisCase
+MergeSimilarObservablesOfThisCase Deduplicate observables in a case
+
+Deduplicate observables in a case. Observables sharing the
+same type and value are consolidated into one: TheHive updates
+the surviving observable with combined metadata from all
+duplicates and deletes the duplicates.
+
+TheHive runs deduplication automatically during case merges
+and alert imports. Use this endpoint to trigger it explicitly,
+for example after importing observables through external
+tooling.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
+	@param caseId The case ID preceded by `~`, or the case number.
 	@return ApiMergeSimilarObservablesOfThisCaseRequest
 */
 func (a *CaseAPIService) MergeSimilarObservablesOfThisCase(ctx context.Context, caseId string) ApiMergeSimilarObservablesOfThisCaseRequest {
@@ -4016,11 +4258,26 @@ func (r ApiUnlinkAlertFromCaseRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UnlinkAlertFromCase Method for UnlinkAlertFromCase
+UnlinkAlertFromCase Unlink an alert from a case
+
+Remove the link between an alert and a case when the alert
+no longer relates to the investigation, or if it was linked
+incorrectly. An alert is linked to a case when a case is
+created from the alert, or when the alert is added to
+an existing case.
+
+When unlinked, the alert status changes to a status in the
+*New* stage, regardless of its previous status. Alert data,
+including observables, TTPs, attachments, comments, and custom fields,
+remains in the case.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers, and with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param alertId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param alertId The alert ID preceded by `~`.
 	@return ApiUnlinkAlertFromCaseRequest
 */
 func (a *CaseAPIService) UnlinkAlertFromCase(ctx context.Context, caseId string, alertId string) ApiUnlinkAlertFromCaseRequest {
@@ -4170,13 +4427,23 @@ func (r ApiUpdateAttachmentRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateAttachment Method for UpdateAttachment
+UpdateAttachment Update a case attachment
 
-You can only change the access to/from External
+Update the properties of an attachment in a case. Currently, only the
+`external` flag can be changed, which controls whether the attachment
+is accessible to external users through
+[TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/).
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers,
+and `getCase` followed by `attachments` to retrieve attachment IDs.
+
+Required permission: `manageCase/update`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param caseId
-	@param attachmentId
+	@param caseId The case ID preceded by `~`, or the case number.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiUpdateAttachmentRequest
 */
 func (a *CaseAPIService) UpdateAttachment(ctx context.Context, caseId string, attachmentId string) ApiUpdateAttachmentRequest {
@@ -4330,10 +4597,19 @@ func (r ApiUpdateCaseRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateCase Method for UpdateCase
+UpdateCase Update a case
+
+Update one or more fields of a single case. Only the fields
+included in the request body are modified. Omitted fields retain
+their current values. To update multiple cases at once, use
+`PATCH /api/v1/case/_bulk`.
+
+Use `POST /api/v1/query` with `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageCase/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param idOrName
+	@param idOrName The case ID preceded by `~`, or the case number.
 	@return ApiUpdateCaseRequest
 */
 func (a *CaseAPIService) UpdateCase(ctx context.Context, idOrName string) ApiUpdateCaseRequest {

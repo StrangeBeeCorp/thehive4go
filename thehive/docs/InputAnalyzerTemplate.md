@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AnalyzerId** | **string** |  | 
-**Content** | **string** |  | 
+**AnalyzerId** | **string** | Name of the analyzer the template renders reports for. Must match the &#x60;name&#x60; field of an analyzer available from a connected Cortex server. Use &#x60;GET /api/v1/connector/cortex/analyzer&#x60; to list available analyzers. |
+**Content** | **string** | HTML content that defines how the analyzer&#39;s reports are displayed. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetContent sets Content field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

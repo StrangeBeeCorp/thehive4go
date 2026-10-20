@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Content** | **string** |  |
-**Order** | **int32** |  |
-**Category** | **string** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the page. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Page&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the page. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the page. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the page was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the page was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the page. |
+**Content** | **string** | Content of the page in [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). |
+**Order** | **int32** | Display order of the page within its category. |
+**Category** | **string** | Category the page belongs to. |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

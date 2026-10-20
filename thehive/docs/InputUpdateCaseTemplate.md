@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**TitlePrefix** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) |  | [optional] 
+**Name** | Pointer to **string** | New name for the case template, must be unique in your organization. | [optional]
+**DisplayName** | Pointer to **string** | New display name shown to users when selecting this template. | [optional]
+**TitlePrefix** | Pointer to **string** | New prefix for case titles. Send &#x60;null&#x60; to remove the prefix. | [optional]
+**Description** | Pointer to **string** | New default description for cases. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). Send &#x60;null&#x60; to clear this field. | [optional]
+**Severity** | Pointer to **int32** | New default severity level for cases: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). Send &#x60;null&#x60; to clear this field. | [optional]
+**Tags** | Pointer to **[]string** | Replaces the template&#39;s current tag list with this set. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing free-form tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Flag** | Pointer to **bool** | Marks cases as important by default. | [optional]
+**Tlp** | Pointer to **int32** | New default [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level for cases: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). Send &#x60;null&#x60; to clear this field. | [optional]
+**Pap** | Pointer to **int32** | New default [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level for cases: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). Send &#x60;null&#x60; to clear this field. | [optional]
+**Summary** | Pointer to **string** | New default summary for cases. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). Send &#x60;null&#x60; to clear this field. | [optional]
+**CustomFields** | Pointer to [**InputUpdateCaseTemplateCustomFields**](InputUpdateCaseTemplateCustomFields.md) |  | [optional]
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Replaces the template&#39;s current task list with this set. A task represents one or more actions, called task logs, that must be completed during the investigation. | [optional]
 
 ## Methods
 
@@ -288,20 +288,20 @@ HasSummary returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *InputUpdateCaseTemplate) GetCustomFields() InputCreateAlertCustomFields`
+`func (o *InputUpdateCaseTemplate) GetCustomFields() InputUpdateCaseTemplateCustomFields`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *InputUpdateCaseTemplate) GetCustomFieldsOk() (*InputCreateAlertCustomFields, bool)`
+`func (o *InputUpdateCaseTemplate) GetCustomFieldsOk() (*InputUpdateCaseTemplateCustomFields, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *InputUpdateCaseTemplate) SetCustomFields(v InputCreateAlertCustomFields)`
+`func (o *InputUpdateCaseTemplate) SetCustomFields(v InputUpdateCaseTemplateCustomFields)`
 
 SetCustomFields sets CustomFields field to given value.
 
@@ -338,5 +338,3 @@ HasTasks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

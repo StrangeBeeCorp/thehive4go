@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**OccurDate** | Pointer to **int64** |  | [optional] 
-**PatternId** | Pointer to **string** |  | [optional] 
-**Tactic** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** | New description of how the technique was carried out, referred to as the procedure. | [optional]
+**OccurDate** | Pointer to **int64** | New occurrence date of the technique. Expected format: Unix timestamp in milliseconds. | [optional]
+**PatternId** | Pointer to **string** | New technique ID from a loaded catalog, for example a MITRE ATT&amp;CK technique ID. Must match an existing technique. Use &#x60;POST /api/v1/query&#x60; with &#x60;listPattern&#x60; to retrieve available techniques and their IDs. | [optional]
+**Tactic** | Pointer to **string** | New short name of the tactic the technique belongs to. Required when the technique belongs to more than one tactic. | [optional]
 
 ## Methods
 
@@ -130,5 +130,3 @@ HasTactic returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

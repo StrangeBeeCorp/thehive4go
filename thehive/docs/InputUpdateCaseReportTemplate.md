@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Definition** | Pointer to [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) |  | [optional] 
-**Version** | Pointer to **int32** |  | [optional] 
+**Title** | Pointer to **string** | New title of the case report template. | [optional]
+**Group** | Pointer to **string** | New group label used to categorize the template. | [optional]
+**Description** | Pointer to **string** | New summary of the template&#39;s purpose and contents. | [optional]
+**Definition** | Pointer to [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) | New structure for the template. | [optional]
+**Version** | Pointer to **int32** | New version number of the template. | [optional]
 
 ## Methods
 
@@ -156,5 +156,3 @@ HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

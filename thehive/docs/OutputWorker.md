@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**Name** | **string** |  |
-**Version** | **string** |  |
-**Description** | **string** |  |
-**DataTypeList** | Pointer to **[]string** |  | [optional]
-**CortexIds** | Pointer to **[]string** |  | [optional]
+**Id** | **string** | ID of the analyzer once enabled within the organization. |
+**Name** | **string** | Display name of the analyzer. |
+**Version** | **string** | Version of the analyzer. |
+**Description** | **string** | Description of what the analyzer does. |
+**DataTypeList** | Pointer to **[]string** | Observable data types the analyzer supports. | [optional]
+**CortexIds** | Pointer to **[]string** | Names of the Cortex servers on which the analyzer is available. | [optional]
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Order** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
-**Hidden** | Pointer to **bool** |  | [optional] 
+**Order** | Pointer to **int32** | New position in the UI dropdown list. Set to &#x60;null&#x60; to remove the custom ordering. | [optional]
+**Description** | Pointer to **string** | New description. Set to &#x60;null&#x60; to remove the existing description. | [optional]
+**Colour** | Pointer to **string** | New hex color code. Set to &#x60;null&#x60; to remove the custom color. | [optional]
+**Hidden** | Pointer to **bool** | When &#x60;true&#x60;, hides the status from the UI dropdown. Hidden statuses remain accessible through the API. | [optional]
 
 ## Methods
 
@@ -130,5 +130,3 @@ HasHidden returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

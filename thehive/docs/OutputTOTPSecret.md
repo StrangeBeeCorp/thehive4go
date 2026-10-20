@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Secret** | **string** |  |
-**Uri** | **string** |  |
+**Secret** | **string** | Base32-encoded secret used to generate time-based one-time passwords for your account. Send it back in the &#x60;secret&#x60; field of &#x60;POST /api/v1/auth/totp/set&#x60; to activate it. |
+**Uri** | **string** | otpauth URI containing &#x60;secret&#x60;, rendered as a QR code in TheHive interface for you to scan with an authenticator app. |
 
 ## Methods
 

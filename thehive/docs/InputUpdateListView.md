@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Filter** | Pointer to **map[string]interface{}** |  | [optional] 
-**ListOptions** | Pointer to [**ListOptions**](ListOptions.md) |  | [optional] 
-**SortList** | Pointer to **[]string** |  | [optional] 
-**ShowColumns** | Pointer to **[]string** |  | [optional] 
-**IsShared** | Pointer to **bool** |  | [optional] 
+**Name** | Pointer to **string** | New name for the view. Leave unset to keep the current name. | [optional]
+**Filter** | Pointer to **map[string]interface{}** | Filter applied to the list. Uses the same operators as the [&#x60;filter&#x60; step of the Query API](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export). Leave unset to keep the current filter. | [optional]
+**ListOptions** | Pointer to [**ListOptions**](ListOptions.md) | New display options for the view. Leave unset to keep the current options. | [optional]
+**SortList** | Pointer to **[]string** | New sort order for the view. Each entry is a field name prefixed with &#x60;+&#x60; for ascending order or &#x60;-&#x60; for descending order. Leave unset to keep the current sort order. | [optional]
+**ShowColumns** | Pointer to **[]string** | New set of optional columns displayed in the list, on top of the fixed set of columns shown for that entity type. The available optional columns vary by entity: check the corresponding list in TheHive web interface. Leave unset to keep the current columns. | [optional]
+**IsShared** | Pointer to **bool** | Whether to share the view with your entire organization, or make it private. Leave unset to keep the current visibility.  Every member of the organization can use, modify, and delete a shared view.  | [optional]
 
 ## Methods
 
@@ -182,5 +182,3 @@ HasIsShared returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

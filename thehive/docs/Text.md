@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Template** | **string** |  | 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Template** | **string** | Mustache template string rendered as the widget body. |
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -94,5 +94,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

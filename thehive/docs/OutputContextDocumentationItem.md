@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
+**Name** | **string** | Name of the context field or method. |
 **Kind** | [**OutputContextDocumentationItemKind**](OutputContextDocumentationItemKind.md) |  |
-**Args** | Pointer to **[]string** |  | [optional]
+**Args** | Pointer to **[]string** | Parameter names accepted by the method. Present only when &#x60;kind&#x60; is &#x60;Method&#x60;. | [optional]
 
 ## Methods
 

@@ -25,11 +25,11 @@
 // The variants of the other naive oneOf wrappers keep DisallowUnknownFields:
 // that strictness is what lets the naive matcher tell them apart. Only one
 // kind of wrapper is spared: one that no request refers to, whose variants are
-// all model types that each require a property the others do not declare
-// (OutputLicenseCurrent). Its variants resolve to exactly one variant even when
-// they ignore unknown fields, so they become lenient. Filter, which requests
-// build, and OutputInvokeFunction, whose map variant matches anything, keep
-// theirs.
+// all model types that check their own required properties and that a
+// first-match decoder can tell apart, the variant with the most required
+// properties first (OutputLicenseCurrent). Its decoder is rewritten and its
+// variants become lenient. Filter, which requests build, and
+// OutputInvokeFunction, whose map variant matches anything, keep theirs.
 //
 // Strict mode: the tool fails when a response model has an UnmarshalJSON it
 // does not recognise, when a schema has no Go type, when a model a
@@ -129,7 +129,7 @@ func main() {
 		}
 		switch {
 		case w.primitiveArrays:
-			changed, err := rewriteFirstMatch(types.files[goType], goType, w.fields)
+			changed, err := rewriteFirstMatch(types.files[goType], goType, bySpecificity(w.fields), primitiveReason)
 			if err != nil {
 				log.Fatalf("rewrite %s: %v", goType, err)
 			}
@@ -147,14 +147,27 @@ func main() {
 				strictVariants[v] = goType
 			}
 		default:
-			if why := whyIndistinguishable(w, types.files); why != "" {
+			ordered, why := orderVariants(w, types.files)
+			if why != "" {
+				if w.rewritten {
+					log.Fatalf("strict: %s has a first-match decoder, but its variants cannot be ordered any more: %s", goType, why)
+				}
 				log.Printf("%s: variants kept strict, %s", goType, why)
 				for _, v := range w.namedVariants {
 					strictVariants[v] = goType
 				}
 				continue
 			}
-			log.Printf("%s: variants made lenient, each still resolves to exactly one variant", goType)
+			changed, err := rewriteFirstMatch(types.files[goType], goType, ordered, namedReason)
+			if err != nil {
+				log.Fatalf("rewrite %s: %v", goType, err)
+			}
+			if changed {
+				log.Printf("%s: variants made lenient, decoder rewritten to first match wins, most required properties first", goType)
+			} else {
+				log.Printf("%s: variants lenient, first-match decoder already in place — idempotent skip", goType)
+			}
+			firstMatch++
 			spared += len(w.namedVariants)
 		}
 	}
@@ -395,6 +408,7 @@ type wrapper struct {
 	fields          []field
 	namedVariants   []string // the variants that are named model types
 	primitiveArrays bool     // every variant is a pointer to a slice of a primitive
+	rewritten       bool     // UnmarshalJSON already carries firstMatchMarker
 }
 
 type field struct {
@@ -429,7 +443,7 @@ func inspectWrapper(path, goType string) (*wrapper, error) {
 	if st == nil {
 		return nil, fmt.Errorf("oneOf wrapper struct %s not found in %s", goType, path)
 	}
-	w := &wrapper{primitiveArrays: true}
+	w := &wrapper{primitiveArrays: true, rewritten: rewritten}
 	for _, f := range st.Fields.List {
 		star, ok := f.Type.(*ast.StarExpr)
 		if !ok || len(f.Names) != 1 {
@@ -469,19 +483,35 @@ func bySpecificity(fields []field) []field {
 	return out
 }
 
-// rewriteFirstMatch replaces the naive decoder of a primitive-array oneOf, and
-// reports whether that changed the file. A decoder already rewritten is
-// rewritten again, so a change of order reaches the committed client.
-func rewriteFirstMatch(path, goType string, fields []field) (bool, error) {
+// The comment lines of a first-match decoder: why counting matches fails there.
+var (
+	primitiveReason = []string{
+		"An empty array, or an array of integers, decodes as several of these",
+		"variants at once, and TheHive sends both: counting matches rejects them.",
+		"The most specific variant comes first (integers, floats, booleans, strings),",
+		"so [1, 2] is an []int32 and not an []float64.",
+	}
+	namedReason = []string{
+		"Each variant checks its own required properties and ignores unknown fields,",
+		"so an answer that carries a field TheHive added still matches. The variant",
+		"with the most required properties comes first: an answer shaped like it also",
+		"satisfies the variants that require less.",
+	}
+)
+
+// rewriteFirstMatch replaces the naive decoder of a oneOf by one that takes the
+// first variant of `ordered` that decodes, and reports whether that changed the
+// file. A decoder already rewritten is rewritten again, so a change of order
+// reaches the committed client.
+func rewriteFirstMatch(path, goType string, ordered []field, reason []string) (bool, error) {
 	var b strings.Builder
 	fmt.Fprintf(&b, "func (dst *%s) UnmarshalJSON(data []byte) error {\n", goType)
 	fmt.Fprintf(&b, "\t// %s.\n", firstMatchMarker)
-	b.WriteString("\t// An empty array, or an array of integers, decodes as several of these\n")
-	b.WriteString("\t// variants at once, and TheHive sends both: counting matches rejects them.\n")
-	b.WriteString("\t// The most specific variant comes first (integers, floats, booleans, strings),\n")
-	b.WriteString("\t// so [1, 2] is an []int32 and not an []float64.\n")
+	for _, line := range reason {
+		fmt.Fprintf(&b, "\t// %s\n", line)
+	}
 	fmt.Fprintf(&b, "\t*dst = %s{}\n", goType)
-	for _, f := range bySpecificity(fields) {
+	for _, f := range ordered {
 		v := "v" + f.name
 		fmt.Fprintf(&b, "\tvar %s %s\n", v, f.goType)
 		fmt.Fprintf(&b, "\tif err := json.Unmarshal(data, &%s); err == nil {\n", v)
@@ -567,44 +597,49 @@ func readShape(path, goType string) (*shape, error) {
 	return sh, nil
 }
 
-// whyIndistinguishable returns "" when the variants of a naive oneOf wrapper
-// would still resolve to exactly one variant if they ignored unknown fields,
-// and the reason why they would not otherwise. They do when every variant is a
-// model type that requires a property which no other variant declares: an
-// answer shaped like one variant then misses a required property of the others.
-func whyIndistinguishable(w *wrapper, files map[string]string) string {
+// orderVariants returns the variants of a naive oneOf wrapper in the order a
+// first-match decoder must try them when they ignore unknown fields, or the
+// reason why no order tells them apart. A variant that checks its own required
+// properties matches every answer that carries them, so an answer shaped like
+// one variant can satisfy another that requires less: the variant with the most
+// required properties goes first. It works when no variant tried first has all
+// its required properties declared by a variant tried after it, otherwise an
+// answer shaped like the later one would be taken for the earlier.
+func orderVariants(w *wrapper, files map[string]string) ([]field, string) {
 	if len(w.namedVariants) != len(w.fields) {
-		return "a variant is not a model type and matches anything the others do"
+		return nil, "a variant is not a model type and matches anything the others do"
 	}
 	shapes := map[string]*shape{}
-	for _, v := range w.namedVariants {
-		sh, err := readShape(files[v], v)
+	for _, f := range w.fields {
+		sh, err := readShape(files[f.goType], f.goType)
 		if err != nil {
-			log.Fatalf("read %s: %v", v, err)
+			log.Fatalf("read %s: %v", f.goType, err)
 		}
 		if sh == nil {
-			return fmt.Sprintf("%s does not check required properties", v)
+			return nil, fmt.Sprintf("%s does not check required properties", f.goType)
 		}
-		shapes[v] = sh
+		shapes[f.goType] = sh
 	}
-	for _, x := range w.namedVariants {
-		for _, y := range w.namedVariants {
-			if x == y {
-				continue
-			}
-			distinct := false
-			for p := range shapes[y].required {
-				if !shapes[x].declared[p] {
-					distinct = true
+
+	ordered := append([]field(nil), w.fields...)
+	sort.SliceStable(ordered, func(i, j int) bool {
+		return len(shapes[ordered[i].goType].required) > len(shapes[ordered[j].goType].required)
+	})
+	for i, first := range ordered {
+		for _, later := range ordered[i+1:] {
+			covered := true
+			for p := range shapes[first.goType].required {
+				if !shapes[later.goType].declared[p] {
+					covered = false
 					break
 				}
 			}
-			if !distinct {
-				return fmt.Sprintf("an answer shaped like %s would also match %s", x, y)
+			if covered {
+				return nil, fmt.Sprintf("an answer shaped like %s would be taken for %s", later.goType, first.goType)
 			}
 		}
 	}
-	return ""
+	return ordered, ""
 }
 
 type result int

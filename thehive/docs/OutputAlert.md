@@ -4,44 +4,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Type** | **string** |  |
-**Source** | **string** |  |
-**SourceRef** | **string** |  |
-**ExternalLink** | Pointer to **string** |  | [optional]
-**Title** | **string** |  |
-**Description** | **string** |  |
-**Severity** | **int32** |  |
-**SeverityLabel** | **string** |  |
-**Date** | **int64** |  |
-**Tags** | Pointer to **[]string** |  | [optional]
-**Tlp** | **int32** |  |
-**TlpLabel** | **string** |  |
-**Pap** | **int32** |  |
-**PapLabel** | **string** |  |
-**Follow** | **bool** |  |
-**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
-**CaseTemplate** | Pointer to **string** |  | [optional]
-**ObservableCount** | **int64** |  |
-**CaseId** | Pointer to **string** |  | [optional]
-**Status** | **string** |  |
-**Stage** | **string** |  |
-**Assignee** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
-**NewDate** | **int64** |  |
-**InProgressDate** | Pointer to **int64** |  | [optional]
-**ClosedDate** | Pointer to **int64** |  | [optional]
-**ImportedDate** | Pointer to **int64** |  | [optional]
-**TimeToDetect** | **int64** |  |
-**TimeToTriage** | Pointer to **int64** |  | [optional]
-**TimeToQualify** | Pointer to **int64** |  | [optional]
-**TimeToAcknowledge** | Pointer to **int64** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the alert. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Alert&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the alert. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the alert. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the alert was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the alert was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Type** | **string** | Type of the alert. |
+**Source** | **string** | Source system that generated the alert. |
+**SourceRef** | **string** | Unique reference identifier from the source system. |
+**ExternalLink** | Pointer to **string** | External URL linking to the alert in the source system. | [optional]
+**Title** | **string** | Short title describing the alert. |
+**Description** | **string** | Full description of the alert. |
+**Severity** | **int32** | Numeric severity level of the alert: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). |
+**SeverityLabel** | **string** | Human-readable severity label. |
+**Date** | **int64** | Date and time of the event that triggered the alert, as a Unix timestamp in milliseconds. |
+**Tags** | Pointer to **[]string** | Tags assigned to the alert. | [optional]
+**Tlp** | **int32** | Numeric Traffic Light Protocol (TLP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). |
+**TlpLabel** | **string** | Human-readable TLP label. |
+**Pap** | **int32** | Numeric Permissible Actions Protocol (PAP) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). |
+**PapLabel** | **string** | Human-readable PAP label. |
+**Follow** | **bool** | Whether the alert is being followed for change notifications. |
+**CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) | Custom field values attached to the alert. | [optional]
+**CaseTemplate** | Pointer to **string** | Name of the case template used when creating a case from this alert. | [optional]
+**ObservableCount** | **int64** | Number of observables attached to the alert. |
+**CaseId** | Pointer to **string** | ID of the case created from or linked to this alert. | [optional]
+**Status** | **string** | Current status of the alert. |
+**Stage** | **string** | Stage derived from the alert status. |
+**Assignee** | Pointer to **string** | Login of the user assigned to the alert. | [optional]
+**Summary** | Pointer to **string** | Brief summary of the triage findings. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
+**NewDate** | **int64** | Date when the alert first entered a status linked to the *New* stage. Returned as a Unix timestamp in milliseconds. |
+**InProgressDate** | Pointer to **int64** | Date when the alert first entered a status linked to the *In Progress* stage. Returned as a Unix timestamp in milliseconds. | [optional]
+**ClosedDate** | Pointer to **int64** | Date when the alert first entered a status linked to the *Closed* stage because no further investigation was required. Returned as a Unix timestamp in milliseconds. | [optional]
+**ImportedDate** | Pointer to **int64** | Date when the alert first entered the *Imported* status. This occurs when the alert is merged into a new or existing case for investigation. Returned as a Unix timestamp in milliseconds. | [optional]
+**TimeToDetect** | **int64** | [Time to Detect (TTD)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-detect-ttd), in milliseconds. |
+**TimeToTriage** | Pointer to **int64** | [Time to Triage (TTT)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-triage-ttt), in milliseconds. | [optional]
+**TimeToQualify** | Pointer to **int64** | [Time to Qualify (TTQ)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-qualify-ttq), in milliseconds. | [optional]
+**TimeToAcknowledge** | Pointer to **int64** | [Time to Acknowledge (TTA)](https://docs.strangebee.com/thehive/user-guides/key-performance-indicators/key-performance-indicators/#time-to-acknowledge-tta), in milliseconds. | [optional]
 
 ## Methods
 

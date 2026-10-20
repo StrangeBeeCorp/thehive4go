@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Type** | Pointer to [**ProfileType**](ProfileType.md) |  | [optional]
-**Name** | **string** |  |
-**Permissions** | Pointer to **[]string** |  | [optional]
-**Editable** | **bool** |  |
-**ForAdmin** | **bool** |  |
-**ForOrg** | **bool** |  |
-**ForExternal** | Pointer to **bool** |  | [optional]
-**ConsumesLicense** | **bool** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the profile. |
+**UnderscoreType** | **string** | Entity type, always &#x60;profile&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the profile. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the profile. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the profile was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the profile was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Type** | Pointer to [**ProfileType**](ProfileType.md) | Profile type. | [optional]
+**Name** | **string** | Name of the profile. |
+**Permissions** | Pointer to **[]string** | Permissions assigned to the profile. | [optional]
+**Editable** | **bool** | Indicates whether the profile can be modified. |
+**ForAdmin** | **bool** | Indicates whether the profile can be assigned in the Admin organization. |
+**ForOrg** | **bool** | Indicates whether the profile can be assigned in non-admin organizations. |
+**ForExternal** | Pointer to **bool** | Indicates whether the profile can be assigned to external users accessing [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). | [optional]
+**ConsumesLicense** | **bool** | Indicates whether assigning this profile to a user consumes a license. |
 
 ## Methods
 

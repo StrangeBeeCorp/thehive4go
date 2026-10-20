@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Content** | Pointer to **string** |  | [optional] 
-**Order** | Pointer to **int32** |  | [optional] 
-**Category** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** | New title of the page. | [optional]
+**Content** | Pointer to **string** | New content of the page. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Order** | Pointer to **int32** | New display order of the page within its category. | [optional]
+**Category** | Pointer to **string** | New category for the page. Unknown categories are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listPage&#x60; to retrieve existing categories. | [optional]
 
 ## Methods
 
@@ -130,5 +130,3 @@ HasCategory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

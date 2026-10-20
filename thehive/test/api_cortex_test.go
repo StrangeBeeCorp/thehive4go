@@ -22,6 +22,21 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test CortexAPIService CountActionsScopedToACaseOrAlert", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var scope openapiclient.ActionScope
+		var rootId string
+
+		resp, httpRes, err := apiClient.CortexAPI.CountActionsScopedToACaseOrAlert(context.Background(), scope, rootId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CortexAPIService CreateAnAction", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -58,6 +73,18 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test CortexAPIService CreateSeveralActions", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		resp, httpRes, err := apiClient.CortexAPI.CreateSeveralActions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CortexAPIService DeleteAnalyzerTemplate", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -67,21 +94,6 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 		httpRes, err := apiClient.CortexAPI.DeleteAnalyzerTemplate(context.Background(), analyzerTemplateId).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test CortexAPIService GetActionByEntity", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var entityType string
-		var entityId string
-
-		resp, httpRes, err := apiClient.CortexAPI.GetActionByEntity(context.Background(), entityType, entityId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -140,6 +152,21 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test CortexAPIService ListActionsScopedToACaseOrAlert", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var scope openapiclient.ActionScope
+		var rootId string
+
+		resp, httpRes, err := apiClient.CortexAPI.ListActionsScopedToACaseOrAlert(context.Background(), scope, rootId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CortexAPIService ListAnalyzers", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -174,6 +201,20 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 		var entityId string
 
 		resp, httpRes, err := apiClient.CortexAPI.ListResponders(context.Background(), entityType, entityId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CortexAPIService ListRespondersForEntityType", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var entityType string
+
+		resp, httpRes, err := apiClient.CortexAPI.ListRespondersForEntityType(context.Background(), entityType).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

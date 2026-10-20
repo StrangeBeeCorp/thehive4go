@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Definition** | Pointer to **map[string]interface{}** |  | [optional] 
-**Status** | Pointer to [**DashboardStatus**](DashboardStatus.md) |  | [optional] 
-**Version** | Pointer to **int32** |  | [optional] 
+**Title** | Pointer to **string** | New title for the dashboard. Leave unset to keep the current title. | [optional]
+**Group** | Pointer to **string** | New group used to categorize the dashboard. Leave unset to keep the current group. | [optional]
+**Description** | Pointer to **string** | New description for the dashboard. Leave unset to keep the current description. | [optional]
+**Definition** | Pointer to **map[string]interface{}** | New widget layout and configuration for the dashboard, structured as rows of widgets. Leave unset to keep the current definition. This structure isn&#39;t formally documented: the simplest way to build a valid value is to edit the dashboard from TheHive web interface, then retrieve it with &#x60;GET /api/v1/dashboard/{dashboardId}&#x60; and use its &#x60;definition&#x60; value as a starting point. | [optional]
+**Status** | Pointer to [**DashboardStatus**](DashboardStatus.md) | New visibility for the dashboard: &#x60;Private&#x60; restricts access to you, &#x60;Shared&#x60; makes it visible to your entire organization. Setting this to &#x60;Deleted&#x60; deletes the dashboard. Leave unset to keep the current visibility. | [optional]
+**Version** | Pointer to **int32** | New version number for the dashboard definition format. Leave unset to keep the current version. | [optional]
 
 ## Methods
 
@@ -182,5 +182,3 @@ HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

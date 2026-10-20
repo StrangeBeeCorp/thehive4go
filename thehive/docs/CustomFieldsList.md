@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -73,5 +73,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

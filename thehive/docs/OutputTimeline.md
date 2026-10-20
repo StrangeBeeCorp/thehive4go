@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]OutputTimelineEvent**](OutputTimelineEvent.md) |  | [optional]
+**Events** | Pointer to [**[]OutputTimelineEvent**](OutputTimelineEvent.md) | Chronological list of all events in the case timeline, sorted by date. | [optional]
 
 ## Methods
 

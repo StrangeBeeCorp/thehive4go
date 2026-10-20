@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**AttachmentId** | **string** |  | 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**AttachmentId** | **string** | ID of an attachment to use as the image. Must match an existing attachment. |
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -94,5 +94,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

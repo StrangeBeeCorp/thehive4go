@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | **[]string** | Selected users&#39; logins. Must contain at least the assignee of the case and the user making the request. | 
-**Kind** | **string** |  | 
+**Users** | **[]string** | Logins of the users who can access the case. Must include at least the case assignee and the user making the request. Must be a valid email address. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their email addresses. |
+**Kind** | **string** | Only a specific set of internal users can see the case. Platinum or One license required. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

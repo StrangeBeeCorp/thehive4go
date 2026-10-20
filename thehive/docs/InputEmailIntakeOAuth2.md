@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** |  | 
-**TenantId** | Pointer to **string** |  | [optional] 
-**Secret** | **string** |  | 
-**Authority** | Pointer to **string** |  | [optional] 
-**Scopes** | Pointer to **[]string** |  | [optional] 
-**RedirectUri** | Pointer to **string** |  | [optional] 
-**AuthorizationCode** | Pointer to **string** |  | [optional] 
+**ClientId** | **string** | OAuth 2.0 client ID from the identity provider. |
+**TenantId** | Pointer to **string** | Tenant ID from Microsoft Entra ID. Required for Microsoft 365 and Microsoft Graph API providers. | [optional]
+**Secret** | **string** | OAuth 2.0 client secret from the identity provider. |
+**Authority** | Pointer to **string** | OAuth 2.0 authority URL. Defaults to the Microsoft identity platform endpoint when using Microsoft providers. | [optional]
+**Scopes** | Pointer to **[]string** | OAuth 2.0 permission scopes required by the application. | [optional]
+**RedirectUri** | Pointer to **string** | Redirect URI registered in the OAuth 2.0 application. Required for authorization code flows such as Google Workspace. | [optional]
+**AuthorizationCode** | Pointer to **string** | Authorization code from the OAuth 2.0 consent flow. Used only for Google Workspace configurations. Obtain this by calling &#x60;POST /api/v1/connector/email-intake/config/authorizationCode&#x60;. | [optional]
 
 ## Methods
 
@@ -198,5 +198,3 @@ HasAuthorizationCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
