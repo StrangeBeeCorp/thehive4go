@@ -117,7 +117,7 @@ integration-test-5.6: ## Run integration tests against TheHive 5.6
 	THEHIVE_TAG=5.6 $(MAKE) integration-test
 
 .PHONY: integration-test-5.8
-integration-test-5.8: ## Run integration tests against TheHive 5.8, newer than the 5.6 spec the client is generated from
+integration-test-5.8: ## Run integration tests against TheHive 5.8, older than the 6.0 spec the client is generated from
 	THEHIVE_TAG=5.8 $(MAKE) integration-test
 
 .PHONY: integration-test-6.0
