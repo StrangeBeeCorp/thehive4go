@@ -1,5 +1,5 @@
 GO := go
-GO_IMAGE := golang:1.26.9-alpine
+GO_IMAGE := golang:1.26.10-alpine
 # Pinned: `@latest` broke CI when v1.8.0 started to need a newer Go than GO_IMAGE. Bump both together.
 GOVULNCHECK_VERSION := v1.9.0
 # scripts/fix-oneof-decoder/main.go pattern-matches the UnmarshalJSON body
