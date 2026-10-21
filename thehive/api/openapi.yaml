@@ -22008,6 +22008,75 @@ paths:
               },
           )
           response.raise_for_status()
+  /api/v1/connector/cortex/action/{entityType}/{entityId}:
+    get:
+      description: |
+        List the responder actions run on an entity, given its type and its id.
+        Missing from the published 6.0 documentation, still served by TheHive 6.0.
+      operationId: Get action by entity
+      parameters:
+      - explode: false
+        in: path
+        name: entityType
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The _id of the entity or its 'name' (depends of the entity)
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/OutputAction"
+                type: array
+          description: Actions run on the entity
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Query_API_400_response"
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Query_API_400_response"
+          description: AuthenticationError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Query_API_400_response"
+          description: AuthorizationError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Query_API_400_response"
+          description: NotFoundError
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Query_API_400_response"
+          description: GenericError
+      security:
+      - ApiKey: []
+      - Basic: []
+      summary: Get action by entity
+      tags:
+      - Cortex
+      x-TheHive-scopes:
+      - name: TheHive
   /api/v1/connector/cortex/actions:
     post:
       description: |

@@ -57,20 +57,14 @@ var AllowedKindEnumValues = []Kind{
 }
 
 func (v *Kind) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := Kind(value)
-	for _, existing := range AllowedKindEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid Kind", value)
+	*v = Kind(value)
+	return nil
 }
 
 // NewKindFromValue returns a pointer to a valid Kind

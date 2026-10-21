@@ -31,20 +31,14 @@ var AllowedMethodEnumValues = []Method{
 }
 
 func (v *Method) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := Method(value)
-	for _, existing := range AllowedMethodEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid Method", value)
+	*v = Method(value)
+	return nil
 }
 
 // NewMethodFromValue returns a pointer to a valid Method

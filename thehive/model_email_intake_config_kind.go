@@ -31,20 +31,14 @@ var AllowedEmailIntakeConfigKindEnumValues = []EmailIntakeConfigKind{
 }
 
 func (v *EmailIntakeConfigKind) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := EmailIntakeConfigKind(value)
-	for _, existing := range AllowedEmailIntakeConfigKindEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid EmailIntakeConfigKind", value)
+	*v = EmailIntakeConfigKind(value)
+	return nil
 }
 
 // NewEmailIntakeConfigKindFromValue returns a pointer to a valid EmailIntakeConfigKind

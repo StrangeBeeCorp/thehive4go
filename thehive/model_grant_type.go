@@ -29,20 +29,14 @@ var AllowedGrantTypeEnumValues = []GrantType{
 }
 
 func (v *GrantType) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := GrantType(value)
-	for _, existing := range AllowedGrantTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid GrantType", value)
+	*v = GrantType(value)
+	return nil
 }
 
 // NewGrantTypeFromValue returns a pointer to a valid GrantType

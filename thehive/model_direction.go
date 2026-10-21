@@ -31,20 +31,14 @@ var AllowedDirectionEnumValues = []Direction{
 }
 
 func (v *Direction) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := Direction(value)
-	for _, existing := range AllowedDirectionEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid Direction", value)
+	*v = Direction(value)
+	return nil
 }
 
 // NewDirectionFromValue returns a pointer to a valid Direction

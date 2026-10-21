@@ -31,20 +31,14 @@ var AllowedOutputContextDocumentationItemKindEnumValues = []OutputContextDocumen
 }
 
 func (v *OutputContextDocumentationItemKind) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := OutputContextDocumentationItemKind(value)
-	for _, existing := range AllowedOutputContextDocumentationItemKindEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid OutputContextDocumentationItemKind", value)
+	*v = OutputContextDocumentationItemKind(value)
+	return nil
 }
 
 // NewOutputContextDocumentationItemKindFromValue returns a pointer to a valid OutputContextDocumentationItemKind

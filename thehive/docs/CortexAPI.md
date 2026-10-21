@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**CreateCortexJob**](CortexAPI.md#CreateCortexJob) | **Post** /api/v1/connector/cortex/job | Run an analyzer on an observable
 [**CreateSeveralActions**](CortexAPI.md#CreateSeveralActions) | **Post** /api/v1/connector/cortex/actions | Run responders in bulk
 [**DeleteAnalyzerTemplate**](CortexAPI.md#DeleteAnalyzerTemplate) | **Delete** /api/v1/connector/cortex/analyzer/template/{analyzerTemplateId} | Delete an analyzer template
+[**GetActionByEntity**](CortexAPI.md#GetActionByEntity) | **Get** /api/v1/connector/cortex/action/{entityType}/{entityId} | Get action by entity
 [**GetAnalyzerById**](CortexAPI.md#GetAnalyzerById) | **Get** /api/v1/connector/cortex/analyzer/{analyzerId} | Get an analyzer
 [**GetAnalyzerTemplateContent**](CortexAPI.md#GetAnalyzerTemplateContent) | **Get** /api/v1/connector/cortex/analyzer/template/content/{analyzerId} | Get an analyzer template&#39;s content
 [**GetCortexJob**](CortexAPI.md#GetCortexJob) | **Get** /api/v1/connector/cortex/job/{jobId} | Get a Cortex job
@@ -415,6 +416,79 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetActionByEntity
+
+> []OutputAction GetActionByEntity(ctx, entityType, entityId).Execute()
+
+Get action by entity
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/StrangeBeeCorp/thehive4go/thehive"
+)
+
+func main() {
+	entityType := "entityType_example" // string |
+	entityId := "entityId_example" // string | The _id of the entity or its 'name' (depends of the entity)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CortexAPI.GetActionByEntity(context.Background(), entityType, entityId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CortexAPI.GetActionByEntity``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetActionByEntity`: []OutputAction
+	fmt.Fprintf(os.Stdout, "Response from `CortexAPI.GetActionByEntity`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**entityType** | **string** |  |
+**entityId** | **string** | The _id of the entity or its &#39;name&#39; (depends of the entity) |
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetActionByEntityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**[]OutputAction**](OutputAction.md)
 
 ### Authorization
 

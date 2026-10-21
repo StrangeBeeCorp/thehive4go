@@ -31,13 +31,22 @@
 // variants become lenient. Filter, which requests build, and
 // OutputInvokeFunction, whose map variant matches anything, keep theirs.
 //
+// The same goes for enums. The generated UnmarshalJSON of an enum accepts only
+// the values of the spec the client was generated from and fails the whole
+// answer on any other, so TheHive adding a value to an enum in a minor version
+// broke it (the 6.0 permission names, for one). The enums reachable from a
+// response keep the value they do not list. An enum that only requests refer to
+// stays strict, like the request models do; one shared with a request becomes
+// lenient, like a shared model does.
+//
 // Strict mode: the tool fails when a response model has an UnmarshalJSON it
 // does not recognise, when a schema has no Go type, when a model a
 // discriminated oneOf dispatches to has no UnmarshalJSON of its own (the
-// dispatch would decode it with DisallowUnknownFields again), or when, after
-// it ran, a response model still disallows unknown fields without being on the
-// list of naive oneOf variants. Idempotent: every rewrite leaves a marker
-// comment.
+// dispatch would decode it with DisallowUnknownFields again), when an enum
+// decoder has a shape it does not recognise, or when, after it ran, a response
+// model still disallows unknown fields without being on the list of naive oneOf
+// variants or a response enum still rejects a value it does not list.
+// Idempotent: every rewrite leaves a marker comment.
 package main
 
 import (
@@ -69,6 +78,9 @@ const (
 	lenientMarker = "Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored"
 	// firstMatchMarker opens the oneOf decoders this tool rewrites.
 	firstMatchMarker = "Postprocessed by scripts/tolerant-response-decoder: first match wins"
+
+	// enumMarker replaces the validation of a response enum.
+	enumMarker = "Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept"
 
 	// dispatchMarker opens the discriminated oneOf decoders of fix-oneof-decoder.
 	dispatchMarker = "Postprocessed by scripts/fix-oneof-decoder:"
@@ -190,11 +202,32 @@ func main() {
 		}
 	}
 
+	enumsLenient, enumsAlready, enumsShared := 0, 0, 0
+	for _, goType := range responseTypes {
+		changed, err := relaxEnum(types.files[goType], goType)
+		if err != nil {
+			log.Fatalf("%s: %v", goType, err)
+		}
+		if changed == resultNone {
+			continue
+		}
+		if requestTypes[goType] {
+			enumsShared++
+			log.Printf("%s: enum also used by a request, lenient too", goType)
+		}
+		switch changed {
+		case resultRewritten:
+			enumsLenient++
+		case resultAlready:
+			enumsAlready++
+		}
+	}
+
 	if err := verify(responseTypes, strictVariants, types.files); err != nil {
 		log.Fatalf("strict: %v", err)
 	}
-	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict, %d naive oneOf variant(s) lenient",
-		lenient, already, firstMatch, len(strictVariants), spared)
+	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict, %d naive oneOf variant(s) lenient, %d enum(s) made lenient, %d already lenient (%d shared with a request)",
+		lenient, already, firstMatch, len(strictVariants), spared, enumsLenient, enumsAlready, enumsShared)
 }
 
 // spec is the part of the OpenAPI document this tool reads.
@@ -700,12 +733,53 @@ func dropDisallow(path, goType string) (result, error) {
 	return resultRewritten, os.WriteFile(path, formatted, 0o644)
 }
 
+// relaxEnum makes the generated UnmarshalJSON of a string enum keep a value it
+// does not list instead of failing the whole answer. The template accepts only
+// the values of the spec the client was generated from; TheHive adds values to
+// its enums in minor versions. A type that is not such an enum needs nothing.
+func relaxEnum(path, goType string) (result, error) {
+	fset, file, src, err := parseFile(path)
+	if err != nil {
+		return resultNone, err
+	}
+	fd := findUnmarshal(file, goType)
+	if fd == nil {
+		return resultNone, nil
+	}
+	body := rawText(fset, src, fd)
+
+	switch {
+	case strings.Contains(body, enumMarker):
+		return resultAlready, nil
+	case !strings.Contains(body, enumRejection(goType)):
+		return resultNone, nil
+	case !strings.Contains(body, "var value string") || !strings.Contains(body, fmt.Sprintf("enumTypeValue := %s(value)", goType)):
+		return resultNone, fmt.Errorf("strict: the enum UnmarshalJSON in %s has a shape this tool does not recognise (it rewrites string enums)", path)
+	}
+
+	var b strings.Builder
+	fmt.Fprintf(&b, "func (v *%s) UnmarshalJSON(src []byte) error {\n", goType)
+	fmt.Fprintf(&b, "\t// %s,\n", enumMarker)
+	b.WriteString("\t// since TheHive adds values to its enums in minor versions.\n")
+	b.WriteString("\tvar value string\n")
+	b.WriteString("\tif err := json.Unmarshal(src, &value); err != nil {\n\t\treturn err\n\t}\n")
+	fmt.Fprintf(&b, "\t*v = %s(value)\n\treturn nil\n}\n", goType)
+	return resultRewritten, spliceFunc(path, goType, b.String(), "gopkg.in/validator.v2")
+}
+
+// enumRejection is the end of the error a generated enum decoder returns for a
+// value it does not list.
+func enumRejection(goType string) string {
+	return fmt.Sprintf("is not a valid %s\"", goType)
+}
+
 // verify fails when a response model still disallows unknown fields without
-// being a variant of a naive oneOf, or when a discriminated oneOf dispatches to
-// a model without an UnmarshalJSON of its own: newStrictDecoder would decode it
-// with DisallowUnknownFields, and no rewrite above could reach it.
+// being a variant of a naive oneOf, when a response enum still rejects a value
+// it does not list, or when a discriminated oneOf dispatches to a model without
+// an UnmarshalJSON of its own: newStrictDecoder would decode it with
+// DisallowUnknownFields, and no rewrite above could reach it.
 func verify(responseTypes []string, strictVariants map[string]string, files map[string]string) error {
-	var left, orphans []string
+	var left, orphans, enums []string
 	for _, goType := range responseTypes {
 		fset, file, src, err := parseFile(files[goType])
 		if err != nil {
@@ -736,6 +810,12 @@ func verify(responseTypes []string, strictVariants map[string]string, files map[
 		if _, kept := strictVariants[goType]; !kept && strings.Contains(body, "DisallowUnknownFields()") {
 			left = append(left, goType)
 		}
+		if strings.Contains(body, enumRejection(goType)) {
+			enums = append(enums, goType)
+		}
+	}
+	if len(enums) > 0 {
+		return fmt.Errorf("response enum(s) still reject a value they do not list: %s", strings.Join(enums, ", "))
 	}
 	if len(orphans) > 0 {
 		return fmt.Errorf("discriminated oneOf dispatch target(s) without an UnmarshalJSON of their own, which newStrictDecoder decodes strictly: %s",

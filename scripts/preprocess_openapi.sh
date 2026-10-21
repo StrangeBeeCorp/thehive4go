@@ -196,4 +196,143 @@ if [ "$(paging_has_extra_data)" != "1" ]; then
   exit 1
 fi
 
+# Put back GET /api/v1/connector/cortex/action/{entityType}/{entityId} (CortexAPI
+# GetActionByEntity), from its 5.6.2 definition. The 6.0 documentation dropped it,
+# but TheHive 6.0.0 still serves it and TheHiveMCP reads the actions it ran through
+# it, with one client for every TheHive from 5.5 to 6.0. It goes in front of the
+# `actions` path; the step fails when it changes nothing, so a spec that moves the
+# anchor is audited instead of silently losing the operation. A spec that declares
+# the path again needs nothing.
+ACTION_BY_ENTITY_PATH="  /api/v1/connector/cortex/action/{entityType}/{entityId}:"
+ACTION_BY_ENTITY_ANCHOR="  /api/v1/connector/cortex/actions:"
+if grep -qxF "$ACTION_BY_ENTITY_PATH" "$FIXED_OPENAPI_PATH"; then
+  echo -e "${GREEN}✅ The spec declares GET action by entity itself${NC}"
+else
+  echo -e "${BLUE}🔧 Putting GET action by entity back...${NC}"
+  ACTION_BY_ENTITY_BLOCK="$FIXED_OPENAPI_PATH.block"
+  cat > "$ACTION_BY_ENTITY_BLOCK" <<'ACTION_BY_ENTITY_EOF'
+  /api/v1/connector/cortex/action/{entityType}/{entityId}:
+    get:
+      tags:
+      - Cortex
+      summary: Get action by entity
+      description: |
+        List the responder actions run on an entity, given its type and its id.
+        Missing from the published 6.0 documentation, still served by TheHive 6.0.
+      operationId: Get action by entity
+      parameters:
+      - name: entityType
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        required: true
+        description: The _id of the entity or its 'name' (depends of the entity)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Actions run on the entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OutputAction'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - type
+                - message
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          description: AuthenticationError
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - type
+                - message
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+        '403':
+          description: AuthorizationError
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - type
+                - message
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          description: NotFoundError
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - type
+                - message
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          description: GenericError
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - type
+                - message
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+      security:
+      - ApiKey: []
+      - Basic: []
+      x-TheHive-scopes:
+      - name: TheHive
+ACTION_BY_ENTITY_EOF
+  awk -v block="$ACTION_BY_ENTITY_BLOCK" -v anchor="$ACTION_BY_ENTITY_ANCHOR" '
+    $0 == anchor && !done { while ((getline line < block) > 0) print line; close(block); done = 1 }
+    { print }
+  ' "$FIXED_OPENAPI_PATH" > "$FIXED_OPENAPI_PATH.tmp"
+  rm -f "$ACTION_BY_ENTITY_BLOCK"
+  if cmp -s "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"; then
+    rm -f "$FIXED_OPENAPI_PATH.tmp"
+    echo -e "${RED}❌ Strict check failed: the spec has no '${ACTION_BY_ENTITY_ANCHOR}' path to put GET action by entity in front of, so the step changed nothing.${NC}" >&2
+    exit 1
+  fi
+  mv "$FIXED_OPENAPI_PATH.tmp" "$FIXED_OPENAPI_PATH"
+  if [ "$(grep -cxF "$ACTION_BY_ENTITY_PATH" "$FIXED_OPENAPI_PATH")" != "1" ]; then
+    echo -e "${RED}❌ Strict check failed: GET action by entity must be declared exactly once.${NC}" >&2
+    exit 1
+  fi
+  echo -e "${GREEN}✅ GET action by entity put back${NC}"
+fi
+
 echo -e "${BLUE}🎉 OpenAPI specification parsing and modification completed successfully!${NC}"

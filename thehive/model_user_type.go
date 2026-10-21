@@ -33,20 +33,14 @@ var AllowedUserTypeEnumValues = []UserType{
 }
 
 func (v *UserType) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := UserType(value)
-	for _, existing := range AllowedUserTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UserType", value)
+	*v = UserType(value)
+	return nil
 }
 
 // NewUserTypeFromValue returns a pointer to a valid UserType

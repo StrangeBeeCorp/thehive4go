@@ -35,20 +35,14 @@ var AllowedAnyIndexTypeEnumValues = []AnyIndexType{
 }
 
 func (v *AnyIndexType) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := AnyIndexType(value)
-	for _, existing := range AllowedAnyIndexTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AnyIndexType", value)
+	*v = AnyIndexType(value)
+	return nil
 }
 
 // NewAnyIndexTypeFromValue returns a pointer to a valid AnyIndexType

@@ -57,20 +57,14 @@ var AllowedObservableFieldEnumValues = []ObservableField{
 }
 
 func (v *ObservableField) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := ObservableField(value)
-	for _, existing := range AllowedObservableFieldEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ObservableField", value)
+	*v = ObservableField(value)
+	return nil
 }
 
 // NewObservableFieldFromValue returns a pointer to a valid ObservableField

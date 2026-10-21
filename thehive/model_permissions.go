@@ -125,20 +125,14 @@ var AllowedPermissionsEnumValues = []Permissions{
 }
 
 func (v *Permissions) UnmarshalJSON(src []byte) error {
+	// Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept,
+	// since TheHive adds values to its enums in minor versions.
 	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
+	if err := json.Unmarshal(src, &value); err != nil {
 		return err
 	}
-	enumTypeValue := Permissions(value)
-	for _, existing := range AllowedPermissionsEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid Permissions", value)
+	*v = Permissions(value)
+	return nil
 }
 
 // NewPermissionsFromValue returns a pointer to a valid Permissions

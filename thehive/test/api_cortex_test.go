@@ -98,6 +98,21 @@ func Test_thehive_CortexAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test CortexAPIService GetActionByEntity", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var entityType string
+		var entityId string
+
+		resp, httpRes, err := apiClient.CortexAPI.GetActionByEntity(context.Background(), entityType, entityId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CortexAPIService GetAnalyzerById", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
