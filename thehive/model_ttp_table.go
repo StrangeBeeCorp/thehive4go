@@ -287,7 +287,8 @@ func (o *TTPTable) UnmarshalJSON(data []byte) (err error) {
 	varTTPTable := _TTPTable{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varTTPTable)
 
 	if err != nil {

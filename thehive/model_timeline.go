@@ -207,7 +207,8 @@ func (o *Timeline) UnmarshalJSON(data []byte) (err error) {
 	varTimeline := _Timeline{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
+	// Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored,
+	// since TheHive adds fields to its responses in minor versions.
 	err = decoder.Decode(&varTimeline)
 
 	if err != nil {
