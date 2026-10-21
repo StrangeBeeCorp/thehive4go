@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisation** | **string** | Name or id of the organisation | 
-**Share** | Pointer to **bool** | If true, new observables and tasks will also be shared to the organisation | [optional] [default to true]
-**Profile** | Pointer to **string** | Profile used to define the permissions of the organisation members | [optional] [default to "analyst"]
-**TaskRule** | Pointer to **string** | Sharing rule to apply to the tasks, can be manual or autoShare | [optional] [default to "Sharing rule applied on the case"]
-**ObservableRule** | Pointer to **string** | Sharing rule to apply to the observables, can be manual or autoShare | [optional] [default to "Sharing rule applied on the case"]
+**Organisation** | **string** | Name or ID of the organization to share the case with. Must match an existing linked organization. Use &#x60;GET /api/v1/organisation/{orgId}/links&#x60; to list the organizations linked to your organization. |
+**Share** | Pointer to **bool** | Controls whether the organization has active sharing access to the case. | [optional] [default to true]
+**Profile** | Pointer to **string** | Profile that defines the permissions of the organization members on this case. Must match an existing profile. Use &#x60;POST /api/v1/query&#x60; with &#x60;listProfile&#x60; to retrieve available permission profiles. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "analyst"]
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Task-sharing rule for this organization: &#x60;autoShare&#x60; shares new tasks automatically, &#x60;manual&#x60; requires explicit sharing per task. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Observable-sharing rule for this organization: &#x60;autoShare&#x60; shares new observables automatically, &#x60;manual&#x60; requires explicit sharing per observable. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
 
 ## Methods
 
@@ -151,5 +151,3 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

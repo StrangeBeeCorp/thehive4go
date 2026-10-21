@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Fields** | Pointer to [**[]TaskField**](TaskField.md) |  | [optional] 
-**Filter** | Pointer to [**Filter**](Filter.md) |  | [optional] 
-**Sort** | Pointer to [**[]AlertListSortInner**](AlertListSortInner.md) |  | [optional] 
-**MaxElements** | Pointer to **int32** |  | [optional] 
-**Kind** | [**Kind**](Kind.md) |  | 
-**Columns** | Pointer to [**[]TaskField**](TaskField.md) |  | [optional] 
-**AttachmentId** | **string** |  | 
-**ProtectData** | **bool** |  | 
-**LogColumns** | Pointer to [**[]LogField**](LogField.md) |  | [optional] 
-**WithTaskLogs** | Pointer to **bool** |  | [optional] [default to true]
-**Template** | **string** |  | 
-**Events** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) |  | [optional] 
-**WithCustomEventsDescription** | **bool** |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Fields** | Pointer to [**[]TaskField**](TaskField.md) | Task fields to display for each item in the list. | [optional]
+**Filter** | Pointer to [**Filter**](Filter.md) | Filter to apply to the task list. See the [Query and Export](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the filter syntax. | [optional]
+**Sort** | Pointer to [**[]AlertListSortInner**](AlertListSortInner.md) | Sort order for the task list. See the [Query and Export](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the sort syntax. | [optional]
+**MaxElements** | Pointer to **int32** | Maximum number of tasks to include in the widget. If omitted, the global &#x60;maxElements&#x60; limit applies. | [optional]
+**Kind** | [**Kind**](Kind.md) |  |
+**Columns** | Pointer to [**[]TaskField**](TaskField.md) | Task fields to include as columns in the table. | [optional]
+**AttachmentId** | **string** | ID of an attachment to use as the image. Must match an existing attachment. |
+**ProtectData** | **bool** | When &#x60;true&#x60;, masks the data of observables flagged as sensitive. |
+**LogColumns** | Pointer to [**[]LogField**](LogField.md) | Task log fields to display under each task when &#x60;withTaskLogs&#x60; is &#x60;true&#x60;. | [optional]
+**WithTaskLogs** | Pointer to **bool** | When &#x60;true&#x60;, includes task logs under each task entry. | [optional] [default to true]
+**Template** | **string** | Mustache template string rendered as the widget body. |
+**Events** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) | Types of events to include in the timeline. | [optional]
+**WithCustomEventsDescription** | **bool** | When &#x60;true&#x60;, includes the description field for custom timeline events. |
 
 ## Methods
 
@@ -365,5 +365,3 @@ SetWithCustomEventsDescription sets WithCustomEventsDescription field to given v
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**CaseId** | **string** |  | 
+**Type** | **string** | Label categorizing the link relationship. Use &#x60;GET /api/v1/case/link/types&#x60; to list existing types. A new type is created automatically if the provided name doesn&#39;t exist yet. |
+**CaseId** | **string** | ID of the TheHive case to link to. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCase&#x60; to search for cases and retrieve their IDs. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetCaseId sets CaseId field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

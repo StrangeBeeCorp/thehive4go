@@ -126,24 +126,39 @@ func TestOutputCaseDecodesAccessField(t *testing.T) {
 	assert.Equal(t, "OrganisationAccessKind", access.OrganisationAccess.GetKind())
 }
 
-// TestOneOfWrapperSmoke covers the five other wrappers the fix-oneof-decoder
-// tool rewrites alongside Access (Auth, InputEmailIntakeMailboxConfig,
-// OutputEmailIntakeMailbox, PropertyDescription, Widget). For each one we
+// TestOneOfWrapperSmoke covers some of the other wrappers the fix-oneof-decoder
+// tool rewrites alongside Access (OutputAuth, CreateAuth,
+// InputEmailIntakeMailboxConfig, OutputEmailIntakeMailbox, PropertyDescription,
+// Widget; UpdateAuth works as CreateAuth does). For each one we
 // feed a minimal payload carrying just the discriminator, confirm the
 // dispatcher routes to the expected variant field and leaves the others
 // nil. If the AST rewriter ever miswires a wrapper — wrong field, wrong
 // discriminator key, missing case — these tests catch it before CI green-
 // lights a broken release.
 func TestOneOfWrapperSmoke(t *testing.T) {
-	t.Run("Auth dispatches basic to BasicAuthCredentials", func(t *testing.T) {
-		var a thehive.Auth
+	t.Run("OutputAuth dispatches basic to BasicOutputAuth", func(t *testing.T) {
+		var a thehive.OutputAuth
 		require.NoError(t, json.Unmarshal([]byte(`{"type":"basic","username":"u","password":"p"}`), &a))
-		require.NotNil(t, a.BasicAuthCredentials)
-		assert.Equal(t, "basic", a.BasicAuthCredentials.Type)
-		assert.Equal(t, "u", a.BasicAuthCredentials.Username)
-		assert.Nil(t, a.BearerAuth)
-		assert.Nil(t, a.KeyAuth)
-		assert.Nil(t, a.NoneAuth)
+		require.NotNil(t, a.BasicOutputAuth)
+		assert.Equal(t, "basic", a.BasicOutputAuth.Type)
+		assert.Equal(t, "u", a.BasicOutputAuth.Username)
+		assert.Nil(t, a.BearerOutputAuth)
+		assert.Nil(t, a.KeyOutputAuth)
+		assert.Nil(t, a.NoneOutputAuth)
+		assert.Nil(t, a.OAuth2OutputAuth)
+	})
+
+	t.Run("CreateAuth dispatches oauth2 to OAuth2CreateAuth", func(t *testing.T) {
+		var a thehive.CreateAuth
+		payload := `{"type":"oauth2","clientId":"c","clientSecret":"s","tokenUrl":"https://idp.example/token","clientAuthenticationMethod":"client_secret_basic"}`
+		require.NoError(t, json.Unmarshal([]byte(payload), &a))
+		require.NotNil(t, a.OAuth2CreateAuth)
+		assert.Equal(t, "oauth2", a.OAuth2CreateAuth.Type)
+		assert.Equal(t, "c", a.OAuth2CreateAuth.ClientId)
+		assert.Nil(t, a.BasicCreateAuth)
+		assert.Nil(t, a.BearerCreateAuth)
+		assert.Nil(t, a.KeyCreateAuth)
+		assert.Nil(t, a.NoneCreateAuth)
 	})
 
 	t.Run("InputEmailIntakeMailboxConfig dispatches api to InputEmailIntakeApiMailbox", func(t *testing.T) {

@@ -4,29 +4,31 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAlertAttachment**](AlertAPI.md#AddAlertAttachment) | **Post** /api/v1/alert/{alertId}/attachments | 
-[**BulkUpdateAlert**](AlertAPI.md#BulkUpdateAlert) | **Patch** /api/v1/alert/_bulk | 
-[**CreateAlert**](AlertAPI.md#CreateAlert) | **Post** /api/v1/alert | 
-[**CreateCaseFromAlert**](AlertAPI.md#CreateCaseFromAlert) | **Post** /api/v1/alert/{alertId}/case | 
-[**DeleteAlert**](AlertAPI.md#DeleteAlert) | **Delete** /api/v1/alert/{alertId} | 
-[**DeleteAlertAttachment**](AlertAPI.md#DeleteAlertAttachment) | **Delete** /api/v1/alert/{alertId}/attachment/{attachmentId} | 
-[**DeleteAlertInBulk**](AlertAPI.md#DeleteAlertInBulk) | **Post** /api/v1/alert/delete/_bulk | 
-[**DownloadAlertAttachment**](AlertAPI.md#DownloadAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId}/download | 
-[**FollowAlert**](AlertAPI.md#FollowAlert) | **Post** /api/v1/alert/{alertId}/follow | 
-[**GetAlert**](AlertAPI.md#GetAlert) | **Get** /api/v1/alert/{alertId} | 
-[**GetAlertAttachment**](AlertAPI.md#GetAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId} | 
-[**GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase**](AlertAPI.md#GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase) | **Get** /api/v1/alert/{alertId}/similar/{alertOrCaseId}/observables | 
-[**ImportAlertObservablesAndProceduresInCase**](AlertAPI.md#ImportAlertObservablesAndProceduresInCase) | **Post** /api/v1/alert/{alertId}/import/{caseId} | 
-[**MergeAlertWithCase**](AlertAPI.md#MergeAlertWithCase) | **Post** /api/v1/alert/{alertId}/merge/{caseId} | 
-[**MergeBulkAlertsWithCase**](AlertAPI.md#MergeBulkAlertsWithCase) | **Post** /api/v1/alert/merge/_bulk | 
-[**UnfollowAlert**](AlertAPI.md#UnfollowAlert) | **Post** /api/v1/alert/{alertId}/unfollow | 
-[**UpdateAlert**](AlertAPI.md#UpdateAlert) | **Patch** /api/v1/alert/{alertId} | 
+[**AddAlertAttachment**](AlertAPI.md#AddAlertAttachment) | **Post** /api/v1/alert/{alertId}/attachments | Add attachments to an alert
+[**BulkUpdateAlert**](AlertAPI.md#BulkUpdateAlert) | **Patch** /api/v1/alert/_bulk | Update multiple alerts
+[**CreateAlert**](AlertAPI.md#CreateAlert) | **Post** /api/v1/alert | Create an alert
+[**CreateCaseFromAlert**](AlertAPI.md#CreateCaseFromAlert) | **Post** /api/v1/alert/{alertId}/case | Create a case from an alert
+[**DeleteAlert**](AlertAPI.md#DeleteAlert) | **Delete** /api/v1/alert/{alertId} | Delete an alert
+[**DeleteAlertAttachment**](AlertAPI.md#DeleteAlertAttachment) | **Delete** /api/v1/alert/{alertId}/attachment/{attachmentId} | Remove an attachment from an alert
+[**DeleteAlertInBulk**](AlertAPI.md#DeleteAlertInBulk) | **Post** /api/v1/alert/delete/_bulk | Delete multiple alerts
+[**DownloadAlertAttachment**](AlertAPI.md#DownloadAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId}/download | Download an attachment from an alert
+[**FollowAlert**](AlertAPI.md#FollowAlert) | **Post** /api/v1/alert/{alertId}/follow | Follow an alert
+[**GetAlert**](AlertAPI.md#GetAlert) | **Get** /api/v1/alert/{alertId} | Get an alert
+[**GetAlertAttachment**](AlertAPI.md#GetAlertAttachment) | **Get** /api/v1/alert/{alertId}/attachment/{attachmentId} | Get an attachment from an alert
+[**GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase**](AlertAPI.md#GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase) | **Get** /api/v1/alert/{alertId}/similar/{alertOrCaseId}/observables | List observables shared with another alert or case
+[**ImportAlertObservablesAndProceduresInCase**](AlertAPI.md#ImportAlertObservablesAndProceduresInCase) | **Post** /api/v1/alert/{alertId}/import/{caseId} | Import alert observables and procedures into a case
+[**MergeAlertWithCase**](AlertAPI.md#MergeAlertWithCase) | **Post** /api/v1/alert/{alertId}/merge/{caseId} | Merge an alert into an existing case
+[**MergeBulkAlertsWithCase**](AlertAPI.md#MergeBulkAlertsWithCase) | **Post** /api/v1/alert/merge/_bulk | Merge multiple alerts into a case
+[**UnfollowAlert**](AlertAPI.md#UnfollowAlert) | **Post** /api/v1/alert/{alertId}/unfollow | Unfollow an alert
+[**UpdateAlert**](AlertAPI.md#UpdateAlert) | **Patch** /api/v1/alert/{alertId} | Update an alert
 
 
 
 ## AddAlertAttachment
 
 > OutputAttachments AddAlertAttachment(ctx, alertId).Attachments(attachments).CanRename(canRename).Execute()
+
+Add attachments to an alert
 
 
 
@@ -43,9 +45,9 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	attachments := []*os.File{"TODO"} // []*os.File | 
-	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	attachments := []*os.File{"TODO"} // []*os.File | Files to attach. Each part is a multipart form file field.
+	canRename := true // bool | When `true`, renames files that already exist with the same name. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -65,7 +67,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -75,8 +77,8 @@ Other parameters are passed through a pointer to a apiAddAlertAttachmentRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** | Files to attach. Each part is a multipart form file field. |
+ **canRename** | **bool** | When &#x60;true&#x60;, renames files that already exist with the same name. |
 
 ### Return type
 
@@ -84,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -99,6 +101,8 @@ Name | Type | Description  | Notes
 ## BulkUpdateAlert
 
 > BulkUpdateAlert(ctx).InputUpdateAlertWithIds(inputUpdateAlertWithIds).Execute()
+
+Update multiple alerts
 
 
 
@@ -115,7 +119,7 @@ import (
 )
 
 func main() {
-	inputUpdateAlertWithIds := *openapiclient.NewInputUpdateAlertWithIds([]string{"Ids_example"}) // InputUpdateAlertWithIds | 
+	inputUpdateAlertWithIds := *openapiclient.NewInputUpdateAlertWithIds([]string{"Ids_example"}) // InputUpdateAlertWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -138,7 +142,7 @@ Other parameters are passed through a pointer to a apiBulkUpdateAlertRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateAlertWithIds** | [**InputUpdateAlertWithIds**](InputUpdateAlertWithIds.md) |  | 
+ **inputUpdateAlertWithIds** | [**InputUpdateAlertWithIds**](InputUpdateAlertWithIds.md) |  |
 
 ### Return type
 
@@ -146,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -162,7 +166,7 @@ Name | Type | Description  | Notes
 
 > OutputAlert CreateAlert(ctx).InputCreateAlert(inputCreateAlert).Execute()
 
-
+Create an alert
 
 
 
@@ -179,7 +183,7 @@ import (
 )
 
 func main() {
-	inputCreateAlert := *openapiclient.NewInputCreateAlert("Type_example", "Source_example", "SourceRef_example", "Title_example", "Description_example") // InputCreateAlert | 
+	inputCreateAlert := *openapiclient.NewInputCreateAlert("Type_example", "Source_example", "SourceRef_example", "Title_example", "Description_example") // InputCreateAlert |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,7 +208,7 @@ Other parameters are passed through a pointer to a apiCreateAlertRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateAlert** | [**InputCreateAlert**](InputCreateAlert.md) |  | 
+ **inputCreateAlert** | [**InputCreateAlert**](InputCreateAlert.md) |  |
 
 ### Return type
 
@@ -212,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -227,6 +231,8 @@ Name | Type | Description  | Notes
 ## CreateCaseFromAlert
 
 > OutputCase CreateCaseFromAlert(ctx, alertId).InputCreateCaseFromAlert(inputCreateCaseFromAlert).Execute()
+
+Create a case from an alert
 
 
 
@@ -243,7 +249,7 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 	inputCreateCaseFromAlert := *openapiclient.NewInputCreateCaseFromAlert() // InputCreateCaseFromAlert |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -264,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -274,7 +280,7 @@ Other parameters are passed through a pointer to a apiCreateCaseFromAlertRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateCaseFromAlert** | [**InputCreateCaseFromAlert**](InputCreateCaseFromAlert.md) |  | 
+ **inputCreateCaseFromAlert** | [**InputCreateCaseFromAlert**](InputCreateCaseFromAlert.md) |  |
 
 ### Return type
 
@@ -282,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -297,6 +303,8 @@ Name | Type | Description  | Notes
 ## DeleteAlert
 
 > DeleteAlert(ctx, alertId).Execute()
+
+Delete an alert
 
 
 
@@ -313,7 +321,7 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -331,7 +339,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -348,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -363,6 +371,8 @@ Name | Type | Description  | Notes
 ## DeleteAlertAttachment
 
 > DeleteAlertAttachment(ctx, alertId, attachmentId).Execute()
+
+Remove an attachment from an alert
 
 
 
@@ -379,8 +389,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -398,8 +408,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -417,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -432,6 +442,8 @@ Name | Type | Description  | Notes
 ## DeleteAlertInBulk
 
 > DeleteAlertInBulk(ctx).DeleteAlertInBulkRequest(deleteAlertInBulkRequest).Execute()
+
+Delete multiple alerts
 
 
 
@@ -448,7 +460,7 @@ import (
 )
 
 func main() {
-	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest | 
+	deleteAlertInBulkRequest := *openapiclient.NewDeleteAlertInBulkRequest([]string{"Ids_example"}) // DeleteAlertInBulkRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -471,7 +483,7 @@ Other parameters are passed through a pointer to a apiDeleteAlertInBulkRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  | 
+ **deleteAlertInBulkRequest** | [**DeleteAlertInBulkRequest**](DeleteAlertInBulkRequest.md) |  |
 
 ### Return type
 
@@ -479,7 +491,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -494,6 +506,8 @@ Name | Type | Description  | Notes
 ## DownloadAlertAttachment
 
 > *os.File DownloadAlertAttachment(ctx, alertId, attachmentId).Execute()
+
+Download an attachment from an alert
 
 
 
@@ -510,8 +524,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -531,8 +545,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -550,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -565,6 +579,8 @@ Name | Type | Description  | Notes
 ## FollowAlert
 
 > FollowAlert(ctx, alertId).Execute()
+
+Follow an alert
 
 
 
@@ -581,7 +597,7 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -599,7 +615,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -616,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -631,6 +647,8 @@ Name | Type | Description  | Notes
 ## GetAlert
 
 > OutputAlert GetAlert(ctx, alertId).Execute()
+
+Get an alert
 
 
 
@@ -647,7 +665,7 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -667,7 +685,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -684,7 +702,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -700,7 +718,7 @@ Name | Type | Description  | Notes
 
 > *os.File GetAlertAttachment(ctx, alertId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
 
-
+Get an attachment from an alert
 
 
 
@@ -717,9 +735,9 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -739,8 +757,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -751,7 +769,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -759,7 +777,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -774,6 +792,8 @@ Name | Type | Description  | Notes
 ## GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase
 
 > []OutputObservable GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase(ctx, alertId, alertOrCaseId).Execute()
+
+List observables shared with another alert or case
 
 
 
@@ -790,8 +810,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	alertOrCaseId := "alertOrCaseId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	alertOrCaseId := "alertOrCaseId_example" // string | The ID of the alert or case, preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -811,8 +831,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**alertOrCaseId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**alertOrCaseId** | **string** | The ID of the alert or case, preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -830,7 +850,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -845,6 +865,8 @@ Name | Type | Description  | Notes
 ## ImportAlertObservablesAndProceduresInCase
 
 > OutputCase ImportAlertObservablesAndProceduresInCase(ctx, alertId, caseId).Execute()
+
+Import alert observables and procedures into a case
 
 
 
@@ -861,8 +883,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	caseId := "caseId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -882,8 +904,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**caseId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or case number. |
 
 ### Other Parameters
 
@@ -901,7 +923,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -916,6 +938,8 @@ Name | Type | Description  | Notes
 ## MergeAlertWithCase
 
 > OutputCase MergeAlertWithCase(ctx, alertId, caseId).Execute()
+
+Merge an alert into an existing case
 
 
 
@@ -932,8 +956,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	caseId := "caseId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -953,8 +977,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
-**caseId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or case number. |
 
 ### Other Parameters
 
@@ -972,7 +996,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -987,6 +1011,8 @@ Name | Type | Description  | Notes
 ## MergeBulkAlertsWithCase
 
 > OutputCase MergeBulkAlertsWithCase(ctx).InputAlertsMergeWithCase(inputAlertsMergeWithCase).Execute()
+
+Merge multiple alerts into a case
 
 
 
@@ -1003,7 +1029,7 @@ import (
 )
 
 func main() {
-	inputAlertsMergeWithCase := *openapiclient.NewInputAlertsMergeWithCase("CaseId_example") // InputAlertsMergeWithCase | 
+	inputAlertsMergeWithCase := *openapiclient.NewInputAlertsMergeWithCase("CaseId_example") // InputAlertsMergeWithCase |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1028,7 +1054,7 @@ Other parameters are passed through a pointer to a apiMergeBulkAlertsWithCaseReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputAlertsMergeWithCase** | [**InputAlertsMergeWithCase**](InputAlertsMergeWithCase.md) |  | 
+ **inputAlertsMergeWithCase** | [**InputAlertsMergeWithCase**](InputAlertsMergeWithCase.md) |  |
 
 ### Return type
 
@@ -1036,7 +1062,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1051,6 +1077,8 @@ Name | Type | Description  | Notes
 ## UnfollowAlert
 
 > UnfollowAlert(ctx, alertId).Execute()
+
+Unfollow an alert
 
 
 
@@ -1067,7 +1095,7 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1085,7 +1113,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1102,7 +1130,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1117,6 +1145,8 @@ Name | Type | Description  | Notes
 ## UpdateAlert
 
 > UpdateAlert(ctx, alertId).InputUpdateAlert(inputUpdateAlert).Execute()
+
+Update an alert
 
 
 
@@ -1133,8 +1163,8 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	inputUpdateAlert := *openapiclient.NewInputUpdateAlert() // InputUpdateAlert | 
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	inputUpdateAlert := *openapiclient.NewInputUpdateAlert() // InputUpdateAlert |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1152,7 +1182,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1162,7 +1192,7 @@ Other parameters are passed through a pointer to a apiUpdateAlertRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateAlert** | [**InputUpdateAlert**](InputUpdateAlert.md) |  | 
+ **inputUpdateAlert** | [**InputUpdateAlert**](InputUpdateAlert.md) |  |
 
 ### Return type
 
@@ -1170,7 +1200,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1180,4 +1210,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

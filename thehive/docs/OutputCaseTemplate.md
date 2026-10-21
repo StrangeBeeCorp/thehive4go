@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**DisplayName** | **string** |  |
-**TitlePrefix** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Severity** | Pointer to **int32** |  | [optional]
-**SeverityLabel** | Pointer to **string** |  | [optional]
-**Tags** | Pointer to **[]string** |  | [optional]
-**Flag** | **bool** |  |
-**Tlp** | Pointer to **int32** |  | [optional]
-**TlpLabel** | Pointer to **string** |  | [optional]
-**Pap** | Pointer to **int32** |  | [optional]
-**PapLabel** | Pointer to **string** |  | [optional]
-**Summary** | Pointer to **string** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the case template. |
+**UnderscoreType** | **string** | Entity type, always &#x60;caseTemplate&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the case template. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the case template. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the case template was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the case template was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Name** | **string** | Unique name of the case template within the organization. |
+**DisplayName** | **string** | Name shown to users when selecting this template. |
+**TitlePrefix** | Pointer to **string** | Prefix automatically added to case titles when the template is applied. | [optional]
+**Description** | Pointer to **string** | Default description for cases. | [optional]
+**Severity** | Pointer to **int32** | Default severity level for cases. | [optional]
+**SeverityLabel** | Pointer to **string** | Human-readable label for the severity level. | [optional]
+**Tags** | Pointer to **[]string** | Default tags for cases. | [optional]
+**Flag** | **bool** | Whether cases are flagged as important by default. |
+**Tlp** | Pointer to **int32** | Default [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level for cases. | [optional]
+**TlpLabel** | Pointer to **string** | Human-readable label for the TLP level. | [optional]
+**Pap** | Pointer to **int32** | Default [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level for cases. | [optional]
+**PapLabel** | Pointer to **string** | Human-readable label for the PAP level. | [optional]
+**Summary** | Pointer to **string** | Default summary for cases. | [optional]
 **CustomFields** | Pointer to [**[]OutputCustomFieldValue**](OutputCustomFieldValue.md) |  | [optional]
 **Tasks** | Pointer to [**[]OutputTask**](OutputTask.md) |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

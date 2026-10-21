@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **string** |  |
+**Path** | **string** | Key of the configuration item. |
 **DefaultValue** | **interface{}** |  |
 **Value** | **interface{}** |  |
 

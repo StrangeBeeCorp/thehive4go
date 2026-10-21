@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Untouched** | **int32** | Number of observables left untouched |
-**Updated** | **int32** | Number of observables updated |
-**Deleted** | **int32** | Number of observables deleted |
+**Untouched** | **int32** | Number of observables with no duplicates found, left unchanged. |
+**Updated** | **int32** | Number of distinct observables updated with combined metadata from their duplicates. |
+**Deleted** | **int32** | Total number of duplicate observables removed during the merge. |
 
 ## Methods
 

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateObservableInAlert**](ObservableAPI.md#CreateObservableInAlert) | **Post** /api/v1/alert/{alertId}/observable | 
-[**CreateObservableInCase**](ObservableAPI.md#CreateObservableInCase) | **Post** /api/v1/case/{caseId}/observable | 
-[**DeleteObservable**](ObservableAPI.md#DeleteObservable) | **Delete** /api/v1/observable/{observableId} | 
-[**DownloadAttachmentFromObservable**](ObservableAPI.md#DownloadAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId}/download | 
-[**GetObservable**](ObservableAPI.md#GetObservable) | **Get** /api/v1/observable/{observableId} | 
-[**UpdateBulkOfObservables**](ObservableAPI.md#UpdateBulkOfObservables) | **Patch** /api/v1/observable/_bulk | 
-[**UpdateObservable**](ObservableAPI.md#UpdateObservable) | **Patch** /api/v1/observable/{observableId} | 
+[**CreateObservableInAlert**](ObservableAPI.md#CreateObservableInAlert) | **Post** /api/v1/alert/{alertId}/observable | Add an observable to an alert
+[**CreateObservableInCase**](ObservableAPI.md#CreateObservableInCase) | **Post** /api/v1/case/{caseId}/observable | Add an observable to a case
+[**DeleteObservable**](ObservableAPI.md#DeleteObservable) | **Delete** /api/v1/observable/{observableId} | Delete an observable
+[**DownloadAttachmentFromObservable**](ObservableAPI.md#DownloadAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId}/download | Download an attachment from an observable
+[**GetObservable**](ObservableAPI.md#GetObservable) | **Get** /api/v1/observable/{observableId} | Get an observable
+[**UpdateBulkOfObservables**](ObservableAPI.md#UpdateBulkOfObservables) | **Patch** /api/v1/observable/_bulk | Update multiple observables
+[**UpdateObservable**](ObservableAPI.md#UpdateObservable) | **Patch** /api/v1/observable/{observableId} | Update an observable
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > []OutputObservable CreateObservableInAlert(ctx, alertId).InputCreateObservable(inputCreateObservable).DataType(dataType).Execute()
 
-
+Add an observable to an alert
 
 
 
@@ -35,9 +35,9 @@ import (
 )
 
 func main() {
-	alertId := "alertId_example" // string | 
-	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable | 
-	dataType := "dataType_example" // string | allow to set the dataType from the query parameters (optional)
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
+	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable |
+	dataType := "dataType_example" // string | Observable type name, used only when the `dataType` field is missing from the request body. When the request body does include a `dataType` field, that value takes priority and this parameter is ignored. Must match an existing observable type defined in TheHive. Use `POST /api/v1/query` with `listObservableType` to list available types. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**alertId** | **string** |  | 
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -67,8 +67,8 @@ Other parameters are passed through a pointer to a apiCreateObservableInAlertReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  | 
- **dataType** | **string** | allow to set the dataType from the query parameters | 
+ **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  |
+ **dataType** | **string** | Observable type name, used only when the &#x60;dataType&#x60; field is missing from the request body. When the request body does include a &#x60;dataType&#x60; field, that value takes priority and this parameter is ignored. Must match an existing observable type defined in TheHive. Use &#x60;POST /api/v1/query&#x60; with &#x60;listObservableType&#x60; to list available types. |
 
 ### Return type
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 > []OutputObservable CreateObservableInCase(ctx, caseId).InputCreateObservable(inputCreateObservable).DataType(dataType).Execute()
 
-
+Add an observable to a case
 
 
 
@@ -109,9 +109,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable | 
-	dataType := "dataType_example" // string | allow to set the dataType from the query parameters (optional)
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or case number.
+	inputCreateObservable := *openapiclient.NewInputCreateObservable("DataType_example") // InputCreateObservable |
+	dataType := "dataType_example" // string | Observable type name, used only when the `dataType` field is missing from the request body. When the request body does include a `dataType` field, that value takes priority and this parameter is ignored. Must match an existing observable type defined in TheHive. Use `POST /api/v1/query` with `listObservableType` to list available types. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or case number. |
 
 ### Other Parameters
 
@@ -141,8 +141,8 @@ Other parameters are passed through a pointer to a apiCreateObservableInCaseRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  | 
- **dataType** | **string** | allow to set the dataType from the query parameters | 
+ **inputCreateObservable** | [**InputCreateObservable**](InputCreateObservable.md) |  |
+ **dataType** | **string** | Observable type name, used only when the &#x60;dataType&#x60; field is missing from the request body. When the request body does include a &#x60;dataType&#x60; field, that value takes priority and this parameter is ignored. Must match an existing observable type defined in TheHive. Use &#x60;POST /api/v1/query&#x60; with &#x60;listObservableType&#x60; to list available types. |
 
 ### Return type
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -165,6 +165,8 @@ Name | Type | Description  | Notes
 ## DeleteObservable
 
 > DeleteObservable(ctx, observableId).Execute()
+
+Delete an observable
 
 
 
@@ -181,7 +183,7 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -199,7 +201,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -216,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -232,7 +234,7 @@ Name | Type | Description  | Notes
 
 > *os.File DownloadAttachmentFromObservable(ctx, observableId, attachmentId).AsZip(asZip).Execute()
 
-
+Download an attachment from an observable
 
 
 
@@ -249,9 +251,9 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	asZip := true // bool |  (optional) (default to false)
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	asZip := true // bool | When set, wraps the file in a password-protected ZIP archive. The default password is `malware`. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -271,8 +273,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -283,7 +285,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **asZip** | **bool** |  | [default to false]
+ **asZip** | **bool** | When set, wraps the file in a password-protected ZIP archive. The default password is &#x60;malware&#x60;. | [default to false]
 
 ### Return type
 
@@ -291,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -306,6 +308,8 @@ Name | Type | Description  | Notes
 ## GetObservable
 
 > OutputObservable GetObservable(ctx, observableId).Execute()
+
+Get an observable
 
 
 
@@ -322,7 +326,7 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -342,7 +346,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -359,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -374,6 +378,8 @@ Name | Type | Description  | Notes
 ## UpdateBulkOfObservables
 
 > UpdateBulkOfObservables(ctx).InputUpdateObservableWithIds(inputUpdateObservableWithIds).Execute()
+
+Update multiple observables
 
 
 
@@ -390,7 +396,7 @@ import (
 )
 
 func main() {
-	inputUpdateObservableWithIds := *openapiclient.NewInputUpdateObservableWithIds([]string{"Ids_example"}) // InputUpdateObservableWithIds | 
+	inputUpdateObservableWithIds := *openapiclient.NewInputUpdateObservableWithIds([]string{"Ids_example"}) // InputUpdateObservableWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -413,7 +419,7 @@ Other parameters are passed through a pointer to a apiUpdateBulkOfObservablesReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateObservableWithIds** | [**InputUpdateObservableWithIds**](InputUpdateObservableWithIds.md) |  | 
+ **inputUpdateObservableWithIds** | [**InputUpdateObservableWithIds**](InputUpdateObservableWithIds.md) |  |
 
 ### Return type
 
@@ -421,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -436,6 +442,8 @@ Name | Type | Description  | Notes
 ## UpdateObservable
 
 > UpdateObservable(ctx, observableId).InputUpdateObservable(inputUpdateObservable).Execute()
+
+Update an observable
 
 
 
@@ -452,8 +460,8 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
-	inputUpdateObservable := *openapiclient.NewInputUpdateObservable() // InputUpdateObservable | 
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
+	inputUpdateObservable := *openapiclient.NewInputUpdateObservable() // InputUpdateObservable |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -471,7 +479,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -481,7 +489,7 @@ Other parameters are passed through a pointer to a apiUpdateObservableRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateObservable** | [**InputUpdateObservable**](InputUpdateObservable.md) |  | 
+ **inputUpdateObservable** | [**InputUpdateObservable**](InputUpdateObservable.md) |  |
 
 ### Return type
 
@@ -489,7 +497,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -499,4 +507,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

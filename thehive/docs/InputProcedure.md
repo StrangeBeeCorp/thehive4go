@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PatternId** | **string** | Id of the technique in the catalog | 
-**OccurDate** | **int64** |  | 
-**Tactic** | Pointer to **string** | Name of the tactic, useful if the technique belongs to several tactics | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**PatternId** | **string** | Technique ID from a loaded catalog, for example a MITRE ATT&amp;CK technique ID. Must match an existing technique. Use &#x60;POST /api/v1/query&#x60; with &#x60;listPattern&#x60; to retrieve available techniques and their IDs. |
+**OccurDate** | **int64** | Date and time when the technique occurred during the incident. Expected format: Unix timestamp in milliseconds. |
+**Tactic** | Pointer to **string** | Short name of the tactic the technique belongs to. Required when the technique belongs to more than one tactic. Use &#x60;POST /api/v1/query&#x60; with &#x60;listPattern&#x60; to check which tactics a technique belongs to. | [optional]
+**Description** | Pointer to **string** | Description of how the technique was carried out in this incident, referred to as the procedure. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
 
 ## Methods
 
@@ -120,5 +120,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

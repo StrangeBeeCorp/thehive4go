@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | **string** |  | 
-**From** | **interface{}** |  | 
-**To** | **interface{}** |  | 
+**Field** | **string** | The path to the field to filter on. |
+**From** | **interface{}** |  |
+**To** | **interface{}** |  |
 
 ## Methods
 
@@ -109,5 +109,3 @@ SetTo sets To field to given value.
 UnsetTo ensures that no value is present for To, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

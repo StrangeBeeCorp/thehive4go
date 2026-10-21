@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Variant** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | New name for the catalog. | [optional]
+**Description** | Pointer to **string** | New description for the catalog. Send &#x60;null&#x60; to delete. | [optional]
+**Variant** | Pointer to **string** | New variant identifier for the catalog. Send &#x60;null&#x60; to delete. | [optional]
 
 ## Methods
 
@@ -104,5 +104,3 @@ HasVariant returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

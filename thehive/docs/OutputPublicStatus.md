@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sso** | **bool** |  |
-**SsoProviders** | Pointer to [**[]OutputSsoProvider**](OutputSsoProvider.md) |  | [optional]
-**Version** | **string** |  |
+**Sso** | **bool** | Whether single sign-on is turned on. |
+**SsoProviders** | Pointer to [**[]OutputSsoProvider**](OutputSsoProvider.md) | SSO providers available on the sign-in page. Each item describes one configured provider. | [optional]
+**Version** | **string** | Version of your TheHive instance. |
 **Imports** | Pointer to [**Imports**](Imports.md) |  | [optional]
 
 ## Methods

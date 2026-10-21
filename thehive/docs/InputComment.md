@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**External** | Pointer to **bool** |  | [optional] 
+**Message** | **string** | Text of the comment. |
+**External** | Pointer to **bool** | Whether the comment is visible to external users through [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Set to &#x60;true&#x60; to share the comment with external portal users. Requires a Platinum or One license and the case to be shared through TheHive Portal. Has no effect on alert comments, which are always internal. | [optional] [default to false]
 
 ## Methods
 
@@ -73,5 +73,3 @@ HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

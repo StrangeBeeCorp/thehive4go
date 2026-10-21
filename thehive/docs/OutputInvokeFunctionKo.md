@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorType** | **string** | Error type encountered by the server |
-**ErrorMessage** | **string** | Precise error that led to execution failure |
-**Stdout** | **string** | Content of stdout |
-**Stderr** | **string** | Content of stderr |
+**ErrorType** | **string** | Error type encountered by the server. |
+**ErrorMessage** | **string** | Error message describing the execution failure. |
+**Stdout** | **string** | Content of stdout. |
+**Stderr** | **string** | Content of stderr. |
 
 ## Methods
 

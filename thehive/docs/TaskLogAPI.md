@@ -4,20 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAttachmentsToTaskLog**](TaskLogAPI.md#AddAttachmentsToTaskLog) | **Post** /api/v1/log/{logId}/attachments | 
-[**CreateTaskLog**](TaskLogAPI.md#CreateTaskLog) | **Post** /api/v1/task/{taskId}/log | 
-[**DeleteAttachmentFromTaskLog**](TaskLogAPI.md#DeleteAttachmentFromTaskLog) | **Delete** /api/v1/log/{logId}/attachments/{attachmentId} | 
-[**DeleteTaskLog**](TaskLogAPI.md#DeleteTaskLog) | **Delete** /api/v1/log/{logId} | 
-[**DownloadAttachmentFromLog**](TaskLogAPI.md#DownloadAttachmentFromLog) | **Get** /api/v1/log/{logId}/attachment/{attachmentId}/download | 
-[**GetAttachmentFromLog**](TaskLogAPI.md#GetAttachmentFromLog) | **Get** /api/v1/log/{caseId}/attachment/{attachmentId} | 
-[**GetAttachmentFromObservable**](TaskLogAPI.md#GetAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId} | 
-[**UpdateTaskLog**](TaskLogAPI.md#UpdateTaskLog) | **Patch** /api/v1/log/{logId} | 
+[**AddAttachmentsToTaskLog**](TaskLogAPI.md#AddAttachmentsToTaskLog) | **Post** /api/v1/log/{logId}/attachments | Add attachments to a task log
+[**CreateTaskLog**](TaskLogAPI.md#CreateTaskLog) | **Post** /api/v1/task/{taskId}/log | Create a task log
+[**DeleteAttachmentFromTaskLog**](TaskLogAPI.md#DeleteAttachmentFromTaskLog) | **Delete** /api/v1/log/{logId}/attachments/{attachmentId} | Delete an attachment from a task log
+[**DeleteTaskLog**](TaskLogAPI.md#DeleteTaskLog) | **Delete** /api/v1/log/{logId} | Delete a task log
+[**DownloadAttachmentFromLog**](TaskLogAPI.md#DownloadAttachmentFromLog) | **Get** /api/v1/log/{logId}/attachment/{attachmentId}/download | Download an attachment from a task log
+[**GetAttachmentFromLog**](TaskLogAPI.md#GetAttachmentFromLog) | **Get** /api/v1/log/{caseId}/attachment/{attachmentId} | Get an attachment from a task log
+[**GetAttachmentFromObservable**](TaskLogAPI.md#GetAttachmentFromObservable) | **Get** /api/v1/observable/{observableId}/attachment/{attachmentId} | Get an observable attachment
+[**UpdateTaskLog**](TaskLogAPI.md#UpdateTaskLog) | **Patch** /api/v1/log/{logId} | Update a task log
 
 
 
 ## AddAttachmentsToTaskLog
 
 > AddAttachmentsToTaskLog(ctx, logId).Attachments(attachments).Execute()
+
+Add attachments to a task log
 
 
 
@@ -34,7 +36,7 @@ import (
 )
 
 func main() {
-	logId := "logId_example" // string | 
+	logId := "logId_example" // string | The task log ID preceded by `~`.
 	attachments := []*os.File{"TODO"} // []*os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -53,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -63,7 +65,7 @@ Other parameters are passed through a pointer to a apiAddAttachmentsToTaskLogReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
+ **attachments** | **[]*os.File** |  |
 
 ### Return type
 
@@ -71,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 ## CreateTaskLog
 
 > OutputLog CreateTaskLog(ctx, taskId).InputCreateLog(inputCreateLog).Execute()
+
+Create a task log
 
 
 
@@ -102,8 +106,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	inputCreateLog := *openapiclient.NewInputCreateLog("Message_example") // InputCreateLog | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	inputCreateLog := *openapiclient.NewInputCreateLog("Message_example") // InputCreateLog |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -133,7 +137,7 @@ Other parameters are passed through a pointer to a apiCreateTaskLogRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateLog** | [**InputCreateLog**](InputCreateLog.md) |  | 
+ **inputCreateLog** | [**InputCreateLog**](InputCreateLog.md) |  |
 
 ### Return type
 
@@ -141,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -156,6 +160,8 @@ Name | Type | Description  | Notes
 ## DeleteAttachmentFromTaskLog
 
 > DeleteAttachmentFromTaskLog(ctx, logId, attachmentId).Execute()
+
+Delete an attachment from a task log
 
 
 
@@ -172,8 +178,8 @@ import (
 )
 
 func main() {
-	logId := "logId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	logId := "logId_example" // string | The task log ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,8 +197,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**logId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -210,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -225,6 +231,8 @@ Name | Type | Description  | Notes
 ## DeleteTaskLog
 
 > DeleteTaskLog(ctx, logId).Execute()
+
+Delete a task log
 
 
 
@@ -241,7 +249,7 @@ import (
 )
 
 func main() {
-	logId := "logId_example" // string | 
+	logId := "logId_example" // string | The task log ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -259,7 +267,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -276,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -291,6 +299,8 @@ Name | Type | Description  | Notes
 ## DownloadAttachmentFromLog
 
 > *os.File DownloadAttachmentFromLog(ctx, logId, attachmentId).Execute()
+
+Download an attachment from a task log
 
 
 
@@ -307,8 +317,8 @@ import (
 )
 
 func main() {
-	logId := "logId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	logId := "logId_example" // string | The task log ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -328,8 +338,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**logId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -347,7 +357,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -362,6 +372,8 @@ Name | Type | Description  | Notes
 ## GetAttachmentFromLog
 
 > *os.File GetAttachmentFromLog(ctx, caseId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
+
+Get an attachment from a task log
 
 
 
@@ -378,9 +390,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	caseId := "caseId_example" // string | The task log ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -400,8 +412,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -412,7 +424,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -420,7 +432,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -435,6 +447,8 @@ Name | Type | Description  | Notes
 ## GetAttachmentFromObservable
 
 > *os.File GetAttachmentFromObservable(ctx, observableId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
+
+Get an observable attachment
 
 
 
@@ -451,9 +465,9 @@ import (
 )
 
 func main() {
-	observableId := "observableId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	observableId := "observableId_example" // string | The observable ID preceded by `~`.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -473,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**observableId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**observableId** | **string** | The observable ID preceded by &#x60;~&#x60;. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -485,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -493,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -508,6 +522,8 @@ Name | Type | Description  | Notes
 ## UpdateTaskLog
 
 > UpdateTaskLog(ctx, logId).InputUpdateLog(inputUpdateLog).Execute()
+
+Update a task log
 
 
 
@@ -524,8 +540,8 @@ import (
 )
 
 func main() {
-	logId := "logId_example" // string | 
-	inputUpdateLog := *openapiclient.NewInputUpdateLog() // InputUpdateLog | 
+	logId := "logId_example" // string | The task log ID preceded by `~`.
+	inputUpdateLog := *openapiclient.NewInputUpdateLog() // InputUpdateLog |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -543,7 +559,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**logId** | **string** |  | 
+**logId** | **string** | The task log ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -553,7 +569,7 @@ Other parameters are passed through a pointer to a apiUpdateTaskLogRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateLog** | [**InputUpdateLog**](InputUpdateLog.md) |  | 
+ **inputUpdateLog** | [**InputUpdateLog**](InputUpdateLog.md) |  |
 
 ### Return type
 
@@ -561,7 +577,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -571,4 +587,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

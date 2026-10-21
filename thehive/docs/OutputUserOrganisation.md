@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisation** | **string** |  |
-**Profile** | **string** |  |
-**Default** | **bool** |  |
+**Organisation** | **string** | Organization name. |
+**Profile** | **string** | Permission profile of the user in this organization. |
+**Default** | **bool** | Whether this is the user&#39;s default organization, used when signing in and when the &#x60;X-Organisation&#x60; header is not specified in API requests. |
 
 ## Methods
 

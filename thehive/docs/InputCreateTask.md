@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  | 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**StartDate** | Pointer to **int64** |  | [optional] 
-**EndDate** | Pointer to **int64** |  | [optional] 
-**Order** | Pointer to **int32** |  | [optional] 
-**DueDate** | Pointer to **int64** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Mandatory** | Pointer to **bool** |  | [optional] 
+**Title** | **string** | Title of the task. |
+**Group** | Pointer to **string** | Group name used to organize tasks within the case. | [optional]
+**Description** | Pointer to **string** | Details of the task. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Status** | Pointer to **string** | Enum: &#x60;Waiting&#x60; &#x60;InProgress&#x60; &#x60;Completed&#x60; &#x60;Cancel&#x60;&lt;br&gt;Initial status of the task. | [optional]
+**Flag** | Pointer to **bool** | Marks the task as important for quick filtering. | [optional]
+**StartDate** | Pointer to **int64** | Date and time when the task started. Unix timestamp in milliseconds. | [optional]
+**EndDate** | Pointer to **int64** | Date and time when the task ended. Unix timestamp in milliseconds. | [optional]
+**Order** | Pointer to **int32** | Display order of the task within its group. | [optional]
+**DueDate** | Pointer to **int64** | Due date for the task. Unix timestamp in milliseconds. | [optional]
+**Assignee** | Pointer to **string** | Email address of the user assigned to the task. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their logins. | [optional]
+**Mandatory** | Pointer to **bool** | Whether the task must be completed before the case can be closed. | [optional]
 
 ## Methods
 
@@ -307,5 +307,3 @@ HasMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

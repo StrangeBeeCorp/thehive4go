@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Widgets** | Pointer to [**[]Kind**](Kind.md) |  | [optional]
-**AlertFields** | Pointer to [**[]AlertField**](AlertField.md) |  | [optional]
-**ObservableFields** | Pointer to [**[]ObservableField**](ObservableField.md) |  | [optional]
-**TaskFields** | Pointer to [**[]TaskField**](TaskField.md) |  | [optional]
-**TtpFields** | Pointer to [**[]TTPField**](TTPField.md) |  | [optional]
-**LogFields** | Pointer to [**[]LogField**](LogField.md) |  | [optional]
-**TimelineEvents** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) |  | [optional]
+**Widgets** | Pointer to [**[]Kind**](Kind.md) | Available widget types for use in case report templates. | [optional]
+**AlertFields** | Pointer to [**[]AlertField**](AlertField.md) | Available alert fields for use in alert widgets. | [optional]
+**ObservableFields** | Pointer to [**[]ObservableField**](ObservableField.md) | Available observable fields for use in observable widgets. | [optional]
+**TaskFields** | Pointer to [**[]TaskField**](TaskField.md) | Available task fields for use in task widgets. | [optional]
+**TtpFields** | Pointer to [**[]TTPField**](TTPField.md) | Available TTP fields for use in TTP widgets. | [optional]
+**LogFields** | Pointer to [**[]LogField**](LogField.md) | Available task log fields for use in task list widgets. | [optional]
+**TimelineEvents** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) | Available event types for use in timeline widgets. | [optional]
 
 ## Methods
 

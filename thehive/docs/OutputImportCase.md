@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Case** | [**OutputCase**](OutputCase.md) |  |
-**Observables** | Pointer to [**[]OutputObservable**](OutputObservable.md) |  | [optional]
-**Procedures** | Pointer to [**[]OutputProcedure**](OutputProcedure.md) |  | [optional]
-**Errors** | Pointer to **[]interface{}** | Field is present if there were some errors during import | [optional]
+**Case** | [**OutputCase**](OutputCase.md) | The imported case. |
+**Observables** | Pointer to [**[]OutputObservable**](OutputObservable.md) | Observables restored from the archive. | [optional]
+**Procedures** | Pointer to [**[]OutputProcedure**](OutputProcedure.md) | Procedures (TTPs) restored from the archive. | [optional]
+**Errors** | Pointer to **[]interface{}** | Errors encountered during import, if any. | [optional]
 
 ## Methods
 

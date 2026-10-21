@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**OccurDate** | **int64** |  |
-**PatternId** | Pointer to **string** |  | [optional]
-**PatternName** | Pointer to **string** |  | [optional]
-**Tactic** | Pointer to **string** |  | [optional]
-**TacticLabel** | Pointer to **string** |  | [optional]
+**UnderscoreId** | **string** | Internal unique identifier of the procedure. |
+**UnderscoreCreatedAt** | **int64** | Date and time when the procedure was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the procedure. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the procedure was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the procedure. | [optional]
+**Description** | Pointer to **string** | Description of how the technique was applied in this incident, referred to as the procedure. | [optional]
+**OccurDate** | **int64** | Date and time when the technique occurred during the incident. Returned as a Unix timestamp in milliseconds. |
+**PatternId** | Pointer to **string** | Technique ID from the catalog, for example a MITRE ATT&amp;CK technique ID. | [optional]
+**PatternName** | Pointer to **string** | Name of the technique in the catalog, for example a MITRE ATT&amp;CK technique name. | [optional]
+**Tactic** | Pointer to **string** | Tactic identifier the technique belongs to. Present when the technique belongs to multiple tactics. | [optional]
+**TacticLabel** | Pointer to **string** | Human-readable tactic name. | [optional]
 **ExtraData** | **map[string]interface{}** |  |
 
 ## Methods

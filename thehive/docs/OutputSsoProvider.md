@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
-**DisplayName** | **string** |  |
-**Url** | **string** |  |
+**Name** | **string** | Internal identifier of the SSO provider. |
+**DisplayName** | **string** | Label shown on the sign-in button for this SSO provider. |
+**Url** | **string** | URL that starts the sign-in flow for this SSO provider. |
 
 ## Methods
 

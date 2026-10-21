@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Base** | [**OutputAudit**](OutputAudit.md) |  |
-**Summary** | **map[string]map[string]int32** |  |
+**Summary** | **map[string]map[string]int32** | Aggregated count of audit entries created by the same request, grouped by object type and then by action. |
 
 ## Methods
 

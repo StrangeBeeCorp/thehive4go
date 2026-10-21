@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** | This field can be used to reference an organisation instead of its _id |
-**Description** | **string** |  |
-**TaskRule** | **string** |  |
-**ObservableRule** | **string** |  |
-**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) |  | [optional]
-**Avatar** | Pointer to **string** |  | [optional]
-**Locked** | **bool** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the organization. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Organisation&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the organization. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the organization. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the organization was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the organization was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Name** | **string** | Unique name of the organization, which can be used instead of &#x60;_id&#x60;. |
+**Description** | **string** | Description of the organization. |
+**TaskRule** | **string** | Task-sharing rule applied to new case shares with this organization. One of &#x60;autoShare&#x60;, &#x60;manual&#x60;. |
+**ObservableRule** | **string** | Observable-sharing rule applied to new case shares with this organization. One of &#x60;autoShare&#x60;, &#x60;manual&#x60;. |
+**Links** | Pointer to [**[]OrganisationLink**](OrganisationLink.md) | Sharing links configured for this organization. | [optional]
+**Avatar** | Pointer to **string** | Base64-encoded avatar image of the organization. | [optional]
+**Locked** | **bool** | Whether the organization is locked. Members of a locked organization can&#39;t log in. |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**License** | [**OutputLicense**](OutputLicense.md) |  |
+**License** | [**OutputLicense**](OutputLicense.md) | The currently active license. |
 
 ## Methods
 

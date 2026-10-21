@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisation** | **string** |  | 
-**Profile** | **string** |  | 
-**Default** | Pointer to **bool** |  | [optional] 
+**Organisation** | **string** | Organization name. Must match an existing organization. Use &#x60;POST /api/v1/query&#x60; with &#x60;listOrganisation&#x60; to retrieve available organizations. |
+**Profile** | **string** | Permission profile for the user in this organization. Must match an existing profile. Use &#x60;GET /api/v1/profile&#x60; to list available profiles. |
+**Default** | Pointer to **bool** | Whether this is the user&#39;s default organization. On sign-in, the user&#39;s session starts in this organization&#39;s context. For API requests, this organization is used when the &#x60;X-Organisation&#x60; header isn&#39;t specified. | [optional] [default to false]
 
 ## Methods
 
@@ -94,5 +94,3 @@ HasDefault returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

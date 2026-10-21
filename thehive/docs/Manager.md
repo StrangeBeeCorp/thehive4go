@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Algorithm** | Pointer to **string** |  | [optional] 
-**Stores** | Pointer to [**[]StoreConfig**](StoreConfig.md) |  | [optional] 
+**Algorithm** | Pointer to **string** | Algorithm name for the key or trust manager. | [optional]
+**Stores** | Pointer to [**[]StoreConfig**](StoreConfig.md) | Key or trust stores used by the manager. | [optional]
 
 ## Methods
 
@@ -78,5 +78,3 @@ HasStores returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

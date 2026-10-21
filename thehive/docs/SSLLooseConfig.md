@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcceptAnyCertificate** | Pointer to **bool** |  | [optional] [default to false]
-**AllowLegacyHelloMessages** | Pointer to **bool** |  | [optional] 
-**AllowUnsafeRenegotiation** | Pointer to **bool** |  | [optional] 
-**DisableHostnameVerification** | Pointer to **bool** |  | [optional] [default to false]
-**DisableSNI** | Pointer to **bool** |  | [optional] [default to false]
+**AcceptAnyCertificate** | Pointer to **bool** | Whether to accept any X.509 certificate, including self-signed ones. Not recommended for production. | [optional] [default to false]
+**AllowLegacyHelloMessages** | Pointer to **bool** | Whether to allow legacy SSL hello messages. Uses the platform default when not set. | [optional]
+**AllowUnsafeRenegotiation** | Pointer to **bool** | Whether to allow unsafe TLS renegotiation. Uses the platform default when not set. | [optional]
+**DisableHostnameVerification** | Pointer to **bool** | Whether to turn off hostname verification. | [optional] [default to false]
+**DisableSNI** | Pointer to **bool** | Whether to turn off Server Name Indication (SNI). | [optional] [default to false]
 
 ## Methods
 
@@ -156,5 +156,3 @@ HasDisableSNI returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

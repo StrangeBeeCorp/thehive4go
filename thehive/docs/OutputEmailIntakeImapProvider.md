@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
-**Host** | Pointer to **string** |  | [optional]
-**Protocol** | Pointer to **string** |  | [optional]
-**Port** | Pointer to **int32** |  | [optional]
-**Ssl** | Pointer to **bool** |  | [optional]
-**StartTLS** | Pointer to **bool** |  | [optional]
-**CheckServerIdentity** | Pointer to **bool** |  | [optional]
-**Certificates** | Pointer to [**[]OutputEmailIntakeSSLCert**](OutputEmailIntakeSSLCert.md) |  | [optional]
+**Name** | **string** | Email provider name. |
+**Host** | Pointer to **string** | Hostname of the IMAP server. | [optional]
+**Protocol** | Pointer to **string** | IMAP protocol variant. | [optional]
+**Port** | Pointer to **int32** | Port number for the IMAP server. | [optional]
+**Ssl** | Pointer to **bool** | Indicates whether SSL is enabled for the IMAP connection. | [optional]
+**StartTLS** | Pointer to **bool** | Indicates whether STARTTLS is enabled for the IMAP connection. | [optional]
+**CheckServerIdentity** | Pointer to **bool** | Indicates whether host name verification is enabled for the SSL connection. | [optional]
+**Certificates** | Pointer to [**[]OutputEmailIntakeSSLCert**](OutputEmailIntakeSSLCert.md) | PEM certificate authority certificates trusted for the IMAP server SSL connection. | [optional]
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the function | [optional] 
-**Definition** | **string** | Code of the function | 
-**Config** | Pointer to **map[string]interface{}** |  | [optional] 
-**Input** | Pointer to **interface{}** |  | [optional] 
+**Name** | Pointer to **string** | Optional name for the function, used for identification purposes only. | [optional]
+**Definition** | **string** | JavaScript source code to test. Must define a &#x60;handle(input, context)&#x60; function as the entry point. |
+**Config** | Pointer to **map[string]interface{}** | Configuration object passed to the function at runtime. | [optional]
+**Input** | Pointer to **interface{}** |  | [optional]
 
 ## Methods
 
@@ -135,5 +135,3 @@ HasInput returns a boolean if a field has been set.
 UnsetInput ensures that no value is present for Input, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

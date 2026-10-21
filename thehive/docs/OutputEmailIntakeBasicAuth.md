@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | **string** |  |
+**Password** | **string** | Password for the mailbox account. |
 
 ## Methods
 

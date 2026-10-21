@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**Type** | Pointer to **string** |  | [optional] 
-**Source** | Pointer to **string** |  | [optional] 
-**SourceRef** | Pointer to **string** |  | [optional] 
-**ExternalLink** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Date** | Pointer to **int64** |  | [optional] 
-**LastSyncDate** | Pointer to **int64** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Follow** | Pointer to **bool** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**AddTags** | Pointer to **[]string** | Those tags will be added to the current alert | [optional] 
-**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current alert | [optional] 
+**Ids** | **[]string** | Identifiers of the entities to target. IDs must be prefixed with &#x60;~&#x60;. Case numbers and names are passed as plain strings without a prefix. |
+**Type** | Pointer to **string** | Type of the alert. Identifies the event category and groups related alerts. | [optional]
+**Source** | Pointer to **string** | Source system that generated the alert. | [optional]
+**SourceRef** | Pointer to **string** | Unique reference identifier from the source system. Combined with &#x60;type&#x60; and &#x60;source&#x60;, uniquely identifies an alert. | [optional]
+**ExternalLink** | Pointer to **string** | External URL linking to the alert in the source system. Send &#x60;null&#x60; to unset. | [optional]
+**Title** | Pointer to **string** | New title of the alert. | [optional]
+**Description** | Pointer to **string** | New description of the alert. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Severity** | Pointer to **int32** | New severity level of the alert: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). | [optional]
+**Date** | Pointer to **int64** | New date and time of the event that triggered the alert, as a Unix timestamp in milliseconds. | [optional]
+**LastSyncDate** | Pointer to **int64** | Date and time of the last synchronization with the source system, as a Unix timestamp in milliseconds. | [optional]
+**Tags** | Pointer to **[]string** | Replaces all current tags with this set. Unknown tags are automatically created. Use &#x60;addTags&#x60; and &#x60;removeTags&#x60; to add or remove individual tags without replacing the full set. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Tlp** | Pointer to **int32** | New [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). | [optional]
+**Pap** | Pointer to **int32** | New [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). | [optional]
+**Follow** | Pointer to **bool** | Whether to follow the alert for change notifications. | [optional]
+**CustomFields** | Pointer to [**InputUpdateAlertCustomFields**](InputUpdateAlertCustomFields.md) |  | [optional]
+**Status** | Pointer to **string** | New alert status. Must match an existing status. To close an alert, set this to a status linked to the *Closed* stage. Use &#x60;POST /api/v1/query&#x60; with &#x60;listAlertStatus&#x60; to list available statuses. | [optional]
+**Summary** | Pointer to **string** | New summary of the triage findings. Send &#x60;null&#x60; to unset. | [optional]
+**Assignee** | Pointer to **string** | Login of the user to assign the alert to. Typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their logins. Send &#x60;null&#x60; to unassign. | [optional]
+**AddTags** | Pointer to **[]string** | Tags to add to the current set of alert tags. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**RemoveTags** | Pointer to **[]string** | Tags to remove from the current set of alert tags. Tags not present on the alert are silently ignored. Use &#x60;GET /api/v1/alert/{alertId}&#x60; and read the &#x60;tags&#x60; field to see the current tags on the alert. | [optional]
 
 ## Methods
 
@@ -391,20 +391,20 @@ HasFollow returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *InputUpdateAlertWithIds) GetCustomFields() InputCreateAlertCustomFields`
+`func (o *InputUpdateAlertWithIds) GetCustomFields() InputUpdateAlertCustomFields`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *InputUpdateAlertWithIds) GetCustomFieldsOk() (*InputCreateAlertCustomFields, bool)`
+`func (o *InputUpdateAlertWithIds) GetCustomFieldsOk() (*InputUpdateAlertCustomFields, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *InputUpdateAlertWithIds) SetCustomFields(v InputCreateAlertCustomFields)`
+`func (o *InputUpdateAlertWithIds) SetCustomFields(v InputUpdateAlertCustomFields)`
 
 SetCustomFields sets CustomFields field to given value.
 
@@ -541,5 +541,3 @@ HasRemoveTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

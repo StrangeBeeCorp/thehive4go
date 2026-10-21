@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FieldsByModel** | [**map[string][]ExportFieldDescription**](array.md) |  |
+**FieldsByModel** | [**map[string][]ExportFieldDescription**](array.md) | Map of supported model name (&#x60;Case&#x60;, &#x60;Alert&#x60;, &#x60;User&#x60;, &#x60;Organisation&#x60;, &#x60;Procedure&#x60;, &#x60;Task&#x60;, &#x60;Observable&#x60;) to the list of fields available for export on that model |
 
 ## Methods
 

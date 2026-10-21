@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisation** | **string** | Id or name of the new organisation that should own the case | 
-**KeepProfile** | Pointer to **string** | Set a Profile to keep an access to the case, if none is set the current organisation will no longer have access to the case | [optional] 
-**TaskRule** | Pointer to **string** |  | [optional] 
-**ObservableRule** | Pointer to **string** |  | [optional] 
+**Organisation** | **string** | Name or ID of the organization to set as the new case owner. Must match an existing organization. Use &#x60;POST /api/v1/query&#x60; with &#x60;listOrganisation&#x60; to list available organizations. |
+**KeepProfile** | Pointer to **string** | Name or ID of the sharing permission profile to assign to the current owner organization so it retains access to the case after ownership transfers. If omitted, the current owner loses all access. Must match an existing profile. Use &#x60;POST /api/v1/query&#x60; with &#x60;listProfile&#x60; to list available profiles. | [optional]
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Task-sharing rule for the new owner organization: &#x60;autoShare&#x60; shares new tasks with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per task. | [optional]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Observable-sharing rule for the new owner organization: &#x60;autoShare&#x60; shares new observables with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per observable. | [optional]
 
 ## Methods
 
@@ -125,5 +125,3 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

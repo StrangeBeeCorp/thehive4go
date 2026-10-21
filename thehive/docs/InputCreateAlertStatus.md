@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **string** | Name of the status | 
-**Stage** | [**InputAlertStage**](InputAlertStage.md) |  | 
-**Order** | Pointer to **int32** | Used to order the values in the ui | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** | Optional color to use in the ui | [optional] 
-**Hidden** | Pointer to **bool** |  | [optional] 
+**Value** | **string** | Display name of the alert status. Immutable after creation. |
+**Stage** | [**InputAlertStage**](InputAlertStage.md) |  |
+**Order** | Pointer to **int32** | Position of the status in the UI dropdown list. Lower values appear first. | [optional]
+**Description** | Pointer to **string** | Human-readable description of the status. | [optional]
+**Colour** | Pointer to **string** | Hex color code used to display the status in the UI. | [optional]
+**Hidden** | Pointer to **bool** | When &#x60;true&#x60;, hides the status from the UI dropdown. Hidden statuses remain accessible through the API. | [optional]
 
 ## Methods
 
@@ -172,5 +172,3 @@ HasHidden returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

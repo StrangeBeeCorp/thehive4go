@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**CustomFieldType**](CustomFieldType.md) |  | [optional] 
-**Options** | Pointer to **[]interface{}** |  | [optional] 
-**Mandatory** | Pointer to **bool** |  | [optional] 
+**DisplayName** | Pointer to **string** | New user-facing name of the custom field. | [optional]
+**Group** | Pointer to **string** | New group of the custom field. | [optional]
+**Description** | Pointer to **string** | New description of the custom field. | [optional]
+**Type** | Pointer to [**CustomFieldType**](CustomFieldType.md) | New type of the custom field. | [optional]
+**Options** | Pointer to **[]interface{}** | Replaces the predefined selectable values. Available for &#x60;string&#x60;, &#x60;integer&#x60;, and &#x60;float&#x60; types. | [optional]
+**Mandatory** | Pointer to **bool** | Marks the field as mandatory: users must fill it in before a case or alert can be closed. | [optional]
 
 ## Methods
 
@@ -182,5 +182,3 @@ HasMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

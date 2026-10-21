@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Message** | **string** |  |
-**Date** | **int64** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the task log. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Log&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the task log. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the task log. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the task log was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the task log was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Message** | **string** | Content of the task log. |
+**Date** | **int64** | Date and time of the log entry. Returned as a Unix timestamp in milliseconds. |
 **Attachments** | Pointer to [**[]OutputAttachment**](OutputAttachment.md) |  | [optional]
-**Owner** | **string** |  |
-**IncludeInTimeline** | Pointer to **int64** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**Owner** | **string** | Name of the organization that owns the task log. |
+**IncludeInTimeline** | Pointer to **int64** | Date at which the log entry is pinned in the case timeline. Returned as a Unix timestamp in milliseconds. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

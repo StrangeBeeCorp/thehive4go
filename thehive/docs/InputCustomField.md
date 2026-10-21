@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Group** | **string** |  | 
-**Description** | **string** |  | 
-**Type** | [**CustomFieldType**](CustomFieldType.md) |  | 
-**Mandatory** | Pointer to **bool** |  | [optional] 
-**Options** | Pointer to **[]interface{}** |  | [optional] 
+**Name** | **string** | Technical name of the custom field. |
+**DisplayName** | Pointer to **string** | User-facing name of the custom field displayed in cases and alerts. | [optional]
+**Group** | **string** | Group that organizes related custom fields, shown as a tab in cases and alerts. |
+**Description** | **string** | Description shown to users when hovering over the custom field in a case or alert. |
+**Type** | [**CustomFieldType**](CustomFieldType.md) | Type of data the custom field contains. |
+**Mandatory** | Pointer to **bool** | Marks the field as mandatory: users must fill it in before a case or alert can be closed. | [optional]
+**Options** | Pointer to **[]interface{}** | Predefined selectable values for the custom field. Available for &#x60;string&#x60;, &#x60;integer&#x60;, and &#x60;float&#x60; types. If set, users can only select from these values. | [optional]
 
 ## Methods
 
@@ -188,5 +188,3 @@ HasOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

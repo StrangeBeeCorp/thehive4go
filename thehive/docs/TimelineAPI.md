@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomEvent**](TimelineAPI.md#CreateCustomEvent) | **Post** /api/v1/case/{caseId}/customEvent | 
-[**DeleteACustomEvent**](TimelineAPI.md#DeleteACustomEvent) | **Delete** /api/v1/customEvent/{eventId} | 
-[**UpdateACustomEvent**](TimelineAPI.md#UpdateACustomEvent) | **Patch** /api/v1/customEvent/{eventId} | 
+[**CreateCustomEvent**](TimelineAPI.md#CreateCustomEvent) | **Post** /api/v1/case/{caseId}/customEvent | Add a custom event to a case timeline
+[**DeleteACustomEvent**](TimelineAPI.md#DeleteACustomEvent) | **Delete** /api/v1/customEvent/{eventId} | Delete a custom event
+[**UpdateACustomEvent**](TimelineAPI.md#UpdateACustomEvent) | **Patch** /api/v1/customEvent/{eventId} | Update a custom event
 
 
 
 ## CreateCustomEvent
 
 > OutputCustomEvent CreateCustomEvent(ctx, caseId).InputCustomEvent(inputCustomEvent).Execute()
+
+Add a custom event to a case timeline
 
 
 
@@ -29,8 +31,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCustomEvent := *openapiclient.NewInputCustomEvent(int64(123), "Title_example") // InputCustomEvent | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCustomEvent := *openapiclient.NewInputCustomEvent(int64(123), "Title_example") // InputCustomEvent |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -60,7 +62,7 @@ Other parameters are passed through a pointer to a apiCreateCustomEventRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCustomEvent** | [**InputCustomEvent**](InputCustomEvent.md) |  | 
+ **inputCustomEvent** | [**InputCustomEvent**](InputCustomEvent.md) |  |
 
 ### Return type
 
@@ -68,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -83,6 +85,8 @@ Name | Type | Description  | Notes
 ## DeleteACustomEvent
 
 > DeleteACustomEvent(ctx, eventId).Execute()
+
+Delete a custom event
 
 
 
@@ -99,7 +103,7 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | 
+	eventId := "eventId_example" // string | The custom event ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** | The custom event ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -134,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -149,6 +153,8 @@ Name | Type | Description  | Notes
 ## UpdateACustomEvent
 
 > UpdateACustomEvent(ctx, eventId).InputUpdateCustomEvent(inputUpdateCustomEvent).Execute()
+
+Update a custom event
 
 
 
@@ -165,8 +171,8 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | 
-	inputUpdateCustomEvent := *openapiclient.NewInputUpdateCustomEvent() // InputUpdateCustomEvent | 
+	eventId := "eventId_example" // string | The custom event ID preceded by `~`.
+	inputUpdateCustomEvent := *openapiclient.NewInputUpdateCustomEvent() // InputUpdateCustomEvent |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** | The custom event ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -194,7 +200,7 @@ Other parameters are passed through a pointer to a apiUpdateACustomEventRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCustomEvent** | [**InputUpdateCustomEvent**](InputUpdateCustomEvent.md) |  | 
+ **inputUpdateCustomEvent** | [**InputUpdateCustomEvent**](InputUpdateCustomEvent.md) |  |
 
 ### Return type
 
@@ -202,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -212,4 +218,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

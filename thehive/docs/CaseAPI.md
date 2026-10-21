@@ -4,40 +4,42 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAttachmentToCase**](CaseAPI.md#AddAttachmentToCase) | **Post** /api/v1/case/{caseId}/attachments | 
-[**AddLinkWithAnExternalURL**](CaseAPI.md#AddLinkWithAnExternalURL) | **Post** /api/v1/case/{caseId}/link/external/add | 
-[**AddLinkWithAnotherCase**](CaseAPI.md#AddLinkWithAnotherCase) | **Post** /api/v1/case/{caseId}/link/case/add | 
-[**ApplyCaseTemplateOnExistingCases**](CaseAPI.md#ApplyCaseTemplateOnExistingCases) | **Post** /api/v1/case/_bulk/caseTemplate | 
-[**BulkManageCaseAccess**](CaseAPI.md#BulkManageCaseAccess) | **Post** /api/v1/case/_bulk/access | 
-[**BulkUpdateCase**](CaseAPI.md#BulkUpdateCase) | **Patch** /api/v1/case/_bulk | 
-[**ChangeCaseOwningOrganisation**](CaseAPI.md#ChangeCaseOwningOrganisation) | **Post** /api/v1/case/{caseId}/owner | 
-[**CreateCase**](CaseAPI.md#CreateCase) | **Post** /api/v1/case | 
-[**DeleteACustomField**](CaseAPI.md#DeleteACustomField) | **Delete** /api/v1/case/customField/{cfId} | 
-[**DeleteCase**](CaseAPI.md#DeleteCase) | **Delete** /api/v1/case/{idOrName} | 
-[**DeleteCaseAttachment**](CaseAPI.md#DeleteCaseAttachment) | **Delete** /api/v1/case/{caseId}/attachment/{attachmentId} | 
-[**DeleteLinkWithAnAnotherCase**](CaseAPI.md#DeleteLinkWithAnAnotherCase) | **Post** /api/v1/case/{caseId}/link/case/remove | 
-[**DeleteLinkWithAnExternalURL**](CaseAPI.md#DeleteLinkWithAnExternalURL) | **Post** /api/v1/case/{caseId}/link/external/remove | 
-[**DownloadAttachmentFromCase**](CaseAPI.md#DownloadAttachmentFromCase) | **Get** /api/v1/case/{caseId}/attachment/{attachmentId}/download | 
-[**ExportCaseAsArchive**](CaseAPI.md#ExportCaseAsArchive) | **Get** /api/v1/case/{caseId}/export | 
-[**GetAllLinkTypes**](CaseAPI.md#GetAllLinkTypes) | **Get** /api/v1/case/link/types | 
-[**GetAttachmentFromCase**](CaseAPI.md#GetAttachmentFromCase) | **Get** /api/v1/case/{caseId}/attachment/{attachmentId} | 
-[**GetCase**](CaseAPI.md#GetCase) | **Get** /api/v1/case/{idOrName} | 
-[**GetCaseTimeline**](CaseAPI.md#GetCaseTimeline) | **Get** /api/v1/case/{caseId}/timeline | 
-[**GetSimilarCases**](CaseAPI.md#GetSimilarCases) | **Get** /api/v1/case/{caseId}/links | 
-[**GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert**](CaseAPI.md#GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert) | **Get** /api/v1/case/{caseId}/similar/{alertOrCaseId}/observables | 
-[**ImportCaseFromFile**](CaseAPI.md#ImportCaseFromFile) | **Post** /api/v1/case/import | 
-[**ManageCaseAccess**](CaseAPI.md#ManageCaseAccess) | **Post** /api/v1/case/{caseId}/access | 
-[**MergeCases**](CaseAPI.md#MergeCases) | **Post** /api/v1/case/_merge/{ids} | 
-[**MergeSimilarObservablesOfThisCase**](CaseAPI.md#MergeSimilarObservablesOfThisCase) | **Post** /api/v1/case/{caseId}/observable/_merge | 
-[**UnlinkAlertFromCase**](CaseAPI.md#UnlinkAlertFromCase) | **Delete** /api/v1/case/{caseId}/alert/{alertId} | 
-[**UpdateAttachment**](CaseAPI.md#UpdateAttachment) | **Patch** /api/v1/case/{caseId}/attachment/{attachmentId} | 
-[**UpdateCase**](CaseAPI.md#UpdateCase) | **Patch** /api/v1/case/{idOrName} | 
+[**AddAttachmentToCase**](CaseAPI.md#AddAttachmentToCase) | **Post** /api/v1/case/{caseId}/attachments | Add attachments to a case
+[**AddLinkWithAnExternalURL**](CaseAPI.md#AddLinkWithAnExternalURL) | **Post** /api/v1/case/{caseId}/link/external/add | Link a case to an external URL
+[**AddLinkWithAnotherCase**](CaseAPI.md#AddLinkWithAnotherCase) | **Post** /api/v1/case/{caseId}/link/case/add | Link a case to another case
+[**ApplyCaseTemplateOnExistingCases**](CaseAPI.md#ApplyCaseTemplateOnExistingCases) | **Post** /api/v1/case/_bulk/caseTemplate | Apply a case template to existing cases
+[**BulkManageCaseAccess**](CaseAPI.md#BulkManageCaseAccess) | **Post** /api/v1/case/_bulk/access | Set the access mode of multiple cases
+[**BulkUpdateCase**](CaseAPI.md#BulkUpdateCase) | **Patch** /api/v1/case/_bulk | Update multiple cases
+[**ChangeCaseOwningOrganisation**](CaseAPI.md#ChangeCaseOwningOrganisation) | **Post** /api/v1/case/{caseId}/owner | Change the owner organization of a case
+[**CreateCase**](CaseAPI.md#CreateCase) | **Post** /api/v1/case | Create a case
+[**DeleteACustomField**](CaseAPI.md#DeleteACustomField) | **Delete** /api/v1/case/customField/{cfId} | Remove a custom field from a case
+[**DeleteCase**](CaseAPI.md#DeleteCase) | **Delete** /api/v1/case/{idOrName} | Delete a case
+[**DeleteCaseAttachment**](CaseAPI.md#DeleteCaseAttachment) | **Delete** /api/v1/case/{caseId}/attachment/{attachmentId} | Remove an attachment from a case
+[**DeleteLinkWithAnAnotherCase**](CaseAPI.md#DeleteLinkWithAnAnotherCase) | **Post** /api/v1/case/{caseId}/link/case/remove | Remove a link to another case
+[**DeleteLinkWithAnExternalURL**](CaseAPI.md#DeleteLinkWithAnExternalURL) | **Post** /api/v1/case/{caseId}/link/external/remove | Remove a link to an external URL
+[**DownloadAttachmentFromCase**](CaseAPI.md#DownloadAttachmentFromCase) | **Get** /api/v1/case/{caseId}/attachment/{attachmentId}/download | Download an attachment from a case
+[**ExportCaseAsArchive**](CaseAPI.md#ExportCaseAsArchive) | **Get** /api/v1/case/{caseId}/export | Export a case as an archive
+[**GetAllLinkTypes**](CaseAPI.md#GetAllLinkTypes) | **Get** /api/v1/case/link/types | List all case link types
+[**GetAttachmentFromCase**](CaseAPI.md#GetAttachmentFromCase) | **Get** /api/v1/case/{caseId}/attachment/{attachmentId} | Get an attachment from a case
+[**GetCase**](CaseAPI.md#GetCase) | **Get** /api/v1/case/{idOrName} | Get a case
+[**GetCaseTimeline**](CaseAPI.md#GetCaseTimeline) | **Get** /api/v1/case/{caseId}/timeline | Get the timeline of a case
+[**GetSimilarCases**](CaseAPI.md#GetSimilarCases) | **Get** /api/v1/case/{caseId}/links | List similar cases
+[**GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert**](CaseAPI.md#GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert) | **Get** /api/v1/case/{caseId}/similar/{alertOrCaseId}/observables | List observables shared with another case or alert
+[**ImportCaseFromFile**](CaseAPI.md#ImportCaseFromFile) | **Post** /api/v1/case/import | Create a case from an archive
+[**ManageCaseAccess**](CaseAPI.md#ManageCaseAccess) | **Post** /api/v1/case/{caseId}/access | Set the access mode of a case
+[**MergeCases**](CaseAPI.md#MergeCases) | **Post** /api/v1/case/_merge/{ids} | Merge cases into a new case
+[**MergeSimilarObservablesOfThisCase**](CaseAPI.md#MergeSimilarObservablesOfThisCase) | **Post** /api/v1/case/{caseId}/observable/_merge | Deduplicate observables in a case
+[**UnlinkAlertFromCase**](CaseAPI.md#UnlinkAlertFromCase) | **Delete** /api/v1/case/{caseId}/alert/{alertId} | Unlink an alert from a case
+[**UpdateAttachment**](CaseAPI.md#UpdateAttachment) | **Patch** /api/v1/case/{caseId}/attachment/{attachmentId} | Update a case attachment
+[**UpdateCase**](CaseAPI.md#UpdateCase) | **Patch** /api/v1/case/{idOrName} | Update a case
 
 
 
 ## AddAttachmentToCase
 
 > OutputAttachments AddAttachmentToCase(ctx, caseId).Attachments(attachments).CanRename(canRename).Execute()
+
+Add attachments to a case
 
 
 
@@ -54,9 +56,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachments := []*os.File{"TODO"} // []*os.File | 
-	canRename := true // bool | If set to `true`, the files can be renamed if they already exist with the same name (optional)
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	attachments := []*os.File{"TODO"} // []*os.File | Files to attach. Each part is a multipart form file field.
+	canRename := true // bool | When `true`, renames files that already exist with the same name. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -76,7 +78,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -86,8 +88,8 @@ Other parameters are passed through a pointer to a apiAddAttachmentToCaseRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **attachments** | **[]*os.File** |  | 
- **canRename** | **bool** | If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name | 
+ **attachments** | **[]*os.File** | Files to attach. Each part is a multipart form file field. |
+ **canRename** | **bool** | When &#x60;true&#x60;, renames files that already exist with the same name. |
 
 ### Return type
 
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -111,7 +113,7 @@ Name | Type | Description  | Notes
 
 > AddLinkWithAnExternalURL(ctx, caseId).InputExternalLink(inputExternalLink).Execute()
 
-
+Link a case to an external URL
 
 
 
@@ -128,8 +130,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputExternalLink := *openapiclient.NewInputExternalLink("Type_example", "Url_example") // InputExternalLink | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputExternalLink := *openapiclient.NewInputExternalLink("Type_example", "Url_example") // InputExternalLink |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -147,7 +149,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -157,7 +159,7 @@ Other parameters are passed through a pointer to a apiAddLinkWithAnExternalURLRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputExternalLink** | [**InputExternalLink**](InputExternalLink.md) |  | 
+ **inputExternalLink** | [**InputExternalLink**](InputExternalLink.md) |  |
 
 ### Return type
 
@@ -165,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -181,7 +183,7 @@ Name | Type | Description  | Notes
 
 > AddLinkWithAnotherCase(ctx, caseId).InputCaseLink(inputCaseLink).Execute()
 
-
+Link a case to another case
 
 
 
@@ -198,8 +200,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCaseLink := *openapiclient.NewInputCaseLink("Type_example", "CaseId_example") // InputCaseLink | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCaseLink := *openapiclient.NewInputCaseLink("Type_example", "CaseId_example") // InputCaseLink |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -217,7 +219,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -227,7 +229,7 @@ Other parameters are passed through a pointer to a apiAddLinkWithAnotherCaseRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCaseLink** | [**InputCaseLink**](InputCaseLink.md) |  | 
+ **inputCaseLink** | [**InputCaseLink**](InputCaseLink.md) |  |
 
 ### Return type
 
@@ -235,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -251,7 +253,7 @@ Name | Type | Description  | Notes
 
 > ApplyCaseTemplateOnExistingCases(ctx).InputApplyCaseTemplateWithIds(inputApplyCaseTemplateWithIds).Execute()
 
-
+Apply a case template to existing cases
 
 
 
@@ -268,7 +270,7 @@ import (
 )
 
 func main() {
-	inputApplyCaseTemplateWithIds := *openapiclient.NewInputApplyCaseTemplateWithIds([]string{"Ids_example"}, "CaseTemplate_example") // InputApplyCaseTemplateWithIds | 
+	inputApplyCaseTemplateWithIds := *openapiclient.NewInputApplyCaseTemplateWithIds([]string{"Ids_example"}, "CaseTemplate_example") // InputApplyCaseTemplateWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -291,7 +293,7 @@ Other parameters are passed through a pointer to a apiApplyCaseTemplateOnExistin
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputApplyCaseTemplateWithIds** | [**InputApplyCaseTemplateWithIds**](InputApplyCaseTemplateWithIds.md) |  | 
+ **inputApplyCaseTemplateWithIds** | [**InputApplyCaseTemplateWithIds**](InputApplyCaseTemplateWithIds.md) |  |
 
 ### Return type
 
@@ -299,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -315,7 +317,7 @@ Name | Type | Description  | Notes
 
 > BulkManageCaseAccess(ctx).InputManageCaseAccessWithIds(inputManageCaseAccessWithIds).Execute()
 
-
+Set the access mode of multiple cases
 
 
 
@@ -332,7 +334,7 @@ import (
 )
 
 func main() {
-	inputManageCaseAccessWithIds := *openapiclient.NewInputManageCaseAccessWithIds([]string{"Ids_example"}, openapiclient.Access{AllExternalAccess: openapiclient.NewAllExternalAccess("Kind_example")}) // InputManageCaseAccessWithIds | 
+	inputManageCaseAccessWithIds := *openapiclient.NewInputManageCaseAccessWithIds([]string{"Ids_example"}, openapiclient.Access{AllExternalAccess: openapiclient.NewAllExternalAccess("Kind_example")}) // InputManageCaseAccessWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -355,7 +357,7 @@ Other parameters are passed through a pointer to a apiBulkManageCaseAccessReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputManageCaseAccessWithIds** | [**InputManageCaseAccessWithIds**](InputManageCaseAccessWithIds.md) |  | 
+ **inputManageCaseAccessWithIds** | [**InputManageCaseAccessWithIds**](InputManageCaseAccessWithIds.md) |  |
 
 ### Return type
 
@@ -363,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -378,6 +380,8 @@ Name | Type | Description  | Notes
 ## BulkUpdateCase
 
 > BulkUpdateCase(ctx).InputUpdateCaseWithIds(inputUpdateCaseWithIds).Execute()
+
+Update multiple cases
 
 
 
@@ -394,7 +398,7 @@ import (
 )
 
 func main() {
-	inputUpdateCaseWithIds := *openapiclient.NewInputUpdateCaseWithIds([]string{"Ids_example"}) // InputUpdateCaseWithIds | 
+	inputUpdateCaseWithIds := *openapiclient.NewInputUpdateCaseWithIds([]string{"Ids_example"}) // InputUpdateCaseWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -417,7 +421,7 @@ Other parameters are passed through a pointer to a apiBulkUpdateCaseRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateCaseWithIds** | [**InputUpdateCaseWithIds**](InputUpdateCaseWithIds.md) |  | 
+ **inputUpdateCaseWithIds** | [**InputUpdateCaseWithIds**](InputUpdateCaseWithIds.md) |  |
 
 ### Return type
 
@@ -425,7 +429,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -441,7 +445,7 @@ Name | Type | Description  | Notes
 
 > ChangeCaseOwningOrganisation(ctx, caseId).InputChangeCaseOwnership(inputChangeCaseOwnership).Execute()
 
-
+Change the owner organization of a case
 
 
 
@@ -458,8 +462,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputChangeCaseOwnership := *openapiclient.NewInputChangeCaseOwnership("Organisation_example") // InputChangeCaseOwnership | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputChangeCaseOwnership := *openapiclient.NewInputChangeCaseOwnership("Organisation_example") // InputChangeCaseOwnership |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -477,7 +481,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -487,7 +491,7 @@ Other parameters are passed through a pointer to a apiChangeCaseOwningOrganisati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputChangeCaseOwnership** | [**InputChangeCaseOwnership**](InputChangeCaseOwnership.md) |  | 
+ **inputChangeCaseOwnership** | [**InputChangeCaseOwnership**](InputChangeCaseOwnership.md) |  |
 
 ### Return type
 
@@ -495,7 +499,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -511,7 +515,7 @@ Name | Type | Description  | Notes
 
 > OutputCase CreateCase(ctx).InputCreateCase(inputCreateCase).Execute()
 
-
+Create a case
 
 
 
@@ -528,7 +532,7 @@ import (
 )
 
 func main() {
-	inputCreateCase := *openapiclient.NewInputCreateCase("Title_example", "Description_example") // InputCreateCase | 
+	inputCreateCase := *openapiclient.NewInputCreateCase("Title_example", "Description_example") // InputCreateCase |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -553,7 +557,7 @@ Other parameters are passed through a pointer to a apiCreateCaseRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateCase** | [**InputCreateCase**](InputCreateCase.md) |  | 
+ **inputCreateCase** | [**InputCreateCase**](InputCreateCase.md) |  |
 
 ### Return type
 
@@ -561,7 +565,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -576,6 +580,8 @@ Name | Type | Description  | Notes
 ## DeleteACustomField
 
 > DeleteACustomField(ctx, cfId).Execute()
+
+Remove a custom field from a case
 
 
 
@@ -592,7 +598,7 @@ import (
 )
 
 func main() {
-	cfId := "cfId_example" // string | 
+	cfId := "cfId_example" // string | The custom field ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -610,7 +616,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cfId** | **string** |  | 
+**cfId** | **string** | The custom field ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -627,7 +633,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -642,6 +648,8 @@ Name | Type | Description  | Notes
 ## DeleteCase
 
 > DeleteCase(ctx, idOrName).Execute()
+
+Delete a case
 
 
 
@@ -658,7 +666,7 @@ import (
 )
 
 func main() {
-	idOrName := "idOrName_example" // string | 
+	idOrName := "idOrName_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -676,7 +684,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  | 
+**idOrName** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -693,7 +701,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -708,6 +716,8 @@ Name | Type | Description  | Notes
 ## DeleteCaseAttachment
 
 > DeleteCaseAttachment(ctx, caseId, attachmentId).Execute()
+
+Remove an attachment from a case
 
 
 
@@ -724,8 +734,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -743,8 +753,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -762,7 +772,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -778,7 +788,7 @@ Name | Type | Description  | Notes
 
 > DeleteLinkWithAnAnotherCase(ctx, caseId).InputCaseLink(inputCaseLink).Execute()
 
-
+Remove a link to another case
 
 
 
@@ -795,8 +805,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCaseLink := *openapiclient.NewInputCaseLink("Type_example", "CaseId_example") // InputCaseLink | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputCaseLink := *openapiclient.NewInputCaseLink("Type_example", "CaseId_example") // InputCaseLink |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -814,7 +824,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -824,7 +834,7 @@ Other parameters are passed through a pointer to a apiDeleteLinkWithAnAnotherCas
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCaseLink** | [**InputCaseLink**](InputCaseLink.md) |  | 
+ **inputCaseLink** | [**InputCaseLink**](InputCaseLink.md) |  |
 
 ### Return type
 
@@ -832,7 +842,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -848,7 +858,7 @@ Name | Type | Description  | Notes
 
 > DeleteLinkWithAnExternalURL(ctx, caseId).InputExternalLink(inputExternalLink).Execute()
 
-
+Remove a link to an external URL
 
 
 
@@ -865,8 +875,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputExternalLink := *openapiclient.NewInputExternalLink("Type_example", "Url_example") // InputExternalLink | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputExternalLink := *openapiclient.NewInputExternalLink("Type_example", "Url_example") // InputExternalLink |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -884,7 +894,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -894,7 +904,7 @@ Other parameters are passed through a pointer to a apiDeleteLinkWithAnExternalUR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputExternalLink** | [**InputExternalLink**](InputExternalLink.md) |  | 
+ **inputExternalLink** | [**InputExternalLink**](InputExternalLink.md) |  |
 
 ### Return type
 
@@ -902,7 +912,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -917,6 +927,8 @@ Name | Type | Description  | Notes
 ## DownloadAttachmentFromCase
 
 > *os.File DownloadAttachmentFromCase(ctx, caseId, attachmentId).Execute()
+
+Download an attachment from a case
 
 
 
@@ -933,8 +945,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -954,8 +966,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -973,7 +985,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -989,7 +1001,7 @@ Name | Type | Description  | Notes
 
 > *os.File ExportCaseAsArchive(ctx, caseId).Password(password).Execute()
 
-
+Export a case as an archive
 
 
 
@@ -1006,8 +1018,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	password := "password_example" // string | A password to encrypt the file. Needs to be provided when importing the file
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	password := "password_example" // string | Password to encrypt the archive. Required when restoring it via `POST /api/v1/case/import`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1027,7 +1039,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1037,7 +1049,7 @@ Other parameters are passed through a pointer to a apiExportCaseAsArchiveRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **password** | **string** | A password to encrypt the file. Needs to be provided when importing the file | 
+ **password** | **string** | Password to encrypt the archive. Required when restoring it via &#x60;POST /api/v1/case/import&#x60;. |
 
 ### Return type
 
@@ -1045,7 +1057,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1061,7 +1073,7 @@ Name | Type | Description  | Notes
 
 > []string GetAllLinkTypes(ctx).Execute()
 
-
+List all case link types
 
 
 
@@ -1106,7 +1118,7 @@ Other parameters are passed through a pointer to a apiGetAllLinkTypesRequest str
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1122,7 +1134,7 @@ Other parameters are passed through a pointer to a apiGetAllLinkTypesRequest str
 
 > *os.File GetAttachmentFromCase(ctx, caseId, attachmentId).IfNoneMatch(ifNoneMatch).Execute()
 
-
+Get an attachment from a case
 
 
 
@@ -1139,9 +1151,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	ifNoneMatch := "ifNoneMatch_example" // string |  (optional)
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	ifNoneMatch := "ifNoneMatch_example" // string | ETag from a previous response. If it matches, returns `304 Not Modified` instead of the file content. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1161,8 +1173,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1173,7 +1185,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **ifNoneMatch** | **string** |  | 
+ **ifNoneMatch** | **string** | ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content. |
 
 ### Return type
 
@@ -1181,7 +1193,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1196,6 +1208,8 @@ Name | Type | Description  | Notes
 ## GetCase
 
 > OutputCase GetCase(ctx, idOrName).Execute()
+
+Get a case
 
 
 
@@ -1212,7 +1226,7 @@ import (
 )
 
 func main() {
-	idOrName := "idOrName_example" // string | 
+	idOrName := "idOrName_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1232,7 +1246,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  | 
+**idOrName** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1249,7 +1263,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1264,6 +1278,8 @@ Name | Type | Description  | Notes
 ## GetCaseTimeline
 
 > OutputTimeline GetCaseTimeline(ctx, caseId).Execute()
+
+Get the timeline of a case
 
 
 
@@ -1280,7 +1296,7 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1300,7 +1316,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1317,7 +1333,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1333,7 +1349,7 @@ Name | Type | Description  | Notes
 
 > []OutputCaseWithLinks GetSimilarCases(ctx, caseId).Execute()
 
-
+List similar cases
 
 
 
@@ -1350,7 +1366,7 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1370,7 +1386,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1387,7 +1403,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1402,6 +1418,8 @@ Name | Type | Description  | Notes
 ## GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert
 
 > []OutputObservable GetSimilarObservablesBetweenACaseAndAnotherCaseOrAlert(ctx, caseId, alertOrCaseId).Execute()
+
+List observables shared with another case or alert
 
 
 
@@ -1418,8 +1436,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	alertOrCaseId := "alertOrCaseId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	alertOrCaseId := "alertOrCaseId_example" // string | The ID of the alert or case, preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1439,8 +1457,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**alertOrCaseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**alertOrCaseId** | **string** | The ID of the alert or case, preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1458,7 +1476,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1474,7 +1492,7 @@ Name | Type | Description  | Notes
 
 > OutputImportCase ImportCaseFromFile(ctx).Json(json).File(file).Execute()
 
-
+Create a case from an archive
 
 
 
@@ -1491,8 +1509,8 @@ import (
 )
 
 func main() {
-	json := *openapiclient.NewInputImportCase("Password_example") // InputImportCase | 
-	file := os.NewFile(1234, "some_file") // *os.File | 
+	json := *openapiclient.NewInputImportCase("Password_example") // InputImportCase |
+	file := os.NewFile(1234, "some_file") // *os.File |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1517,8 +1535,8 @@ Other parameters are passed through a pointer to a apiImportCaseFromFileRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **json** | [**InputImportCase**](InputImportCase.md) |  | 
- **file** | ***os.File** |  | 
+ **json** | [**InputImportCase**](InputImportCase.md) |  |
+ **file** | ***os.File** |  |
 
 ### Return type
 
@@ -1526,7 +1544,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1542,7 +1560,7 @@ Name | Type | Description  | Notes
 
 > ManageCaseAccess(ctx, caseId).InputManageCaseAccess(inputManageCaseAccess).Execute()
 
-
+Set the access mode of a case
 
 
 
@@ -1559,8 +1577,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputManageCaseAccess := *openapiclient.NewInputManageCaseAccess(openapiclient.Access{AllExternalAccess: openapiclient.NewAllExternalAccess("Kind_example")}) // InputManageCaseAccess | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	inputManageCaseAccess := *openapiclient.NewInputManageCaseAccess(openapiclient.Access{AllExternalAccess: openapiclient.NewAllExternalAccess("Kind_example")}) // InputManageCaseAccess |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1578,7 +1596,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1588,7 +1606,7 @@ Other parameters are passed through a pointer to a apiManageCaseAccessRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputManageCaseAccess** | [**InputManageCaseAccess**](InputManageCaseAccess.md) |  | 
+ **inputManageCaseAccess** | [**InputManageCaseAccess**](InputManageCaseAccess.md) |  |
 
 ### Return type
 
@@ -1596,7 +1614,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1612,7 +1630,7 @@ Name | Type | Description  | Notes
 
 > OutputCase MergeCases(ctx, ids).Execute()
 
-
+Merge cases into a new case
 
 
 
@@ -1629,7 +1647,7 @@ import (
 )
 
 func main() {
-	ids := "ids_example" // string | 
+	ids := "ids_example" // string | List of case IDs preceded by `~`, or case numbers.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1649,7 +1667,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ids** | **string** |  | 
+**ids** | **string** | List of case IDs preceded by &#x60;~&#x60;, or case numbers. |
 
 ### Other Parameters
 
@@ -1666,7 +1684,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1681,6 +1699,8 @@ Name | Type | Description  | Notes
 ## MergeSimilarObservablesOfThisCase
 
 > OutputMergeCases MergeSimilarObservablesOfThisCase(ctx, caseId).Execute()
+
+Deduplicate observables in a case
 
 
 
@@ -1697,7 +1717,7 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1717,7 +1737,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1734,7 +1754,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1749,6 +1769,8 @@ Name | Type | Description  | Notes
 ## UnlinkAlertFromCase
 
 > UnlinkAlertFromCase(ctx, caseId, alertId).Execute()
+
+Unlink an alert from a case
 
 
 
@@ -1765,8 +1787,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	alertId := "alertId_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	alertId := "alertId_example" // string | The alert ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1784,8 +1806,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**alertId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**alertId** | **string** | The alert ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1803,7 +1825,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1819,7 +1841,7 @@ Name | Type | Description  | Notes
 
 > UpdateAttachment(ctx, caseId, attachmentId).InputUpdateAttachment(inputUpdateAttachment).Execute()
 
-
+Update a case attachment
 
 
 
@@ -1836,9 +1858,9 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	inputUpdateAttachment := *openapiclient.NewInputUpdateAttachment() // InputUpdateAttachment | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or the case number.
+	attachmentId := "attachmentId_example" // string | The attachment ID preceded by `~`.
+	inputUpdateAttachment := *openapiclient.NewInputUpdateAttachment() // InputUpdateAttachment |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1856,8 +1878,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**attachmentId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
+**attachmentId** | **string** | The attachment ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -1868,7 +1890,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **inputUpdateAttachment** | [**InputUpdateAttachment**](InputUpdateAttachment.md) |  | 
+ **inputUpdateAttachment** | [**InputUpdateAttachment**](InputUpdateAttachment.md) |  |
 
 ### Return type
 
@@ -1876,7 +1898,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1891,6 +1913,8 @@ Name | Type | Description  | Notes
 ## UpdateCase
 
 > UpdateCase(ctx, idOrName).InputUpdateCase(inputUpdateCase).Execute()
+
+Update a case
 
 
 
@@ -1907,8 +1931,8 @@ import (
 )
 
 func main() {
-	idOrName := "idOrName_example" // string | 
-	inputUpdateCase := *openapiclient.NewInputUpdateCase() // InputUpdateCase | 
+	idOrName := "idOrName_example" // string | The case ID preceded by `~`, or the case number.
+	inputUpdateCase := *openapiclient.NewInputUpdateCase() // InputUpdateCase |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1926,7 +1950,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** |  | 
+**idOrName** | **string** | The case ID preceded by &#x60;~&#x60;, or the case number. |
 
 ### Other Parameters
 
@@ -1936,7 +1960,7 @@ Other parameters are passed through a pointer to a apiUpdateCaseRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateCase** | [**InputUpdateCase**](InputUpdateCase.md) |  | 
+ **inputUpdateCase** | [**InputUpdateCase**](InputUpdateCase.md) |  |
 
 ### Return type
 
@@ -1944,7 +1968,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -1954,4 +1978,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

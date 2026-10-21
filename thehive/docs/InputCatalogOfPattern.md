@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | Pointer to **string** |  | [optional] 
-**Variant** | Pointer to **string** |  | [optional] 
+**Name** | **string** | Unique name for the catalog. |
+**Description** | Pointer to **string** | Optional description of the catalog. | [optional]
+**Variant** | Pointer to **string** | Optional variant identifier to distinguish different versions of the catalog, such as a date or matrix name. | [optional]
 
 ## Methods
 
@@ -99,5 +99,3 @@ HasVariant returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

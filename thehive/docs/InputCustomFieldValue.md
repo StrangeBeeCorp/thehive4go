@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Name of a CustomField | 
-**Value** | **interface{}** |  | 
-**Order** | Pointer to **int32** |  | [optional] 
+**Name** | **string** | Name of the custom field. Must match an existing custom field. Use &#x60;GET /api/v1/customField&#x60; to list available custom fields. |
+**Value** | **interface{}** |  |
+**Order** | Pointer to **int32** | Display order of the custom field value within the case. | [optional]
 
 ## Methods
 
@@ -104,5 +104,3 @@ HasOrder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

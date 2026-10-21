@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional]
-**LoginLogo** | Pointer to **string** |  | [optional]
-**MenuLogo** | Pointer to **string** |  | [optional]
-**Favicon** | Pointer to **string** |  | [optional]
+**Title** | Pointer to **string** | Title shown in the browser tab instead of TheHive. | [optional]
+**LoginLogo** | Pointer to **string** | Relative URL to the login page logo. Use &#x60;GET /api/v1/branding/assets/loginLogo&#x60; to retrieve the image. | [optional]
+**MenuLogo** | Pointer to **string** | Relative URL to the navigation bar logo. Use &#x60;GET /api/v1/branding/assets/menuLogo&#x60; to retrieve the image. | [optional]
+**Favicon** | Pointer to **string** | Relative URL to the browser tab favicon. Use &#x60;GET /api/v1/branding/assets/favicon&#x60; to retrieve the image. | [optional]
 
 ## Methods
 

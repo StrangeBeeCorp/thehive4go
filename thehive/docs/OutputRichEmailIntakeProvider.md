@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Name of the provider |
+**Name** | [**EmailIntakeProviderName**](EmailIntakeProviderName.md) | Name of the email provider. |
 **Kind** | [**EmailIntakeConfigKind**](EmailIntakeConfigKind.md) |  |
 
 ## Methods

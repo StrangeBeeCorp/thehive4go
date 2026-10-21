@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**File** | **string** |  | 
-**Error** | **string** |  | 
-**Details** | Pointer to **interface{}** |  | [optional] 
-**Status** | **string** |  | 
+**File** | **string** | Name of the file that caused the error. |
+**Error** | **string** | Description of the error. |
+**Details** | Pointer to **map[string]interface{}** | Additional error details. | [optional]
+**Status** | **string** | Import status. Always &#x60;Failure&#x60; for this variant. |
 
 ## Methods
 
@@ -70,20 +70,20 @@ SetError sets Error field to given value.
 
 ### GetDetails
 
-`func (o *Error) GetDetails() interface{}`
+`func (o *Error) GetDetails() map[string]interface{}`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *Error) GetDetailsOk() (*interface{}, bool)`
+`func (o *Error) GetDetailsOk() (*map[string]interface{}, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *Error) SetDetails(v interface{})`
+`func (o *Error) SetDetails(v map[string]interface{})`
 
 SetDetails sets Details field to given value.
 
@@ -93,16 +93,6 @@ SetDetails sets Details field to given value.
 
 HasDetails returns a boolean if a field has been set.
 
-### SetDetailsNil
-
-`func (o *Error) SetDetailsNil(b bool)`
-
- SetDetailsNil sets the value for Details to be an explicit nil
-
-### UnsetDetails
-`func (o *Error) UnsetDetails()`
-
-UnsetDetails ensures that no value is present for Details, not even an explicit nil
 ### GetStatus
 
 `func (o *Error) GetStatus() string`
@@ -125,5 +115,3 @@ SetStatus sets Status field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

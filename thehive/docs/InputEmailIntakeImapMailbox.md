@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Provider** | [**InputEmailIntakeProvider**](InputEmailIntakeProvider.md) |  | 
-**Credential** | [**InputEmailIntakeCredential**](InputEmailIntakeCredential.md) |  | 
-**Inbox** | Pointer to **string** | The folder where the emails are fetched | [optional] [default to "Inbox"]
-**Archive** | Pointer to **string** | The folder where the email should be moved | [optional] 
-**MarkAsRead** | Pointer to **bool** |  | [optional] [default to false]
-**Kind** | Pointer to **string** | The type of the provider config (imap, api) | [optional] 
+**Provider** | [**InputEmailIntakeProvider**](InputEmailIntakeProvider.md) |  |
+**Credential** | [**InputEmailIntakeCredential**](InputEmailIntakeCredential.md) |  |
+**Inbox** | Pointer to **string** | Folder from which emails are fetched. Use &#x60;POST /api/v1/connector/email-intake/folders&#x60; to list available folders. | [optional] [default to "Inbox"]
+**Archive** | Pointer to **string** | Folder where processed emails are moved after fetching. Use &#x60;POST /api/v1/connector/email-intake/folders&#x60; to list available folders. When omitted, emails aren&#39;t moved. | [optional]
+**MarkAsRead** | Pointer to **bool** | Marks processed emails as read in the mailbox after fetching. | [optional] [default to false]
+**Kind** | Pointer to **string** | Discriminator identifying this as an IMAP mailbox configuration. Must be &#x60;imap&#x60;. | [optional]
 
 ## Methods
 
@@ -172,5 +172,3 @@ HasKind returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

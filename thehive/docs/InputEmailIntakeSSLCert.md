@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | **string** |  | 
-**Type** | Pointer to **string** |  | [optional] 
+**Data** | **string** | PEM-encoded certificate data. |
+**Type** | Pointer to **string** | Certificate type identifier. | [optional]
 
 ## Methods
 
@@ -73,5 +73,3 @@ HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

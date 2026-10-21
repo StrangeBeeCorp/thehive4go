@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Source** | **string** |  | 
-**Tags** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to **string** | Type of the alerts created through the email intake connector. | [optional] [default to "email-intake"]
+**Source** | **string** | Source of the alerts created through the email intake connector. Defaults to the slugified connector name. |
+**Tags** | Pointer to **[]string** | Tags applied to alerts created through the email intake connector. | [optional]
 
 ## Methods
 
 ### NewInputEmailIntakeAlertProperties
 
-`func NewInputEmailIntakeAlertProperties(type_ string, source string, ) *InputEmailIntakeAlertProperties`
+`func NewInputEmailIntakeAlertProperties(source string, ) *InputEmailIntakeAlertProperties`
 
 NewInputEmailIntakeAlertProperties instantiates a new InputEmailIntakeAlertProperties object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *InputEmailIntakeAlertProperties) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetSource
 
@@ -94,5 +99,3 @@ HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

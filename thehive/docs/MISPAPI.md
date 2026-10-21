@@ -4,16 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExportCaseToMISP**](MISPAPI.md#ExportCaseToMISP) | **Post** /api/v1/connector/misp/export/{caseId}/{mispName} | 
-[**GetMISPStatus**](MISPAPI.md#GetMISPStatus) | **Get** /api/v1/connector/misp/status | 
-[**ImportCaseFromMISP**](MISPAPI.md#ImportCaseFromMISP) | **Post** /api/v1/connector/misp/case/import | 
-[**SyncWithMISPServers**](MISPAPI.md#SyncWithMISPServers) | **Get** /api/v1/connector/misp/_syncAlerts | 
+[**ExportCaseToMISP**](MISPAPI.md#ExportCaseToMISP) | **Post** /api/v1/connector/misp/export/{caseId}/{mispName} | Export a case to a MISP server
+[**GetMISPStatus**](MISPAPI.md#GetMISPStatus) | **Get** /api/v1/connector/misp/status | Get MISP server sync status
+[**ImportCaseFromMISP**](MISPAPI.md#ImportCaseFromMISP) | **Post** /api/v1/connector/misp/case/import | Import a MISP event as a case
+[**SyncWithMISPServers**](MISPAPI.md#SyncWithMISPServers) | **Get** /api/v1/connector/misp/_syncAlerts | Trigger a MISP event synchronization
 
 
 
 ## ExportCaseToMISP
 
 > ExportCaseToMISP(ctx, caseId, mispName).Execute()
+
+Export a case to a MISP server
 
 
 
@@ -30,8 +32,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	mispName := "mispName_example" // string | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or case number.
+	mispName := "mispName_example" // string | Name of the MISP server to export the case to. Must match a server configured in TheHive.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -49,8 +51,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
-**mispName** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or case number. |
+**mispName** | **string** | Name of the MISP server to export the case to. Must match a server configured in TheHive. |
 
 ### Other Parameters
 
@@ -68,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -83,6 +85,8 @@ Name | Type | Description  | Notes
 ## GetMISPStatus
 
 > map[string]interface{} GetMISPStatus(ctx).Execute()
+
+Get MISP server sync status
 
 
 
@@ -127,7 +131,7 @@ Other parameters are passed through a pointer to a apiGetMISPStatusRequest struc
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -142,6 +146,8 @@ Other parameters are passed through a pointer to a apiGetMISPStatusRequest struc
 ## ImportCaseFromMISP
 
 > OutputCase ImportCaseFromMISP(ctx).Json(json).File(file).Execute()
+
+Import a MISP event as a case
 
 
 
@@ -158,8 +164,8 @@ import (
 )
 
 func main() {
-	json := *openapiclient.NewInputImportCase1() // InputImportCase1 | 
-	file := os.NewFile(1234, "some_file") // *os.File | 
+	json := *openapiclient.NewInputImportCase1() // InputImportCase1 |
+	file := os.NewFile(1234, "some_file") // *os.File |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -184,8 +190,8 @@ Other parameters are passed through a pointer to a apiImportCaseFromMISPRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **json** | [**InputImportCase1**](InputImportCase1.md) |  | 
- **file** | ***os.File** |  | 
+ **json** | [**InputImportCase1**](InputImportCase1.md) |  |
+ **file** | ***os.File** |  |
 
 ### Return type
 
@@ -193,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -208,6 +214,8 @@ Name | Type | Description  | Notes
 ## SyncWithMISPServers
 
 > SyncWithMISPServers(ctx).Execute()
+
+Trigger a MISP event synchronization
 
 
 
@@ -250,7 +258,7 @@ Other parameters are passed through a pointer to a apiSyncWithMISPServersRequest
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -260,4 +268,3 @@ Other parameters are passed through a pointer to a apiSyncWithMISPServersRequest
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

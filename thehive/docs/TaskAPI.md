@@ -4,20 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTaskInCase**](TaskAPI.md#CreateTaskInCase) | **Post** /api/v1/case/{caseId}/task | 
-[**DeleteTask**](TaskAPI.md#DeleteTask) | **Delete** /api/v1/task/{taskId} | 
-[**GetTask**](TaskAPI.md#GetTask) | **Get** /api/v1/task/{taskId} | 
-[**SetTaskAsDoneByOrganisation**](TaskAPI.md#SetTaskAsDoneByOrganisation) | **Put** /api/v1/task/{taskId}/actionDone/{orgId} | 
-[**SetTaskAsRequiredByOrganisation**](TaskAPI.md#SetTaskAsRequiredByOrganisation) | **Put** /api/v1/task/{taskId}/actionRequired/{orgId} | 
-[**TaskActionsRequired**](TaskAPI.md#TaskActionsRequired) | **Get** /api/v1/task/{taskId}/actionRequired | 
-[**UpdateBulkOfTask**](TaskAPI.md#UpdateBulkOfTask) | **Patch** /api/v1/task/_bulk | 
-[**UpdateTask**](TaskAPI.md#UpdateTask) | **Patch** /api/v1/task/{taskId} | 
+[**CreateTaskInCase**](TaskAPI.md#CreateTaskInCase) | **Post** /api/v1/case/{caseId}/task | Create a task in a case
+[**DeleteTask**](TaskAPI.md#DeleteTask) | **Delete** /api/v1/task/{taskId} | Delete a task
+[**GetTask**](TaskAPI.md#GetTask) | **Get** /api/v1/task/{taskId} | Get a task
+[**SetTaskAsDoneByOrganisation**](TaskAPI.md#SetTaskAsDoneByOrganisation) | **Put** /api/v1/task/{taskId}/actionDone/{orgId} | Set action done on a task
+[**SetTaskAsRequiredByOrganisation**](TaskAPI.md#SetTaskAsRequiredByOrganisation) | **Put** /api/v1/task/{taskId}/actionRequired/{orgId} | Set action required on a task
+[**TaskActionsRequired**](TaskAPI.md#TaskActionsRequired) | **Get** /api/v1/task/{taskId}/actionRequired | Check action required for a task
+[**UpdateBulkOfTask**](TaskAPI.md#UpdateBulkOfTask) | **Patch** /api/v1/task/_bulk | Update multiple tasks
+[**UpdateTask**](TaskAPI.md#UpdateTask) | **Patch** /api/v1/task/{taskId} | Update a task
 
 
 
 ## CreateTaskInCase
 
 > OutputTask CreateTaskInCase(ctx, caseId).InputCreateTask(inputCreateTask).Execute()
+
+Create a task in a case
 
 
 
@@ -34,8 +36,8 @@ import (
 )
 
 func main() {
-	caseId := "caseId_example" // string | 
-	inputCreateTask := *openapiclient.NewInputCreateTask("Title_example") // InputCreateTask | 
+	caseId := "caseId_example" // string | The case ID preceded by `~`, or case number.
+	inputCreateTask := *openapiclient.NewInputCreateTask("Title_example") // InputCreateTask |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**caseId** | **string** |  | 
+**caseId** | **string** | The case ID preceded by &#x60;~&#x60;, or case number. |
 
 ### Other Parameters
 
@@ -65,7 +67,7 @@ Other parameters are passed through a pointer to a apiCreateTaskInCaseRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputCreateTask** | [**InputCreateTask**](InputCreateTask.md) |  | 
+ **inputCreateTask** | [**InputCreateTask**](InputCreateTask.md) |  |
 
 ### Return type
 
@@ -73,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -88,6 +90,8 @@ Name | Type | Description  | Notes
 ## DeleteTask
 
 > DeleteTask(ctx, taskId).Execute()
+
+Delete a task
 
 
 
@@ -104,7 +108,7 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -122,7 +126,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -139,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -154,6 +158,8 @@ Name | Type | Description  | Notes
 ## GetTask
 
 > OutputTask GetTask(ctx, taskId).Execute()
+
+Get a task
 
 
 
@@ -170,7 +176,7 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -190,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -207,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -222,6 +228,8 @@ Name | Type | Description  | Notes
 ## SetTaskAsDoneByOrganisation
 
 > SetTaskAsDoneByOrganisation(ctx, taskId, orgId).Execute()
+
+Set action done on a task
 
 
 
@@ -238,8 +246,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	orgId := "orgId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	orgId := "orgId_example" // string | The organization ID preceded by `~`, or organization name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -257,8 +265,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
-**orgId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
+**orgId** | **string** | The organization ID preceded by &#x60;~&#x60;, or organization name. |
 
 ### Other Parameters
 
@@ -276,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -291,6 +299,8 @@ Name | Type | Description  | Notes
 ## SetTaskAsRequiredByOrganisation
 
 > SetTaskAsRequiredByOrganisation(ctx, taskId, orgId).Execute()
+
+Set action required on a task
 
 
 
@@ -307,8 +317,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	orgId := "orgId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	orgId := "orgId_example" // string | The organization ID preceded by `~`, or organization name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -326,8 +336,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
-**orgId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
+**orgId** | **string** | The organization ID preceded by &#x60;~&#x60;, or organization name. |
 
 ### Other Parameters
 
@@ -345,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -360,6 +370,8 @@ Name | Type | Description  | Notes
 ## TaskActionsRequired
 
 > map[string]bool TaskActionsRequired(ctx, taskId).Execute()
+
+Check action required for a task
 
 
 
@@ -376,7 +388,7 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -396,7 +408,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -413,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -428,6 +440,8 @@ Name | Type | Description  | Notes
 ## UpdateBulkOfTask
 
 > UpdateBulkOfTask(ctx).InputUpdateTaskWithIds(inputUpdateTaskWithIds).Execute()
+
+Update multiple tasks
 
 
 
@@ -444,7 +458,7 @@ import (
 )
 
 func main() {
-	inputUpdateTaskWithIds := *openapiclient.NewInputUpdateTaskWithIds([]string{"Ids_example"}) // InputUpdateTaskWithIds | 
+	inputUpdateTaskWithIds := *openapiclient.NewInputUpdateTaskWithIds([]string{"Ids_example"}) // InputUpdateTaskWithIds |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -467,7 +481,7 @@ Other parameters are passed through a pointer to a apiUpdateBulkOfTaskRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputUpdateTaskWithIds** | [**InputUpdateTaskWithIds**](InputUpdateTaskWithIds.md) |  | 
+ **inputUpdateTaskWithIds** | [**InputUpdateTaskWithIds**](InputUpdateTaskWithIds.md) |  |
 
 ### Return type
 
@@ -475,7 +489,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -490,6 +504,8 @@ Name | Type | Description  | Notes
 ## UpdateTask
 
 > UpdateTask(ctx, taskId).InputUpdateTask(inputUpdateTask).Execute()
+
+Update a task
 
 
 
@@ -506,8 +522,8 @@ import (
 )
 
 func main() {
-	taskId := "taskId_example" // string | 
-	inputUpdateTask := *openapiclient.NewInputUpdateTask() // InputUpdateTask | 
+	taskId := "taskId_example" // string | The task ID preceded by `~`.
+	inputUpdateTask := *openapiclient.NewInputUpdateTask() // InputUpdateTask |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -525,7 +541,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | **string** |  | 
+**taskId** | **string** | The task ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -535,7 +551,7 @@ Other parameters are passed through a pointer to a apiUpdateTaskRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateTask** | [**InputUpdateTask**](InputUpdateTask.md) |  | 
+ **inputUpdateTask** | [**InputUpdateTask**](InputUpdateTask.md) |  |
 
 ### Return type
 
@@ -543,7 +559,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -553,4 +569,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

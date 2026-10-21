@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Order** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
-**Hidden** | Pointer to **bool** |  | [optional] 
+**Order** | Pointer to **int32** | New position in the UI dropdown list. Set to &#x60;null&#x60; to remove the custom ordering. | [optional]
+**Description** | Pointer to **string** | New description. Set to &#x60;null&#x60; to remove the existing description. | [optional]
+**Colour** | Pointer to **string** | New hex color code. Set to &#x60;null&#x60; to remove the custom color. | [optional]
+**Hidden** | Pointer to **bool** | When &#x60;true&#x60;, hides the status from the UI dropdown. Hidden statuses remain accessible through the API. | [optional]
+**RequiresImpact** | Pointer to **bool** | When &#x60;true&#x60;, closing a case with this status requires an &#x60;impactStatus&#x60;. Only a status in the *Closed* stage can require an impact, and you can&#39;t turn it off for the predefined &#x60;TruePositive&#x60; status. | [optional]
 
 ## Methods
 
@@ -128,7 +129,30 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
+### GetRequiresImpact
+
+`func (o *InputUpdateCaseStatus) GetRequiresImpact() bool`
+
+GetRequiresImpact returns the RequiresImpact field if non-nil, zero value otherwise.
+
+### GetRequiresImpactOk
+
+`func (o *InputUpdateCaseStatus) GetRequiresImpactOk() (*bool, bool)`
+
+GetRequiresImpactOk returns a tuple with the RequiresImpact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiresImpact
+
+`func (o *InputUpdateCaseStatus) SetRequiresImpact(v bool)`
+
+SetRequiresImpact sets RequiresImpact field to given value.
+
+### HasRequiresImpact
+
+`func (o *InputUpdateCaseStatus) HasRequiresImpact() bool`
+
+HasRequiresImpact returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

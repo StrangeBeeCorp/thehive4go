@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CaseTemplate** | Pointer to **string** |  | [optional] 
-**Assignee** | Pointer to **string** |  | [optional] 
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) |  | [optional] 
-**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional] 
-**TaskRule** | Pointer to **string** |  | [optional] 
-**ObservableRule** | Pointer to **string** |  | [optional] 
+**CaseTemplate** | Pointer to **string** | Name of the case template to apply to the created case. Must match an existing case template. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCaseTemplate&#x60; to list available case templates. | [optional]
+**Assignee** | Pointer to **string** | Login of the user to assign as owner of the case. Typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted. | [optional]
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Tasks to create in the case. A task represents one or more actions, called task logs, that must be completed during the investigation. If omitted and a case template is provided, the template&#39;s tasks are applied instead. | [optional]
+**Pages** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) | Pages to create in the case for structured documentation such as lessons learned, investigation reports, or meeting notes. [Case pages are temporary](https://docs.strangebee.com/thehive/user-guides/knowledge-base/about-case-pages/#permanent-vs-temporary-documentation): they&#39;re scoped to the active investigation and can&#39;t be searched. If omitted and a case template is provided, the template&#39;s pages are applied instead. | [optional]
+**CustomFields** | Pointer to [**InputCreateCaseCustomFields**](InputCreateCaseCustomFields.md) |  | [optional]
+**SharingParameters** | Pointer to [**[]InputShare**](InputShare.md) | Per-organization sharing configuration for this case. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/) for specific linked organizations. | [optional]
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Task-sharing rule for the owner organization: &#x60;autoShare&#x60; shares new tasks with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per task. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Observable-sharing rule for the owner organization: &#x60;autoShare&#x60; shares new observables with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per observable. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional]
 
 ## Methods
 
@@ -134,20 +134,20 @@ HasPages returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *InputImportCase1) GetCustomFields() InputCreateAlertCustomFields`
+`func (o *InputImportCase1) GetCustomFields() InputCreateCaseCustomFields`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *InputImportCase1) GetCustomFieldsOk() (*InputCreateAlertCustomFields, bool)`
+`func (o *InputImportCase1) GetCustomFieldsOk() (*InputCreateCaseCustomFields, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *InputImportCase1) SetCustomFields(v InputCreateAlertCustomFields)`
+`func (o *InputImportCase1) SetCustomFields(v InputCreateCaseCustomFields)`
 
 SetCustomFields sets CustomFields field to given value.
 
@@ -234,5 +234,3 @@ HasObservableRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

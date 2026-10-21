@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**StartDate** | Pointer to **int64** |  | [optional] 
-**IncludeInTimeline** | Pointer to **int64** |  | [optional] 
-**Attachments** | Pointer to **[]*os.File** | ignored with json content, use a multipart if you want to pass attachments | [optional] 
+**Message** | **string** | Content of the task log. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). Don&#39;t include observables—links within task logs are clickable, which can be a security risk. Add them to the case instead. |
+**StartDate** | Pointer to **int64** | Date and time of the log entry. Expected format: Unix timestamp in milliseconds. Defaults to the current date and time when omitted. | [optional]
+**IncludeInTimeline** | Pointer to **int64** | When set, pins the log entry to the case timeline at this date. Expected format: Unix timestamp in milliseconds. | [optional]
+**Attachments** | Pointer to **[]*os.File** | Attachments to include with the log entry. Ignored when using JSON content type. Use multipart/form-data to upload files. | [optional]
 
 ## Methods
 
@@ -125,5 +125,3 @@ HasAttachments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Current** | Pointer to **int32** |  | [optional]
-**Quota** | **int32** |  |
+**Current** | Pointer to **int32** | Current usage for this quota. Absent when usage isn&#39;t tracked for this capability. | [optional]
+**Quota** | **int32** | Maximum allowed value for this quota. &#x60;-1&#x60; means unlimited. |
 
 ## Methods
 
