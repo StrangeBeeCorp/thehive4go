@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | **string** |  | 
-**Values** | Pointer to **[]interface{}** |  | [optional] 
+**Field** | **string** | The path to the field to filter on. |
+**Values** | Pointer to **[]interface{}** | The list of values to match against. | [optional]
 
 ## Methods
 
@@ -73,5 +73,3 @@ HasValues returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **int32** |  | 
-**Unit** | [**IntervalUnit**](IntervalUnit.md) |  | 
+**Value** | **int32** | Number of time units. Must be greater than 0. |
+**Unit** | [**IntervalUnit**](IntervalUnit.md) |  |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetUnit sets Unit field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

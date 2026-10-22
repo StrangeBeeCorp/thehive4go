@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **string** |  | 
-**Expanded** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**NumericalValue** | Pointer to **int32** |  | [optional] 
+**Value** | **string** | Identifier string for this entry, used as the tag value. |
+**Expanded** | Pointer to **string** | Full display label for this entry, shown instead of the identifier where supported. | [optional]
+**Colour** | Pointer to **string** | Hex color code for the entry tag&#39;s visual appearance. Must be a six-digit hex color preceded by &#x60;#&#x60;. | [optional]
+**Description** | Pointer to **string** | Description of what this entry represents. | [optional]
+**NumericalValue** | Pointer to **int32** | Numerical score associated with this entry, used for sorting or weighting. | [optional]
 
 ## Methods
 
@@ -151,5 +151,3 @@ HasNumericalValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

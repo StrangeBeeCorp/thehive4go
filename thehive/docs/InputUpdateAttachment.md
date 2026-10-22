@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**External** | Pointer to **bool** |  | [optional] 
+**External** | Pointer to **bool** | Whether the attachment is accessible to external users with [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Requires a Platinum or One license. If absent, the current value is unchanged. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

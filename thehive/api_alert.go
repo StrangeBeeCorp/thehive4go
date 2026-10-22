@@ -1,9 +1,9 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
+ ## Get started  This guide covers everything you need to make your first successful API call to TheHive.  The publicly hosted API documentation reflects the latest version of TheHive. To browse the documentation that matches the version of TheHive you are running, open it from within the application: select the **?** button in the top right corner, then **API Docs**.  The v0 API is deprecated and isn't documented. New integrations should target v1.  ### Prerequisites  You need a running TheHive instance and an unlocked user account.  ### Authentication  Almost all endpoints require authentication.  TheHive supports two authentication methods:  #### API key (recommended)  Use your API key as a bearer token in the `Authorization` header.  Generate a new API key with `POST /api/v1/user/{userId}/key/renew`, or retrieve an existing one with `GET /api/v1/user/{userId}/key`.  If you have a [Normal user account](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types), you can also manage your API key in your [user settings](https://docs.strangebee.com/thehive/user-guides/manage-user-settings/#manage-your-api-key).  curl ```bash curl -X <http_method> -H 'Authorization: Bearer <api_key>' \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  headers = {\"Authorization\": \"Bearer <api_key>\"} response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", headers=headers) ```  #### Basic authentication  Only available for [Normal user accounts](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types).  Pass your login and password using HTTP Basic authentication. The login is typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted.  curl ```bash curl -X <http_method> -u <login>:<password> \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", auth=(\"<login>\", \"<password>\")) ```  The following endpoints are public and can be called without credentials:  - `POST /api/v1/login`: Authenticate with login, password, and a TOTP code if MFA is enabled. Returns a session cookie used to authenticate subsequent requests. - `GET /api/v1/logout`: Invalidate the current session. - `POST /api/v1/logout`: Invalidate the current session. Same as `GET`, provided for clients that can't send `GET` requests with a body. - `GET /api/v1/auth/local/passwordPolicy`: Retrieve the password policy configured on the server such as minimum length or complexity requirements. - `GET /api/v1/status/public`: Retrieve public server information, including the TheHive version and license status, without exposing sensitive configuration.  All other endpoints return `401 Unauthorized` when called without valid credentials.  ### Your first API call  Start with `GET /api/v1/user/current`: it requires no request body, confirms your credentials work, and returns your user ID.  curl ```bash curl -X GET -H 'Authorization: Bearer <api_key>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### X-Organisation header  By default, API calls target the user's default organization. The `defaultOrganisation` field returned by `GET /api/v1/user/current` tells you which one it is.  If your account belongs to several organizations and you need to target a specific one, add the `X-Organisation` header. This is also required when performing administration actions, as these must be executed in the context of the `admin` organization.  curl ```bash curl -H 'Authorization: Bearer <api_key>' \\      -H 'X-Organisation: <organization_name>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\", \"X-Organisation\": \"<organization_name>\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### Request and response format  All request and response bodies use JSON: `Content-Type: application/json`.  Dates are represented as Unix timestamps in milliseconds.  ### How the API is organized  TheHive exposes two kinds of endpoints.  #### The Query API  `POST /api/v1/query` handles all listing, filtering, sorting, and pagination needs.  A single endpoint accepts a structured body that chains operations:  ```json {   \"query\": [     { \"_name\": \"listCase\" },     { \"_name\": \"filter\", \"_eq\": { \"_field\": \"status\", \"_value\": \"Open\" } },     { \"_name\": \"sort\", \"_fields\": [{ \"_createdAt\": \"desc\" }] },     { \"_name\": \"page\", \"from\": 0, \"to\": 15, \"extraData\": [\"taskStats\", \"shareCount\"] }   ],   \"excludeFields\": [\"description\", \"summary\"] } ```  See the [**Query and Export**](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the full query reference.  #### Standard REST endpoints  Standard REST endpoints handle write operations and direct entity lookups.  They follow conventional HTTP conventions:  | <nobr>Operation </nobr>| Method | Example | |-----------|--------|---------| | <nobr>Create </nobr>| `POST` | `POST /api/v1/case` | | <nobr>Read </nobr>| `GET` | `GET /api/v1/case/{idOrName}` | | <nobr>Update </nobr>| `PATCH` | `PATCH /api/v1/case/{idOrName}` | | <nobr>Replace / set </nobr>| `PUT` | `PUT /api/v1/case/{caseId}/shares` | | <nobr>Delete </nobr>| `DELETE` | `DELETE /api/v1/case/{idOrName}` |  ### Permissions and capabilities  Each user account has permissions defined by their profile. TheHive checks them on every API call.  Some endpoints are only available with a Gold, Platinum, or One license. When that's the case, the required license tier is listed on the endpoint.  To check which license is active on your instance and what capabilities it includes, call `GET /api/v1/status`.  ### Request size limits  TheHive enforces the following request size limits:  | <nobr>Request type </nobr>| Default limit | Description | |---|---|---| | <nobr>Standard API requests (JSON payloads) </nobr>| 10 MB | Maximum size for request bodies processed in memory | | <nobr>File uploads and attachments </nobr>| 1 GB | Maximum size for streamed request bodies written to disk |  TheHive rejects requests that exceed these limits.  To stay within these limits: - Avoid sending excessively large JSON payloads. - Upload large files as attachments rather than embedding data directly in requests. - Implement rate limiting and additional protections at the reverse proxy level when exposing the API externally.  ### Errors  Every endpoint returns at least the following HTTP status codes:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`400 Bad Request` </nobr>| Invalid request parameters or body | | <nobr>`404 Not Found` </nobr>| Resource does not exist | | <nobr>`500 Internal Server Error` </nobr>| Unexpected server-side error |  Endpoints that require authentication additionally return:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`401 Unauthorized` </nobr>| Missing or invalid credentials | | <nobr>`403 Forbidden` </nobr>| Authenticated but insufficient permissions |  Other codes may appear depending on the specific operation. Refer to individual endpoint documentation for the full list.  The standard error response body is:  ```json {   \"type\": \"AuthorizationError\",   \"message\": \"You don't have permission to perform this action\" } ```  A small number of endpoints deviate from this format. These cases are noted in the relevant endpoint descriptions.
 
-API version: v5.6.2
+API version: v6.0.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -31,12 +31,13 @@ type ApiAddAlertAttachmentRequest struct {
 	canRename   *bool
 }
 
+// Files to attach. Each part is a multipart form file field.
 func (r ApiAddAlertAttachmentRequest) Attachments(attachments []*os.File) ApiAddAlertAttachmentRequest {
 	r.attachments = attachments
 	return r
 }
 
-// If set to &#x60;true&#x60;, the files can be renamed if they already exist with the same name
+// When &#x60;true&#x60;, renames files that already exist with the same name.
 func (r ApiAddAlertAttachmentRequest) CanRename(canRename bool) ApiAddAlertAttachmentRequest {
 	r.canRename = &canRename
 	return r
@@ -47,10 +48,17 @@ func (r ApiAddAlertAttachmentRequest) Execute() (*OutputAttachments, *http.Respo
 }
 
 /*
-AddAlertAttachment Method for AddAlertAttachment
+AddAlertAttachment Add attachments to an alert
+
+Add one or more files to an alert as attachments. Files are uploaded as
+a multipart form and saved to the configured storage backend.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiAddAlertAttachmentRequest
 */
 func (a *AlertAPIService) AddAlertAttachment(ctx context.Context, alertId string) ApiAddAlertAttachmentRequest {
@@ -232,7 +240,16 @@ func (r ApiBulkUpdateAlertRequest) Execute() (*http.Response, error) {
 }
 
 /*
-BulkUpdateAlert Method for BulkUpdateAlert
+BulkUpdateAlert Update multiple alerts
+
+Apply the same field updates to multiple alerts at once. Only the fields
+included in the request body are modified on each alert. Omitted fields
+retain their current values. To update a single alert, use
+`PATCH /api/v1/alert/{alertId}`.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiBulkUpdateAlertRequest
@@ -383,102 +400,72 @@ func (r ApiCreateAlertRequest) Execute() (*OutputAlert, *http.Response, error) {
 }
 
 /*
-CreateAlert Method for CreateAlert
+CreateAlert Create an alert
 
-Endpoints allows the creation of alerts in TheHive
-It supports both json input of multipart. **To create observables with files, you need to use a multipart body**.
+Create a new alert in TheHive. Use either a JSON body or a multipart
+body. To attach files as observables at creation time, use multipart.
 
-To use the multipart, you need to send several parts:
-- a data part with the name `_json` containing a json of the alert to create
-  - in the `observables`, if you want to use a simple data, use the `data` field of the observable
-  - if you want to use a file, in the `attachment` field use a string. This string should refers to a part of the multipart body containing your file
-  - if you want to use an existing attachment in TheHive, set an object containing the name, content-type and id of the attachment
+Required permission: `manageAlert/create`
 
-You can always add observables to your alert later using the endpoint `POST /api/v1/alert/<alertId>/observable`
+Send a multipart request with the JSON payload in a part named `_json`.
+In `observables`, set `data` for plain-string observables, or set
+`attachment` to the name of another part in the request that holds the
+file. To reference an existing attachment already stored in TheHive,
+set `attachment` to an object containing the `name`, `contentType`,
+and `id` of that attachment.
 
-### With curl
+You can add observables after creation with
+`POST /api/v1/alert/{alertId}/observable`.
 
-Create an alert with observables of type strings using json
-```
-curl http://<thehive_endpoint>/api/v1/alert -H 'Authorization: Bearer <api_key>' -X POST -H 'Content-Type: application/json' --data '
+Create an alert with a hostname observable (data) and a file observable (attachment):
 
-	{
-	  "type": "alertType",
-	  "source": "test",
-	  "sourceRef": "1",
-	  "title": "alert title",
-	  "description": "alert description",
-	  "observables": [
-	     { "dataType": "url", "data": "http://example.org" },
-	     { "dataType": "mail", "data": "foo@example.org" }
-	  ]
-	}
+**curl**
+```bash
 
-```
+	curl https://<thehive_host>/api/v1/alert \
+	  -H 'Authorization: Bearer <api_key>' \
+	  -X POST \
+	  -F '_json={
+	    "type": "Endpoint Detection",
+	    "source": "EDR",
+	    "sourceRef": "MDATP-2025-004512",
+	    "title": "File encrypted on CORP-LAPTOP-056",
+	    "description": "File encryption detected via PowerShell.",
+	    "observables": [
+	      {"dataType": "hostname", "data": "CORP-LAPTOP-056"},
+	      {"dataType": "file", "attachment": "malware_sample"}
+	    ]
+	  }' \
+	  -F 'malware_sample=@/path/to/malware_sample.exe'
 
-Create an alert with 2 observables, an url and a file, using multipart
-```
-curl http://<thehive_endpoint>/api/v1/alert -H 'Authorization: Bearer <api_key>' -X POST -F _json='
-
-	{
-	  "type": "alertType",
-	  "source": "test",
-	  "sourceRef": "1",
-	  "title": "alert title",
-	  "description": "alert description",
-	  "observables": [
-	     { "dataType": "url", "data": "http://example.org" },
-	     { "dataType": "file", "attachment": "attachment0" }
-	  ]
-	}
-
-' -F attachment0=@<file>
 ```
 
-### With python (requests)
-
-Create an alert with two files as observables
+**python**
 ```python
-import json
-import requests
-
-# 'fileA' and 'fileB' are arbitrary names. You can choose your own.
-# the name must be used as a key in the dictionary 'files'
-observables = [
-
-	{'dataType': 'file', 'attachment': 'fileA'},
-	{'dataType': 'file', 'attachment': 'fileB'},
-
-]
-
-	files = {
-	    'fileA': open(path_to_fileA, 'rb'),
-	    'fileB': open(path_to_fileB, 'rb')
-	}
+import json, requests
 
 	alert = {
-	    'title': 'my title',
-	    'type': 'test',
-	    'source': 'python',
-	    'sourceRef': '1',
-	    'description': 'description ...',
-	    'observables': observables
+	    "type": "Endpoint Detection",
+	    "source": "EDR",
+	    "sourceRef": "MDATP-2025-004512",
+	    "title": "File encrypted on CORP-LAPTOP-056",
+	    "description": "File encryption detected via PowerShell.",
+	    "observables": [
+	        {"dataType": "hostname", "data": "CORP-LAPTOP-056"},
+	        {"dataType": "file", "attachment": "malware_sample"},
+	    ],
 	}
 
-# Send the request
 response = requests.post(
 
-	f'{thehive_url}/api/v1/alert',
-	# send the files and the alert with the special part '_json'
+	f"{thehive_host}/api/v1/alert",
 	files={
-	    '_json': json.dumps(alert),
-	    **files
+	    "_json": json.dumps(alert),
+	    "malware_sample": open("/path/to/malware_sample.exe", "rb"),
 	},
-	headers={ 'Authorization': f'Bearer {thehive_api_key}' }
+	headers={"Authorization": f"Bearer {api_key}"},
 
 )
-
-# check response code
 response.raise_for_status()
 ```
 
@@ -644,10 +631,24 @@ func (r ApiCreateCaseFromAlertRequest) Execute() (*OutputCase, *http.Response, e
 }
 
 /*
-CreateCaseFromAlert Method for CreateCaseFromAlert
+CreateCaseFromAlert Create a case from an alert
+
+Promote an alert to a case during triage. Data from the alert,
+including observables, tactics, techniques, and procedures (TTPs),
+attachments, comments, and custom fields, is automatically transferred
+to the case. The alert is then linked to the new case.
+
+All fields in the request body are optional. When omitted, the case
+inherits values from the alert. If a `caseTemplate` is provided,
+the template's tasks, custom fields, and pages override the defaults
+inherited from the alert.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/import`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiCreateCaseFromAlertRequest
 */
 func (a *AlertAPIService) CreateCaseFromAlert(ctx context.Context, alertId string) ApiCreateCaseFromAlertRequest {
@@ -802,10 +803,22 @@ func (r ApiDeleteAlertRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAlert Method for DeleteAlert
+DeleteAlert Delete an alert
+
+Permanently delete an alert from TheHive. This action is
+irreversible: once deleted, the alert can't be recovered
+by anyone, including the StrangeBee Support team.
+
+For false positives or duplicates, consider closing the
+alert rather than deleting it. Use `PATCH /api/v1/alert/{alertId}`
+to set the alert to a status linked to the *Closed* stage.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/delete`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiDeleteAlertRequest
 */
 func (a *AlertAPIService) DeleteAlert(ctx context.Context, alertId string) ApiDeleteAlertRequest {
@@ -947,11 +960,19 @@ func (r ApiDeleteAlertAttachmentRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAlertAttachment Method for DeleteAlertAttachment
+DeleteAlertAttachment Remove an attachment from an alert
+
+Remove an attachment from an alert. The file is unlinked from the alert
+but may still exist in the storage backend if referenced by other objects.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `getAlert` followed by `attachments` to retrieve attachment IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param attachmentId
+	@param alertId The alert ID preceded by `~`.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiDeleteAlertAttachmentRequest
 */
 func (a *AlertAPIService) DeleteAlertAttachment(ctx context.Context, alertId string, attachmentId string) ApiDeleteAlertAttachmentRequest {
@@ -1099,7 +1120,19 @@ func (r ApiDeleteAlertInBulkRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAlertInBulk Method for DeleteAlertInBulk
+DeleteAlertInBulk Delete multiple alerts
+
+Permanently delete multiple alerts at once. This action is
+irreversible: once deleted, the alerts can't be recovered by
+anyone, including the StrangeBee Support team.
+
+For false positives or duplicates, consider closing the alerts
+rather than deleting them. Use `PATCH /api/v1/alert/_bulk` to
+set multiple alerts to a status linked to the *Closed* stage.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/delete`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiDeleteAlertInBulkRequest
@@ -1246,11 +1279,19 @@ func (r ApiDownloadAlertAttachmentRequest) Execute() (*os.File, *http.Response, 
 }
 
 /*
-DownloadAlertAttachment Method for DownloadAlertAttachment
+DownloadAlertAttachment Download an attachment from an alert
+
+Deprecated. Use `GET /api/v1/attachment/{attachmentId}/download` instead.
+
+Stream the binary content of an attachment linked to an alert. The response
+includes content-type, content-length, and content-disposition headers.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `getAlert` followed by `attachments` to retrieve attachment IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param attachmentId
+	@param alertId The alert ID preceded by `~`.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiDownloadAlertAttachmentRequest
 
 Deprecated
@@ -1409,10 +1450,19 @@ func (r ApiFollowAlertRequest) Execute() (*http.Response, error) {
 }
 
 /*
-FollowAlert Method for FollowAlert
+FollowAlert Follow an alert
+
+Mark an alert as followed so TheHive resumes automatic
+updates from MISP when the corresponding MISP event changes.
+This is the counterpart to `POST /api/v1/alert/{alertId}/unfollow`.
+Alerts created from MISP events are followed by default.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiFollowAlertRequest
 */
 func (a *AlertAPIService) FollowAlert(ctx context.Context, alertId string) ApiFollowAlertRequest {
@@ -1553,10 +1603,15 @@ func (r ApiGetAlertRequest) Execute() (*OutputAlert, *http.Response, error) {
 }
 
 /*
-GetAlert Method for GetAlert
+GetAlert Get an alert
+
+Returns the full details of an alert, including metadata,
+custom fields, KPI metrics, and date fields.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiGetAlertRequest
 */
 func (a *AlertAPIService) GetAlert(ctx context.Context, alertId string) ApiGetAlertRequest {
@@ -1706,6 +1761,7 @@ type ApiGetAlertAttachmentRequest struct {
 	ifNoneMatch  *string
 }
 
+// ETag from a previous response. If it matches, returns &#x60;304 Not Modified&#x60; instead of the file content.
 func (r ApiGetAlertAttachmentRequest) IfNoneMatch(ifNoneMatch string) ApiGetAlertAttachmentRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
@@ -1716,13 +1772,21 @@ func (r ApiGetAlertAttachmentRequest) Execute() (*os.File, *http.Response, error
 }
 
 /*
-GetAlertAttachment Method for GetAlertAttachment
+GetAlertAttachment Get an attachment from an alert
 
-Deprecated: use `Organisation / Get attachment` instead
+Deprecated. Use `GET /api/v1/attachment/{attachmentId}` instead.
+
+Stream the binary content of an attachment linked to an alert. Supports
+conditional requests with the `If-None-Match` header: if the attachment
+hasn't changed since the last request, returns `304 Not Modified` with
+an empty body.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `getAlert` followed by `attachments` to retrieve attachment IDs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param attachmentId
+	@param alertId The alert ID preceded by `~`.
+	@param attachmentId The attachment ID preceded by `~`.
 	@return ApiGetAlertAttachmentRequest
 
 Deprecated
@@ -1885,11 +1949,23 @@ func (r ApiGetSimilarObservablesBetweenAlertAndAnotherAlertOrCaseRequest) Execut
 }
 
 /*
-GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase Method for GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase
+GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase List observables shared with another alert or case
+
+Returns the observables shared between an alert and another
+alert or case. TheHive uses shared observables to detect
+related incidents and surface them in the **Similar cases**
+and **Similar alerts** tabs.
+
+Only observables not excluded from similarity checks are
+included. By default, at most 100 observables are returned.
+Administrators can raise this limit in `application.conf`.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `listCase` to retrieve available cases, their IDs, and numbers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param alertOrCaseId
+	@param alertId The alert ID preceded by `~`.
+	@param alertOrCaseId The ID of the alert or case, preceded by `~`.
 	@return ApiGetSimilarObservablesBetweenAlertAndAnotherAlertOrCaseRequest
 */
 func (a *AlertAPIService) GetSimilarObservablesBetweenAlertAndAnotherAlertOrCase(ctx context.Context, alertId string, alertOrCaseId string) ApiGetSimilarObservablesBetweenAlertAndAnotherAlertOrCaseRequest {
@@ -2045,11 +2121,22 @@ func (r ApiImportAlertObservablesAndProceduresInCaseRequest) Execute() (*OutputC
 }
 
 /*
-ImportAlertObservablesAndProceduresInCase Method for ImportAlertObservablesAndProceduresInCase
+ImportAlertObservablesAndProceduresInCase Import alert observables and procedures into a case
+
+Import the observables and procedures (TTPs) from an alert into an
+existing case, along with attachments, tags, and custom fields. Unlike
+`POST /api/v1/alert/{alertId}/merge/{caseId}`, this operation doesn't
+append the alert description to the case description. The alert is
+linked to the case and set to the *Imported* status.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageAlert/import`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param caseId
+	@param alertId The alert ID preceded by `~`.
+	@param caseId The case ID preceded by `~`, or case number.
 	@return ApiImportAlertObservablesAndProceduresInCaseRequest
 */
 func (a *AlertAPIService) ImportAlertObservablesAndProceduresInCase(ctx context.Context, alertId string, caseId string) ApiImportAlertObservablesAndProceduresInCaseRequest {
@@ -2205,11 +2292,22 @@ func (r ApiMergeAlertWithCaseRequest) Execute() (*OutputCase, *http.Response, er
 }
 
 /*
-MergeAlertWithCase Method for MergeAlertWithCase
+MergeAlertWithCase Merge an alert into an existing case
+
+Add an alert into an existing case during triage. Observables,
+procedures (TTPs), attachments, tags, and
+custom fields from the alert are transferred to the case, and the
+alert description is appended to the case description. The alert is
+then linked to the case and set to the *Imported* status.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageAlert/import`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
-	@param caseId
+	@param alertId The alert ID preceded by `~`.
+	@param caseId The case ID preceded by `~`, or case number.
 	@return ApiMergeAlertWithCaseRequest
 */
 func (a *AlertAPIService) MergeAlertWithCase(ctx context.Context, alertId string, caseId string) ApiMergeAlertWithCaseRequest {
@@ -2369,7 +2467,22 @@ func (r ApiMergeBulkAlertsWithCaseRequest) Execute() (*OutputCase, *http.Respons
 }
 
 /*
-MergeBulkAlertsWithCase Method for MergeBulkAlertsWithCase
+MergeBulkAlertsWithCase Merge multiple alerts into a case
+
+Merge multiple alerts into an existing case during triage. Observables,
+procedures (TTPs), attachments, tags, and
+custom fields from each alert are transferred to the case, and each
+alert description is appended to the case description. Each alert is
+then linked to the case and set to the *Imported* status.
+
+By default, you can merge up to 50 alerts at once. You can change
+this limit using the `alert.maxMergeInCase` setting in the
+`application.conf` file.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs,
+and `listCase` to retrieve available cases, their IDs, and numbers.
+
+Required permission: `manageAlert/import`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiMergeBulkAlertsWithCaseRequest
@@ -2527,10 +2640,18 @@ func (r ApiUnfollowAlertRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UnfollowAlert Method for UnfollowAlert
+UnfollowAlert Unfollow an alert
+
+Mark an alert as unfollowed to stop automatic updates from
+MISP when the corresponding MISP event changes. This is the
+counterpart to `POST /api/v1/alert/{alertId}/follow`.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiUnfollowAlertRequest
 */
 func (a *AlertAPIService) UnfollowAlert(ctx context.Context, alertId string) ApiUnfollowAlertRequest {
@@ -2677,10 +2798,19 @@ func (r ApiUpdateAlertRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateAlert Method for UpdateAlert
+UpdateAlert Update an alert
+
+Update one or more fields of a single alert. Only the fields
+included in the request body are modified. Omitted fields retain
+their current values. To update multiple alerts at once, use
+`PATCH /api/v1/alert/_bulk`.
+
+Use `POST /api/v1/query` with `listAlert` to retrieve available alerts and their IDs.
+
+Required permission: `manageAlert/update`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertId
+	@param alertId The alert ID preceded by `~`.
 	@return ApiUpdateAlertRequest
 */
 func (a *AlertAPIService) UpdateAlert(ctx context.Context, alertId string) ApiUpdateAlertRequest {

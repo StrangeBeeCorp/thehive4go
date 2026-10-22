@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ResponderId** | **string** |  | 
-**CortexId** | Pointer to **string** |  | [optional] 
-**ObjectType** | **string** |  | 
-**ObjectId** | **string** |  | 
-**Parameters** | Pointer to **map[string]interface{}** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
+**ResponderId** | **string** | ID of the responder to run. Must match a responder available for the target case, observable, task, task log, or alert. Use &#x60;GET /api/v1/connector/cortex/responder/{entityType}/{entityId}&#x60; to list responders available for that entity. |
+**CortexId** | Pointer to **string** | Name of the Cortex server to run the responder on, when the organization is connected to several servers. Check the &#x60;cortexIds&#x60; field returned by &#x60;GET /api/v1/connector/cortex/responder/{entityType}/{entityId}&#x60; for the servers where &#x60;responderId&#x60; is available. Omit to let TheHive pick the first server that offers the responder. | [optional]
+**ObjectType** | **string** | Enum: &#x60;case&#x60; &#x60;case_artifact&#x60; &#x60;case_task&#x60; &#x60;case_task_log&#x60; &#x60;alert&#x60;&lt;br&gt;Type of entity the responder runs on: &#x60;case&#x60; for a case, &#x60;case_artifact&#x60; for an observable, &#x60;case_task&#x60; for a task, &#x60;case_task_log&#x60; for a task log, or &#x60;alert&#x60; for an alert. |
+**ObjectId** | **string** | ID of the case, observable, task, task log, or alert identified by &#x60;objectType&#x60;. Accepts the entity&#39;s ID preceded by &#x60;~&#x60;, or another identifier accepted by that entity type, such as the case number for cases. Use &#x60;POST /api/v1/query&#x60; with &#x60;listCase&#x60;, &#x60;listObservable&#x60;, &#x60;listTask&#x60;, &#x60;listLog&#x60;, or &#x60;listAlert&#x60; to retrieve available IDs. |
+**Parameters** | Pointer to **map[string]interface{}** | Additional parameters passed to the responder. Available keys depend on &#x60;responderId&#x60; and are defined by that responder&#39;s own configuration on the Cortex server. See [How to Create a Responder](https://docs.strangebee.com/cortex/api/how-to-create-a-responder/#input) for the expected format. | [optional]
+**Tlp** | Pointer to **int32** | Enum: &#x60;0&#x60; &#x60;1&#x60; &#x60;2&#x60; &#x60;3&#x60; &#x60;4&#x60;&lt;br&gt;Numeric [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level of the target entity: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). Checked against the responder&#39;s maximum TLP: the responder runs only if its own maximum TLP is greater than or equal to this value. | [optional]
 
 ## Methods
 
@@ -167,5 +167,3 @@ HasTlp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

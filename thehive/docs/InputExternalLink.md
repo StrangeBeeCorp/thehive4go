@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Url** | **string** |  | 
+**Type** | **string** | Label categorizing the link relationship. Use &#x60;GET /api/v1/case/link/types&#x60; to list existing types. A new type is created automatically if the provided name doesn&#39;t exist yet. |
+**Url** | **string** | URL of the external resource to link to. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetUrl sets Url field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

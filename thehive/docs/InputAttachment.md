@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**ContentType** | **string** |  | 
-**Id** | **string** |  | 
-**External** | Pointer to **bool** |  | [optional] 
+**Name** | **string** | Filename of the attachment as stored in TheHive. |
+**ContentType** | **string** | MIME type of the attachment. |
+**Id** | **string** | ID of the attachment in TheHive. |
+**External** | Pointer to **bool** | Whether the attachment is accessible to external users with [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Platinum or One license required. | [optional]
 
 ## Methods
 
@@ -115,5 +115,3 @@ HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

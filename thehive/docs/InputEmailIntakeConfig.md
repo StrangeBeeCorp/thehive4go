@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | **string** |  | 
-**Mailbox** | [**InputEmailIntakeMailboxConfig**](InputEmailIntakeMailboxConfig.md) |  | 
-**Organisations** | Pointer to **[]string** | At least one organisation | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] [default to true]
-**CreatedAt** | Pointer to **int64** |  | [optional] 
-**AlertProperties** | Pointer to [**InputEmailIntakeAlertProperties**](InputEmailIntakeAlertProperties.md) |  | [optional] 
+**Id** | Pointer to **string** | Pre-registered configuration ID for Google Workspace OAuth 2.0 configurations. Obtain this by calling &#x60;POST /api/v1/connector/email-intake/config/authorizationCode&#x60; before saving the configuration. Omit for all other provider types. | [optional]
+**Name** | **string** | Display name for the mailbox configuration. |
+**Mailbox** | [**InputEmailIntakeMailboxConfig**](InputEmailIntakeMailboxConfig.md) |  |
+**Organisations** | Pointer to **[]string** | Organizations where incoming emails from this mailbox create alerts. Must match existing organizations. Use &#x60;GET /api/v1/organisation&#x60; to list available organizations. | [optional]
+**Enabled** | Pointer to **bool** | Enables or deactivates this specific mailbox configuration. When turned off, emails aren&#39;t fetched from this mailbox. | [optional] [default to true]
+**CreatedAt** | Pointer to **int64** | Creation date of the configuration, as a Unix timestamp in milliseconds. Set automatically when the configuration is saved. | [optional]
+**AlertProperties** | Pointer to [**InputEmailIntakeAlertProperties**](InputEmailIntakeAlertProperties.md) |  | [optional]
 
 ## Methods
 
@@ -198,5 +198,3 @@ HasAlertProperties returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteTag**](TagAPI.md#DeleteTag) | **Delete** /api/v1/tag/{tagId} | 
-[**GetTag**](TagAPI.md#GetTag) | **Get** /api/v1/tag/{tagId} | 
-[**UpdateTag**](TagAPI.md#UpdateTag) | **Patch** /api/v1/tag/{tagId} | 
+[**DeleteTag**](TagAPI.md#DeleteTag) | **Delete** /api/v1/tag/{tagId} | Delete a tag
+[**GetTag**](TagAPI.md#GetTag) | **Get** /api/v1/tag/{tagId} | Get a tag
+[**UpdateTag**](TagAPI.md#UpdateTag) | **Patch** /api/v1/tag/{tagId} | Update a tag
 
 
 
 ## DeleteTag
 
 > DeleteTag(ctx, tagId).Execute()
+
+Delete a tag
 
 
 
@@ -29,7 +31,7 @@ import (
 )
 
 func main() {
-	tagId := "tagId_example" // string | 
+	tagId := "tagId_example" // string | The ID of the tag to delete preceded by `~`, or the tag name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -47,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  | 
+**tagId** | **string** | The ID of the tag to delete preceded by &#x60;~&#x60;, or the tag name. |
 
 ### Other Parameters
 
@@ -64,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -79,6 +81,8 @@ Name | Type | Description  | Notes
 ## GetTag
 
 > OutputTag GetTag(ctx, tagId).Execute()
+
+Get a tag
 
 
 
@@ -95,7 +99,7 @@ import (
 )
 
 func main() {
-	tagId := "tagId_example" // string | 
+	tagId := "tagId_example" // string | The ID of the tag preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -115,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  | 
+**tagId** | **string** | The ID of the tag preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -132,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -147,6 +151,8 @@ Name | Type | Description  | Notes
 ## UpdateTag
 
 > UpdateTag(ctx, tagId).InputUpdateTag(inputUpdateTag).Execute()
+
+Update a tag
 
 
 
@@ -163,8 +169,8 @@ import (
 )
 
 func main() {
-	tagId := "tagId_example" // string | 
-	inputUpdateTag := *openapiclient.NewInputUpdateTag() // InputUpdateTag | 
+	tagId := "tagId_example" // string | The ID of the tag to update preceded by `~`, or the tag name.
+	inputUpdateTag := *openapiclient.NewInputUpdateTag() // InputUpdateTag |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tagId** | **string** |  | 
+**tagId** | **string** | The ID of the tag to update preceded by &#x60;~&#x60;, or the tag name. |
 
 ### Other Parameters
 
@@ -192,7 +198,7 @@ Other parameters are passed through a pointer to a apiUpdateTagRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateTag** | [**InputUpdateTag**](InputUpdateTag.md) |  | 
+ **inputUpdateTag** | [**InputUpdateTag**](InputUpdateTag.md) |  |
 
 ### Return type
 
@@ -200,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -210,4 +216,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

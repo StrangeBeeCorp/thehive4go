@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ToOrganisation** | **string** | The _id of the entity or its &#39;name&#39; (depends of the entity) | 
-**Avatar** | Pointer to **string** |  | [optional] 
-**LinkType** | **string** |  | 
-**OtherLinkType** | **string** |  | 
+**ToOrganisation** | **string** | ID or name of the organization to link. |
+**Avatar** | Pointer to **string** | Base64-encoded avatar image of the organization. | [optional]
+**LinkType** | **string** | Sharing profile applied when the current organization shares a case with this organization. Use &#x60;GET /api/v1/sharingProfile&#x60; to retrieve available profiles. |
+**OtherLinkType** | **string** | Sharing profile applied when this organization shares a case with the current organization. Use &#x60;GET /api/v1/sharingProfile&#x60; to retrieve available profiles. |
 
 ## Methods
 
@@ -115,5 +115,3 @@ SetOtherLinkType sets OtherLinkType field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

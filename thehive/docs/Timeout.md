@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Connection** | **string** |  | 
-**Idle** | **string** |  | 
-**Request** | **string** |  | 
+**Connection** | **string** | Maximum time to wait to establish a connection. |
+**Idle** | **string** | Maximum time a connection may remain idle before being closed. |
+**Request** | **string** | Maximum time to wait for a complete response. |
 
 ## Methods
 
@@ -89,5 +89,3 @@ SetRequest sets Request field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

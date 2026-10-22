@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  |
-**Description** | **string** |  |
-**AutoShare** | **bool** |  |
-**Editable** | **bool** |  |
-**PermissionProfile** | **string** |  |
-**TaskRule** | **string** |  |
-**ObservableRule** | **string** |  |
+**Name** | **string** | Unique name of the sharing profile. |
+**Description** | **string** | Description of the sharing profile. |
+**AutoShare** | **bool** | Whether cases owned by the organization are automatically shared when this profile is applied. |
+**Editable** | **bool** | Whether the sharing rules of this profile can be overridden per case. |
+**PermissionProfile** | **string** | Permission profile applied to members of the linked organization when this profile is used. |
+**TaskRule** | **string** | Task-sharing rule applied by this profile. One of &#x60;autoShare&#x60;, &#x60;manual&#x60;. |
+**ObservableRule** | **string** | Observable-sharing rule applied by this profile. One of &#x60;autoShare&#x60;, &#x60;manual&#x60;. |
 
 ## Methods
 

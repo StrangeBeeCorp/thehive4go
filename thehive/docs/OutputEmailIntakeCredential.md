@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **string** |  |
+**Email** | **string** | Email address or username for the mailbox account. |
 **BasicAuth** | Pointer to [**OutputEmailIntakeBasicAuth**](OutputEmailIntakeBasicAuth.md) |  | [optional]
 **OAuth2** | Pointer to [**OutputEmailIntakeOAuth2**](OutputEmailIntakeOAuth2.md) |  | [optional]
 

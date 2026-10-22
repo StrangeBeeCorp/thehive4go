@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Login** | **string** |  |
-**Name** | **string** |  |
-**Email** | Pointer to **string** |  | [optional]
-**HasKey** | **bool** |  |
-**HasPassword** | **bool** |  |
-**HasMFA** | **bool** |  |
-**Locked** | **bool** |  |
-**Profile** | **string** |  |
-**Permissions** | Pointer to **[]string** |  | [optional]
-**Organisation** | **string** |  |
-**Avatar** | Pointer to **string** |  | [optional]
-**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) |  | [optional]
-**Type** | [**UserType**](UserType.md) |  |
-**DefaultOrganisation** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the user. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the user account. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the user account. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the user account was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the user account was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Login** | **string** | Login name for the user account. Always a valid email address. |
+**Name** | **string** | Display name for the user account. |
+**Email** | Pointer to **string** | Email address of the user for notifications. | [optional]
+**HasKey** | **bool** | Whether the user account has an API key. |
+**HasPassword** | **bool** | Whether the user account has a password set. |
+**HasMFA** | **bool** | Whether multi-factor authentication (MFA) is enabled for the user account. |
+**Locked** | **bool** | Whether the user account is locked. A locked account can&#39;t sign in or use the API. |
+**Profile** | **string** | Permission profile of the user in the current organization. |
+**Permissions** | Pointer to **[]string** | Set of permissions granted to the user in the current organization. | [optional]
+**Organisation** | **string** | Name of the organization in the context of which the user was retrieved. |
+**Avatar** | Pointer to **string** | Relative path to the user&#39;s avatar image. | [optional]
+**Organisations** | Pointer to [**[]OutputOrganisationProfile**](OutputOrganisationProfile.md) | Organizations the user belongs to, with the profile and avatar used in each one. | [optional]
+**Type** | [**UserType**](UserType.md) | Type of user account. |
+**DefaultOrganisation** | Pointer to **string** | Default organization used when the user signs in. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

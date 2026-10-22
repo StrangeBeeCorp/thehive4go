@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** |  |
-**Interval** | **string** |  |
-**Configs** | Pointer to [**[]OutputEmailIntakeConfig**](OutputEmailIntakeConfig.md) |  | [optional]
+**Enabled** | **bool** | Indicates whether the email intake module is globally enabled. |
+**Interval** | **string** | Time interval between automatic email fetch cycles for all connected mailboxes. |
+**Configs** | Pointer to [**[]OutputEmailIntakeConfig**](OutputEmailIntakeConfig.md) | Mailbox configurations managed by the email intake module. | [optional]
 
 ## Methods
 

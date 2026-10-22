@@ -4,23 +4,25 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddNewConfig**](EmailIntakeAPI.md#AddNewConfig) | **Post** /api/v1/connector/email-intake/config | 
-[**AvailableProviders**](EmailIntakeAPI.md#AvailableProviders) | **Get** /api/v1/connector/email-intake/providers | 
-[**DeleteConfig**](EmailIntakeAPI.md#DeleteConfig) | **Delete** /api/v1/connector/email-intake/config/{configId} | 
-[**GWSetAuthorizationCode**](EmailIntakeAPI.md#GWSetAuthorizationCode) | **Post** /api/v1/connector/email-intake/config/authorizationCode | 
-[**GetConfig**](EmailIntakeAPI.md#GetConfig) | **Get** /api/v1/connector/email-intake/config/{configId} | 
-[**GetConfigs**](EmailIntakeAPI.md#GetConfigs) | **Get** /api/v1/connector/email-intake/configs | 
-[**GetMailboxFolders**](EmailIntakeAPI.md#GetMailboxFolders) | **Post** /api/v1/connector/email-intake/folders | 
-[**Sync**](EmailIntakeAPI.md#Sync) | **Post** /api/v1/connector/email-intake/sync | 
-[**TestConfig**](EmailIntakeAPI.md#TestConfig) | **Post** /api/v1/connector/email-intake/config/test | 
-[**UpdateConfig**](EmailIntakeAPI.md#UpdateConfig) | **Put** /api/v1/connector/email-intake/config/{configId} | 
-[**UpdateConfigs**](EmailIntakeAPI.md#UpdateConfigs) | **Put** /api/v1/connector/email-intake/configs | 
+[**AddNewConfig**](EmailIntakeAPI.md#AddNewConfig) | **Post** /api/v1/connector/email-intake/config | Add a mailbox configuration
+[**AvailableProviders**](EmailIntakeAPI.md#AvailableProviders) | **Get** /api/v1/connector/email-intake/providers | List available email intake providers
+[**DeleteConfig**](EmailIntakeAPI.md#DeleteConfig) | **Delete** /api/v1/connector/email-intake/config/{configId} | Delete a mailbox configuration
+[**GWSetAuthorizationCode**](EmailIntakeAPI.md#GWSetAuthorizationCode) | **Post** /api/v1/connector/email-intake/config/authorizationCode | Complete Google Workspace OAuth 2.0 authorization
+[**GetConfig**](EmailIntakeAPI.md#GetConfig) | **Get** /api/v1/connector/email-intake/config/{configId} | Get a mailbox configuration
+[**GetConfigs**](EmailIntakeAPI.md#GetConfigs) | **Get** /api/v1/connector/email-intake/configs | Get the email intake module configuration
+[**GetMailboxFolders**](EmailIntakeAPI.md#GetMailboxFolders) | **Post** /api/v1/connector/email-intake/folders | List mailbox folders
+[**Sync**](EmailIntakeAPI.md#Sync) | **Post** /api/v1/connector/email-intake/sync | Trigger an immediate email fetch
+[**TestConfig**](EmailIntakeAPI.md#TestConfig) | **Post** /api/v1/connector/email-intake/config/test | Test a mailbox connection
+[**UpdateConfig**](EmailIntakeAPI.md#UpdateConfig) | **Put** /api/v1/connector/email-intake/config/{configId} | Update a mailbox configuration
+[**UpdateConfigs**](EmailIntakeAPI.md#UpdateConfigs) | **Put** /api/v1/connector/email-intake/configs | Update the email intake module settings
 
 
 
 ## AddNewConfig
 
 > OutputEmailIntakeConfig AddNewConfig(ctx).InputEmailIntakeConfig(inputEmailIntakeConfig).Execute()
+
+Add a mailbox configuration
 
 
 
@@ -37,7 +39,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -62,7 +64,7 @@ Other parameters are passed through a pointer to a apiAddNewConfigRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
 
 ### Return type
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 > []OutputRichEmailIntakeProvider AvailableProviders(ctx).Execute()
 
-
+List available email intake providers
 
 
 
@@ -131,7 +133,7 @@ Other parameters are passed through a pointer to a apiAvailableProvidersRequest 
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -146,6 +148,8 @@ Other parameters are passed through a pointer to a apiAvailableProvidersRequest 
 ## DeleteConfig
 
 > DeleteConfig(ctx, configId).Execute()
+
+Delete a mailbox configuration
 
 
 
@@ -162,7 +166,7 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string | 
+	configId := "configId_example" // string | The mailbox configuration ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  | 
+**configId** | **string** | The mailbox configuration ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -197,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -213,7 +217,7 @@ Name | Type | Description  | Notes
 
 > interface{} GWSetAuthorizationCode(ctx).Body(body).Execute()
 
-
+Complete Google Workspace OAuth 2.0 authorization
 
 
 
@@ -230,7 +234,7 @@ import (
 )
 
 func main() {
-	body := interface{}(987) // interface{} | 
+	body := interface{}(987) // interface{} |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -255,7 +259,7 @@ Other parameters are passed through a pointer to a apiGWSetAuthorizationCodeRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **interface{}** |  | 
+ **body** | **interface{}** |  |
 
 ### Return type
 
@@ -263,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -278,6 +282,8 @@ Name | Type | Description  | Notes
 ## GetConfig
 
 > OutputEmailIntakeConfig GetConfig(ctx, configId).Execute()
+
+Get a mailbox configuration
 
 
 
@@ -294,7 +300,7 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string | 
+	configId := "configId_example" // string | The mailbox configuration ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -314,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  | 
+**configId** | **string** | The mailbox configuration ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -331,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -347,7 +353,7 @@ Name | Type | Description  | Notes
 
 > OutputRichEmailIntake GetConfigs(ctx).Execute()
 
-
+Get the email intake module configuration
 
 
 
@@ -392,7 +398,7 @@ Other parameters are passed through a pointer to a apiGetConfigsRequest struct v
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -408,7 +414,7 @@ Other parameters are passed through a pointer to a apiGetConfigsRequest struct v
 
 > []string GetMailboxFolders(ctx).InputEmailIntakeConfig(inputEmailIntakeConfig).Execute()
 
-
+List mailbox folders
 
 
 
@@ -425,7 +431,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -450,7 +456,7 @@ Other parameters are passed through a pointer to a apiGetMailboxFoldersRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
 
 ### Return type
 
@@ -458,7 +464,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -474,7 +480,7 @@ Name | Type | Description  | Notes
 
 > Sync(ctx).Execute()
 
-
+Trigger an immediate email fetch
 
 
 
@@ -517,7 +523,7 @@ Other parameters are passed through a pointer to a apiSyncRequest struct via the
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -533,7 +539,7 @@ Other parameters are passed through a pointer to a apiSyncRequest struct via the
 
 > TestConfig(ctx).InputEmailIntakeConfig(inputEmailIntakeConfig).Execute()
 
-
+Test a mailbox connection
 
 
 
@@ -550,7 +556,7 @@ import (
 )
 
 func main() {
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -573,7 +579,7 @@ Other parameters are passed through a pointer to a apiTestConfigRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
 
 ### Return type
 
@@ -581,7 +587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -596,6 +602,8 @@ Name | Type | Description  | Notes
 ## UpdateConfig
 
 > UpdateConfig(ctx, configId).InputEmailIntakeConfig(inputEmailIntakeConfig).Execute()
+
+Update a mailbox configuration
 
 
 
@@ -612,8 +620,8 @@ import (
 )
 
 func main() {
-	configId := "configId_example" // string | 
-	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig | 
+	configId := "configId_example" // string | The mailbox configuration ID preceded by `~`.
+	inputEmailIntakeConfig := *openapiclient.NewInputEmailIntakeConfig("Name_example", openapiclient.InputEmailIntakeMailboxConfig{InputEmailIntakeApiMailbox: openapiclient.NewInputEmailIntakeApiMailbox(*openapiclient.NewInputEmailIntakeApiProvider(openapiclient.EmailIntakeProviderName("imap")), *openapiclient.NewInputEmailIntakeCredential("Email_example"))}) // InputEmailIntakeConfig |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -631,7 +639,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**configId** | **string** |  | 
+**configId** | **string** | The mailbox configuration ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -641,7 +649,7 @@ Other parameters are passed through a pointer to a apiUpdateConfigRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  | 
+ **inputEmailIntakeConfig** | [**InputEmailIntakeConfig**](InputEmailIntakeConfig.md) |  |
 
 ### Return type
 
@@ -649,7 +657,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -665,7 +673,7 @@ Name | Type | Description  | Notes
 
 > UpdateConfigs(ctx).InputEmailIntake(inputEmailIntake).Execute()
 
-
+Update the email intake module settings
 
 
 
@@ -682,7 +690,7 @@ import (
 )
 
 func main() {
-	inputEmailIntake := *openapiclient.NewInputEmailIntake("Interval_example") // InputEmailIntake | 
+	inputEmailIntake := *openapiclient.NewInputEmailIntake("Interval_example") // InputEmailIntake |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -705,7 +713,7 @@ Other parameters are passed through a pointer to a apiUpdateConfigsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputEmailIntake** | [**InputEmailIntake**](InputEmailIntake.md) |  | 
+ **inputEmailIntake** | [**InputEmailIntake**](InputEmailIntake.md) |  |
 
 ### Return type
 
@@ -713,7 +721,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -723,4 +731,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

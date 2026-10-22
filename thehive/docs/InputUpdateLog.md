@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** |  | [optional] 
-**IncludeInTimeline** | Pointer to **int64** |  | [optional] 
+**Message** | Pointer to **string** | New content of the task log. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**IncludeInTimeline** | Pointer to **int64** | New date at which to pin the log entry in the case timeline. Expected format: Unix timestamp in milliseconds. Send &#x60;null&#x60; to remove the pin. | [optional]
 
 ## Methods
 
@@ -78,5 +78,3 @@ HasIncludeInTimeline returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

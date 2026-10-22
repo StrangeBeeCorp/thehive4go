@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**Mode** | **string** |  |
-**Definition** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Config** | **map[string]interface{}** |  |
-**LastSuccessDate** | Pointer to **int64** |  | [optional]
-**LastSuccessDetails** | Pointer to **map[string]interface{}** |  | [optional]
-**LastErrorDate** | Pointer to **int64** |  | [optional]
-**LastErrorDetails** | Pointer to **map[string]interface{}** |  | [optional]
-**Types** | Pointer to **[]string** |  | [optional]
+**UnderscoreId** | **string** | Unique identifier of the feeder function. |
+**UnderscoreType** | **string** | Entity type. Always &#x60;Function&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the function. |
+**UnderscoreCreatedAt** | **int64** | Date and time the function was created. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the function. | [optional]
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time the function was last updated. | [optional]
+**Name** | **string** | Name of the function. |
+**Mode** | **string** | Execution mode of the function. |
+**Definition** | **string** | JavaScript source code of the function. |
+**Description** | Pointer to **string** | Description of the function. | [optional]
+**Config** | **map[string]interface{}** | Configuration object passed to the function at runtime. |
+**LastSuccessDate** | Pointer to **int64** | Date and time of the most recent successful execution. | [optional]
+**LastSuccessDetails** | Pointer to **map[string]interface{}** | Details from the most recent successful execution. | [optional]
+**LastErrorDate** | Pointer to **int64** | Date and time of the most recent failed execution. | [optional]
+**LastErrorDetails** | Pointer to **map[string]interface{}** | Details from the most recent failed execution. | [optional]
+**Types** | Pointer to **[]string** | Function types. Includes &#x60;feeder:alert&#x60; for alert feeder functions. | [optional]
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Profile** | **string** |  | 
+**Profile** | **string** | Profile that defines the permissions of the organization members on this case. Must match an existing profile. Use &#x60;POST /api/v1/query&#x60; with &#x60;listProfile&#x60; to retrieve available permission profiles. Overrides the [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetProfile sets Profile field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

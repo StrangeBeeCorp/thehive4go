@@ -4,20 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCurrentPasswordPolicy**](AuthenticationAPI.md#GetCurrentPasswordPolicy) | **Get** /api/v1/auth/local/passwordPolicy | 
-[**GetTOTPSecret**](AuthenticationAPI.md#GetTOTPSecret) | **Get** /api/v1/auth/totp/get | 
-[**Login**](AuthenticationAPI.md#Login) | **Post** /api/v1/login | 
-[**LogoutGET**](AuthenticationAPI.md#LogoutGET) | **Get** /api/v1/logout | 
-[**LogoutPOST**](AuthenticationAPI.md#LogoutPOST) | **Post** /api/v1/logout | 
-[**SetTOTPSecret**](AuthenticationAPI.md#SetTOTPSecret) | **Post** /api/v1/auth/totp/set | 
-[**UnsetTOTPSecret**](AuthenticationAPI.md#UnsetTOTPSecret) | **Post** /api/v1/auth/totp/unset | 
-[**UnsetTOTPSecretForUser**](AuthenticationAPI.md#UnsetTOTPSecretForUser) | **Post** /api/v1/auth/totp/unset/{user} | 
+[**GetCurrentPasswordPolicy**](AuthenticationAPI.md#GetCurrentPasswordPolicy) | **Get** /api/v1/auth/local/passwordPolicy | Get the local authentication password policy
+[**GetTOTPSecret**](AuthenticationAPI.md#GetTOTPSecret) | **Get** /api/v1/auth/totp/get | Get a TOTP secret to set up multifactor authentication
+[**Login**](AuthenticationAPI.md#Login) | **Post** /api/v1/login | Log in to TheHive
+[**LogoutGET**](AuthenticationAPI.md#LogoutGET) | **Get** /api/v1/logout | Log out of your session
+[**LogoutPOST**](AuthenticationAPI.md#LogoutPOST) | **Post** /api/v1/logout | Log out of your session
+[**SetTOTPSecret**](AuthenticationAPI.md#SetTOTPSecret) | **Post** /api/v1/auth/totp/set | Activate multifactor authentication with a TOTP code
+[**UnsetTOTPSecret**](AuthenticationAPI.md#UnsetTOTPSecret) | **Post** /api/v1/auth/totp/unset | Deactivate multifactor authentication for your account
+[**UnsetTOTPSecretForUser**](AuthenticationAPI.md#UnsetTOTPSecretForUser) | **Post** /api/v1/auth/totp/unset/{user} | Deactivate multifactor authentication for another user
 
 
 
 ## GetCurrentPasswordPolicy
 
 > map[string]interface{} GetCurrentPasswordPolicy(ctx).Execute()
+
+Get the local authentication password policy
 
 
 
@@ -78,6 +80,8 @@ No authorization required
 
 > OutputTOTPSecret GetTOTPSecret(ctx).Execute()
 
+Get a TOTP secret to set up multifactor authentication
+
 
 
 ### Example
@@ -121,7 +125,7 @@ Other parameters are passed through a pointer to a apiGetTOTPSecretRequest struc
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -136,6 +140,8 @@ Other parameters are passed through a pointer to a apiGetTOTPSecretRequest struc
 ## Login
 
 > OutputUser Login(ctx).LoginInput(loginInput).Execute()
+
+Log in to TheHive
 
 
 
@@ -152,7 +158,7 @@ import (
 )
 
 func main() {
-	loginInput := *openapiclient.NewLoginInput("User_example", "Password_example") // LoginInput | 
+	loginInput := *openapiclient.NewLoginInput("User_example", "Password_example") // LoginInput |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -177,7 +183,7 @@ Other parameters are passed through a pointer to a apiLoginRequest struct via th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loginInput** | [**LoginInput**](LoginInput.md) |  | 
+ **loginInput** | [**LoginInput**](LoginInput.md) |  |
 
 ### Return type
 
@@ -200,6 +206,8 @@ No authorization required
 ## LogoutGET
 
 > LogoutGET(ctx).Execute()
+
+Log out of your session
 
 
 
@@ -258,6 +266,8 @@ No authorization required
 
 > LogoutPOST(ctx).Execute()
 
+Log out of your session
+
 
 
 ### Example
@@ -315,6 +325,8 @@ No authorization required
 
 > SetTOTPSecret(ctx).InputTOTPCode(inputTOTPCode).Execute()
 
+Activate multifactor authentication with a TOTP code
+
 
 
 ### Example
@@ -330,7 +342,7 @@ import (
 )
 
 func main() {
-	inputTOTPCode := *openapiclient.NewInputTOTPCode(int32(123), "Secret_example") // InputTOTPCode | 
+	inputTOTPCode := *openapiclient.NewInputTOTPCode(int32(123), "Secret_example") // InputTOTPCode |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -353,7 +365,7 @@ Other parameters are passed through a pointer to a apiSetTOTPSecretRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTOTPCode** | [**InputTOTPCode**](InputTOTPCode.md) |  | 
+ **inputTOTPCode** | [**InputTOTPCode**](InputTOTPCode.md) |  |
 
 ### Return type
 
@@ -361,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -376,6 +388,8 @@ Name | Type | Description  | Notes
 ## UnsetTOTPSecret
 
 > UnsetTOTPSecret(ctx).Execute()
+
+Deactivate multifactor authentication for your account
 
 
 
@@ -418,7 +432,7 @@ Other parameters are passed through a pointer to a apiUnsetTOTPSecretRequest str
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -433,6 +447,8 @@ Other parameters are passed through a pointer to a apiUnsetTOTPSecretRequest str
 ## UnsetTOTPSecretForUser
 
 > UnsetTOTPSecretForUser(ctx, user).Execute()
+
+Deactivate multifactor authentication for another user
 
 
 
@@ -449,7 +465,7 @@ import (
 )
 
 func main() {
-	user := "user_example" // string | 
+	user := "user_example" // string | ID or login of the user.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -467,7 +483,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**user** | **string** |  | 
+**user** | **string** | ID or login of the user. |
 
 ### Other Parameters
 
@@ -484,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -494,4 +510,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | **string** |  | 
-**CurrentPassword** | **string** |  | 
+**Password** | **string** | New password for the user account. |
+**CurrentPassword** | **string** | Current password for the user account. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetCurrentPassword sets CurrentPassword field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

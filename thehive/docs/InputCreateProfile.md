@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**ProfileType**](ProfileType.md) | Optional. If not present, the &#x60;type&#x60; will be inferred based on the provided permissions. | [optional] 
-**Name** | **string** |  | 
-**Permissions** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to [**ProfileType**](ProfileType.md) | Profile type: - &#x60;Organisation&#x60;: for users in non-admin organizations. - &#x60;Admin&#x60;: for users in the Admin organization. - &#x60;External&#x60;: for [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/) users. Requires a Platinum or One license.  If omitted, TheHive infers the type from the provided permissions. | [optional]
+**Name** | **string** | Name of the profile. |
+**Permissions** | Pointer to **[]string** | Permissions to assign to the profile. Use &#x60;GET /api/v1/permission&#x60; to list all available permissions. | [optional]
 
 ## Methods
 
@@ -99,5 +99,3 @@ HasPermissions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** |  |
-**TenantId** | Pointer to **string** |  | [optional]
-**Secret** | **string** |  |
-**Authority** | Pointer to **string** |  | [optional]
-**Scopes** | Pointer to **[]string** |  | [optional]
-**AuthorizationCode** | Pointer to **string** |  | [optional]
+**ClientId** | **string** | OAuth 2.0 client ID. |
+**TenantId** | Pointer to **string** | Tenant ID from Microsoft Entra ID. Present for Microsoft 365 and Microsoft Graph API providers. | [optional]
+**Secret** | **string** | OAuth 2.0 client secret. |
+**Authority** | Pointer to **string** | OAuth 2.0 authority URL. | [optional]
+**Scopes** | Pointer to **[]string** | OAuth 2.0 permission scopes. | [optional]
+**AuthorizationCode** | Pointer to **string** | Authorization code from the Google Workspace OAuth 2.0 consent flow. | [optional]
 
 ## Methods
 

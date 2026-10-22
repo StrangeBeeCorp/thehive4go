@@ -1,9 +1,9 @@
 /*
 TheHive
 
- ## General  Almost all of the endpoints will require an authentication. Supported ways of authentication are detailed below.  Each user has permissions, defined by their role. The permissions of the user are checked when making api calls.    Some features (and endpoints) are only enabled with a higher license and define a list of required `capabilities` detailed below as `TheHive-capabilities`. To see which capabilities your license include, see the `/api/v1/status` endpoint.  ### Organisation  By default, the context of the API calls will be the default organisation of the user. If you want to target another organisation you can use the header `X-Organisation`.  With curl: ``` curl -u <user>:<password> -H 'X-Organisation: myOrg' http://localhost:9000/api/v1/alert ... ```  With python requests: ```python headers = {'X-Organisation': 'myOrg'} requests.post('http://localhost:9000/api/v1/alert', headers=headers, json=...) ```
+ ## Get started  This guide covers everything you need to make your first successful API call to TheHive.  The publicly hosted API documentation reflects the latest version of TheHive. To browse the documentation that matches the version of TheHive you are running, open it from within the application: select the **?** button in the top right corner, then **API Docs**.  The v0 API is deprecated and isn't documented. New integrations should target v1.  ### Prerequisites  You need a running TheHive instance and an unlocked user account.  ### Authentication  Almost all endpoints require authentication.  TheHive supports two authentication methods:  #### API key (recommended)  Use your API key as a bearer token in the `Authorization` header.  Generate a new API key with `POST /api/v1/user/{userId}/key/renew`, or retrieve an existing one with `GET /api/v1/user/{userId}/key`.  If you have a [Normal user account](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types), you can also manage your API key in your [user settings](https://docs.strangebee.com/thehive/user-guides/manage-user-settings/#manage-your-api-key).  curl ```bash curl -X <http_method> -H 'Authorization: Bearer <api_key>' \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  headers = {\"Authorization\": \"Bearer <api_key>\"} response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", headers=headers) ```  #### Basic authentication  Only available for [Normal user accounts](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-user-accounts/about-user-accounts/#types).  Pass your login and password using HTTP Basic authentication. The login is typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted.  curl ```bash curl -X <http_method> -u <login>:<password> \\   https://<thehive_host>/api/v1/<endpoint> ```  python ```python import requests  response = requests.<http_method>(\"https://<thehive_host>/api/v1/<endpoint>\", auth=(\"<login>\", \"<password>\")) ```  The following endpoints are public and can be called without credentials:  - `POST /api/v1/login`: Authenticate with login, password, and a TOTP code if MFA is enabled. Returns a session cookie used to authenticate subsequent requests. - `GET /api/v1/logout`: Invalidate the current session. - `POST /api/v1/logout`: Invalidate the current session. Same as `GET`, provided for clients that can't send `GET` requests with a body. - `GET /api/v1/auth/local/passwordPolicy`: Retrieve the password policy configured on the server such as minimum length or complexity requirements. - `GET /api/v1/status/public`: Retrieve public server information, including the TheHive version and license status, without exposing sensitive configuration.  All other endpoints return `401 Unauthorized` when called without valid credentials.  ### Your first API call  Start with `GET /api/v1/user/current`: it requires no request body, confirms your credentials work, and returns your user ID.  curl ```bash curl -X GET -H 'Authorization: Bearer <api_key>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### X-Organisation header  By default, API calls target the user's default organization. The `defaultOrganisation` field returned by `GET /api/v1/user/current` tells you which one it is.  If your account belongs to several organizations and you need to target a specific one, add the `X-Organisation` header. This is also required when performing administration actions, as these must be executed in the context of the `admin` organization.  curl ```bash curl -H 'Authorization: Bearer <api_key>' \\      -H 'X-Organisation: <organization_name>' \\      https://<thehive_host>/api/v1/user/current ```  python ```python import requests  BASE_URL = \"https://<thehive_host>\" API_KEY = \"<api_key>\"  headers = {\"Authorization\": f\"Bearer {API_KEY}\", \"X-Organisation\": \"<organization_name>\"} response = requests.get(f\"{BASE_URL}/api/v1/user/current\", headers=headers) user = response.json() ```  ### Request and response format  All request and response bodies use JSON: `Content-Type: application/json`.  Dates are represented as Unix timestamps in milliseconds.  ### How the API is organized  TheHive exposes two kinds of endpoints.  #### The Query API  `POST /api/v1/query` handles all listing, filtering, sorting, and pagination needs.  A single endpoint accepts a structured body that chains operations:  ```json {   \"query\": [     { \"_name\": \"listCase\" },     { \"_name\": \"filter\", \"_eq\": { \"_field\": \"status\", \"_value\": \"Open\" } },     { \"_name\": \"sort\", \"_fields\": [{ \"_createdAt\": \"desc\" }] },     { \"_name\": \"page\", \"from\": 0, \"to\": 15, \"extraData\": [\"taskStats\", \"shareCount\"] }   ],   \"excludeFields\": [\"description\", \"summary\"] } ```  See the [**Query and Export**](https://docs.strangebee.com/thehive/api-docs/#tag/Query-and-Export) section for the full query reference.  #### Standard REST endpoints  Standard REST endpoints handle write operations and direct entity lookups.  They follow conventional HTTP conventions:  | <nobr>Operation </nobr>| Method | Example | |-----------|--------|---------| | <nobr>Create </nobr>| `POST` | `POST /api/v1/case` | | <nobr>Read </nobr>| `GET` | `GET /api/v1/case/{idOrName}` | | <nobr>Update </nobr>| `PATCH` | `PATCH /api/v1/case/{idOrName}` | | <nobr>Replace / set </nobr>| `PUT` | `PUT /api/v1/case/{caseId}/shares` | | <nobr>Delete </nobr>| `DELETE` | `DELETE /api/v1/case/{idOrName}` |  ### Permissions and capabilities  Each user account has permissions defined by their profile. TheHive checks them on every API call.  Some endpoints are only available with a Gold, Platinum, or One license. When that's the case, the required license tier is listed on the endpoint.  To check which license is active on your instance and what capabilities it includes, call `GET /api/v1/status`.  ### Request size limits  TheHive enforces the following request size limits:  | <nobr>Request type </nobr>| Default limit | Description | |---|---|---| | <nobr>Standard API requests (JSON payloads) </nobr>| 10 MB | Maximum size for request bodies processed in memory | | <nobr>File uploads and attachments </nobr>| 1 GB | Maximum size for streamed request bodies written to disk |  TheHive rejects requests that exceed these limits.  To stay within these limits: - Avoid sending excessively large JSON payloads. - Upload large files as attachments rather than embedding data directly in requests. - Implement rate limiting and additional protections at the reverse proxy level when exposing the API externally.  ### Errors  Every endpoint returns at least the following HTTP status codes:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`400 Bad Request` </nobr>| Invalid request parameters or body | | <nobr>`404 Not Found` </nobr>| Resource does not exist | | <nobr>`500 Internal Server Error` </nobr>| Unexpected server-side error |  Endpoints that require authentication additionally return:  | <nobr>Code </nobr>| Meaning | |------|---------| | <nobr>`401 Unauthorized` </nobr>| Missing or invalid credentials | | <nobr>`403 Forbidden` </nobr>| Authenticated but insufficient permissions |  Other codes may appear depending on the specific operation. Refer to individual endpoint documentation for the full list.  The standard error response body is:  ```json {   \"type\": \"AuthorizationError\",   \"message\": \"You don't have permission to perform this action\" } ```  A small number of endpoints deviate from this format. These cases are noted in the relevant endpoint descriptions.
 
-API version: v5.6.2
+API version: v6.0.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -38,59 +38,47 @@ func (r ApiCreateFunctionRequest) Execute() (*OutputFunction, *http.Response, er
 }
 
 /*
-CreateFunction Method for CreateFunction
+CreateFunction Create a function
 
-Create a function that can then be invoked from an endpoint on TheHive.
-This function will be able to format and process your data in a custom manner and invoke TheHive APIs.
-All TheHive APIs will be called with the role and permissions of the user invoking the function.
+Create a JavaScript function that processes data and calls TheHive API.
+All API calls inside the function run with the permissions of the user who invokes it.
 
-Check also the endpoint "Test Function" to try and test your functions.
+The code must define a `handle(input, context)` function, where `input` is the
+JSON payload passed at invocation and `context` exposes TheHive API methods.
+Use `GET /api/v1/function/_context/documentation` to list the available context
+methods and fields.
 
-Functions currently only support javascript.
-
-### Function Example
-
-You can pass a script written in javascript. This script must contain one function named `handle`
-
-```javascript
-// Your script should have a function named 'handle'
-// input is the json value that is passed when calling the script http endpoint
-// context is an object used to interact with TheHiveAPI
-
-	function handle(input, context) {
-	  const myAlert = {
-	    "type": "myScript",
-	    "source": input.source,
-	    "sourceRef": input.ref,
-	    "title": input.title || "Default Title",
-	    "description": "Alert from myScript " + input.ref,
-	    "observables": input.data.map(a => {
-	       return {
-	         "dataType": a.type,
-	         "data": a.value
-	       };
-	    })
-	  };
-	  // call TheHive API to create an alert
-	  const createdAlert = context.alert.create(myAlert);
-	  console.log(`Alert created with id ${createdAlert && createdAlert._id}`);
-	  return createdAlert;
-	}
-
-```
-
-See: https://www.graalvm.org/22.1/reference-manual/js/JavaScriptCompatibility/ for javascript compatibility features
-
-#### Hello world example
+The following example creates a TheHive alert from data passed as input to the function:
 
 ```javascript
 
 	function handle(input, context) {
-	  console.log("Hello from TheHive");
-	  return "Hello world";
+	  const alert = context.alert.create({
+	    type: "myScript",
+	    source: input.source,
+	    sourceRef: input.ref,
+	    title: input.title || "Default title",
+	    description: "Alert from myScript " + input.ref,
+	    observables: input.data.map(a => ({
+	      dataType: a.type,
+	      data: a.value
+	    }))
+	  });
+	  console.log(`Alert created with id ${alert && alert._id}`);
+	  return alert;
 	}
 
 ```
+
+Functions support JavaScript only.
+
+See [About Functions](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-functions/about-functions/) for the available function types, execution modes, and trigger sources.
+
+Use `POST /api/v1/function/_test` to test your code before saving.
+
+Required permission: `manageFunction/create`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateFunctionRequest
@@ -248,10 +236,18 @@ func (r ApiDeleteFunctionRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteFunction Method for DeleteFunction
+DeleteFunction Delete a function
+
+Delete a function by its ID or name.
+
+Use `POST /api/v1/query` with `listFunction` to retrieve available functions, their IDs, and names.
+
+Required permission: `manageFunction/create`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param functionId
+	@param functionId The function ID preceded by `~`, or the function name.
 	@return ApiDeleteFunctionRequest
 */
 func (a *FunctionAPIService) DeleteFunction(ctx context.Context, functionId string) ApiDeleteFunctionRequest {
@@ -391,7 +387,10 @@ func (r ApiGetDocumentationForTheContextObjectRequest) Execute() (*OutputContext
 }
 
 /*
-GetDocumentationForTheContextObject Method for GetDocumentationForTheContextObject
+GetDocumentationForTheContextObject Get context object documentation
+
+List the fields and methods available on the `context` object passed to function
+code at runtime.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetDocumentationForTheContextObjectRequest
@@ -544,10 +543,16 @@ func (r ApiGetFunctionRequest) Execute() (*OutputFunction, *http.Response, error
 }
 
 /*
-GetFunction Method for GetFunction
+GetFunction Get a function
+
+Retrieve a function by its ID or name.
+
+Use `POST /api/v1/query` with `listFunction` to retrieve available functions, their IDs, and names.
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param functionId
+	@param functionId The function ID preceded by `~`, or the function name.
 	@return ApiGetFunctionRequest
 */
 func (a *FunctionAPIService) GetFunction(ctx context.Context, functionId string) ApiGetFunctionRequest {
@@ -697,6 +702,7 @@ type ApiInvokeFunctionRequest struct {
 	body       *interface{}
 }
 
+// Set to &#x60;true&#x60; to simulate the execution without persisting any changes.
 func (r ApiInvokeFunctionRequest) DryRun(dryRun bool) ApiInvokeFunctionRequest {
 	r.dryRun = &dryRun
 	return r
@@ -712,10 +718,23 @@ func (r ApiInvokeFunctionRequest) Execute() (*OutputInvokeFunctionOk, *http.Resp
 }
 
 /*
-InvokeFunction Method for InvokeFunction
+InvokeFunction Invoke a function
+
+Invoke a function by its ID or name, optionally passing a JSON payload as input.
+
+TheHive processes the input using the function code and returns the value from
+the `handle` function.
+
+Use `POST /api/v1/query` with `listFunction` to retrieve available functions, their IDs, and names.
+
+Set `dryRun=true` to run the function without persisting any changes.
+
+Required permission: `manageFunction/invoke`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param function
+	@param function The function ID preceded by `~`, or the function name.
 	@return ApiInvokeFunctionRequest
 */
 func (a *FunctionAPIService) InvokeFunction(ctx context.Context, function string) ApiInvokeFunctionRequest {
@@ -875,11 +894,13 @@ type ApiInvokeFunctionOnAnObjectRequest struct {
 	sync           *bool
 }
 
+// Set to &#x60;true&#x60; to simulate the execution without persisting any changes.
 func (r ApiInvokeFunctionOnAnObjectRequest) DryRun(dryRun bool) ApiInvokeFunctionOnAnObjectRequest {
 	r.dryRun = &dryRun
 	return r
 }
 
+// Set to &#x60;true&#x60; to wait for the function to complete and return its result. Defaults to &#x60;false&#x60; to run the function in the background and return immediately.
 func (r ApiInvokeFunctionOnAnObjectRequest) Sync(sync bool) ApiInvokeFunctionOnAnObjectRequest {
 	r.sync = &sync
 	return r
@@ -890,14 +911,33 @@ func (r ApiInvokeFunctionOnAnObjectRequest) Execute() (*InvokeFunctionOnAnObject
 }
 
 /*
-InvokeFunctionOnAnObject Method for InvokeFunctionOnAnObject
+InvokeFunctionOnAnObject Invoke a function on a case or alert
 
-Invoke function (asynchronous) on an object (Alert, Case, Task, Log, Observable)
+Invoke a function on a specific case or alert, passing the object as input
+to the `handle` function.
+
+The function must have type `action:case` or `action:alert` matching the
+`objectType` path parameter.
+
+Use `POST /api/v1/query` with `listFunction` to retrieve available functions, their IDs, and names.
+
+Use `POST /api/v1/query` with `listCase` or `listAlert` to retrieve the IDs
+of available cases and alerts.
+
+Set `sync=false` (default) to run the function in the background and return
+immediately. Set `sync=true` to wait for the function to complete and return
+its result.
+
+Set `dryRun=true` to run the function without persisting any changes.
+
+Required permission: `manageFunction/invoke`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param function
-	@param objectType
-	@param objectIdOrName
+	@param function The function ID preceded by `~`, or the function name.
+	@param objectType Type of the object to pass as input. Accepted values: `case`, `alert`.
+	@param objectIdOrName The object ID preceded by `~`, or a type-specific identifier: the case number for cases, or the alert reference (`type;source;sourceRef`) for alerts.
 	@return ApiInvokeFunctionOnAnObjectRequest
 */
 func (a *FunctionAPIService) InvokeFunctionOnAnObject(ctx context.Context, function string, objectType string, objectIdOrName string) ApiInvokeFunctionOnAnObjectRequest {
@@ -1067,6 +1107,7 @@ func (r ApiTestFunctionRequest) InputTestFunction(inputTestFunction InputTestFun
 	return r
 }
 
+// Set to &#x60;true&#x60; to simulate the execution without persisting any changes.
 func (r ApiTestFunctionRequest) DryRun(dryRun bool) ApiTestFunctionRequest {
 	r.dryRun = &dryRun
 	return r
@@ -1077,9 +1118,19 @@ func (r ApiTestFunctionRequest) Execute() (*OutputInvokeFunctionOk, *http.Respon
 }
 
 /*
-TestFunction Method for TestFunction
+TestFunction Test a function
 
-Allow to test the code of a function without saving it into the database
+Test function code without saving it to the database.
+
+Returns the same output as invoking a saved function: the value returned by
+`handle`, execution time in milliseconds, and stdout/stderr content.
+
+Use `GET /api/v1/function/_context/documentation` to list the available context
+methods and fields.
+
+Set `dryRun=true` to simulate the function without persisting any changes.
+
+Required permission: `manageFunction/create`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiTestFunctionRequest
@@ -1249,10 +1300,21 @@ func (r ApiUpdateFunctionRequest) Execute() (*http.Response, error) {
 }
 
 /*
-UpdateFunction Method for UpdateFunction
+UpdateFunction Update a function
+
+Update one or more fields of a function.
+
+Use `POST /api/v1/query` with `listFunction` to retrieve available functions, their IDs, and names.
+
+Use `GET /api/v1/function/_context/documentation` to list the available context
+methods and fields when updating the function code.
+
+Required permission: `manageFunction/create`
+
+Required license: Platinum or One
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param functionId
+	@param functionId The function ID preceded by `~`, or the function name.
 	@return ApiUpdateFunctionRequest
 */
 func (a *FunctionAPIService) UpdateFunction(ctx context.Context, functionId string) ApiUpdateFunctionRequest {

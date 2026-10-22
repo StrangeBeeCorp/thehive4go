@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | To disable the whole module | [optional] [default to true]
-**Interval** | **string** |  | 
+**Enabled** | Pointer to **bool** | Enables or deactivates the email intake module globally. When turned off, no emails are fetched from any connected mailbox. | [optional] [default to true]
+**Interval** | **string** | Time interval between automatic email fetch cycles for all connected mailboxes. Use the format &#x60;&lt;amount&gt; &lt;unit&gt;&#x60;. |
 
 ## Methods
 
@@ -73,5 +73,3 @@ SetInterval sets Interval field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

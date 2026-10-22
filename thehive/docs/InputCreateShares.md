@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Shares** | Pointer to [**[]InputShare**](InputShare.md) |  | [optional] 
+**Shares** | Pointer to [**[]InputShare**](InputShare.md) | List of sharing configurations, each specifying an organization, permission profile, and sharing rules for tasks and observables. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasShares returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | **string** |  | 
-**TaskRule** | Pointer to **string** |  | [optional] 
-**ObservableRule** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
+**Name** | **string** | Name of the organization. |
+**Description** | **string** | Short description of the organization. |
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Default task-sharing rule applied to new case shares with this organization: &#x60;autoShare&#x60; shares new tasks with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per task. See [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;Default observable-sharing rule applied to new case shares with this organization: &#x60;autoShare&#x60; shares new observables with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per observable. See [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
+**Locked** | Pointer to **bool** | Whether to lock the organization immediately after creation. Locked organizations can&#39;t be accessed by their members. | [optional]
 
 ## Methods
 
@@ -146,5 +146,3 @@ HasLocked returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

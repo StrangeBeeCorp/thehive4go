@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | Pointer to **int64** |  | [optional] 
-**EndDate** | Pointer to **int64** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**Date** | Pointer to **int64** | New start date of the custom event. Expected format: Unix timestamp in milliseconds. | [optional]
+**EndDate** | Pointer to **int64** | New end date of the custom event. Expected format: Unix timestamp in milliseconds. Send &#x60;null&#x60; to unset. | [optional]
+**Title** | Pointer to **string** | New title of the custom event. | [optional]
+**Description** | Pointer to **string** | New description of the custom event. Send &#x60;null&#x60; to unset. | [optional]
 
 ## Methods
 
@@ -130,5 +130,3 @@ HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

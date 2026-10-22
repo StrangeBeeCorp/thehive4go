@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]OutputContextDocumentationItem**](OutputContextDocumentationItem.md) |  | [optional]
+**Items** | Pointer to [**[]OutputContextDocumentationItem**](OutputContextDocumentationItem.md) | Context items (fields and methods) available in the function execution environment. | [optional]
 
 ## Methods
 

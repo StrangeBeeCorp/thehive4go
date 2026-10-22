@@ -86,6 +86,73 @@ func TestResponseModelsStillRequireTheirFields(t *testing.T) {
 	assert.Contains(t, err.Error(), "no value given for required property")
 }
 
+// TestOlderAnswersDecodeWithoutTheFieldsTheyLack pins the required fields that
+// scripts/preprocess_openapi.sh relaxes because only newer TheHive versions send
+// them: extraData on actions, hidden on tags and isCaseSensitive on observable
+// types (5.8), requiresImpact on case statuses (6.0). The 6.0 spec lists them as
+// required; without the relaxation every answer of an older TheHive fails with
+// "no value given for required property".
+func TestOlderAnswersDecodeWithoutTheFieldsTheyLack(t *testing.T) {
+	cases := []struct {
+		name    string
+		payload string
+		// absent decodes the payload and reports whether the newer field stayed unset.
+		absent func([]byte) (bool, error)
+	}{
+		{
+			name: "OutputAction without extraData (before 5.8)",
+			payload: `{"_createdAt":1791986098031,"_createdBy":"analyst@example.org","_id":"~2416713896","_type":"Action",
+				"cortexId":"local","cortexJobId":"0lmxOqEBQp5xTN6g36nT","endDate":1791986103671,
+				"objectId":"~2703511728","objectType":"Task","operations":"[]","report":"{}",
+				"responderDefinition":"testResponder_1_1_0","responderId":"bdfa784dc600c39e27ca89187a4a1662",
+				"responderName":"testResponder_1_1_0","startDate":1791986098130,"status":"Success"}`,
+			absent: func(b []byte) (bool, error) {
+				var v thehive.OutputAction
+				err := json.Unmarshal(b, &v)
+				return v.ExtraData == nil, err
+			},
+		},
+		{
+			name: "OutputTag without hidden (before 5.8)",
+			payload: `{"_id":"~1","_type":"Tag","_createdBy":"analyst@example.org","_createdAt":1,"namespace":"ns",
+				"predicate":"p","colour":"#000000","extraData":{}}`,
+			absent: func(b []byte) (bool, error) {
+				var v thehive.OutputTag
+				err := json.Unmarshal(b, &v)
+				return v.Hidden == nil, err
+			},
+		},
+		{
+			name: "OutputObservableType without isCaseSensitive (before 5.8)",
+			payload: `{"_id":"~1","_type":"ObservableType","_createdBy":"admin@thehive.local","_createdAt":1,
+				"name":"domain","isAttachment":false}`,
+			absent: func(b []byte) (bool, error) {
+				var v thehive.OutputObservableType
+				err := json.Unmarshal(b, &v)
+				return v.IsCaseSensitive == nil, err
+			},
+		},
+		{
+			name: "OutputCaseStatus without requiresImpact (before 6.0)",
+			payload: `{"_id":"~1","_type":"CaseStatus","_createdBy":"admin@thehive.local","_createdAt":1,
+				"value":"TruePositive","stage":"Closed","hidden":false,"extraData":{}}`,
+			absent: func(b []byte) (bool, error) {
+				var v thehive.OutputCaseStatus
+				err := json.Unmarshal(b, &v)
+				return v.RequiresImpact == nil, err
+			},
+		},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			absent, err := tc.absent([]byte(tc.payload))
+			require.NoError(t, err)
+			assert.True(t, absent, "the field the older answer lacks must stay unset")
+		})
+	}
+}
+
 // customFieldOptionsVariant names the one variant of the oneOf that is set.
 func customFieldOptionsVariant(t *testing.T, o thehive.OutputCustomFieldOptions) string {
 	t.Helper()

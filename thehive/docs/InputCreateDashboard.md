@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  | 
-**Group** | Pointer to **string** |  | [optional] 
-**Description** | **string** |  | 
-**Status** | [**DashboardStatus**](DashboardStatus.md) |  | 
-**Definition** | **map[string]interface{}** |  | 
-**Version** | Pointer to **int32** |  | [optional] 
+**Title** | **string** | Title of the dashboard. |
+**Group** | Pointer to **string** | Group used to categorize the dashboard on the dashboards list. | [optional] [default to "default"]
+**Description** | **string** | Description of the dashboard. |
+**Status** | [**DashboardStatus**](DashboardStatus.md) | Visibility of the dashboard: &#x60;Private&#x60; restricts access to you, &#x60;Shared&#x60; makes it visible to your entire organization. &#x60;Deleted&#x60; has no effect on creation and behaves like &#x60;Private&#x60;. |
+**Definition** | **map[string]interface{}** | Widget layout and configuration for the dashboard, structured as rows of widgets. Each widget defines a chart type, the entity it queries, and its display options. This structure isn&#39;t formally documented: the simplest way to build a valid value is to create a dashboard from TheHive web interface, then retrieve it with &#x60;GET /api/v1/dashboard/{dashboardId}&#x60; and use its &#x60;definition&#x60; value as a starting point. |
+**Version** | Pointer to **int32** | Version of the dashboard definition format. The current format is &#x60;1&#x60;. Older values indicate a legacy definition that must be converted before use. | [optional] [default to 1]
 
 ## Methods
 
@@ -162,5 +162,3 @@ HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

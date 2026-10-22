@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | **[]string** | Selected users&#39; logins. Must contain at least one external user or &#39;*&#39; (all external users of the organisation). | 
-**Kind** | **string** |  | 
+**Users** | **[]string** | Logins of the external users who can access the case. Must be a valid email address. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users and their email addresses. |
+**Kind** | **string** | Only a specific set of external users can access the case through [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Internal users can still access the case through the main TheHive interface. Platinum or One license required. |
 
 ## Methods
 
@@ -68,5 +68,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

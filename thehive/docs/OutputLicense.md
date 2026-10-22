@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreType** | **string** |  |
-**Id** | **string** |  |
-**Customer** | **string** |  |
-**Plan** | **string** |  |
-**Kind** | **string** |  |
-**ValidFrom** | **int64** |  |
-**ExpiresAt** | **int64** |  |
-**Current** | **bool** |  |
-**Capabilities** | Pointer to **[]string** |  | [optional]
-**Quotas** | **map[string]int32** |  |
+**UnderscoreId** | **string** | Internal ID of the license. |
+**UnderscoreCreatedAt** | **int64** | Date the license was added to TheHive, as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who added the license. |
+**UnderscoreType** | **string** | Entity type. Always &#x60;License&#x60;. |
+**Id** | **string** | License identifier from the license file. |
+**Customer** | **string** | Customer name as recorded in the license file. |
+**Plan** | **string** | License plan. One of &#x60;No&#x60;, &#x60;Community&#x60;, &#x60;Gold&#x60;, &#x60;Platinum&#x60;, or &#x60;One&#x60;. |
+**Kind** | **string** | License kind. One of &#x60;Regular&#x60;, &#x60;Trial&#x60;, or &#x60;Development&#x60;. |
+**ValidFrom** | **int64** | Start of the license validity period, as a Unix timestamp in milliseconds. |
+**ExpiresAt** | **int64** | End of the license validity period, as a Unix timestamp in milliseconds. |
+**Current** | **bool** | Whether this is the currently active license. |
+**Capabilities** | Pointer to **[]string** | Capability names enabled by this license. | [optional]
+**Quotas** | **map[string]int32** | Resource quotas defined by the license, mapping capability name to its limit. A value of &#x60;-1&#x60; means unlimited. |
 
 ## Methods
 

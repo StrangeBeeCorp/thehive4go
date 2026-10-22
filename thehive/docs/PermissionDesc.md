@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Label** | **string** | The user-friendly name of the permission | 
-**ConsumesLicense** | **bool** | &#x60;true&#x60; if the permission requires a licence, &#x60;false&#x60; otherwise | 
-**Scope** | Pointer to **[]string** | The scope of the permission. Can be &#x60;admin&#x60;, &#x60;organisation&#x60; or both | [optional] 
+**Name** | [**Permissions**](Permissions.md) |  |
+**Label** | **string** | Human-readable label for the permission. |
+**ConsumesLicense** | **bool** | &#x60;true&#x60; if the permission consumes a license. |
+**Scope** | Pointer to **[]string** | Scopes where the permission applies. | [optional]
 
 ## Methods
 
 ### NewPermissionDesc
 
-`func NewPermissionDesc(name string, label string, consumesLicense bool, ) *PermissionDesc`
+`func NewPermissionDesc(name Permissions, label string, consumesLicense bool, ) *PermissionDesc`
 
 NewPermissionDesc instantiates a new PermissionDesc object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *PermissionDesc) GetName() string`
+`func (o *PermissionDesc) GetName() Permissions`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PermissionDesc) GetNameOk() (*string, bool)`
+`func (o *PermissionDesc) GetNameOk() (*Permissions, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *PermissionDesc) SetName(v string)`
+`func (o *PermissionDesc) SetName(v Permissions)`
 
 SetName sets Name field to given value.
 
@@ -115,5 +115,3 @@ HasScope returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

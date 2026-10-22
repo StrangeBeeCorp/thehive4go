@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Group** | **string** |  |
-**Description** | **string** |  |
-**Version** | **int32** |  |
-**Definition** | [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) |  |
+**UnderscoreId** | **string** | Unique identifier of the case report template. |
+**UnderscoreType** | **string** | Entity type, always &#x60;caseReportTemplate&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the template. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the template. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the template was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the template was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the case report template. |
+**Group** | **string** | Group label used to categorize the template. |
+**Description** | **string** | Brief summary of the template&#39;s purpose and contents. |
+**Version** | **int32** | Version number of the template. |
+**Definition** | [**CaseReportTemplateDefinition**](CaseReportTemplateDefinition.md) | Structure defining the template&#39;s layout: widgets, header, footer, date formats, and language. |
 
 ## Methods
 

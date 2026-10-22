@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Namespace** | **string** |  |
-**Description** | **string** |  |
-**Version** | **int32** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the taxonomy. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Taxonomy&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the taxonomy. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the taxonomy. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the taxonomy was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the taxonomy was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Namespace** | **string** | Namespace identifier of the taxonomy. |
+**Description** | **string** | Description of what this taxonomy covers. |
+**Version** | **int32** | Version number of the taxonomy. |
 **Tags** | Pointer to [**[]OutputTag**](OutputTag.md) |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

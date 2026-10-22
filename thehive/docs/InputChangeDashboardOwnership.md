@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | **string** | Id or login of the new user that should own the dashboard | 
+**User** | **string** | Id or login of the user who should become the new dashboard owner. Must match an existing user in your organization. Use &#x60;POST /api/v1/query&#x60; with &#x60;listUser&#x60; to retrieve available users, their IDs, and logins. |
 
 ## Methods
 
@@ -47,5 +47,3 @@ SetUser sets User field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

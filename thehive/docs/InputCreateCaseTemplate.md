@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Name of the CaseTemplate, must be unique in your organisation. This name can be used in your integrations, for instance when creating a case | 
-**DisplayName** | Pointer to **string** | A friendly name displayed in the UI for the CaseTemplate | [optional] 
-**TitlePrefix** | Pointer to **string** | Prefix used when creating a case | [optional] 
-**Description** | Pointer to **string** | Description for the case. All other fields below concern the case that will be created from this template | [optional] 
-**Severity** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Flag** | Pointer to **bool** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Summary** | Pointer to **string** |  | [optional] 
-**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) |  | [optional] 
-**PageTemplateIds** | Pointer to **[]string** |  | [optional] 
-**CustomFields** | Pointer to [**InputCreateAlertCustomFields**](InputCreateAlertCustomFields.md) |  | [optional] 
-**PageTemplates** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) | Use this instead of pageTemplateIds | [optional] 
+**Name** | **string** | Name of the case template, must be unique in your organization. |
+**DisplayName** | Pointer to **string** | Name shown to users when selecting this template. Defaults to the template name if not specified. | [optional]
+**TitlePrefix** | Pointer to **string** | Prefix automatically added to case titles when the template is applied. Add a hyphen after the prefix to separate it from the case title. | [optional]
+**Description** | Pointer to **string** | Default description for cases. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Severity** | Pointer to **int32** | Default severity level for cases: 1 (Low), 2 (Medium), 3 (High), 4 (Critical). | [optional]
+**Tags** | Pointer to **[]string** | Default tags for cases. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing free-form tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Flag** | Pointer to **bool** | Marks cases as important by default. | [optional]
+**Tlp** | Pointer to **int32** | Default [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level for cases controlling how case information can be shared: 0 (Clear — no restrictions), 1 (Green — community), 2 (Amber — organization and clients), 3 (Amber+Strict — organization only), 4 (Red — named recipients only). | [optional]
+**Pap** | Pointer to **int32** | Default [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level for cases controlling what actions can be taken with case information: 0 (Clear — no restrictions), 1 (Green — active actions allowed), 2 (Amber — passive checks only), 3 (Red — non-detectable actions only). | [optional]
+**Summary** | Pointer to **string** | Default summary for cases. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). | [optional]
+**Tasks** | Pointer to [**[]InputCreateTask**](InputCreateTask.md) | Task templates to include in this case template. A task represents one or more actions, called task logs, that must be completed during the investigation. These tasks are automatically created on cases when the template is applied. | [optional]
+**PageTemplateIds** | Pointer to **[]string** | Use &#x60;pageTemplates&#x60; instead. | [optional]
+**CustomFields** | Pointer to [**InputCreateCaseTemplateCustomFields**](InputCreateCaseTemplateCustomFields.md) |  | [optional]
+**PageTemplates** | Pointer to [**[]InputCreatePage**](InputCreatePage.md) | Pages enable the creation and sharing of valuable information within a team on a case. Pages to include in this case template are automatically created on cases when the template is applied. Preferred over the deprecated &#x60;pageTemplateIds&#x60; field. | [optional]
 
 ## Methods
 
@@ -335,20 +335,20 @@ HasPageTemplateIds returns a boolean if a field has been set.
 
 ### GetCustomFields
 
-`func (o *InputCreateCaseTemplate) GetCustomFields() InputCreateAlertCustomFields`
+`func (o *InputCreateCaseTemplate) GetCustomFields() InputCreateCaseTemplateCustomFields`
 
 GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
 
 ### GetCustomFieldsOk
 
-`func (o *InputCreateCaseTemplate) GetCustomFieldsOk() (*InputCreateAlertCustomFields, bool)`
+`func (o *InputCreateCaseTemplate) GetCustomFieldsOk() (*InputCreateCaseTemplateCustomFields, bool)`
 
 GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomFields
 
-`func (o *InputCreateCaseTemplate) SetCustomFields(v InputCreateAlertCustomFields)`
+`func (o *InputCreateCaseTemplate) SetCustomFields(v InputCreateCaseTemplateCustomFields)`
 
 SetCustomFields sets CustomFields field to given value.
 
@@ -385,5 +385,3 @@ HasPageTemplates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

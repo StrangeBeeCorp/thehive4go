@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Title** | **string** |  |
-**Group** | **string** |  |
-**Description** | **string** |  |
-**Status** | **string** |  |
-**Owner** | Pointer to **string** |  | [optional]
-**Definition** | **map[string]interface{}** |  |
-**Writable** | **bool** |  |
-**Version** | **int32** |  |
+**UnderscoreId** | **string** | Id of the dashboard. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Dashboard&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the dashboard. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the dashboard. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the dashboard was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the dashboard was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Title** | **string** | Title of the dashboard. |
+**Group** | **string** | Group used to categorize the dashboard on the dashboards list. |
+**Description** | **string** | Description of the dashboard. |
+**Status** | **string** | Visibility of the dashboard: &#x60;Private&#x60; or &#x60;Shared&#x60; with the entire organization. |
+**Owner** | Pointer to **string** | Login of the dashboard owner. | [optional]
+**Definition** | **map[string]interface{}** | Widget layout and configuration for the dashboard, structured as rows of widgets. |
+**Writable** | **bool** | Whether the current user can update or delete this dashboard. |
+**Version** | **int32** | Version of the dashboard definition format. |
 
 ## Methods
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Predicate** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** |  | [optional] 
+**Predicate** | Pointer to **string** | New label text displayed on cases, alerts, and observables. Must not duplicate a name from any existing taxonomy in TheHive. | [optional]
+**Description** | Pointer to **string** | New description of the tag. | [optional]
+**Colour** | Pointer to **string** | New hex color code for the tag&#39;s visual appearance. Must be a six-digit hex color preceded by &#x60;#&#x60;. | [optional]
 
 ## Methods
 
@@ -104,5 +104,3 @@ HasColour returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

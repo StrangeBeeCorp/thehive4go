@@ -25,19 +25,28 @@
 // The variants of the other naive oneOf wrappers keep DisallowUnknownFields:
 // that strictness is what lets the naive matcher tell them apart. Only one
 // kind of wrapper is spared: one that no request refers to, whose variants are
-// all model types that each require a property the others do not declare
-// (OutputLicenseCurrent). Its variants resolve to exactly one variant even when
-// they ignore unknown fields, so they become lenient. Filter, which requests
-// build, and OutputInvokeFunction, whose map variant matches anything, keep
-// theirs.
+// all model types that check their own required properties and that a
+// first-match decoder can tell apart, the variant with the most required
+// properties first (OutputLicenseCurrent). Its decoder is rewritten and its
+// variants become lenient. Filter, which requests build, and
+// OutputInvokeFunction, whose map variant matches anything, keep theirs.
+//
+// The same goes for enums. The generated UnmarshalJSON of an enum accepts only
+// the values of the spec the client was generated from and fails the whole
+// answer on any other, so TheHive adding a value to an enum in a minor version
+// broke it (the 6.0 permission names, for one). The enums reachable from a
+// response keep the value they do not list. An enum that only requests refer to
+// stays strict, like the request models do; one shared with a request becomes
+// lenient, like a shared model does.
 //
 // Strict mode: the tool fails when a response model has an UnmarshalJSON it
 // does not recognise, when a schema has no Go type, when a model a
 // discriminated oneOf dispatches to has no UnmarshalJSON of its own (the
-// dispatch would decode it with DisallowUnknownFields again), or when, after
-// it ran, a response model still disallows unknown fields without being on the
-// list of naive oneOf variants. Idempotent: every rewrite leaves a marker
-// comment.
+// dispatch would decode it with DisallowUnknownFields again), when an enum
+// decoder has a shape it does not recognise, or when, after it ran, a response
+// model still disallows unknown fields without being on the list of naive oneOf
+// variants or a response enum still rejects a value it does not list.
+// Idempotent: every rewrite leaves a marker comment.
 package main
 
 import (
@@ -69,6 +78,9 @@ const (
 	lenientMarker = "Postprocessed by scripts/tolerant-response-decoder: unknown fields are ignored"
 	// firstMatchMarker opens the oneOf decoders this tool rewrites.
 	firstMatchMarker = "Postprocessed by scripts/tolerant-response-decoder: first match wins"
+
+	// enumMarker replaces the validation of a response enum.
+	enumMarker = "Postprocessed by scripts/tolerant-response-decoder: unknown enum values are kept"
 
 	// dispatchMarker opens the discriminated oneOf decoders of fix-oneof-decoder.
 	dispatchMarker = "Postprocessed by scripts/fix-oneof-decoder:"
@@ -129,7 +141,7 @@ func main() {
 		}
 		switch {
 		case w.primitiveArrays:
-			changed, err := rewriteFirstMatch(types.files[goType], goType, w.fields)
+			changed, err := rewriteFirstMatch(types.files[goType], goType, bySpecificity(w.fields), primitiveReason)
 			if err != nil {
 				log.Fatalf("rewrite %s: %v", goType, err)
 			}
@@ -147,14 +159,27 @@ func main() {
 				strictVariants[v] = goType
 			}
 		default:
-			if why := whyIndistinguishable(w, types.files); why != "" {
+			ordered, why := orderVariants(w, types.files)
+			if why != "" {
+				if w.rewritten {
+					log.Fatalf("strict: %s has a first-match decoder, but its variants cannot be ordered any more: %s", goType, why)
+				}
 				log.Printf("%s: variants kept strict, %s", goType, why)
 				for _, v := range w.namedVariants {
 					strictVariants[v] = goType
 				}
 				continue
 			}
-			log.Printf("%s: variants made lenient, each still resolves to exactly one variant", goType)
+			changed, err := rewriteFirstMatch(types.files[goType], goType, ordered, namedReason)
+			if err != nil {
+				log.Fatalf("rewrite %s: %v", goType, err)
+			}
+			if changed {
+				log.Printf("%s: variants made lenient, decoder rewritten to first match wins, most required properties first", goType)
+			} else {
+				log.Printf("%s: variants lenient, first-match decoder already in place — idempotent skip", goType)
+			}
+			firstMatch++
 			spared += len(w.namedVariants)
 		}
 	}
@@ -177,11 +202,32 @@ func main() {
 		}
 	}
 
+	enumsLenient, enumsAlready, enumsShared := 0, 0, 0
+	for _, goType := range responseTypes {
+		changed, err := relaxEnum(types.files[goType], goType)
+		if err != nil {
+			log.Fatalf("%s: %v", goType, err)
+		}
+		if changed == resultNone {
+			continue
+		}
+		if requestTypes[goType] {
+			enumsShared++
+			log.Printf("%s: enum also used by a request, lenient too", goType)
+		}
+		switch changed {
+		case resultRewritten:
+			enumsLenient++
+		case resultAlready:
+			enumsAlready++
+		}
+	}
+
 	if err := verify(responseTypes, strictVariants, types.files); err != nil {
 		log.Fatalf("strict: %v", err)
 	}
-	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict, %d naive oneOf variant(s) lenient",
-		lenient, already, firstMatch, len(strictVariants), spared)
+	log.Printf("done — %d decoder(s) made lenient, %d already lenient, %d oneOf decoder(s) first-match, %d naive oneOf variant(s) kept strict, %d naive oneOf variant(s) lenient, %d enum(s) made lenient, %d already lenient (%d shared with a request)",
+		lenient, already, firstMatch, len(strictVariants), spared, enumsLenient, enumsAlready, enumsShared)
 }
 
 // spec is the part of the OpenAPI document this tool reads.
@@ -395,6 +441,7 @@ type wrapper struct {
 	fields          []field
 	namedVariants   []string // the variants that are named model types
 	primitiveArrays bool     // every variant is a pointer to a slice of a primitive
+	rewritten       bool     // UnmarshalJSON already carries firstMatchMarker
 }
 
 type field struct {
@@ -429,7 +476,7 @@ func inspectWrapper(path, goType string) (*wrapper, error) {
 	if st == nil {
 		return nil, fmt.Errorf("oneOf wrapper struct %s not found in %s", goType, path)
 	}
-	w := &wrapper{primitiveArrays: true}
+	w := &wrapper{primitiveArrays: true, rewritten: rewritten}
 	for _, f := range st.Fields.List {
 		star, ok := f.Type.(*ast.StarExpr)
 		if !ok || len(f.Names) != 1 {
@@ -469,19 +516,35 @@ func bySpecificity(fields []field) []field {
 	return out
 }
 
-// rewriteFirstMatch replaces the naive decoder of a primitive-array oneOf, and
-// reports whether that changed the file. A decoder already rewritten is
-// rewritten again, so a change of order reaches the committed client.
-func rewriteFirstMatch(path, goType string, fields []field) (bool, error) {
+// The comment lines of a first-match decoder: why counting matches fails there.
+var (
+	primitiveReason = []string{
+		"An empty array, or an array of integers, decodes as several of these",
+		"variants at once, and TheHive sends both: counting matches rejects them.",
+		"The most specific variant comes first (integers, floats, booleans, strings),",
+		"so [1, 2] is an []int32 and not an []float64.",
+	}
+	namedReason = []string{
+		"Each variant checks its own required properties and ignores unknown fields,",
+		"so an answer that carries a field TheHive added still matches. The variant",
+		"with the most required properties comes first: an answer shaped like it also",
+		"satisfies the variants that require less.",
+	}
+)
+
+// rewriteFirstMatch replaces the naive decoder of a oneOf by one that takes the
+// first variant of `ordered` that decodes, and reports whether that changed the
+// file. A decoder already rewritten is rewritten again, so a change of order
+// reaches the committed client.
+func rewriteFirstMatch(path, goType string, ordered []field, reason []string) (bool, error) {
 	var b strings.Builder
 	fmt.Fprintf(&b, "func (dst *%s) UnmarshalJSON(data []byte) error {\n", goType)
 	fmt.Fprintf(&b, "\t// %s.\n", firstMatchMarker)
-	b.WriteString("\t// An empty array, or an array of integers, decodes as several of these\n")
-	b.WriteString("\t// variants at once, and TheHive sends both: counting matches rejects them.\n")
-	b.WriteString("\t// The most specific variant comes first (integers, floats, booleans, strings),\n")
-	b.WriteString("\t// so [1, 2] is an []int32 and not an []float64.\n")
+	for _, line := range reason {
+		fmt.Fprintf(&b, "\t// %s\n", line)
+	}
 	fmt.Fprintf(&b, "\t*dst = %s{}\n", goType)
-	for _, f := range bySpecificity(fields) {
+	for _, f := range ordered {
 		v := "v" + f.name
 		fmt.Fprintf(&b, "\tvar %s %s\n", v, f.goType)
 		fmt.Fprintf(&b, "\tif err := json.Unmarshal(data, &%s); err == nil {\n", v)
@@ -567,44 +630,49 @@ func readShape(path, goType string) (*shape, error) {
 	return sh, nil
 }
 
-// whyIndistinguishable returns "" when the variants of a naive oneOf wrapper
-// would still resolve to exactly one variant if they ignored unknown fields,
-// and the reason why they would not otherwise. They do when every variant is a
-// model type that requires a property which no other variant declares: an
-// answer shaped like one variant then misses a required property of the others.
-func whyIndistinguishable(w *wrapper, files map[string]string) string {
+// orderVariants returns the variants of a naive oneOf wrapper in the order a
+// first-match decoder must try them when they ignore unknown fields, or the
+// reason why no order tells them apart. A variant that checks its own required
+// properties matches every answer that carries them, so an answer shaped like
+// one variant can satisfy another that requires less: the variant with the most
+// required properties goes first. It works when no variant tried first has all
+// its required properties declared by a variant tried after it, otherwise an
+// answer shaped like the later one would be taken for the earlier.
+func orderVariants(w *wrapper, files map[string]string) ([]field, string) {
 	if len(w.namedVariants) != len(w.fields) {
-		return "a variant is not a model type and matches anything the others do"
+		return nil, "a variant is not a model type and matches anything the others do"
 	}
 	shapes := map[string]*shape{}
-	for _, v := range w.namedVariants {
-		sh, err := readShape(files[v], v)
+	for _, f := range w.fields {
+		sh, err := readShape(files[f.goType], f.goType)
 		if err != nil {
-			log.Fatalf("read %s: %v", v, err)
+			log.Fatalf("read %s: %v", f.goType, err)
 		}
 		if sh == nil {
-			return fmt.Sprintf("%s does not check required properties", v)
+			return nil, fmt.Sprintf("%s does not check required properties", f.goType)
 		}
-		shapes[v] = sh
+		shapes[f.goType] = sh
 	}
-	for _, x := range w.namedVariants {
-		for _, y := range w.namedVariants {
-			if x == y {
-				continue
-			}
-			distinct := false
-			for p := range shapes[y].required {
-				if !shapes[x].declared[p] {
-					distinct = true
+
+	ordered := append([]field(nil), w.fields...)
+	sort.SliceStable(ordered, func(i, j int) bool {
+		return len(shapes[ordered[i].goType].required) > len(shapes[ordered[j].goType].required)
+	})
+	for i, first := range ordered {
+		for _, later := range ordered[i+1:] {
+			covered := true
+			for p := range shapes[first.goType].required {
+				if !shapes[later.goType].declared[p] {
+					covered = false
 					break
 				}
 			}
-			if !distinct {
-				return fmt.Sprintf("an answer shaped like %s would also match %s", x, y)
+			if covered {
+				return nil, fmt.Sprintf("an answer shaped like %s would be taken for %s", later.goType, first.goType)
 			}
 		}
 	}
-	return ""
+	return ordered, ""
 }
 
 type result int
@@ -665,12 +733,53 @@ func dropDisallow(path, goType string) (result, error) {
 	return resultRewritten, os.WriteFile(path, formatted, 0o644)
 }
 
+// relaxEnum makes the generated UnmarshalJSON of a string enum keep a value it
+// does not list instead of failing the whole answer. The template accepts only
+// the values of the spec the client was generated from; TheHive adds values to
+// its enums in minor versions. A type that is not such an enum needs nothing.
+func relaxEnum(path, goType string) (result, error) {
+	fset, file, src, err := parseFile(path)
+	if err != nil {
+		return resultNone, err
+	}
+	fd := findUnmarshal(file, goType)
+	if fd == nil {
+		return resultNone, nil
+	}
+	body := rawText(fset, src, fd)
+
+	switch {
+	case strings.Contains(body, enumMarker):
+		return resultAlready, nil
+	case !strings.Contains(body, enumRejection(goType)):
+		return resultNone, nil
+	case !strings.Contains(body, "var value string") || !strings.Contains(body, fmt.Sprintf("enumTypeValue := %s(value)", goType)):
+		return resultNone, fmt.Errorf("strict: the enum UnmarshalJSON in %s has a shape this tool does not recognise (it rewrites string enums)", path)
+	}
+
+	var b strings.Builder
+	fmt.Fprintf(&b, "func (v *%s) UnmarshalJSON(src []byte) error {\n", goType)
+	fmt.Fprintf(&b, "\t// %s,\n", enumMarker)
+	b.WriteString("\t// since TheHive adds values to its enums in minor versions.\n")
+	b.WriteString("\tvar value string\n")
+	b.WriteString("\tif err := json.Unmarshal(src, &value); err != nil {\n\t\treturn err\n\t}\n")
+	fmt.Fprintf(&b, "\t*v = %s(value)\n\treturn nil\n}\n", goType)
+	return resultRewritten, spliceFunc(path, goType, b.String(), "gopkg.in/validator.v2")
+}
+
+// enumRejection is the end of the error a generated enum decoder returns for a
+// value it does not list.
+func enumRejection(goType string) string {
+	return fmt.Sprintf("is not a valid %s\"", goType)
+}
+
 // verify fails when a response model still disallows unknown fields without
-// being a variant of a naive oneOf, or when a discriminated oneOf dispatches to
-// a model without an UnmarshalJSON of its own: newStrictDecoder would decode it
-// with DisallowUnknownFields, and no rewrite above could reach it.
+// being a variant of a naive oneOf, when a response enum still rejects a value
+// it does not list, or when a discriminated oneOf dispatches to a model without
+// an UnmarshalJSON of its own: newStrictDecoder would decode it with
+// DisallowUnknownFields, and no rewrite above could reach it.
 func verify(responseTypes []string, strictVariants map[string]string, files map[string]string) error {
-	var left, orphans []string
+	var left, orphans, enums []string
 	for _, goType := range responseTypes {
 		fset, file, src, err := parseFile(files[goType])
 		if err != nil {
@@ -701,6 +810,12 @@ func verify(responseTypes []string, strictVariants map[string]string, files map[
 		if _, kept := strictVariants[goType]; !kept && strings.Contains(body, "DisallowUnknownFields()") {
 			left = append(left, goType)
 		}
+		if strings.Contains(body, enumRejection(goType)) {
+			enums = append(enums, goType)
+		}
+	}
+	if len(enums) > 0 {
+		return fmt.Errorf("response enum(s) still reject a value they do not list: %s", strings.Join(enums, ", "))
 	}
 	if len(orphans) > 0 {
 		return fmt.Errorf("discriminated oneOf dispatch target(s) without an UnmarshalJSON of their own, which newStrictDecoder decodes strictly: %s",

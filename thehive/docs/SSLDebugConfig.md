@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**All** | Pointer to **bool** |  | [optional] [default to false]
-**Keymanager** | Pointer to **bool** |  | [optional] [default to false]
-**Ssl** | Pointer to **bool** |  | [optional] [default to false]
-**Sslctx** | Pointer to **bool** |  | [optional] [default to false]
-**Trustmanager** | Pointer to **bool** |  | [optional] [default to false]
+**All** | Pointer to **bool** | Enable tracing of SSLContext, SSLEngine, SSLSocketFactory, and key and trust managers. | [optional] [default to false]
+**Keymanager** | Pointer to **bool** | Enable tracing of key manager operations. | [optional] [default to false]
+**Ssl** | Pointer to **bool** | Enable tracing of SSLEngine and SSLSocketFactory operations. | [optional] [default to false]
+**Sslctx** | Pointer to **bool** | Enable tracing of SSLContext operations. | [optional] [default to false]
+**Trustmanager** | Pointer to **bool** | Enable tracing of trust manager operations. | [optional] [default to false]
 
 ## Methods
 
@@ -156,5 +156,3 @@ HasTrustmanager returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

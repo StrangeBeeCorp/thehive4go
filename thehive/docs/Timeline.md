@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Events** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) |  | [optional] 
-**WithCustomEventsDescription** | **bool** |  | 
-**Kind** | [**Kind**](Kind.md) |  | 
+**Title** | Pointer to **string** | Title displayed above the widget. | [optional]
+**Events** | Pointer to [**[]TimelineEvents**](TimelineEvents.md) | Types of events to include in the timeline. | [optional]
+**WithCustomEventsDescription** | **bool** | When &#x60;true&#x60;, includes the description field for custom timeline events. |
+**Kind** | [**Kind**](Kind.md) |  |
 
 ## Methods
 
@@ -120,5 +120,3 @@ SetKind sets Kind field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

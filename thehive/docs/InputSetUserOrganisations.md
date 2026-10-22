@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organisations** | Pointer to [**[]InputUserOrganisation**](InputUserOrganisation.md) |  | [optional] 
+**Organisations** | Pointer to [**[]InputUserOrganisation**](InputUserOrganisation.md) | Complete list of organizations the user account belongs to. Replaces all existing memberships for the user account. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasOrganisations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

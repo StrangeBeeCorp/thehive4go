@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | **string** |  | 
-**Password** | **string** |  | 
-**Organisation** | Pointer to **string** | Organisation id or name to logged into | [optional] [default to "Uses user default organisation or first joined organisation"]
-**Code** | Pointer to **string** |  | [optional] 
+**User** | **string** | Login used to sign in to TheHive. Typically an email address. If a default domain is configured in the [authentication settings](https://docs.strangebee.com/thehive/administration/authentication/configure-authentication), a plain username is also accepted. |
+**Password** | **string** | Password associated with &#x60;user&#x60;. |
+**Organisation** | Pointer to **string** | ID or name of the organization to log into. Must be an organization you belong to that isn&#39;t locked, or login fails. If omitted, TheHive uses your default organization when it isn&#39;t locked, otherwise an organization you belong to. | [optional]
+**Code** | Pointer to **string** | Current code from your authenticator app. Required if multifactor authentication is enabled for &#x60;user&#x60;. | [optional]
 
 ## Methods
 
@@ -120,5 +120,3 @@ HasCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFunction**](FunctionAPI.md#CreateFunction) | **Post** /api/v1/function | 
-[**DeleteFunction**](FunctionAPI.md#DeleteFunction) | **Delete** /api/v1/function/{functionId} | 
-[**GetDocumentationForTheContextObject**](FunctionAPI.md#GetDocumentationForTheContextObject) | **Get** /api/v1/function/_context/documentation | 
-[**GetFunction**](FunctionAPI.md#GetFunction) | **Get** /api/v1/function/{functionId} | 
-[**InvokeFunction**](FunctionAPI.md#InvokeFunction) | **Post** /api/v1/function/{function} | 
-[**InvokeFunctionOnAnObject**](FunctionAPI.md#InvokeFunctionOnAnObject) | **Post** /api/v1/function/{function}/{objectType}/{objectIdOrName} | 
-[**TestFunction**](FunctionAPI.md#TestFunction) | **Post** /api/v1/function/_test | 
-[**UpdateFunction**](FunctionAPI.md#UpdateFunction) | **Patch** /api/v1/function/{functionId} | 
+[**CreateFunction**](FunctionAPI.md#CreateFunction) | **Post** /api/v1/function | Create a function
+[**DeleteFunction**](FunctionAPI.md#DeleteFunction) | **Delete** /api/v1/function/{functionId} | Delete a function
+[**GetDocumentationForTheContextObject**](FunctionAPI.md#GetDocumentationForTheContextObject) | **Get** /api/v1/function/_context/documentation | Get context object documentation
+[**GetFunction**](FunctionAPI.md#GetFunction) | **Get** /api/v1/function/{functionId} | Get a function
+[**InvokeFunction**](FunctionAPI.md#InvokeFunction) | **Post** /api/v1/function/{function} | Invoke a function
+[**InvokeFunctionOnAnObject**](FunctionAPI.md#InvokeFunctionOnAnObject) | **Post** /api/v1/function/{function}/{objectType}/{objectIdOrName} | Invoke a function on a case or alert
+[**TestFunction**](FunctionAPI.md#TestFunction) | **Post** /api/v1/function/_test | Test a function
+[**UpdateFunction**](FunctionAPI.md#UpdateFunction) | **Patch** /api/v1/function/{functionId} | Update a function
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > OutputFunction CreateFunction(ctx).InputFunction(inputFunction).Execute()
 
-
+Create a function
 
 
 
@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	inputFunction := *openapiclient.NewInputFunction("Name_example", "Definition_example") // InputFunction | 
+	inputFunction := *openapiclient.NewInputFunction("Name_example", "Definition_example") // InputFunction |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputFunction** | [**InputFunction**](InputFunction.md) |  | 
+ **inputFunction** | [**InputFunction**](InputFunction.md) |  |
 
 ### Return type
 
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -84,6 +84,8 @@ Name | Type | Description  | Notes
 ## DeleteFunction
 
 > DeleteFunction(ctx, functionId).Execute()
+
+Delete a function
 
 
 
@@ -100,7 +102,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := "functionId_example" // string | The function ID preceded by `~`, or the function name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** | The function ID preceded by &#x60;~&#x60;, or the function name. |
 
 ### Other Parameters
 
@@ -135,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -150,6 +152,8 @@ Name | Type | Description  | Notes
 ## GetDocumentationForTheContextObject
 
 > OutputContextDocumentation GetDocumentationForTheContextObject(ctx).Execute()
+
+Get context object documentation
 
 
 
@@ -194,7 +198,7 @@ Other parameters are passed through a pointer to a apiGetDocumentationForTheCont
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -209,6 +213,8 @@ Other parameters are passed through a pointer to a apiGetDocumentationForTheCont
 ## GetFunction
 
 > OutputFunction GetFunction(ctx, functionId).Execute()
+
+Get a function
 
 
 
@@ -225,7 +231,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := "functionId_example" // string | The function ID preceded by `~`, or the function name.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -245,7 +251,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** | The function ID preceded by &#x60;~&#x60;, or the function name. |
 
 ### Other Parameters
 
@@ -262,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -277,6 +283,8 @@ Name | Type | Description  | Notes
 ## InvokeFunction
 
 > OutputInvokeFunctionOk InvokeFunction(ctx, function).DryRun(dryRun).Body(body).Execute()
+
+Invoke a function
 
 
 
@@ -293,8 +301,8 @@ import (
 )
 
 func main() {
-	function := "function_example" // string | 
-	dryRun := true // bool |  (optional) (default to false)
+	function := "function_example" // string | The function ID preceded by `~`, or the function name.
+	dryRun := true // bool | Set to `true` to simulate the execution without persisting any changes. (optional) (default to false)
 	body := interface{}(987) // interface{} |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -315,7 +323,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**function** | **string** |  | 
+**function** | **string** | The function ID preceded by &#x60;~&#x60;, or the function name. |
 
 ### Other Parameters
 
@@ -325,8 +333,8 @@ Other parameters are passed through a pointer to a apiInvokeFunctionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dryRun** | **bool** |  | [default to false]
- **body** | **interface{}** |  | 
+ **dryRun** | **bool** | Set to &#x60;true&#x60; to simulate the execution without persisting any changes. | [default to false]
+ **body** | **interface{}** |  |
 
 ### Return type
 
@@ -334,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -350,7 +358,7 @@ Name | Type | Description  | Notes
 
 > InvokeFunctionOnAnObject200Response InvokeFunctionOnAnObject(ctx, function, objectType, objectIdOrName).DryRun(dryRun).Sync(sync).Execute()
 
-
+Invoke a function on a case or alert
 
 
 
@@ -367,11 +375,11 @@ import (
 )
 
 func main() {
-	function := "function_example" // string | 
-	objectType := "objectType_example" // string | 
-	objectIdOrName := "objectIdOrName_example" // string | 
-	dryRun := true // bool |  (optional) (default to false)
-	sync := true // bool |  (optional) (default to false)
+	function := "function_example" // string | The function ID preceded by `~`, or the function name.
+	objectType := "objectType_example" // string | Type of the object to pass as input. Accepted values: `case`, `alert`.
+	objectIdOrName := "objectIdOrName_example" // string | The object ID preceded by `~`, or a type-specific identifier: the case number for cases, or the alert reference (`type;source;sourceRef`) for alerts.
+	dryRun := true // bool | Set to `true` to simulate the execution without persisting any changes. (optional) (default to false)
+	sync := true // bool | Set to `true` to wait for the function to complete and return its result. Defaults to `false` to run the function in the background and return immediately. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -391,9 +399,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**function** | **string** |  | 
-**objectType** | **string** |  | 
-**objectIdOrName** | **string** |  | 
+**function** | **string** | The function ID preceded by &#x60;~&#x60;, or the function name. |
+**objectType** | **string** | Type of the object to pass as input. Accepted values: &#x60;case&#x60;, &#x60;alert&#x60;. |
+**objectIdOrName** | **string** | The object ID preceded by &#x60;~&#x60;, or a type-specific identifier: the case number for cases, or the alert reference (&#x60;type;source;sourceRef&#x60;) for alerts. |
 
 ### Other Parameters
 
@@ -405,8 +413,8 @@ Name | Type | Description  | Notes
 
 
 
- **dryRun** | **bool** |  | [default to false]
- **sync** | **bool** |  | [default to false]
+ **dryRun** | **bool** | Set to &#x60;true&#x60; to simulate the execution without persisting any changes. | [default to false]
+ **sync** | **bool** | Set to &#x60;true&#x60; to wait for the function to complete and return its result. Defaults to &#x60;false&#x60; to run the function in the background and return immediately. | [default to false]
 
 ### Return type
 
@@ -414,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -430,7 +438,7 @@ Name | Type | Description  | Notes
 
 > OutputInvokeFunctionOk TestFunction(ctx).InputTestFunction(inputTestFunction).DryRun(dryRun).Execute()
 
-
+Test a function
 
 
 
@@ -447,8 +455,8 @@ import (
 )
 
 func main() {
-	inputTestFunction := *openapiclient.NewInputTestFunction("Definition_example") // InputTestFunction | 
-	dryRun := true // bool |  (optional) (default to false)
+	inputTestFunction := *openapiclient.NewInputTestFunction("Definition_example") // InputTestFunction |
+	dryRun := true // bool | Set to `true` to simulate the execution without persisting any changes. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -473,8 +481,8 @@ Other parameters are passed through a pointer to a apiTestFunctionRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputTestFunction** | [**InputTestFunction**](InputTestFunction.md) |  | 
- **dryRun** | **bool** |  | [default to false]
+ **inputTestFunction** | [**InputTestFunction**](InputTestFunction.md) |  |
+ **dryRun** | **bool** | Set to &#x60;true&#x60; to simulate the execution without persisting any changes. | [default to false]
 
 ### Return type
 
@@ -482,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -497,6 +505,8 @@ Name | Type | Description  | Notes
 ## UpdateFunction
 
 > UpdateFunction(ctx, functionId).InputUpdateFunction(inputUpdateFunction).Execute()
+
+Update a function
 
 
 
@@ -513,8 +523,8 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
-	inputUpdateFunction := *openapiclient.NewInputUpdateFunction() // InputUpdateFunction | 
+	functionId := "functionId_example" // string | The function ID preceded by `~`, or the function name.
+	inputUpdateFunction := *openapiclient.NewInputUpdateFunction() // InputUpdateFunction |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -532,7 +542,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **string** | The function ID preceded by &#x60;~&#x60;, or the function name. |
 
 ### Other Parameters
 
@@ -542,7 +552,7 @@ Other parameters are passed through a pointer to a apiUpdateFunctionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateFunction** | [**InputUpdateFunction**](InputUpdateFunction.md) |  | 
+ **inputUpdateFunction** | [**InputUpdateFunction**](InputUpdateFunction.md) |  |
 
 ### Return type
 
@@ -550,7 +560,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -560,4 +570,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

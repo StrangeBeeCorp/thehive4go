@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**CreatedBy** | **string** |  |
-**CreatedAt** | **int64** |  |
-**UpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**Description** | Pointer to **string** |  | [optional]
-**Variant** | Pointer to **string** |  | [optional]
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Unique identifier of the catalog. |
+**UnderscoreType** | **string** | Entity type, always \&quot;CatalogOfPattern\&quot;. |
+**CreatedBy** | **string** | Login of the user who created the catalog. |
+**CreatedAt** | **int64** | Date and time when the catalog was created. Returned as a Unix timestamp in milliseconds. |
+**UpdatedAt** | Pointer to **int64** | Date and time when the catalog was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Name** | **string** | Name of the catalog. |
+**Description** | Pointer to **string** | Description of the catalog. | [optional]
+**Variant** | Pointer to **string** | Variant identifier of the catalog, such as a date or matrix name. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 

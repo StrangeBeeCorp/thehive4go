@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **string** | Name of the status | 
-**Stage** | [**InputCaseStage**](InputCaseStage.md) |  | 
-**Order** | Pointer to **int32** | Used to order the values in the ui | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Colour** | Pointer to **string** | Optional color to use in the ui | [optional] 
-**Hidden** | Pointer to **bool** |  | [optional] 
+**Value** | **string** | Display name of the case status. Immutable after creation. |
+**Stage** | [**InputCaseStage**](InputCaseStage.md) |  |
+**Order** | Pointer to **int32** | Position of the status in the UI dropdown list. Lower values appear first. | [optional]
+**Description** | Pointer to **string** | Human-readable description of the status. | [optional]
+**Colour** | Pointer to **string** | Hex color code used to display the status in the UI. | [optional]
+**Hidden** | Pointer to **bool** | When &#x60;true&#x60;, hides the status from the UI dropdown. Hidden statuses remain accessible through the API. | [optional]
+**RequiresImpact** | Pointer to **bool** | When &#x60;true&#x60;, closing a case with this status requires an &#x60;impactStatus&#x60;. Only a status in the *Closed* stage can require an impact. | [optional] [default to false]
 
 ## Methods
 
@@ -170,7 +171,30 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
+### GetRequiresImpact
+
+`func (o *InputCreateCaseStatus) GetRequiresImpact() bool`
+
+GetRequiresImpact returns the RequiresImpact field if non-nil, zero value otherwise.
+
+### GetRequiresImpactOk
+
+`func (o *InputCreateCaseStatus) GetRequiresImpactOk() (*bool, bool)`
+
+GetRequiresImpactOk returns a tuple with the RequiresImpact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiresImpact
+
+`func (o *InputCreateCaseStatus) SetRequiresImpact(v bool)`
+
+SetRequiresImpact sets RequiresImpact field to given value.
+
+### HasRequiresImpact
+
+`func (o *InputCreateCaseStatus) HasRequiresImpact() bool`
+
+HasRequiresImpact returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

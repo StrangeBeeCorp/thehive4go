@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | **[]string** |  | 
-**DataType** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Tlp** | Pointer to **int32** |  | [optional] 
-**Pap** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Ioc** | Pointer to **bool** |  | [optional] 
-**Sighted** | Pointer to **bool** |  | [optional] 
-**SightedAt** | Pointer to **int64** |  | [optional] 
-**IgnoreSimilarity** | Pointer to **bool** |  | [optional] 
-**AddTags** | Pointer to **[]string** | Those tags will be added to the current observable | [optional] 
-**RemoveTags** | Pointer to **[]string** | Those tags will be removed from the current observable | [optional] 
-**External** | Pointer to **bool** |  | [optional] 
+**Ids** | **[]string** | Identifiers of the entities to target. IDs must be prefixed with &#x60;~&#x60;. Case numbers and names are passed as plain strings without a prefix. |
+**DataType** | Pointer to **string** | New observable type. Must match an existing observable type defined in TheHive. Use &#x60;POST /api/v1/query&#x60; with &#x60;listObservableType&#x60; to list available types. | [optional]
+**Message** | Pointer to **string** | New description of the observable. Supports [TheHive-flavored Markdown](https://docs.strangebee.com/thehive/user-guides/thehive-flavored-markdown/). Send &#x60;null&#x60; to unset. | [optional]
+**Tlp** | Pointer to **int32** | New [Traffic Light Protocol (TLP)](https://www.misp-project.org/taxonomies.html#_tlp) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Amber+Strict), 4 (Red). | [optional]
+**Pap** | Pointer to **int32** | New [Permissible Actions Protocol (PAP)](https://www.misp-project.org/taxonomies.html#_pap) level: 0 (Clear), 1 (Green), 2 (Amber), 3 (Red). | [optional]
+**Tags** | Pointer to **[]string** | Replaces all current tags with this set. Unknown tags are automatically created. Use &#x60;addTags&#x60; and &#x60;removeTags&#x60; to add or remove individual tags without replacing the full set. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**Ioc** | Pointer to **bool** | Marks the observable as an indicator of compromise (IOC), indicating it&#39;s linked to suspicious or malicious activity. | [optional]
+**Sighted** | Pointer to **bool** | Marks the observable as sighted, meaning it has been detected or observed in the environment. | [optional]
+**SightedAt** | Pointer to **int64** | Date and time when the observable was last sighted. Expected format: Unix timestamp in milliseconds. Send &#x60;null&#x60; to unset. | [optional]
+**IgnoreSimilarity** | Pointer to **bool** | When &#x60;true&#x60;, excludes the observable from similarity checks used to identify related alerts and cases. | [optional]
+**AddTags** | Pointer to **[]string** | Tags to add to the current set of observable tags. Unknown tags are automatically created. Use &#x60;POST /api/v1/query&#x60; with &#x60;listTag&#x60; to retrieve existing custom tags, or with &#x60;listTaxonomy&#x60; and &#x60;tags&#x60; to retrieve taxonomy tags. | [optional]
+**RemoveTags** | Pointer to **[]string** | Tags to remove from the current set of observable tags. Tags not present on the observable are silently ignored. Use &#x60;GET /api/v1/observable/{observableId}&#x60; and read the &#x60;tags&#x60; field to see the current tags on the observable. | [optional]
+**External** | Pointer to **bool** | When &#x60;true&#x60;, makes the observable accessible to external users with [TheHive Portal](https://docs.strangebee.com/thehive/administration/thehive-portal/about-thehive-portal/). Platinum or One license required. | [optional]
 
 ## Methods
 
@@ -359,5 +359,3 @@ HasExternal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

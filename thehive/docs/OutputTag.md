@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Namespace** | **string** |  |
-**Predicate** | **string** |  |
-**Value** | Pointer to **string** |  | [optional]
-**Description** | Pointer to **string** |  | [optional]
-**Colour** | **string** |  |
-**ExtraData** | **map[string]interface{}** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the tag. |
+**UnderscoreType** | **string** | Entity type, always &#x60;Tag&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the tag. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the tag. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the tag was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the tag was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Namespace** | **string** | Namespace of the tag. For custom tags, this is &#x60;_freetags_&#x60;. For taxonomy tags, this is the taxonomy namespace. |
+**Predicate** | **string** | The tag name. |
+**Value** | Pointer to **string** | Value component of the tag, used for taxonomy tags with a value. Empty for custom tags. | [optional]
+**Description** | Pointer to **string** | Description of the tag. | [optional]
+**Colour** | **string** | Hex color code for the tag&#39;s visual appearance. |
+**Hidden** | Pointer to **bool** | Whether the tag is hidden. Hidden taxonomy tags can&#39;t be added to cases, alerts, and observables, but stay attached to any that already have them. | [optional]
+**ExtraData** | **map[string]interface{}** | Extra data fields populated when specific keys are requested in the &#x60;extraData&#x60; query parameter. |
 
 ## Methods
 
@@ -275,6 +276,31 @@ and a boolean to check if the value has been set.
 
 SetColour sets Colour field to given value.
 
+
+### GetHidden
+
+`func (o *OutputTag) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *OutputTag) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *OutputTag) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *OutputTag) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
 
 ### GetExtraData
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**Name** | **string** |  |
-**Type** | **string** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the custom field. |
+**Name** | **string** | Name of the custom field. |
+**Type** | **string** | Type of the custom field. |
 **Value** | **interface{}** |  |
-**Order** | **int32** |  |
+**Order** | **int32** | Display order of the custom field value. |
 
 ## Methods
 

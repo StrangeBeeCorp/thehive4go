@@ -4,17 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ChangeDashboardOwnership**](DashboardAPI.md#ChangeDashboardOwnership) | **Post** /api/v1/dashboard/{dashboardId}/owner | 
-[**CreateDashboard**](DashboardAPI.md#CreateDashboard) | **Post** /api/v1/dashboard | 
-[**DeleteDashboard**](DashboardAPI.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboardId} | 
-[**GetDashboard**](DashboardAPI.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboardId} | 
-[**UpdateDashboard**](DashboardAPI.md#UpdateDashboard) | **Patch** /api/v1/dashboard/{dashboardId} | 
+[**ChangeDashboardOwnership**](DashboardAPI.md#ChangeDashboardOwnership) | **Post** /api/v1/dashboard/{dashboardId}/owner | Change the owner of a dashboard
+[**CreateDashboard**](DashboardAPI.md#CreateDashboard) | **Post** /api/v1/dashboard | Create a dashboard
+[**DeleteDashboard**](DashboardAPI.md#DeleteDashboard) | **Delete** /api/v1/dashboard/{dashboardId} | Delete a dashboard
+[**GetDashboard**](DashboardAPI.md#GetDashboard) | **Get** /api/v1/dashboard/{dashboardId} | Get a dashboard
+[**UpdateDashboard**](DashboardAPI.md#UpdateDashboard) | **Patch** /api/v1/dashboard/{dashboardId} | Update a dashboard
 
 
 
 ## ChangeDashboardOwnership
 
 > ChangeDashboardOwnership(ctx, dashboardId).InputChangeDashboardOwnership(inputChangeDashboardOwnership).Execute()
+
+Change the owner of a dashboard
 
 
 
@@ -31,8 +33,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	inputChangeDashboardOwnership := *openapiclient.NewInputChangeDashboardOwnership("User_example") // InputChangeDashboardOwnership | 
+	dashboardId := "dashboardId_example" // string | The dashboard ID preceded by `~`.
+	inputChangeDashboardOwnership := *openapiclient.NewInputChangeDashboardOwnership("User_example") // InputChangeDashboardOwnership |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -50,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** | The dashboard ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -60,7 +62,7 @@ Other parameters are passed through a pointer to a apiChangeDashboardOwnershipRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputChangeDashboardOwnership** | [**InputChangeDashboardOwnership**](InputChangeDashboardOwnership.md) |  | 
+ **inputChangeDashboardOwnership** | [**InputChangeDashboardOwnership**](InputChangeDashboardOwnership.md) |  |
 
 ### Return type
 
@@ -68,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -83,6 +85,8 @@ Name | Type | Description  | Notes
 ## CreateDashboard
 
 > OutputDashboard CreateDashboard(ctx).InputCreateDashboard(inputCreateDashboard).Execute()
+
+Create a dashboard
 
 
 
@@ -99,7 +103,7 @@ import (
 )
 
 func main() {
-	inputCreateDashboard := *openapiclient.NewInputCreateDashboard("Title_example", "Description_example", openapiclient.DashboardStatus("Private"), map[string]interface{}(123)) // InputCreateDashboard | 
+	inputCreateDashboard := *openapiclient.NewInputCreateDashboard("Title_example", "Description_example", openapiclient.DashboardStatus("Private"), map[string]interface{}(123)) // InputCreateDashboard |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +128,7 @@ Other parameters are passed through a pointer to a apiCreateDashboardRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreateDashboard** | [**InputCreateDashboard**](InputCreateDashboard.md) |  | 
+ **inputCreateDashboard** | [**InputCreateDashboard**](InputCreateDashboard.md) |  |
 
 ### Return type
 
@@ -132,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -147,6 +151,8 @@ Name | Type | Description  | Notes
 ## DeleteDashboard
 
 > DeleteDashboard(ctx, dashboardId).Execute()
+
+Delete a dashboard
 
 
 
@@ -163,7 +169,7 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
+	dashboardId := "dashboardId_example" // string | The dashboard ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -181,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** | The dashboard ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -198,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -213,6 +219,8 @@ Name | Type | Description  | Notes
 ## GetDashboard
 
 > OutputDashboard GetDashboard(ctx, dashboardId).Execute()
+
+Get a dashboard
 
 
 
@@ -229,7 +237,7 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
+	dashboardId := "dashboardId_example" // string | The dashboard ID preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -249,7 +257,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** | The dashboard ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -266,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -281,6 +289,8 @@ Name | Type | Description  | Notes
 ## UpdateDashboard
 
 > UpdateDashboard(ctx, dashboardId).InputUpdateDashboard(inputUpdateDashboard).Execute()
+
+Update a dashboard
 
 
 
@@ -297,8 +307,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	inputUpdateDashboard := *openapiclient.NewInputUpdateDashboard() // InputUpdateDashboard | 
+	dashboardId := "dashboardId_example" // string | The dashboard ID preceded by `~`.
+	inputUpdateDashboard := *openapiclient.NewInputUpdateDashboard() // InputUpdateDashboard |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -316,7 +326,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
+**dashboardId** | **string** | The dashboard ID preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -326,7 +336,7 @@ Other parameters are passed through a pointer to a apiUpdateDashboardRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdateDashboard** | [**InputUpdateDashboard**](InputUpdateDashboard.md) |  | 
+ **inputUpdateDashboard** | [**InputUpdateDashboard**](InputUpdateDashboard.md) |  |
 
 ### Return type
 
@@ -334,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -344,4 +354,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | **string** |  |
-**Fallback** | [**OutputLicense**](OutputLicense.md) |  |
+**Error** | **string** | Error message describing why the license failed validation. |
+**Fallback** | [**OutputLicense**](OutputLicense.md) | The license that failed validation. |
 
 ## Methods
 

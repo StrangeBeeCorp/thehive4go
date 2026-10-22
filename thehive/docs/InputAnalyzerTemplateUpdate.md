@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | Pointer to **string** |  | [optional] 
+**Content** | Pointer to **string** | New HTML content that defines how the analyzer&#39;s reports are displayed. | [optional]
 
 ## Methods
 
@@ -52,5 +52,3 @@ HasContent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

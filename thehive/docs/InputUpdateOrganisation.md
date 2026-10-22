@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**TaskRule** | Pointer to **string** |  | [optional] 
-**ObservableRule** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **bool** |  | [optional] 
-**Avatar** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | New name for the organization. | [optional]
+**Description** | Pointer to **string** | New description for the organization. | [optional]
+**TaskRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;New default task-sharing rule applied to new case shares with this organization: &#x60;autoShare&#x60; shares new tasks with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per task. See [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
+**ObservableRule** | Pointer to **string** | Enum: &#x60;autoShare&#x60; &#x60;manual&#x60;&lt;br&gt;New default observable-sharing rule applied to new case shares with this organization: &#x60;autoShare&#x60; shares new observables with every sharing organization automatically, &#x60;manual&#x60; requires explicit sharing per observable. See [organization-level sharing rules](https://docs.strangebee.com/thehive/administration/organizations/about-organizations-sharing-rules/). | [optional] [default to "manual"]
+**Locked** | Pointer to **bool** | Whether to lock or unlock the organization. | [optional]
+**Avatar** | Pointer to **string** | New avatar for the organization, encoded as a Base64 string. | [optional]
 
 ## Methods
 
@@ -182,5 +182,3 @@ HasAvatar returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

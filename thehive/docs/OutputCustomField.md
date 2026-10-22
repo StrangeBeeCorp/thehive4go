@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**Name** | **string** |  |
-**DisplayName** | **string** |  |
-**Group** | **string** |  |
-**Description** | **string** |  |
-**Type** | [**CustomFieldType**](CustomFieldType.md) |  |
+**UnderscoreId** | **string** | Internal unique identifier of the custom field. |
+**UnderscoreType** | **string** | Entity type, always &#x60;customField&#x60;. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the custom field. |
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the custom field. | [optional]
+**UnderscoreCreatedAt** | **int64** | Date and time when the custom field was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the custom field was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**Name** | **string** | Technical name of the custom field. |
+**DisplayName** | **string** | Display name of the custom field. |
+**Group** | **string** | Group of the custom field. |
+**Description** | **string** | Description of the custom field. |
+**Type** | [**CustomFieldType**](CustomFieldType.md) | Type of the custom field. |
 **Options** | [**OutputCustomFieldOptions**](OutputCustomFieldOptions.md) |  |
-**Mandatory** | **bool** |  |
+**Mandatory** | **bool** | Whether the field must be filled in before the case or alert can be closed. |
 **ExtraData** | **map[string]interface{}** |  |
 
 ## Methods

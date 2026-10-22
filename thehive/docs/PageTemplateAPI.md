@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAPageTemplate**](PageTemplateAPI.md#CreateAPageTemplate) | **Post** /api/v1/pageTemplate | 
-[**DeleteAPageTemplate**](PageTemplateAPI.md#DeleteAPageTemplate) | **Delete** /api/v1/pageTemplate/{pageTemplateId} | 
-[**UpdateAPageTemplate**](PageTemplateAPI.md#UpdateAPageTemplate) | **Patch** /api/v1/pageTemplate/{pageTemplateId} | 
+[**CreateAPageTemplate**](PageTemplateAPI.md#CreateAPageTemplate) | **Post** /api/v1/pageTemplate | Create a case page template
+[**DeleteAPageTemplate**](PageTemplateAPI.md#DeleteAPageTemplate) | **Delete** /api/v1/pageTemplate/{pageTemplateId} | Delete a case page template
+[**UpdateAPageTemplate**](PageTemplateAPI.md#UpdateAPageTemplate) | **Patch** /api/v1/pageTemplate/{pageTemplateId} | Update a case page template
 
 
 
 ## CreateAPageTemplate
 
 > OutputPage CreateAPageTemplate(ctx).InputCreatePage(inputCreatePage).Execute()
+
+Create a case page template
 
 
 
@@ -29,7 +31,7 @@ import (
 )
 
 func main() {
-	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage | 
+	inputCreatePage := *openapiclient.NewInputCreatePage("Title_example", "Content_example", "Category_example") // InputCreatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +56,7 @@ Other parameters are passed through a pointer to a apiCreateAPageTemplateRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  | 
+ **inputCreatePage** | [**InputCreatePage**](InputCreatePage.md) |  |
 
 ### Return type
 
@@ -62,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -77,6 +79,8 @@ Name | Type | Description  | Notes
 ## DeleteAPageTemplate
 
 > DeleteAPageTemplate(ctx, pageTemplateId).Execute()
+
+Delete a case page template
 
 
 
@@ -93,7 +97,7 @@ import (
 )
 
 func main() {
-	pageTemplateId := "pageTemplateId_example" // string | 
+	pageTemplateId := "pageTemplateId_example" // string | The ID of the case page template preceded by `~`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -111,7 +115,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageTemplateId** | **string** |  | 
+**pageTemplateId** | **string** | The ID of the case page template preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -128,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -143,6 +147,8 @@ Name | Type | Description  | Notes
 ## UpdateAPageTemplate
 
 > UpdateAPageTemplate(ctx, pageTemplateId).InputUpdatePage(inputUpdatePage).Execute()
+
+Update a case page template
 
 
 
@@ -159,8 +165,8 @@ import (
 )
 
 func main() {
-	pageTemplateId := "pageTemplateId_example" // string | 
-	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage | 
+	pageTemplateId := "pageTemplateId_example" // string | The ID of the case page template preceded by `~`.
+	inputUpdatePage := *openapiclient.NewInputUpdatePage() // InputUpdatePage |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -178,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pageTemplateId** | **string** |  | 
+**pageTemplateId** | **string** | The ID of the case page template preceded by &#x60;~&#x60;. |
 
 ### Other Parameters
 
@@ -188,7 +194,7 @@ Other parameters are passed through a pointer to a apiUpdateAPageTemplateRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  | 
+ **inputUpdatePage** | [**InputUpdatePage**](InputUpdatePage.md) |  |
 
 ### Return type
 
@@ -196,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey), [Session](../README.md#Session)
+[Basic](../README.md#Basic), [ApiKey](../README.md#ApiKey)
 
 ### HTTP request headers
 
@@ -206,4 +212,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

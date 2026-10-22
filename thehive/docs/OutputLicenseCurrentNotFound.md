@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fallback** | [**OutputLicense**](OutputLicense.md) |  |
-**NotFound** | **bool** |  |
+**Fallback** | [**OutputLicense**](OutputLicense.md) | Placeholder license representing an unlicensed instance. |
+**NotFound** | Pointer to **bool** | Always &#x60;true&#x60; for this response variant. | [optional] [default to true]
 
 ## Methods
 
 ### NewOutputLicenseCurrentNotFound
 
-`func NewOutputLicenseCurrentNotFound(fallback OutputLicense, notFound bool, ) *OutputLicenseCurrentNotFound`
+`func NewOutputLicenseCurrentNotFound(fallback OutputLicense, ) *OutputLicenseCurrentNotFound`
 
 NewOutputLicenseCurrentNotFound instantiates a new OutputLicenseCurrentNotFound object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +65,11 @@ and a boolean to check if the value has been set.
 
 SetNotFound sets NotFound field to given value.
 
+### HasNotFound
+
+`func (o *OutputLicenseCurrentNotFound) HasNotFound() bool`
+
+HasNotFound returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

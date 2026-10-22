@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderscoreId** | **string** |  |
-**UnderscoreType** | **string** |  |
-**UnderscoreCreatedAt** | **int64** |  |
-**UnderscoreCreatedBy** | **string** |  |
-**UnderscoreUpdatedAt** | Pointer to **int64** |  | [optional]
-**UnderscoreUpdatedBy** | Pointer to **string** |  | [optional]
-**Name** | **string** |  |
-**Entity** | **string** |  |
-**Filter** | **map[string]interface{}** |  |
-**ListOptions** | [**ListOptions**](ListOptions.md) |  |
-**SortList** | Pointer to **[]string** |  | [optional]
-**ShowColumns** | Pointer to **[]string** |  | [optional]
-**IsShared** | **bool** |  |
+**UnderscoreId** | **string** | Internal unique identifier of the view. |
+**UnderscoreType** | **string** | Entity type, always &#x60;ListView&#x60;. |
+**UnderscoreCreatedAt** | **int64** | Date and time when the view was created. Returned as a Unix timestamp in milliseconds. |
+**UnderscoreCreatedBy** | **string** | Login of the user who created the view. |
+**UnderscoreUpdatedAt** | Pointer to **int64** | Date and time when the view was last updated. Returned as a Unix timestamp in milliseconds. | [optional]
+**UnderscoreUpdatedBy** | Pointer to **string** | Login of the user who last updated the view. | [optional]
+**Name** | **string** | Name of the view. |
+**Entity** | **string** | Type of list the view applies to. Determines which list the view&#39;s filters, sort order, displayed columns, and display options apply to. |
+**Filter** | **map[string]interface{}** | Filter applied to the list. Uses the same operators as the &#x60;filter&#x60; step of the Query API. |
+**ListOptions** | [**ListOptions**](ListOptions.md) | Display options saved for the view. |
+**SortList** | Pointer to **[]string** | Sort order saved for the view. Each entry is a field name prefixed with &#x60;+&#x60; for ascending order or &#x60;-&#x60; for descending order. | [optional]
+**ShowColumns** | Pointer to **[]string** | Optional columns displayed in the list, on top of the fixed set of columns shown for that entity type. | [optional]
+**IsShared** | **bool** | Whether the view is shared with your entire organization. When false, the view is private and visible only to you.  |
 
 ## Methods
 

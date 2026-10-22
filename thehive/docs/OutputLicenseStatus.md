@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  |
-**Customer** | **string** |  |
-**Instance** | **string** |  |
-**Plan** | **string** |  |
-**Kind** | **string** |  |
-**ValidFrom** | **int64** |  |
-**ExpiresAt** | **int64** |  |
-**Capabilities** | Pointer to **[]string** |  | [optional]
-**IsValid** | **bool** |  |
-**Error** | Pointer to **string** |  | [optional]
-**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) |  |
+**Id** | **string** | Unique identifier of the license. |
+**Customer** | **string** | Name of the customer this license is issued to. |
+**Instance** | **string** | Identifier of the TheHive instance this license is bound to. |
+**Plan** | **string** | License plan: &#x60;No&#x60;, &#x60;Community&#x60;, &#x60;Gold&#x60;, &#x60;Platinum&#x60;, or &#x60;One&#x60;. |
+**Kind** | **string** | License kind: &#x60;Regular&#x60;, &#x60;Trial&#x60;, or &#x60;Development&#x60;. |
+**ValidFrom** | **int64** | Date the license became valid. Returned as a Unix timestamp in milliseconds. |
+**ExpiresAt** | **int64** | Date the license expires. Returned as a Unix timestamp in milliseconds. |
+**Capabilities** | Pointer to **[]string** | Capabilities unlocked by the license plan. | [optional]
+**IsValid** | **bool** | Whether the license is currently valid. |
+**Error** | Pointer to **string** | Reason the license isn&#39;t valid. Absent when the license is valid. | [optional]
+**Quotas** | [**map[string]OutputLicenseQuota**](OutputLicenseQuota.md) | Usage and limit for each licensed quota, keyed by capability name. |
 
 ## Methods
 

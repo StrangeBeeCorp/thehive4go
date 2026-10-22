@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Result** | **interface{}** |  |
-**DurationMillis** | **int64** | Time taken by the function |
-**Stdout** | **string** | Content of stdout |
-**Stderr** | **string** | Content of stderr |
+**DurationMillis** | **int64** | Time taken by the function, in milliseconds. |
+**Stdout** | **string** | Content of stdout. |
+**Stderr** | **string** | Content of stderr. |
 
 ## Methods
 
